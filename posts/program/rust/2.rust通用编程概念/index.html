@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>rust通用编程概念 - 这是我的网站</title><meta name="Description" content="rust 编程笔记"><meta property="og:title" content="rust通用编程概念" />
+<meta property="og:description" content="rust 编程笔记" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zhangyuhu.github.io/posts/program/rust/2.rust%E9%80%9A%E7%94%A8%E7%BC%96%E7%A8%8B%E6%A6%82%E5%BF%B5/" /><meta property="og:image" content="https://zhangyuhu.github.io/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-01-15T17:52:52+08:00" />
+<meta property="article:modified_time" content="2023-01-15T17:52:52+08:00" /><meta property="og:site_name" content="我的网站" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://zhangyuhu.github.io/logo.png"/>
+
+<meta name="twitter:title" content="rust通用编程概念"/>
+<meta name="twitter:description" content="rust 编程笔记"/>
+<meta name="application-name" content="我的网站">
+<meta name="apple-mobile-web-app-title" content="我的网站"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://zhangyuhu.github.io/posts/program/rust/2.rust%E9%80%9A%E7%94%A8%E7%BC%96%E7%A8%8B%E6%A6%82%E5%BF%B5/" /><link rel="prev" href="https://zhangyuhu.github.io/posts/program/bash/shell/" /><link rel="next" href="https://zhangyuhu.github.io/posts/program/rust/1.rust%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "rust通用编程概念",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/zhangyuhu.github.io\/posts\/program\/rust\/2.rust%E9%80%9A%E7%94%A8%E7%BC%96%E7%A8%8B%E6%A6%82%E5%BF%B5\/"
+        },"genre": "posts","keywords": "rust","wordcount":  2028 ,
+        "url": "https:\/\/zhangyuhu.github.io\/posts\/program\/rust\/2.rust%E9%80%9A%E7%94%A8%E7%BC%96%E7%A8%8B%E6%A6%82%E5%BF%B5\/","datePublished": "2023-01-15T17:52:52+08:00","dateModified": "2023-01-15T17:52:52+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "zhangyuhu"
+            },"description": "rust 编程笔记"
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="这是我的网站"></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/" title="文章"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="这是我的网站"></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="文章">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/" title="">关于</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">rust通用编程概念</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://zhangyuhu.github.io/" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>zhangyuhu</a></span>&nbsp;<span class="post-category">included in <a href="/categories/rust/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>rust</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-01-15">2023-01-15</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2028 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;5 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#immutable--immutable">immutable &amp; immutable</a></li>
+    <li><a href="#常量">常量</a></li>
+    <li><a href="#遮蔽">遮蔽</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#标量类型">标量类型</a></li>
+    <li><a href="#复合类型">复合类型</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#if">if</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><blockquote>
+<p>本文采用<a href="http://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreffer ">知识共享署名 4.0 国际许可协议</a>进行许可，转载时请注明原文链接，图片在使用时请保留全部内容，可适当缩放并在引用处附上图片所在的文章链接。</p>
+</blockquote>
+<p><a href="https://rustwiki.org/zh-CN/book/title-page.html" target="_blank" rel="noopener noreffer ">Rust 程序设计语言 中文版</a></p>
+<h1 id="关键字">关键字</h1>
+<ul>
+<li><code>as</code> - 强制类型转换，消除特定包含项的 trait 的歧义，或者对 <code>use</code> 和 <code>extern crate</code> 语句中的项重命名</li>
+<li><code>async</code> - 返回一个 <code>Future</code> 而不是阻塞当前线程</li>
+<li><code>await</code> - 暂停执行，直到 <code>Future</code> 的结果准备好</li>
+<li><code>break</code> - 立刻退出循环</li>
+<li><code>const</code> - 定义常量或不变裸指针（constant raw pointer）</li>
+<li><code>continue</code> - 继续进入下一次循环迭代</li>
+<li><code>crate</code> - 链接（link）一个外部 <strong>crate</strong> 或一个代表宏定义的 <strong>crate</strong> 的宏变量</li>
+<li><code>dyn</code> - 动态分发 trait 对象</li>
+<li><code>else</code> - 作为 <code>if</code> 和 <code>if let</code> 控制流结构的 fallback</li>
+<li><code>enum</code> - 定义一个枚举</li>
+<li><code>extern</code> - 链接一个外部 <strong>crate</strong> 、函数或变量</li>
+<li><code>false</code> - 布尔字面量 <code>false</code></li>
+<li><code>fn</code> - 定义一个函数或 <strong>函数指针类型</strong> (<em>function pointer type</em>)</li>
+<li><code>for</code> - 遍历一个迭代器或实现一个 trait 或者指定一个更高级的生命周期</li>
+<li><code>if</code> - 基于条件表达式的结果分支</li>
+<li><code>impl</code> - 实现自有或 trait 功能</li>
+<li><code>in</code> - <code>for</code> 循环语法的一部分</li>
+<li><code>let</code> - 绑定一个变量</li>
+<li><code>loop</code> - 无条件循环</li>
+<li><code>match</code> - 模式匹配</li>
+<li><code>mod</code> - 定义一个模块</li>
+<li><code>move</code> - 使闭包获取其所捕获项的所有权</li>
+<li><code>mut</code> - 表示引用、裸指针或模式绑定的可变性</li>
+<li><code>pub</code> - 表示结构体字段、<code>impl</code> 块或模块的公有可见性</li>
+<li><code>ref</code> - 通过引用绑定</li>
+<li><code>return</code> - 从函数中返回</li>
+<li><code>Self</code> - 实现 trait 的类型的类型别名</li>
+<li><code>self</code> - 表示方法本身或当前模块</li>
+<li><code>static</code> - 表示全局变量或在整个程序执行期间保持其生命周期</li>
+<li><code>struct</code> - 定义一个结构体</li>
+<li><code>super</code> - 表示当前模块的父模块</li>
+<li><code>trait</code> - 定义一个 trait</li>
+<li><code>true</code> - 布尔字面量 <code>true</code></li>
+<li><code>type</code> - 定义一个类型别名或关联类型</li>
+<li><code>unsafe</code> - 表示不安全的代码、函数、trait 或实现</li>
+<li><code>use</code> - 引入外部空间的符号</li>
+<li><code>where</code> - 表示一个约束类型的从句</li>
+<li><code>while</code> - 基于一个表达式的结果判断是否进行循环</li>
+</ul>
+<h1 id="变量和可变性">变量和可变性</h1>
+<h2 id="immutable--immutable">immutable &amp; immutable</h2>
+<p><strong>不可变的</strong>（<em>immutable</em>），<strong>可变的</strong>（<em>immutable</em>）。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> <span style="color:#66d9ef">mut</span> x <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span>;
+</span></span><span style="display:flex;"><span>    println!(<span style="color:#e6db74">&#34;The value of x is: {}&#34;</span>, x);
+</span></span><span style="display:flex;"><span>    x <span style="color:#f92672">=</span> <span style="color:#ae81ff">6</span>;
+</span></span><span style="display:flex;"><span>    println!(<span style="color:#e6db74">&#34;The value of x is: {}&#34;</span>, x);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="常量">常量</h2>
+<p><strong>常量</strong>（<em>constant</em>）是绑定到一个常量名且不允许更改的值。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> THREE_HOURS_IN_SECONDS: <span style="color:#66d9ef">u32</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">60</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">60</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">3</span>;
+</span></span></code></pre></div><h2 id="遮蔽">遮蔽</h2>
+<p><strong>遮蔽</strong>（<em>shadow</em>）：以声明和前面变量具有相同名称的新变量，这意味着当我们使用变量时我们看到的会是第二个变量的值。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> x <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> x <span style="color:#f92672">=</span> x <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">let</span> x <span style="color:#f92672">=</span> x <span style="color:#f92672">*</span> <span style="color:#ae81ff">2</span>;
+</span></span><span style="display:flex;"><span>        println!(<span style="color:#e6db74">&#34;The value of x in the inner scope is: {}&#34;</span>, x);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    println!(<span style="color:#e6db74">&#34;The value of x is: {}&#34;</span>, x);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><code>mut</code> 和遮蔽之间的另一个区别是，因为我们在再次使用 <code>let</code> 关键字时有效地创建了一个新的变量，所以我们可以改变值的类型，但重复使用相同的名称。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#66d9ef">let</span> spaces <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;   &#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> spaces <span style="color:#f92672">=</span> spaces.len();
+</span></span></code></pre></div><h1 id="数据类型">数据类型</h1>
+<p>Rust 是一种<strong>静态类型</strong>（<em>statically typed</em>）的语言，这意味着它必须在编译期知道所有变量的类型。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#66d9ef">let</span> guess: <span style="color:#66d9ef">u32</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;42&#34;</span>.parse().expect(<span style="color:#e6db74">&#34;Not a number!&#34;</span>);
+</span></span></code></pre></div><h2 id="标量类型">标量类型</h2>
+<p><strong>标量</strong>（<em>scalar</em>）类型表示单个值。Rust 有 4 个基本的标量类型：整型、浮点型、布尔型和字符。</p>
+<ul>
+<li>整型</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>长度</th>
+<th>有符号类型</th>
+<th>无符号类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>8 位</td>
+<td><code>i8</code></td>
+<td><code>u8</code></td>
+</tr>
+<tr>
+<td>16 位</td>
+<td><code>i16</code></td>
+<td><code>u16</code></td>
+</tr>
+<tr>
+<td>32 位</td>
+<td><code>i32</code></td>
+<td><code>u32</code></td>
+</tr>
+<tr>
+<td>64 位</td>
+<td><code>i64</code></td>
+<td><code>u64</code></td>
+</tr>
+<tr>
+<td>128 位</td>
+<td><code>i128</code></td>
+<td><code>u128</code></td>
+</tr>
+<tr>
+<td>arch</td>
+<td><code>isize</code></td>
+<td><code>usize</code></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>整型字面量</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>数字字面量</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>十进制</td>
+<td><code>98_222</code></td>
+</tr>
+<tr>
+<td>十六进制</td>
+<td><code>0xff</code></td>
+</tr>
+<tr>
+<td>八进制</td>
+<td><code>0o77</code></td>
+</tr>
+<tr>
+<td>二进制</td>
+<td><code>0b1111_0000</code></td>
+</tr>
+<tr>
+<td>字节 (仅限于 <code>u8</code>)</td>
+<td><code>b'A'</code></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>
+<p>浮点型</p>
+<p>Rust 的浮点型是 <code>f32</code> 和 <code>f64</code>，它们的大小分别为 32 位和 64 位。默认浮点类型是 <code>f64</code>，因为在现代的 CPU 中它的速度与 <code>f32</code> 的几乎相同，但精度更高。所有浮点型都是有符号的。</p>
+</li>
+<li>
+<p>数字运算</p>
+<p>Rust 的所有数字类型都支持基本数学运算：加法、减法、乘法、除法和取模运算。整数除法会向下取整。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// addition
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">let</span> sum <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">10</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// subtraction
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">let</span> difference <span style="color:#f92672">=</span> <span style="color:#ae81ff">95.5</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">4.3</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// multiplication
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">let</span> product <span style="color:#f92672">=</span> <span style="color:#ae81ff">4</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">30</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// division
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">let</span> quotient <span style="color:#f92672">=</span> <span style="color:#ae81ff">56.7</span> <span style="color:#f92672">/</span> <span style="color:#ae81ff">32.2</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> floored <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">/</span> <span style="color:#ae81ff">3</span>; <span style="color:#75715e">// Results in 0
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// remainder
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">let</span> remainder <span style="color:#f92672">=</span> <span style="color:#ae81ff">43</span> <span style="color:#f92672">%</span> <span style="color:#ae81ff">5</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div></li>
+<li>
+<p>bool</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#66d9ef">let</span> f: <span style="color:#66d9ef">bool</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span>;
+</span></span></code></pre></div></li>
+<li>
+<p>char</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#66d9ef">let</span> c <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;z&#39;</span>;
+</span></span></code></pre></div></li>
+</ul>
+<h2 id="复合类型">复合类型</h2>
+<p>Rust 有两种基本的复合类型：元组（tuple）和数组（array）。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#66d9ef">let</span> tup: (<span style="color:#66d9ef">i32</span>, <span style="color:#66d9ef">f64</span>, <span style="color:#66d9ef">u8</span>) <span style="color:#f92672">=</span> (<span style="color:#ae81ff">500</span>, <span style="color:#ae81ff">6.4</span>, <span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> a <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>];
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> months <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#34;January&#34;</span>, <span style="color:#e6db74">&#34;February&#34;</span>, <span style="color:#e6db74">&#34;March&#34;</span>, <span style="color:#e6db74">&#34;April&#34;</span>, <span style="color:#e6db74">&#34;May&#34;</span>, <span style="color:#e6db74">&#34;June&#34;</span>, <span style="color:#e6db74">&#34;July&#34;</span>,
+</span></span><span style="display:flex;"><span>              <span style="color:#e6db74">&#34;August&#34;</span>, <span style="color:#e6db74">&#34;September&#34;</span>, <span style="color:#e6db74">&#34;October&#34;</span>, <span style="color:#e6db74">&#34;November&#34;</span>, <span style="color:#e6db74">&#34;December&#34;</span>];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> a: [<span style="color:#66d9ef">i32</span>; <span style="color:#ae81ff">5</span>] <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>]; <span style="color:#75715e">// i32 是每个元素的类型。分号之后，数字 5 表明该数组包含 5 个元素。
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">let</span> a <span style="color:#f92672">=</span> [<span style="color:#ae81ff">3</span>; <span style="color:#ae81ff">5</span>]; <span style="color:#75715e">// 变量名为 a 的数组将包含 5 个元素，这些元素的值初始化为 3。
+</span></span></span></code></pre></div><h1 id="函数">函数</h1>
+<p>Rust 中的函数定义以 <code>fn</code> 开始，后跟着函数名和一对圆括号。大括号告诉编译器函数体在哪里开始和结束。</p>
+<ul>
+<li>参数</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>    another_function(<span style="color:#ae81ff">5</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">another_function</span>(x: <span style="color:#66d9ef">i32</span>) {
+</span></span><span style="display:flex;"><span>    println!(<span style="color:#e6db74">&#34;The value of x is: {}&#34;</span>, x);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><ul>
+<li>语句和表达式
+<strong>语句</strong>（<em>statement</em>）是执行一些操作但不返回值的指令。表达式（<em>expression</em>）计算并产生一个值</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> y <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">let</span> x <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>;
+</span></span><span style="display:flex;"><span>        x <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> <span style="color:#75715e">// 注意，x + 1 行的末尾没有分号，这与你目前见过的大部分代码行不同。表达式的结尾没有分号。如果在表达式的末尾加上分号，那么它就转换为语句，而语句不会返回值。
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    };
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    println!(<span style="color:#e6db74">&#34;The value of y is: {}&#34;</span>, y);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><ul>
+<li>带有返回值的函数</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span>  <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">five</span>() -&gt; <span style="color:#66d9ef">i32</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#ae81ff">5</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">let</span> x <span style="color:#f92672">=</span> five();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      println!(<span style="color:#e6db74">&#34;The value of x is: {}&#34;</span>, x);
+</span></span><span style="display:flex;"><span>  }
+</span></span></code></pre></div><h1 id="控制流">控制流</h1>
+<h2 id="if">if</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> number <span style="color:#f92672">=</span> <span style="color:#ae81ff">6</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> number <span style="color:#f92672">%</span> <span style="color:#ae81ff">4</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> {
+</span></span><span style="display:flex;"><span>        println!(<span style="color:#e6db74">&#34;number is divisible by 4&#34;</span>);
+</span></span><span style="display:flex;"><span>    } <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> number <span style="color:#f92672">%</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> {
+</span></span><span style="display:flex;"><span>        println!(<span style="color:#e6db74">&#34;number is divisible by 3&#34;</span>);
+</span></span><span style="display:flex;"><span>    } <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> number <span style="color:#f92672">%</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> {
+</span></span><span style="display:flex;"><span>        println!(<span style="color:#e6db74">&#34;number is divisible by 2&#34;</span>);
+</span></span><span style="display:flex;"><span>    } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>        println!(<span style="color:#e6db74">&#34;number is not divisible by 4, 3, or 2&#34;</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> condition <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>;
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">let</span> number <span style="color:#f92672">=</span> <span style="color:#66d9ef">if</span> condition { <span style="color:#ae81ff">5</span> } <span style="color:#66d9ef">else</span> { <span style="color:#ae81ff">6</span> };
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      println!(<span style="color:#e6db74">&#34;The value of number is: {}&#34;</span>, number);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h1 id="循环">循环</h1>
+<p>Rust 有三种循环：<code>loop</code>、<code>while</code> 和 <code>for</code>。</p>
+<ul>
+<li>
+<p>loop</p>
+<p><code>loop</code> 关键字告诉 Rust 一遍又一遍地执行一段代码直到你明确要求停止。</p>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span>  <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">let</span> <span style="color:#66d9ef">mut</span> count <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#39;</span><span style="color:#a6e22e">counting_up</span>: <span style="color:#a6e22e">loop</span> {
+</span></span><span style="display:flex;"><span>          println!(<span style="color:#e6db74">&#34;count = {}&#34;</span>, count);
+</span></span><span style="display:flex;"><span>          <span style="color:#66d9ef">let</span> <span style="color:#66d9ef">mut</span> remaining <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>          <span style="color:#66d9ef">loop</span> {
+</span></span><span style="display:flex;"><span>              println!(<span style="color:#e6db74">&#34;remaining = {}&#34;</span>, remaining);
+</span></span><span style="display:flex;"><span>              <span style="color:#66d9ef">if</span> remaining <span style="color:#f92672">==</span> <span style="color:#ae81ff">9</span> {
+</span></span><span style="display:flex;"><span>                  <span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>              }
+</span></span><span style="display:flex;"><span>              <span style="color:#66d9ef">if</span> count <span style="color:#f92672">==</span> <span style="color:#ae81ff">2</span> {
+</span></span><span style="display:flex;"><span>                  <span style="color:#66d9ef">break</span> &#39;counting_up;
+</span></span><span style="display:flex;"><span>              }
+</span></span><span style="display:flex;"><span>              remaining <span style="color:#f92672">-=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>          }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>          count <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>      println!(<span style="color:#e6db74">&#34;End count = {}&#34;</span>, count);
+</span></span><span style="display:flex;"><span>  }
+</span></span></code></pre></div><p>从循环返回</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> <span style="color:#66d9ef">mut</span> counter <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> result <span style="color:#f92672">=</span> <span style="color:#66d9ef">loop</span> {
+</span></span><span style="display:flex;"><span>        counter <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> counter <span style="color:#f92672">==</span> <span style="color:#ae81ff">10</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">break</span> counter <span style="color:#f92672">*</span> <span style="color:#ae81ff">2</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    };
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    println!(<span style="color:#e6db74">&#34;The result is {}&#34;</span>, result);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><ul>
+<li>
+<p>while</p>
+<p>在程序中计算循环的条件也很常见。当条件为真，执行循环。当条件不再为真，调用 <code>break</code> 停止循环。这个循环类型可以通过组合 <code>loop</code>、<code>if</code>、<code>else</code> 和 <code>break</code> 来实现.</p>
+</li>
+<li>
+<p>for</p>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span>  <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">let</span> a <span style="color:#f92672">=</span> [<span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">20</span>, <span style="color:#ae81ff">30</span>, <span style="color:#ae81ff">40</span>, <span style="color:#ae81ff">50</span>];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">for</span> element <span style="color:#66d9ef">in</span> a {
+</span></span><span style="display:flex;"><span>          println!(<span style="color:#e6db74">&#34;the value is: {}&#34;</span>, element);
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>  }
+</span></span></code></pre></div></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2023-01-15</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://zhangyuhu.github.io/posts/program/rust/2.rust%E9%80%9A%E7%94%A8%E7%BC%96%E7%A8%8B%E6%A6%82%E5%BF%B5/" data-title="rust通用编程概念" data-hashtags="rust"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://zhangyuhu.github.io/posts/program/rust/2.rust%E9%80%9A%E7%94%A8%E7%BC%96%E7%A8%8B%E6%A6%82%E5%BF%B5/" data-hashtag="rust"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://zhangyuhu.github.io/posts/program/rust/2.rust%E9%80%9A%E7%94%A8%E7%BC%96%E7%A8%8B%E6%A6%82%E5%BF%B5/" data-title="rust通用编程概念"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://zhangyuhu.github.io/posts/program/rust/2.rust%E9%80%9A%E7%94%A8%E7%BC%96%E7%A8%8B%E6%A6%82%E5%BF%B5/" data-title="rust通用编程概念"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://zhangyuhu.github.io/posts/program/rust/2.rust%E9%80%9A%E7%94%A8%E7%BC%96%E7%A8%8B%E6%A6%82%E5%BF%B5/" data-title="rust通用编程概念" data-ralateuid="ji"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/rust/">rust</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/program/bash/shell/" class="prev" rel="prev" title="shell"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>shell</a>
+            <a href="/posts/program/rust/1.rust%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" class="next" rel="next" title="rust环境搭建">rust环境搭建<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.109.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://zhangyuhu.github.io/" target="_blank">zhangyuhu</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/css/lightgallery-bundle.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/lightgallery.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/thumbnail/lg-thumbnail.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/zoom/lg-zoom.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"lightgallery":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Python中的列表和元组 - 这是我的网站</title><meta name="Description" content="python 编程笔记"><meta property="og:title" content="Python中的列表和元组" />
+<meta property="og:description" content="python 编程笔记" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zhangyuhu.github.io/posts/program/python/7_python%E5%88%97%E8%A1%A8%E5%92%8C%E5%85%83%E7%BB%84/" /><meta property="og:image" content="https://zhangyuhu.github.io/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-01-15T17:52:52+08:00" />
+<meta property="article:modified_time" content="2023-01-15T17:52:52+08:00" /><meta property="og:site_name" content="我的网站" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://zhangyuhu.github.io/logo.png"/>
+
+<meta name="twitter:title" content="Python中的列表和元组"/>
+<meta name="twitter:description" content="python 编程笔记"/>
+<meta name="application-name" content="我的网站">
+<meta name="apple-mobile-web-app-title" content="我的网站"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://zhangyuhu.github.io/posts/program/python/7_python%E5%88%97%E8%A1%A8%E5%92%8C%E5%85%83%E7%BB%84/" /><link rel="prev" href="https://zhangyuhu.github.io/posts/program/python/5_python%E4%B8%AD%E7%9A%84%E5%AD%97%E5%85%B8/" /><link rel="next" href="https://zhangyuhu.github.io/posts/program/python/2_python%E4%B8%AD%E7%9A%84self%E7%94%A8%E6%B3%95/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Python中的列表和元组",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/zhangyuhu.github.io\/posts\/program\/python\/7_python%E5%88%97%E8%A1%A8%E5%92%8C%E5%85%83%E7%BB%84\/"
+        },"genre": "posts","keywords": "python","wordcount":  1297 ,
+        "url": "https:\/\/zhangyuhu.github.io\/posts\/program\/python\/7_python%E5%88%97%E8%A1%A8%E5%92%8C%E5%85%83%E7%BB%84\/","datePublished": "2023-01-15T17:52:52+08:00","dateModified": "2023-01-15T17:52:52+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "zhangyuhu"
+            },"description": "python 编程笔记"
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="这是我的网站"></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/" title="文章"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="这是我的网站"></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="文章">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/" title="">关于</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Python中的列表和元组</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://zhangyuhu.github.io/" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>zhangyuhu</a></span>&nbsp;<span class="post-category">included in <a href="/categories/python/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>python</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-01-15">2023-01-15</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1297 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;3 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-列表和元组">1. 列表和元组</a></li>
+    <li><a href="#2-python-中的列表和元组都支持负数索引">2. Python 中的列表和元组都支持负数索引</a></li>
+    <li><a href="#3-列表和元组都支持切片操作">3. 列表和元组都支持切片操作</a></li>
+    <li><a href="#4-列表和元组都可以随意嵌套">4. 列表和元组都<strong>可以随意嵌套</strong></a></li>
+    <li><a href="#5-两者也可以通过-list-和-tuple-函数相互转换">5. 两者也可以通过 list() 和 tuple() 函数相互转换</a></li>
+    <li><a href="#6-列表和元组常用的内置函数">6. 列表和元组常用的内置函数</a></li>
+    <li><a href="#7-列表和元组存储方式的差异">7. 列表和元组存储方式的差异</a></li>
+    <li><a href="#8-列表和元组的性能">8. 列表和元组的性能</a></li>
+    <li><a href="#9-列表和元组的使用场景">9. 列表和元组的使用场景</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><blockquote>
+<p>本文采用<a href="http://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreffer ">知识共享署名 4.0 国际许可协议</a>进行许可，转载时请注明原文链接，图片在使用时请保留全部内容，可适当缩放并在引用处附上图片所在的文章链接。</p>
+</blockquote>
+<!-- raw HTML omitted -->
+<ul>
+<li><a href="#1-%E5%88%97%E8%A1%A8%E5%92%8C%E5%85%83%E7%BB%84" rel="">1. 列表和元组</a></li>
+<li><a href="#2-python-%E4%B8%AD%E7%9A%84%E5%88%97%E8%A1%A8%E5%92%8C%E5%85%83%E7%BB%84%E9%83%BD%E6%94%AF%E6%8C%81%E8%B4%9F%E6%95%B0%E7%B4%A2%E5%BC%95" rel="">2. Python 中的列表和元组都支持负数索引</a></li>
+<li><a href="#3-%E5%88%97%E8%A1%A8%E5%92%8C%E5%85%83%E7%BB%84%E9%83%BD%E6%94%AF%E6%8C%81%E5%88%87%E7%89%87%E6%93%8D%E4%BD%9C" rel="">3. 列表和元组都支持切片操作</a></li>
+<li><a href="#4-%E5%88%97%E8%A1%A8%E5%92%8C%E5%85%83%E7%BB%84%E9%83%BD%E5%8F%AF%E4%BB%A5%E9%9A%8F%E6%84%8F%E5%B5%8C%E5%A5%97" rel="">4. 列表和元组都<strong>可以随意嵌套</strong></a></li>
+<li><a href="#5-%E4%B8%A4%E8%80%85%E4%B9%9F%E5%8F%AF%E4%BB%A5%E9%80%9A%E8%BF%87-list-%E5%92%8C-tuple-%E5%87%BD%E6%95%B0%E7%9B%B8%E4%BA%92%E8%BD%AC%E6%8D%A2" rel="">5. 两者也可以通过 list 和 tuple 函数相互转换</a></li>
+<li><a href="#6-%E5%88%97%E8%A1%A8%E5%92%8C%E5%85%83%E7%BB%84%E5%B8%B8%E7%94%A8%E7%9A%84%E5%86%85%E7%BD%AE%E5%87%BD%E6%95%B0" rel="">6. 列表和元组常用的内置函数</a></li>
+<li><a href="#7-%E5%88%97%E8%A1%A8%E5%92%8C%E5%85%83%E7%BB%84%E5%AD%98%E5%82%A8%E6%96%B9%E5%BC%8F%E7%9A%84%E5%B7%AE%E5%BC%82" rel="">7. 列表和元组存储方式的差异</a></li>
+<li><a href="#8-%E5%88%97%E8%A1%A8%E5%92%8C%E5%85%83%E7%BB%84%E7%9A%84%E6%80%A7%E8%83%BD" rel="">8. 列表和元组的性能</a></li>
+<li><a href="#9-%E5%88%97%E8%A1%A8%E5%92%8C%E5%85%83%E7%BB%84%E7%9A%84%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF" rel="">9. 列表和元组的使用场景</a></li>
+</ul>
+<!-- raw HTML omitted -->
+<h2 id="1-列表和元组">1. 列表和元组</h2>
+<p>相同点：</p>
+<ul>
+<li>列表和元组，都是<strong>一个可以放置任意数据类型的有序集合</strong>。</li>
+</ul>
+<p>不同点：</p>
+<ul>
+<li><strong>列表是动态的</strong>，长度大小不固定，可以随意地增加、删减或者改变元素（mutable）。</li>
+<li><strong>而元组是静态的</strong>，长度大小固定，无法增加删减或者<strong>改变</strong>（immutable）。</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>l <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>]
+</span></span><span style="display:flex;"><span>l[<span style="color:#ae81ff">3</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">40</span> <span style="color:#75715e"># 和很多语言类似，python 中索引同样从 0 开始，l[3] 表示访问列表的第四个元素</span>
+</span></span><span style="display:flex;"><span>l
+</span></span><span style="display:flex;"><span>[<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">40</span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>tup <span style="color:#f92672">=</span> (<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>)
+</span></span><span style="display:flex;"><span>tup[<span style="color:#ae81ff">3</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">40</span>
+</span></span><span style="display:flex;"><span>Traceback (most recent call last):
+</span></span><span style="display:flex;"><span>  File <span style="color:#e6db74">&#34;&lt;stdin&gt;&#34;</span>, line <span style="color:#ae81ff">1</span>, <span style="color:#f92672">in</span> <span style="color:#f92672">&lt;</span>module<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">TypeError</span>: <span style="color:#e6db74">&#39;tuple&#39;</span> object does <span style="color:#f92672">not</span> support item assignment
+</span></span></code></pre></div><p>想对已有的元组做任何&quot;改变“ 只能创建新的元组，对于列表来说，由于其是动态的，我们只需简单地在列表末尾，加入对应元素就可以了。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>tup <span style="color:#f92672">=</span> (<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>)
+</span></span><span style="display:flex;"><span>new_tup <span style="color:#f92672">=</span> tup <span style="color:#f92672">+</span> (<span style="color:#ae81ff">5</span>, ) <span style="color:#75715e"># 创建新的元组 new_tup，并依次填充原元组的值</span>
+</span></span><span style="display:flex;"><span>new _tup
+</span></span><span style="display:flex;"><span>(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>l <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>]
+</span></span><span style="display:flex;"><span>l<span style="color:#f92672">.</span>append(<span style="color:#ae81ff">5</span>) <span style="color:#75715e"># 添加元素 5 到原列表的末尾</span>
+</span></span><span style="display:flex;"><span>l
+</span></span><span style="display:flex;"><span>[<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>]
+</span></span></code></pre></div><h2 id="2-python-中的列表和元组都支持负数索引">2. Python 中的列表和元组都支持负数索引</h2>
+<p><strong>Python 中的列表和元组都支持负数索引</strong>，-1 表示最后一个元素，-2 表示倒数第二个元素。</p>
+<h2 id="3-列表和元组都支持切片操作">3. 列表和元组都支持切片操作</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>l <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>]
+</span></span><span style="display:flex;"><span>l[<span style="color:#ae81ff">1</span>:<span style="color:#ae81ff">3</span>] <span style="color:#75715e"># 返回列表中索引从 1 到 2 的子列表</span>
+</span></span><span style="display:flex;"><span>[<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>tup <span style="color:#f92672">=</span> (<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>)
+</span></span><span style="display:flex;"><span>tup[<span style="color:#ae81ff">1</span>:<span style="color:#ae81ff">3</span>] <span style="color:#75715e"># 返回元组中索引从 1 到 2 的子元组</span>
+</span></span><span style="display:flex;"><span>(<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>)
+</span></span></code></pre></div><h2 id="4-列表和元组都可以随意嵌套">4. 列表和元组都<strong>可以随意嵌套</strong></h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>l <span style="color:#f92672">=</span> [[<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>], [<span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>]] <span style="color:#75715e"># 列表的每一个元素也是一个列表</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>tup <span style="color:#f92672">=</span> ((<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>), (<span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">6</span>)) <span style="color:#75715e"># 元组的每一个元素也是一元组</span>
+</span></span></code></pre></div><h2 id="5-两者也可以通过-list-和-tuple-函数相互转换">5. 两者也可以通过 list() 和 tuple() 函数相互转换</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>list((<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>))
+</span></span><span style="display:flex;"><span>[<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>tuple([<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>])
+</span></span><span style="display:flex;"><span>(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>)
+</span></span></code></pre></div><h2 id="6-列表和元组常用的内置函数">6. 列表和元组常用的内置函数</h2>
+<ul>
+<li>count(item) 表示统计列表 / 元组中 item 出现的次数。</li>
+<li>index(item) 表示返回列表 / 元组中 item 第一次出现的索引。</li>
+<li>list.reverse() 和 list.sort() 分别表示原地倒转列表和排序（注意，元组没有内置的这两个函数)。</li>
+<li>reversed() 和 sorted() 同样表示对列表 / 元组进行倒转和排序，但是会返回一个倒转后或者排好序的新的列表 / 元组。</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>l <span style="color:#f92672">=</span> [<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">1</span>]
+</span></span><span style="display:flex;"><span>l<span style="color:#f92672">.</span>count(<span style="color:#ae81ff">3</span>)
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>l<span style="color:#f92672">.</span>index(<span style="color:#ae81ff">7</span>)
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">3</span>
+</span></span><span style="display:flex;"><span>l<span style="color:#f92672">.</span>reverse()
+</span></span><span style="display:flex;"><span>l
+</span></span><span style="display:flex;"><span>[<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>]
+</span></span><span style="display:flex;"><span>l<span style="color:#f92672">.</span>sort()
+</span></span><span style="display:flex;"><span>l
+</span></span><span style="display:flex;"><span>[<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">8</span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>tup <span style="color:#f92672">=</span> (<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>tup<span style="color:#f92672">.</span>count(<span style="color:#ae81ff">3</span>)
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>tup<span style="color:#f92672">.</span>index(<span style="color:#ae81ff">7</span>)
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">3</span>
+</span></span><span style="display:flex;"><span>list(reversed(tup))
+</span></span><span style="display:flex;"><span>[<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>]
+</span></span><span style="display:flex;"><span>sorted(tup)
+</span></span><span style="display:flex;"><span>[<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">8</span>]
+</span></span></code></pre></div><h2 id="7-列表和元组存储方式的差异">7. 列表和元组存储方式的差异</h2>
+<p>列表的存储空间略大于元组。</p>
+<p>列表是动态的、可变的，它需要存储指针，来指向对应的元素，为了减小每次增加 / 删减操作时空间分配的开销，Python 每次分配空间时都会额外多分配一些，这样的机制（over-allocating）保证了其操作的高效性：增加 / 删除的时间复杂度均为 O(1)。。元组长度大小固定，元素不可变，所以存储空间固定。</p>
+<h2 id="8-列表和元组的性能">8. 列表和元组的性能</h2>
+<p>列表的性能略逊于元组。</p>
+<h2 id="9-列表和元组的使用场景">9. 列表和元组的使用场景</h2>
+<p><strong>1.</strong> 如果存储的数据和数量不变，比如你有一个函数，需要返回的是一个地点的经纬度，然后直接传给前端渲染，那么肯定选用元组更合适。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_location</span>():
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">.....</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> (longitude, latitude)
+</span></span></code></pre></div><p><strong>2.</strong> 如果存储的数据或数量是可变的，比如社交平台上的一个日志功能，是统计一个用户在一周之内看了哪些用户的帖子，那么则用列表更合适。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>viewer_owner_id_list <span style="color:#f92672">=</span> [] <span style="color:#75715e"># 里面的每个元素记录了这个 viewer 一周内看过的所有 owner 的 id</span>
+</span></span><span style="display:flex;"><span>records <span style="color:#f92672">=</span> queryDB(viewer_id) <span style="color:#75715e"># 索引数据库，拿到某个 viewer 一周内的日志</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> record <span style="color:#f92672">in</span> records:
+</span></span><span style="display:flex;"><span>    viewer_owner_id_list<span style="color:#f92672">.</span>append(record<span style="color:#f92672">.</span>id)
+</span></span></code></pre></div></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2023-01-15</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://zhangyuhu.github.io/posts/program/python/7_python%E5%88%97%E8%A1%A8%E5%92%8C%E5%85%83%E7%BB%84/" data-title="Python中的列表和元组" data-hashtags="python"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://zhangyuhu.github.io/posts/program/python/7_python%E5%88%97%E8%A1%A8%E5%92%8C%E5%85%83%E7%BB%84/" data-hashtag="python"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://zhangyuhu.github.io/posts/program/python/7_python%E5%88%97%E8%A1%A8%E5%92%8C%E5%85%83%E7%BB%84/" data-title="Python中的列表和元组"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://zhangyuhu.github.io/posts/program/python/7_python%E5%88%97%E8%A1%A8%E5%92%8C%E5%85%83%E7%BB%84/" data-title="Python中的列表和元组"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://zhangyuhu.github.io/posts/program/python/7_python%E5%88%97%E8%A1%A8%E5%92%8C%E5%85%83%E7%BB%84/" data-title="Python中的列表和元组" data-ralateuid="ji"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/python/">python</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/program/python/5_python%E4%B8%AD%E7%9A%84%E5%AD%97%E5%85%B8/" class="prev" rel="prev" title="Python中的字典"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Python中的字典</a>
+            <a href="/posts/program/python/2_python%E4%B8%AD%E7%9A%84self%E7%94%A8%E6%B3%95/" class="next" rel="next" title="Python中的self用法">Python中的self用法<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.109.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://zhangyuhu.github.io/" target="_blank">zhangyuhu</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/css/lightgallery-bundle.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/lightgallery.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/thumbnail/lg-thumbnail.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/zoom/lg-zoom.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"lightgallery":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

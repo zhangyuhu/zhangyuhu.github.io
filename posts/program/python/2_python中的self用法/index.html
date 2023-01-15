@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Python中的self用法 - 这是我的网站</title><meta name="Description" content="python 编程笔记"><meta property="og:title" content="Python中的self用法" />
+<meta property="og:description" content="python 编程笔记" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zhangyuhu.github.io/posts/program/python/2_python%E4%B8%AD%E7%9A%84self%E7%94%A8%E6%B3%95/" /><meta property="og:image" content="https://zhangyuhu.github.io/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-01-15T17:52:52+08:00" />
+<meta property="article:modified_time" content="2023-01-15T17:52:52+08:00" /><meta property="og:site_name" content="我的网站" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://zhangyuhu.github.io/logo.png"/>
+
+<meta name="twitter:title" content="Python中的self用法"/>
+<meta name="twitter:description" content="python 编程笔记"/>
+<meta name="application-name" content="我的网站">
+<meta name="apple-mobile-web-app-title" content="我的网站"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://zhangyuhu.github.io/posts/program/python/2_python%E4%B8%AD%E7%9A%84self%E7%94%A8%E6%B3%95/" /><link rel="prev" href="https://zhangyuhu.github.io/posts/program/python/7_python%E5%88%97%E8%A1%A8%E5%92%8C%E5%85%83%E7%BB%84/" /><link rel="next" href="https://zhangyuhu.github.io/posts/program/python/1_python%E4%B8%AD%E7%9A%84module%E5%92%8Cpackage/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Python中的self用法",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/zhangyuhu.github.io\/posts\/program\/python\/2_python%E4%B8%AD%E7%9A%84self%E7%94%A8%E6%B3%95\/"
+        },"genre": "posts","keywords": "python","wordcount":  4908 ,
+        "url": "https:\/\/zhangyuhu.github.io\/posts\/program\/python\/2_python%E4%B8%AD%E7%9A%84self%E7%94%A8%E6%B3%95\/","datePublished": "2023-01-15T17:52:52+08:00","dateModified": "2023-01-15T17:52:52+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "zhangyuhu"
+            },"description": "python 编程笔记"
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="这是我的网站"></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/" title="文章"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="这是我的网站"></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="文章">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/" title="">关于</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Python中的self用法</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://zhangyuhu.github.io/" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>zhangyuhu</a></span>&nbsp;<span class="post-category">included in <a href="/categories/python/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>python</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-01-15">2023-01-15</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;4908 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;10 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#01-python-中的类">0.1. python 中的类</a></li>
+    <li><a href="#02-类-class-中为啥用使用-self">0.2. 类 class 中为啥用使用 self</a></li>
+    <li><a href="#03-在python中类的定义">0.3. 在Python中类的定义</a></li>
+    <li><a href="#04-def-__init__self-方法">0.4. def <strong>init</strong>(self) 方法</a></li>
+    <li><a href="#05-为啥要使用-self">0.5. 为啥要使用 self</a></li>
+    <li><a href="#06-self-到底是什么">0.6. self 到底是什么</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><blockquote>
+<p>本文采用<a href="http://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreffer ">知识共享署名 4.0 国际许可协议</a>进行许可，转载时请注明原文链接，图片在使用时请保留全部内容，可适当缩放并在引用处附上图片所在的文章链接。</p>
+</blockquote>
+<!-- raw HTML omitted -->
+<ul>
+<li><a href="#1-python-%E4%B8%AD%E7%9A%84%E7%B1%BB" rel="">1. python 中的类</a></li>
+<li><a href="#2-%E7%B1%BB-class-%E4%B8%AD%E4%B8%BA%E5%95%A5%E7%94%A8%E4%BD%BF%E7%94%A8-self" rel="">2. 类 class 中为啥用使用 self</a></li>
+<li><a href="#3-%E5%9C%A8python%E4%B8%AD%E7%B1%BB%E7%9A%84%E5%AE%9A%E4%B9%89" rel="">3. 在Python中类的定义</a></li>
+<li><a href="#4-def-__init__self-%E6%96%B9%E6%B3%95" rel="">4. def __init__self 方法</a></li>
+<li><a href="#5-%E4%B8%BA%E5%95%A5%E8%A6%81%E4%BD%BF%E7%94%A8-self" rel="">5. 为啥要使用 self</a></li>
+<li><a href="#6-self-%E5%88%B0%E5%BA%95%E6%98%AF%E4%BB%80%E4%B9%88" rel="">6. self 到底是什么</a></li>
+</ul>
+<!-- raw HTML omitted -->
+<h2 id="01-python-中的类">0.1. python 中的类</h2>
+<p>在Python类中规定，函数的第一个参数是实例对象本身，并且约定俗成，把其名字写为self。其作用相当于java中的this，表示当前类的对象，可以调用当前类中的属性和方法。</p>
+<p>class是面向对象的设计思想，instance（也即是 object，对象）是根据 class 创建的。一个类（class）应该包含数据和操作数据的方法，通俗来讲就是属性和函数（即调用方法）。</p>
+<h2 id="02-类-class-中为啥用使用-self">0.2. 类 class 中为啥用使用 self</h2>
+<p>在类的代码（函数）中，需要访问当前的实例中的变量和函数，即访问Instance中的：</p>
+<p>对应的变量（property)：Instance.ProperyNam，去读取之前的值和写入新的值。</p>
+<p>调用对应函数（function）：Instance.function()，即执行对应的动作。</p>
+<ul>
+<li>需要访问实例的变量和调用实例的函数，当然需要对应的实例Instance对象本身。</li>
+<li>Python中就规定好了，函数的第一个参数，就必须是实例对象本身，并且建议，约定俗成，把其名字写为self。</li>
+<li>所以，我们需要self（需要用到self）。</li>
+</ul>
+<h2 id="03-在python中类的定义">0.3. 在Python中类的定义</h2>
+<p>在python中，类是通过关键字 class 定义的：</p>
+<p>class 后面紧跟类名，即 Person，类名通常大写字母开头，紧接着是(object),表示该类是从哪个类继承下来的，通常，如果没有合适的 继承类，就使用 object 类，这是所有类最终都会继承的类。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Person</span><span style="color:#960050;background-color:#1e0010">（</span>object<span style="color:#960050;background-color:#1e0010">）</span>:
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">pass</span>
+</span></span></code></pre></div><p>将 Person类实例化，创建实例化是通过 类名+() 实现的。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Person</span>(object):
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">pass</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>student <span style="color:#f92672">=</span> Person()  <span style="color:#75715e"># 创建类的实例化</span>
+</span></span><span style="display:flex;"><span>print(student)
+</span></span><span style="display:flex;"><span>print(Person)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">---------------------------------</span>
+</span></span><span style="display:flex;"><span>输出<span style="color:#960050;background-color:#1e0010">：</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;</span>__main__<span style="color:#f92672">.</span>Person object at <span style="color:#ae81ff">0x7f8a4bb14e20</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">class</span> <span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#a6e22e">__main__</span><span style="color:#f92672">.</span>Person<span style="color:#e6db74">&#39;&gt;</span>
+</span></span></code></pre></div><p>可以看到，变量 student 指向的就是一个 Person的 object，后面的 0x7f8a4bb14e20 是内存地址，每个 object 的地址都不一样，而 Person 本身则是一个类。</p>
+<p>也可以给实例变量绑定属性，比如：为 student 绑定 name 和 score 属性</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Person</span>(object):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">pass</span>
+</span></span><span style="display:flex;"><span>student <span style="color:#f92672">=</span> Person()
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># print(student)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># print(Person)</span>
+</span></span><span style="display:flex;"><span>student<span style="color:#f92672">.</span>name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Gavin&#34;</span>   <span style="color:#75715e"># 为实例变量</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># student 绑定 name 属性  类似于 赋值 操作</span>
+</span></span><span style="display:flex;"><span>student<span style="color:#f92672">.</span>score <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span>    <span style="color:#75715e"># 为 其绑定</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># score 属性</span>
+</span></span><span style="display:flex;"><span>print(student<span style="color:#f92672">.</span>name)
+</span></span><span style="display:flex;"><span>print(student<span style="color:#f92672">.</span>score)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">---------------------------------</span>
+</span></span><span style="display:flex;"><span>输出<span style="color:#960050;background-color:#1e0010">：</span>
+</span></span><span style="display:flex;"><span>Gavin
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">100</span>
+</span></span></code></pre></div><h2 id="04-def-__init__self-方法">0.4. def <strong>init</strong>(self) 方法</h2>
+<p>上述的方法虽然可以为类的实例变量绑定属性，但是不够方便和elegant , 由于类 可以起到模板的作用，故在创建实例的时候，可以将我们认为必须绑定 属性 强制填写进去，在python中，是通过 类中通常都会使用的一个方法，即def <strong>init</strong>(self) 方法，在创建实例变量的时候，就把 name 和 score 等属性绑上去。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Person</span>(object):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self,name,score):
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>name <span style="color:#f92672">=</span> name
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>score <span style="color:#f92672">=</span> score
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>student <span style="color:#f92672">=</span> Person(<span style="color:#e6db74">&#39;Gavin&#39;</span>,<span style="color:#ae81ff">100</span>)  <span style="color:#75715e"># 传入 __init__ 方法中需要的参数</span>
+</span></span><span style="display:flex;"><span>print(student<span style="color:#f92672">.</span>name)
+</span></span><span style="display:flex;"><span>print(student<span style="color:#f92672">.</span>score)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">---------------------------------</span>
+</span></span><span style="display:flex;"><span>输出<span style="color:#960050;background-color:#1e0010">：</span>
+</span></span><span style="display:flex;"><span>Gavin
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">100</span>
+</span></span></code></pre></div><p>传入空参数的情况，会报错：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Person</span>(object):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self,name,score):
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>name <span style="color:#f92672">=</span> name
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>score <span style="color:#f92672">=</span> score
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>student <span style="color:#f92672">=</span> Person()
+</span></span><span style="display:flex;"><span>print(student<span style="color:#f92672">.</span>name)
+</span></span><span style="display:flex;"><span>print(student<span style="color:#f92672">.</span>score)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">---------------------------------</span>
+</span></span><span style="display:flex;"><span>输出<span style="color:#960050;background-color:#1e0010">：</span>
+</span></span><span style="display:flex;"><span>  File <span style="color:#e6db74">&#34;/mnt/DATA/code/COMMON/Program/python/self/self2.py&#34;</span>, line <span style="color:#ae81ff">6</span>, <span style="color:#f92672">in</span> <span style="color:#f92672">&lt;</span>module<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>    student <span style="color:#f92672">=</span> Person()
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">TypeError</span>: __init__() missing <span style="color:#ae81ff">2</span> required positional arguments: <span style="color:#e6db74">&#39;name&#39;</span> <span style="color:#f92672">and</span> <span style="color:#e6db74">&#39;score&#39;</span>
+</span></span></code></pre></div><p>注意：</p>
+<p>1、<strong>init</strong> 方法的第一个参数永远是 self ，表示创建的实例本身，因此，在 <strong>init</strong> 方法的内部，就可以把各种属性绑定到 self，因为 self 就指向创建的实例本身。</p>
+<p>2、使用了 <strong>init</strong> 方法，在创建实例的时候就不能传入 空的参数了，必须传入与 <strong>init</strong> 方法匹配的参数，但是 self 不需要传，python解释器会自己把实例变量传进去。</p>
+<p>在类中定义多个函数相互调用</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Person</span>(object):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self, x, y):
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>x <span style="color:#f92672">=</span> x
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>y <span style="color:#f92672">=</span> y
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">add</span>(self):
+</span></span><span style="display:flex;"><span>        sum <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>x <span style="color:#f92672">+</span> self<span style="color:#f92672">.</span>y
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> sum
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">square</span>(self):
+</span></span><span style="display:flex;"><span>        squr <span style="color:#f92672">=</span> pow(self<span style="color:#f92672">.</span>x, <span style="color:#ae81ff">2</span>) <span style="color:#f92672">+</span> pow(self<span style="color:#f92672">.</span>y, <span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> squr
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">add_square</span>(self):
+</span></span><span style="display:flex;"><span>        c <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>add() <span style="color:#f92672">+</span> self<span style="color:#f92672">.</span>square()
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> c
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>student <span style="color:#f92672">=</span> Person(<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>)
+</span></span><span style="display:flex;"><span>print(student<span style="color:#f92672">.</span>add())
+</span></span><span style="display:flex;"><span>print(student<span style="color:#f92672">.</span>square())
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;--------- 我是可爱的分割线-----------&#34;</span>)
+</span></span><span style="display:flex;"><span>print(student<span style="color:#f92672">.</span>add_square())
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">---------------------------------</span>
+</span></span><span style="display:flex;"><span>输出<span style="color:#960050;background-color:#1e0010">：</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">7</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">25</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">---------</span> 我是可爱的分割线<span style="color:#f92672">-----------</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">32</span>
+</span></span></code></pre></div><p>通过上述的例子可以看出，与普通的函数相比，在类中定义的函数只有两点不同：</p>
+<p>1、第一个参数永远是 self ，并且调用时不用传递该参数</p>
+<p>2、在类中函数相互调用要加 self ，如上例中： c = self.add()+self.square(), 不加 self ，会报错： 函数未定义。</p>
+<p>除此之外，类的方法和普通函数没甚区别，当然也可以使用 默认参数、可变参数和关键字参数，例子如下：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Person</span>(object):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self, x, y):
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>x <span style="color:#f92672">=</span> x
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>y <span style="color:#f92672">=</span> y
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">add</span>(self, z<span style="color:#f92672">=</span><span style="color:#ae81ff">16</span>):  <span style="color:#75715e"># 设置 默认变量 z =16,这只是个普通的局部变量，非实例变量，实例变量需要 self.z = z,这样定义</span>
+</span></span><span style="display:flex;"><span>        sum <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>x <span style="color:#f92672">+</span> self<span style="color:#f92672">.</span>y <span style="color:#f92672">+</span> z
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> sum
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">square</span>(self):
+</span></span><span style="display:flex;"><span>        squr <span style="color:#f92672">=</span> pow(self<span style="color:#f92672">.</span>x, <span style="color:#ae81ff">2</span>) <span style="color:#f92672">+</span> pow(self<span style="color:#f92672">.</span>y, <span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> squr
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">add_square</span>(self, z):  <span style="color:#75715e"># 调用时传入变量，这也是个普通的局部变量，非实例变量</span>
+</span></span><span style="display:flex;"><span>        c <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>add() <span style="color:#f92672">+</span> self<span style="color:#f92672">.</span>square() <span style="color:#f92672">+</span> z
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> c
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>student <span style="color:#f92672">=</span> Person(<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>)
+</span></span><span style="display:flex;"><span>print(student<span style="color:#f92672">.</span>add())
+</span></span><span style="display:flex;"><span>print(student<span style="color:#f92672">.</span>square())
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;--------- 我是可爱的分割线-----------&#34;</span>)
+</span></span><span style="display:flex;"><span>print(student<span style="color:#f92672">.</span>add_square(<span style="color:#ae81ff">16</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">---------------------------------</span>
+</span></span><span style="display:flex;"><span>输出<span style="color:#960050;background-color:#1e0010">：</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">23</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">25</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">---------</span> 我是可爱的分割线<span style="color:#f92672">-----------</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">64</span>
+</span></span></code></pre></div><h2 id="05-为啥要使用-self">0.5. 为啥要使用 self</h2>
+<p>看了上述的例子可能还是不明白 self 到底是个什么鬼，为啥要使用 self 这鬼东西？没关系，往下看：</p>
+<p>其实 self 这家伙简单的说就是把 class 中 定义的 <strong>变量和函数</strong> 变成 <strong>实例变量</strong>和<strong>实例函数</strong>，作为类 class 的成员，使得成员间能互相调用，而不需要从外部调用 数据（变量）和 方法（函数），以实现数据的封装，以上面的 Person 类为例：</p>
+<p>创建实例的时候需要给出实例变量 x,y, 调用函数时给出 z ，调用很容易，却不知道内部实现的细节。</p>
+<p>总之，类是创建实例的模板，而实例则是一个一个具体的对象，各个实例拥有的数据都相互独立、互不影响；方法是与实例绑定的函数，和普通的函数不同，方法可以直接访问实例的数据。</p>
+<p>其实 self 中存储的是实例变量和实例函数的属性，可以理解为一个字典（ dict ），如：<code>{'name':'zhang','age':'18'}</code>就是这些。</p>
+<p>注意只有数据属性，并没有创建新的类的方法。 类&mdash;&ndash;&gt;通过实例化生成&mdash;-对象&mdash;-&gt;（对象只是一串类似于字典的数据，没有把类的里的方法复制给你，python没有new这个方法！）</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Person</span>(object):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self, x, y):
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>x <span style="color:#f92672">=</span> x
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>y <span style="color:#f92672">=</span> y
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">add</span>(self, z<span style="color:#f92672">=</span><span style="color:#ae81ff">16</span>):  <span style="color:#75715e"># 设置 z 为实例变量，即</span>
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>z <span style="color:#f92672">=</span> z, z  <span style="color:#75715e"># 是 class 的一个成员了，而非普通局部变量</span>
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>z <span style="color:#f92672">=</span> z
+</span></span><span style="display:flex;"><span>        sum <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>x <span style="color:#f92672">+</span> self<span style="color:#f92672">.</span>y <span style="color:#f92672">+</span> z  <span style="color:#75715e"># z虽然已被实例化，但是依然可以当作 普通变量来用    r</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> sum
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">square</span>(self):
+</span></span><span style="display:flex;"><span>        squr <span style="color:#f92672">=</span> pow(self<span style="color:#f92672">.</span>x, <span style="color:#ae81ff">2</span>) <span style="color:#f92672">+</span> pow(self<span style="color:#f92672">.</span>y, <span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> squr
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">add_square</span>(self):
+</span></span><span style="display:flex;"><span>        c <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>add() <span style="color:#f92672">+</span> self<span style="color:#f92672">.</span>square() <span style="color:#f92672">+</span> self<span style="color:#f92672">.</span>z  <span style="color:#75715e"># 调用实例变量 z</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> c
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>student <span style="color:#f92672">=</span> Person(<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>)
+</span></span><span style="display:flex;"><span>print(student<span style="color:#f92672">.</span>add())
+</span></span><span style="display:flex;"><span>print(student<span style="color:#f92672">.</span>square())
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;--------- 我是可爱的分割线-----------&#34;</span>)
+</span></span><span style="display:flex;"><span>print(student<span style="color:#f92672">.</span>add_square())
+</span></span><span style="display:flex;"><span>print(student<span style="color:#f92672">.</span>z)  <span style="color:#75715e"># 函数add 中的 z 被实例化以后，就可以利用实例化的方法访问它</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">---------------------------------</span>
+</span></span><span style="display:flex;"><span>输出<span style="color:#960050;background-color:#1e0010">：</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">23</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">25</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">---------</span> 我是可爱的分割线<span style="color:#f92672">-----------</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">64</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">16</span>
+</span></span></code></pre></div><p>通过这个例子可以看出， z 本来是 add() 函数的默认形参，通过将其实例化，就可以在其他函数体内调用实例变量z</p>
+<p>被实例化以后，就可以利用实例化的方法访问它。</p>
+<h2 id="06-self-到底是什么">0.6. self 到底是什么</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Box</span>(object):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self, boxname, size, color):
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>boxname <span style="color:#f92672">=</span> boxname
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>size <span style="color:#f92672">=</span> size
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>color <span style="color:#f92672">=</span> color  <span style="color:#75715e"># self就是用于存储对象属性的集合，就算没有属性self也是必备的</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">open</span>(self, myself):
+</span></span><span style="display:flex;"><span>        print(
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;--&gt;用自己的myself，打开那个</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">,</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">的</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">%</span> (myself<span style="color:#f92672">.</span>color, myself<span style="color:#f92672">.</span>size, myself<span style="color:#f92672">.</span>boxname)
+</span></span><span style="display:flex;"><span>        )
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">&#34;--&gt;用类自己的self，打开那个</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">,</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">的</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">%</span> (self<span style="color:#f92672">.</span>color, self<span style="color:#f92672">.</span>size, self<span style="color:#f92672">.</span>boxname))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">close</span>(self):
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">&#34;--&gt;关闭</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">，谢谢&#34;</span> <span style="color:#f92672">%</span> self<span style="color:#f92672">.</span>boxname)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>b <span style="color:#f92672">=</span> Box(<span style="color:#e6db74">&#34;魔盒&#34;</span>, <span style="color:#e6db74">&#34;14m&#34;</span>, <span style="color:#e6db74">&#34;红色&#34;</span>)
+</span></span><span style="display:flex;"><span>b<span style="color:#f92672">.</span>close()
+</span></span><span style="display:flex;"><span>b<span style="color:#f92672">.</span>open(b)  <span style="color:#75715e"># 本来就会自动传一个self，现在传入b，就会让open多得到一个实例对象本身，print看看是什么。</span>
+</span></span><span style="display:flex;"><span>print(b<span style="color:#f92672">.</span>__dict__)  <span style="color:#75715e"># 这里返回的就是self本身，self存储属性，没有动作。</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">---------------------------------</span>
+</span></span><span style="display:flex;"><span>输出<span style="color:#960050;background-color:#1e0010">：</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">--&gt;</span>关闭魔盒<span style="color:#960050;background-color:#1e0010">，</span>谢谢
+</span></span><span style="display:flex;"><span><span style="color:#f92672">--&gt;</span>用自己的myself<span style="color:#960050;background-color:#1e0010">，</span>打开那个红色,<span style="color:#ae81ff">14</span>m的魔盒
+</span></span><span style="display:flex;"><span><span style="color:#f92672">--&gt;</span>用类自己的self<span style="color:#960050;background-color:#1e0010">，</span>打开那个红色,<span style="color:#ae81ff">14</span>m的魔盒
+</span></span><span style="display:flex;"><span>{<span style="color:#e6db74">&#39;boxname&#39;</span>: <span style="color:#e6db74">&#39;魔盒&#39;</span>, <span style="color:#e6db74">&#39;size&#39;</span>: <span style="color:#e6db74">&#39;14m&#39;</span>, <span style="color:#e6db74">&#39;color&#39;</span>: <span style="color:#e6db74">&#39;红色&#39;</span>}
+</span></span></code></pre></div><ul>
+<li>
+<p>self代表类的实例，而非类；self 就是 对象/实例 属性集合</p>
+</li>
+<li>
+<p>Box 是个类&mdash;&ndash;》self 实例化&mdash;&mdash;》 b对象/ 实例</p>
+</li>
+<li>
+<p>class 抽象体&mdash;&mdash;》实例化&mdash;&mdash;》对象/实例，含有属性：{&lsquo;boxname&rsquo;:&lsquo;魔盒&rsquo;, ‘size&rsquo;：‘14m&rsquo;, &lsquo;color&rsquo;:&lsquo;red&rsquo;}，即 self</p>
+</li>
+<li>
+<p>self 看似是整个对象，实际上清楚地描述了类就是产生对象的过程，描述了 self 就是得到了 对象，所以 self 内的键值可以直接使用</p>
+</li>
+</ul>
+<p>正如自然界中一个有效的对象，必须包括：</p>
+<ol>
+<li>
+<p>描述对象的属性；</p>
+</li>
+<li>
+<p>对象的方法</p>
+</li>
+</ol>
+<p>所以 self是必须的，也是对象中重要的特性。</p>
+<p>看下面的代码，感觉就更神奇了：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Box</span>(object):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">myInit</span>(mySelf, boxname, size, color):
+</span></span><span style="display:flex;"><span>        print(mySelf<span style="color:#f92672">.</span>__dict__)  <span style="color:#75715e"># 显示为{}空字典</span>
+</span></span><span style="display:flex;"><span>        mySelf<span style="color:#f92672">.</span>boxname <span style="color:#f92672">=</span> boxname
+</span></span><span style="display:flex;"><span>        mySelf<span style="color:#f92672">.</span>__dict__[<span style="color:#e6db74">&#34;aa&#34;</span>] <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;w&#34;</span>  <span style="color:#75715e"># 甚至可以像字典一样操作</span>
+</span></span><span style="display:flex;"><span>        mySelf<span style="color:#f92672">.</span>size <span style="color:#f92672">=</span> size
+</span></span><span style="display:flex;"><span>        mySelf<span style="color:#f92672">.</span>color <span style="color:#f92672">=</span> color  <span style="color:#75715e"># 自己写一个初始化函数，一样奏效,甚至不用self命名。其它函数当中用标准self</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> mySelf  <span style="color:#75715e"># 返回给实例化过程一个对象！神奇！并且含有对象属性/字典</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># def __init__(self, boxname, size, color):</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">#   self.boxname = boxname</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">#   self.size = size</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">#   self.color = color #注释掉原来标准的初始化</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">open</span>(self, myself):
+</span></span><span style="display:flex;"><span>        print(self)
+</span></span><span style="display:flex;"><span>        print(
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;--&gt;用自己的myself，打开那个</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">,</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">的</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">%</span> (myself<span style="color:#f92672">.</span>color, myself<span style="color:#f92672">.</span>size, myself<span style="color:#f92672">.</span>boxname)
+</span></span><span style="display:flex;"><span>        )
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">&#34;--&gt;用类自己的self，打开那个</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">,</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">的</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">%</span> (myself<span style="color:#f92672">.</span>color, myself<span style="color:#f92672">.</span>size, myself<span style="color:#f92672">.</span>boxname))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">close</span>(self):
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">&#34;--&gt;关闭</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">，谢谢&#34;</span> <span style="color:#f92672">%</span> self<span style="color:#f92672">.</span>boxname)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 经过改造，运行结果和标准初始化没区别</span>
+</span></span><span style="display:flex;"><span>b <span style="color:#f92672">=</span> Box()<span style="color:#f92672">.</span>myInit(<span style="color:#e6db74">&#34;魔盒&#34;</span>, <span style="color:#e6db74">&#34;14m&#34;</span>, <span style="color:#e6db74">&#34;红色&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># b = Box(&#39;魔盒&#39;, &#39;14m&#39;, &#39;红色&#39;)#注释掉原来标准的初始化方法</span>
+</span></span><span style="display:flex;"><span>b<span style="color:#f92672">.</span>close()
+</span></span><span style="display:flex;"><span>b<span style="color:#f92672">.</span>open(b)  <span style="color:#75715e"># 本来就会自动传一个self，现在传入b，就会让open多得到一个实例对象本身，print看看是什么。</span>
+</span></span><span style="display:flex;"><span>print(b<span style="color:#f92672">.</span>__dict__)  <span style="color:#75715e"># 这里返回的就是self本身，self存储属性，没有动作。</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">---------------------------------</span>
+</span></span><span style="display:flex;"><span>输出<span style="color:#960050;background-color:#1e0010">：</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">--&gt;</span>关闭魔盒<span style="color:#960050;background-color:#1e0010">，</span>谢谢
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;</span>__main__<span style="color:#f92672">.</span>Box object at <span style="color:#ae81ff">0x7f0c536c3e20</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">--&gt;</span>用自己的myself<span style="color:#960050;background-color:#1e0010">，</span>打开那个红色,<span style="color:#ae81ff">14</span>m的魔盒
+</span></span><span style="display:flex;"><span><span style="color:#f92672">--&gt;</span>用类自己的self<span style="color:#960050;background-color:#1e0010">，</span>打开那个红色,<span style="color:#ae81ff">14</span>m的魔盒
+</span></span><span style="display:flex;"><span>{<span style="color:#e6db74">&#39;boxname&#39;</span>: <span style="color:#e6db74">&#39;魔盒&#39;</span>, <span style="color:#e6db74">&#39;aa&#39;</span>: <span style="color:#e6db74">&#39;w&#39;</span>, <span style="color:#e6db74">&#39;size&#39;</span>: <span style="color:#e6db74">&#39;14m&#39;</span>, <span style="color:#e6db74">&#39;color&#39;</span>: <span style="color:#e6db74">&#39;红色&#39;</span>}
+</span></span></code></pre></div><p>换个角度来讲，对类的操作有：</p>
+<ol>
+<li>
+<p>定义属性 ；</p>
+</li>
+<li>
+<p>调用方法</p>
+</li>
+</ol>
+<p>对类的反馈有：</p>
+<ol>
+<li>
+<p>得到属性 ；</p>
+</li>
+<li>
+<p>执行方法</p>
+</li>
+</ol>
+<p>在 class 类的函数中，为什么 self是必要的，因为 self 是对象的载体，可以理解成一个字典，看下面代码：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Box</span>(object):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">myInit</span>(mySelf, boxname, size, color):
+</span></span><span style="display:flex;"><span>        print(mySelf<span style="color:#f92672">.</span>__dict__)  <span style="color:#75715e"># 显示为{}空字典</span>
+</span></span><span style="display:flex;"><span>        mySelf<span style="color:#f92672">.</span>boxname <span style="color:#f92672">=</span> boxname
+</span></span><span style="display:flex;"><span>        mySelf<span style="color:#f92672">.</span>__dict__[<span style="color:#e6db74">&#34;aa&#34;</span>] <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;w&#34;</span>  <span style="color:#75715e"># 甚至可以像字典一样操作</span>
+</span></span><span style="display:flex;"><span>        mySelf<span style="color:#f92672">.</span>size <span style="color:#f92672">=</span> size
+</span></span><span style="display:flex;"><span>        mySelf<span style="color:#f92672">.</span>color <span style="color:#f92672">=</span> color  <span style="color:#75715e"># 自己写一个初始化函数，一样奏效,甚至不用self命名。其它函数当中用标准self</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> mySelf  <span style="color:#75715e"># 返回给实例化过程一个对象！神奇！并且含有对象属性/字典</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># def __init__(self, boxname, size, color):</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">#   self.boxname = boxname</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">#   self.size = size</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">#   self.color = color #注释掉原来标准的初始化</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">open</span>(self, myself):
+</span></span><span style="display:flex;"><span>        print(self)
+</span></span><span style="display:flex;"><span>        print(
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;--&gt;用自己的myself，打开那个</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">,</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">的</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">%</span> (myself<span style="color:#f92672">.</span>color, myself<span style="color:#f92672">.</span>size, myself<span style="color:#f92672">.</span>boxname)
+</span></span><span style="display:flex;"><span>        )
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">&#34;--&gt;用类自己的self，打开那个</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">,</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">的</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">%</span> (myself<span style="color:#f92672">.</span>color, myself<span style="color:#f92672">.</span>size, myself<span style="color:#f92672">.</span>boxname))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">close</span>(self):
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">&#34;--&gt;关闭</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">，谢谢&#34;</span> <span style="color:#f92672">%</span> self<span style="color:#f92672">.</span>boxname)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 经过改造，运行结果和标准初始化没区别</span>
+</span></span><span style="display:flex;"><span>b <span style="color:#f92672">=</span> Box()<span style="color:#f92672">.</span>myInit(<span style="color:#e6db74">&#34;魔盒&#34;</span>, <span style="color:#e6db74">&#34;14m&#34;</span>, <span style="color:#e6db74">&#34;红色&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># b = Box(&#39;魔盒&#39;, &#39;14m&#39;, &#39;红色&#39;)#注释掉原来标准的初始化方法</span>
+</span></span><span style="display:flex;"><span>b<span style="color:#f92672">.</span>close()
+</span></span><span style="display:flex;"><span>b<span style="color:#f92672">.</span>open(b)  <span style="color:#75715e"># 本来就会自动传一个self，现在传入b，就会让open多得到一个实例对象本身，print看看是什么。</span>
+</span></span><span style="display:flex;"><span>print(b<span style="color:#f92672">.</span>__dict__)  <span style="color:#75715e"># 这里返回的就是self本身，self存储属性，没有动作。</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">---------------------------------</span>
+</span></span><span style="display:flex;"><span>输出<span style="color:#960050;background-color:#1e0010">：</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">--&gt;</span>关闭魔盒<span style="color:#960050;background-color:#1e0010">，</span>谢谢
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;</span>__main__<span style="color:#f92672">.</span>Box object at <span style="color:#ae81ff">0x7fe655060e20</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">--&gt;</span>用自己的myself<span style="color:#960050;background-color:#1e0010">，</span>打开那个红色,<span style="color:#ae81ff">14</span>m的魔盒
+</span></span><span style="display:flex;"><span><span style="color:#f92672">--&gt;</span>用类自己的self<span style="color:#960050;background-color:#1e0010">，</span>打开那个红色,<span style="color:#ae81ff">14</span>m的魔盒
+</span></span><span style="display:flex;"><span>{<span style="color:#e6db74">&#39;boxname&#39;</span>: <span style="color:#e6db74">&#39;魔盒&#39;</span>, <span style="color:#e6db74">&#39;aa&#39;</span>: <span style="color:#e6db74">&#39;w&#39;</span>, <span style="color:#e6db74">&#39;size&#39;</span>: <span style="color:#e6db74">&#39;14m&#39;</span>, <span style="color:#e6db74">&#39;color&#39;</span>: <span style="color:#e6db74">&#39;红色&#39;</span>}
+</span></span></code></pre></div><p>注意此处的： mySelf.<strong>dict</strong>[&lsquo;aa&rsquo;] = &lsquo;w&rsquo; #甚至可以像字典一样操作； 在 b.<strong>dict</strong> 的结果中显示为：&lsquo;aa&rsquo;:&lsquo;w&rsquo;</p>
+<p>故可以把 self 理解成存储 实例化对象属性的字典(dict), self 存储属性，而没有动作执行。</p>
+<p>self总是指调用时的类的实例。</p>
+<p>python 中一些特殊的实例变量：</p>
+<ol>
+<li>
+<p>私有变量(private),只有内部可以访问，外部不能访问，私有变量是在名称前以两个下划线开头，如：__name，其实私有变量也不是完全不能被外部访问，不能直接访问是因为python解释器对外把 __name 变量改成了 _类名__name,所仍然可以通过 _类名__name 来访问 __name。</p>
+</li>
+<li>
+<p>在Python中，变量名类似__xxx__的，也就是以双下划线开头，并且以双下划线结尾的，是特殊变量，特殊变量是可以直接访问的，不是private变量，所以，不能用__name__、__score__这样的变量名。</p>
+</li>
+<li>
+<p>以一个下划线开头的实例变量名，比如_name，这样的实例变量外部是可以访问的，但是，按照约定俗成的规定，当你看到这样的变量时，意思就是，“虽然我可以被访问，但是，请把我视为私有变量，不要随意访问”。</p>
+</li>
+</ol>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2023-01-15</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://zhangyuhu.github.io/posts/program/python/2_python%E4%B8%AD%E7%9A%84self%E7%94%A8%E6%B3%95/" data-title="Python中的self用法" data-hashtags="python"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://zhangyuhu.github.io/posts/program/python/2_python%E4%B8%AD%E7%9A%84self%E7%94%A8%E6%B3%95/" data-hashtag="python"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://zhangyuhu.github.io/posts/program/python/2_python%E4%B8%AD%E7%9A%84self%E7%94%A8%E6%B3%95/" data-title="Python中的self用法"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://zhangyuhu.github.io/posts/program/python/2_python%E4%B8%AD%E7%9A%84self%E7%94%A8%E6%B3%95/" data-title="Python中的self用法"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://zhangyuhu.github.io/posts/program/python/2_python%E4%B8%AD%E7%9A%84self%E7%94%A8%E6%B3%95/" data-title="Python中的self用法" data-ralateuid="ji"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/python/">python</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/program/python/7_python%E5%88%97%E8%A1%A8%E5%92%8C%E5%85%83%E7%BB%84/" class="prev" rel="prev" title="Python中的列表和元组"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Python中的列表和元组</a>
+            <a href="/posts/program/python/1_python%E4%B8%AD%E7%9A%84module%E5%92%8Cpackage/" class="next" rel="next" title="Python中的Module和Package">Python中的Module和Package<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.109.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://zhangyuhu.github.io/" target="_blank">zhangyuhu</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/css/lightgallery-bundle.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/lightgallery.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/thumbnail/lg-thumbnail.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/zoom/lg-zoom.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"lightgallery":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>
