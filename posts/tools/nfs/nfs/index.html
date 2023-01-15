@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>NFS:Network File System(网络文件系统) - 这是我的网站</title><meta name="Description" content="NFS"><meta property="og:title" content="NFS:Network File System(网络文件系统)" />
+<meta property="og:description" content="NFS" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zhangyuhu.github.io/posts/tools/nfs/nfs/" /><meta property="og:image" content="https://zhangyuhu.github.io/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-01-15T17:52:52+08:00" />
+<meta property="article:modified_time" content="2023-01-15T17:52:52+08:00" /><meta property="og:site_name" content="我的网站" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://zhangyuhu.github.io/logo.png"/>
+
+<meta name="twitter:title" content="NFS:Network File System(网络文件系统)"/>
+<meta name="twitter:description" content="NFS"/>
+<meta name="application-name" content="我的网站">
+<meta name="apple-mobile-web-app-title" content="我的网站"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://zhangyuhu.github.io/posts/tools/nfs/nfs/" /><link rel="prev" href="https://zhangyuhu.github.io/posts/program/python/4_pytest%E7%9A%84%E4%BD%BF%E7%94%A8/" /><link rel="next" href="https://zhangyuhu.github.io/posts/tools/minicom/minicom/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "NFS:Network File System(网络文件系统)",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/zhangyuhu.github.io\/posts\/tools\/nfs\/nfs\/"
+        },"genre": "posts","keywords": "NFS","wordcount":  3744 ,
+        "url": "https:\/\/zhangyuhu.github.io\/posts\/tools\/nfs\/nfs\/","datePublished": "2023-01-15T17:52:52+08:00","dateModified": "2023-01-15T17:52:52+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "zhangyuhu"
+            },"description": "NFS"
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="这是我的网站"></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/" title="文章"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="这是我的网站"></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="文章">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/" title="">关于</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">NFS:Network File System(网络文件系统)</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://zhangyuhu.github.io/" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>zhangyuhu</a></span>&nbsp;<span class="post-category">included in <a href="/categories/tools/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>tools</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-01-15">2023-01-15</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;3744 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;8 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#network-file-system">Network File System</a></li>
+    <li><a href="#sun-rpc-基本原理">SUN RPC 基本原理</a></li>
+    <li><a href="#nfs过程">NFS过程</a></li>
+    <li><a href="#nfs客户端和nfs服务端通讯过程">NFS客户端和NFS服务端通讯过程</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#nfs-server-安装">nfs server 安装</a></li>
+    <li><a href="#nfs-client-安装">nfs client 安装</a></li>
+    <li><a href="#etcexports-参数">/etc/exports 参数</a></li>
+    <li><a href="#mount-参数">mount 参数</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><blockquote>
+<p>本文采用<a href="http://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreffer ">知识共享署名 4.0 国际许可协议</a>进行许可，转载时请注明原文链接，图片在使用时请保留全部内容，可适当缩放并在引用处附上图片所在的文章链接。</p>
+</blockquote>
+<!-- raw HTML omitted -->
+<ul>
+<li><a href="#%e4%bb%80%e4%b9%88%e6%98%afnfs" rel="">什么是NFS</a>
+<ul>
+<li><a href="#network-file-system" rel="">Network File System</a></li>
+<li><a href="#sun-rpc-%e5%9f%ba%e6%9c%ac%e5%8e%9f%e7%90%86" rel="">SUN RPC 基本原理</a></li>
+<li><a href="#nfs%e8%bf%87%e7%a8%8b" rel="">NFS过程</a></li>
+<li><a href="#nfs%e5%ae%a2%e6%88%b7%e7%ab%af%e5%92%8cnfs%e6%9c%8d%e5%8a%a1%e7%ab%af%e9%80%9a%e8%ae%af%e8%bf%87%e7%a8%8b" rel="">NFS客户端和NFS服务端通讯过程</a></li>
+</ul>
+</li>
+<li><a href="#nfs%e6%9c%8d%e5%8a%a1%e7%9a%84%e4%bc%98%e7%bc%ba%e7%82%b9" rel="">NFS服务的优缺点</a></li>
+<li><a href="#ubuntu%e4%b8%bb%e6%9c%ba%e7%9a%84nfs%e5%85%b1%e4%ba%ab%e6%96%87%e4%bb%b6%e5%a4%b9" rel="">Ubuntu主机的NFS共享文件夹</a>
+<ul>
+<li><a href="#nfs-server-%e5%ae%89%e8%a3%85" rel="">nfs server 安装</a></li>
+<li><a href="#nfs-client-%e5%ae%89%e8%a3%85" rel="">nfs client 安装</a></li>
+<li><a href="#etcexports-%e5%8f%82%e6%95%b0" rel="">/etc/exports 参数</a></li>
+<li><a href="#mount-%e5%8f%82%e6%95%b0" rel="">mount 参数</a></li>
+</ul>
+</li>
+</ul>
+<!-- raw HTML omitted -->
+<h1 id="什么是nfs">什么是NFS</h1>
+<h2 id="network-file-system">Network File System</h2>
+<p>网络文件系统（英语：Network File System，缩写作 NFS）是一种分布式文件系统，力求客户端主机可以访问服务器端文件，并且其过程与访问本地存储时一样，它由Sun微系统（已被甲骨文公司收购）开发，于1984年发布。</p>
+<p>它基于开放网络运算远程过程调用（ONC RPC）系统：一个开放、标准的RFC系统，任何人或组织都可以依据标准实现它。</p>
+<p>开放网络运算远程过程调用（英语：Open Network Computing Remote Procedure Call，缩写为ONC RPC），一种被广泛应用的远程过程调用（RPC）系统，是一种属于应用层的协议堆栈，底层为TCP/IP协议。开放网络运算（ONC）最早源自于Sun微系统（Sun），是网络文件系统计划的一部分，因此它经常也被称为Sun ONC 或 Sun RPC。现今在多数类UNIX系统上都实现了这套系统，微软公司也以Windows Services for UNIX在他们产品上提供ONC RPC的支持。2009年，Sun微系统以标准三条款的BSD许可证发布这套系统。2010年，收购了Sun微系统的甲骨文公司确认了这套软件BSD许可证的有效性与适用范围。</p>
+<h2 id="sun-rpc-基本原理">SUN RPC 基本原理</h2>
+<ul>
+<li>客户端触发调用远程过程，实际上是选取了对应RPC程序封装的函       数，并将相关参数（包括远程方法名，方法参数等）封装成IP数据包，发送给服务器</li>
+<li>服务器进程接收到此数据包后，提取参数，执行相应方法过程</li>
+<li>服务器方法过程返回后，将返回结果封装成IP数据包，发送给客户端</li>
+<li>客户端进程，收取到数据包后，提取返回结果</li>
+</ul>
+<p>RPC程序包提供了数据报文封装和传递，保证异构环境下的可用性，客户端和服务器端应用程序设计时不需要考虑系统差异带来的数据格式，编码解码等问题，提供了很大方便。</p>
+<p>客户程序和服务程序更多的职责是在于去定义描述具体远程过程及其触发，并将其注册绑定到RPC程序包中。</p>
+<h2 id="nfs过程">NFS过程</h2>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../image/nfs.png"
+        data-srcset="../image/nfs.png, ../image/nfs.png 1.5x, ../image/nfs.png 2x"
+        data-sizes="auto"
+        alt="../image/nfs.png"
+        title="../image/nfs.png" /></p>
+<p>NFS客户可以是一个用户进程，对服务器进行显式调用。而服务器也可以是一个用户进程 — 因为两个理由，NFS一般不这样实现。</p>
+<p>首先，访问一个NFS文件必须对客户透明。因此，NFS的客户调用是由客户操作系统代表用户进程来完成的。第二，出于效率的考虑， N F S服务器在服务器操作系统中实现。如果NFS服务器是一个用户进程，每个客户请求和服务器应答（包括读和写的数据）将不得不在内核和用户进程之间进行切换，这个代价太大。</p>
+<p>一个客户对一个NFS服务器的访问开始于安装协议，返回给客户一个文件句柄。客户接着可以使用那个文件句柄来访问服务器文件系统中的文件。在服务器上，一次检查文件名的一个成员，返回每个成员的一个新的文件句柄。最后的结果就是要引用的文件的一个文件句柄，它可以在随后的读写操作中被使用。</p>
+<ol>
+<li>
+<p>初始时，文件系统协议安装，客户端需知道服务端的文件系统，后续的交互处理都是基于这一文件系统</p>
+</li>
+<li>
+<p>客户端与服务端之间通过文件句柄来表示所访问文件，客户端每打开一个文件，就会获得服务端的一个文件句柄（可理解成文件描述符ID）</p>
+</li>
+<li>
+<p>可能触发的远程过程（下面这些并非都会存在）：</p>
+</li>
+</ol>
+<blockquote>
+<ul>
+<li>
+<p>GETATTR。返回一个文件的属性：文件类型（一般文件，目录等）、访问权限、文件
+大小、文件的属主者及上次访问时间等信息。</p>
+</li>
+<li>
+<p>SETATTR。设置一个文件的属性。只允许设置文件属性的一个子集：
+访问权限、文件的属主、组的属主、文件大小、上次访问时间和上次修改时间。</p>
+</li>
+<li>
+<p>STATFS。返回一个文件系统的状态：可用空间的大小、最佳传送大小等。例如 U n i x的
+d f命令使用此过程。</p>
+</li>
+<li>
+<p>LOOKUP。查找一个文件。每当一个用户进程打开一个 N F S服务器上的一个文件时，
+N F S客户调用此过程。</p>
+</li>
+<li>
+<p>READ。从一个文件中读数据。客户说明文件的句柄、读操作的开始位置和读数据的
+最大字节数（最多8192个字节）。</p>
+</li>
+<li>
+<p>WRITE。对一个文件进行写操作。客户说明文件的句柄、开始位置、写数据的字节数
+和要写的数据。</p>
+</li>
+<li>
+<p>CREATE。创建一个文件。</p>
+</li>
+<li>
+<p>REMOVE。删除一个文件。</p>
+</li>
+<li>
+<p>RENAME。重命名一个文件。</p>
+</li>
+<li>
+<p>LINK。为一个文件构造一个硬链接。硬链接是一个 U n i x的概念，指的是磁盘中的一
+个文件可以有任意多个目录项（即名字，也叫作硬链接）指向它。</p>
+</li>
+<li>
+<p>SYMLINK。为一个文件创建一个符号链接。符号链接是一个包含另一个文件名字的
+文MKDIR。创建一个目录。</p>
+<p>RMDIR。删除一个目录。</p>
+<p>READDIR。读一个目录。例如 Un ix的l s命令使用此过程
+比如在windows上用记事本打开共享目录下的某一文本文件，会产生的过程有GETATTR来确认访问权限，LOOKUP确认文件存在，READ返回文件内容（当然实际windows上操作时，GETATTR和LOOKUP在打开共享目录的时候已经完成）件。大多数引用符号链接的操作（例如，打开）实际上引用的是符号链接所指的文件。</p>
+</li>
+<li>
+<p>READLINK。读一个符号链接。即返回符号链接所指的文件的名字。</p>
+</li>
+<li>
+<p>MKDIR。创建一个目录。</p>
+</li>
+<li>
+<p>RMDIR。删除一个目录。</p>
+</li>
+<li>
+<p>READDIR。读一个目录。例如 Un ix的l s命令使用此过程
+比如在windows上用记事本打开共享目录下的某一文本文件，会产生的过程有GETATTR来确认访问权限，LOOKUP确认文件存在，READ返回文件内容（当然实际windows上操作时，GETATTR和LOOKUP在打开共享目录的时候已经完成）</p>
+</li>
+</ul>
+</blockquote>
+<h2 id="nfs客户端和nfs服务端通讯过程">NFS客户端和NFS服务端通讯过程</h2>
+<ol>
+<li>
+<p>首先服务器端启动RPC服务，并开启111端口</p>
+</li>
+<li>
+<p>服务器端启动NFS服务，并向RPC注册端口信息</p>
+</li>
+<li>
+<p>客户端启动RPC（portmap服务），向服务端的RPC(portmap)服务请求服务端的NFS端口</p>
+</li>
+<li>
+<p>服务端的RPC(portmap)服务反馈NFS端口信息给客户端</p>
+</li>
+<li>
+<p>客户端通过获取的NFS端口来建立和服务端的NFS连接并进行数据的传输</p>
+</li>
+</ol>
+<h1 id="nfs服务的优缺点">NFS服务的优缺点</h1>
+<p>优点 ：</p>
+<ol>
+<li>节省本地存储空间，将常用的数据存放在一台服务器可以通过网络访问该数据</li>
+<li>简单容易上手</li>
+<li>方便部署非常快速，维护十分简单</li>
+</ol>
+<p>缺点 ：</p>
+<ol>
+<li>局限性容易发生单点故障，服务器机宕机的话所有客户端都不能访问</li>
+<li>在高并发情况下下NFS效率/性能有限</li>
+<li>客户端没用用户认证机制，且数据是通过明文传送，安全性一般（一般建议在局域网内使用）</li>
+<li>NFS的数据是明文的，对数据完整性不做验证</li>
+<li>多台机器挂载NFS服务器时，连接管理维护麻烦</li>
+</ol>
+<h1 id="ubuntu主机的nfs共享文件夹">Ubuntu主机的NFS共享文件夹</h1>
+<h2 id="nfs-server-安装">nfs server 安装</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 安装server</span>
+</span></span><span style="display:flex;"><span>apt-get install nfs-common nfs-kernel-server
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 创建配置文件</span>
+</span></span><span style="display:flex;"><span>vi /etc/exports
+</span></span><span style="display:flex;"><span>sudo gedit /etc/exports
+</span></span></code></pre></div><p>配置文件内容</p>
+<pre tabindex="0"><code># home
+/mnt/DATA/CODE/beagle-bone *(rw,sync,no_root_squash,no_subtree_check)
+</code></pre><p>启动nfs server</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 启动</span>
+</span></span><span style="display:flex;"><span>sudo service nfs-kernel-server restart
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 查看共享目录</span>
+</span></span><span style="display:flex;"><span>showmount -e
+</span></span></code></pre></div><p>设置启动 nfs server 别名</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>alias nfsstart<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;sudo service nfs-kernel-server restart&#39;</span>
+</span></span><span style="display:flex;"><span>vi ~/.bashrc
+</span></span><span style="display:flex;"><span>source ~/.bashr
+</span></span></code></pre></div><h2 id="nfs-client-安装">nfs client 安装</h2>
+<p>安装</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># nfs client安装</span>
+</span></span><span style="display:flex;"><span>sudo apt-get install nfs-common
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 查看nfs server上共享的目录</span>
+</span></span><span style="display:flex;"><span>showmount -e &lt;ip address of nfs server&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>showmount -e 10.42.0.1
+</span></span></code></pre></div><p>创建挂载点</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>mkdir /path-to-mount
+</span></span><span style="display:flex;"><span>chmod <span style="color:#ae81ff">777</span> -R /path-to-mount
+</span></span><span style="display:flex;"><span>mount -t nfs 192.168.xx.xx:/path-to-share /path-to-mount
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>sudo mount -t nfs -o nolock,rw,rsize<span style="color:#f92672">=</span>32768,wsize<span style="color:#f92672">=</span><span style="color:#ae81ff">32768</span> 10.42.0.1:/home/didi/work/Dedge /home/zyh/dedge
+</span></span></code></pre></div><p>开机自动挂载：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 将 mount -t nfs 192.168.xx.xx:/path-to-share /path-to-mount</span>
+</span></span><span style="display:flex;"><span>mount -t nfs 192.168.xx.xx:/path-to-share /path-to-mount
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 添加到 /etc/rc.local</span>
+</span></span><span style="display:flex;"><span>/etc/rc.local
+</span></span></code></pre></div><h2 id="etcexports-参数">/etc/exports 参数</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>/path-to-share *<span style="color:#f92672">(</span>rw,sync,no_subtree_check,no_root_squash<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># path-to-share是要共享的目录，根据自己情况修改,*表示允许所有的网段访问，也可以使用具体的IP</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>/mnt/DATA/CODE/beagle-bone *<span style="color:#f92672">(</span>rw,sync,no_root_squash,no_subtree_check<span style="color:#f92672">)</span>
+</span></span></code></pre></div><table>
+<thead>
+<tr>
+<th style="text-align:left">参数</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">ro</td>
+<td style="text-align:left">只读访问</td>
+</tr>
+<tr>
+<td style="text-align:left">rw</td>
+<td style="text-align:left">读写访问</td>
+</tr>
+<tr>
+<td style="text-align:left">sync</td>
+<td style="text-align:left">所有数据在请求时写入共享</td>
+</tr>
+<tr>
+<td style="text-align:left">async</td>
+<td style="text-align:left">nfs 在写入数据前可以响应请求</td>
+</tr>
+<tr>
+<td style="text-align:left">secure</td>
+<td style="text-align:left">nfs 通过 1024 以下的安全 TCP/IP 端口发送</td>
+</tr>
+<tr>
+<td style="text-align:left">insecure</td>
+<td style="text-align:left">nfs 通过 1024 以上的端口发送</td>
+</tr>
+<tr>
+<td style="text-align:left">wdelay</td>
+<td style="text-align:left">如果多个用户要写入 nfs 目录，则归组写入（默认）</td>
+</tr>
+<tr>
+<td style="text-align:left">no_wdelay</td>
+<td style="text-align:left">如果多个用户要写入 nfs 目录，则立即写入，当使用 async 时，无需此设置</td>
+</tr>
+<tr>
+<td style="text-align:left">hide</td>
+<td style="text-align:left">在 nfs 共享目录中不共享其子目录</td>
+</tr>
+<tr>
+<td style="text-align:left">no_hide</td>
+<td style="text-align:left">共享 nfs 目录的子目录</td>
+</tr>
+<tr>
+<td style="text-align:left">subtree_check</td>
+<td style="text-align:left">如果共享 /usr/bin 之类的子目录时，强制 nfs 检查父目录的权限（默认）</td>
+</tr>
+<tr>
+<td style="text-align:left">no_subtree_check</td>
+<td style="text-align:left">不检查父目录权限</td>
+</tr>
+<tr>
+<td style="text-align:left">all_squash</td>
+<td style="text-align:left">共享文件的 UID 和 GID 映射匿名用户 anonymous，适合公用目录</td>
+</tr>
+<tr>
+<td style="text-align:left">no_all_squash</td>
+<td style="text-align:left">保留共享文件的 UID 和 GID（默认）</td>
+</tr>
+<tr>
+<td style="text-align:left">root_squash</td>
+<td style="text-align:left">root 用户的所有请求映射成如 anonymous 用户一样的权限（默认）客户机用root访问该共享文件夹时，不映射root用户。（root_squash：客户机用root用户访问该共享文件夹时，将root用户映射成匿名用户）</td>
+</tr>
+<tr>
+<td style="text-align:left">no_root_squash</td>
+<td style="text-align:left">root 用户具有根目录的完全管理访问权限</td>
+</tr>
+<tr>
+<td style="text-align:left">anonuid=xxx</td>
+<td style="text-align:left">指定 nfs 服务器 /etc/passwd 文件中匿名用户的 UID</td>
+</tr>
+<tr>
+<td style="text-align:left">anongid=xxx</td>
+<td style="text-align:left">指定 nfs 服务器 /etc/passwd 文件中匿名用户的 GID</td>
+</tr>
+</tbody>
+</table>
+<h2 id="mount-参数">mount 参数</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>Mount -t nfs -o rw,hard,nointr,tcp,noac,vers<span style="color:#f92672">=</span>3,timeo<span style="color:#f92672">=</span>600,rsize<span style="color:#f92672">=</span>32768,wsize<span style="color:#f92672">=</span><span style="color:#ae81ff">32768</span> 192.168.100.189:/mnt/DG/WORK/2_code/3_T4/aiva /home/firefly/zyh/aiva
+</span></span></code></pre></div><p>指定参数具体含义如下：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">参数</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">rw</td>
+<td style="text-align:left">以读写方式安装文件系统（也必须要以相同的方式来导出）</td>
+</tr>
+<tr>
+<td style="text-align:left">ro</td>
+<td style="text-align:left">以只读方式安装文件系统</td>
+</tr>
+<tr>
+<td style="text-align:left">bg</td>
+<td style="text-align:left">如果安装失败（服务器没有响应），在后台一直尝试，继续发其它的安装请求</td>
+</tr>
+<tr>
+<td style="text-align:left">hard</td>
+<td style="text-align:left">以硬方式安装文件系统(这是默认情况)。如果服务器当机，让试图访问它的操作被阻塞，直到服务器恢复为止</td>
+</tr>
+<tr>
+<td style="text-align:left">soft</td>
+<td style="text-align:left">以软方式安装文件系统。如果服务器当机，让试图访问它的操作失败，返回一条出错消息。这项功能对于避免进程“挂”在无关紧要的安装操作上来说非常有用</td>
+</tr>
+<tr>
+<td style="text-align:left">intr</td>
+<td style="text-align:left">允许用户中断被阻塞的操作（并且让它们返回一条出错消息）</td>
+</tr>
+<tr>
+<td style="text-align:left">nointr</td>
+<td style="text-align:left">不允许用户中断</td>
+</tr>
+<tr>
+<td style="text-align:left">retrans=n</td>
+<td style="text-align:left">指定在以软方式安装的文件系统上，在返回一条出错消息之前重复发出请求的次数</td>
+</tr>
+<tr>
+<td style="text-align:left">timeo=n</td>
+<td style="text-align:left">设置请求的超时时间（以十分之一秒为单位）</td>
+</tr>
+<tr>
+<td style="text-align:left">rsize=n</td>
+<td style="text-align:left">设置读缓冲的大小为n字节。对TCP和UDP安装都适用，但最优值不一样（32K较好）</td>
+</tr>
+<tr>
+<td style="text-align:left">wsize=n</td>
+<td style="text-align:left">设置写缓冲的大小为n字节。对TCP和UDP安装都适</td>
+</tr>
+<tr>
+<td style="text-align:left">nfsvers=n</td>
+<td style="text-align:left">设置NFS协议的版本 2 或者 3 （在正常情况下是自动的）</td>
+</tr>
+<tr>
+<td style="text-align:left">tcp</td>
+<td style="text-align:left">选择通过TCP来传输。默认选择UDP</td>
+</tr>
+<tr>
+<td style="text-align:left">fg</td>
+<td style="text-align:left">和bg正好相反，是默认的参数</td>
+</tr>
+<tr>
+<td style="text-align:left">mountport</td>
+<td style="text-align:left">设定mount的端口[@more@]</td>
+</tr>
+</tbody>
+</table>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2023-01-15</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://zhangyuhu.github.io/posts/tools/nfs/nfs/" data-title="NFS:Network File System(网络文件系统)" data-hashtags="NFS"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://zhangyuhu.github.io/posts/tools/nfs/nfs/" data-hashtag="NFS"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://zhangyuhu.github.io/posts/tools/nfs/nfs/" data-title="NFS:Network File System(网络文件系统)"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://zhangyuhu.github.io/posts/tools/nfs/nfs/" data-title="NFS:Network File System(网络文件系统)"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://zhangyuhu.github.io/posts/tools/nfs/nfs/" data-title="NFS:Network File System(网络文件系统)" data-ralateuid="ji"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/nfs/">NFS</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/program/python/4_pytest%E7%9A%84%E4%BD%BF%E7%94%A8/" class="prev" rel="prev" title="Pytest的使用"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Pytest的使用</a>
+            <a href="/posts/tools/minicom/minicom/" class="next" rel="next" title="minicom 的使用">minicom 的使用<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.109.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://zhangyuhu.github.io/" target="_blank">zhangyuhu</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/css/lightgallery-bundle.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/twemoji@14.0.2/dist/twemoji.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/lightgallery.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/thumbnail/lg-thumbnail.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/zoom/lg-zoom.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"lightgallery":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50},"twemoji":true};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

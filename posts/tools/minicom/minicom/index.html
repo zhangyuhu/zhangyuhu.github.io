@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>minicom 的使用 - 这是我的网站</title><meta name="Description" content="minicom"><meta property="og:title" content="minicom 的使用" />
+<meta property="og:description" content="minicom" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zhangyuhu.github.io/posts/tools/minicom/minicom/" /><meta property="og:image" content="https://zhangyuhu.github.io/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-01-15T17:52:52+08:00" />
+<meta property="article:modified_time" content="2023-01-15T17:52:52+08:00" /><meta property="og:site_name" content="我的网站" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://zhangyuhu.github.io/logo.png"/>
+
+<meta name="twitter:title" content="minicom 的使用"/>
+<meta name="twitter:description" content="minicom"/>
+<meta name="application-name" content="我的网站">
+<meta name="apple-mobile-web-app-title" content="我的网站"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://zhangyuhu.github.io/posts/tools/minicom/minicom/" /><link rel="prev" href="https://zhangyuhu.github.io/posts/tools/nfs/nfs/" /><link rel="next" href="https://zhangyuhu.github.io/posts/tools/markdown/markdown/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "minicom 的使用",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/zhangyuhu.github.io\/posts\/tools\/minicom\/minicom\/"
+        },"genre": "posts","keywords": "minicom","wordcount":  1711 ,
+        "url": "https:\/\/zhangyuhu.github.io\/posts\/tools\/minicom\/minicom\/","datePublished": "2023-01-15T17:52:52+08:00","dateModified": "2023-01-15T17:52:52+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "zhangyuhu"
+            },"description": "minicom"
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="这是我的网站"></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/" title="文章"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="这是我的网站"></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="文章">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/" title="">关于</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">minicom 的使用</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://zhangyuhu.github.io/" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>zhangyuhu</a></span>&nbsp;<span class="post-category">included in <a href="/categories/tools/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>tools</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-01-15">2023-01-15</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1711 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;4 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#安装">安装</a></li>
+    <li><a href="#相关配置">相关配置</a></li>
+    <li><a href="#更多">更多</a>
+      <ul>
+        <li><a href="#ctrla">Ctrl+A</a></li>
+        <li><a href="#自动保存log">自动保存log</a></li>
+      </ul>
+    </li>
+    <li><a href="#退出软件">退出软件</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#配置串口权限">配置串口权限</a>
+      <ul>
+        <li><a href="#方式一使用命令更改">方式一：使用命令更改</a></li>
+        <li><a href="#方式二配置udev规则推荐">方式二：配置udev规则(推荐)</a></li>
+      </ul>
+    </li>
+    <li><a href="#配置默认文件">配置默认文件</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><blockquote>
+<p>本文采用<a href="http://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreffer ">知识共享署名 4.0 国际许可协议</a>进行许可，转载时请注明原文链接，图片在使用时请保留全部内容，可适当缩放并在引用处附上图片所在的文章链接。</p>
+</blockquote>
+<!-- raw HTML omitted -->
+<ul>
+<li><a href="#%E7%AE%80%E4%BB%8B" rel="">简介</a></li>
+<li><a href="#minicoms%E4%BD%BF%E7%94%A8" rel="">Minicoms使用</a>
+<ul>
+<li><a href="#1-%E5%AE%89%E8%A3%85" rel="">1. 安装</a></li>
+<li><a href="#2-%E7%9B%B8%E5%85%B3%E9%85%8D%E7%BD%AE" rel="">2. 相关配置</a></li>
+<li><a href="#3-%E6%9B%B4%E5%A4%9A" rel="">3. 更多</a>
+<ul>
+<li><a href="#31-ctrla" rel="">3.1. Ctrl+A</a></li>
+<li><a href="#32-%E8%87%AA%E5%8A%A8%E4%BF%9D%E5%AD%98log" rel="">3.2. 自动保存log</a></li>
+</ul>
+</li>
+<li><a href="#4-%E9%80%80%E5%87%BA%E8%BD%AF%E4%BB%B6" rel="">4. 退出软件</a></li>
+</ul>
+</li>
+<li><a href="#%E5%85%B6%E4%BB%96%E9%97%AE%E9%A2%98" rel="">其他问题</a>
+<ul>
+<li><a href="#1-%E9%85%8D%E7%BD%AE%E4%B8%B2%E5%8F%A3%E6%9D%83%E9%99%90" rel="">1. 配置串口权限</a>
+<ul>
+<li><a href="#11-%E6%96%B9%E5%BC%8F%E4%B8%80%E4%BD%BF%E7%94%A8%E5%91%BD%E4%BB%A4%E6%9B%B4%E6%94%B9" rel="">1.1. 方式一：使用命令更改</a></li>
+<li><a href="#12-%E6%96%B9%E5%BC%8F%E4%BA%8C%E9%85%8D%E7%BD%AEudev%E8%A7%84%E5%88%99%E6%8E%A8%E8%8D%90" rel="">1.2. 方式二：配置udev规则推荐</a></li>
+</ul>
+</li>
+<li><a href="#2-%E9%85%8D%E7%BD%AE%E9%BB%98%E8%AE%A4%E6%96%87%E4%BB%B6" rel="">2. 配置默认文件</a></li>
+</ul>
+</li>
+<li><a href="#%E4%BD%BF%E7%94%A8%E8%87%AA%E5%8A%A8%E8%84%9A%E6%9C%AC" rel="">使用自动脚本</a></li>
+</ul>
+<!-- raw HTML omitted -->
+<h1 id="简介">简介</h1>
+<p>minicom是一个串口通信工具，就像Windows下的超级终端。可用来与串口设备通信，如调试交换机和Modem等。</p>
+<h1 id="minicoms使用">Minicoms使用</h1>
+<h2 id="安装">安装</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo apt-get install minicom
+</span></span></code></pre></div><h2 id="相关配置">相关配置</h2>
+<p>使用前需要进行配置，执行</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo minicom -s
+</span></span></code></pre></div><p>可打开minicom并进入配置模式，使用方向键，选择需要配置的项目，如 <strong>Serial port setup</strong> ，回车进入配置，可以看到多个配置项，此时光标在最下方。</p>
+<p>需要修改某个配置，则输入对应的字母，光标即会跳转到对应的项，编辑后，回车确认，光标再次回到最下方。</p>
+<p>一般而言，需要修改</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>A -    Serial Device <span style="color:#75715e"># A配置项，指定USB设备。一般USB转串口会生成设备/dev/ttyUSBx，x是数字序号。</span>
+</span></span><span style="display:flex;"><span>E -    Bps/Par/Bits <span style="color:#75715e"># E配置项，根据实际情况，指定波特率等参数</span>
+</span></span><span style="display:flex;"><span>F -    Hardware Flow Control <span style="color:#75715e"># F配置项，硬件流控，要看你的设备是否有。如果没有，或者你不确定的话，可以先关掉，将默认的Yes切换为No.</span>
+</span></span></code></pre></div><p>修改好之后，回车退到上一个界面，此时记得往下，选择 <strong>Save setup as dfl</strong> 将刚刚的修改保存为默认配置，避免下次使用还需要再次配置。</p>
+<p>最后，选择 <strong>Exit</strong> 会退出配置界面，并打开minicom软件才会使用上述参数进行初始化。选择 <strong>Exit from Minicom</strong> 则会直接退出minicom。</p>
+<h2 id="更多">更多</h2>
+<p>可以使用 minicom -h 查看，也可在mincon中，按 Ctrl+A 再按 Z 查看。</p>
+<h3 id="ctrla">Ctrl+A</h3>
+<p>Ctrl+A 是mimicom的特殊功能前缀按键，但还有另一个很实用的作用，就是暂停屏幕输出。在设备开始大量输出log时，基本看不清屏幕内容。此时可以按 Ctrl+A，暂停输出，方便查看所需log。</p>
+<p>Ctrl+A 进入特殊功能：</p>
+<ul>
+<li>
+<p>按Z进入设置菜单</p>
+</li>
+<li>
+<p>按 O键：打开配置选项</p>
+</li>
+<li>
+<p>按 W键：自动卷屏。当显示的内容超过一行之後，自动将後面的内容换行。这个功能在查看内核的啓动信息时很有用</p>
+</li>
+<li>
+<p>按 C键：清除屏幕的显示内容</p>
+</li>
+<li>
+<p>按 B键：浏览minicom的历史显示</p>
+</li>
+<li>
+<p>按 X键：退出minicom，会提示确认退出</p>
+</li>
+<li>
+<p>按 N键：可激活时间戳，在每行log前添加当前系统的时间戳</p>
+</li>
+<li>
+<p>按 S键：可向设备端发送文件</p>
+</li>
+<li>
+<p>按 R键：可接收文件</p>
+</li>
+</ul>
+<h3 id="自动保存log">自动保存log</h3>
+<p>让 minicom 自动保存log，可以方便调试。</p>
+<p>查看参数，minicom可以使用 -C 参数指定保存log文件。于是完善脚本，自动把log以日期命名，保存到/tmp目录下。tmp目录关机即清空，如果想持久保存log，需要修改到其他目录。</p>
+<h2 id="退出软件">退出软件</h2>
+<p>minicom使用前缀按键 Ctrl-A，即执行特殊操作时，都需要先按 Ctrl+A，再按某个按键使用对应的功能。</p>
+<p>Ctrl+A，再按 Z， 可查看帮助，从帮助可以看到，退出时，要先按 Ctrl+A，再按 X</p>
+<h1 id="其他问题">其他问题</h1>
+<h2 id="配置串口权限">配置串口权限</h2>
+<p>minicom 本身不需要sudo权限，但因为要打开串口设备/dev/xxx ，所以一般会需要使用sudo来启动minicom。</p>
+<p>这里我们可以修改下串口设备的权限，这样以后就不用使用sudo了。</p>
+<h3 id="方式一使用命令更改">方式一：使用命令更改</h3>
+<p>简单粗暴地使用chmod命令修改</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo chmod <span style="color:#ae81ff">666</span> /dev/ttyUSB0
+</span></span></code></pre></div><h3 id="方式二配置udev规则推荐">方式二：配置udev规则(推荐)</h3>
+<p>修改配置文件</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo vim /etc/udev/rules.d/70-ttyusb.rules
+</span></span></code></pre></div><p>增加一行</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>KERNEL<span style="color:#f92672">==</span><span style="color:#e6db74">&#34;ttyUSB[0-9]*&#34;</span>, MODE<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;0666&#34;</span>
+</span></span></code></pre></div><p>修改后，需要重新插拔设备，以重新生成设备节点。</p>
+<h2 id="配置默认文件">配置默认文件</h2>
+<p>在/etc/minicom/目录下是minicom的配置文件</p>
+<p>增加配置文件如下：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo vi  /etc/minicom/minirc.ttyUSB0
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>pr port             /dev/ttyUSB0
+</span></span><span style="display:flex;"><span>pu baudrate         <span style="color:#ae81ff">115200</span>
+</span></span><span style="display:flex;"><span>pu bits             <span style="color:#ae81ff">8</span>
+</span></span><span style="display:flex;"><span>pu parity           N
+</span></span><span style="display:flex;"><span>pu stopbits         <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>pu minit
+</span></span><span style="display:flex;"><span>pu mreset
+</span></span><span style="display:flex;"><span>pu rtscts           No
+</span></span></code></pre></div><p>执行</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>minicom ttyUSB0
+</span></span></code></pre></div><p>加载默认配置文件</p>
+<h1 id="使用自动脚本">使用自动脚本</h1>
+<p>参考：<a href="https://github.com/zqb-all/EasierMinicom" target="_blank" rel="noopener noreffer ">EasierMinicom</a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>com<span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>	local ports_USB ports_ACM ports datename dev devs dev_count
+</span></span><span style="display:flex;"><span>	ports_USB<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>ls /dev/ttyUSB* 2&gt;null | xargs -I <span style="color:#f92672">{}</span> basename <span style="color:#f92672">{}</span><span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>	ports_ACM<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>ls /dev/ttyACM* 2&gt;null | xargs -I <span style="color:#f92672">{}</span> basename <span style="color:#f92672">{}</span><span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>	ports<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span>$ports_USB<span style="color:#e6db74"> </span>$ports_ACM<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">#check lock</span>
+</span></span><span style="display:flex;"><span>	devs<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>	dev_count<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span> dev in <span style="color:#e6db74">${</span>ports<span style="color:#e6db74">}</span>; <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>		! ls /run/lock/*<span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>dev<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>* &amp;&gt;/dev/null <span style="color:#f92672">&amp;&amp;</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>			devs<span style="color:#f92672">+=</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>dev<span style="color:#e6db74">}</span><span style="color:#e6db74"> &#34;</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#f92672">((</span>dev_count++<span style="color:#f92672">))</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">done</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">[</span> -z <span style="color:#e6db74">&#34;</span>$devs<span style="color:#e6db74">&#34;</span> <span style="color:#f92672">]</span> <span style="color:#f92672">&amp;&amp;</span> echo <span style="color:#e6db74">&#34;No Unlock Devices&#34;</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	datename<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>date +%Y%m%d-%H%M%S<span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> $dev_count -eq <span style="color:#ae81ff">1</span> <span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span>
+</span></span><span style="display:flex;"><span>		dev<span style="color:#f92672">=</span>$devs
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">else</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e">#select dev to open</span>
+</span></span><span style="display:flex;"><span>		echo <span style="color:#e6db74">&#34;Please select one device: (Ctrl+C to abort)&#34;</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">select</span> dev in $devs; <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> <span style="color:#e6db74">&#34;</span>$dev<span style="color:#e6db74">&#34;</span> <span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span>
+</span></span><span style="display:flex;"><span>				echo <span style="color:#e6db74">&#34;You select the &#39;</span>$dev<span style="color:#e6db74">&#39;&#34;</span>
+</span></span><span style="display:flex;"><span>				break
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">else</span>
+</span></span><span style="display:flex;"><span>				echo <span style="color:#e6db74">&#34;Invaild selection&#34;</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">fi</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">done</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">fi</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	out<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/tmp/</span><span style="color:#66d9ef">$(</span>basename <span style="color:#e6db74">${</span>dev<span style="color:#e6db74">}</span><span style="color:#66d9ef">)</span><span style="color:#e6db74">.</span>$datename<span style="color:#e6db74">.log&#34;</span>
+</span></span><span style="display:flex;"><span>	keep_dir<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>HOME<span style="color:#e6db74">}</span><span style="color:#e6db74">/minicom_keep&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	minicom $dev -C <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>out<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#e6db74">&#34;</span>$@<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">[</span> -f <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>out<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">]</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>		echo log : <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>out<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>		read -p <span style="color:#e6db74">&#34;Keep it? [y|N]: &#34;</span> keep
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>		<span style="color:#f92672">[</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>keep<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;Y&#39;</span> -o <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>keep<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;y&#39;</span> <span style="color:#f92672">]</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>			read -p <span style="color:#e6db74">&#34;Enter file name &gt; &#34;</span> keep_file_name
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>			<span style="color:#f92672">[</span> x<span style="color:#e6db74">&#34;</span>$keep_file_name<span style="color:#e6db74">&#34;</span> <span style="color:#f92672">=</span> x<span style="color:#e6db74">&#34;&#34;</span> <span style="color:#f92672">]</span> <span style="color:#f92672">&amp;&amp;</span> keep_file_name<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>basename <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>out<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>			mkdir -p <span style="color:#e6db74">&#34;</span>$keep_dir<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>			cp <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>out<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>keep_dir<span style="color:#e6db74">}</span><span style="color:#e6db74">/</span>$keep_file_name<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>			echo <span style="color:#e6db74">&#34;saved in </span>$keep_dir<span style="color:#e6db74">/</span>$keep_file_name<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>	read -p <span style="color:#e6db74">&#34;Vim it? [y|N]: &#34;</span> edit_vim
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">[</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>edit_vim<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;Y&#39;</span> -o <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>edit_vim<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;y&#39;</span> <span style="color:#f92672">]</span> <span style="color:#f92672">&amp;&amp;</span> vim <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>out<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><ul>
+<li>
+<p>自动检测未锁定的设备，如果有多个则列出给用户选择，如果只有一个则直接使用。</p>
+</li>
+<li>
+<p>默人加载 /etc/minicom/minirc.${dev} 的配置文件</p>
+</li>
+<li>
+<p>自动保存log到/tmp目录，退出时，询问是否要保存到另外的目录。</p>
+</li>
+</ul>
+<p><strong>使用</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;source </span><span style="color:#66d9ef">$(</span>pwd<span style="color:#66d9ef">)</span><span style="color:#e6db74">/EasierMinicom.sh&#34;</span> &gt;&gt; ~/.bashrc
+</span></span><span style="display:flex;"><span>source ~/.bashrc
+</span></span><span style="display:flex;"><span>com
+</span></span></code></pre></div></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2023-01-15</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://zhangyuhu.github.io/posts/tools/minicom/minicom/" data-title="minicom 的使用" data-hashtags="minicom"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://zhangyuhu.github.io/posts/tools/minicom/minicom/" data-hashtag="minicom"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://zhangyuhu.github.io/posts/tools/minicom/minicom/" data-title="minicom 的使用"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://zhangyuhu.github.io/posts/tools/minicom/minicom/" data-title="minicom 的使用"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://zhangyuhu.github.io/posts/tools/minicom/minicom/" data-title="minicom 的使用" data-ralateuid="ji"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/minicom/">minicom</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/tools/nfs/nfs/" class="prev" rel="prev" title="NFS:Network File System(网络文件系统)"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>NFS:Network File System(网络文件系统)</a>
+            <a href="/posts/tools/markdown/markdown/" class="next" rel="next" title="Markdown">Markdown<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.109.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://zhangyuhu.github.io/" target="_blank">zhangyuhu</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/css/lightgallery-bundle.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/twemoji@14.0.2/dist/twemoji.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/lightgallery.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/thumbnail/lg-thumbnail.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/zoom/lg-zoom.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"lightgallery":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50},"twemoji":true};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Vsoce 代码格式化配置 - 这是我的网站</title><meta name="Description" content="工具使用"><meta property="og:title" content="Vsoce 代码格式化配置" />
+<meta property="og:description" content="工具使用" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zhangyuhu.github.io/posts/tools/vscode/format/format/" /><meta property="og:image" content="https://zhangyuhu.github.io/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-01-15T17:52:52+08:00" />
+<meta property="article:modified_time" content="2023-01-15T17:52:52+08:00" /><meta property="og:site_name" content="我的网站" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://zhangyuhu.github.io/logo.png"/>
+
+<meta name="twitter:title" content="Vsoce 代码格式化配置"/>
+<meta name="twitter:description" content="工具使用"/>
+<meta name="application-name" content="我的网站">
+<meta name="apple-mobile-web-app-title" content="我的网站"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://zhangyuhu.github.io/posts/tools/vscode/format/format/" /><link rel="prev" href="https://zhangyuhu.github.io/posts/tools/aria2c/aria2c/" /><link rel="next" href="https://zhangyuhu.github.io/posts/tools/vscode/configfiles/vscode_config/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Vsoce 代码格式化配置",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/zhangyuhu.github.io\/posts\/tools\/vscode\/format\/format\/"
+        },"genre": "posts","keywords": "vsoce","wordcount":  2510 ,
+        "url": "https:\/\/zhangyuhu.github.io\/posts\/tools\/vscode\/format\/format\/","datePublished": "2023-01-15T17:52:52+08:00","dateModified": "2023-01-15T17:52:52+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "zhangyuhu"
+            },"description": "工具使用"
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="这是我的网站"></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/" title="文章"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="这是我的网站"></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="文章">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/" title="">关于</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Vsoce 代码格式化配置</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://zhangyuhu.github.io/" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>zhangyuhu</a></span>&nbsp;<span class="post-category">included in <a href="/categories/tools/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>tools</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-01-15">2023-01-15</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2510 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;6 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#简介">简介</a></li>
+    <li><a href="#文档">文档</a></li>
+    <li><a href="#安装">安装</a></li>
+    <li><a href="#使用">使用</a>
+      <ul>
+        <li><a href="#使用vscode-手动格式化">使用vscode 手动格式化</a></li>
+        <li><a href="#git-自动格式化提交文件">git 自动格式化提交文件</a></li>
+        <li><a href="#手动格式化">手动格式化</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#cppcheck">cppcheck</a>
+      <ul>
+        <li><a href="#安装-1">安装</a></li>
+        <li><a href="#使用-1">使用</a></li>
+      </ul>
+    </li>
+    <li><a href="#tscancode">Tscancode</a>
+      <ul>
+        <li><a href="#安装-2">安装</a></li>
+        <li><a href="#使用-2">使用</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#安装-3">安装</a>
+      <ul>
+        <li><a href="#常用配置">常用配置</a></li>
+        <li><a href="#根据配置生成doxygen文档">根据配置生成doxygen文档</a></li>
+      </ul>
+    </li>
+    <li><a href="#vscode--自动生成-doxygen-注释">vscode  自动生成 Doxygen 注释</a>
+      <ul>
+        <li><a href="#下载">下载</a></li>
+        <li><a href="#配置文件">配置文件</a></li>
+        <li><a href="#使用-3">使用</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#code-spell-checker">Code Spell Checker</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#保存去除行尾字符">保存去除行尾字符</a></li>
+    <li><a href="#保存文件在文件末尾插入最终行">保存文件在文件末尾插入最终行</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><!-- raw HTML omitted -->
+<ul>
+<li><a href="#%E4%BB%A3%E7%A0%81%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7" rel="">代码管理工具</a></li>
+<li><a href="#%E4%BB%A3%E7%A0%81%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%B7%A5%E5%85%B7clangformat" rel="">代码格式化工具ClangFormat</a>
+<ul>
+<li><a href="#1-%E7%AE%80%E4%BB%8B" rel="">1. 简介</a></li>
+<li><a href="#2-%E6%96%87%E6%A1%A3" rel="">2. 文档</a></li>
+<li><a href="#3-%E5%AE%89%E8%A3%85" rel="">3. 安装</a></li>
+<li><a href="#4-%E4%BD%BF%E7%94%A8" rel="">4. 使用</a>
+<ul>
+<li><a href="#41-%E4%BD%BF%E7%94%A8vscode-%E6%89%8B%E5%8A%A8%E6%A0%BC%E5%BC%8F%E5%8C%96" rel="">4.1. 使用vscode 手动格式化</a></li>
+<li><a href="#42-git-%E8%87%AA%E5%8A%A8%E6%A0%BC%E5%BC%8F%E5%8C%96%E6%8F%90%E4%BA%A4%E6%96%87%E4%BB%B6" rel="">4.2. git 自动格式化提交文件</a></li>
+<li><a href="#43-%E6%89%8B%E5%8A%A8%E6%A0%BC%E5%BC%8F%E5%8C%96" rel="">4.3. 手动格式化</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#%E9%9D%99%E6%80%81%E6%89%AB%E6%8F%8F%E5%B7%A5%E5%85%B7" rel="">静态扫描工具</a>
+<ul>
+<li><a href="#1-cppcheck" rel="">1. cppcheck</a>
+<ul>
+<li><a href="#11-%E5%AE%89%E8%A3%85" rel="">1.1. 安装</a></li>
+<li><a href="#12-%E4%BD%BF%E7%94%A8" rel="">1.2. 使用</a></li>
+</ul>
+</li>
+<li><a href="#2-tscancode" rel="">2. Tscancode</a>
+<ul>
+<li><a href="#21-%E5%AE%89%E8%A3%85" rel="">2.1. 安装</a></li>
+<li><a href="#22-%E4%BD%BF%E7%94%A8" rel="">2.2. 使用</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#%E6%96%87%E6%A1%A3%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90%E5%B7%A5%E5%85%B7--doxygen" rel="">文档自动生成工具  doxygen</a>
+<ul>
+<li><a href="#1-%E5%AE%89%E8%A3%85" rel="">1. 安装</a>
+<ul>
+<li><a href="#11-%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE" rel="">1.1. 常用配置</a></li>
+<li><a href="#12-%E6%A0%B9%E6%8D%AE%E9%85%8D%E7%BD%AE%E7%94%9F%E6%88%90doxygen%E6%96%87%E6%A1%A3" rel="">1.2. 根据配置生成doxygen文档</a></li>
+</ul>
+</li>
+<li><a href="#2-vscode--%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90-doxygen-%E6%B3%A8%E9%87%8A" rel="">2. vscode  自动生成 Doxygen 注释</a>
+<ul>
+<li><a href="#21-%E4%B8%8B%E8%BD%BD" rel="">2.1. 下载</a></li>
+<li><a href="#22-%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6" rel="">2.2. 配置文件</a></li>
+<li><a href="#23-%E4%BD%BF%E7%94%A8" rel="">2.3. 使用</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#%E5%BB%BA%E8%AE%AE%E5%AE%89%E8%A3%85%E7%9A%84%E6%8F%92%E4%BB%B6%E5%8F%8A%E9%85%8D%E7%BD%AE" rel="">建议安装的插件及配置</a>
+<ul>
+<li><a href="#1-code-spell-checker" rel="">1. Code Spell Checker</a></li>
+</ul>
+</li>
+<li><a href="#%E5%85%B6%E4%BB%96%E9%85%8D%E7%BD%AE" rel="">其他配置</a>
+<ul>
+<li><a href="#1-%E4%BF%9D%E5%AD%98%E5%8E%BB%E9%99%A4%E8%A1%8C%E5%B0%BE%E5%AD%97%E7%AC%A6" rel="">1. 保存去除行尾字符</a></li>
+<li><a href="#2-%E4%BF%9D%E5%AD%98%E6%96%87%E4%BB%B6%E5%9C%A8%E6%96%87%E4%BB%B6%E6%9C%AB%E5%B0%BE%E6%8F%92%E5%85%A5%E6%9C%80%E7%BB%88%E8%A1%8C" rel="">2. 保存文件在文件末尾插入最终行</a></li>
+</ul>
+</li>
+</ul>
+<!-- raw HTML omitted -->
+<h1 id="代码管理工具">代码管理工具</h1>
+<p>为了团队协作方便以及代码代码稳定性建设，团队内可以使用统一的工具进行代码格式化，生成文档等。这里整理下相关工具及导入工程实施的方法。</p>
+<p>以下工具基于如Ubuntu 18.04 LTS环境进行验证，但工具到时跨平台，保持配置文件一致，其他平台环境安装需要使用的同学自行解决。</p>
+<h1 id="代码格式化工具clangformat">代码格式化工具ClangFormat</h1>
+<h2 id="简介">简介</h2>
+<ul>
+<li>ClangFormat 是一个规范代码的工具</li>
+<li>ClangFormat 支持的语言有：C/C++/Java/JavaScript/Objective-C/Protobuf/C#</li>
+<li>ClangFormat 支持的规范有：LLVM，Google，Chromium，Mozilla 和 WebKit</li>
+</ul>
+<h2 id="文档">文档</h2>
+<p><a href="https://clang.llvm.org/docs/ClangFormat.html" target="_blank" rel="noopener noreffer ">官方文档</a></p>
+<p><a href="https://clang.llvm.org/docs/ClangFormatStyleOptions.html" target="_blank" rel="noopener noreffer ">其配置文件的官方文档</a></p>
+<h2 id="安装">安装</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#75715e"># 安装</span>
+</span></span><span style="display:flex;"><span>sudo apt install clang-format
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 查看版本</span>
+</span></span><span style="display:flex;"><span>clang-format --version
+</span></span></code></pre></div><h2 id="使用">使用</h2>
+<h3 id="使用vscode-手动格式化">使用vscode 手动格式化</h3>
+<ul>
+<li>
+<p>安装 插件 clang-format</p>
+</li>
+<li>
+<p>将默认格式化工具设置为 clang-format</p>
+<p>vscode   设置中 搜索 <code>defaultFormatter</code> ，选择默认配置为 <code>clang-format</code> 。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../image/image-20211208193908026.png"
+        data-srcset="../image/image-20211208193908026.png, ../image/image-20211208193908026.png 1.5x, ../image/image-20211208193908026.png 2x"
+        data-sizes="auto"
+        alt="../image/image-20211208193908026.png"
+        title="image-20211208193908026" /></p>
+</li>
+<li>
+<p>将配置文件 <a href="http://wiki.intra.xiaojukeji.com/pages/viewpage.action?pageId=777922336" target="_blank" rel="noopener noreffer ">.clang-format</a> 放到工程根目录，以DVR 工程为例：</p>
+</li>
+<li>
+<p>使用快捷格式化 ，windows：<code>Shift+Alt+F</code>      Mac：<code>Shift+Option+F</code>        Ubuntu：<code>Ctrl+Shift+I</code></p>
+</li>
+</ul>
+<h3 id="git-自动格式化提交文件">git 自动格式化提交文件</h3>
+<p>git pre-commit 在提交代码的时候对变动的文件进行格式化, 将 <a href="" rel="">pre-commit</a> 拷贝到 git/hooks 目录下</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>cp ./pre-commit ../../.git/hooks/
+</span></span></code></pre></div><p>此后git在提交的时候会进行自动格式化。</p>
+<h3 id="手动格式化">手动格式化</h3>
+<ul>
+<li>使用 clang-format 命令</li>
+</ul>
+<pre><code>```shell
+clang-format -style=google -i  xxx.cpp   指定格式化方式
+clang-format -style=file  .clang-format -i  xxx.cpp   指定配置文件
+clang-format -i xxx.cpp # 使用工程默认
+```
+</code></pre>
+<ul>
+<li>使用脚本格式化以有文件</li>
+</ul>
+<p>现有代码可能格式不一致，可以使用提供的脚本进行统一格式化做单次提交到服务器。可以使用 tools/format 文件夹下 format.sh 对文件夹内文件递归进行格式化。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>./format.sh  /home/didi/work/http/src/http
+</span></span></code></pre></div><h1 id="静态扫描工具">静态扫描工具</h1>
+<h2 id="cppcheck">cppcheck</h2>
+<p>CppCheck是一个C/C++代码缺陷静态检查工具。不同于C/C++编译器及其它分析工具，CppCheck只检查编译器检查不出来的bug，不检查语法错误。所谓静态代码检查就是使用一个工具检查我们写的代码是否安全和健壮，是否有隐藏的问题</p>
+<p>源码下载地址：<a href="https://github.com/danmar/cppcheck/releases" target="_blank" rel="noopener noreffer ">cppcheck </a></p>
+<h3 id="安装-1">安装</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#75715e"># 安装</span>
+</span></span><span style="display:flex;"><span>sudo apt-get install cppcheck
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 查看版本</span>
+</span></span><span style="display:flex;"><span>cppcheck --version
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Cppcheck 1.82 c++11 最好使用1.8 异常版本，如果apt 	安装非最新版本可以下载源码安装</span>
+</span></span></code></pre></div><h3 id="使用-1">使用</h3>
+<p><a href="https://www.cnblogs.com/shanyu20/p/11238109.html" target="_blank" rel="noopener noreffer ">使用参考</a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>cppcheck xxx/ --enable<span style="color:#f92672">=</span>all --output-file<span style="color:#f92672">=</span>./xxxx.txt
+</span></span></code></pre></div><h2 id="tscancode">Tscancode</h2>
+<p>TscanCode是一款腾讯开源的静态代码扫描工具，TscanCode旨在助力开发与测试人员从代码层面挖掘问题，将那些长期困扰项目的诸如空指针宕机等问题，扼杀于萌芽阶段。支持用户根据不同需求自定义配置检查项，有极强的扩展性和可维护性。平均扫描速度10W行/分钟。</p>
+<p>TscanCode支持以下类型规则扫描：</p>
+<ol>
+<li>空指针检查，包含可疑的空指针，判空后解引用比如Crash等共3类subid检查。</li>
+<li>数据越界，Sprintf_S越界共1类subid检查。</li>
+<li>内存泄漏，分配和释放不匹配同1类subid检查。</li>
+<li>逻辑错误，重复的代码分支，bool类型和INT进行比较，表达式永远True或者false等共18类检查。</li>
+<li>可疑代码检查，if判断中含有可疑的=号，自由变量返回局部变量等共计15类检查。</li>
+<li>运算错误，判断无符号数小于0,对bool类型进行++自增等，共计11类检查。</li>
+</ol>
+<p>代码仓库 ：<a href="https://github.com/Tencent/TscanCode" target="_blank" rel="noopener noreffer ">TscanCode</a></p>
+<h3 id="安装-2">安装</h3>
+<p>release 文件下载地址 ：<a href="https://github.com/Tencent/TscanCode/tree/master/release" target="_blank" rel="noopener noreffer ">release 文件下载</a></p>
+<h3 id="使用-2">使用</h3>
+<p><a href="https://www.jianshu.com/p/f99d9a5d25ac" target="_blank" rel="noopener noreffer ">使用参考</a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>./tscancode --xml --enable<span style="color:#f92672">=</span>all -q ../../../src/ &gt;scan_result.xml 2&gt;&amp;<span style="color:#ae81ff">1</span>
+</span></span></code></pre></div><p><strong>说明</strong> ： 工程里集成了脚本和生成的文件 见 ： tools/codescan/ 路径</p>
+<h1 id="文档自动生成工具--doxygen">文档自动生成工具  doxygen</h1>
+<h2 id="安装-3">安装</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>安装doxygen—&gt; 安装Graphviz—&gt;生成doxygen配置文件—&gt;修改doxygen配置文件—&gt;生成doxygen文档
+</span></span></code></pre></div><p>安装doxygen</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>sudo apt-get install doxygen
+</span></span></code></pre></div><p>安装Graphviz</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>sudo apt-get install graphviz
+</span></span></code></pre></div><p>生成doxygen配置文件</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>doxygen -s -g
+</span></span></code></pre></div><p>注释：上述s 和 g 分别表示simple和generate</p>
+<h3 id="常用配置">常用配置</h3>
+<p>常用选项如下：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#75715e"># 项目名称，将作为于所生成的程序文档首页标题</span>
+</span></span><span style="display:flex;"><span>PROJECT_NAME        <span style="color:#f92672">=</span> “Test”
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 文档版本号，可对应于项目版本号，譬如 svn、cvs 所生成的项目版本号</span>
+</span></span><span style="display:flex;"><span>PROJECT_NUMBER      <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;1.0.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"># 程序文档输出目录
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">OUTPUT_DIRECTORY    =  /home/user1/docs
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"># 程序文档输入目录
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">INPUT                = /home/user1/project/kernel
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"># 程序文档语言环境
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">OUTPUT_LANGUAGE      = Chinese
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"># 只对头文件中的文档化信息生成程序文档
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">FILE_PATTERNS        =
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"># 递归遍历当前目录的子目录，寻找被文档化的程序源文件
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">RECURSIVE            = YES
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"># 如果是制作 C 程序文档，该选项必须设为 YES，否则默认生成 C++ 文档格式
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">OPTIMIZE_OUTPUT_FOR_C  = YES
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">#提取信息，包含类的私有数据成员和静态成员
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">EXTRACT_ALL            = yes
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">EXTRACT_PRIVATE        = yes
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">EXTRACT_STATIC        = yes
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"># 对于使用 typedef 定义的结构体、枚举、联合等数据类型，只按照 typedef 定义的类型名进行文档化
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">TYPEDEF_HIDES_STRUCT  = YES
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"># 在 C++ 程序文档中，该值可以设置为 NO，而在 C 程序文档中，由于 C 语言没有所谓的域/名字空间这样的概念，所以此处设置为 YES
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">HIDE_SCOPE_NAMES      = YES
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"># 让 doxygen 静悄悄地为你生成文档，只有出现警告或错误时，才在终端输出提示信息
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">QUIET  = YES
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"># 递归遍历示例程序目录的子目录，寻找被文档化的程序源文件
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">EXAMPLE_RECURSIVE      = YES
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"># 允许程序文档中显示本文档化的函数相互调用关系
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">REFERENCED_BY_RELATION = YES
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">REFERENCES_RELATION    = YES
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">REFERENCES_LINK_SOURCE = YES
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"># 不生成 latex 格式的程序文档
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">GENERATE_LATEX        = NO
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"># 在程序文档中允许以图例形式显示函数调用关系，前提是你已经安装了 graphviz 软件包
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">HAVE_DOT              = YES
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">CALL_GRAPH            = YES
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">CALLER_GRAPH          = YES
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">#在最后生成的文档中，把所有的源代码包含在其中
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">SOURCE BROWSER        = YES
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"></span>$<span style="color:#e6db74">这会在HTML文档中，添加一个侧边栏，并以树状结构显示包、类、接口等的关系
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">GENERATE TREEVIEW      ＝ ALL
+</span></span></span></code></pre></div><h3 id="根据配置生成doxygen文档">根据配置生成doxygen文档</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>doxygen Doxyfile
+</span></span></code></pre></div><p>效果</p>
+<ul>
+<li>文件</li>
+</ul>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../image/image-20211208211602959.png"
+        data-srcset="../image/image-20211208211602959.png, ../image/image-20211208211602959.png 1.5x, ../image/image-20211208211602959.png 2x"
+        data-sizes="auto"
+        alt="../image/image-20211208211602959.png"
+        title="image-20211208211602959" /></p>
+<ul>
+<li>class</li>
+</ul>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../image/image-20211208211519335.png"
+        data-srcset="../image/image-20211208211519335.png, ../image/image-20211208211519335.png 1.5x, ../image/image-20211208211519335.png 2x"
+        data-sizes="auto"
+        alt="../image/image-20211208211519335.png"
+        title="image-20211208211519335" /></p>
+<ul>
+<li>namespase</li>
+</ul>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../image/image-20211208211632373.png"
+        data-srcset="../image/image-20211208211632373.png, ../image/image-20211208211632373.png 1.5x, ../image/image-20211208211632373.png 2x"
+        data-sizes="auto"
+        alt="../image/image-20211208211632373.png"
+        title="image-20211208211632373" /></p>
+<h2 id="vscode--自动生成-doxygen-注释">vscode  自动生成 Doxygen 注释</h2>
+<h3 id="下载">下载</h3>
+<p>vscode 下载插件 ：Generate Doxygen Comments</p>
+<h3 id="配置文件">配置文件</h3>
+<p>安装插件后，File–Preferences–Settings&ndash; 中打开 用户 setting.json文件 ,增加如下内容 (配置可以根据自己需要修改):</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>    // Doxygen documentation generator set
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;doxdocgen.file.copyrightTag&#34;</span> : <span style="color:#f92672">[</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;@copyright Copyright (c) 2012-2021 Beijing Xiaoju Technology Co, Ltd.&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">]</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;doxdocgen.file.customTag&#34;</span>: <span style="color:#f92672">[</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;@par 修改日志:&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;&lt;table&gt;&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;&lt;tr&gt;&lt;th&gt;Date           &lt;th&gt;Version  &lt;th&gt;Author         &lt;th&gt;Description&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;&lt;tr&gt;&lt;td&gt;{date}         &lt;td&gt;v1.0     &lt;td&gt;zhangyuhu      &lt;td&gt;内容&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;&lt;/table&gt;&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">]</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;doxdocgen.file.fileOrder&#34;</span>: <span style="color:#f92672">[</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;file&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;brief&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;author&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;version&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;date&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;copyright&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;empty&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;custom&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">]</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;doxdocgen.file.fileTemplate&#34;</span>: <span style="color:#e6db74">&#34;@file {name}&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;doxdocgen.file.versionTag&#34;</span>: <span style="color:#e6db74">&#34;@version v1.0&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;doxdocgen.generic.authorEmail&#34;</span>: <span style="color:#e6db74">&#34;zhangyuhu@didiglobal.com&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;doxdocgen.generic.authorName&#34;</span>: <span style="color:#e6db74">&#34;zhangyuhu&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;doxdocgen.generic.authorTag&#34;</span>: <span style="color:#e6db74">&#34;@author {author} ({email})&#34;</span>,
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;doxdocgen.generic.order&#34;</span>: <span style="color:#f92672">[</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;brief&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;tparam&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;param&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;return&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">]</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;doxdocgen.generic.paramTemplate&#34;</span>: <span style="color:#e6db74">&#34;@param{indent:8}{param}{indent:25}My Param doc&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;doxdocgen.generic.returnTemplate&#34;</span>: <span style="color:#e6db74">&#34;@return {type} &#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;doxdocgen.generic.splitCasingSmartText&#34;</span>: true,
+</span></span></code></pre></div><h3 id="使用-3">使用</h3>
+<p><a href="https://www.cnblogs.com/silencehuan/p/11875958.html" target="_blank" rel="noopener noreffer ">Vs code自动生成Doxygen格式注释</a></p>
+<p>在文件 / 函数等 输入 <strong>/</strong>** 回车可自动生成注释</p>
+<h1 id="建议安装的插件及配置">建议安装的插件及配置</h1>
+<h2 id="code-spell-checker">Code Spell Checker</h2>
+<p>拼写检查工具</p>
+<p>示例1:</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../image/image-20211220174318509.png"
+        data-srcset="../image/image-20211220174318509.png, ../image/image-20211220174318509.png 1.5x, ../image/image-20211220174318509.png 2x"
+        data-sizes="auto"
+        alt="../image/image-20211220174318509.png"
+        title="image-20211220174318509" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../image/image-20211220174348232.png"
+        data-srcset="../image/image-20211220174348232.png, ../image/image-20211220174348232.png 1.5x, ../image/image-20211220174348232.png 2x"
+        data-sizes="auto"
+        alt="../image/image-20211220174348232.png"
+        title="image-20211220174348232" /></p>
+<p>示例2:</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../image/image-20211220174628759.png"
+        data-srcset="../image/image-20211220174628759.png, ../image/image-20211220174628759.png 1.5x, ../image/image-20211220174628759.png 2x"
+        data-sizes="auto"
+        alt="../image/image-20211220174628759.png"
+        title="image-20211220174628759" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../image/image-20211220174648762.png"
+        data-srcset="../image/image-20211220174648762.png, ../image/image-20211220174648762.png 1.5x, ../image/image-20211220174648762.png 2x"
+        data-sizes="auto"
+        alt="../image/image-20211220174648762.png"
+        title="image-20211220174648762" /></p>
+<h1 id="其他配置">其他配置</h1>
+<h2 id="保存去除行尾字符">保存去除行尾字符</h2>
+<p>设置中搜索 trimTrailingWhitespace ，并启用。</p>
+<h2 id="保存文件在文件末尾插入最终行">保存文件在文件末尾插入最终行</h2>
+<p>设置中搜索 insert final newline  ，并启用。</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2023-01-15</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://zhangyuhu.github.io/posts/tools/vscode/format/format/" data-title="Vsoce 代码格式化配置" data-hashtags="vsoce"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://zhangyuhu.github.io/posts/tools/vscode/format/format/" data-hashtag="vsoce"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://zhangyuhu.github.io/posts/tools/vscode/format/format/" data-title="Vsoce 代码格式化配置"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://zhangyuhu.github.io/posts/tools/vscode/format/format/" data-title="Vsoce 代码格式化配置"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://zhangyuhu.github.io/posts/tools/vscode/format/format/" data-title="Vsoce 代码格式化配置" data-ralateuid="ji"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/vsoce/">vsoce</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/tools/aria2c/aria2c/" class="prev" rel="prev" title="下载工具：aria2c"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>下载工具：aria2c</a>
+            <a href="/posts/tools/vscode/configfiles/vscode_config/" class="next" rel="next" title="vscode配置文件(config.json)设置">vscode配置文件(config.json)设置<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.109.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://zhangyuhu.github.io/" target="_blank">zhangyuhu</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/css/lightgallery-bundle.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/twemoji@14.0.2/dist/twemoji.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/lightgallery.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/thumbnail/lg-thumbnail.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/zoom/lg-zoom.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"lightgallery":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50},"twemoji":true};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

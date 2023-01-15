@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>cmake note - 这是我的网站</title><meta name="Description" content="cmake 编程"><meta property="og:title" content="cmake note" />
+<meta property="og:description" content="cmake 编程" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zhangyuhu.github.io/posts/program/cmake/note/" /><meta property="og:image" content="https://zhangyuhu.github.io/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-01-15T17:52:52+08:00" />
+<meta property="article:modified_time" content="2023-01-15T17:52:52+08:00" /><meta property="og:site_name" content="我的网站" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://zhangyuhu.github.io/logo.png"/>
+
+<meta name="twitter:title" content="cmake note"/>
+<meta name="twitter:description" content="cmake 编程"/>
+<meta name="application-name" content="我的网站">
+<meta name="apple-mobile-web-app-title" content="我的网站"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://zhangyuhu.github.io/posts/program/cmake/note/" /><link rel="prev" href="https://zhangyuhu.github.io/posts/program/cmake/cmake%E7%9F%A5%E8%AF%86%E6%95%B4%E7%90%86/" /><link rel="next" href="https://zhangyuhu.github.io/posts/program/cpp/c&#43;&#43;%E5%87%BD%E6%95%B0%E5%90%8E%E7%9A%84%E5%85%B3%E9%94%AE%E5%AD%97/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "cmake note",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/zhangyuhu.github.io\/posts\/program\/cmake\/note\/"
+        },"genre": "posts","keywords": "cmake","wordcount":  1105 ,
+        "url": "https:\/\/zhangyuhu.github.io\/posts\/program\/cmake\/note\/","datePublished": "2023-01-15T17:52:52+08:00","dateModified": "2023-01-15T17:52:52+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "zhangyuhu"
+            },"description": "cmake 编程"
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="这是我的网站"></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/" title="文章"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="这是我的网站"></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="文章">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/" title="">关于</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">cmake note</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://zhangyuhu.github.io/" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>zhangyuhu</a></span>&nbsp;<span class="post-category">included in <a href="/categories/cmake/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>cmake</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-01-15">2023-01-15</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1105 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;3 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#逻辑运算">逻辑运算</a></li>
+    <li><a href="#存在性判断">存在性判断</a></li>
+    <li><a href="#正则匹配">正则匹配</a></li>
+    <li><a href="#数字比较">数字比较</a></li>
+    <li><a href="#字符串比较">字符串比较</a></li>
+    <li><a href="#版本号比较">版本号比较</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>[TOC]</p>
+<h1 id="cmake--d-定义">CMake -D 定义</h1>
+<p>-DCMAKE_INSTALL_PREFIX= 指定安装路径，相当于 &ndash;prefix=</p>
+<p>-DCMAKE_C_COMPILER= 指定 C 编译器，相当于 CC=</p>
+<p>-DCMAKE_CXX_COMPILER=指定 CXX 编译器，相当于 CXX=</p>
+<h1 id="cmake中条件判断语句">CMake中条件判断语句</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cmake" data-lang="cmake"><span style="display:flex;"><span>if(<span style="color:#e6db74">&lt;constant&gt;</span>)<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">　　...
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span>else()<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">　　...
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span>endif()<span style="color:#960050;background-color:#1e0010">
+</span></span></span></code></pre></div><p><code>&lt;constant&gt;</code>表示一个常量，其取值与对应逻辑值如下（不区分大小写）：</p>
+<table>
+<thead>
+<tr>
+<th>逻辑值</th>
+<th>常量值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>true</td>
+<td>1、ON、YES、TRUE、Y、非0数字</td>
+</tr>
+<tr>
+<td>false</td>
+<td>0、OFF、NO、FALSE、N、IGNORE、NOTFOUNT、空字符串、-NOTFOUND结尾字符串</td>
+</tr>
+</tbody>
+</table>
+<p><strong>变量</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cmake" data-lang="cmake"><span style="display:flex;"><span>if(<span style="color:#e6db74">&lt;variable&gt;</span>)<span style="color:#960050;background-color:#1e0010">
+</span></span></span></code></pre></div><p><code>&lt;variable&gt;</code>表示一个变量，变量取值不是上述定义的<code>false常量</code>时其逻辑值为<code>true</code>，否则逻辑值为<code>false</code>。</p>
+<p>注：</p>
+<ul>
+<li>宏参数不是变量，环境变量不可作为条件。</li>
+<li>使用变量时，不要用${}表示变量，直接使用变量名即可。</li>
+</ul>
+<p><strong>字符串</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cmake" data-lang="cmake"><span style="display:flex;"><span>if(<span style="color:#e6db74">&lt;string&gt;</span>)<span style="color:#960050;background-color:#1e0010">
+</span></span></span></code></pre></div><p><code>&lt;string&gt;</code>表示带引号的字符串。以下情况其逻辑值为<code>true</code>:</p>
+<ul>
+<li>字符串内容为上述定义的true常量</li>
+<li>策略 CMP0054 未设置为 NEW，并且字符串的值恰好是受 CMP0054 行为影响的变量名称。</li>
+</ul>
+<h2 id="逻辑运算">逻辑运算</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cmake" data-lang="cmake"><span style="display:flex;"><span>if(<span style="color:#e6db74">NOT</span> <span style="color:#e6db74">&lt;condition&gt;</span>) <span style="color:#75715e"># 非运算
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>if(<span style="color:#e6db74">&lt;cond1&gt;</span> <span style="color:#e6db74">AND</span> <span style="color:#e6db74">&lt;cond2&gt;</span>) <span style="color:#75715e"># 与运算
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>if(<span style="color:#e6db74">&lt;cond1&gt;</span> <span style="color:#e6db74">OR</span> <span style="color:#e6db74">&lt;cond2&gt;</span>) <span style="color:#75715e">#或运算
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>if((<span style="color:#e6db74">condition</span>) <span style="color:#e6db74">AND</span> (<span style="color:#e6db74">condition</span> <span style="color:#e6db74">OR</span> (<span style="color:#e6db74">condition</span>))) <span style="color:#75715e"># 有括号时，先计算括号的逻辑值
+</span></span></span></code></pre></div><h2 id="存在性判断">存在性判断</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cmake" data-lang="cmake"><span style="display:flex;"><span>if(<span style="color:#e6db74">COMMAND</span> <span style="color:#e6db74">command-name</span>) <span style="color:#75715e"># true 给定参数是可调用的命令、宏、函数时
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>if(<span style="color:#e6db74">POLICY</span> <span style="color:#e6db74">policy-id</span>) <span style="color:#75715e"># true 给定的策略存在时
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>if(<span style="color:#e6db74">TARGET</span> <span style="color:#e6db74">target-name</span>) <span style="color:#75715e"># true 给定的目标参数是通过add_executable()、add_library() 或 add_custom_target() 命令创建并存在的
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>if(<span style="color:#e6db74">TEST</span> <span style="color:#e6db74">test-name</span>) <span style="color:#75715e"># true 给定参数是通过add_test()创建并存在的
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>if(<span style="color:#e6db74">DEFINED</span> <span style="color:#e6db74">&lt;name&gt;|CACHE{&lt;name&gt;}|ENV{&lt;name&gt;}</span>) <span style="color:#75715e"># true 如果变量、缓存、环境变量存在（其取值无关）
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>if(<span style="color:#e6db74">&lt;variable|string&gt;</span> <span style="color:#e6db74">IN_LIST</span> <span style="color:#e6db74">&lt;variable&gt;</span>) <span style="color:#75715e"># true 如果&lt;variable|string&gt;存在于列表变量&lt;variable&gt;中
+</span></span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cmake" data-lang="cmake"><span style="display:flex;"><span><span style="color:#75715e"># 以下路径参数可以为相对路径或绝对路径，相对是指相对于当前执行cmake的路径。
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>if(<span style="color:#e6db74">EXISTS</span> <span style="color:#e6db74">path-to-file-or-directory</span>) <span style="color:#75715e"># true 如果文件/目录存在，当参数是连接时表示连接指向的实体存在。
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>if(<span style="color:#e6db74">file1</span> <span style="color:#e6db74">IS_NEWER_THAN</span> <span style="color:#e6db74">file2</span>) <span style="color:#75715e"># true file1比file2新
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>if(<span style="color:#e6db74">IS_DIRECTORY</span> <span style="color:#e6db74">path-to-directory</span>) <span style="color:#75715e"># true 如果参数是目录
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>if(<span style="color:#e6db74">IS_SYMLINK</span> <span style="color:#e6db74">file-name</span>)<span style="color:#75715e"># true 如果参数是一个链接
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>if(<span style="color:#e6db74">IS_ABSOLUTE</span> <span style="color:#e6db74">path</span>) <span style="color:#75715e"># true 如果参数是绝对路径
+</span></span></span></code></pre></div><h2 id="正则匹配">正则匹配</h2>
+<p>如果<code>&lt;variable|string&gt;</code>匹配了正则表达式<code>regex</code>，则为<code>true</code></p>
+<p><code>&lt;variable|string&gt;</code>可以是字符串，或者内容为字符串的变量。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cmake" data-lang="cmake"><span style="display:flex;"><span>if(<span style="color:#e6db74">&lt;variable|string&gt;</span> <span style="color:#e6db74">MATCHES</span> <span style="color:#e6db74">regex</span>)<span style="color:#960050;background-color:#1e0010">
+</span></span></span></code></pre></div><h2 id="数字比较">数字比较</h2>
+<p><code>&lt;variable|string&gt;</code>表示存储数字的变量，或合法的数字字符串（如 “512”）</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cmake" data-lang="cmake"><span style="display:flex;"><span>if(<span style="color:#e6db74">&lt;variable|string&gt;</span> <span style="color:#e6db74">LESS</span> <span style="color:#e6db74">&lt;variable|string&gt;</span>)       <span style="color:#75715e"># &lt;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>if(<span style="color:#e6db74">&lt;variable|string&gt;</span> <span style="color:#e6db74">GREATER</span> <span style="color:#e6db74">&lt;variable|string&gt;</span>)     <span style="color:#75715e"># &gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>if(<span style="color:#e6db74">&lt;variable|string&gt;</span> <span style="color:#e6db74">EQUAL</span> <span style="color:#e6db74">&lt;variable|string&gt;</span>)      <span style="color:#75715e"># ==
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>if(<span style="color:#e6db74">&lt;variable|string&gt;</span> <span style="color:#e6db74">LESS_EQUAL</span> <span style="color:#e6db74">&lt;variable|string&gt;</span>)   <span style="color:#75715e"># &lt;=
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>if(<span style="color:#e6db74">&lt;variable|string&gt;</span> <span style="color:#e6db74">GREATER_EQUAL</span> <span style="color:#e6db74">&lt;variable|string&gt;</span>) <span style="color:#75715e"># &gt;=
+</span></span></span></code></pre></div><h2 id="字符串比较">字符串比较</h2>
+<p><code>&lt;variable|string&gt;</code>可以是字符串，或者内容为字符串的变量。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cmake" data-lang="cmake"><span style="display:flex;"><span>if(<span style="color:#e6db74">&lt;variable|string&gt;</span> <span style="color:#e6db74">STRLESS</span> <span style="color:#e6db74">&lt;variable|string&gt;</span>)       <span style="color:#75715e"># &lt;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>if(<span style="color:#e6db74">&lt;variable|string&gt;</span> <span style="color:#e6db74">STRGREATER</span> <span style="color:#e6db74">&lt;variable|string&gt;</span>)     <span style="color:#75715e"># &gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>if(<span style="color:#e6db74">&lt;variable|string&gt;</span> <span style="color:#e6db74">STREQUAL</span> <span style="color:#e6db74">&lt;variable|string&gt;</span>)      <span style="color:#75715e"># ==
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>if(<span style="color:#e6db74">&lt;variable|string&gt;</span> <span style="color:#e6db74">STRLESS_EQUAL</span> <span style="color:#e6db74">&lt;variable|string&gt;</span>)   <span style="color:#75715e"># &lt;=
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>if(<span style="color:#e6db74">&lt;variable|string&gt;</span> <span style="color:#e6db74">STRGREATER_EQUAL</span> <span style="color:#e6db74">&lt;variable|string&gt;</span>) <span style="color:#75715e"># &gt;=
+</span></span></span></code></pre></div><h2 id="版本号比较">版本号比较</h2>
+<p><code>&lt;variable|string&gt;</code>表示存储<code>版本号</code>的变量，或合法的<code>版本号</code>字符串（如 “3.1.4”）</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cmake" data-lang="cmake"><span style="display:flex;"><span>if(<span style="color:#e6db74">&lt;variable|string&gt;</span> <span style="color:#e6db74">VERSION_LESS</span> <span style="color:#e6db74">&lt;variable|string&gt;</span>)       <span style="color:#75715e"># &lt;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>if(<span style="color:#e6db74">&lt;variable|string&gt;</span> <span style="color:#e6db74">VERSION_GREATER</span> <span style="color:#e6db74">&lt;variable|string&gt;</span>)     <span style="color:#75715e"># &gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>if(<span style="color:#e6db74">&lt;variable|string&gt;</span> <span style="color:#e6db74">VERSION_EQUAL</span> <span style="color:#e6db74">&lt;variable|string&gt;</span>)      <span style="color:#75715e"># ==
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>if(<span style="color:#e6db74">&lt;variable|string&gt;</span> <span style="color:#e6db74">VERSION_LESS_EQUAL</span> <span style="color:#e6db74">&lt;variable|string&gt;</span>)   <span style="color:#75715e"># &lt;=
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>if(<span style="color:#e6db74">&lt;variable|string&gt;</span> <span style="color:#e6db74">VERSION_GREATER_EQUAL</span> <span style="color:#e6db74">&lt;variable|string&gt;</span>) <span style="color:#75715e"># &gt;=
+</span></span></span></code></pre></div></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2023-01-15</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://zhangyuhu.github.io/posts/program/cmake/note/" data-title="cmake note" data-hashtags="cmake"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://zhangyuhu.github.io/posts/program/cmake/note/" data-hashtag="cmake"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://zhangyuhu.github.io/posts/program/cmake/note/" data-title="cmake note"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://zhangyuhu.github.io/posts/program/cmake/note/" data-title="cmake note"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://zhangyuhu.github.io/posts/program/cmake/note/" data-title="cmake note" data-ralateuid="ji"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/cmake/">cmake</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/program/cmake/cmake%E7%9F%A5%E8%AF%86%E6%95%B4%E7%90%86/" class="prev" rel="prev" title="cmake 知识整理"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>cmake 知识整理</a>
+            <a href="/posts/program/cpp/c&#43;&#43;%E5%87%BD%E6%95%B0%E5%90%8E%E7%9A%84%E5%85%B3%E9%94%AE%E5%AD%97/" class="next" rel="next" title="C&#43;&#43;函数后的关键字">C++函数后的关键字<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.109.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://zhangyuhu.github.io/" target="_blank">zhangyuhu</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/css/lightgallery-bundle.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/twemoji@14.0.2/dist/twemoji.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/lightgallery.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/thumbnail/lg-thumbnail.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/zoom/lg-zoom.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"lightgallery":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50},"twemoji":true};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>
