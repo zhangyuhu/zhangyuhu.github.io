@@ -29,7 +29,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/zhangyuhu.github.io\/posts\/program\/java\/android%E5%BA%94%E7%94%A8%E4%B8%AD%E4%BD%BF%E7%94%A8c%E5%92%8Cc\u002b\u002b%E4%BB%A3%E7%A0%81\/"
-        },"genre": "posts","keywords": "java, jni","wordcount":  2046 ,
+        },"genre": "posts","keywords": "java, jni","wordcount":  2043 ,
         "url": "https:\/\/zhangyuhu.github.io\/posts\/program\/java\/android%E5%BA%94%E7%94%A8%E4%B8%AD%E4%BD%BF%E7%94%A8c%E5%92%8Cc\u002b\u002b%E4%BB%A3%E7%A0%81\/","datePublished": "2023-01-15T17:52:52+08:00","dateModified": "2023-01-15T17:52:52+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -103,7 +103,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Android应用中使用C和C++代码</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://zhangyuhu.github.io/" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>zhangyuhu</a></span>&nbsp;<span class="post-category">included in <a href="/categories/java/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>java</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-01-15">2023-01-15</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2046 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-01-15">2023-01-15</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2043 words&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;5 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="true">
                 <div class="details-summary toc-title">
@@ -112,20 +112,20 @@
                 </div>
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
-    <li><a href="#31-静态库">3.1. 静态库</a>
+    <li><a href="#1-静态库">1. 静态库</a>
       <ul>
-        <li><a href="#311-静态库编译流程">3.1.1. 静态库编译流程:</a></li>
-        <li><a href="#312-静态库使用">3.1.2. 静态库使用:</a></li>
+        <li><a href="#11-静态库编译流程">1.1. 静态库编译流程:</a></li>
+        <li><a href="#12-静态库使用">1.2. 静态库使用:</a></li>
       </ul>
     </li>
-    <li><a href="#32-动态库">3.2. 动态库</a>
+    <li><a href="#2-动态库">2. 动态库</a>
       <ul>
-        <li><a href="#321-动态库编译流程">3.2.1. 动态库编译流程:</a></li>
-        <li><a href="#322-动态库使用">3.2.2. 动态库使用:</a></li>
-        <li><a href="#323-readelf工具">3.2.3. readelf工具</a></li>
+        <li><a href="#21-动态库编译流程">2.1. 动态库编译流程:</a></li>
+        <li><a href="#22-动态库使用">2.2. 动态库使用:</a></li>
+        <li><a href="#23-readelf工具">2.3. readelf工具</a></li>
       </ul>
     </li>
-    <li><a href="#33-总结">3.3. 总结</a></li>
+    <li><a href="#3-总结">3. 总结</a></li>
   </ul>
 </nav></div>
             </div><div class="content" id="content"><blockquote>
@@ -134,30 +134,30 @@
 <!-- raw HTML omitted -->
 <ul>
 <li><a href="#android-ndk" rel="">Android NDK</a></li>
-<li><a href="#jni%E4%B9%8Bcc%E8%B0%83%E7%94%A8java" rel="">JNI之C&amp;C++调用Java</a></li>
-<li><a href="#ndk-%E5%8A%A8%E6%80%81%E5%92%8C%E9%9D%99%E6%80%81%E5%BA%93" rel="">NDK-动态和静态库</a>
+<li><a href="#jni%e4%b9%8bcc%e8%b0%83%e7%94%a8java" rel="">JNI之C&amp;C++调用Java</a></li>
+<li><a href="#ndk-%e5%8a%a8%e6%80%81%e5%92%8c%e9%9d%99%e6%80%81%e5%ba%93" rel="">NDK-动态和静态库</a>
 <ul>
-<li><a href="#1-%E9%9D%99%E6%80%81%E5%BA%93" rel="">1. 静态库</a>
+<li><a href="#1-%e9%9d%99%e6%80%81%e5%ba%93" rel="">1. 静态库</a>
 <ul>
-<li><a href="#11-%E9%9D%99%E6%80%81%E5%BA%93%E7%BC%96%E8%AF%91%E6%B5%81%E7%A8%8B" rel="">1.1. 静态库编译流程:</a></li>
-<li><a href="#12-%E9%9D%99%E6%80%81%E5%BA%93%E4%BD%BF%E7%94%A8" rel="">1.2. 静态库使用:</a></li>
+<li><a href="#11-%e9%9d%99%e6%80%81%e5%ba%93%e7%bc%96%e8%af%91%e6%b5%81%e7%a8%8b" rel="">1.1. 静态库编译流程:</a></li>
+<li><a href="#12-%e9%9d%99%e6%80%81%e5%ba%93%e4%bd%bf%e7%94%a8" rel="">1.2. 静态库使用:</a></li>
 </ul>
 </li>
-<li><a href="#2-%E5%8A%A8%E6%80%81%E5%BA%93" rel="">2. 动态库</a>
+<li><a href="#2-%e5%8a%a8%e6%80%81%e5%ba%93" rel="">2. 动态库</a>
 <ul>
-<li><a href="#21-%E5%8A%A8%E6%80%81%E5%BA%93%E7%BC%96%E8%AF%91%E6%B5%81%E7%A8%8B" rel="">2.1. 动态库编译流程:</a></li>
-<li><a href="#22-%E5%8A%A8%E6%80%81%E5%BA%93%E4%BD%BF%E7%94%A8" rel="">2.2. 动态库使用:</a></li>
-<li><a href="#23-readelf%E5%B7%A5%E5%85%B7" rel="">2.3. readelf工具</a></li>
+<li><a href="#21-%e5%8a%a8%e6%80%81%e5%ba%93%e7%bc%96%e8%af%91%e6%b5%81%e7%a8%8b" rel="">2.1. 动态库编译流程:</a></li>
+<li><a href="#22-%e5%8a%a8%e6%80%81%e5%ba%93%e4%bd%bf%e7%94%a8" rel="">2.2. 动态库使用:</a></li>
+<li><a href="#23-readelf%e5%b7%a5%e5%85%b7" rel="">2.3. readelf工具</a></li>
 </ul>
 </li>
-<li><a href="#3-%E6%80%BB%E7%BB%93" rel="">3. 总结</a></li>
+<li><a href="#3-%e6%80%bb%e7%bb%93" rel="">3. 总结</a></li>
 </ul>
 </li>
 </ul>
 <!-- raw HTML omitted -->
-<h1 id="1-android-ndk">1. Android NDK</h1>
+<h1 id="android-ndk">Android NDK</h1>
 <p><a href="https://developer.android.com/ndk" target="_blank" rel="noopener noreffer ">Android NDK</a></p>
-<h1 id="2-jni之cc调用java">2. JNI之C&amp;C++调用Java</h1>
+<h1 id="jni之cc调用java">JNI之C&amp;C++调用Java</h1>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#75715e">//使用jni调用java的代码, 必须了解java的反射机制;
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">//在jni中反射调用java代码的话, 一定要写异常处理
@@ -241,9 +241,9 @@ J是代表Long
    [  数组类型 [I表示一个整型一维数组，等于java中的int[]。注意多位数数组的维数最大为255个。
 [[I=int[][]
 [[[I=int[][][]
-</code></pre><h1 id="3-ndk-动态和静态库">3. NDK-动态和静态库</h1>
-<h2 id="31-静态库">3.1. 静态库</h2>
-<h3 id="311-静态库编译流程">3.1.1. 静态库编译流程:</h3>
+</code></pre><h1 id="ndk-动态和静态库">NDK-动态和静态库</h1>
+<h2 id="1-静态库">1. 静态库</h2>
+<h3 id="11-静态库编译流程">1.1. 静态库编译流程:</h3>
 <blockquote>
 <p>gcc&mdash;&mdash;&gt; obj 文件&mdash;-&gt;多个obj使用ar&mdash;&ndash;&gt;静态库文件</p>
 </blockquote>
@@ -252,10 +252,10 @@ J是代表Long
 </span></span><span style="display:flex;"><span>AR  r libdemo.a mod1.o mod2.o mod3.o       将3个obj 添加到libdemo.a中
 </span></span><span style="display:flex;"><span>AR  tv libdemo.a                          查看libdemo.a中的obj文件
 </span></span><span style="display:flex;"><span>AR  d libdemo.a mod3.o                    将mod3.o从libdemo.a中删除
-</span></span></code></pre></div><h3 id="312-静态库使用">3.1.2. 静态库使用:</h3>
+</span></span></code></pre></div><h3 id="12-静态库使用">1.2. 静态库使用:</h3>
 <p>代码中包含头文件, 在链接的时候使用libdemo.a链接即可;</p>
-<h2 id="32-动态库">3.2. 动态库</h2>
-<h3 id="321-动态库编译流程">3.2.1. 动态库编译流程:</h3>
+<h2 id="2-动态库">2. 动态库</h2>
+<h3 id="21-动态库编译流程">2.1. 动态库编译流程:</h3>
 <blockquote>
 <p>gcc&mdash;&mdash;&gt; obj 文件&mdash;-&gt;多个obj使用gcc的 -shared&mdash;&ndash;&gt;so文件</p>
 </blockquote>
@@ -268,7 +268,7 @@ J是代表Long
 </span></span><span style="display:flex;"><span>-c   只编译不链接
 </span></span><span style="display:flex;"><span>-Wall 显示所有警告
 </span></span><span style="display:flex;"><span>-g   生成Debug版
-</span></span></code></pre></div><h3 id="322-动态库使用">3.2.2. 动态库使用:</h3>
+</span></span></code></pre></div><h3 id="22-动态库使用">2.2. 动态库使用:</h3>
 <ol>
 <li>静态使用
 直接把So文件当作obj一起链接到文件, 文件中会存so信息, 在使用时会在目录中搜索so
@@ -281,7 +281,7 @@ dlopen打开一个so文件
 dlsym根据函数名拿到函数指针</li>
 </ol>
 <p><strong>一个工程代码如果同时有静态和动态编译, 那么就只编译动态库;</strong></p>
-<h3 id="323-readelf工具">3.2.3. readelf工具</h3>
+<h3 id="23-readelf工具">2.3. readelf工具</h3>
 <p>使用readelf工具可以查看elf文件的符号表
 命令: 平台-readelf - s  elf文件 ,当value值为0表示为导入函数</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span>__attribute__() <span style="color:#75715e">//关键字可以指定函数属性
@@ -296,7 +296,7 @@ dlsym根据函数名拿到函数指针</li>
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">void</span> __attribute__((destructor))  UnLoad() <span style="color:#75715e">// 反初始化
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">void</span> __attribute__((constructor))  OnLoad1() <span style="color:#75715e">// 初始化函数1
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">void</span> __attribute__((destructor))  UnLoad1() <span style="color:#75715e">// 反初始化1
-</span></span></span></code></pre></div><h2 id="33-总结">3.3. 总结</h2>
+</span></span></span></code></pre></div><h2 id="3-总结">3. 总结</h2>
 <p>1.相关函数</p>
 <pre tabindex="0"><code>dlopen()函数打开一个共享库
 dlsym()函数在库中搜

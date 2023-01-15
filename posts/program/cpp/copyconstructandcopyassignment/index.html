@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
         <title>拷贝构造函数和拷贝赋值函数 - 这是我的网站</title><meta name="Description" content="这是我的全新 Hugo 网站"><meta property="og:title" content="拷贝构造函数和拷贝赋值函数" />
-<meta property="og:description" content="拷贝构造函数 拷贝构造函数的调用时机 1. 当函数的参数为类的对象:以值传递的方式传入函数体 2. 函数的返回值是类的对象:以值传递的方式从函数返回 3. 对象" />
+<meta property="og:description" content="本文采用知识共享署名 4.0 国际许可协议进行许可，转载时请注明原文链接，图片在使用时请保留全部内容，可适当缩放并在引用处附上图片所在的文章链接。 拷" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://zhangyuhu.github.io/posts/program/cpp/copyconstructandcopyassignment/" /><meta property="og:image" content="https://zhangyuhu.github.io/logo.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2023-01-15T17:10:42+08:00" />
@@ -14,7 +14,7 @@
 <meta name="twitter:image" content="https://zhangyuhu.github.io/logo.png"/>
 
 <meta name="twitter:title" content="拷贝构造函数和拷贝赋值函数"/>
-<meta name="twitter:description" content="拷贝构造函数 拷贝构造函数的调用时机 1. 当函数的参数为类的对象:以值传递的方式传入函数体 2. 函数的返回值是类的对象:以值传递的方式从函数返回 3. 对象"/>
+<meta name="twitter:description" content="本文采用知识共享署名 4.0 国际许可协议进行许可，转载时请注明原文链接，图片在使用时请保留全部内容，可适当缩放并在引用处附上图片所在的文章链接。 拷"/>
 <meta name="application-name" content="我的网站">
 <meta name="apple-mobile-web-app-title" content="我的网站"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -29,7 +29,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/zhangyuhu.github.io\/posts\/program\/cpp\/copyconstructandcopyassignment\/"
-        },"genre": "posts","keywords": "cpp","wordcount":  2391 ,
+        },"genre": "posts","keywords": "cpp","wordcount":  2464 ,
         "url": "https:\/\/zhangyuhu.github.io\/posts\/program\/cpp\/copyconstructandcopyassignment\/","datePublished": "2023-01-15T17:10:42+08:00","dateModified": "2023-01-15T17:27:11+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -103,7 +103,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">拷贝构造函数和拷贝赋值函数</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://zhangyuhu.github.io/" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>zhangyuhu</a></span>&nbsp;<span class="post-category">included in <a href="/categories/cpp/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>cpp</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-01-15">2023-01-15</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2391 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-01-15">2023-01-15</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2464 words&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;5 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="true">
                 <div class="details-summary toc-title">
@@ -112,16 +112,19 @@
                 </div>
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
-    <li><a href="#当函数的参数为类的对象以值传递的方式传入函数体">当函数的参数为类的对象:以值传递的方式传入函数体</a></li>
-    <li><a href="#函数的返回值是类的对象以值传递的方式从函数返回">函数的返回值是类的对象:以值传递的方式从函数返回</a></li>
-    <li><a href="#对象需要通过另外一个对象进行初始化--赋值初始化">对象需要通过另外一个对象进行初始化 : 赋值初始化</a></li>
+    <li><a href="#1-当函数的参数为类的对象以值传递的方式传入函数体">1. 当函数的参数为类的对象:以值传递的方式传入函数体</a></li>
+    <li><a href="#2-函数的返回值是类的对象以值传递的方式从函数返回">2. 函数的返回值是类的对象:以值传递的方式从函数返回</a></li>
+    <li><a href="#3-对象需要通过另外一个对象进行初始化--赋值初始化">3. 对象需要通过另外一个对象进行初始化 : 赋值初始化</a></li>
   </ul>
 
   <ul>
-    <li><a href="#默认拷贝构造函数">默认拷贝构造函数</a></li>
+    <li><a href="#1-默认拷贝构造函数">1. 默认拷贝构造函数</a></li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><!-- raw HTML omitted -->
+            </div><div class="content" id="content"><blockquote>
+<p>本文采用<a href="http://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreffer ">知识共享署名 4.0 国际许可协议</a>进行许可，转载时请注明原文链接，图片在使用时请保留全部内容，可适当缩放并在引用处附上图片所在的文章链接。</p>
+</blockquote>
+<!-- raw HTML omitted -->
 <ul>
 <li><a href="#%E6%8B%B7%E8%B4%9D%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0" rel="">拷贝构造函数</a></li>
 <li><a href="#%E6%8B%B7%E8%B4%9D%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E7%9A%84%E8%B0%83%E7%94%A8%E6%97%B6%E6%9C%BA" rel="">拷贝构造函数的调用时机</a>
@@ -189,7 +192,7 @@ destructor is called
 destructor is called
 </code></pre>
 <h1 id="拷贝构造函数的调用时机">拷贝构造函数的调用时机</h1>
-<h2 id="当函数的参数为类的对象以值传递的方式传入函数体">当函数的参数为类的对象:以值传递的方式传入函数体</h2>
+<h2 id="1-当函数的参数为类的对象以值传递的方式传入函数体">1. 当函数的参数为类的对象:以值传递的方式传入函数体</h2>
 <p>如果函数 F 的参数是类 A 的对象，那么当 F 被调用时，类 A 的复制构造函数将被调用。换句话说，作为形参的对象，是用复制构造函数初始化的，而且调用复制构造函数时的参数，就是调用函数时所给的实参。</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
@@ -245,7 +248,7 @@ destructor is called
 <li>然后调用拷贝构造函数把A的值给C。 整个这两个步骤有点像：CExample C(A);</li>
 <li>等g_fun()执行完后, 析构掉 C 对象。</li>
 </ol>
-<h2 id="函数的返回值是类的对象以值传递的方式从函数返回">函数的返回值是类的对象:以值传递的方式从函数返回</h2>
+<h2 id="2-函数的返回值是类的对象以值传递的方式从函数返回">2. 函数的返回值是类的对象:以值传递的方式从函数返回</h2>
 <p>如果函数的返冋值是类 A 的对象，则函数返冋时，类 A 的复制构造函数被调用。换言之，作为函数返回值的对象是用复制构造函数初始化 的，而调用复制构造函数时的实参，就是 return 语句所返回的对象。</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
@@ -307,7 +310,7 @@ destructor is called
 <p>说明，由于g++ 编译是会进行优化，这里需要使用 ： g++ -fno-elide-constructors xx 进行编译
 <a href="https://blog.csdn.net/sxhelijian/article/details/50977946" target="_blank" rel="noopener noreffer ">C++返回值为对象时复制构造函数不执行怎么破</a>
 <a href="http://blog.sina.com.cn/s/blog_4ab8464c0100kybj.html" target="_blank" rel="noopener noreffer ">命名返回值优化</a></p>
-<h2 id="对象需要通过另外一个对象进行初始化--赋值初始化">对象需要通过另外一个对象进行初始化 : 赋值初始化</h2>
+<h2 id="3-对象需要通过另外一个对象进行初始化--赋值初始化">3. 对象需要通过另外一个对象进行初始化 : 赋值初始化</h2>
 <p>当用一个对象去初始化同类的另一个对象时，会引发复制构造函数被调用。</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span>CExample <span style="color:#a6e22e">A</span>(<span style="color:#ae81ff">100</span>);
 </span></span><span style="display:flex;"><span>CExample B<span style="color:#f92672">=</span>A;
@@ -317,7 +320,7 @@ destructor is called
 </span></span><span style="display:flex;"><span>c1<span style="color:#f92672">=</span>c2;
 </span></span></code></pre></div><p>这条语句不会引发复制构造函数的调用，因为 c1 早已生成，已经初始化过了。</p>
 <h1 id="浅拷贝与深拷贝">浅拷贝与深拷贝</h1>
-<h2 id="默认拷贝构造函数">默认拷贝构造函数</h2>
+<h2 id="1-默认拷贝构造函数">1. 默认拷贝构造函数</h2>
 <p>很多时候在我们都不知道拷贝构造函数的情况下，传递对象给函数参数或者函数返回对象都能很好的进行，这是因为编译器会给我们自动产生一个拷贝构造函数，这就是“默认拷贝构造函数”，这个构造函数很简单，仅仅使用“老对象”的数据成员的值对“新对象”的数据成员一一进行赋值，它一般具有以下形式：</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span>Rect<span style="color:#f92672">::</span>Rect(<span style="color:#66d9ef">const</span> Rect<span style="color:#f92672">&amp;</span> r)
 </span></span><span style="display:flex;"><span>{
