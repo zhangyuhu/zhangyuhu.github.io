@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>opencv 核心函数整理 - 这是我的网站</title><meta name="Description" content="开源软件"><meta property="og:title" content="opencv 核心函数整理" />
+<meta property="og:description" content="开源软件" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zhangyuhu.github.io/posts/open_source_software/opencv/learn/opencv%E6%A0%B8%E5%BF%83%E5%87%BD%E6%95%B0%E6%95%B4%E7%90%86/" /><meta property="og:image" content="https://zhangyuhu.github.io/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-01-16T17:52:52+08:00" />
+<meta property="article:modified_time" content="2023-01-16T17:52:52+08:00" /><meta property="og:site_name" content="我的网站" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://zhangyuhu.github.io/logo.png"/>
+
+<meta name="twitter:title" content="opencv 核心函数整理"/>
+<meta name="twitter:description" content="开源软件"/>
+<meta name="application-name" content="我的网站">
+<meta name="apple-mobile-web-app-title" content="我的网站"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://zhangyuhu.github.io/posts/open_source_software/opencv/learn/opencv%E6%A0%B8%E5%BF%83%E5%87%BD%E6%95%B0%E6%95%B4%E7%90%86/" /><link rel="prev" href="https://zhangyuhu.github.io/posts/open_source_software/buttonrpc/buttonrpc_02/" /><link rel="next" href="https://zhangyuhu.github.io/posts/open_source_software/opencv/learn/opencv%E5%B8%B8%E7%94%A8%E7%AE%97%E5%AD%90/" /><link rel="stylesheet" href="/css/style.min.61c0835a1733ac3f92b41b61b403dca9b8d4a3a7e4021c89af2c45a731f6343a82bc7fb214f4926e2c4669c8d258218b7da5d0e86d081ec97f3c1d823d48df2e.css" integrity="sha512-YcCDWhczrD+StBthtAPcqbjUo6fkAhyJryxFpzH2NDqCvH+yFPSSbixGacjSWCGLfaXQ6G0IHsl/PB2CPUjfLg=="><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "opencv 核心函数整理",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/zhangyuhu.github.io\/posts\/open_source_software\/opencv\/learn\/opencv%E6%A0%B8%E5%BF%83%E5%87%BD%E6%95%B0%E6%95%B4%E7%90%86\/"
+        },"genre": "posts","keywords": "opencv","wordcount":  3001 ,
+        "url": "https:\/\/zhangyuhu.github.io\/posts\/open_source_software\/opencv\/learn\/opencv%E6%A0%B8%E5%BF%83%E5%87%BD%E6%95%B0%E6%95%B4%E7%90%86\/","datePublished": "2023-01-16T17:52:52+08:00","dateModified": "2023-01-16T17:52:52+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "zhangyuhu"
+            },"description": "开源软件"
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="这是我的网站"><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/" title="文章"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="这是我的网站"><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="文章">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/" title="">关于</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">opencv 核心函数整理</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://zhangyuhu.github.io/" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>zhangyuhu</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>开源软件</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-01-16">2023-01-16</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;3001 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;6 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#1highgui模块做为高层gui图形用户界面模块包含媒体的输入输出视频捕捉图像和视频的编码解码图像交互界面的接口等内容">1.HighGUI模块做为高层GUI图形用户界面模块，包含媒体的输入输出、视频捕捉、图像和视频的编码解码、图像交互界面的接口等内容。</a></li>
+        <li><a href="#2opencv中的core组件是核心功能模块主要包含以下的内容数据基本结构动态数据结构绘图函数数组操作相关函数辅助功能和系统函数和宏与opengl的互操作">2.opencv中的core组件是核心功能模块主要包含以下的内容：数据基本结构、动态数据结构、绘图函数、数组操作相关函数、辅助功能和系统函数和宏、与OpenGL的互操作。</a></li>
+        <li><a href="#3操作图像中的像素设置感兴趣区域roi进行图像混合分离颜色通道进行多通道图像混合调整图像的对比对和亮度值对图像进行离散傅里叶变换输入输出xml-和yaml文件">3.操作图像中的像素、设置感兴趣区域（ROI）、进行图像混合、分离颜色通道、进行多通道图像混合、调整图像的对比对和亮度值、对图像进行离散傅里叶变换、输入输出XML 和YAML文件</a></li>
+        <li><a href="#4imgproc组件是image和process这两个单词的缩写即图像处理模块这个模块有线性和非线性的图像滤波图像的几何变换其他miscellaneous图像转换直方图相关结构分析和形状描述运动分析和对象追踪特征检测目标检测等内容">4.imgproc组件是Image和Process这两个单词的缩写，即图像处理模块，这个模块有线性和非线性的图像滤波、图像的几何变换、其他（Miscellaneous）图像转换、直方图相关、结构分析和形状描述、运动分析和对象追踪、特征检测、目标检测等内容。</a></li>
+        <li><a href="#5图像变换image-transfrom即将一幅图像转变成图像数据的另一种表现形式变换最常见的例子就是傅里叶变换fourier-transfrom即将图像转换成源图像数据的另一种表示形式这类操作的结果仍然保存为opencv图像结构的形式但是新图像的每个单独像素表示原始输出图像的频谱分量而不是通常所考虑的空间分量基于opencv的边缘检测霍夫变换重映射仿射变换直方图均衡化">5.图像变换（image transfrom）即将一幅图像转变成图像数据的另一种表现形式。变换最常见的例子就是傅里叶变换（Fourier transfrom），即将图像转换成源图像数据的另一种表示形式。这类操作的结果仍然保存为OpenCV图像结构的形式，但是新图像的每个单独像素表示原始输出图像的频谱分量，而不是通常所考虑的空间分量。基于OpenCV的边缘检测、霍夫变换、重映射、仿射变换、直方图均衡化。</a></li>
+        <li><a href="#6图像轮廓与图像分割修复虽然canny之类的边缘检测算法可以根据像素之间的差异检测出轮廓边界的像素但是并没有将轮廓作为一个整体所以下一步便是把这些边缘像素组装成轮廓查找并绘制轮廓寻找物体的凸包使用多边形逼近物体认识图像的矩利用opencv进行图像修补">6.图像轮廓与图像分割修复，虽然Canny之类的边缘检测算法可以根据像素之间的差异，检测出轮廓边界的像素，但是并没有将轮廓作为一个整体。所以下一步便是把这些边缘像素组装成轮廓。查找并绘制轮廓、寻找物体的凸包、使用多边形逼近物体、认识图像的矩、利用OpenCV进行图像修补。</a></li>
+        <li><a href="#7直方图和匹配在进行物体图像和视频信息分析的过程中我们常常会习惯于将眼中看到的物体用直方图histogram表示出来得到比较直观的数据官感展示直方图可以用来描述各种不同的参数和事物如物体的彩色分布物体边缘梯度模板以及表示目标位置的当前假设的概率分布">7.直方图和匹配，在进行物体图像和视频信息分析的过程中，我们常常会习惯于将眼中看到的物体用直方图（histogram）表示出来，得到比较直观的数据官感展示。直方图可以用来描述各种不同的参数和事物，如物体的彩色分布、物体边缘梯度模板、以及表示目标位置的当前假设的概率分布。</a></li>
+        <li><a href="#8feature2d组件也就是features-2d是opencv的2d功能框架自opencv以来的众多著名的特征检测算子如siftsurforb算子等所依赖的稳定版的特征检测与匹配相关的核心源代码已经从opencv3中移除了转移到xfeature2d的第三方库当中了特征检测器feature-detectors通用接口描述符提取器descriptor-extractors通用接口描述符匹配器descriptor-matchers匹配器通用接口关键点绘制函数和匹配功能绘制函数">8.feature2d组件，也就是Features 2D，是OpenCV的2D功能框架。自OpenCV以来的众多著名的特征检测算子（如SIFT、SURF、ORB算子等）所依赖的稳定版的特征检测与匹配相关的核心源代码已经从OpenCV3中移除了，转移到xfeature2d的第三方库当中了。特征检测器（Feature Detectors）通用接口、描述符提取器（Descriptor Extractors）通用接口、描述符匹配器（Descriptor Matchers）匹配器通用接口、关键点绘制函数和匹配功能绘制函数。</a></li>
+        <li><a href="#9特征点的检测和匹配是计算机视觉中非常重要的技术之一在物体检测视觉跟踪三维重构等领域都有很广泛的应用">9.特征点的检测和匹配是计算机视觉中非常重要的技术之一。在物体检测、视觉跟踪、三维重构等领域都有很广泛的应用。</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><blockquote>
+<p>本文采用<a href="http://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreffer ">知识共享署名 4.0 国际许可协议</a>进行许可，转载时请注明原文链接，图片在使用时请保留全部内容，可适当缩放并在引用处附上图片所在的文章链接。</p>
+</blockquote>
+<h3 id="1highgui模块做为高层gui图形用户界面模块包含媒体的输入输出视频捕捉图像和视频的编码解码图像交互界面的接口等内容">1.HighGUI模块做为高层GUI图形用户界面模块，包含媒体的输入输出、视频捕捉、图像和视频的编码解码、图像交互界面的接口等内容。</h3>
+<ul>
+<li>imread：用于读取文件中的图片到opencv中</li>
+<li>imshow : 在指定的窗口中显示一幅图像</li>
+<li>namedWindow：用于创建一个窗口</li>
+<li>imwrite：输出图像到文件</li>
+<li>createTrackbar：用于创建一个可以调整数值的轨迹条</li>
+<li>getTrackbarPos：用于获取轨迹条的当前位置</li>
+<li>SetMouseCallback：为指定的窗口设置鼠标回调函数</li>
+</ul>
+<h3 id="2opencv中的core组件是核心功能模块主要包含以下的内容数据基本结构动态数据结构绘图函数数组操作相关函数辅助功能和系统函数和宏与opengl的互操作">2.opencv中的core组件是核心功能模块主要包含以下的内容：数据基本结构、动态数据结构、绘图函数、数组操作相关函数、辅助功能和系统函数和宏、与OpenGL的互操作。</h3>
+<ul>
+<li>Mat::Mat() : Mat类的构造函数</li>
+<li>Mat::Create() : Mat类的成员函数，可用于Mat类的初始化操作</li>
+<li>Point : 用于表示点的数据结构</li>
+<li>Scalar : 用于表示颜色的数据结构</li>
+<li>Size : 用于表示尺寸的数据结构</li>
+<li>Rect : 用于表示矩阵的数据结构</li>
+<li>CvtColor() : 用于颜色的空间转换</li>
+</ul>
+<h3 id="3操作图像中的像素设置感兴趣区域roi进行图像混合分离颜色通道进行多通道图像混合调整图像的对比对和亮度值对图像进行离散傅里叶变换输入输出xml-和yaml文件">3.操作图像中的像素、设置感兴趣区域（ROI）、进行图像混合、分离颜色通道、进行多通道图像混合、调整图像的对比对和亮度值、对图像进行离散傅里叶变换、输入输出XML 和YAML文件</h3>
+<ul>
+<li>
+<p>addWeighted : 计算两个数组（图像阵列）的加权和</p>
+</li>
+<li>
+<p>split : 将一个多通道数组分离成单个通道数组</p>
+</li>
+<li>
+<p>merge : 将多个数组组合合并成一个多通道的数组</p>
+</li>
+<li>
+<p>dft : 对一维或者二维浮点数数组进行正向或反向离散傅里叶变换</p>
+</li>
+<li>
+<p>getOptimalDFTSize : 返回给定向尺寸的傅里叶最优化尺寸大小</p>
+</li>
+<li>
+<p>copyMakeBorder : 扩充图像边界</p>
+</li>
+<li>
+<p>magnitude : 计算二维矢量的幅值</p>
+</li>
+<li>
+<p>log：计算每个数组元素绝对值的自然对数</p>
+</li>
+<li>
+<p>normalize：进行矩阵归一化</p>
+</li>
+<li>
+<p>FileStorage类：进行文件操作的类</p>
+</li>
+</ul>
+<h3 id="4imgproc组件是image和process这两个单词的缩写即图像处理模块这个模块有线性和非线性的图像滤波图像的几何变换其他miscellaneous图像转换直方图相关结构分析和形状描述运动分析和对象追踪特征检测目标检测等内容">4.imgproc组件是Image和Process这两个单词的缩写，即图像处理模块，这个模块有线性和非线性的图像滤波、图像的几何变换、其他（Miscellaneous）图像转换、直方图相关、结构分析和形状描述、运动分析和对象追踪、特征检测、目标检测等内容。</h3>
+<ul>
+<li>boxFilter : 使用方框滤波来模糊一张图片</li>
+<li>blur : 对输入的图像进行均值滤波操作</li>
+<li>GaussianBlur : 用高斯滤波器来模糊一张图片</li>
+<li>medianBlur : 使用中值滤波器来模糊一张图片</li>
+<li>bilateralFilter : 使用双边滤波器来模糊处理一张图片</li>
+<li>dilate : 使用像素领域内的局部极大运算符来膨胀一张图片</li>
+<li>erode : 使用像素领域内的局部极小运算符来腐蚀一张图片</li>
+<li>morphologyEx : 利用基本的膨胀和腐蚀技术，来执行更加高级形态学变换，如开闭运算、形态学梯度、顶帽、黑帽等，也可以实现最基本的图像膨胀和腐蚀</li>
+<li>floodFill : 用指定的颜色从种子点开始填充一个连接域，实现漫水填充算法</li>
+<li>pyrUp : 向上采样并模糊一张图片，说白了就是放大一张图片</li>
+<li>pyrDown : 向下采样并模糊一张图片，说白了就是缩小一张图片</li>
+<li>Threshold : 对单通道数组应用固定阈值操作</li>
+<li>adaptiveThreshold : 对矩阵采用自适应阈值操作</li>
+</ul>
+<h3 id="5图像变换image-transfrom即将一幅图像转变成图像数据的另一种表现形式变换最常见的例子就是傅里叶变换fourier-transfrom即将图像转换成源图像数据的另一种表示形式这类操作的结果仍然保存为opencv图像结构的形式但是新图像的每个单独像素表示原始输出图像的频谱分量而不是通常所考虑的空间分量基于opencv的边缘检测霍夫变换重映射仿射变换直方图均衡化">5.图像变换（image transfrom）即将一幅图像转变成图像数据的另一种表现形式。变换最常见的例子就是傅里叶变换（Fourier transfrom），即将图像转换成源图像数据的另一种表示形式。这类操作的结果仍然保存为OpenCV图像结构的形式，但是新图像的每个单独像素表示原始输出图像的频谱分量，而不是通常所考虑的空间分量。基于OpenCV的边缘检测、霍夫变换、重映射、仿射变换、直方图均衡化。</h3>
+<ul>
+<li>Canny : 利用canny算子来进行图像的边缘检测</li>
+<li>Sobel : 使用拓展的Sobel算子，来计算一阶、二阶、三阶或混合图像差分</li>
+<li>Laplacian : 计算出图像经过拉普拉斯变换后的结果</li>
+<li>Scharr : 使用Scharr滤波器运算符计算X或Y方向的图像差分</li>
+<li>HoughLinesP : 找出采用标准霍夫变换的二值图像线条</li>
+<li>HoughCireles : 采用累计概率霍夫变换（PPHT）来找出二值图像中的直线</li>
+<li>remap : 根据指定的映射形式，将源图像进行重映射几何变换</li>
+<li>warpAffine : 依据公式对图像做仿射变换</li>
+<li>getRotationMatrix2D : 计算二维旋转变换矩阵</li>
+<li>equalizeHist : 实现图像的直方图均衡化</li>
+</ul>
+<h3 id="6图像轮廓与图像分割修复虽然canny之类的边缘检测算法可以根据像素之间的差异检测出轮廓边界的像素但是并没有将轮廓作为一个整体所以下一步便是把这些边缘像素组装成轮廓查找并绘制轮廓寻找物体的凸包使用多边形逼近物体认识图像的矩利用opencv进行图像修补">6.图像轮廓与图像分割修复，虽然Canny之类的边缘检测算法可以根据像素之间的差异，检测出轮廓边界的像素，但是并没有将轮廓作为一个整体。所以下一步便是把这些边缘像素组装成轮廓。查找并绘制轮廓、寻找物体的凸包、使用多边形逼近物体、认识图像的矩、利用OpenCV进行图像修补。</h3>
+<ul>
+<li>findContours : 在二值图像中寻找轮廓</li>
+<li>drawContours : 在图像中绘制外部或内部轮廓</li>
+<li>convexHull : 寻找图像点集中的凸包</li>
+<li>BoundingRect : 计算并返回指定点集最外面（up -right）的矩形边界</li>
+<li>minAreaRect : 寻找可旋转的最小面积的包围矩形</li>
+<li>minEnclosingCircle : 利用一种迭代算法，对给定的2D点集，寻找面积最小的可包围他们的圆形</li>
+<li>fitEllipse : 用椭圆拟合二维点集合</li>
+<li>approxPolyDP：用指定精度逼近多边形曲线</li>
+<li>moments : 计算多边形和光栅形状的最高达三阶的所有矩</li>
+<li>contourArea : 计算整个轮廓或部分轮廓的面积</li>
+<li>arcLength : 计算封闭轮廓的周长或曲线的长度</li>
+<li>watershed : 实现分水岭算法</li>
+<li>inpaint : 进行图像修补，从扫描的照片中清除灰尘和划痕，或者从静态图像或视频中去除不需要的物体。</li>
+</ul>
+<h3 id="7直方图和匹配在进行物体图像和视频信息分析的过程中我们常常会习惯于将眼中看到的物体用直方图histogram表示出来得到比较直观的数据官感展示直方图可以用来描述各种不同的参数和事物如物体的彩色分布物体边缘梯度模板以及表示目标位置的当前假设的概率分布">7.直方图和匹配，在进行物体图像和视频信息分析的过程中，我们常常会习惯于将眼中看到的物体用直方图（histogram）表示出来，得到比较直观的数据官感展示。直方图可以用来描述各种不同的参数和事物，如物体的彩色分布、物体边缘梯度模板、以及表示目标位置的当前假设的概率分布。</h3>
+<ul>
+<li>calcHist : 计算一个或多个阵列的直方图</li>
+<li>minMaxLoc : 在数组中找到全局最小值和最大值</li>
+<li>compareHist : 对两幅直方图进行比较</li>
+<li>calcBackProject : 计算直方图反向投影</li>
+<li>mixChannels : 由输入参数复制某通道到输出参数特定的通道中</li>
+<li>matchTemplate : 匹配出和模板重叠的图像区域</li>
+</ul>
+<h3 id="8feature2d组件也就是features-2d是opencv的2d功能框架自opencv以来的众多著名的特征检测算子如siftsurforb算子等所依赖的稳定版的特征检测与匹配相关的核心源代码已经从opencv3中移除了转移到xfeature2d的第三方库当中了特征检测器feature-detectors通用接口描述符提取器descriptor-extractors通用接口描述符匹配器descriptor-matchers匹配器通用接口关键点绘制函数和匹配功能绘制函数">8.feature2d组件，也就是Features 2D，是OpenCV的2D功能框架。自OpenCV以来的众多著名的特征检测算子（如SIFT、SURF、ORB算子等）所依赖的稳定版的特征检测与匹配相关的核心源代码已经从OpenCV3中移除了，转移到xfeature2d的第三方库当中了。特征检测器（Feature Detectors）通用接口、描述符提取器（Descriptor Extractors）通用接口、描述符匹配器（Descriptor Matchers）匹配器通用接口、关键点绘制函数和匹配功能绘制函数。</h3>
+<ul>
+<li>cornerHarris : 运行Harris角点检测算子来进行角点检测</li>
+<li>goodFeaturesToTrack : 结合Shi-Tomasi 算子确定图像的强角点</li>
+<li>cornerSubPix: 寻找亚像素角点位置</li>
+</ul>
+<h3 id="9特征点的检测和匹配是计算机视觉中非常重要的技术之一在物体检测视觉跟踪三维重构等领域都有很广泛的应用">9.特征点的检测和匹配是计算机视觉中非常重要的技术之一。在物体检测、视觉跟踪、三维重构等领域都有很广泛的应用。</h3>
+<ul>
+<li>SURF类 、SurfFeatureDetector类 、SurfDescriptorExtractor类 ： 三者等价，同用与在OpenCV中进行SURF特征检测</li>
+<li>drawKeypoints函数 ：绘制关键点</li>
+<li>drawMatches函数 ：绘制出相匹配的两个图像的关键点</li>
+<li>KeyPoint类：用于表示特征点的信息</li>
+<li>BruteForceMatcher类：进行暴力匹配相关的操作</li>
+<li>FlannBasedMatcher类：实现FLANN特征匹配</li>
+<li>DescriptorMatcher::match函数：从每个描述符查询集中找到最佳匹配</li>
+<li>findHomography函数：找到并返回源图像和目标图像之间的透视变换H</li>
+<li>perspectiveTransfrom函数：进行向量透视矩阵变换</li>
+<li>ORB类、OrbFeatureDetector类、OrbDescriptorExtractor类：三者等价，同用于在OpenCV中进行ORB特征检测</li>
+</ul>
+<p>参考：</p>
+<p><a href="https://juejin.cn/post/6844904143337816078" target="_blank" rel="noopener noreffer ">opencv核心函数名单</a></p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2023-01-16</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://zhangyuhu.github.io/posts/open_source_software/opencv/learn/opencv%E6%A0%B8%E5%BF%83%E5%87%BD%E6%95%B0%E6%95%B4%E7%90%86/" data-title="opencv 核心函数整理" data-hashtags="opencv"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://zhangyuhu.github.io/posts/open_source_software/opencv/learn/opencv%E6%A0%B8%E5%BF%83%E5%87%BD%E6%95%B0%E6%95%B4%E7%90%86/" data-hashtag="opencv"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://zhangyuhu.github.io/posts/open_source_software/opencv/learn/opencv%E6%A0%B8%E5%BF%83%E5%87%BD%E6%95%B0%E6%95%B4%E7%90%86/" data-title="opencv 核心函数整理"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://zhangyuhu.github.io/posts/open_source_software/opencv/learn/opencv%E6%A0%B8%E5%BF%83%E5%87%BD%E6%95%B0%E6%95%B4%E7%90%86/" data-title="opencv 核心函数整理"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://zhangyuhu.github.io/posts/open_source_software/opencv/learn/opencv%E6%A0%B8%E5%BF%83%E5%87%BD%E6%95%B0%E6%95%B4%E7%90%86/" data-title="opencv 核心函数整理" data-ralateuid="ji"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/opencv/">opencv</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/open_source_software/buttonrpc/buttonrpc_02/" class="prev" rel="prev" title="开源软件:buttonrpc (C&#43;&#43;语法分析)"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>开源软件:buttonrpc (C++语法分析)</a>
+            <a href="/posts/open_source_software/opencv/learn/opencv%E5%B8%B8%E7%94%A8%E7%AE%97%E5%AD%90/" class="next" rel="next" title="opencv 常用算子">opencv 常用算子<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="giscus" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://giscus.app">Giscus</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">为天地立心,为生民立命,为往圣继绝学,为万世开太平</div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://zhangyuhu.github.io/" target="_blank">zhangyuhu</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="http://creativecommons.org/licenses/by/4.0/" target="_blank">知识共享署名 4.0 国际许可协议</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/css/lightgallery-bundle.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/twemoji@14.0.2/dist/twemoji.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/lightgallery.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/thumbnail/lg-thumbnail.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/zoom/lg-zoom.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@8.6.0/dist/index.umd.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{"giscus":{"category":"Comments","categoryId":"DIC_kwDOIx2Cjs4CTnUX","darkTheme":"dark","emitMetadata":"0","inputPosition":"bottom","lang":"en","lazyLoading":false,"lightTheme":"light","mapping":"pathname","reactionsEnabled":"1","repo":"zhangyuhu/zhangyuhu.github.io","repoId":"R_kgDOIx2Cjg"}},"data":{"id-1":"HOME","id-2":"HOME"},"lightgallery":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50},"twemoji":true,"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.2970a33d719df7cd89cebf586152b32a8ed30012227fa81b44282950146e0f595d1c733779e4d423dda1004bdcf707ee64d0fadc3d21229cd66b960788f84bdb.js" integrity="sha512-KXCjPXGd982Jzr9YYVKzKo7TABIif6gbRCgpUBRuD1ldHHM3eeTUI92hAEvc9wfuZND63D0hIpzWa5YHiPhL2w=="></script></body>
+</html>

@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>opencv 常用算子 - 这是我的网站</title><meta name="Description" content="开源软件"><meta property="og:title" content="opencv 常用算子" />
+<meta property="og:description" content="开源软件" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zhangyuhu.github.io/posts/open_source_software/opencv/learn/opencv%E5%B8%B8%E7%94%A8%E7%AE%97%E5%AD%90/" /><meta property="og:image" content="https://zhangyuhu.github.io/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-01-16T17:52:52+08:00" />
+<meta property="article:modified_time" content="2023-01-16T17:52:52+08:00" /><meta property="og:site_name" content="我的网站" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://zhangyuhu.github.io/logo.png"/>
+
+<meta name="twitter:title" content="opencv 常用算子"/>
+<meta name="twitter:description" content="开源软件"/>
+<meta name="application-name" content="我的网站">
+<meta name="apple-mobile-web-app-title" content="我的网站"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://zhangyuhu.github.io/posts/open_source_software/opencv/learn/opencv%E5%B8%B8%E7%94%A8%E7%AE%97%E5%AD%90/" /><link rel="prev" href="https://zhangyuhu.github.io/posts/open_source_software/opencv/learn/opencv%E6%A0%B8%E5%BF%83%E5%87%BD%E6%95%B0%E6%95%B4%E7%90%86/" /><link rel="next" href="https://zhangyuhu.github.io/posts/open_source_software/opencv/learn/opencv%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/" /><link rel="stylesheet" href="/css/style.min.61c0835a1733ac3f92b41b61b403dca9b8d4a3a7e4021c89af2c45a731f6343a82bc7fb214f4926e2c4669c8d258218b7da5d0e86d081ec97f3c1d823d48df2e.css" integrity="sha512-YcCDWhczrD+StBthtAPcqbjUo6fkAhyJryxFpzH2NDqCvH+yFPSSbixGacjSWCGLfaXQ6G0IHsl/PB2CPUjfLg=="><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "opencv 常用算子",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/zhangyuhu.github.io\/posts\/open_source_software\/opencv\/learn\/opencv%E5%B8%B8%E7%94%A8%E7%AE%97%E5%AD%90\/"
+        },"genre": "posts","keywords": "opencv","wordcount":  4151 ,
+        "url": "https:\/\/zhangyuhu.github.io\/posts\/open_source_software\/opencv\/learn\/opencv%E5%B8%B8%E7%94%A8%E7%AE%97%E5%AD%90\/","datePublished": "2023-01-16T17:52:52+08:00","dateModified": "2023-01-16T17:52:52+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "zhangyuhu"
+            },"description": "开源软件"
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="这是我的网站"><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/" title="文章"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="这是我的网站"><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="文章">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/" title="">关于</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">opencv 常用算子</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://zhangyuhu.github.io/" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>zhangyuhu</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>开源软件</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-01-16">2023-01-16</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;4151 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;9 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-cvabs">1. cv::abs()</a></li>
+    <li><a href="#2-cvadd">2. cv::add()</a></li>
+    <li><a href="#3-cvaddweighted">3. cv::addWeighted()</a></li>
+    <li><a href="#4-cvbitwise_and">4. cv::bitwise_and()</a></li>
+    <li><a href="#5-cvbitwise_not">5. cv::bitwise_not()</a></li>
+    <li><a href="#6-cvbitwise_or">6. cv::bitwise_or()</a></li>
+    <li><a href="#7-cvbitwise_xor">7. cv::bitwise_xor()</a></li>
+    <li><a href="#8-cvcalccovarmatrix">8. cv::calcCovarMatrix()</a></li>
+    <li><a href="#9-cvcarttopolar">9. cv::cartToPolar()</a></li>
+    <li><a href="#10-cvcheckrange">10. cv::checkRange()</a></li>
+    <li><a href="#11-cvcompare">11. cv::compare()</a></li>
+    <li><a href="#12-cvcompletesymm">12. cv::completeSymm()</a></li>
+    <li><a href="#13-cvconvertscaleabs">13. cv::convertScaleAbs()</a></li>
+    <li><a href="#14-cvcountnonzero">14. cv::countNonZero()</a></li>
+    <li><a href="#15-cvcvarrtomat">15. cv::cvarrToMat()</a></li>
+    <li><a href="#16-cvdct">16. cv::dct()</a></li>
+    <li><a href="#17-cvdft">17. cv::dft()</a></li>
+    <li><a href="#18-cvcvtcolor">18. cv::cvtColor()</a></li>
+    <li><a href="#19-cvdeterminant">19. cv::determinant()</a></li>
+    <li><a href="#20-cvdivide">20. cv::divide()</a></li>
+    <li><a href="#21-cveigen">21. cv::eigen()</a></li>
+    <li><a href="#22-cvexp">22. cv::exp()</a></li>
+    <li><a href="#23-cvflip">23. cv::flip()</a></li>
+    <li><a href="#24-cvgemm">24. cv::gemm()</a></li>
+    <li><a href="#25-cvidct">25. cv::idct()</a></li>
+    <li><a href="#26-cvidft">26. cv::idft()</a></li>
+    <li><a href="#27-cvinrange">27. cv::inRange()</a></li>
+    <li><a href="#28-cvinvert">28. cv::invert()</a></li>
+    <li><a href="#29-cvlog">29. cv::log()</a></li>
+    <li><a href="#30-cvmagnitude">30. cv::magnitude()</a></li>
+    <li><a href="#31-cvmahalanobis">31. cv::Mahalanobis()</a></li>
+    <li><a href="#32-cvmax">32. cv::max()</a></li>
+    <li><a href="#33-cvmin">33. cv::min()</a></li>
+    <li><a href="#34-cvmean">34. cv::mean()</a></li>
+    <li><a href="#35-cvmeanstddev">35. cv::meanStdDev()</a></li>
+    <li><a href="#36-cvmerge">36. cv::merge()</a></li>
+    <li><a href="#37-cvsplit">37. cv::split()</a></li>
+    <li><a href="#38-cvminmaxidx">38. cv::minMaxIdx()</a></li>
+    <li><a href="#39-cvminmaxloc">39. cv::minMaxLoc()</a></li>
+    <li><a href="#40-cvmixchannels">40. cv::mixChannels()</a></li>
+    <li><a href="#41-cvmultiply">41. cv::multiply()</a></li>
+    <li><a href="#42-cvmultransposed">42. cv::mulTransposed()</a></li>
+    <li><a href="#43-cvnorm">43. cv::norm()</a></li>
+    <li><a href="#44-cvnormalize">44. cv::normalize()</a></li>
+    <li><a href="#45-cvperspectivetransform">45. cv::perspectiveTransform()</a></li>
+    <li><a href="#46-cvphase">46. cv::phase()</a></li>
+    <li><a href="#47-cvpolartocart">47. cv::polarToCart()</a></li>
+    <li><a href="#48-cvpow">48. cv::pow()</a></li>
+    <li><a href="#49-cvrandu">49. cv::randu()</a></li>
+    <li><a href="#50-cvrandn">50. cv::randn()</a></li>
+    <li><a href="#51-cvrepeat">51. cv::repeat()</a></li>
+    <li><a href="#52-cvscaleadd">52. cv::scaleAdd()</a></li>
+    <li><a href="#53-cvsetidentity">53. cv::setIdentity()</a></li>
+    <li><a href="#54-cvsolve">54. cv::solve()</a></li>
+    <li><a href="#55-cvsolvecubic">55. cv::solveCubic()</a></li>
+    <li><a href="#56-cvsolvepoly">56. cv::solvePoly()</a></li>
+    <li><a href="#57-cvsort">57. cv::sort()</a></li>
+    <li><a href="#58-cvsortidx">58. cv::sortIdx()</a></li>
+    <li><a href="#59-cvsqrt">59. cv::sqrt()</a></li>
+    <li><a href="#60-cvsubtract">60 cv::subtract()</a></li>
+    <li><a href="#61-cvsum">61. cv::sum()</a></li>
+    <li><a href="#62-cvtrace">62. cv::trace()</a></li>
+    <li><a href="#63-cvtransform">63. cv::transform()</a></li>
+    <li><a href="#64-cvtranspose">64. cv::transpose()</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><blockquote>
+<p>本文采用<a href="http://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreffer ">知识共享署名 4.0 国际许可协议</a>进行许可，转载时请注明原文链接，图片在使用时请保留全部内容，可适当缩放并在引用处附上图片所在的文章链接。</p>
+</blockquote>
+<!-- raw HTML omitted -->
+<ul>
+<li><a href="#%e5%b8%b8%e7%94%a8%e5%88%b0%e7%9a%84%e7%ae%97%e5%ad%90" rel="">常用到的算子</a>
+<ul>
+<li><a href="#1-cvabs" rel="">1. cv::abs()</a></li>
+<li><a href="#2-cvadd" rel="">2. cv::add()</a></li>
+<li><a href="#3-cvaddweighted" rel="">3. cv::addWeighted()</a></li>
+<li><a href="#4-cvbitwise_and" rel="">4. cv::bitwise_and()</a></li>
+<li><a href="#5-cvbitwise_not" rel="">5. cv::bitwise_not()</a></li>
+<li><a href="#6-cvbitwise_or" rel="">6. cv::bitwise_or()</a></li>
+<li><a href="#7-cvbitwise_xor" rel="">7. cv::bitwise_xor()</a></li>
+<li><a href="#8-cvcalccovarmatrix" rel="">8. cv::calcCovarMatrix()</a></li>
+<li><a href="#9-cvcarttopolar" rel="">9. cv::cartToPolar()</a></li>
+<li><a href="#10-cvcheckrange" rel="">10. cv::checkRange()</a></li>
+<li><a href="#11-cvcompare" rel="">11. cv::compare()</a></li>
+<li><a href="#12-cvcompletesymm" rel="">12. cv::completeSymm()</a></li>
+<li><a href="#13-cvconvertscaleabs" rel="">13. cv::convertScaleAbs()</a></li>
+<li><a href="#14-cvcountnonzero" rel="">14. cv::countNonZero()</a></li>
+<li><a href="#15-cvcvarrtomat" rel="">15. cv::cvarrToMat()</a></li>
+<li><a href="#16-cvdct" rel="">16. cv::dct()</a></li>
+<li><a href="#17-cvdft" rel="">17. cv::dft()</a></li>
+<li><a href="#18-cvcvtcolor" rel="">18. cv::cvtColor()</a></li>
+<li><a href="#19-cvdeterminant" rel="">19. cv::determinant()</a></li>
+<li><a href="#20-cvdivide" rel="">20. cv::divide()</a></li>
+<li><a href="#21-cveigen" rel="">21. cv::eigen()</a></li>
+<li><a href="#22-cvexp" rel="">22. cv::exp()</a></li>
+<li><a href="#23-cvflip" rel="">23. cv::flip()</a></li>
+<li><a href="#24-cvgemm" rel="">24. cv::gemm()</a></li>
+<li><a href="#25-cvidct" rel="">25. cv::idct()</a></li>
+<li><a href="#26-cvidft" rel="">26. cv::idft()</a></li>
+<li><a href="#27-cvinrange" rel="">27. cv::inRange()</a></li>
+<li><a href="#28-cvinvert" rel="">28. cv::invert()</a></li>
+<li><a href="#29-cvlog" rel="">29. cv::log()</a></li>
+<li><a href="#30-cvmagnitude" rel="">30. cv::magnitude()</a></li>
+<li><a href="#31-cvmahalanobis" rel="">31. cv::Mahalanobis()</a></li>
+<li><a href="#32-cvmax" rel="">32. cv::max()</a></li>
+<li><a href="#33-cvmin" rel="">33. cv::min()</a></li>
+<li><a href="#34-cvmean" rel="">34. cv::mean()</a></li>
+<li><a href="#35-cvmeanstddev" rel="">35. cv::meanStdDev()</a></li>
+<li><a href="#36-cvmerge" rel="">36. cv::merge()</a></li>
+<li><a href="#37-cvsplit" rel="">37. cv::split()</a></li>
+<li><a href="#38-cvminmaxidx" rel="">38. cv::minMaxIdx()</a></li>
+<li><a href="#39-cvminmaxloc" rel="">39. cv::minMaxLoc()</a></li>
+<li><a href="#40-cvmixchannels" rel="">40. cv::mixChannels()</a></li>
+<li><a href="#41-cvmultiply" rel="">41. cv::multiply()</a></li>
+<li><a href="#42-cvmultransposed" rel="">42. cv::mulTransposed()</a></li>
+<li><a href="#43-cvnorm" rel="">43. cv::norm()</a></li>
+<li><a href="#44-cvnormalize" rel="">44. cv::normalize()</a></li>
+<li><a href="#45-cvperspectivetransform" rel="">45. cv::perspectiveTransform()</a></li>
+<li><a href="#46-cvphase" rel="">46. cv::phase()</a></li>
+<li><a href="#47-cvpolartocart" rel="">47. cv::polarToCart()</a></li>
+<li><a href="#48-cvpow" rel="">48. cv::pow()</a></li>
+<li><a href="#49-cvrandu" rel="">49. cv::randu()</a></li>
+<li><a href="#50-cvrandn" rel="">50. cv::randn()</a></li>
+<li><a href="#51-cvrepeat" rel="">51. cv::repeat()</a></li>
+<li><a href="#52-cvscaleadd" rel="">52. cv::scaleAdd()</a></li>
+<li><a href="#53-cvsetidentity" rel="">53. cv::setIdentity()</a></li>
+<li><a href="#54-cvsolve" rel="">54. cv::solve()</a></li>
+<li><a href="#55-cvsolvecubic" rel="">55. cv::solveCubic()</a></li>
+<li><a href="#56-cvsolvepoly" rel="">56. cv::solvePoly()</a></li>
+<li><a href="#57-cvsort" rel="">57. cv::sort()</a></li>
+<li><a href="#58-cvsortidx" rel="">58. cv::sortIdx()</a></li>
+<li><a href="#59-cvsqrt" rel="">59. cv::sqrt()</a></li>
+<li><a href="#60-cvsubtract" rel="">60 cv::subtract()</a></li>
+<li><a href="#61-cvsum" rel="">61. cv::sum()</a></li>
+<li><a href="#62-cvtrace" rel="">62. cv::trace()</a></li>
+<li><a href="#63-cvtransform" rel="">63. cv::transform()</a></li>
+<li><a href="#64-cvtranspose" rel="">64. cv::transpose()</a></li>
+</ul>
+</li>
+</ul>
+<!-- raw HTML omitted -->
+<h1 id="常用到的算子">常用到的算子</h1>
+<h2 id="1-cvabs">1. cv::abs()</h2>
+<p>计算矩阵的绝对值</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>cv<span style="color:#f92672">::</span>MatExpr cv<span style="color:#f92672">::</span>abs( cv<span style="color:#f92672">::</span>InputArray src );
+</span></span><span style="display:flex;"><span>cv<span style="color:#f92672">::</span>MatExpr cv<span style="color:#f92672">::</span>abs( <span style="color:#66d9ef">const</span> cv<span style="color:#f92672">::</span>MatExpr<span style="color:#f92672">&amp;</span> src ); <span style="color:#75715e">// Matrix expression
+</span></span></span></code></pre></div><h2 id="2-cvadd">2. cv::add()</h2>
+<p>计算矩阵src1和src2的加和，并把结果存放在dst中。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> cv<span style="color:#f92672">::</span>add(
+</span></span><span style="display:flex;"><span>    cv<span style="color:#f92672">::</span>InputArray src1, <span style="color:#75715e">// First input array
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    cv<span style="color:#f92672">::</span>InputArray src2, <span style="color:#75715e">// Second input array
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    cv<span style="color:#f92672">::</span>OutputArray dst, <span style="color:#75715e">// Result array
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    cv<span style="color:#f92672">::</span>InputArray mask <span style="color:#f92672">=</span> cv<span style="color:#f92672">::</span>noArray(), <span style="color:#75715e">// Optional, do only where nonzero
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> dtype <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#75715e">// Output type for result array
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>);
+</span></span></code></pre></div><h2 id="3-cvaddweighted">3. cv::addWeighted()</h2>
+<p>该函数和上一个add()函数比较类似，是根据下面公式将结果写入dst中。可用于图像混合。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> cv<span style="color:#f92672">::</span>addWeighted(
+</span></span><span style="display:flex;"><span>    cv<span style="color:#f92672">::</span>InputArray src1, <span style="color:#75715e">// First input array
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">double</span> alpha, <span style="color:#75715e">// Weight for first input array
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    cv<span style="color:#f92672">::</span>InputArray src2, <span style="color:#75715e">// Second input array
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">double</span> beta, <span style="color:#75715e">// Weight for second input array
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">double</span> gamma, <span style="color:#75715e">// Offset added to weighted sum
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    cv<span style="color:#f92672">::</span>OutputArray dst, <span style="color:#75715e">// Result array
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> dtype <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#75715e">// Output type for result array
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>);
+</span></span></code></pre></div><h2 id="4-cvbitwise_and">4. cv::bitwise_and()</h2>
+<p>逐元素按位与操作。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> cv<span style="color:#f92672">::</span>bitwise_and(
+</span></span><span style="display:flex;"><span>    cv<span style="color:#f92672">::</span>InputArray src1, <span style="color:#75715e">// First input array
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    cv<span style="color:#f92672">::</span>InputArray src2, <span style="color:#75715e">// Second input array
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    cv<span style="color:#f92672">::</span>OutputArray dst, <span style="color:#75715e">// Result array
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    cv<span style="color:#f92672">::</span>InputArray mask <span style="color:#f92672">=</span> cv<span style="color:#f92672">::</span>noArray(), <span style="color:#75715e">// Optional, do only where nonzero
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>);
+</span></span></code></pre></div><h2 id="5-cvbitwise_not">5. cv::bitwise_not()</h2>
+<p>逐元素按位取反操作。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> cv<span style="color:#f92672">::</span>bitwise_not(
+</span></span><span style="display:flex;"><span>    cv<span style="color:#f92672">::</span>InputArray src, <span style="color:#75715e">// Input array
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    cv<span style="color:#f92672">::</span>OutputArray dst, <span style="color:#75715e">// Result array
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    cv<span style="color:#f92672">::</span>InputArray mask <span style="color:#f92672">=</span> cv<span style="color:#f92672">::</span>noArray(), <span style="color:#75715e">// Optional, do only where nonzero
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>);
+</span></span></code></pre></div><h2 id="6-cvbitwise_or">6. cv::bitwise_or()</h2>
+<p>逐元素按位取或操作。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> cv<span style="color:#f92672">::</span>bitwise_or(
+</span></span><span style="display:flex;"><span>    cv<span style="color:#f92672">::</span>InputArray src1, <span style="color:#75715e">// First input array
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    cv<span style="color:#f92672">::</span>InputArray src2, <span style="color:#75715e">// Second input array
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    cv<span style="color:#f92672">::</span>OutputArray dst, <span style="color:#75715e">// Result array
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    cv<span style="color:#f92672">::</span>InputArray mask <span style="color:#f92672">=</span> cv<span style="color:#f92672">::</span>noArray(), <span style="color:#75715e">// Optional, do only where nonzero
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>);
+</span></span></code></pre></div><h2 id="7-cvbitwise_xor">7. cv::bitwise_xor()</h2>
+<p>逐元素按位异或操作。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> cv<span style="color:#f92672">::</span>bitwise_xor(
+</span></span><span style="display:flex;"><span>    cv<span style="color:#f92672">::</span>InputArray src1, <span style="color:#75715e">// First input array
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    cv<span style="color:#f92672">::</span>InputArray src2, <span style="color:#75715e">// Second input array
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    cv<span style="color:#f92672">::</span>OutputArray dst, <span style="color:#75715e">// Result array
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    cv<span style="color:#f92672">::</span>InputArray mask <span style="color:#f92672">=</span> cv<span style="color:#f92672">::</span>noArray(), <span style="color:#75715e">// Optional, do only where nonzero
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>);
+</span></span></code></pre></div><h2 id="8-cvcalccovarmatrix">8. cv::calcCovarMatrix()</h2>
+<p>给定一些向量，假设向量表示的点是近似的高斯分布，，那么该函数将计算这些点的均值和协方差矩阵。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> cv<span style="color:#f92672">::</span>calcCovarMatrix(
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> cv<span style="color:#f92672">::</span>Mat<span style="color:#f92672">*</span> samples, <span style="color:#75715e">// C-array of n-by-1 or 1-by-n matrices
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> nsamples, <span style="color:#75715e">// num matrices pointed to by &#39;samples&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    cv<span style="color:#f92672">::</span>Mat<span style="color:#f92672">&amp;</span> covar, <span style="color:#75715e">// ref to return array for covariance
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    cv<span style="color:#f92672">::</span>Mat<span style="color:#f92672">&amp;</span> mean, <span style="color:#75715e">// ref to return array for mean
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> flags, <span style="color:#75715e">// special variations, see Table bellow.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> ctype <span style="color:#f92672">=</span> cv<span style="color:#f92672">::</span>F64 <span style="color:#75715e">// output matrix type for covar
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> cv<span style="color:#f92672">::</span>calcCovarMatrix(
+</span></span><span style="display:flex;"><span>    cv<span style="color:#f92672">::</span>InputArray samples, <span style="color:#75715e">// n-by-m matrix, but see &#39;flags&#39; below
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    cv<span style="color:#f92672">::</span>Mat<span style="color:#f92672">&amp;</span> covar, <span style="color:#75715e">// ref to return array for covariance
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    cv<span style="color:#f92672">::</span>Mat<span style="color:#f92672">&amp;</span> mean, <span style="color:#75715e">// ref to return array for mean
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> flags, <span style="color:#75715e">// special variations.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> ctype <span style="color:#f92672">=</span> cv<span style="color:#f92672">::</span>F64 <span style="color:#75715e">// output matrix type for covar
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>);
+</span></span></code></pre></div><p>该函数有两种调用方式，如上codes。</p>
+<h2 id="9-cvcarttopolar">9. cv::cartToPolar()</h2>
+<p>直角坐标系转为极坐标系。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> cv<span style="color:#f92672">::</span>cartToPolar(
+</span></span><span style="display:flex;"><span>    cv<span style="color:#f92672">::</span>InputArray x,
+</span></span><span style="display:flex;"><span>    cv<span style="color:#f92672">::</span>InputArray y,
+</span></span><span style="display:flex;"><span>    cv<span style="color:#f92672">::</span>OutputArray magnitude,
+</span></span><span style="display:flex;"><span>    cv<span style="color:#f92672">::</span>OutputArray angle,
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">bool</span> angleInDegrees <span style="color:#f92672">=</span> false
+</span></span><span style="display:flex;"><span>);
+</span></span></code></pre></div><h2 id="10-cvcheckrange">10. cv::checkRange()</h2>
+<p>检查src中每个元素是否在给定的范围之内。范围有minVal和maxVal设置。除非将quiet设置为true，否则抛出异常。如果都在范围内，则返回true，否则将返回false，并将第一个异常值的位置存放在pos中。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">bool</span> cv<span style="color:#f92672">::</span>checkRange(
+</span></span><span style="display:flex;"><span>    cv<span style="color:#f92672">::</span>InputArray src,
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">bool</span> quiet <span style="color:#f92672">=</span> true,
+</span></span><span style="display:flex;"><span>    cv<span style="color:#f92672">::</span>Point<span style="color:#f92672">*</span> pos <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, <span style="color:#75715e">// if non-Null, location of first outlier
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">double</span> minVal <span style="color:#f92672">=</span> <span style="color:#f92672">-</span>DBL_MAX, <span style="color:#75715e">// Lower check bound (inclusive)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">double</span> maxVal <span style="color:#f92672">=</span> DBL_MAX <span style="color:#75715e">// Upper check bound (exclusive)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>);
+</span></span></code></pre></div><h2 id="11-cvcompare">11. cv::compare()</h2>
+<p>逐元素比较src1和src2，并将比较结果放在dst中,匹配标记为255，否则设置为0。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">bool</span> cv<span style="color:#f92672">::</span>compare(
+</span></span><span style="display:flex;"><span>    cv<span style="color:#f92672">::</span>InputArray src1, <span style="color:#75715e">// First input array
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    cv<span style="color:#f92672">::</span>InputArray src2, <span style="color:#75715e">// Second input array
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    cv<span style="color:#f92672">::</span>OutputArray dst, <span style="color:#75715e">// Result array
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> cmpop <span style="color:#75715e">// Comparison operator.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>);
+</span></span></code></pre></div><h2 id="12-cvcompletesymm">12. cv::completeSymm()</h2>
+<p>将矩阵mtx通过复制使其对称，默认情况下将上三角的所有元素都被复制到下三角对应转置的位置上，对角元素不变。如果lowerToUpper = true，那么则将下三角复制到上三角位置。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">bool</span> cv<span style="color:#f92672">::</span>completeSymm(
+</span></span><span style="display:flex;"><span>    cv<span style="color:#f92672">::</span>InputArray mtx,
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">bool</span> lowerToUpper <span style="color:#f92672">=</span> false
+</span></span><span style="display:flex;"><span>);
+</span></span></code></pre></div><h2 id="13-cvconvertscaleabs">13. cv::convertScaleAbs()</h2>
+<p>该函数按照如下公式进行转换原图像。实现对原图像像素值的缩放和平移。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> cv<span style="color:#f92672">::</span>convertScaleAbs(
+</span></span><span style="display:flex;"><span>    cv<span style="color:#f92672">::</span>InputArray src, <span style="color:#75715e">// Input array
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    cv<span style="color:#f92672">::</span>OutputArray dst, <span style="color:#75715e">// Result array
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">double</span> alpha <span style="color:#f92672">=</span> <span style="color:#ae81ff">1.0</span>, <span style="color:#75715e">// Multiplicative scale factor
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">double</span> beta <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.0</span> <span style="color:#75715e">// Additive offset factor
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>);
+</span></span></code></pre></div><h2 id="14-cvcountnonzero">14. cv::countNonZero()</h2>
+<p>返回矩阵mtx中非零元素的个数。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> cv<span style="color:#f92672">::</span>countNonZero( <span style="color:#75715e">// Return number of nonzero elements in mtx
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    cv<span style="color:#f92672">::</span>InputArray mtx, <span style="color:#75715e">// Input array
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>);
+</span></span></code></pre></div><h2 id="15-cvcvarrtomat">15. cv::cvarrToMat()</h2>
+<p>将旧版本的图像格式转为Mat类图像。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>cv<span style="color:#f92672">::</span>Mat cv<span style="color:#f92672">::</span>cvarrToMat(
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> CvArr<span style="color:#f92672">*</span> src, <span style="color:#75715e">// Input array: CvMat, IplImage, or CvMatND
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">bool</span> copyData <span style="color:#f92672">=</span> false, <span style="color:#75715e">// if false just make new header, else copy data
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">bool</span> allowND <span style="color:#f92672">=</span> true, <span style="color:#75715e">// if true and possible, convert CvMatND to Mat
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> coiMode <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> <span style="color:#75715e">// if 0: error if COI set, if 1: ignore COI
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>);
+</span></span></code></pre></div><h2 id="16-cvdct">16. cv::dct()</h2>
+<p>根据flags执行离散余弦变换或者离散余弦逆变换。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> cv<span style="color:#f92672">::</span>dct(
+</span></span><span style="display:flex;"><span>    cv<span style="color:#f92672">::</span>InputArray src, <span style="color:#75715e">// Input array
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    cv<span style="color:#f92672">::</span>OutputArray dst, <span style="color:#75715e">// Result array
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> flags, <span style="color:#75715e">// for inverse transform or row-by-row
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>);
+</span></span></code></pre></div><h2 id="17-cvdft">17. cv::dft()</h2>
+<p>实现离散傅里叶变换及其逆变换。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> cv<span style="color:#f92672">::</span>dft(
+</span></span><span style="display:flex;"><span>    cv<span style="color:#f92672">::</span>InputArray src, <span style="color:#75715e">// Input array
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    cv<span style="color:#f92672">::</span>OutputArray dst, <span style="color:#75715e">// Result array
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> flags <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, <span style="color:#75715e">// for inverse transform or row-by-row
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> nonzeroRows <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> <span style="color:#75715e">// only this many entries are nonzero
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>);
+</span></span></code></pre></div><h2 id="18-cvcvtcolor">18. cv::cvtColor()</h2>
+<p>保留相同数据类型的同时将图像从一个颜色空间转换到另一个颜色空间。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> cv<span style="color:#f92672">::</span>cvtColor(
+</span></span><span style="display:flex;"><span>    cv<span style="color:#f92672">::</span>InputArray src, <span style="color:#75715e">// Input array
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    cv<span style="color:#f92672">::</span>OutputArray dst, <span style="color:#75715e">// Result array
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> code, <span style="color:#75715e">// color mapping code, see Table 5-4.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> dstCn <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> <span style="color:#75715e">// channels in output (0=&#39;automatic&#39;)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>);
+</span></span></code></pre></div><h2 id="19-cvdeterminant">19. cv::determinant()</h2>
+<p>计算一个方阵的行列式。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">double</span> cv<span style="color:#f92672">::</span>determinant(
+</span></span><span style="display:flex;"><span>    cv<span style="color:#f92672">::</span>InputArray mat
+</span></span><span style="display:flex;"><span>);
+</span></span></code></pre></div><h2 id="20-cvdivide">20. cv::divide()</h2>
+<p>将src1或scale中的元素除以src2中相应的元素，然后将结果放在dst中。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> cv<span style="color:#f92672">::</span>divide(
+</span></span><span style="display:flex;"><span>    cv<span style="color:#f92672">::</span>InputArray src1, <span style="color:#75715e">// First input array (numerators)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    cv<span style="color:#f92672">::</span>InputArray src2, <span style="color:#75715e">// Second input array (denominators)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    cv<span style="color:#f92672">::</span>OutputArray dst, <span style="color:#75715e">// Results array (scale*src1/src2)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">double</span> scale <span style="color:#f92672">=</span> <span style="color:#ae81ff">1.0</span>, <span style="color:#75715e">// Multiplicative scale factor
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> dtype <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#75715e">// dst data type, -1 to get from src2
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> cv<span style="color:#f92672">::</span>divide(
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">double</span> scale, <span style="color:#75715e">// Numerator for all divisions
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    cv<span style="color:#f92672">::</span>InputArray src2, <span style="color:#75715e">// Input array (denominators)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    cv<span style="color:#f92672">::</span>OutputArray dst, <span style="color:#75715e">// Results array (scale/src2)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> dtype <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#75715e">// dst data type, -1 to get from src2
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>);
+</span></span></code></pre></div><h2 id="21-cveigen">21. cv::eigen()</h2>
+<p>计算矩阵的特征向量和特征值。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">bool</span> cv<span style="color:#f92672">::</span>eigen(
+</span></span><span style="display:flex;"><span>    cv<span style="color:#f92672">::</span>InputArray src,
+</span></span><span style="display:flex;"><span>    cv<span style="color:#f92672">::</span>OutputArray eigenvalues,
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> lowindex <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> highindex <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">bool</span> cv<span style="color:#f92672">::</span>eigen(
+</span></span><span style="display:flex;"><span>    cv<span style="color:#f92672">::</span>InputArray src,
+</span></span><span style="display:flex;"><span>    cv<span style="color:#f92672">::</span>OutputArray eigenvalues,
+</span></span><span style="display:flex;"><span>    cv<span style="color:#f92672">::</span>OutputArray eigenvectors,
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> lowindex <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> highindex <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>);   
+</span></span></code></pre></div><h2 id="22-cvexp">22. cv::exp()</h2>
+<p>计算src中所有元素的指数，并将结果存放在dst中。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> cv<span style="color:#f92672">::</span>exp(
+</span></span><span style="display:flex;"><span>    cv<span style="color:#f92672">::</span>InputArray src,
+</span></span><span style="display:flex;"><span>    cv<span style="color:#f92672">::</span>OutputArray dst
+</span></span><span style="display:flex;"><span>);
+</span></span></code></pre></div><h2 id="23-cvflip">23. cv::flip()</h2>
+<p>绕x轴或者y轴旋转。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> cv<span style="color:#f92672">::</span>flip(
+</span></span><span style="display:flex;"><span>    cv<span style="color:#f92672">::</span>InputArray src, <span style="color:#75715e">// Input array
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    cv<span style="color:#f92672">::</span>OutputArray dst, <span style="color:#75715e">// Result array, size and type of &#39;src&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> flipCode <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> <span style="color:#75715e">// &gt;0: y-flip, 0: x-flip, &lt;0: both
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>);
+</span></span></code></pre></div><h2 id="24-cvgemm">24. cv::gemm()</h2>
+<p>广义矩阵乘法（GEMM）。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> cv<span style="color:#f92672">::</span>gemm(
+</span></span><span style="display:flex;"><span>    cv<span style="color:#f92672">::</span>InputArray src1, <span style="color:#75715e">// First input array
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    cv<span style="color:#f92672">::</span>InputArray src2, <span style="color:#75715e">// Second input array
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">double</span> alpha, <span style="color:#75715e">// Weight for &#39;src1&#39; * &#39;src2&#39; product
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    cv<span style="color:#f92672">::</span>InputArray src3, <span style="color:#75715e">// Third (offset) input array
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">double</span> beta, <span style="color:#75715e">// Weight for &#39;src3&#39; array
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    cv<span style="color:#f92672">::</span>OutputArray dst, <span style="color:#75715e">// Results array
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> flags <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> <span style="color:#75715e">// Use to transpose source arrays
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>);
+</span></span></code></pre></div><h2 id="25-cvidct">25. cv::idct()</h2>
+<p>离散余弦逆变换，相当于调用带参数的dct()。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> cv<span style="color:#f92672">::</span>idct(
+</span></span><span style="display:flex;"><span>    cv<span style="color:#f92672">::</span>InputArray src, <span style="color:#75715e">// Input array
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    cv<span style="color:#f92672">::</span>OutputArray dst, <span style="color:#75715e">// Result array
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> flags, <span style="color:#75715e">// for row-by-row
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>);
+</span></span></code></pre></div><h2 id="26-cvidft">26. cv::idft()</h2>
+<p>离散傅里叶逆变换，相当于调用带参数的dft()。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> cv<span style="color:#f92672">::</span>idft(
+</span></span><span style="display:flex;"><span>    cv<span style="color:#f92672">::</span>InputArray src, <span style="color:#75715e">// Input array
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    cv<span style="color:#f92672">::</span>OutputArray dst, <span style="color:#75715e">// Result array
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> flags <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, <span style="color:#75715e">// for row-by-row, etc.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> nonzeroRows <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> <span style="color:#75715e">// only this many entries are nonzero
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>);
+</span></span></code></pre></div><h2 id="27-cvinrange">27. cv::inRange()</h2>
+<p>判断src中的元素是否在upperb和lowerb之间，满足置为255，否则0。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> cv<span style="color:#f92672">::</span>inRange(
+</span></span><span style="display:flex;"><span>    cv<span style="color:#f92672">::</span>InputArray src, <span style="color:#75715e">// Input array
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    cv<span style="color:#f92672">::</span>InputArray upperb, <span style="color:#75715e">// Array of upper bounds (inclusive)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    cv<span style="color:#f92672">::</span>InputArray lowerb, <span style="color:#75715e">// Array of lower bounds (inclusive)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    cv<span style="color:#f92672">::</span>OutputArray dst <span style="color:#75715e">// Result array, cv::U8C1 type
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>);
+</span></span></code></pre></div><h2 id="28-cvinvert">28. cv::invert()</h2>
+<p>求矩阵的逆。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">double</span> cv<span style="color:#f92672">::</span>invert( <span style="color:#75715e">// Return 0 if &#39;src&#39; is singular
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    cv<span style="color:#f92672">::</span>InputArray src, <span style="color:#75715e">// Input Array, m-by-n
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    cv<span style="color:#f92672">::</span>OutputArray dst <span style="color:#75715e">// Result array, n-by-m
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> method <span style="color:#f92672">=</span> cv<span style="color:#f92672">::</span>DECOMP_LU <span style="color:#75715e">// Method for (pseudo) inverse
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>);
+</span></span></code></pre></div><h2 id="29-cvlog">29. cv::log()</h2>
+<p>求原图像的自然对数。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> cv<span style="color:#f92672">::</span>log(
+</span></span><span style="display:flex;"><span>    cv<span style="color:#f92672">::</span>InputArray src,
+</span></span><span style="display:flex;"><span>    cv<span style="color:#f92672">::</span>OutputArray dst
+</span></span><span style="display:flex;"><span>);
+</span></span></code></pre></div><h2 id="30-cvmagnitude">30. cv::magnitude()</h2>
+<p>计算直角坐标系转换成极坐标系的幅值。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> cv<span style="color:#f92672">::</span>magnitude(
+</span></span><span style="display:flex;"><span>    cv<span style="color:#f92672">::</span>InputArray x,
+</span></span><span style="display:flex;"><span>    cv<span style="color:#f92672">::</span>InputArray y,
+</span></span><span style="display:flex;"><span>    cv<span style="color:#f92672">::</span>OutputArray dst
+</span></span><span style="display:flex;"><span>);
+</span></span></code></pre></div><h2 id="31-cvmahalanobis">31. cv::Mahalanobis()</h2>
+<p>计算两个向量的马氏距离。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>cv<span style="color:#f92672">::</span>Size cv<span style="color:#f92672">::</span>mahalanobis(
+</span></span><span style="display:flex;"><span>    cv<span style="color:#f92672">::</span>InputArray vec1,
+</span></span><span style="display:flex;"><span>    cv<span style="color:#f92672">::</span>InputArray vec2,
+</span></span><span style="display:flex;"><span>    cv<span style="color:#f92672">::</span>OutputArray icovar
+</span></span><span style="display:flex;"><span>);
+</span></span></code></pre></div><h2 id="32-cvmax">32. cv::max()</h2>
+<p>计算矩阵src1和src2中每个对应的像素对的最大值。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>cv<span style="color:#f92672">::</span>MatExpr cv<span style="color:#f92672">::</span>max(
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> cv<span style="color:#f92672">::</span>Mat<span style="color:#f92672">&amp;</span> src1, <span style="color:#75715e">// First input array (first position)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">const</span> cv<span style="color:#f92672">::</span>Mat<span style="color:#f92672">&amp;</span> src2 <span style="color:#75715e">// Second input array
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>);
+</span></span><span style="display:flex;"><span>MatExpr cv<span style="color:#f92672">::</span>max( <span style="color:#75715e">// A matrix expression, not a matrix
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">const</span> cv<span style="color:#f92672">::</span>Mat<span style="color:#f92672">&amp;</span> src1, <span style="color:#75715e">// First input array (first position)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">double</span> value <span style="color:#75715e">// Scalar in second position
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>);
+</span></span><span style="display:flex;"><span>MatExpr cv<span style="color:#f92672">::</span>max( <span style="color:#75715e">// A matrix expression, not a matrix
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">double</span> value, <span style="color:#75715e">// Scalar in first position
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">const</span> cv<span style="color:#f92672">::</span>Mat<span style="color:#f92672">&amp;</span> src1 <span style="color:#75715e">// Input array (second position)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> cv<span style="color:#f92672">::</span>max(
+</span></span><span style="display:flex;"><span>    cv<span style="color:#f92672">::</span>InputArray src1, <span style="color:#75715e">// First input array
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    cv<span style="color:#f92672">::</span>InputArray src2, <span style="color:#75715e">// Second input array
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    cv<span style="color:#f92672">::</span>OutputArray dst <span style="color:#75715e">// Result array
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> cv<span style="color:#f92672">::</span>max(
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> Mat<span style="color:#f92672">&amp;</span> src1, <span style="color:#75715e">// First input array
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">const</span> Mat<span style="color:#f92672">&amp;</span> src2, <span style="color:#75715e">// Second input array
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    Mat<span style="color:#f92672">&amp;</span> dst <span style="color:#75715e">// Result array
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> cv<span style="color:#f92672">::</span>max(
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> Mat<span style="color:#f92672">&amp;</span> src1, <span style="color:#75715e">// Input array
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">double</span> value, <span style="color:#75715e">// Scalar input
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    Mat<span style="color:#f92672">&amp;</span> dst <span style="color:#75715e">// Result array
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>);
+</span></span></code></pre></div><h2 id="33-cvmin">33. cv::min()</h2>
+<p>计算矩阵src1和src2中每个对应的像素对的最小值。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>cv<span style="color:#f92672">::</span>MatExpr cv<span style="color:#f92672">::</span>min( <span style="color:#75715e">// A matrix expression, not a matrix
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">const</span> cv<span style="color:#f92672">::</span>Mat<span style="color:#f92672">&amp;</span> src1, <span style="color:#75715e">// First input array
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">const</span> cv<span style="color:#f92672">::</span>Mat<span style="color:#f92672">&amp;</span> src2 <span style="color:#75715e">// Second input array
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>);
+</span></span><span style="display:flex;"><span>MatExpr cv<span style="color:#f92672">::</span>min( <span style="color:#75715e">// A matrix expression, not a matrix
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">const</span> cv<span style="color:#f92672">::</span>Mat<span style="color:#f92672">&amp;</span> src1, <span style="color:#75715e">// First input array (first position)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">double</span> value <span style="color:#75715e">// Scalar in second position
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>);
+</span></span><span style="display:flex;"><span>MatExpr cv<span style="color:#f92672">::</span>min( <span style="color:#75715e">// A matrix expression, not a matrix
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">double</span> value, <span style="color:#75715e">// Scalar in first position
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">const</span> cv<span style="color:#f92672">::</span>Mat<span style="color:#f92672">&amp;</span> src1 <span style="color:#75715e">// Input array (second position)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> cv<span style="color:#f92672">::</span>min(
+</span></span><span style="display:flex;"><span>    cv<span style="color:#f92672">::</span>InputArray src1, <span style="color:#75715e">// First input array
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    cv<span style="color:#f92672">::</span>InputArray src2, <span style="color:#75715e">// Second input array
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    cv<span style="color:#f92672">::</span>OutputArray dst <span style="color:#75715e">// Result array
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> cv<span style="color:#f92672">::</span>min(
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> Mat<span style="color:#f92672">&amp;</span> src1, <span style="color:#75715e">// First input array
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">const</span> Mat<span style="color:#f92672">&amp;</span> src2, <span style="color:#75715e">// Second input array
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    Mat<span style="color:#f92672">&amp;</span> dst <span style="color:#75715e">// Result array
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> cv<span style="color:#f92672">::</span>min(
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> Mat<span style="color:#f92672">&amp;</span> src1, <span style="color:#75715e">// Input array
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">double</span> value, <span style="color:#75715e">// Scalar input
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    Mat<span style="color:#f92672">&amp;</span> dst <span style="color:#75715e">// Result array
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>);
+</span></span></code></pre></div><h2 id="34-cvmean">34. cv::mean()</h2>
+<p>计算src矩阵的均值。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>cv<span style="color:#f92672">::</span>Scalar cv<span style="color:#f92672">::</span>mean(
+</span></span><span style="display:flex;"><span>    cv<span style="color:#f92672">::</span>InputArray src,
+</span></span><span style="display:flex;"><span>    cv<span style="color:#f92672">::</span>InputArray mask <span style="color:#f92672">=</span> cv<span style="color:#f92672">::</span>noArray(), <span style="color:#75715e">// Optional, do only where nonzero
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>);
+</span></span></code></pre></div><h2 id="35-cvmeanstddev">35. cv::meanStdDev()</h2>
+<p>计算矩阵的均值和标准差。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> cv<span style="color:#f92672">::</span>meanStdDev(
+</span></span><span style="display:flex;"><span>    cv<span style="color:#f92672">::</span>InputArray src,
+</span></span><span style="display:flex;"><span>    cv<span style="color:#f92672">::</span>OutputArray mean,
+</span></span><span style="display:flex;"><span>    cv<span style="color:#f92672">::</span>OutputArray stddev,
+</span></span><span style="display:flex;"><span>    cv<span style="color:#f92672">::</span>InputArray mask <span style="color:#f92672">=</span> cv<span style="color:#f92672">::</span>noArray(), <span style="color:#75715e">// Optional, do only where nonzero
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>);
+</span></span></code></pre></div><h2 id="36-cvmerge">36. cv::merge()</h2>
+<p>将多个二维矩阵合并成一个多维矩阵。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> cv<span style="color:#f92672">::</span>merge(
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> cv<span style="color:#f92672">::</span>Mat<span style="color:#f92672">*</span> mv, <span style="color:#75715e">// C-style array of arrays
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    size_t count, <span style="color:#75715e">// Number of arrays pointed to by &#39;mv&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    cv<span style="color:#f92672">::</span>OutputArray dst <span style="color:#75715e">// Contains all channels in &#39;mv&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">merge</span>(
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> vector<span style="color:#f92672">&lt;</span>cv<span style="color:#f92672">::</span>Mat<span style="color:#f92672">&gt;&amp;</span> mv, <span style="color:#75715e">// STL-style array of arrays
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    cv<span style="color:#f92672">::</span>OutputArray dst <span style="color:#75715e">// Contains all channels in &#39;mv&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>);
+</span></span></code></pre></div><h2 id="37-cvsplit">37. cv::split()</h2>
+<p>将多通道矩阵拆分成多个单通道矩阵。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> cv<span style="color:#f92672">::</span>split(
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> cv<span style="color:#f92672">::</span>Mat<span style="color:#f92672">&amp;</span> mtx,
+</span></span><span style="display:flex;"><span>    cv<span style="color:#f92672">::</span>Mat<span style="color:#f92672">*</span> mv
+</span></span><span style="display:flex;"><span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> cv<span style="color:#f92672">::</span>split(
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> cv<span style="color:#f92672">::</span>Mat<span style="color:#f92672">&amp;</span> mtx,
+</span></span><span style="display:flex;"><span>    vector<span style="color:#f92672">&lt;</span>Mat<span style="color:#f92672">&gt;&amp;</span> mv <span style="color:#75715e">// STL-style vector of n 1-channel cv::Mat&#39;s
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>);
+</span></span></code></pre></div><h2 id="38-cvminmaxidx">38. cv::minMaxIdx()</h2>
+<p>计算单通道矩阵的最大最小值，并返回其位置。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> cv<span style="color:#f92672">::</span>minMaxIdx(
+</span></span><span style="display:flex;"><span>    cv<span style="color:#f92672">::</span>InputArray src, <span style="color:#75715e">// Input array, single channel only
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">double</span><span style="color:#f92672">*</span> minVal, <span style="color:#75715e">// min value goes here (in not NULL)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">double</span><span style="color:#f92672">*</span> maxVal, <span style="color:#75715e">// min value goes here (in not NULL)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span><span style="color:#f92672">*</span> minIdx, <span style="color:#75715e">// loc of min goes here (if not NULL)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span><span style="color:#f92672">*</span> maxIdx, <span style="color:#75715e">// loc of max goes here (if not NULL)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    cv<span style="color:#f92672">::</span>InputArray mask <span style="color:#f92672">=</span> cv<span style="color:#f92672">::</span>noArray() <span style="color:#75715e">// search only nonzero values
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> cv<span style="color:#f92672">::</span>minMaxIdx(
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> cv<span style="color:#f92672">::</span>SparseMat<span style="color:#f92672">&amp;</span> src, <span style="color:#75715e">// Input sparse array
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">double</span><span style="color:#f92672">*</span> minVal, <span style="color:#75715e">// min value goes here (in not NULL)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">double</span><span style="color:#f92672">*</span> maxVal, <span style="color:#75715e">// min value goes here (in not NULL)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span><span style="color:#f92672">*</span> minIdx, <span style="color:#75715e">// C-style array, indices of min locs
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span><span style="color:#f92672">*</span> maxIdx, <span style="color:#75715e">// C-style array, indices of max locs
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>);
+</span></span></code></pre></div><h2 id="39-cvminmaxloc">39. cv::minMaxLoc()</h2>
+<p>计算矩阵的最大最小值，并返回其位置。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> cv<span style="color:#f92672">::</span>minMaxLoc(
+</span></span><span style="display:flex;"><span>    cv<span style="color:#f92672">::</span>InputArray src, <span style="color:#75715e">// Input array
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">double</span><span style="color:#f92672">*</span> minVal, <span style="color:#75715e">// min value goes here (in not NULL)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">double</span><span style="color:#f92672">*</span> maxVal, <span style="color:#75715e">// min value goes here (in not NULL)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    cv<span style="color:#f92672">::</span>Point<span style="color:#f92672">*</span> minLoc, <span style="color:#75715e">// loc of min goes here (if not NULL)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    cv<span style="color:#f92672">::</span>Point<span style="color:#f92672">*</span> maxLoc, <span style="color:#75715e">// loc of max goes here (if not NULL)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    cv<span style="color:#f92672">::</span>InputArray mask <span style="color:#f92672">=</span> cv<span style="color:#f92672">::</span>noArray() <span style="color:#75715e">// search only nonzero values
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> cv<span style="color:#f92672">::</span>minMaxLoc(
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> cv<span style="color:#f92672">::</span>SparseMat<span style="color:#f92672">&amp;</span> src, <span style="color:#75715e">// Input sparse array
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">double</span><span style="color:#f92672">*</span> minVal, <span style="color:#75715e">// min value goes here (in not NULL)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">double</span><span style="color:#f92672">*</span> maxVal, <span style="color:#75715e">// min value goes here (in not NULL)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    cv<span style="color:#f92672">::</span>Point<span style="color:#f92672">*</span> minLoc, <span style="color:#75715e">// C-style array, indices of min locs
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    cv<span style="color:#f92672">::</span>Point<span style="color:#f92672">*</span> maxLoc, <span style="color:#75715e">// C-style array, indices of max locs
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>);
+</span></span></code></pre></div><h2 id="40-cvmixchannels">40. cv::mixChannels()</h2>
+<p>对于输入图像的通道按照给定的顺序重新组合。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> cv<span style="color:#f92672">::</span>mixChannels(
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> cv<span style="color:#f92672">::</span>Mat<span style="color:#f92672">*</span> srcv, <span style="color:#75715e">// C-style array of matrices
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> nsrc, <span style="color:#75715e">// Number of elements in &#39;srcv&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    cv<span style="color:#f92672">::</span>Mat<span style="color:#f92672">*</span> dstv, <span style="color:#75715e">// C-style array of target matrices
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> ndst, <span style="color:#75715e">// Number of elements in &#39;dstv&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span><span style="color:#f92672">*</span> fromTo, <span style="color:#75715e">// C-style array of pairs, ...from,to...
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    size_t n_pairs <span style="color:#75715e">// Number of pairs in &#39;fromTo&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> cv<span style="color:#f92672">::</span>mixChannels(
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> vector<span style="color:#f92672">&lt;</span>cv<span style="color:#f92672">::</span>Mat<span style="color:#f92672">&gt;&amp;</span> srcv, <span style="color:#75715e">// STL-style vector of matrices
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    vector<span style="color:#f92672">&lt;</span>cv<span style="color:#f92672">::</span>Mat<span style="color:#f92672">&gt;&amp;</span> dstv, <span style="color:#75715e">// STL-style vector of target matrices
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span><span style="color:#f92672">*</span> fromTo, <span style="color:#75715e">// C-style array of pairs, ...from,to...
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    size_t n_pairs <span style="color:#75715e">// Number of pairs in &#39;fromTo&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>);
+</span></span></code></pre></div><h2 id="41-cvmultiply">41. cv::multiply()</h2>
+<p>矩阵对应元素相乘。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> cv<span style="color:#f92672">::</span>multiply(
+</span></span><span style="display:flex;"><span>    cv<span style="color:#f92672">::</span>InputArray src1, <span style="color:#75715e">// First input array
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    cv<span style="color:#f92672">::</span>InputArray src2, <span style="color:#75715e">// Second input array
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    cv<span style="color:#f92672">::</span>OutputArray dst, <span style="color:#75715e">// Result array
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">double</span> scale <span style="color:#f92672">=</span> <span style="color:#ae81ff">1.0</span>, <span style="color:#75715e">// overall scale factor
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> dtype <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#75715e">// Output type for result array
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>);
+</span></span></code></pre></div><h2 id="42-cvmultransposed">42. cv::mulTransposed()</h2>
+<p>矩阵和其转置的乘积。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> cv<span style="color:#f92672">::</span>mulTransposed(
+</span></span><span style="display:flex;"><span>    cv<span style="color:#f92672">::</span>InputArray src1, <span style="color:#75715e">// Input matrix
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    cv<span style="color:#f92672">::</span>OutputArray dst, <span style="color:#75715e">// Result array
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">bool</span> aTa, <span style="color:#75715e">// If true, transpose then multiply
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    cv<span style="color:#f92672">::</span>InputArray delta <span style="color:#f92672">=</span> cv<span style="color:#f92672">::</span>noArray(), <span style="color:#75715e">// subtract from &#39;src1&#39; before multiply
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">double</span> scale <span style="color:#f92672">=</span> <span style="color:#ae81ff">1.0</span>, <span style="color:#75715e">// overall scale factor
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> dtype <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#75715e">// Output type for result array
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>);
+</span></span></code></pre></div><h2 id="43-cvnorm">43. cv::norm()</h2>
+<p>计算一个矩阵的范数，或者如果提供两个矩阵，该函数也可以计算两个矩阵间的各种距离范数。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">double</span> cv<span style="color:#f92672">::</span>norm( <span style="color:#75715e">// Return norm in double precision
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    cv<span style="color:#f92672">::</span>InputArray src1, <span style="color:#75715e">// Input matrix
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> normType <span style="color:#f92672">=</span> cv<span style="color:#f92672">::</span>NORM_L2, <span style="color:#75715e">// Type of norm to compute
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    cv<span style="color:#f92672">::</span>InputArray mask <span style="color:#f92672">=</span> cv<span style="color:#f92672">::</span>noArray() <span style="color:#75715e">// do for nonzero values (if present)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">double</span> cv<span style="color:#f92672">::</span>norm( <span style="color:#75715e">// Return computed norm of difference
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    cv<span style="color:#f92672">::</span>InputArray src1, <span style="color:#75715e">// Input matrix
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    cv<span style="color:#f92672">::</span>InputArray src2, <span style="color:#75715e">// Second input matrix
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> normType <span style="color:#f92672">=</span> cv<span style="color:#f92672">::</span>NORM_L2, <span style="color:#75715e">// Type of norm to compute
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    cv<span style="color:#f92672">::</span>InputArray mask <span style="color:#f92672">=</span> cv<span style="color:#f92672">::</span>noArray() <span style="color:#75715e">// do for nonzero values (if present)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">double</span> cv<span style="color:#f92672">::</span>norm(
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> cv<span style="color:#f92672">::</span>SparseMat<span style="color:#f92672">&amp;</span> src, <span style="color:#75715e">// Input sparse matrix
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> normType <span style="color:#f92672">=</span> cv<span style="color:#f92672">::</span>NORM_L2, <span style="color:#75715e">// Type of norm to compute
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>);
+</span></span></code></pre></div><h2 id="44-cvnormalize">44. cv::normalize()</h2>
+<p>将原图像映射到一个特定范围内并放到dst中。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> cv<span style="color:#f92672">::</span>normalize(
+</span></span><span style="display:flex;"><span>    cv<span style="color:#f92672">::</span>InputArray src1, <span style="color:#75715e">// Input matrix
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    cv<span style="color:#f92672">::</span>OutputArray dst, <span style="color:#75715e">// Result matrix
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">double</span> alpha <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>, <span style="color:#75715e">// first parameter (see Table 5-8)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">double</span> beta <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, <span style="color:#75715e">// second parameter (see Table 5-8)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> normType <span style="color:#f92672">=</span> cv<span style="color:#f92672">::</span>NORM_L2, <span style="color:#75715e">// Type of norm to compute
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> dtype <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#75715e">// Output type for result array
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    cv<span style="color:#f92672">::</span>InputArray mask <span style="color:#f92672">=</span> cv<span style="color:#f92672">::</span>noArray() <span style="color:#75715e">// do for nonzero values (if present)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> cv<span style="color:#f92672">::</span>normalize(
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> cv<span style="color:#f92672">::</span>SparseMat<span style="color:#f92672">&amp;</span> src, <span style="color:#75715e">// Input sparse matrix
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    cv<span style="color:#f92672">::</span>SparseMat<span style="color:#f92672">&amp;</span> dst, <span style="color:#75715e">// Result sparse matrix
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">double</span> alpha <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>, <span style="color:#75715e">// first parameter (see Table 5-8)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> normType <span style="color:#f92672">=</span> cv<span style="color:#f92672">::</span>NORM_L2, <span style="color:#75715e">// Type of norm to compute
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>);
+</span></span></code></pre></div><h2 id="45-cvperspectivetransform">45. cv::perspectiveTransform()</h2>
+<p>执行一系列点的平面投影变换。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> cv<span style="color:#f92672">::</span>perspectiveTransform(
+</span></span><span style="display:flex;"><span>    cv<span style="color:#f92672">::</span>InputArray src, <span style="color:#75715e">// Input array, 2 or 3 channels
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    cv<span style="color:#f92672">::</span>OutputArray dst, <span style="color:#75715e">// Result array, size, type, as src1
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    cv<span style="color:#f92672">::</span>InputArray mtx <span style="color:#75715e">// 3-by-3 or 4-by-4 transoform matrix
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>);
+</span></span></code></pre></div><h2 id="46-cvphase">46. cv::phase()</h2>
+<p>对二维矢量场计算笛卡尔-极坐标转换的方位角（角度）部分。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> cv<span style="color:#f92672">::</span>phase(
+</span></span><span style="display:flex;"><span>    cv<span style="color:#f92672">::</span>InputArray x, <span style="color:#75715e">// Input array of x-components
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    cv<span style="color:#f92672">::</span>InputArray y, <span style="color:#75715e">// Input array of y-components
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    cv<span style="color:#f92672">::</span>OutputArray dst, <span style="color:#75715e">// Output array of angles (radians)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">bool</span> angleInDegrees <span style="color:#f92672">=</span> false <span style="color:#75715e">// degrees (if true), radians (if false)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>);
+</span></span></code></pre></div><h2 id="47-cvpolartocart">47. cv::polarToCart()</h2>
+<p>从向量场的极坐标中计算笛卡尔坐标(x,y)。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> cv<span style="color:#f92672">::</span>polarToCart(
+</span></span><span style="display:flex;"><span>    cv<span style="color:#f92672">::</span>InputArray magnitude, <span style="color:#75715e">// Input array of magnitudes
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    cv<span style="color:#f92672">::</span>InputArray angle, <span style="color:#75715e">// Input array of angles
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    cv<span style="color:#f92672">::</span>OutputArray x, <span style="color:#75715e">// Output array of x-components
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    cv<span style="color:#f92672">::</span>OutputArray y, <span style="color:#75715e">// Output array of y-components
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">bool</span> angleInDegrees <span style="color:#f92672">=</span> false <span style="color:#75715e">// degrees (if true) radians (if false)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>);
+</span></span></code></pre></div><h2 id="48-cvpow">48. cv::pow()</h2>
+<p>对矩阵逐元素取p次幂。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> cv<span style="color:#f92672">::</span>pow(
+</span></span><span style="display:flex;"><span>    cv<span style="color:#f92672">::</span>InputArray src, <span style="color:#75715e">// Input array
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">double</span> p, <span style="color:#75715e">// power for exponentiation
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    cv<span style="color:#f92672">::</span>OutputArray dst <span style="color:#75715e">// Result array
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>);
+</span></span></code></pre></div><h2 id="49-cvrandu">49. cv::randu()</h2>
+<p>返回适当类型的随机值。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">template</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">typename</span> _Tp<span style="color:#f92672">&gt;</span> _Tp randu(); <span style="color:#75715e">// Return random number of specific type
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">void</span> cv<span style="color:#f92672">::</span>randu(
+</span></span><span style="display:flex;"><span>    cv<span style="color:#f92672">::</span>InputOutArray mtx, <span style="color:#75715e">// All values will be randomized
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    cv<span style="color:#f92672">::</span>InputArray low, <span style="color:#75715e">// minimum, 1-by-1 (Nc=1,4), or 1-by-4 (Nc=1)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    cv<span style="color:#f92672">::</span>InputArray high <span style="color:#75715e">// maximum, 1-by-1 (Nc=1,4), or 1-by-4 (Nc=1)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>);
+</span></span></code></pre></div><h2 id="50-cvrandn">50. cv::randn()</h2>
+<p>使用正态分布的值填充矩阵mtx。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> cv<span style="color:#f92672">::</span>randn(
+</span></span><span style="display:flex;"><span>    cv<span style="color:#f92672">::</span>InputOutArray mtx, <span style="color:#75715e">// All values will be randomized
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    cv<span style="color:#f92672">::</span>InputArray mean, <span style="color:#75715e">// mean values, array is in channel space
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    cv<span style="color:#f92672">::</span>InputArray stddev <span style="color:#75715e">// standard deviations, channel space
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>);
+</span></span></code></pre></div><h2 id="51-cvrepeat">51. cv::repeat()</h2>
+<p>将src的内容复制到dst中。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> cv<span style="color:#f92672">::</span>repeat(
+</span></span><span style="display:flex;"><span>    cv<span style="color:#f92672">::</span>InputArray src, <span style="color:#75715e">// Input 2-dimensional array
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> nx, <span style="color:#75715e">// Copies in x-direction
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> ny, <span style="color:#75715e">// Copies in y-direction
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    cv<span style="color:#f92672">::</span>OutputArray dst <span style="color:#75715e">// Result array
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>);
+</span></span><span style="display:flex;"><span>cv<span style="color:#f92672">::</span>Mat cv<span style="color:#f92672">::</span>repeat( <span style="color:#75715e">// Return result array
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    cv<span style="color:#f92672">::</span>InputArray src, <span style="color:#75715e">// Input 2-dimensional array
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> nx, <span style="color:#75715e">// Copies in x-direction
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> ny <span style="color:#75715e">// Copies in y-direction
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>);
+</span></span></code></pre></div><h2 id="52-cvscaleadd">52. cv::scaleAdd()</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> cv<span style="color:#f92672">::</span>scaleAdd(
+</span></span><span style="display:flex;"><span>    cv<span style="color:#f92672">::</span>InputArray src1, <span style="color:#75715e">// First input array
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">double</span> scale, <span style="color:#75715e">// Scale factor applied to first array
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    cv<span style="color:#f92672">::</span>InputArray src2, <span style="color:#75715e">// Second input array
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    cv<span style="color:#f92672">::</span>OutputArray dst, <span style="color:#75715e">// Result array
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>);
+</span></span></code></pre></div><h2 id="53-cvsetidentity">53. cv::setIdentity()</h2>
+<p>除了将行数和列数相等的元素设置为1（或者给定数值）外，其他所有矩阵元素设置为0。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> cv<span style="color:#f92672">::</span>setIdentity(
+</span></span><span style="display:flex;"><span>    cv<span style="color:#f92672">::</span>InputOutputArray dst, <span style="color:#75715e">// Array to reset values
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">const</span> cv<span style="color:#f92672">::</span>Scalar<span style="color:#f92672">&amp;</span> value <span style="color:#f92672">=</span> cv<span style="color:#f92672">::</span>Scalar(<span style="color:#ae81ff">1.0</span>) <span style="color:#75715e">// Apply to diagonal elements
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>);
+</span></span></code></pre></div><h2 id="54-cvsolve">54. cv::solve()</h2>
+<p>基于invert()的函数，solve()为求解线性系统提供一条捷径，具体公式如下：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> cv<span style="color:#f92672">::</span>solve(
+</span></span><span style="display:flex;"><span>    cv<span style="color:#f92672">::</span>InputArray lhs, <span style="color:#75715e">// Lefthand side of system, n-by-n
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    cv<span style="color:#f92672">::</span>InputArray rhs, <span style="color:#75715e">// Righthand side of system, n-by-1
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    cv<span style="color:#f92672">::</span>OutputArray dst, <span style="color:#75715e">// Results array, will be n-by-1
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> method <span style="color:#f92672">=</span> cv<span style="color:#f92672">::</span>DECOMP_LU <span style="color:#75715e">// Method for solver
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>);
+</span></span></code></pre></div><h2 id="55-cvsolvecubic">55. cv::solveCubic()</h2>
+<p>计算三次多项式的实根。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> cv<span style="color:#f92672">::</span>solveCubic(
+</span></span><span style="display:flex;"><span>    cv<span style="color:#f92672">::</span>InputArray coeffs,
+</span></span><span style="display:flex;"><span>    cv<span style="color:#f92672">::</span>OutputArray roots
+</span></span><span style="display:flex;"><span>);
+</span></span></code></pre></div><h2 id="56-cvsolvepoly">56. cv::solvePoly()</h2>
+<p>计算任意阶数多项式的根。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> cv<span style="color:#f92672">::</span>solvePoly (
+</span></span><span style="display:flex;"><span>    cv<span style="color:#f92672">::</span>InputArray coeffs,
+</span></span><span style="display:flex;"><span>    cv<span style="color:#f92672">::</span>OutputArray roots <span style="color:#75715e">// n complex roots (2-channels)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> maxIters <span style="color:#f92672">=</span> <span style="color:#ae81ff">300</span> <span style="color:#75715e">// maximum iterations for solver
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>);
+</span></span></code></pre></div><h2 id="57-cvsort">57. cv::sort()</h2>
+<p>opencv的排序函数，分别对每行或列进行排序。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> cv<span style="color:#f92672">::</span>sort(
+</span></span><span style="display:flex;"><span>    cv<span style="color:#f92672">::</span>InputArray src,
+</span></span><span style="display:flex;"><span>    cv<span style="color:#f92672">::</span>OutputArray dst,
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> flags
+</span></span><span style="display:flex;"><span>);
+</span></span></code></pre></div><h2 id="58-cvsortidx">58. cv::sortIdx()</h2>
+<p>opencv的排序函数，分别对每行或列进行排序，将排序索引结果存在dst中。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> cv<span style="color:#f92672">::</span>sortIdx(
+</span></span><span style="display:flex;"><span>    cv<span style="color:#f92672">::</span>InputArray src,
+</span></span><span style="display:flex;"><span>    cv<span style="color:#f92672">::</span>OutputArray dst,
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> flags
+</span></span><span style="display:flex;"><span>);
+</span></span></code></pre></div><h2 id="59-cvsqrt">59. cv::sqrt()</h2>
+<p>计算逐元素的平方根。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> cv<span style="color:#f92672">::</span>sqrt(
+</span></span><span style="display:flex;"><span>    cv<span style="color:#f92672">::</span>InputArray src,
+</span></span><span style="display:flex;"><span>    cv<span style="color:#f92672">::</span>OutputArray dst
+</span></span><span style="display:flex;"><span>);
+</span></span></code></pre></div><h2 id="60-cvsubtract">60 cv::subtract()</h2>
+<p>从src1中减去src2的相应元素。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> cv<span style="color:#f92672">::</span>subtract(
+</span></span><span style="display:flex;"><span>    cv<span style="color:#f92672">::</span>InputArray src1, <span style="color:#75715e">// First input array
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    cv<span style="color:#f92672">::</span>InputArray src2, <span style="color:#75715e">// Second input array
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    cv<span style="color:#f92672">::</span>OutputArray dst, <span style="color:#75715e">// Result array
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    cv<span style="color:#f92672">::</span>InputArray mask <span style="color:#f92672">=</span> cv<span style="color:#f92672">::</span>noArray(), <span style="color:#75715e">// Optional, do only where nonzero
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> dtype <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#75715e">// Output type for result array
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>);
+</span></span></code></pre></div><h2 id="61-cvsum">61. cv::sum()</h2>
+<p>计算矩阵各个通道的所有像素的总和。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>cv<span style="color:#f92672">::</span>Scalar cv<span style="color:#f92672">::</span>sum(
+</span></span><span style="display:flex;"><span>    cv<span style="color:#f92672">::</span>InputArray arr
+</span></span><span style="display:flex;"><span>);
+</span></span></code></pre></div><h2 id="62-cvtrace">62. cv::trace()</h2>
+<p>计算矩阵的迹。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>cv<span style="color:#f92672">::</span>Scalar cv<span style="color:#f92672">::</span>trace(
+</span></span><span style="display:flex;"><span>    cv<span style="color:#f92672">::</span>InputArray mat
+</span></span><span style="display:flex;"><span>);
+</span></span></code></pre></div><h2 id="63-cvtransform">63. cv::transform()</h2>
+<p>计算任意线性图像变换。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> cv<span style="color:#f92672">::</span>transform(
+</span></span><span style="display:flex;"><span>    cv<span style="color:#f92672">::</span>InputArray src,
+</span></span><span style="display:flex;"><span>    cv<span style="color:#f92672">::</span>OutputArray dst,
+</span></span><span style="display:flex;"><span>    cv<span style="color:#f92672">::</span>InputArray mtx
+</span></span><span style="display:flex;"><span>);
+</span></span></code></pre></div><h2 id="64-cvtranspose">64. cv::transpose()</h2>
+<p>将src中每一个元素复制到dst中行号与列数相调换的位置上。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> cv<span style="color:#f92672">::</span>transpose(
+</span></span><span style="display:flex;"><span>    cv<span style="color:#f92672">::</span>InputArray src, <span style="color:#75715e">// Input array, 2-dimensional, n-by-m
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    cv<span style="color:#f92672">::</span>OutputArray dst, <span style="color:#75715e">// Result array, 2-dimensional, m-by-n
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>);
+</span></span></code></pre></div></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2023-01-16</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://zhangyuhu.github.io/posts/open_source_software/opencv/learn/opencv%E5%B8%B8%E7%94%A8%E7%AE%97%E5%AD%90/" data-title="opencv 常用算子" data-hashtags="opencv"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://zhangyuhu.github.io/posts/open_source_software/opencv/learn/opencv%E5%B8%B8%E7%94%A8%E7%AE%97%E5%AD%90/" data-hashtag="opencv"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://zhangyuhu.github.io/posts/open_source_software/opencv/learn/opencv%E5%B8%B8%E7%94%A8%E7%AE%97%E5%AD%90/" data-title="opencv 常用算子"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://zhangyuhu.github.io/posts/open_source_software/opencv/learn/opencv%E5%B8%B8%E7%94%A8%E7%AE%97%E5%AD%90/" data-title="opencv 常用算子"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://zhangyuhu.github.io/posts/open_source_software/opencv/learn/opencv%E5%B8%B8%E7%94%A8%E7%AE%97%E5%AD%90/" data-title="opencv 常用算子" data-ralateuid="ji"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/opencv/">opencv</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/open_source_software/opencv/learn/opencv%E6%A0%B8%E5%BF%83%E5%87%BD%E6%95%B0%E6%95%B4%E7%90%86/" class="prev" rel="prev" title="opencv 核心函数整理"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>opencv 核心函数整理</a>
+            <a href="/posts/open_source_software/opencv/learn/opencv%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/" class="next" rel="next" title="opencv 常用操作">opencv 常用操作<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="giscus" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://giscus.app">Giscus</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">为天地立心,为生民立命,为往圣继绝学,为万世开太平</div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://zhangyuhu.github.io/" target="_blank">zhangyuhu</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="http://creativecommons.org/licenses/by/4.0/" target="_blank">知识共享署名 4.0 国际许可协议</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/css/lightgallery-bundle.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/twemoji@14.0.2/dist/twemoji.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/lightgallery.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/thumbnail/lg-thumbnail.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/zoom/lg-zoom.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@8.6.0/dist/index.umd.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{"giscus":{"category":"Comments","categoryId":"DIC_kwDOIx2Cjs4CTnUX","darkTheme":"dark","emitMetadata":"0","inputPosition":"bottom","lang":"en","lazyLoading":false,"lightTheme":"light","mapping":"pathname","reactionsEnabled":"1","repo":"zhangyuhu/zhangyuhu.github.io","repoId":"R_kgDOIx2Cjg"}},"data":{"id-1":"HOME","id-2":"HOME"},"lightgallery":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50},"twemoji":true,"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.2970a33d719df7cd89cebf586152b32a8ed30012227fa81b44282950146e0f595d1c733779e4d423dda1004bdcf707ee64d0fadc3d21229cd66b960788f84bdb.js" integrity="sha512-KXCjPXGd982Jzr9YYVKzKo7TABIif6gbRCgpUBRuD1ldHHM3eeTUI92hAEvc9wfuZND63D0hIpzWa5YHiPhL2w=="></script></body>
+</html>
