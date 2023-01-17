@@ -34,7 +34,7 @@
                             "url": "https:\/\/zhangyuhu.github.io\/images\/Apple-Devices-Preview.png",
                             "width":  3200 ,
                             "height":  2048 
-                        }],"genre": "posts","keywords": "android studio","wordcount":  292 ,
+                        }],"genre": "posts","keywords": "android studio","wordcount":  296 ,
         "url": "https:\/\/zhangyuhu.github.io\/posts\/tools\/android\/android_studio\/","datePublished": "2023-01-15T17:52:52+08:00","dateModified": "2023-01-16T18:28:16+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -108,14 +108,22 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">android studio 安装使用</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://zhangyuhu.github.io/" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>zhangyuhu</a></span>&nbsp;<span class="post-category">included in <a href="/categories/tools/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>tools</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-01-15">2023-01-15</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;292 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-01-15">2023-01-15</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;296 words&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;One minute&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
                     <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
                 </div>
-                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents"></nav></div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-下载">1. 下载</a></li>
+    <li><a href="#2-安装">2. 安装</a></li>
+    <li><a href="#配置">配置</a></li>
+    <li><a href="#插件">插件</a></li>
+    <li><a href="#快捷键设置">快捷键设置</a></li>
+  </ul>
+</nav></div>
             </div><div class="content" id="content"><blockquote>
 <p>本文采用<a href="http://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreffer ">知识共享署名 4.0 国际许可协议</a>进行许可，转载时请注明原文链接，图片在使用时请保留全部内容，可适当缩放并在引用处附上图片所在的文章链接。</p>
 </blockquote>
@@ -131,14 +139,30 @@
 <h1 id="1-下载">1. 下载</h1>
 <p><a href="https://developer.android.google.cn/studio" target="_blank" rel="noopener noreffer ">studio</a></p>
 <h1 id="2-安装">2. 安装</h1>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>mv android-studio-2021.2.1.15-linux.tar.gz /opt/
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-1">1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-2">2</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-3">3</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>mv android-studio-2021.2.1.15-linux.tar.gz /opt/
 </span></span><span style="display:flex;"><span>cd /opt
 </span></span><span style="display:flex;"><span>sudo tar -zxvf android-studio-2021.2.1.15-linux.tar.gz
-</span></span></code></pre></div><p>更改 /opt/android-studio/bin/idea.porperties：</p>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>更改 /opt/android-studio/bin/idea.porperties：</p>
 <pre tabindex="0"><code>sudo gedit /opt/android-studio/bin/idea.properties
 </code></pre><p>文末添加</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">disable</span>.<span style="color:#a6e22e">android</span>.<span style="color:#a6e22e">first</span>.<span style="color:#a6e22e">run</span><span style="color:#f92672">=</span><span style="color:#66d9ef">true</span>
-</span></span></code></pre></div><p>此操作防止第一次打开Android Studio时卡在”Fetching Android SDK component information” 。</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-1">1</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">disable</span>.<span style="color:#a6e22e">android</span>.<span style="color:#a6e22e">first</span>.<span style="color:#a6e22e">run</span><span style="color:#f92672">=</span><span style="color:#66d9ef">true</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>此操作防止第一次打开Android Studio时卡在”Fetching Android SDK component information” 。</p>
 <p>更改/opt/android-studio/bin目录权限：</p>
 <pre tabindex="0"><code>sudo chmod 777 /opt/android-studio/bin
 </code></pre><h1 id="配置">配置</h1>

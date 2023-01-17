@@ -34,7 +34,7 @@
                             "url": "https:\/\/zhangyuhu.github.io\/images\/Apple-Devices-Preview.png",
                             "width":  3200 ,
                             "height":  2048 
-                        }],"genre": "posts","keywords": "vsoced","wordcount":  2512 ,
+                        }],"genre": "posts","keywords": "vsoced","wordcount":  2609 ,
         "url": "https:\/\/zhangyuhu.github.io\/posts\/tools\/vscode\/format\/format\/","datePublished": "2023-01-15T17:52:52+08:00","dateModified": "2023-01-15T21:08:36+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -108,7 +108,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">vsoced代码格式化配置</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://zhangyuhu.github.io/" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>zhangyuhu</a></span>&nbsp;<span class="post-category">included in <a href="/categories/tools/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>tools</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-01-15">2023-01-15</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2512 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-01-15">2023-01-15</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2609 words&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;6 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
@@ -117,56 +117,65 @@
                 </div>
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
-    <li><a href="#简介">简介</a></li>
-    <li><a href="#文档">文档</a></li>
-    <li><a href="#安装">安装</a></li>
-    <li><a href="#使用">使用</a>
+    <li><a href="#代码管理工具">代码管理工具</a></li>
+    <li><a href="#代码格式化工具clangformat">代码格式化工具ClangFormat</a>
       <ul>
-        <li><a href="#使用vscode-手动格式化">使用vscode 手动格式化</a></li>
-        <li><a href="#git-自动格式化提交文件">git 自动格式化提交文件</a></li>
-        <li><a href="#手动格式化">手动格式化</a></li>
+        <li><a href="#简介">简介</a></li>
+        <li><a href="#文档">文档</a></li>
+        <li><a href="#安装">安装</a></li>
+        <li><a href="#使用">使用</a>
+          <ul>
+            <li><a href="#使用vscode-手动格式化">使用vscode 手动格式化</a></li>
+            <li><a href="#git-自动格式化提交文件">git 自动格式化提交文件</a></li>
+            <li><a href="#手动格式化">手动格式化</a></li>
+          </ul>
+        </li>
       </ul>
     </li>
-  </ul>
-
-  <ul>
-    <li><a href="#cppcheck">cppcheck</a>
+    <li><a href="#静态扫描工具">静态扫描工具</a>
       <ul>
-        <li><a href="#安装-1">安装</a></li>
-        <li><a href="#使用-1">使用</a></li>
+        <li><a href="#cppcheck">cppcheck</a>
+          <ul>
+            <li><a href="#安装-1">安装</a></li>
+            <li><a href="#使用-1">使用</a></li>
+          </ul>
+        </li>
+        <li><a href="#tscancode">Tscancode</a>
+          <ul>
+            <li><a href="#安装-2">安装</a></li>
+            <li><a href="#使用-2">使用</a></li>
+          </ul>
+        </li>
       </ul>
     </li>
-    <li><a href="#tscancode">Tscancode</a>
+    <li><a href="#文档自动生成工具--doxygen">文档自动生成工具  doxygen</a>
       <ul>
-        <li><a href="#安装-2">安装</a></li>
-        <li><a href="#使用-2">使用</a></li>
+        <li><a href="#安装-3">安装</a>
+          <ul>
+            <li><a href="#常用配置">常用配置</a></li>
+            <li><a href="#根据配置生成doxygen文档">根据配置生成doxygen文档</a></li>
+          </ul>
+        </li>
+        <li><a href="#vscode--自动生成-doxygen-注释">vscode  自动生成 Doxygen 注释</a>
+          <ul>
+            <li><a href="#下载">下载</a></li>
+            <li><a href="#配置文件">配置文件</a></li>
+            <li><a href="#使用-3">使用</a></li>
+          </ul>
+        </li>
       </ul>
     </li>
-  </ul>
-
-  <ul>
-    <li><a href="#安装-3">安装</a>
+    <li><a href="#建议安装的插件及配置">建议安装的插件及配置</a>
       <ul>
-        <li><a href="#常用配置">常用配置</a></li>
-        <li><a href="#根据配置生成doxygen文档">根据配置生成doxygen文档</a></li>
+        <li><a href="#code-spell-checker">Code Spell Checker</a></li>
       </ul>
     </li>
-    <li><a href="#vscode--自动生成-doxygen-注释">vscode  自动生成 Doxygen 注释</a>
+    <li><a href="#其他配置">其他配置</a>
       <ul>
-        <li><a href="#下载">下载</a></li>
-        <li><a href="#配置文件">配置文件</a></li>
-        <li><a href="#使用-3">使用</a></li>
+        <li><a href="#保存去除行尾字符">保存去除行尾字符</a></li>
+        <li><a href="#保存文件在文件末尾插入最终行">保存文件在文件末尾插入最终行</a></li>
       </ul>
     </li>
-  </ul>
-
-  <ul>
-    <li><a href="#code-spell-checker">Code Spell Checker</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#保存去除行尾字符">保存去除行尾字符</a></li>
-    <li><a href="#保存文件在文件末尾插入最终行">保存文件在文件末尾插入最终行</a></li>
   </ul>
 </nav></div>
             </div><div class="content" id="content"><!-- raw HTML omitted -->
@@ -246,11 +255,21 @@
 <p><a href="https://clang.llvm.org/docs/ClangFormat.html" target="_blank" rel="noopener noreffer ">官方文档</a></p>
 <p><a href="https://clang.llvm.org/docs/ClangFormatStyleOptions.html" target="_blank" rel="noopener noreffer ">其配置文件的官方文档</a></p>
 <h2 id="安装">安装</h2>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 安装</span>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-1">1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-2">2</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-3">3</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-4">4</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 安装</span>
 </span></span><span style="display:flex;"><span>sudo apt install clang-format
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># 查看版本</span>
 </span></span><span style="display:flex;"><span>clang-format --version
-</span></span></code></pre></div><h2 id="使用">使用</h2>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="使用">使用</h2>
 <h3 id="使用vscode-手动格式化">使用vscode 手动格式化</h3>
 <ul>
 <li>
@@ -277,8 +296,15 @@
 </ul>
 <h3 id="git-自动格式化提交文件">git 自动格式化提交文件</h3>
 <p>git pre-commit 在提交代码的时候对变动的文件进行格式化, 将 <a href="" rel="">pre-commit</a> 拷贝到 git/hooks 目录下</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cp ./pre-commit ../../.git/hooks/
-</span></span></code></pre></div><p>此后git在提交的时候会进行自动格式化。</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-1">1</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cp ./pre-commit ../../.git/hooks/
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>此后git在提交的时候会进行自动格式化。</p>
 <h3 id="手动格式化">手动格式化</h3>
 <ul>
 <li>使用 clang-format 命令</li>
@@ -293,22 +319,48 @@ clang-format -i xxx.cpp # 使用工程默认
 <li>使用脚本格式化以有文件</li>
 </ul>
 <p>现有代码可能格式不一致，可以使用提供的脚本进行统一格式化做单次提交到服务器。可以使用 tools/format 文件夹下 format.sh 对文件夹内文件递归进行格式化。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>./format.sh  /home/didi/work/http/src/http
-</span></span></code></pre></div><h1 id="静态扫描工具">静态扫描工具</h1>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-1">1</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>./format.sh  /home/didi/work/http/src/http
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="静态扫描工具">静态扫描工具</h1>
 <h2 id="cppcheck">cppcheck</h2>
 <p>CppCheck是一个C/C++代码缺陷静态检查工具。不同于C/C++编译器及其它分析工具，CppCheck只检查编译器检查不出来的bug，不检查语法错误。所谓静态代码检查就是使用一个工具检查我们写的代码是否安全和健壮，是否有隐藏的问题</p>
 <p>源码下载地址：<a href="https://github.com/danmar/cppcheck/releases" target="_blank" rel="noopener noreffer ">cppcheck </a></p>
 <h3 id="安装-1">安装</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 安装</span>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-1">1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-2">2</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-3">3</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-4">4</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-5">5</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-6">6</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 安装</span>
 </span></span><span style="display:flex;"><span>sudo apt-get install cppcheck
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># 查看版本</span>
 </span></span><span style="display:flex;"><span>cppcheck --version
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># Cppcheck 1.82 c++11 最好使用1.8 异常版本，如果apt 	安装非最新版本可以下载源码安装</span>
-</span></span></code></pre></div><h3 id="使用-1">使用</h3>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="使用-1">使用</h3>
 <p><a href="https://www.cnblogs.com/shanyu20/p/11238109.html" target="_blank" rel="noopener noreffer ">使用参考</a></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cppcheck xxx/ --enable<span style="color:#f92672">=</span>all --output-file<span style="color:#f92672">=</span>./xxxx.txt
-</span></span></code></pre></div><h2 id="tscancode">Tscancode</h2>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-1">1</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cppcheck xxx/ --enable<span style="color:#f92672">=</span>all --output-file<span style="color:#f92672">=</span>./xxxx.txt
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="tscancode">Tscancode</h2>
 <p>TscanCode是一款腾讯开源的静态代码扫描工具，TscanCode旨在助力开发与测试人员从代码层面挖掘问题，将那些长期困扰项目的诸如空指针宕机等问题，扼杀于萌芽阶段。支持用户根据不同需求自定义配置检查项，有极强的扩展性和可维护性。平均扫描速度10W行/分钟。</p>
 <p>TscanCode支持以下类型规则扫描：</p>
 <ol>
@@ -325,21 +377,102 @@ clang-format -i xxx.cpp # 使用工程默认
 <h3 id="使用-2">使用</h3>
 <p>工具
 <a href="https://www.jianshu.com/p/f99d9a5d25ac" target="_blank" rel="noopener noreffer ">使用参考</a></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>./tscancode --xml --enable<span style="color:#f92672">=</span>all -q ../../../src/ &gt;scan_result.xml 2&gt;&amp;<span style="color:#ae81ff">1</span>
-</span></span></code></pre></div><p><strong>说明</strong> ： 工程里集成了脚本和生成的文件 见 ： tools/codescan/ 路径</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-1">1</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>./tscancode --xml --enable<span style="color:#f92672">=</span>all -q ../../../src/ &gt;scan_result.xml 2&gt;&amp;<span style="color:#ae81ff">1</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>说明</strong> ： 工程里集成了脚本和生成的文件 见 ： tools/codescan/ 路径</p>
 <h1 id="文档自动生成工具--doxygen">文档自动生成工具  doxygen</h1>
 <h2 id="安装-3">安装</h2>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>安装doxygen—&gt; 安装Graphviz—&gt;生成doxygen配置文件—&gt;修改doxygen配置文件—&gt;生成doxygen文档
-</span></span></code></pre></div><p>安装doxygen</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo apt-get install doxygen
-</span></span></code></pre></div><p>安装Graphviz</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo apt-get install graphviz
-</span></span></code></pre></div><p>生成doxygen配置文件</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>doxygen -s -g
-</span></span></code></pre></div><p>注释：上述s 和 g 分别表示simple和generate</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-1">1</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>安装doxygen—&gt; 安装Graphviz—&gt;生成doxygen配置文件—&gt;修改doxygen配置文件—&gt;生成doxygen文档
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>安装doxygen</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-1">1</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo apt-get install doxygen
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>安装Graphviz</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-1">1</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo apt-get install graphviz
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>生成doxygen配置文件</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-9-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-9-1">1</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>doxygen -s -g
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>注释：上述s 和 g 分别表示simple和generate</p>
 <h3 id="常用配置">常用配置</h3>
 <p>常用选项如下：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 项目名称，将作为于所生成的程序文档首页标题</span>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-1"> 1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-2"> 2</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-3"> 3</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-4"> 4</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-5"> 5</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-6"> 6</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-7"> 7</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-8"> 8</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-9"> 9</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-10"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-10">10</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-11"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-11">11</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-12"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-12">12</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-13"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-13">13</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-14"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-14">14</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-15"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-15">15</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-16"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-16">16</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-17"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-17">17</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-18"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-18">18</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-19"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-19">19</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-20"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-20">20</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-21"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-21">21</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-22"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-22">22</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-23"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-23">23</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-24"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-24">24</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-25"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-25">25</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-26"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-26">26</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-27"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-27">27</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-28"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-28">28</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-29"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-29">29</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-30"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-30">30</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-31"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-31">31</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-32"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-32">32</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-33"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-33">33</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-34"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-34">34</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-35"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-35">35</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-36"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-36">36</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-37"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-37">37</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-38"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-38">38</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-39"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-39">39</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-40"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-40">40</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-41"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-41">41</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-42"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-42">42</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 项目名称，将作为于所生成的程序文档首页标题</span>
 </span></span><span style="display:flex;"><span>PROJECT_NAME        <span style="color:#f92672">=</span> “Test”
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># 文档版本号，可对应于项目版本号，譬如 svn、cvs 所生成的项目版本号</span>
 </span></span><span style="display:flex;"><span>PROJECT_NUMBER      <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;1.0.0
@@ -381,9 +514,18 @@ clang-format -i xxx.cpp # 使用工程默认
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">SOURCE BROWSER        = YES
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74"></span>$<span style="color:#e6db74">这会在HTML文档中，添加一个侧边栏，并以树状结构显示包、类、接口等的关系
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">GENERATE TREEVIEW      ＝ ALL
-</span></span></span></code></pre></div><h3 id="根据配置生成doxygen文档">根据配置生成doxygen文档</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>doxygen Doxyfile
-</span></span></code></pre></div><p>效果</p>
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="根据配置生成doxygen文档">根据配置生成doxygen文档</h3>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-11-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-11-1">1</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>doxygen Doxyfile
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>效果</p>
 <ul>
 <li>文件</li>
 </ul>
@@ -422,7 +564,47 @@ clang-format -i xxx.cpp # 使用工程默认
 <p>vscode 下载插件 ：Generate Doxygen Comments</p>
 <h3 id="配置文件">配置文件</h3>
 <p>安装插件后，File–Preferences–Settings&ndash; 中打开 用户 setting.json文件 ,增加如下内容 (配置可以根据自己需要修改):</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>    // Doxygen documentation generator set
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-1"> 1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-2"> 2</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-3"> 3</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-4"> 4</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-5"> 5</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-6"> 6</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-7"> 7</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-8"> 8</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-9"> 9</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-10"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-10">10</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-11"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-11">11</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-12"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-12">12</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-13"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-13">13</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-14"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-14">14</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-15"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-15">15</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-16"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-16">16</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-17"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-17">17</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-18"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-18">18</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-19"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-19">19</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-20"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-20">20</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-21"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-21">21</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-22"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-22">22</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-23"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-23">23</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-24"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-24">24</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-25"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-25">25</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-26"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-26">26</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-27"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-27">27</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-28"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-28">28</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-29"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-29">29</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-30"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-30">30</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-31"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-31">31</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-32"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-32">32</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-33"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-33">33</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-34"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-34">34</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-35"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-35">35</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-36"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-36">36</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>    // Doxygen documentation generator set
 </span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;doxdocgen.file.copyrightTag&#34;</span> : <span style="color:#f92672">[</span>
 </span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;@copyright Copyright (c) 2012-2021 Beijing Xiaoju Technology Co, Ltd.&#34;</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">]</span>,
@@ -458,7 +640,9 @@ clang-format -i xxx.cpp # 使用工程默认
 </span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;doxdocgen.generic.paramTemplate&#34;</span>: <span style="color:#e6db74">&#34;@param{indent:8}{param}{indent:25}My Param doc&#34;</span>,
 </span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;doxdocgen.generic.returnTemplate&#34;</span>: <span style="color:#e6db74">&#34;@return {type} &#34;</span>,
 </span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;doxdocgen.generic.splitCasingSmartText&#34;</span>: true,
-</span></span></code></pre></div><h3 id="使用-3">使用</h3>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="使用-3">使用</h3>
 <p><a href="https://www.cnblogs.com/silencehuan/p/11875958.html" target="_blank" rel="noopener noreffer ">Vs code自动生成Doxygen格式注释</a></p>
 <p>在文件 / 函数等 输入 <strong>/</strong>** 回车可自动生成注释</p>
 <h1 id="建议安装的插件及配置">建议安装的插件及配置</h1>

@@ -34,7 +34,7 @@
                             "url": "https:\/\/zhangyuhu.github.io\/images\/Apple-Devices-Preview.png",
                             "width":  3200 ,
                             "height":  2048 
-                        }],"genre": "posts","keywords": "opencv","wordcount":  2592 ,
+                        }],"genre": "posts","keywords": "opencv","wordcount":  2644 ,
         "url": "https:\/\/zhangyuhu.github.io\/posts\/open_source_software\/opencv\/learn\/opencv%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0\/","datePublished": "2023-01-16T17:52:52+08:00","dateModified": "2023-01-16T17:52:52+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -108,7 +108,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">opencv 常用函数</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://zhangyuhu.github.io/" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>zhangyuhu</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>开源软件</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-01-16">2023-01-16</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2592 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-01-16">2023-01-16</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2644 words&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;6 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
@@ -117,8 +117,19 @@
                 </div>
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
-    <li><a href="#convertto">convertTo</a></li>
-    <li><a href="#cvtcolor">cvtColor</a></li>
+    <li><a href="#资料">资料</a></li>
+    <li><a href="#convertto--cvtcolor">convertTo / cvtColor</a>
+      <ul>
+        <li><a href="#convertto">convertTo</a></li>
+        <li><a href="#cvtcolor">cvtColor</a></li>
+      </ul>
+    </li>
+    <li><a href="#setto">setTo</a></li>
+    <li><a href="#直方图均衡化">直方图均衡化</a></li>
+    <li><a href="#均值滤波blur">均值滤波blur</a></li>
+    <li><a href="#边缘检测sobel">边缘检测Sobel</a></li>
+    <li><a href="#笛卡尔坐标转极坐标carttopolar">笛卡尔坐标转极坐标cartToPolar</a></li>
+    <li><a href="#opencv中的阈值threshold函数">OpenCV中的阈值(threshold)函数</a></li>
   </ul>
 </nav></div>
             </div><div class="content" id="content"><blockquote>
@@ -151,7 +162,20 @@ convertTo()函数负责转换数据类型不同的Mat，即可以将类似float�
 cvtColor()函数是负责转换不同通道的Mat，因为该函数的第4个参数就可以设置目的Mat数据的通道数（只是我们一般没有用到它，一般情况下这个函数是用来进行色彩空间转换的）。</p>
 <h2 id="convertto">convertTo</h2>
 <p>图像的对比度和亮度的调整 : dst = alpha * src + beta （alpha控制对比度，beta控制亮度）</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#75715e">//! converts matrix to another datatype with optional scalng. See cvConvertScale.
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-1">1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-2">2</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-3">3</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-4">4</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-5">5</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-6">6</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-7">7</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-8">8</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-9">9</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#75715e">//! converts matrix to another datatype with optional scalng. See cvConvertScale.
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">convertTo</span>( OutputArray m, <span style="color:#66d9ef">int</span> rtype, <span style="color:#66d9ef">double</span> alpha<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>, <span style="color:#66d9ef">double</span> beta<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span> ) <span style="color:#66d9ef">const</span>;
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>
@@ -160,7 +184,9 @@ cvtColor()函数是负责转换不同通道的Mat，因为该函数的第4个参
 </span></span><span style="display:flex;"><span>samples.convertTo(tdata, CV_32FC1);
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>convertTo(depth_vis, CV_8UC1, <span style="color:#ae81ff">1.0</span> <span style="color:#f92672">/</span> <span style="color:#ae81ff">255</span>, <span style="color:#ae81ff">0</span>);
-</span></span></code></pre></div><pre><code>缩放并转换到另外一种数据类型：
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>缩放并转换到另外一种数据类型：
 dst：目的矩阵
 type：需要的输出矩阵类型，或者更明确的，是输出矩阵的深度，如果是负值（常用-1）则输出矩阵和输入矩阵类型相同
 scale和shift：缩放参数，也可以写为alpha和beta
@@ -171,7 +197,23 @@ m(x,y) = saturate_cast(α(*this)(x,y)+β)
 如果输入数组与输出数组的类型相同，则函数可以被用于缩放和平移矩阵或图像；  
 </code></pre>
 <h2 id="cvtcolor">cvtColor</h2>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span>cv.cvtColor(src, code[, dst[, dstCn]]
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-1"> 1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-2"> 2</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-3"> 3</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-4"> 4</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-5"> 5</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-6"> 6</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-7"> 7</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-8"> 8</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-9"> 9</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-10"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-10">10</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-11"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-11">11</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-12"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-12">12</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span>cv.cvtColor(src, code[, dst[, dstCn]]
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> cv<span style="color:#f92672">::</span>cvtColor	(	InputArray 	src,
 </span></span><span style="display:flex;"><span>                         OutputArray 	dst,
@@ -183,39 +225,82 @@ m(x,y) = saturate_cast(α(*this)(x,y)+β)
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>cv.cvtColor(img, cv.COLOR_BGR2GRAY)
 </span></span><span style="display:flex;"><span><span style="color:#75715e">//灰度图，转换成RGB图
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>cv<span style="color:#f92672">::</span>cvtColor(depth_vis, frame<span style="color:#f92672">-&gt;</span>vis_data, CV_GRAY2BGR);
-</span></span></code></pre></div><p>cvtColor RGB转成其他格式时，需要注意RGB图像的三个通道的顺序，是RGB还是BGR.大部分情况下opencv为RGB,但实际上是BGR,这一点需要注意。<br>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>cvtColor RGB转成其他格式时，需要注意RGB图像的三个通道的顺序，是RGB还是BGR.大部分情况下opencv为RGB,但实际上是BGR,这一点需要注意。<br>
 需要注意各个值的范围：</p>
 <pre><code>CV_8U图像 其通道值范围为0到255
 CV_16U时其值通道值范围为0到65535
 CV_32F时，其通道值范围为0到1
 </code></pre>
 <p>在线性转换时，其范围没有较大关系，但是如果是非线性转换，RGB图像需要做正确的归一化，以扩展到响应的范围。例如TGB-&gt;L<em>U</em>V转换，如果32位的浮点图像之间是由8位的图像转换而来，那么将0到255的范围转换成0,1，那么转换之前首先需要需要所需其图像。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span>img <span style="color:#f92672">*=</span> <span style="color:#ae81ff">1.</span><span style="color:#f92672">/</span><span style="color:#ae81ff">255</span>;
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-1">1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-2">2</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span>img <span style="color:#f92672">*=</span> <span style="color:#ae81ff">1.</span><span style="color:#f92672">/</span><span style="color:#ae81ff">255</span>;
 </span></span><span style="display:flex;"><span>cvtColor(img, img, COLOR_BGR2Luv);
-</span></span></code></pre></div><h1 id="setto">setTo</h1>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span>  <span style="color:#75715e">/** @brief Sets all or some of the array elements to the specified value.
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="setto">setTo</h1>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-1">1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-2">2</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-3">3</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-4">4</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-5">5</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-6">6</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-7">7</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span>  <span style="color:#75715e">/** @brief Sets all or some of the array elements to the specified value.
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e">    This is an advanced variant of the Mat::operator=(const Scalar&amp; s) operator.
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e">    @param value Assigned scalar converted to the actual array type.
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e">    @param mask Operation mask of the same size as \*this. Its non-zero elements indicate which matrix
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e">    elements need to be copied. The mask has to be of type CV_8U and can have 1 or multiple channels
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e">     */</span>
 </span></span><span style="display:flex;"><span>   Mat<span style="color:#f92672">&amp;</span> setTo(InputArray value, InputArray mask<span style="color:#f92672">=</span>noArray()); 
-</span></span></code></pre></div><p>说明：
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>说明：
 1、功能：把矩阵mask中元素不为0的点全部变为value值；<br>
 2、当默认不添加mask的时候，表明mask是一个与原图尺寸大小一致的且元素值全为非0的矩阵，因此不加mask的时候，会将原矩阵的像素值全部赋值为value；</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span>Mat <span style="color:#a6e22e">src</span>(<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">3</span>, CV_8UC1);
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-1">1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-2">2</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-3">3</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-4">4</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span>Mat <span style="color:#a6e22e">src</span>(<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">3</span>, CV_8UC1);
 </span></span><span style="display:flex;"><span>Mat <span style="color:#a6e22e">mask</span>(<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">3</span>, CV_8UC1, Scalar(<span style="color:#ae81ff">0</span>));
 </span></span><span style="display:flex;"><span>src.setTo(<span style="color:#ae81ff">100</span>, mask);
 </span></span><span style="display:flex;"><span>cout <span style="color:#f92672">&lt;&lt;</span> src <span style="color:#f92672">&lt;&lt;</span> endl; 
-</span></span></code></pre></div><pre><code>[  0,   0,   0;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>[  0,   0,   0;
 0,   0,   0;
 0,   0,   0]
 </code></pre>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span>Mat <span style="color:#a6e22e">src</span>(<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">3</span>, CV_8UC1);
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-1">1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-2">2</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-3">3</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-4">4</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span>Mat <span style="color:#a6e22e">src</span>(<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">3</span>, CV_8UC1);
 </span></span><span style="display:flex;"><span>Mat <span style="color:#a6e22e">mask</span>(<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">3</span>, CV_8UC1, Scalar(<span style="color:#ae81ff">5</span>));
 </span></span><span style="display:flex;"><span>src.setTo(<span style="color:#ae81ff">100</span>, mask);
 </span></span><span style="display:flex;"><span>cout <span style="color:#f92672">&lt;&lt;</span> src <span style="color:#f92672">&lt;&lt;</span> endl;
-</span></span></code></pre></div><pre><code>[100, 100, 100;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>[100, 100, 100;
 100, 100, 100;
 100, 100, 100]
 </code></pre>
@@ -223,8 +308,15 @@ CV_32F时，其通道值范围为0到1
 <h1 id="均值滤波blur">均值滤波blur</h1>
 <p>均值滤波是一种典型的线性滤波算法，主要是利用像素点邻域的像素值来计算像素点的值。其具体方法是首先给出一个滤波模板kernel，该模板将覆盖像素点周围的其他邻域像素点，去掉像素本身，将其邻域像素点相加然后取平均值即为该像素点的新的像素值，这就是均值滤波的本质。</p>
 <p>opencv提供了blur函数实现均值滤波操作，其原型如下：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> blur(InputArray src, OutputArray dst, Size ksize, Point anchor<span style="color:#f92672">=</span>Point(<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>), <span style="color:#66d9ef">int</span> borderType<span style="color:#f92672">=</span>BORDER_DEFAULT )
-</span></span></code></pre></div><p>参数解释：</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-1">1</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> blur(InputArray src, OutputArray dst, Size ksize, Point anchor<span style="color:#f92672">=</span>Point(<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>), <span style="color:#66d9ef">int</span> borderType<span style="color:#f92672">=</span>BORDER_DEFAULT )
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>参数解释：</p>
 <blockquote>
 <p>. InputArray src: 输入图像，可以是Mat类型，图像深度是CV_8U、CV_16U、CV_16S、CV_32F以及CV_64F其中的某一个。
 . OutputArray dst: 输出图像，深度和类型与输入图像一致
@@ -234,8 +326,15 @@ CV_32F时，其通道值范围为0到1
 </blockquote>
 <h1 id="边缘检测sobel">边缘检测Sobel</h1>
 <p>检测边缘:以灰度图像为例，它的理论基础是这样的:如果出现一个边缘，那么图像的灰度就会有一定的变化。为了方便假设由黑渐变为白代表一个边界，那么对其灰度分析，在边缘的灰度函数就是一个一次函数y=kx，对其求一阶导数就是其斜率k，就是说边缘的一阶导数是一个常数，而由于非边缘的一阶导数为零，这样通过求一阶导数就能初步判断图像的边缘了。通常是X方向和Y方向的导数，也就是梯度。计算机就是通过这种方式来获得图像的边缘。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span> <span style="color:#66d9ef">void</span>  <span style="color:#a6e22e">cvSobel</span>( <span style="color:#66d9ef">const</span> CvArr<span style="color:#f92672">*</span> src, CvArr<span style="color:#f92672">*</span> dst, <span style="color:#66d9ef">int</span> xorder, <span style="color:#66d9ef">int</span> yorder, intaperture_size<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span> );
-</span></span></code></pre></div><blockquote>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-1">1</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span> <span style="color:#66d9ef">void</span>  <span style="color:#a6e22e">cvSobel</span>( <span style="color:#66d9ef">const</span> CvArr<span style="color:#f92672">*</span> src, CvArr<span style="color:#f92672">*</span> dst, <span style="color:#66d9ef">int</span> xorder, <span style="color:#66d9ef">int</span> yorder, intaperture_size<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span> );
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
 <p>src：输入图像；
 dst：输出图像；
 xorder：x方向上的差分阶数；
@@ -244,21 +343,45 @@ aperture_size扩展Sobel核的大小（既窗口阶数），必须是1（注意�
 </blockquote>
 <h1 id="笛卡尔坐标转极坐标carttopolar">笛卡尔坐标转极坐标cartToPolar</h1>
 <p>直角坐标系转为极坐标系。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> cv<span style="color:#f92672">::</span>cartToPolar(
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-1">1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-2">2</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-3">3</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-4">4</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-5">5</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-6">6</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-7">7</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> cv<span style="color:#f92672">::</span>cartToPolar(
 </span></span><span style="display:flex;"><span>    cv<span style="color:#f92672">::</span>InputArray x,
 </span></span><span style="display:flex;"><span>    cv<span style="color:#f92672">::</span>InputArray y,
 </span></span><span style="display:flex;"><span>    cv<span style="color:#f92672">::</span>OutputArray magnitude,
 </span></span><span style="display:flex;"><span>    cv<span style="color:#f92672">::</span>OutputArray angle,
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">bool</span> angleInDegrees <span style="color:#f92672">=</span> false
 </span></span><span style="display:flex;"><span>);
-</span></span></code></pre></div><h1 id="opencv中的阈值threshold函数">OpenCV中的阈值(threshold)函数</h1>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="opencv中的阈值threshold函数">OpenCV中的阈值(threshold)函数</h1>
 <p>OpenCV中提供了阈值化函数threshold，该函数原型如下：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">double</span> <span style="color:#a6e22e">threshold</span>(InputArray src,
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-9-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-9-1">1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-9-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-9-2">2</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-9-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-9-3">3</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-9-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-9-4">4</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-9-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-9-5">5</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">double</span> <span style="color:#a6e22e">threshold</span>(InputArray src,
 </span></span><span style="display:flex;"><span>                 OutputArray dst,
 </span></span><span style="display:flex;"><span>                 <span style="color:#66d9ef">double</span> thresh,
 </span></span><span style="display:flex;"><span>                 <span style="color:#66d9ef">double</span> maxval,
 </span></span><span style="display:flex;"><span>                 <span style="color:#66d9ef">int</span> type);
-</span></span></code></pre></div><p>参数说明：</p>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>参数说明：</p>
 <p>src ： 表示输入图像</p>
 <p>dst : 表示输出图像（尺寸和类型和输入图像一样）</p>
 <p>thresh : 表示阈值</p>
