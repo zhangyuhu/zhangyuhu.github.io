@@ -34,7 +34,7 @@
                             "url": "https:\/\/zhangyuhu.github.io\/images\/Apple-Devices-Preview.png",
                             "width":  3200 ,
                             "height":  2048 
-                        }],"genre": "posts","keywords": "bash","wordcount":  5856 ,
+                        }],"genre": "posts","keywords": "bash","wordcount":  5944 ,
         "url": "https:\/\/zhangyuhu.github.io\/posts\/program\/bash\/bash_note_02\/","datePublished": "2023-01-15T17:52:52+08:00","dateModified": "2023-01-18T13:11:00+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -51,7 +51,7 @@
             <a href="/" title="这是我的网站"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-1" class="typeit"></span></a>
         </div>
         <div class="menu">
-            <div class="menu-inner"><a class="menu-item" href="/posts/" title="文章"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+            <div class="menu-inner"><a class="menu-item" href="/posts/" title="文章"><i class='fas fa-archive fa-fw fa-sm'></i> 文章 </a><a class="menu-item" href="/tags/"><i class='fas fa-tags fa-fw fa-sm'></i> 标签 </a><a class="menu-item" href="/categories/"><i class='fas fa-th fa-fw fa-sm'></i> 分类 </a><a class="menu-item" href="/about/"><i class='fas fa-user-tie fa-fw fa-sm'></i> 关于 </a><a class="menu-item" href="/tool/"><i class='fas fa-cube fa-fw fa-sm'></i> 工具箱 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
                         <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
                         <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
                             <i class="fas fa-search fa-fw" aria-hidden="true"></i>
@@ -93,7 +93,7 @@
                     <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
                         Cancel
                     </a>
-                </div><a class="menu-item" href="/posts/" title="文章">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/" title="">关于</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                </div><a class="menu-item" href="/posts/" title="文章"><i class='fas fa-archive fa-fw fa-sm'></i>文章</a><a class="menu-item" href="/tags/" title=""><i class='fas fa-tags fa-fw fa-sm'></i>标签</a><a class="menu-item" href="/categories/" title=""><i class='fas fa-th fa-fw fa-sm'></i>分类</a><a class="menu-item" href="/about/" title=""><i class='fas fa-user-tie fa-fw fa-sm'></i>关于</a><a class="menu-item" href="/tool/" title=""><i class='fas fa-cube fa-fw fa-sm'></i>工具箱</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
                 <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
             </a></div>
     </div>
@@ -108,7 +108,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">bash 编程笔记 (二)</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://zhangyuhu.github.io/" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>zhangyuhu</a></span>&nbsp;<span class="post-category">included in <a href="/categories/bash/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>bash</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-01-15">2023-01-15</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;5856 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-01-15">2023-01-15</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;5944 words&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;12 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
@@ -146,7 +146,7 @@
             </div><div class="content" id="content"><blockquote>
 <p>本文采用<a href="http://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreffer ">知识共享署名 4.0 国际许可协议</a>进行许可，转载时请注明原文链接，图片在使用时请保留全部内容，可适当缩放并在引用处附上图片所在的文章链接。</p>
 </blockquote>
-<!-- raw HTML omitted -->
+<!-- TOC -->
 <ul>
 <li><a href="#%E7%AC%AC%E4%B8%80%E9%83%A8%E5%88%86-awk%E5%B7%A5%E5%85%B7" rel="">第一部分 awk工具</a>
 <ul>
@@ -173,7 +173,7 @@
 </ul>
 </li>
 </ul>
-<!-- raw HTML omitted -->
+<!-- /TOC -->
 <blockquote>
 <p>本文主要通过实例对bash中需要用到的一些高级工具(如awk、sed、&hellip;)进行说明。</p>
 </blockquote>
@@ -185,7 +185,8 @@
 <h2 id="1-awk介绍">1. awk介绍</h2>
 <p>awk是一种用于处理文本的编程语言工具。awk本身就是linux下的一个工具，既可以单独使用，也可以嵌入到bash中。</p>
 <p>awk语言的最基本功能是在文件或字符串中基于指定规则浏览和抽取信息。 awk抽取信息后,才能进行其他文本操作。完整的 awk脚本通常用来格式化文本文件中的信息。</p>
-<!-- raw HTML omitted -->
+<br/>
+## 2. awk环境变量
 <table>
 <thead>
 <tr>
@@ -284,7 +285,8 @@
 </tr>
 </tbody>
 </table>
-<!-- raw HTML omitted -->
+<br/>
+## 3. awk条件操作符
 <table>
 <thead>
 <tr>
@@ -327,7 +329,8 @@
 </tr>
 </tbody>
 </table>
-<!-- raw HTML omitted -->
+<br/>
+## 4. awk字符串操作
 <table>
 <thead>
 <tr>
@@ -378,7 +381,8 @@
 </tr>
 </tbody>
 </table>
-<!-- raw HTML omitted -->
+<br/>
+## 5. 正则表达式中常用类
 <table>
 <thead>
 <tr>
@@ -413,7 +417,8 @@
 </tr>
 </tbody>
 </table>
-<!-- raw HTML omitted -->
+<br/>
+## 6 awk应用实例
 <p>首先建立一个123.txt，添加任意文本，然后进行以下练习。</p>
 <p>(01), 输出文件全部文本</p>
 <pre><code>$ awk '{print $0}' 123.txt
@@ -473,7 +478,8 @@ ORS：表示记录分割符，每条记录表示每行。ORS默认值为换行�
 <h2 id="1-sed介绍">1. sed介绍</h2>
 <p>sed是一个非交互性文本流编辑器。和awk一样，它是个独立的工具，当然也可以和bash联合使用。</p>
 <p>它可以随意编辑文件或标准输入,对它们进行编辑、删除。它能一次性处理所有改变,对用户来讲,十分高效。sed编辑文件或标准输入时，编辑的是它们的拷贝；也就是说，不会改变原始的文件。若需要保存修改，可以通过重定向操作符&raquo;、&raquo;&gt;,或者在利用sed的写入参数。</p>
-<!-- raw HTML omitted -->
+<br/>
+## 2. 基本格式
 <pre><code>sed [选项] 输入文件
 </code></pre>
 <p>-n 不打印;sed不写编辑行到标准输出,缺省为打印所有行(编辑和未编辑)。
@@ -481,7 +487,8 @@ ORS：表示记录分割符，每条记录表示每行。ORS默认值为换行�
 -c 下一命令是编辑命令。使用多项编辑时加入此选项。如果只用到一条 sed命令,此选项无用,但指定它也没有关系。
 -e 追加执行脚本
 -f 如果正在调用 sed脚本文件,使用此选项。</p>
-<!-- raw HTML omitted -->
+<br/>
+## 3. 使用sed在文件中定位文本的方式
 <table>
 <thead>
 <tr>
@@ -516,7 +523,8 @@ ORS：表示记录分割符，每条记录表示每行。ORS默认值为换行�
 </tr>
 </tbody>
 </table>
-<!-- raw HTML omitted -->
+<br/>
+## 4. sed编辑命令
 <table>
 <thead>
 <tr>
@@ -575,7 +583,8 @@ ORS：表示记录分割符，每条记录表示每行。ORS默认值为换行�
 </tr>
 </tbody>
 </table>
-<!-- raw HTML omitted -->
+<br/>
+## 5. 应用实例
 <p>首先建立一个123.txt，添加任意文本，然后进行以下练习。</p>
 <p>(01), 输出文件第5行</p>
 <pre><code>$ sed -n '5p' 123.txt

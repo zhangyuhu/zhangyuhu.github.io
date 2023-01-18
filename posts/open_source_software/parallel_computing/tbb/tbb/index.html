@@ -51,7 +51,7 @@
             <a href="/" title="这是我的网站"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-1" class="typeit"></span></a>
         </div>
         <div class="menu">
-            <div class="menu-inner"><a class="menu-item" href="/posts/" title="文章"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+            <div class="menu-inner"><a class="menu-item" href="/posts/" title="文章"><i class='fas fa-archive fa-fw fa-sm'></i> 文章 </a><a class="menu-item" href="/tags/"><i class='fas fa-tags fa-fw fa-sm'></i> 标签 </a><a class="menu-item" href="/categories/"><i class='fas fa-th fa-fw fa-sm'></i> 分类 </a><a class="menu-item" href="/about/"><i class='fas fa-user-tie fa-fw fa-sm'></i> 关于 </a><a class="menu-item" href="/tool/"><i class='fas fa-cube fa-fw fa-sm'></i> 工具箱 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
                         <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
                         <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
                             <i class="fas fa-search fa-fw" aria-hidden="true"></i>
@@ -93,7 +93,7 @@
                     <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
                         Cancel
                     </a>
-                </div><a class="menu-item" href="/posts/" title="文章">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/" title="">关于</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                </div><a class="menu-item" href="/posts/" title="文章"><i class='fas fa-archive fa-fw fa-sm'></i>文章</a><a class="menu-item" href="/tags/" title=""><i class='fas fa-tags fa-fw fa-sm'></i>标签</a><a class="menu-item" href="/categories/" title=""><i class='fas fa-th fa-fw fa-sm'></i>分类</a><a class="menu-item" href="/about/" title=""><i class='fas fa-user-tie fa-fw fa-sm'></i>关于</a><a class="menu-item" href="/tool/" title=""><i class='fas fa-cube fa-fw fa-sm'></i>工具箱</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
                 <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
             </a></div>
     </div>
@@ -150,7 +150,7 @@
     </li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><!-- raw HTML omitted -->
+            </div><div class="content" id="content"><!-- TOC -->
 <ul>
 <li><a href="#tbb-%e5%9f%ba%e7%a1%80" rel="">TBB 基础</a>
 <ul>
@@ -180,7 +180,7 @@
 </ul>
 </li>
 </ul>
-<!-- raw HTML omitted -->
+<!-- /TOC -->
 <h2 id="tbb-基础">TBB 基础</h2>
 <p>Intel Threading Building Blocks<br>
 <a href="https://spec.oneapi.com/versions/0.8/elements/oneTBB/source/nested-index.html" target="_blank" rel="noopener noreffer ">TBB API</a></p>
@@ -434,7 +434,7 @@ parallel_reduce必须对SumFoo::sum进行更新，以便后面执行join()时使
 3）join（）操作<br>
 当任何一个subtask执行完成时就会调用join()方法，该方法将subtask执行完的结果merge到main body中。<br>
 parallel_reduce执行流程如下图所示：</p>
-<!-- raw HTML omitted -->
+<div align=center><img src="image/tbb_join.png"/></div>
 <p>具体来说就是：当任务调度器发现有可供调度的工作线程时，parallel_reduce就调用代用split的构造函数为处理器创建一个子任务（Invoking the splitting constructor to create a subtask for the processor）；当子任务执行完成，parallel_reduce则调用join()方法累加子任务的结果。</p>
 <h4 id="parallel_while">parallel_while</h4>
 <p>有时不知道循环何时结束，即使用for的end未知，在这种情况下可以使用parallel_while。</p>

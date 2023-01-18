@@ -34,7 +34,7 @@
                             "url": "https:\/\/zhangyuhu.github.io\/images\/Apple-Devices-Preview.png",
                             "width":  3200 ,
                             "height":  2048 
-                        }],"genre": "posts","keywords": "ubuntu","wordcount":  2694 ,
+                        }],"genre": "posts","keywords": "ubuntu","wordcount":  2773 ,
         "url": "https:\/\/zhangyuhu.github.io\/posts\/tools\/sys_config\/ubuntu\/linuxconfig\/","datePublished": "2023-01-15T17:52:52+08:00","dateModified": "2023-01-18T13:11:00+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -51,7 +51,7 @@
             <a href="/" title="这是我的网站"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-1" class="typeit"></span></a>
         </div>
         <div class="menu">
-            <div class="menu-inner"><a class="menu-item" href="/posts/" title="文章"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/"> 关于 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+            <div class="menu-inner"><a class="menu-item" href="/posts/" title="文章"><i class='fas fa-archive fa-fw fa-sm'></i> 文章 </a><a class="menu-item" href="/tags/"><i class='fas fa-tags fa-fw fa-sm'></i> 标签 </a><a class="menu-item" href="/categories/"><i class='fas fa-th fa-fw fa-sm'></i> 分类 </a><a class="menu-item" href="/about/"><i class='fas fa-user-tie fa-fw fa-sm'></i> 关于 </a><a class="menu-item" href="/tool/"><i class='fas fa-cube fa-fw fa-sm'></i> 工具箱 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
                         <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
                         <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
                             <i class="fas fa-search fa-fw" aria-hidden="true"></i>
@@ -93,7 +93,7 @@
                     <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
                         Cancel
                     </a>
-                </div><a class="menu-item" href="/posts/" title="文章">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/" title="">关于</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                </div><a class="menu-item" href="/posts/" title="文章"><i class='fas fa-archive fa-fw fa-sm'></i>文章</a><a class="menu-item" href="/tags/" title=""><i class='fas fa-tags fa-fw fa-sm'></i>标签</a><a class="menu-item" href="/categories/" title=""><i class='fas fa-th fa-fw fa-sm'></i>分类</a><a class="menu-item" href="/about/" title=""><i class='fas fa-user-tie fa-fw fa-sm'></i>关于</a><a class="menu-item" href="/tool/" title=""><i class='fas fa-cube fa-fw fa-sm'></i>工具箱</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
                 <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
             </a></div>
     </div>
@@ -108,7 +108,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">ubuntu(linux)系统常用配置</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://zhangyuhu.github.io/" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>zhangyuhu</a></span>&nbsp;<span class="post-category">included in <a href="/categories/tools/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>tools</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-01-15">2023-01-15</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2694 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-01-15">2023-01-15</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2773 words&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;6 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
@@ -372,35 +372,75 @@
 </span></span><span style="display:flex;"><span>sudo gedit /etc/exports
 </span></span></code></pre></td></tr></table>
 </div>
-</div><pre tabindex="0"><code>/home/zyh/T3-libra *(rw,sync,no_root_squash,no_subtree_check)
-/home/zyh/DATA *(rw,sync,no_root_squash,no_subtree_check)
-/home/zyh/sensor_test *(rw,sync,no_root_squash,no_subtree_check)
-/mnt/DG/DATA/DATA/RGBD2 *(rw,sync,no_root_squash,no_subtree_check)
-/mnt/DG/DATA/DATA/RGBD *(rw,sync,no_root_squash,no_subtree_check)
-/mnt/DG/DATA/DATA/test_roi *(rw,sync,no_root_squash,no_subtree_check)
-/mnt/DG/WORK/2_code/4_T3R/rknn_demo *(rw,sync,no_root_squash,no_subtree_check)
-/mnt/DG/WORK/2_code/99_TEST/T3RHeadDetectTest *(rw,sync,no_root_squash,no_subtree_check)
-/mnt/DG/WORK/2_code/99_TEST/t3r_pressure_test *(rw,sync,no_root_squash,no_subtree_check)
-/mnt/DG/WORK/2_code/99_TEST/rockchip_mpp *(rw,sync,no_root_squash,no_subtree_check)
-/mnt/DG/WORK/2_code/99_TEST/mpp *(rw,sync,no_root_squash,no_subtree_check)
-/mnt/DG/WORK/2_code/4_T3R/libra_v3/release *(rw,sync,no_root_squash,no_subtree_check)
-/mnt/DG/DATA/T3R/encoder/image *(rw,sync,no_root_squash,no_subtree_check)
-/mnt/DG/WORK/2_code/4_T3R/HaomuF *(rw,sync,no_root_squash,no_subtree_check)
-/mnt/DG/WORK/2_code/9_other/StereoCamera *(rw,sync,no_root_squash,no_subtree_check)
-/mnt/DG/WORK/2_code/9_other/librealsense *(rw,sync,no_root_squash,no_subtree_check)
-/mnt/DG/ZYH/COMMON/Multimedia/rkmmp *(rw,sync,no_root_squash,no_subtree_check)
-
-/home/ubuntu/workspace/yuhuzhang/mpp  *(rw,sync,no_root_squash,no_subtree_check)
-
-# home
-/mnt/DATA/CODE/beagle-bone *(rw,sync,no_root_squash,no_subtree_check)
-mount -t nfs -o nolock 192.168.100.189:/mnt/DATA/CODE/beagle-bone
-</code></pre><pre tabindex="0"><code>sudo service nfs-kernel-server restart
-
-alias nfsstart=&#39;sudo service nfs-kernel-server restart&#39;
-vi ~/.bashrc
-source ~/.bashr
-</code></pre><p>T3</p>
+</div><div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-1"> 1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-2"> 2</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-3"> 3</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-4"> 4</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-5"> 5</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-6"> 6</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-7"> 7</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-8"> 8</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-9"> 9</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-10"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-10">10</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-11"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-11">11</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-12"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-12">12</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-13"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-13">13</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-14"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-14">14</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-15"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-15">15</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-16"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-16">16</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-17"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-17">17</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-18"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-18">18</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-19"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-19">19</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-20"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-20">20</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-21"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-21">21</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-22"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-22">22</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-23"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-23">23</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>/home/zyh/T3-libra *(rw,sync,no_root_squash,no_subtree_check)
+</span></span><span style="display:flex;"><span>/home/zyh/DATA *(rw,sync,no_root_squash,no_subtree_check)
+</span></span><span style="display:flex;"><span>/home/zyh/sensor_test *(rw,sync,no_root_squash,no_subtree_check)
+</span></span><span style="display:flex;"><span>/mnt/DG/DATA/DATA/RGBD2 *(rw,sync,no_root_squash,no_subtree_check)
+</span></span><span style="display:flex;"><span>/mnt/DG/DATA/DATA/RGBD *(rw,sync,no_root_squash,no_subtree_check)
+</span></span><span style="display:flex;"><span>/mnt/DG/DATA/DATA/test_roi *(rw,sync,no_root_squash,no_subtree_check)
+</span></span><span style="display:flex;"><span>/mnt/DG/WORK/2_code/4_T3R/rknn_demo *(rw,sync,no_root_squash,no_subtree_check)
+</span></span><span style="display:flex;"><span>/mnt/DG/WORK/2_code/99_TEST/T3RHeadDetectTest *(rw,sync,no_root_squash,no_subtree_check)
+</span></span><span style="display:flex;"><span>/mnt/DG/WORK/2_code/99_TEST/t3r_pressure_test *(rw,sync,no_root_squash,no_subtree_check)
+</span></span><span style="display:flex;"><span>/mnt/DG/WORK/2_code/99_TEST/rockchip_mpp *(rw,sync,no_root_squash,no_subtree_check)
+</span></span><span style="display:flex;"><span>/mnt/DG/WORK/2_code/99_TEST/mpp *(rw,sync,no_root_squash,no_subtree_check)
+</span></span><span style="display:flex;"><span>/mnt/DG/WORK/2_code/4_T3R/libra_v3/release *(rw,sync,no_root_squash,no_subtree_check)
+</span></span><span style="display:flex;"><span>/mnt/DG/DATA/T3R/encoder/image *(rw,sync,no_root_squash,no_subtree_check)
+</span></span><span style="display:flex;"><span>/mnt/DG/WORK/2_code/4_T3R/HaomuF *(rw,sync,no_root_squash,no_subtree_check)
+</span></span><span style="display:flex;"><span>/mnt/DG/WORK/2_code/9_other/StereoCamera *(rw,sync,no_root_squash,no_subtree_check)
+</span></span><span style="display:flex;"><span>/mnt/DG/WORK/2_code/9_other/librealsense *(rw,sync,no_root_squash,no_subtree_check)
+</span></span><span style="display:flex;"><span>/mnt/DG/ZYH/COMMON/Multimedia/rkmmp *(rw,sync,no_root_squash,no_subtree_check)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>/home/ubuntu/workspace/yuhuzhang/mpp  *(rw,sync,no_root_squash,no_subtree_check)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span># home
+</span></span><span style="display:flex;"><span>/mnt/DATA/CODE/beagle-bone *(rw,sync,no_root_squash,no_subtree_check)
+</span></span><span style="display:flex;"><span>mount -t nfs -o nolock 192.168.100.189:/mnt/DATA/CODE/beagle-bone
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-1">1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-2">2</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-3">3</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-4">4</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-5">5</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>sudo service nfs-kernel-server restart
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>alias nfsstart=&#39;sudo service nfs-kernel-server restart&#39;
+</span></span><span style="display:flex;"><span>vi ~/.bashrc
+</span></span><span style="display:flex;"><span>source ~/.bashr
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>T3</p>
 <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
 <pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-9-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-9-1"> 1</a>
@@ -535,24 +575,47 @@ source ~/.bashr
 </div>
 </div><h2 id="14-软链接">1.4. 软链接</h2>
 <h3 id="141-创建软链接">1.4.1. 创建软链接</h3>
-<pre tabindex="0"><code class="language-shll" data-lang="shll">
-# rk3399
-sudo ln -fs /mnt/DG/DATA/tool_chain/aarch64-buildroot-linux-gnu_rk3399-buildroot /usr/local/aarch64-rk3399-linux-toolchain-libra-v4
-
-# aarch64-himix100
-sudo ln -fs /mnt/DG/DATA/tool_chain/aarch64-buildroot-linux-gnu_sdk-buildroot /usr/local/aarch64-himix100-linux-toolchain-libra-v3
-
-# gnueabihf
-sudo ln -fs /mnt/DG/DATA/tool_chain/arm-buildroot-linux-gnueabihf_sdk-buildroot /usr/local/arm-linux-gnueabihf-toolchain-libra-v3
-
-# BeagleBone
-sudo ln -fs /mnt/DG/DATA/tool_chain/arm-buildroot-linux-gnueabihf_sdk-buildroot /usr/local/arm-linux-gnueabihf-toolchain
-
-# code
-sudo ln -fs /mnt/DG/WORK/2_code/1_T3/libra_v3 /home/zyh/T3-libra
-sudo ln -fs /mnt/DG/WORK/2_code/100_ZYH/COMMON/BeagleBone /home/zyh/BeagleBone
-sudo ln -fs /mnt/DG/WORK/2_code/99_TEST/libra_v3 /home/zyh/sensor_test
-</code></pre><h3 id="142-删除软链接">1.4.2. 删除软链接</h3>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-1"> 1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-2"> 2</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-3"> 3</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-4"> 4</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-5"> 5</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-6"> 6</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-7"> 7</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-8"> 8</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-9"> 9</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-10"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-10">10</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-11"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-11">11</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-12"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-12">12</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-13"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-13">13</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-14"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-14">14</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-15"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-15">15</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-16"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-16">16</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-17"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-17">17</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span># rk3399
+</span></span><span style="display:flex;"><span>sudo ln -fs /mnt/DG/DATA/tool_chain/aarch64-buildroot-linux-gnu_rk3399-buildroot /usr/local/aarch64-rk3399-linux-toolchain-libra-v4
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span># aarch64-himix100
+</span></span><span style="display:flex;"><span>sudo ln -fs /mnt/DG/DATA/tool_chain/aarch64-buildroot-linux-gnu_sdk-buildroot /usr/local/aarch64-himix100-linux-toolchain-libra-v3
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span># gnueabihf
+</span></span><span style="display:flex;"><span>sudo ln -fs /mnt/DG/DATA/tool_chain/arm-buildroot-linux-gnueabihf_sdk-buildroot /usr/local/arm-linux-gnueabihf-toolchain-libra-v3
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span># BeagleBone
+</span></span><span style="display:flex;"><span>sudo ln -fs /mnt/DG/DATA/tool_chain/arm-buildroot-linux-gnueabihf_sdk-buildroot /usr/local/arm-linux-gnueabihf-toolchain
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span># code
+</span></span><span style="display:flex;"><span>sudo ln -fs /mnt/DG/WORK/2_code/1_T3/libra_v3 /home/zyh/T3-libra
+</span></span><span style="display:flex;"><span>sudo ln -fs /mnt/DG/WORK/2_code/100_ZYH/COMMON/BeagleBone /home/zyh/BeagleBone
+</span></span><span style="display:flex;"><span>sudo ln -fs /mnt/DG/WORK/2_code/99_TEST/libra_v3 /home/zyh/sensor_test
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="142-删除软链接">1.4.2. 删除软链接</h3>
 <p>正确的是：rm -rf hb_link
 错误的是：rm -rf hb_link/ 这个会把整个目录都删了
 备注：想要删除链接文件要用以下命令 rm   /home/hb_link 只是少了一个“ / ” 删除的 就是链接文件, 也就是在文件的最后不要加上/</p>
@@ -619,12 +682,19 @@ sudo ln -fs /mnt/DG/WORK/2_code/99_TEST/libra_v3 /home/zyh/sensor_test
 </div><h2 id="17-ubuntu-显示字体大小设置">1.7. ubuntu 显示字体大小设置</h2>
 <p>终端命令：
 安装gnome-tweaks桌面配置工具;</p>
-<pre tabindex="0"><code>sudo apt install gnome-tweaks
-</code></pre><p>Alt+F2 在运行窗口输入 gnome-tweaks 命令，回车;
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-16-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-16-1">1</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>sudo apt install gnome-tweaks
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Alt+F2 在运行窗口输入 gnome-tweaks 命令，回车;
 打开的优化窗口中，字体一栏，调整缩放比例（如1.5则会放大）。</p>
 <h2 id="18-ubuntu-设置wifi-上网有线连接局域网设备">1.8. ubuntu 设置wifi 上网，有线连接局域网设备</h2>
 <p>配置有线网如下</p>
-<!-- raw HTML omitted -->
+<div align=center><img src="image/屏幕截图_26.png"/></div>
 <h2 id="19-快捷键">1.9. 快捷键</h2>
 <p>设置-&gt; 设备 -&gt; 键盘</p>
 <p><img
@@ -782,12 +852,23 @@ terminator配置文件 ：~/.config/terminator/config</p>
 </div>
 </div><h2 id="29-doublecmd">2.9. doublecmd</h2>
 <p>文件管理工具</p>
-<pre tabindex="0"><code>sudo add-apt-repository ppa:alexx2000/doublecmd
-sudo apt-get update
-sudo apt-get install doublecmd-gtk
-
-sudo apt-get remove doublecmd-*
-</code></pre><h2 id="210-gnome-tweaks">2.10. gnome-tweaks</h2>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-28-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-28-1">1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-28-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-28-2">2</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-28-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-28-3">3</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-28-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-28-4">4</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-28-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-28-5">5</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>sudo add-apt-repository ppa:alexx2000/doublecmd
+</span></span><span style="display:flex;"><span>sudo apt-get update
+</span></span><span style="display:flex;"><span>sudo apt-get install doublecmd-gtk
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>sudo apt-get remove doublecmd-*
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="210-gnome-tweaks">2.10. gnome-tweaks</h2>
 <p>unutu 桌面配置</p>
 <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
@@ -962,40 +1043,88 @@ sudo apt-get remove doublecmd-*
 </div><ol start="2">
 <li>删除wine等软件安装的自定义图标</li>
 </ol>
-<pre tabindex="0"><code>sudo nautilus ~/.local/share/applications
-</code></pre><h2 id="218-zsh-和-oh-my-sh">2.18. ZSH 和 oh-my-sh</h2>
-<pre tabindex="0"><code>
-# zsh
-sudo apt-get install zsh
-
-# oh-my-sh
-sh -c &#34;$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)&#34;
-
-# 设置默认终端
-chsh -s /bin/zsh root
-
-# 切换回bash也是相同的方法
-chsh -s /bin/bash root
-</code></pre><h2 id="219-clash">2.19. clash</h2>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-36-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-36-1">1</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>sudo nautilus ~/.local/share/applications
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="218-zsh-和-oh-my-sh">2.18. ZSH 和 oh-my-sh</h2>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-37-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-37-1"> 1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-37-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-37-2"> 2</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-37-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-37-3"> 3</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-37-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-37-4"> 4</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-37-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-37-5"> 5</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-37-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-37-6"> 6</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-37-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-37-7"> 7</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-37-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-37-8"> 8</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-37-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-37-9"> 9</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-37-10"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-37-10">10</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-37-11"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-37-11">11</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-37-12"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-37-12">12</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span># zsh
+</span></span><span style="display:flex;"><span>sudo apt-get install zsh
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span># oh-my-sh
+</span></span><span style="display:flex;"><span>sh -c &#34;$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)&#34;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span># 设置默认终端
+</span></span><span style="display:flex;"><span>chsh -s /bin/zsh root
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span># 切换回bash也是相同的方法
+</span></span><span style="display:flex;"><span>chsh -s /bin/bash root
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="219-clash">2.19. clash</h2>
 <p>参考 ：<a href="http://www.ptbird.cn/ubuntu-2004-clash-for-linux.html" target="_blank" rel="noopener noreffer ">ubuntu 20.04 配置使用 clash for linux</a></p>
 <ol>
 <li>
 <p>下载地址</p>
-<pre tabindex="0"><code>https://github.com/Dreamacro/clash
-wget -O clash.gz https://github.com/Dreamacro/clash/releases/download/v1.4.1/clash-linux-amd64-v1.4.1.gz
-</code></pre></li>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-38-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-38-1">1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-38-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-38-2">2</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>https://github.com/Dreamacro/clash
+</span></span><span style="display:flex;"><span>wget -O clash.gz https://github.com/Dreamacro/clash/releases/download/v1.4.1/clash-linux-amd64-v1.4.1.gz
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
 <li>
 <p>安装</p>
-<pre tabindex="0"><code>gzip -f clash.gz -d
-chmod +x clash
-
-cp clash /usr/bin
-
-vi .bashrc
-alias clash=&#39;sudo ./usr/bin/clash -d ~/.config/clash/&#39;
-
-./clash
-</code></pre></li>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-39-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-39-1">1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-39-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-39-2">2</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-39-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-39-3">3</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-39-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-39-4">4</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-39-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-39-5">5</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-39-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-39-6">6</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-39-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-39-7">7</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-39-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-39-8">8</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-39-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-39-9">9</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>gzip -f clash.gz -d
+</span></span><span style="display:flex;"><span>chmod +x clash
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>cp clash /usr/bin
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>vi .bashrc
+</span></span><span style="display:flex;"><span>alias clash=&#39;sudo ./usr/bin/clash -d ~/.config/clash/&#39;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>./clash
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
 <li>
 <p>配置</p>
 <ul>
@@ -1037,10 +1166,19 @@ alias clash=&#39;sudo ./usr/bin/clash -d ~/.config/clash/&#39;
 </ul>
 </li>
 </ul>
-<pre tabindex="0"><code># 7891 是clash 代理 socket 的端口
-git config --global http.proxy &#39;socks5://127.0.0.1:7891&#39;
-git config --global https.proxy &#39;socks5://127.0.0.1:7891&#39;
-</code></pre></li>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-40-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-40-1">1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-40-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-40-2">2</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-40-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-40-3">3</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span># 7891 是clash 代理 socket 的端口
+</span></span><span style="display:flex;"><span>git config --global http.proxy &#39;socks5://127.0.0.1:7891&#39;
+</span></span><span style="display:flex;"><span>git config --global https.proxy &#39;socks5://127.0.0.1:7891&#39;
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
 </ol>
 <h2 id="220-jq-工具">2.20. jq 工具</h2>
 <p><a href="https://stedolan.github.io/jq/" target="_blank" rel="noopener noreffer ">官网</a></p>
@@ -1100,8 +1238,15 @@ git config --global https.proxy &#39;socks5://127.0.0.1:7891&#39;
 <li>设置</li>
 </ol>
 <p>参考 ： <a href="https://gitlab.com/screenkey/screenkey#interactive-placement" target="_blank" rel="noopener noreffer ">https://gitlab.com/screenkey/screenkey#interactive-placement</a></p>
-<pre tabindex="0"><code>screenkey -p fixed -g 30%x10%+65%-10%
-</code></pre><h2 id="222-pycharm">2.22. pycharm</h2>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-44-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-44-1">1</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>screenkey -p fixed -g 30%x10%+65%-10%
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="222-pycharm">2.22. pycharm</h2>
 <ul>
 <li>
 <p>下载 ： <a href="https://www.jetbrains.com/pycharm/download/#section=linux" target="_blank" rel="noopener noreffer ">https://www.jetbrains.com/pycharm/download/#section=linux</a></p>
