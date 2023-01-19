@@ -34,7 +34,7 @@
                             "url": "https:\/\/zhangyuhu.github.io\/images\/Apple-Devices-Preview.png",
                             "width":  3200 ,
                             "height":  2048 
-                        }],"genre": "posts","keywords": "java, jni","wordcount":  2153 ,
+                        }],"genre": "posts","keywords": "java, jni","wordcount":  2145 ,
         "url": "https:\/\/zhangyuhu.github.io\/posts\/program\/java\/android%E5%BA%94%E7%94%A8%E4%B8%AD%E4%BD%BF%E7%94%A8c%E5%92%8Cc\u002b\u002b%E4%BB%A3%E7%A0%81\/","datePublished": "2023-01-15T17:52:52+08:00","dateModified": "2023-01-15T17:52:52+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -108,7 +108,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Android应用中使用C和C++代码</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://zhangyuhu.github.io/" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>zhangyuhu</a></span>&nbsp;<span class="post-category">included in <a href="/categories/java/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>java</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-01-15">2023-01-15</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2153 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-01-15">2023-01-15</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2145 words&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;5 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
@@ -123,14 +123,14 @@
       <ul>
         <li><a href="#1-静态库">1. 静态库</a>
           <ul>
-            <li><a href="#11-静态库编译流程">1.1. 静态库编译流程:</a></li>
-            <li><a href="#12-静态库使用">1.2. 静态库使用:</a></li>
+            <li><a href="#11-静态库编译流程">1.1. 静态库编译流程</a></li>
+            <li><a href="#12-静态库使用">1.2. 静态库使用</a></li>
           </ul>
         </li>
         <li><a href="#2-动态库">2. 动态库</a>
           <ul>
-            <li><a href="#21-动态库编译流程">2.1. 动态库编译流程:</a></li>
-            <li><a href="#22-动态库使用">2.2. 动态库使用:</a></li>
+            <li><a href="#21-动态库编译流程">2.1. 动态库编译流程</a></li>
+            <li><a href="#22-动态库使用">2.2. 动态库使用</a></li>
             <li><a href="#23-readelf工具">2.3. readelf工具</a></li>
           </ul>
         </li>
@@ -150,14 +150,14 @@
 <ul>
 <li><a href="#1-%e9%9d%99%e6%80%81%e5%ba%93" rel="">1. 静态库</a>
 <ul>
-<li><a href="#11-%e9%9d%99%e6%80%81%e5%ba%93%e7%bc%96%e8%af%91%e6%b5%81%e7%a8%8b" rel="">1.1. 静态库编译流程:</a></li>
-<li><a href="#12-%e9%9d%99%e6%80%81%e5%ba%93%e4%bd%bf%e7%94%a8" rel="">1.2. 静态库使用:</a></li>
+<li><a href="#11-%e9%9d%99%e6%80%81%e5%ba%93%e7%bc%96%e8%af%91%e6%b5%81%e7%a8%8b" rel="">1.1. 静态库编译流程</a></li>
+<li><a href="#12-%e9%9d%99%e6%80%81%e5%ba%93%e4%bd%bf%e7%94%a8" rel="">1.2. 静态库使用</a></li>
 </ul>
 </li>
 <li><a href="#2-%e5%8a%a8%e6%80%81%e5%ba%93" rel="">2. 动态库</a>
 <ul>
-<li><a href="#21-%e5%8a%a8%e6%80%81%e5%ba%93%e7%bc%96%e8%af%91%e6%b5%81%e7%a8%8b" rel="">2.1. 动态库编译流程:</a></li>
-<li><a href="#22-%e5%8a%a8%e6%80%81%e5%ba%93%e4%bd%bf%e7%94%a8" rel="">2.2. 动态库使用:</a></li>
+<li><a href="#21-%e5%8a%a8%e6%80%81%e5%ba%93%e7%bc%96%e8%af%91%e6%b5%81%e7%a8%8b" rel="">2.1. 动态库编译流程</a></li>
+<li><a href="#22-%e5%8a%a8%e6%80%81%e5%ba%93%e4%bd%bf%e7%94%a8" rel="">2.2. 动态库使用</a></li>
 <li><a href="#23-readelf%e5%b7%a5%e5%85%b7" rel="">2.3. readelf工具</a></li>
 </ul>
 </li>
@@ -241,8 +241,8 @@
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> (pEnv<span style="color:#f92672">-&gt;</span>ExceptionCheck()) <span style="color:#75715e">//这里异常判断一定要写
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>{
-</span></span><span style="display:flex;"><span>	pEnv<span style="color:#f92672">-&gt;</span>ExceptionDescribe();
-</span></span><span style="display:flex;"><span>	pEnv<span style="color:#f92672">-&gt;</span>ExceptionClear();<span style="color:#75715e">//如果出现异常,不清除,返回也会崩溃;
+</span></span><span style="display:flex;"><span> pEnv<span style="color:#f92672">-&gt;</span>ExceptionDescribe();
+</span></span><span style="display:flex;"><span> pEnv<span style="color:#f92672">-&gt;</span>ExceptionClear();<span style="color:#75715e">//如果出现异常,不清除,返回也会崩溃;
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">//这里就直接贴jni代码了, 详细在注释里说明;
@@ -283,7 +283,7 @@
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e">//参数1: jclass
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e">//参数2: 字段名
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e">//参数3: 字段类型记录
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	jfieldID mData <span style="color:#f92672">=</span> pEnv<span style="color:#f92672">-&gt;</span>GetFieldID(clsMainActivity, <span style="color:#e6db74">&#34;mData&#34;</span>, <span style="color:#e6db74">&#34;I&#34;</span>);
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span> jfieldID mData <span style="color:#f92672">=</span> pEnv<span style="color:#f92672">-&gt;</span>GetFieldID(clsMainActivity, <span style="color:#e6db74">&#34;mData&#34;</span>, <span style="color:#e6db74">&#34;I&#34;</span>);
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">//设置字段的值
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    pEnv<span style="color:#f92672">-&gt;</span>SetIntField(objMainActivity, mData, <span style="color:#ae81ff">2</span>);
@@ -348,7 +348,7 @@
 </div>
 </div><h1 id="ndk-动态和静态库">NDK-动态和静态库</h1>
 <h2 id="1-静态库">1. 静态库</h2>
-<h3 id="11-静态库编译流程">1.1. 静态库编译流程:</h3>
+<h3 id="11-静态库编译流程">1.1. 静态库编译流程</h3>
 <blockquote>
 <p>gcc&mdash;&mdash;&gt; obj 文件&mdash;-&gt;多个obj使用ar&mdash;&ndash;&gt;静态库文件</p>
 </blockquote>
@@ -367,10 +367,10 @@
 </span></span><span style="display:flex;"><span>AR  d libdemo.a mod3.o                    将mod3.o从libdemo.a中删除
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="12-静态库使用">1.2. 静态库使用:</h3>
+</div><h3 id="12-静态库使用">1.2. 静态库使用</h3>
 <p>代码中包含头文件, 在链接的时候使用libdemo.a链接即可;</p>
 <h2 id="2-动态库">2. 动态库</h2>
-<h3 id="21-动态库编译流程">2.1. 动态库编译流程:</h3>
+<h3 id="21-动态库编译流程">2.1. 动态库编译流程</h3>
 <blockquote>
 <p>gcc&mdash;&mdash;&gt; obj 文件&mdash;-&gt;多个obj使用gcc的 -shared&mdash;&ndash;&gt;so文件</p>
 </blockquote>
@@ -397,7 +397,7 @@
 </span></span><span style="display:flex;"><span>-g   生成Debug版
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="22-动态库使用">2.2. 动态库使用:</h3>
+</div><h3 id="22-动态库使用">2.2. 动态库使用</h3>
 <ol>
 <li>静态使用
 直接把So文件当作obj一起链接到文件, 文件中会存so信息, 在使用时会在目录中搜索so

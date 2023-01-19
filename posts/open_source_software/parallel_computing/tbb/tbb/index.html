@@ -18,7 +18,7 @@
 <meta name="application-name" content="我的网站">
 <meta name="apple-mobile-web-app-title" content="我的网站"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://zhangyuhu.github.io/posts/open_source_software/parallel_computing/tbb/tbb/" /><link rel="prev" href="https://zhangyuhu.github.io/posts/tools/android/android_studio/" /><link rel="next" href="https://zhangyuhu.github.io/posts/open_source_software/parallel_computing/ppl/ppl/" /><link rel="stylesheet" href="/css/style.min.61c0835a1733ac3f92b41b61b403dca9b8d4a3a7e4021c89af2c45a731f6343a82bc7fb214f4926e2c4669c8d258218b7da5d0e86d081ec97f3c1d823d48df2e.css" integrity="sha512-YcCDWhczrD+StBthtAPcqbjUo6fkAhyJryxFpzH2NDqCvH+yFPSSbixGacjSWCGLfaXQ6G0IHsl/PB2CPUjfLg=="><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://zhangyuhu.github.io/posts/open_source_software/parallel_computing/tbb/tbb/" /><link rel="prev" href="https://zhangyuhu.github.io/posts/tools/android/android_studio/" /><link rel="next" href="https://zhangyuhu.github.io/posts/open_source_software/threadpool/threadpool/" /><link rel="stylesheet" href="/css/style.min.61c0835a1733ac3f92b41b61b403dca9b8d4a3a7e4021c89af2c45a731f6343a82bc7fb214f4926e2c4669c8d258218b7da5d0e86d081ec97f3c1d823d48df2e.css" integrity="sha512-YcCDWhczrD+StBthtAPcqbjUo6fkAhyJryxFpzH2NDqCvH+yFPSSbixGacjSWCGLfaXQ6G0IHsl/PB2CPUjfLg=="><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
     {
@@ -34,7 +34,7 @@
                             "url": "https:\/\/zhangyuhu.github.io\/images\/Apple-Devices-Preview.png",
                             "width":  3200 ,
                             "height":  2048 
-                        }],"genre": "posts","keywords": "TBB","wordcount":  3713 ,
+                        }],"genre": "posts","keywords": "并行编程框架, TBB","wordcount":  3713 ,
         "url": "https:\/\/zhangyuhu.github.io\/posts\/open_source_software\/parallel_computing\/tbb\/tbb\/","datePublished": "2023-01-16T17:52:52+08:00","dateModified": "2023-01-18T13:11:00+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -434,7 +434,14 @@ parallel_reduce必须对SumFoo::sum进行更新，以便后面执行join()时使
 3）join（）操作<br>
 当任何一个subtask执行完成时就会调用join()方法，该方法将subtask执行完的结果merge到main body中。<br>
 parallel_reduce执行流程如下图所示：</p>
-<div align=center><img src="image/tbb_join.png"/></div>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202301181710868.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202301181710868.png, https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202301181710868.png 1.5x, https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202301181710868.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202301181710868.png"
+        title="img" /></p>
 <p>具体来说就是：当任务调度器发现有可供调度的工作线程时，parallel_reduce就调用代用split的构造函数为处理器创建一个子任务（Invoking the splitting constructor to create a subtask for the processor）；当子任务执行完成，parallel_reduce则调用join()方法累加子任务的结果。</p>
 <h4 id="parallel_while">parallel_while</h4>
 <p>有时不知道循环何时结束，即使用for的end未知，在这种情况下可以使用parallel_while。</p>
@@ -572,20 +579,20 @@ set_capacity（）指定队列大小，会使push操作被阻塞<br>
         <div class="post-info-line">
             <div class="post-info-md"></div>
             <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://zhangyuhu.github.io/posts/open_source_software/parallel_computing/tbb/tbb/" data-title="开源软件:并行编程框架TBB" data-hashtags="TBB"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://zhangyuhu.github.io/posts/open_source_software/parallel_computing/tbb/tbb/" data-hashtag="TBB"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://zhangyuhu.github.io/posts/open_source_software/parallel_computing/tbb/tbb/" data-title="开源软件:并行编程框架TBB"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://zhangyuhu.github.io/posts/open_source_software/parallel_computing/tbb/tbb/" data-title="开源软件:并行编程框架TBB"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://zhangyuhu.github.io/posts/open_source_software/parallel_computing/tbb/tbb/" data-title="开源软件:并行编程框架TBB" data-ralateuid="ji"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://zhangyuhu.github.io/posts/open_source_software/parallel_computing/tbb/tbb/" data-title="开源软件:并行编程框架TBB" data-hashtags="并行编程框架,TBB"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://zhangyuhu.github.io/posts/open_source_software/parallel_computing/tbb/tbb/" data-hashtag="并行编程框架"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://zhangyuhu.github.io/posts/open_source_software/parallel_computing/tbb/tbb/" data-title="开源软件:并行编程框架TBB"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://zhangyuhu.github.io/posts/open_source_software/parallel_computing/tbb/tbb/" data-title="开源软件:并行编程框架TBB"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://zhangyuhu.github.io/posts/open_source_software/parallel_computing/tbb/tbb/" data-title="开源软件:并行编程框架TBB" data-ralateuid="ji"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
             </div>
         </div>
     </div>
 
     <div class="post-info-more">
-        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/tbb/">TBB</a></section>
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/%E5%B9%B6%E8%A1%8C%E7%BC%96%E7%A8%8B%E6%A1%86%E6%9E%B6/">并行编程框架</a>,&nbsp;<a href="/tags/tbb/">TBB</a></section>
         <section>
             <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
         </section>
     </div>
 
     <div class="post-nav"><a href="/posts/tools/android/android_studio/" class="prev" rel="prev" title="android studio 安装使用"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>android studio 安装使用</a>
-            <a href="/posts/open_source_software/parallel_computing/ppl/ppl/" class="next" rel="next" title="开源软件:并行编程框架PPL">开源软件:并行编程框架PPL<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+            <a href="/posts/open_source_software/threadpool/threadpool/" class="next" rel="next" title="开源软件:ThreadPool C&#43;&#43; 线程池">开源软件:ThreadPool C++ 线程池<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
 </div>
 <div id="comments"><div id="giscus" class="comment"></div><noscript>
                 Please enable JavaScript to view the comments powered by <a href="https://giscus.app">Giscus</a>.
