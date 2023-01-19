@@ -34,7 +34,7 @@
                             "url": "https:\/\/zhangyuhu.github.io\/images\/Apple-Devices-Preview.png",
                             "width":  3200 ,
                             "height":  2048 
-                        }],"genre": "posts","keywords": "bash","wordcount":  7245 ,
+                        }],"genre": "posts","keywords": "bash","wordcount":  7244 ,
         "url": "https:\/\/zhangyuhu.github.io\/posts\/program\/bash\/bash_note_01\/","datePublished": "2023-01-15T17:52:52+08:00","dateModified": "2023-01-18T13:11:00+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -108,7 +108,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">bash 编程笔记 (一)</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://zhangyuhu.github.io/" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>zhangyuhu</a></span>&nbsp;<span class="post-category">included in <a href="/categories/bash/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>bash</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-01-15">2023-01-15</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;7245 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-01-15">2023-01-15</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;7244 words&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;15 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
@@ -195,75 +195,75 @@
 </blockquote>
 <!-- TOC -->
 <ul>
-<li><a href="#%E7%AC%AC%E4%B8%80%E9%83%A8%E5%88%86-bash%E7%AE%80%E4%BB%8B" rel="">第一部分 bash简介</a></li>
-<li><a href="#%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%88%86-bash%E7%A4%BA%E4%BE%8B%E5%92%8C%E4%B9%A6%E5%86%99%E6%B5%81%E7%A8%8B" rel="">第二部分 bash示例和书写流程</a></li>
-<li><a href="#%E7%AC%AC%E4%B8%89%E9%83%A8%E5%88%86-bash%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95" rel="">第三部分 bash基础语法</a>
+<li><a href="#%e7%ac%ac%e4%b8%80%e9%83%a8%e5%88%86-bash%e7%ae%80%e4%bb%8b" rel="">第一部分 bash简介</a></li>
+<li><a href="#%e7%ac%ac%e4%ba%8c%e9%83%a8%e5%88%86-bash%e7%a4%ba%e4%be%8b%e5%92%8c%e4%b9%a6%e5%86%99%e6%b5%81%e7%a8%8b" rel="">第二部分 bash示例和书写流程</a></li>
+<li><a href="#%e7%ac%ac%e4%b8%89%e9%83%a8%e5%88%86-bash%e5%9f%ba%e7%a1%80%e8%af%ad%e6%b3%95" rel="">第三部分 bash基础语法</a>
 <ul>
-<li><a href="#1-%E6%9D%A1%E4%BB%B6%E5%88%A4%E6%96%AD" rel="">1. 条件判断</a>
+<li><a href="#1-%e6%9d%a1%e4%bb%b6%e5%88%a4%e6%96%ad" rel="">1. 条件判断</a>
 <ul>
-<li><a href="#11-test%E5%88%A4%E6%96%AD%E8%AF%AD%E5%8F%A5" rel="">1.1. test判断语句</a></li>
-<li><a href="#12-%E6%9D%A1%E4%BB%B6%E5%88%A4%E6%96%AD" rel="">1.2. []条件判断</a></li>
-<li><a href="#13-%E6%B5%8B%E8%AF%95%E9%80%BB%E8%BE%91%E8%A1%A8%E8%BE%BE%E5%BC%8F" rel="">1.3. 测试逻辑表达式</a></li>
+<li><a href="#11-test%e5%88%a4%e6%96%ad%e8%af%ad%e5%8f%a5" rel="">1.1 test判断语句</a></li>
+<li><a href="#12-%e6%9d%a1%e4%bb%b6%e5%88%a4%e6%96%ad" rel="">1.2 []条件判断</a></li>
+<li><a href="#13-%e6%b5%8b%e8%af%95%e9%80%bb%e8%be%91%e8%a1%a8%e8%be%be%e5%bc%8f" rel="">1.3 测试逻辑表达式</a></li>
 </ul>
 </li>
-<li><a href="#2-if-then-else%E8%AF%AD%E5%8F%A5" rel="">2. if then else语句</a></li>
-<li><a href="#3-case%E8%AF%AD%E5%8F%A5" rel="">3. case语句</a></li>
-<li><a href="#4-for%E5%BE%AA%E7%8E%AF" rel="">4. for循环</a></li>
-<li><a href="#5-until%E5%BE%AA%E7%8E%AF" rel="">5. until循环</a></li>
-<li><a href="#6-while%E5%BE%AA%E7%8E%AF" rel="">6. while循环</a></li>
-<li><a href="#7-%E4%BD%BF%E7%94%A8break%E5%92%8Ccontinue%E6%8E%A7%E5%88%B6%E5%BE%AA%E7%8E%AF" rel="">7. 使用break和continue控制循环</a></li>
+<li><a href="#2-if-then-else%e8%af%ad%e5%8f%a5" rel="">2. if then else语句</a></li>
+<li><a href="#3-case%e8%af%ad%e5%8f%a5" rel="">3. case语句</a></li>
+<li><a href="#4-for%e5%be%aa%e7%8e%af" rel="">4. for循环</a></li>
+<li><a href="#5-until%e5%be%aa%e7%8e%af" rel="">5. until循环</a></li>
+<li><a href="#6-while%e5%be%aa%e7%8e%af" rel="">6. while循环</a></li>
+<li><a href="#7-%e4%bd%bf%e7%94%a8break%e5%92%8ccontinue%e6%8e%a7%e5%88%b6%e5%be%aa%e7%8e%af" rel="">7. 使用break和continue控制循环</a></li>
 </ul>
 </li>
-<li><a href="#%E7%AC%AC%E5%9B%9B%E9%83%A8%E5%88%86-bash%E6%95%B0%E7%BB%84" rel="">第四部分 bash数组</a>
+<li><a href="#%e7%ac%ac%e5%9b%9b%e9%83%a8%e5%88%86-bash%e6%95%b0%e7%bb%84" rel="">第四部分 bash数组</a>
 <ul>
-<li><a href="#1-%E6%95%B0%E7%BB%84%E5%AE%9A%E4%B9%89" rel="">1. 数组定义</a></li>
-<li><a href="#2-%E6%95%B0%E7%BB%84%E6%93%8D%E4%BD%9C" rel="">2. 数组操作</a></li>
+<li><a href="#1-%e6%95%b0%e7%bb%84%e5%ae%9a%e4%b9%89" rel="">1. 数组定义</a></li>
+<li><a href="#2-%e6%95%b0%e7%bb%84%e6%93%8d%e4%bd%9c" rel="">2. 数组操作</a></li>
 </ul>
 </li>
-<li><a href="#%E7%AC%AC%E4%BA%94%E9%83%A8%E5%88%86-%E5%87%BD%E6%95%B0" rel="">第五部分 函数</a>
+<li><a href="#%e7%ac%ac%e4%ba%94%e9%83%a8%e5%88%86-%e5%87%bd%e6%95%b0" rel="">第五部分 函数</a>
 <ul>
-<li><a href="#1-%E5%87%BD%E6%95%B0%E5%AE%9A%E4%B9%89" rel="">1. 函数定义</a></li>
-<li><a href="#2-%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8%E5%92%8C%E4%BC%A0%E5%8F%82" rel="">2. 函数调用和传参</a></li>
-<li><a href="#3-%E5%87%BD%E6%95%B0%E8%BF%94%E5%9B%9E%E5%80%BC" rel="">3. 函数返回值</a></li>
-<li><a href="#4-%E5%BA%94%E7%94%A8%E5%AE%9E%E4%BE%8B" rel="">4. 应用实例</a></li>
+<li><a href="#1-%e5%87%bd%e6%95%b0%e5%ae%9a%e4%b9%89" rel="">1. 函数定义</a></li>
+<li><a href="#2-%e5%87%bd%e6%95%b0%e8%b0%83%e7%94%a8%e5%92%8c%e4%bc%a0%e5%8f%82" rel="">2. 函数调用和传参</a></li>
+<li><a href="#3-%e5%87%bd%e6%95%b0%e8%bf%94%e5%9b%9e%e5%80%bc" rel="">3. 函数返回值</a></li>
+<li><a href="#4-%e5%ba%94%e7%94%a8%e5%ae%9e%e4%be%8b" rel="">4. 应用实例</a></li>
 </ul>
 </li>
-<li><a href="#%E7%AC%AC%E5%85%AD%E9%83%A8%E5%88%86-%E6%95%B0%E5%80%BC%E8%BF%90%E7%AE%97" rel="">第六部分 数值运算</a>
+<li><a href="#%e7%ac%ac%e5%85%ad%e9%83%a8%e5%88%86-%e6%95%b0%e5%80%bc%e8%bf%90%e7%ae%97" rel="">第六部分 数值运算</a>
 <ul>
-<li><a href="#1-%E5%BA%94%E7%94%A8%E5%AE%9E%E4%BE%8B%E4%B8%80%E5%88%86%E5%88%AB%E7%94%A8%E4%B8%8A%E9%9D%A2%E5%9B%9B%E7%A7%8D%E6%96%B9%E5%BC%8F%E5%AE%9E%E7%8E%B0352" rel="">1. 应用实例一：分别用上面四种方式实现&quot;3*5+2&quot;。</a></li>
-<li><a href="#2-%E5%BA%94%E7%94%A8%E5%AE%9E%E4%BE%8B%E4%BA%8C%E5%88%86%E5%88%AB%E5%8B%87%E4%B8%8A%E9%9D%A2%E5%9B%9B%E7%A7%8D%E6%96%B9%E5%BC%8F%E5%AE%9E%E7%8E%B0%E6%95%B0%E5%80%BC1" rel="">2. 应用实例二：分别勇上面四种方式实现“数值+1”。</a></li>
-<li><a href="#3-%E5%BA%94%E7%94%A8%E5%AE%9E%E4%BE%8B%E4%B8%89%E8%AE%A1%E7%AE%9713%E4%BF%9D%E7%95%993%E4%BD%8D%E5%B0%8F%E6%95%B0" rel="">3. 应用实例三：计算1/3,保留3位小数。</a></li>
+<li><a href="#%e5%ba%94%e7%94%a8%e5%ae%9e%e4%be%8b%e4%b8%80%e5%88%86%e5%88%ab%e7%94%a8%e4%b8%8a%e9%9d%a2%e5%9b%9b%e7%a7%8d%e6%96%b9%e5%bc%8f%e5%ae%9e%e7%8e%b0352" rel="">应用实例一：分别用上面四种方式实现&quot;3*(5+2)&quot;。</a></li>
+<li><a href="#%e5%ba%94%e7%94%a8%e5%ae%9e%e4%be%8b%e4%ba%8c%e5%88%86%e5%88%ab%e5%8b%87%e4%b8%8a%e9%9d%a2%e5%9b%9b%e7%a7%8d%e6%96%b9%e5%bc%8f%e5%ae%9e%e7%8e%b0%e6%95%b0%e5%80%bc1" rel="">应用实例二：分别勇上面四种方式实现“数值+1”。</a></li>
+<li><a href="#%e5%ba%94%e7%94%a8%e5%ae%9e%e4%be%8b%e4%b8%89%e8%ae%a1%e7%ae%9713%e4%bf%9d%e7%95%993%e4%bd%8d%e5%b0%8f%e6%95%b0" rel="">应用实例三：计算1/3,保留3位小数。</a></li>
 </ul>
 </li>
-<li><a href="#%E7%AC%AC%E4%B8%83%E9%83%A8%E5%88%86-%E5%AD%97%E7%AC%A6%E8%BF%90%E7%AE%97" rel="">第七部分 字符运算</a>
+<li><a href="#%e7%ac%ac%e4%b8%83%e9%83%a8%e5%88%86-%e5%ad%97%e7%ac%a6%e8%bf%90%e7%ae%97" rel="">第七部分 字符运算</a>
 <ul>
-<li><a href="#1-%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%AE%9A%E4%B9%89" rel="">1. 字符串定义</a></li>
-<li><a href="#2-%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%93%8D%E4%BD%9C" rel="">2. 字符串操作</a>
+<li><a href="#1-%e5%ad%97%e7%ac%a6%e4%b8%b2%e5%ae%9a%e4%b9%89" rel="">1. 字符串定义</a></li>
+<li><a href="#2-%e5%ad%97%e7%ac%a6%e4%b8%b2%e6%93%8d%e4%bd%9c" rel="">2. 字符串操作</a>
 <ul>
-<li><a href="#21-string%E6%93%8D%E4%BD%9C%E5%85%AC%E5%BC%8F%E8%A1%A8" rel="">2.1. string操作公式表</a></li>
-<li><a href="#22-%E5%BA%94%E7%94%A8%E5%AE%9E%E4%BE%8B" rel="">2.2. 应用实例</a></li>
+<li><a href="#21-string%e6%93%8d%e4%bd%9c%e5%85%ac%e5%bc%8f%e8%a1%a8" rel="">2.1 string操作公式表</a></li>
+<li><a href="#22-%e5%ba%94%e7%94%a8%e5%ae%9e%e4%be%8b" rel="">2.2 应用实例</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#%E7%AC%AC%E5%85%AB%E9%83%A8%E5%88%86-bash%E8%87%AA%E5%B8%A6%E5%8F%82%E6%95%B0" rel="">第八部分 bash自带参数</a></li>
-<li><a href="#%E7%AC%AC%E4%B9%9D%E9%83%A8%E5%88%86-bash%E8%B0%83%E8%AF%95" rel="">第九部分 bash调试</a>
+<li><a href="#%e7%ac%ac%e5%85%ab%e9%83%a8%e5%88%86-bash%e8%87%aa%e5%b8%a6%e5%8f%82%e6%95%b0" rel="">第八部分 bash自带参数</a></li>
+<li><a href="#%e7%ac%ac%e4%b9%9d%e9%83%a8%e5%88%86-bash%e8%b0%83%e8%af%95" rel="">第九部分 bash调试</a>
 <ul>
-<li><a href="#1-bash%E5%91%BD%E4%BB%A4%E8%B0%83%E8%AF%95" rel="">1. bash命令调试</a></li>
-<li><a href="#2-echo%E8%B0%83%E8%AF%95" rel="">2. echo调试</a></li>
+<li><a href="#1-bash%e5%91%bd%e4%bb%a4%e8%b0%83%e8%af%95" rel="">1. bash命令调试</a></li>
+<li><a href="#2-echo%e8%b0%83%e8%af%95" rel="">2. echo调试</a></li>
 <li><a href="#3-printf" rel="">3. printf</a></li>
 </ul>
 </li>
-<li><a href="#%E7%AC%AC%E5%8D%81%E9%83%A8%E5%88%86-bash%E6%B3%A8%E9%87%8A" rel="">第十部分 bash注释</a>
+<li><a href="#%e7%ac%ac%e5%8d%81%e9%83%a8%e5%88%86-bash%e6%b3%a8%e9%87%8a" rel="">第十部分 bash注释</a>
 <ul>
-<li><a href="#1-%E5%8D%95%E8%A1%8C%E6%B3%A8%E9%87%8A" rel="">1. 单行注释</a></li>
-<li><a href="#2-%E5%A4%9A%E8%A1%8C%E6%B3%A8%E9%87%8A" rel="">2. 多行注释</a></li>
+<li><a href="#1-%e5%8d%95%e8%a1%8c%e6%b3%a8%e9%87%8a" rel="">1. 单行注释</a></li>
+<li><a href="#2-%e5%a4%9a%e8%a1%8c%e6%b3%a8%e9%87%8a" rel="">2. 多行注释</a></li>
 </ul>
 </li>
-<li><a href="#%E7%AC%AC%E5%8D%81%E4%B8%80%E9%83%A8%E5%88%86-bash%E5%86%85%E5%BB%BA%E6%8C%87%E4%BB%A4" rel="">第十一部分 bash内建指令</a>
+<li><a href="#%e7%ac%ac%e5%8d%81%e4%b8%80%e9%83%a8%e5%88%86-bash%e5%86%85%e5%bb%ba%e6%8c%87%e4%bb%a4" rel="">第十一部分 bash内建指令</a>
 <ul>
-<li><a href="#1-%E5%86%85%E5%BB%BA%E5%91%BD%E4%BB%A4%E6%9F%A5%E7%9C%8B%E6%96%B9%E6%B3%95" rel="">1. 内建命令查看方法</a></li>
-<li><a href="#2-%E5%B8%B8%E7%94%A8%E5%86%85%E5%BB%BA%E5%91%BD%E4%BB%A4%E8%AF%B4%E6%98%8E" rel="">2. 常用内建命令说明</a></li>
+<li><a href="#1-%e5%86%85%e5%bb%ba%e5%91%bd%e4%bb%a4%e6%9f%a5%e7%9c%8b%e6%96%b9%e6%b3%95" rel="">1. 内建命令查看方法</a></li>
+<li><a href="#2-%e5%b8%b8%e7%94%a8%e5%86%85%e5%bb%ba%e5%91%bd%e4%bb%a4%e8%af%b4%e6%98%8e" rel="">2. 常用内建命令说明</a></li>
 </ul>
 </li>
 </ul>
