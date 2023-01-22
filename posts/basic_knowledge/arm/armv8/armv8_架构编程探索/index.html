@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>ARMv8 架构编程探索 - 这是我的网站</title><meta name="Description" content="ARMv8 架构编程探索"><meta property="og:title" content="ARMv8 架构编程探索" />
+<meta property="og:description" content="ARMv8 架构编程探索" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zhangyuhu.github.io/posts/basic_knowledge/arm/armv8/armv8_%E6%9E%B6%E6%9E%84%E7%BC%96%E7%A8%8B%E6%8E%A2%E7%B4%A2/" /><meta property="og:image" content="https://zhangyuhu.github.io/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-01-22T13:52:52+08:00" />
+<meta property="article:modified_time" content="2023-01-22T13:11:52+08:00" /><meta property="og:site_name" content="我的网站" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://zhangyuhu.github.io/logo.png"/>
+
+<meta name="twitter:title" content="ARMv8 架构编程探索"/>
+<meta name="twitter:description" content="ARMv8 架构编程探索"/>
+<meta name="application-name" content="我的网站">
+<meta name="apple-mobile-web-app-title" content="我的网站"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://zhangyuhu.github.io/posts/basic_knowledge/arm/armv8/armv8_%E6%9E%B6%E6%9E%84%E7%BC%96%E7%A8%8B%E6%8E%A2%E7%B4%A2/" /><link rel="prev" href="https://zhangyuhu.github.io/posts/basic_knowledge/ros/%E6%A0%91%E8%8E%93%E6%B4%BE4b%E5%AE%89%E8%A3%85ros2/" /><link rel="next" href="https://zhangyuhu.github.io/posts/basic_knowledge/arm/cortex-a/cortex-a/" /><link rel="stylesheet" href="/css/style.min.61c0835a1733ac3f92b41b61b403dca9b8d4a3a7e4021c89af2c45a731f6343a82bc7fb214f4926e2c4669c8d258218b7da5d0e86d081ec97f3c1d823d48df2e.css" integrity="sha512-YcCDWhczrD+StBthtAPcqbjUo6fkAhyJryxFpzH2NDqCvH+yFPSSbixGacjSWCGLfaXQ6G0IHsl/PB2CPUjfLg=="><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "ARMv8 架构编程探索",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/zhangyuhu.github.io\/posts\/basic_knowledge\/arm\/armv8\/armv8_%E6%9E%B6%E6%9E%84%E7%BC%96%E7%A8%8B%E6%8E%A2%E7%B4%A2\/"
+        },"image": [{
+                            "@type": "ImageObject",
+                            "url": "https:\/\/zhangyuhu.github.io\/images\/Apple-Devices-Preview.png",
+                            "width":  3200 ,
+                            "height":  2048 
+                        }],"genre": "posts","keywords": "ARMv8","wordcount":  4214 ,
+        "url": "https:\/\/zhangyuhu.github.io\/posts\/basic_knowledge\/arm\/armv8\/armv8_%E6%9E%B6%E6%9E%84%E7%BC%96%E7%A8%8B%E6%8E%A2%E7%B4%A2\/","datePublished": "2023-01-22T13:52:52+08:00","dateModified": "2023-01-22T13:11:52+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "zhangyuhu"
+            },"description": "ARMv8 架构编程探索"
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="这是我的网站"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/" title="文章"><i class='fas fa-archive fa-fw fa-sm'></i> 文章 </a><a class="menu-item" href="/tags/"><i class='fas fa-tags fa-fw fa-sm'></i> 标签 </a><a class="menu-item" href="/categories/"><i class='fas fa-th fa-fw fa-sm'></i> 分类 </a><a class="menu-item" href="/about/"><i class='fas fa-user-tie fa-fw fa-sm'></i> 关于 </a><a class="menu-item" href="/tool/"><i class='fas fa-cube fa-fw fa-sm'></i> 工具箱 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="这是我的网站"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="文章"><i class='fas fa-archive fa-fw fa-sm'></i>文章</a><a class="menu-item" href="/tags/" title=""><i class='fas fa-tags fa-fw fa-sm'></i>标签</a><a class="menu-item" href="/categories/" title=""><i class='fas fa-th fa-fw fa-sm'></i>分类</a><a class="menu-item" href="/about/" title=""><i class='fas fa-user-tie fa-fw fa-sm'></i>关于</a><a class="menu-item" href="/tool/" title=""><i class='fas fa-cube fa-fw fa-sm'></i>工具箱</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">ARMv8 架构编程探索</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://zhangyuhu.github.io/" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>zhangyuhu</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%E8%8A%AF%E7%89%87%E6%9E%B6%E6%9E%84/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>芯片架构</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-01-22">2023-01-22</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;4214 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;9 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#armv8-a-架构基础">ARMv8-A 架构基础</a></li>
+        <li><a href="#执行状态与异常级别">执行状态与异常级别</a></li>
+        <li><a href="#armv8-寄存器组">ARMv8 寄存器组</a>
+          <ul>
+            <li><a href="#通用寄存器组">通用寄存器组</a></li>
+            <li><a href="#特殊功能寄存器组">特殊功能寄存器组</a></li>
+            <li><a href="#neon-与浮点寄存器">NEON 与浮点寄存器</a>
+              <ul>
+                <li><a href="#标量寄存器大小">标量寄存器大小</a></li>
+                <li><a href="#向量寄存器大小">向量寄存器大小</a></li>
+                <li><a href="#neon-在-aarch32-运行模式下">NEON 在 AArch32 运行模式下</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><a href="#armv8-指令集">ARMv8 指令集</a>
+          <ul>
+            <li><a href="#a64-指令集">A64 指令集</a></li>
+          </ul>
+        </li>
+        <li><a href="#内存管理单元">内存管理单元</a>
+          <ul>
+            <li><a href="#基于分页的虚拟内存">基于分页的虚拟内存</a>
+              <ul>
+                <li><a href="#虚拟地址的翻译过程">虚拟地址的翻译过程</a></li>
+                <li><a href="#安全与非安全地址">安全与非安全地址</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><a href="#memory-ordering">Memory Ordering</a>
+          <ul>
+            <li><a href="#内存类型">内存类型</a></li>
+            <li><a href="#屏障指令">屏障指令</a></li>
+            <li><a href="#内存属性">内存属性</a></li>
+          </ul>
+        </li>
+        <li><a href="#安全系统">安全系统</a>
+          <ul>
+            <li><a href="#trustzone-硬件架构">TrustZone 硬件架构</a></li>
+            <li><a href="#利用中断切换安全世界">利用中断切换安全世界</a></li>
+            <li><a href="#在安全态和非安全态切换">在安全态和非安全态切换</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><blockquote>
+<p>整理自<a href="https://github.com/SummerLife/EmbeddedSystem/blob/master/RTOS/27_ARMv8%20%E6%9E%B6%E6%9E%84%E7%BC%96%E7%A8%8B%E6%8E%A2%E7%B4%A2.md" target="_blank" rel="noopener noreffer ">ARMv8 架构编程探索</a>,感谢原作者分享。</p>
+</blockquote>
+<!-- TOC -->
+<ul>
+<li><a href="#armv8-a-%e6%9e%b6%e6%9e%84%e5%9f%ba%e7%a1%80" rel="">ARMv8-A 架构基础</a></li>
+<li><a href="#%e6%89%a7%e8%a1%8c%e7%8a%b6%e6%80%81%e4%b8%8e%e5%bc%82%e5%b8%b8%e7%ba%a7%e5%88%ab" rel="">执行状态与异常级别</a></li>
+<li><a href="#armv8-%e5%af%84%e5%ad%98%e5%99%a8%e7%bb%84" rel="">ARMv8 寄存器组</a>
+<ul>
+<li><a href="#%e9%80%9a%e7%94%a8%e5%af%84%e5%ad%98%e5%99%a8%e7%bb%84" rel="">通用寄存器组</a></li>
+<li><a href="#%e7%89%b9%e6%ae%8a%e5%8a%9f%e8%83%bd%e5%af%84%e5%ad%98%e5%99%a8%e7%bb%84" rel="">特殊功能寄存器组</a></li>
+<li><a href="#neon-%e4%b8%8e%e6%b5%ae%e7%82%b9%e5%af%84%e5%ad%98%e5%99%a8" rel="">NEON 与浮点寄存器</a>
+<ul>
+<li><a href="#%e6%a0%87%e9%87%8f%e5%af%84%e5%ad%98%e5%99%a8%e5%a4%a7%e5%b0%8f" rel="">标量寄存器大小</a></li>
+<li><a href="#%e5%90%91%e9%87%8f%e5%af%84%e5%ad%98%e5%99%a8%e5%a4%a7%e5%b0%8f" rel="">向量寄存器大小</a></li>
+<li><a href="#neon-%e5%9c%a8-aarch32-%e8%bf%90%e8%a1%8c%e6%a8%a1%e5%bc%8f%e4%b8%8b" rel="">NEON 在 AArch32 运行模式下</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#armv8-%e6%8c%87%e4%bb%a4%e9%9b%86" rel="">ARMv8 指令集</a>
+<ul>
+<li><a href="#a64-%e6%8c%87%e4%bb%a4%e9%9b%86" rel="">A64 指令集</a></li>
+</ul>
+</li>
+<li><a href="#%e5%86%85%e5%ad%98%e7%ae%a1%e7%90%86%e5%8d%95%e5%85%83" rel="">内存管理单元</a>
+<ul>
+<li><a href="#%e5%9f%ba%e4%ba%8e%e5%88%86%e9%a1%b5%e7%9a%84%e8%99%9a%e6%8b%9f%e5%86%85%e5%ad%98" rel="">基于分页的虚拟内存</a>
+<ul>
+<li><a href="#%e8%99%9a%e6%8b%9f%e5%9c%b0%e5%9d%80%e7%9a%84%e7%bf%bb%e8%af%91%e8%bf%87%e7%a8%8b" rel="">虚拟地址的翻译过程</a></li>
+<li><a href="#%e5%ae%89%e5%85%a8%e4%b8%8e%e9%9d%9e%e5%ae%89%e5%85%a8%e5%9c%b0%e5%9d%80" rel="">安全与非安全地址</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#memory-ordering" rel="">Memory Ordering</a>
+<ul>
+<li><a href="#%e5%86%85%e5%ad%98%e7%b1%bb%e5%9e%8b" rel="">内存类型</a></li>
+<li><a href="#%e5%b1%8f%e9%9a%9c%e6%8c%87%e4%bb%a4" rel="">屏障指令</a></li>
+<li><a href="#%e5%86%85%e5%ad%98%e5%b1%9e%e6%80%a7" rel="">内存属性</a></li>
+</ul>
+</li>
+<li><a href="#%e5%ae%89%e5%85%a8%e7%b3%bb%e7%bb%9f" rel="">安全系统</a>
+<ul>
+<li><a href="#trustzone-%e7%a1%ac%e4%bb%b6%e6%9e%b6%e6%9e%84" rel="">TrustZone 硬件架构</a></li>
+<li><a href="#%e5%88%a9%e7%94%a8%e4%b8%ad%e6%96%ad%e5%88%87%e6%8d%a2%e5%ae%89%e5%85%a8%e4%b8%96%e7%95%8c" rel="">利用中断切换安全世界</a></li>
+<li><a href="#%e5%9c%a8%e5%ae%89%e5%85%a8%e6%80%81%e5%92%8c%e9%9d%9e%e5%ae%89%e5%85%a8%e6%80%81%e5%88%87%e6%8d%a2" rel="">在安全态和非安全态切换</a></li>
+</ul>
+</li>
+</ul>
+<!-- /TOC -->
+<p>随着开发工作逐渐迁移到 ARMv8 的 64 位平台，因此有必要尽快熟悉 ARMv8 架构。ARMv8 与先前较为熟悉的 ARMv7 架构有较大变化，其中非常重要的一点是支持了 A64 指令集，大大提升了处理器的性能。从目前的的了解来看，基本上 ARMv8 与上代架构的差别非常大的。除了 A64 指令集之外，还有许多地方都有较大改动，下面列出几个目前比较关注的点：</p>
+<ul>
+<li>执行状态与异常级别（异常级别为 EL0 - EL3）</li>
+<li>ARMv8 寄存器组（和先前完全不同的 64 位寄存器）</li>
+<li>A64 指令集（新的 64 位指令集）</li>
+<li>内存管理（毕竟地址空间变成 64 位了）</li>
+<li>Memory Ordering</li>
+<li>安全系统（例如普通世界和安全世界的切换）</li>
+</ul>
+<p>本篇就依据上面的关键点对 ARMv8 架构进行一番探索。</p>
+<h2 id="armv8-a-架构基础">ARMv8-A 架构基础</h2>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202301221551742.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202301221551742.png, https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202301221551742.png 1.5x, https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202301221551742.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202301221551742.png"
+        title="image-20210423144454062" /></p>
+<p>从上图可以看到，ARMv8 架构兼容了 ARMv7 架构的关键特性，例如支持 A32 和 T32 指令集，单精度浮点操作以及基于单精度浮点的 SIMD 指令。 ARMv7 为什么不支持双精度浮点的 SIMD 指令呢？也许是可用的浮点寄存器不够吧，AArch64 使用了 <code>32*128-bit</code> 的浮点寄存器，比 ARMv7 要多了一倍。</p>
+<p>下图展示了后续要使用的 <code>Cortex-A53</code> 与 <code>Cortex-A57</code> 处理器属性：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202301221551332.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202301221551332.png, https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202301221551332.png 1.5x, https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202301221551332.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202301221551332.png"
+        title="image-20210423145757846" /></p>
+<p>可用看出，无论是 A53 还是 A57 的性能都远远超过先前的处理器性能，甚至 A57 架构还配备了专用的 GPU。</p>
+<h2 id="执行状态与异常级别">执行状态与异常级别</h2>
+<p>在 ARMv8 架构中定义了两种执行状态，AArch64 以及 AArch32。这两种执行状态分别用于描述执行使用 64 位宽的通用寄存器或者使用 32 位宽的通用寄存器。然而在 ARMv8 AArch32 中保留了 ARMv7 中定义的特权级，而在 AArch64 中，特权级通过异常等级被定义。因此执行在异常等级 <code>ELn</code> 对应于执行在特权等级 <code>PLn</code>。</p>
+<p>在 AArch64 中，处理器模式在不同的异常等级间切换，就像指在 ARMv7（AArch32） 中当异常被处理时，处理器切换到相应的异常等级来处理异常。下图展示了两种架构在异常处理时的映射关系：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202301221552717.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202301221552717.png, https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202301221552717.png 1.5x, https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202301221552717.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202301221552717.png"
+        title="image-20210423151347275" /></p>
+<p>可以看出先前在 ARMv7 时有各种异常模式，而在 ARMv8 中，这些模式统统都属于 EL1 级别，处理的时候先进入 EL1 的处理函数，然后再通过寄存器信息判断现在发生了哪种异常，然后执行对应的处理函数。</p>
+<h2 id="armv8-寄存器组">ARMv8 寄存器组</h2>
+<p>AArch64 执行状态在所有的异常级别下提供了 31 个 64 位通用寄存器，每一个寄存器有 64 位宽，从 X0-X30。</p>
+<p>下图展示了 AArch64 的 通用寄存器组与特殊寄存器：</p>
+<h3 id="通用寄存器组">通用寄存器组</h3>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202301221552397.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202301221552397.png, https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202301221552397.png 1.5x, https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202301221552397.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202301221552397.png"
+        title="image-20210423152018377" /></p>
+<h3 id="特殊功能寄存器组">特殊功能寄存器组</h3>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202301221552158.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202301221552158.png, https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202301221552158.png 1.5x, https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202301221552158.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202301221552158.png"
+        title="image-20210423152111287" /></p>
+<p>可以看出 AArch64 与先前的寄存器组有了非常大的变化，不仅通用寄存器组的宽度和个数变多了，特殊寄存器组也非常不同。特殊寄存器组最大的变化是，先前在 ARMv7 下各种不同模式下的 BANK 寄存器组都没有了，取而代之的是不同级别异常下的 SP 指针、SPSR 以及异常返回寄存器组。</p>
+<p>同时为了兼容先前 ARMv7 下 AArch32 执行状态，支持从 AArch64 到 AArch32 寄存器组的映射，如下图所示：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202301221552626.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202301221552626.png, https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202301221552626.png 1.5x, https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202301221552626.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202301221552626.png"
+        title="image-20210423152918083" /></p>
+<ul>
+<li>PSTATE at AArch32</li>
+</ul>
+<p>在 AArch64 中，传统的 CPSR 寄存器被 PSTATE 取代。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202301221552386.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202301221552386.png, https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202301221552386.png 1.5x, https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202301221552386.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202301221552386.png"
+        title="image-20210423153622163" /></p>
+<h3 id="neon-与浮点寄存器">NEON 与浮点寄存器</h3>
+<p>除了通用寄存器组之外， ARMv8 也提供了 32 个 128 位的浮点寄存器组，V0-V31。这 32 个寄存器用户保存浮点操作数用于标量浮点执行或者标量和向量操作数用于 NEON 操作。</p>
+<h4 id="标量寄存器大小">标量寄存器大小</h4>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202301221552529.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202301221552529.png, https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202301221552529.png 1.5x, https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202301221552529.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202301221552529.png"
+        title="image-20210423154416039" /></p>
+<h4 id="向量寄存器大小">向量寄存器大小</h4>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202301221552834.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202301221552834.png, https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202301221552834.png 1.5x, https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202301221552834.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202301221552834.png"
+        title="image-20210423154455999" /></p>
+<p>针对不同大小的向量操作：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202301221553649.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202301221553649.png, https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202301221553649.png 1.5x, https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202301221553649.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202301221553649.png"
+        title="image-20210423154551451" /></p>
+<h4 id="neon-在-aarch32-运行模式下">NEON 在 AArch32 运行模式下</h4>
+<p>在 AArch32 中，小的寄存器被打包成更大的寄存器，例如 D0 和 D1 被组合成 Q1。这就引入了一些复杂的循环依赖关系，会降低编译器向量化循环结构的能力。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202301221553082.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202301221553082.png, https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202301221553082.png 1.5x, https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202301221553082.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202301221553082.png"
+        title="image-20210423155325041" /></p>
+<h2 id="armv8-指令集">ARMv8 指令集</h2>
+<p>ARMv8 架构最大的变化之一就是引入了额外的 64 位指令集，补充了现有的 32 位指令集架构。这一添加提供了访问 64 位宽的整数寄存器和数据操作，以及使用 64 位大小的指针访问内存的能力。新的指令集称为 A64，运行在 AArch64 执行状态。ARMv8 也包括先前的 ARM 指令集，现在叫做 A32 和 T32 指令集，这两种指令集都运行在 AArch32 状态，提供对 ARMv7 的先后兼容。</p>
+<p>另外有一点需要注意的是，A64 指令集的操作码的长度仍然是 32 位，而不是 64 位。</p>
+<h3 id="a64-指令集">A64 指令集</h3>
+<p>A64 的指令助记符与 ARMv7 没有太大变化，只是所操作的寄存器形式不同， AArch64 寄存器有不同的位宽，但是我们并不需要记住不同形式的指令，汇编器会根据我们操作的寄存器名称自动选择合适的编码。</p>
+<h2 id="内存管理单元">内存管理单元</h2>
+<p>MMU 的一个重要功能是使得系统可以运行多任务，作为一个独立的程序运行在它的私有虚拟地址空间上。这些独立程序不需要知道系统的物理内存映射，也就是那些实际被硬件使用的地址，也不用关心其他程序正在运行的程序。</p>
+<p>有了 MMU ，我们可以使得每个应用程序都使用相同的虚拟地址。也可以使用连续的虚拟地址映射，即使这些物理内存是分离的。当将代码放置在内存中时，虚拟地址是那些被程序员、编译器和链接器使用的地址空间。而物理地址是那些被实际硬件系统使用的地址。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202301221553749.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202301221553749.png, https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202301221553749.png 1.5x, https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202301221553749.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202301221553749.png"
+        title="image-20210427100620453" /></p>
+<h3 id="基于分页的虚拟内存">基于分页的虚拟内存</h3>
+<p>在 RT-Smart 操作系统中采用了基于分页机制的内存设计与实现，而页表是分页机制中的关键部分，负责记录虚拟页到物理页的映射关系，操作系统负责对页表进行配置。</p>
+<p>在以往较简单的宏内核版本中，我们往往将虚拟地址和物理地址配置成一一映射，也就是说 CPU 尝试访问指定位置的虚拟地址，经过 MMU 翻译，实际上也访问了实际的物理地址。但是这种方式在支持多进程的 RT-Smart 中是不够的，要想支持多进程，就需要让不同进程在访问相同虚拟地址时，实际上访问了不同的物理地址。</p>
+<p>在 AArch64 架构下，我们使用多级页表的方式来解决多进程的内存分配问题，常见的设置是虚拟地址低 48 位参与地址翻译，页表级数为 4 级，虚拟页大小为 4 KB。在这种情况下，物理内存被划分为连续的、4 KB 大小的物理页，一个虚拟页可以映射对应一个物理页。正因为页的大小为 4 KB，所以虚拟地址的低 12 位对应于页内偏移量。</p>
+<h4 id="虚拟地址的翻译过程">虚拟地址的翻译过程</h4>
+<p>建立页表是内存管理的一个关键过程，后续用一个专题来仔细研究一下 ARMv8 下多级页表的建立过程，下图展示了如何逐级查询页表最终找到一个正常的 64KB 物理页的过程。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202301221553360.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202301221553360.png, https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202301221553360.png 1.5x, https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202301221553360.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202301221553360.png"
+        title="image-20210427101911745" /></p>
+<p>每一个二级页表可以与一个或者多个一级页表所关联，我们可以用多个一级页表描述符指向同一个二级表，这也就是说可以让多个虚拟地址指向相同的物理地址。</p>
+<h4 id="安全与非安全地址">安全与非安全地址</h4>
+<p>从理论上来说，安全和非安全的物理地址空间是相互独立且同时存在的。一个系统可以被设计成有两个完全分离的内存系统。然而大部分实际的系统将安全和非安全当做一个访问控制的属性。普通世界只能访问非安全的物理地址空间。安全世界可以访问两种物理地址空间。这些访问权限是被转换表配置控制的。</p>
+<h2 id="memory-ordering">Memory Ordering</h2>
+<p>在操作系统的开发过程中，需要编写一些与硬件交互或者执行在其他核上的代码，或者直接加载或者写入要被执行的指令（例如加载应用程序），或者修改页表，在这些情况下都需要考虑内存访问顺序问题，也可以理解为观察值和实际执行情况的顺序差。</p>
+<p>在上述情况下，程序员必须保证编写的代码有着清晰的内存访问顺序，可以通过正确地利用屏障（barriers）来实现这个目标。</p>
+<p>在 ARMv8 架构中使用了内存弱序模型。总的来说，这就意味着内存访问的顺序并不用要求与程序的加载（load）和存储（store）操作一致。处理器可以重新调整内存读、写操作。这样做的结果是，使用一些硬件优化方法，例如 cache 和写缓冲区可以优化处理器的性能，这就意味着处理器和外部内存之间的带宽要求可以降低，而且与外部内存访问相关的延时可以被隐藏。</p>
+<p>对普通内存的读写可以被硬件重新排序，只受数据依赖和显示的内存屏障指令的影响。在某些情况下需要更强的排序规则。程序员可以通通过描述该内存的转换表项的内存类型属性，向处理器核心提供相关信息。</p>
+<p>一些非常高性能的系统支持包括内存读推测、多发指令或者乱序执行以及其他技术，提供了更进一步的可能性使得硬件重新调整内存访问顺序。</p>
+<ul>
+<li>多条指令产生</li>
+<li>乱序执行</li>
+<li>执行预测</li>
+<li>预测加载</li>
+<li>加载和存储优化</li>
+<li>外部内存系统</li>
+<li>缓存一致性与多核处理</li>
+<li>编译器优化</li>
+</ul>
+<h3 id="内存类型">内存类型</h3>
+<p>所有的内存区域都被配置成两种类型之一，普通内存和设备内存。第三种内存类型，强序内存，是 ARMv7 架构的一部分。强序内存与设备内存的区别很小，因此在 ARMv8 中被省略了。</p>
+<p>除了内存类型，属性还提供了对 cacheability、shareability、access 和执行权限的控制。可共享和可缓存属性仅适用于普通内存。设备区域永远是不能缓存和不能共享的。</p>
+<h3 id="屏障指令">屏障指令</h3>
+<p>ARM 架构在特定点使用屏障指令来强制指定访问顺序和访问完成。在一些其他架构中，也有类似的指令被称为 fence。</p>
+<p>ARMv8 架构提供了三种类型的屏障指令：</p>
+<ul>
+<li>指令同步屏障（ISB）</li>
+<li>数据内存屏障（DMB）</li>
+<li>数据同步屏障（DSB）</li>
+</ul>
+<h3 id="内存属性">内存属性</h3>
+<p>系统的内存内存映射被分为许多区域，每一个区域都需要不同的内存属性，例如对不同优先级、内存类型、缓存策略的读写访问权限。</p>
+<p>内存属性还包括 cacheable 和 shareable，关于 shareable 细分下来还有 Non-shareable、Inner shareable、Outer shareable 以及 full system。</p>
+<h2 id="安全系统">安全系统</h2>
+<p>一个系统提供一个特定的安全等级，一个受信的系统，是一个用来保护有价值的数据，例如密码和加密秘钥，信用卡数据，避免受到攻击，避免他们被复制、毁坏或者丢失。</p>
+<p>在一个开放的系统中很难保证安全，因为在平台上会运行各种各样的软件，也会下载一些恶意的程序，这些程序可能会篡改系统。</p>
+<p>ARM 处理器包括特殊的硬件扩展来构建一个受信的系统。软件以及硬件工具可以被分为如下三类：</p>
+<ul>
+<li>软件攻击</li>
+<li>简单硬件攻击</li>
+<li>实验室硬件攻击</li>
+</ul>
+<p>Trust Zone 技术就是被设计用于保护软件和简单硬件攻击。</p>
+<h3 id="trustzone-硬件架构">TrustZone 硬件架构</h3>
+<p>TrustZone 架构为系统设计者提供一种方法来帮助安全系统，使用 TrustZone 安全扩展和安全外设。ARM 安全模型分为设备硬件和软件资源，他们存在于安全世界为安全子系统，或者普通世界为非安全系统。系统硬件可以<strong>保证安全世界的数据都不可以被普通世界访问到</strong>。一个安全的设计会将所有敏感的资源放在安全世界。</p>
+<h3 id="利用中断切换安全世界">利用中断切换安全世界</h3>
+<p>因为代码会在两个世界中执行，因此需要利用硬件的异常机制，通过 SMC 指令来进行环境切换。下图展示了在非安全世界的上下文切换过程：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202301221553282.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202301221553282.png, https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202301221553282.png 1.5x, https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202301221553282.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202301221553282.png"
+        title="image-20210427162426533" /></p>
+<p>下图展示安全世界中的上下文切换过程：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202301221553538.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202301221553538.png, https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202301221553538.png 1.5x, https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202301221553538.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202301221553538.png"
+        title="image-20210427162611818" /></p>
+<h3 id="在安全态和非安全态切换">在安全态和非安全态切换</h3>
+<p>使用 ARMv7 安全扩展，monitor 模式被软件使用与在安全和非安全态进行切换。这个模式与其他模式在安全态下有着同等的优先级。</p>
+<p>对于 ARMv8 架构，当 EL3 在使用 AArch32 系统时与 ARMv7 完全兼容，安全状态的特权模式运行在 EL3，如下图所示：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202301221553866.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202301221553866.png, https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202301221553866.png 1.5x, https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202301221553866.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202301221553866.png"
+        title="image-20210427163314538" /></p>
+<p>下图展示了在 AArch64 架构下使用 EL3 提供安全监视器的情况。在 EL3 态下是不能运行 AArch32 的，按时 EL1 可以用作安全操作系统。当 EL3 在使用 AArch64，EL3 级别被用于执行切换安全态与非安全态的代码，如下图所示：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202301221554720.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202301221554720.png, https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202301221554720.png 1.5x, https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202301221554720.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202301221554720.png"
+        title="image-20210427163700926" /></p>
+<p>关于 ARM 的安全状态，后续还是要仔细研究的，因为通过 ATF 将系统从 EL3 切换到 EL1 的非安全状态后，才可以正常的运行 RT-Smart 操作系统，所以对 ATF 的研究是必不可少的。</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2023-01-22</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://zhangyuhu.github.io/posts/basic_knowledge/arm/armv8/armv8_%E6%9E%B6%E6%9E%84%E7%BC%96%E7%A8%8B%E6%8E%A2%E7%B4%A2/" data-title="ARMv8 架构编程探索" data-hashtags="ARMv8"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://zhangyuhu.github.io/posts/basic_knowledge/arm/armv8/armv8_%E6%9E%B6%E6%9E%84%E7%BC%96%E7%A8%8B%E6%8E%A2%E7%B4%A2/" data-hashtag="ARMv8"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://zhangyuhu.github.io/posts/basic_knowledge/arm/armv8/armv8_%E6%9E%B6%E6%9E%84%E7%BC%96%E7%A8%8B%E6%8E%A2%E7%B4%A2/" data-title="ARMv8 架构编程探索"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://zhangyuhu.github.io/posts/basic_knowledge/arm/armv8/armv8_%E6%9E%B6%E6%9E%84%E7%BC%96%E7%A8%8B%E6%8E%A2%E7%B4%A2/" data-title="ARMv8 架构编程探索"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://zhangyuhu.github.io/posts/basic_knowledge/arm/armv8/armv8_%E6%9E%B6%E6%9E%84%E7%BC%96%E7%A8%8B%E6%8E%A2%E7%B4%A2/" data-title="ARMv8 架构编程探索" data-ralateuid="ji"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/armv8/">ARMv8</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/basic_knowledge/ros/%E6%A0%91%E8%8E%93%E6%B4%BE4b%E5%AE%89%E8%A3%85ros2/" class="prev" rel="prev" title="树莓派4B安装ROS2"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>树莓派4B安装ROS2</a>
+            <a href="/posts/basic_knowledge/arm/cortex-a/cortex-a/" class="next" rel="next" title="ARMv7-A ARMv8-A  ARMv9-A 架构">ARMv7-A ARMv8-A  ARMv9-A 架构<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="giscus" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://giscus.app">Giscus</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">为天地立心,为生民立命,为往圣继绝学,为万世开太平</div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://zhangyuhu.github.io/" target="_blank">zhangyuhu</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="http://creativecommons.org/licenses/by/4.0/" target="_blank">知识共享署名 4.0 国际许可协议</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/css/lightgallery-bundle.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/twemoji@14.0.2/dist/twemoji.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/lightgallery.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/thumbnail/lg-thumbnail.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/zoom/lg-zoom.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@8.6.0/dist/index.umd.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{"giscus":{"category":"Comments","categoryId":"DIC_kwDOIx2Cjs4CTnUX","darkTheme":"dark","emitMetadata":"0","inputPosition":"bottom","lang":"en","lazyLoading":false,"lightTheme":"light","mapping":"pathname","reactionsEnabled":"1","repo":"zhangyuhu/zhangyuhu.github.io","repoId":"R_kgDOIx2Cjg"}},"data":{"id-1":"HOME","id-2":"HOME"},"lightgallery":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"},"twemoji":true,"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.2970a33d719df7cd89cebf586152b32a8ed30012227fa81b44282950146e0f595d1c733779e4d423dda1004bdcf707ee64d0fadc3d21229cd66b960788f84bdb.js" integrity="sha512-KXCjPXGd982Jzr9YYVKzKo7TABIif6gbRCgpUBRuD1ldHHM3eeTUI92hAEvc9wfuZND63D0hIpzWa5YHiPhL2w=="></script></body>
+</html>

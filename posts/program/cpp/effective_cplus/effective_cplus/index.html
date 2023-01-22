@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Effective Cplus 摘要笔记 - 这是我的网站</title><meta name="Description" content="Effective Cplus 摘要笔记"><meta property="og:title" content="Effective Cplus 摘要笔记" />
+<meta property="og:description" content="Effective Cplus 摘要笔记" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zhangyuhu.github.io/posts/program/cpp/effective_cplus/effective_cplus/" /><meta property="og:image" content="https://zhangyuhu.github.io/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-01-22T17:10:42+08:00" />
+<meta property="article:modified_time" content="2023-01-23T03:00:04+08:00" /><meta property="og:site_name" content="我的网站" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://zhangyuhu.github.io/logo.png"/>
+
+<meta name="twitter:title" content="Effective Cplus 摘要笔记"/>
+<meta name="twitter:description" content="Effective Cplus 摘要笔记"/>
+<meta name="application-name" content="我的网站">
+<meta name="apple-mobile-web-app-title" content="我的网站"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://zhangyuhu.github.io/posts/program/cpp/effective_cplus/effective_cplus/" /><link rel="prev" href="https://zhangyuhu.github.io/posts/program/cpp/effective_cplus/effective_modern_cplus/" /><link rel="next" href="https://zhangyuhu.github.io/posts/program/cpp/cplus%E9%9A%90%E5%BC%8F%E8%BD%AC%E6%8D%A2%E9%97%AE%E9%A2%98/" /><link rel="stylesheet" href="/css/style.min.61c0835a1733ac3f92b41b61b403dca9b8d4a3a7e4021c89af2c45a731f6343a82bc7fb214f4926e2c4669c8d258218b7da5d0e86d081ec97f3c1d823d48df2e.css" integrity="sha512-YcCDWhczrD+StBthtAPcqbjUo6fkAhyJryxFpzH2NDqCvH+yFPSSbixGacjSWCGLfaXQ6G0IHsl/PB2CPUjfLg=="><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Effective Cplus 摘要笔记",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/zhangyuhu.github.io\/posts\/program\/cpp\/effective_cplus\/effective_cplus\/"
+        },"image": [{
+                            "@type": "ImageObject",
+                            "url": "https:\/\/zhangyuhu.github.io\/images\/Apple-Devices-Preview.png",
+                            "width":  3200 ,
+                            "height":  2048 
+                        }],"genre": "posts","keywords": "Effective Cplus","wordcount":  7753 ,
+        "url": "https:\/\/zhangyuhu.github.io\/posts\/program\/cpp\/effective_cplus\/effective_cplus\/","datePublished": "2023-01-22T17:10:42+08:00","dateModified": "2023-01-23T03:00:04+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "zhangyuhu"
+            },"description": "Effective Cplus 摘要笔记"
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="这是我的网站"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/" title="文章"><i class='fas fa-archive fa-fw fa-sm'></i> 文章 </a><a class="menu-item" href="/tags/"><i class='fas fa-tags fa-fw fa-sm'></i> 标签 </a><a class="menu-item" href="/categories/"><i class='fas fa-th fa-fw fa-sm'></i> 分类 </a><a class="menu-item" href="/about/"><i class='fas fa-user-tie fa-fw fa-sm'></i> 关于 </a><a class="menu-item" href="/tool/"><i class='fas fa-cube fa-fw fa-sm'></i> 工具箱 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="这是我的网站"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="文章"><i class='fas fa-archive fa-fw fa-sm'></i>文章</a><a class="menu-item" href="/tags/" title=""><i class='fas fa-tags fa-fw fa-sm'></i>标签</a><a class="menu-item" href="/categories/" title=""><i class='fas fa-th fa-fw fa-sm'></i>分类</a><a class="menu-item" href="/about/" title=""><i class='fas fa-user-tie fa-fw fa-sm'></i>关于</a><a class="menu-item" href="/tool/" title=""><i class='fas fa-cube fa-fw fa-sm'></i>工具箱</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Effective Cplus 摘要笔记</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://zhangyuhu.github.io/" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>zhangyuhu</a></span>&nbsp;<span class="post-category">included in <a href="/categories/cpp/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>cpp</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-01-22">2023-01-22</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;7753 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;16 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#让自己习惯c">让自己习惯C++</a></li>
+        <li><a href="#构造析构赋值运算">构造/析构/赋值运算</a></li>
+        <li><a href="#资源管理">资源管理</a></li>
+        <li><a href="#设计与声明">设计与声明</a></li>
+        <li><a href="#实现">实现</a></li>
+        <li><a href="#继承与面向对象设计">继承与面向对象设计</a></li>
+        <li><a href="#模板与泛型编程">模板与泛型编程</a></li>
+        <li><a href="#定制new和delete">定制new和delete</a></li>
+        <li><a href="#杂项讨论">杂项讨论</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><blockquote>
+<p>本文采用<a href="http://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreffer ">知识共享署名 4.0 国际许可协议</a>进行许可，转载时请注明原文链接，图片在使用时请保留全部内容，可适当缩放并在引用处附上图片所在的文章链接。</p>
+</blockquote>
+<!-- TOC -->
+<ul>
+<li><a href="#%e8%ae%a9%e8%87%aa%e5%b7%b1%e4%b9%a0%e6%83%afc" rel="">让自己习惯C++</a></li>
+<li><a href="#%e6%9e%84%e9%80%a0%e6%9e%90%e6%9e%84%e8%b5%8b%e5%80%bc%e8%bf%90%e7%ae%97" rel="">构造/析构/赋值运算</a></li>
+<li><a href="#%e8%b5%84%e6%ba%90%e7%ae%a1%e7%90%86" rel="">资源管理</a></li>
+<li><a href="#%e8%ae%be%e8%ae%a1%e4%b8%8e%e5%a3%b0%e6%98%8e" rel="">设计与声明</a></li>
+<li><a href="#%e5%ae%9e%e7%8e%b0" rel="">实现</a></li>
+<li><a href="#%e7%bb%a7%e6%89%bf%e4%b8%8e%e9%9d%a2%e5%90%91%e5%af%b9%e8%b1%a1%e8%ae%be%e8%ae%a1" rel="">继承与面向对象设计</a></li>
+<li><a href="#%e6%a8%a1%e6%9d%bf%e4%b8%8e%e6%b3%9b%e5%9e%8b%e7%bc%96%e7%a8%8b" rel="">模板与泛型编程</a></li>
+<li><a href="#%e5%ae%9a%e5%88%b6new%e5%92%8cdelete" rel="">定制new和delete</a></li>
+<li><a href="#%e6%9d%82%e9%a1%b9%e8%ae%a8%e8%ae%ba" rel="">杂项讨论</a></li>
+</ul>
+<!-- /TOC -->
+<h2 id="让自己习惯c">让自己习惯C++</h2>
+<ul>
+<li>
+<p>视C++为一个语言联邦</p>
+<p>C++高效编程守则视状况而变化，取决于你使用C++的哪一部分。</p>
+</li>
+<li>
+<p>尽量以const，enums，inline替换#define</p>
+<p>对于单纯常量，最好以const对象或enums替换#defines；</p>
+<p>对于形似函数的宏（macros），最好改用inline函数替换#defines。</p>
+</li>
+<li>
+<p>尽可能使用const</p>
+<p>将某些东西声明为const可帮助编译器侦测出错误用法。const可被施加于任何作用域内的对象、函数参数、函数返回类型、成员函数本体；</p>
+<p>编译器强制实施bitwise constness，当你编写程序时应该使用“概念上的常量性”（conceptual constness）</p>
+<p>当const和non-const成员函数有着实质等价的实现时，令non-const版本调用const版本可避免代码重复。</p>
+</li>
+<li>
+<p>确定对象被使用前已先被初始化</p>
+<p>为内置性对象进行手工初始化，因为C++不保证初始化它们；</p>
+<p>构造函数最好使用成员初值列（member initialization list），而不要在构造函数本体内使用赋值操作（assignment）。初值列列出的成员变量，其排列次序应该和它们在class中的声明次序相同；</p>
+<p>为免除“跨编译单元值初始化次序”问题，轻易local static对象替换non-local static对象。</p>
+</li>
+</ul>
+<h2 id="构造析构赋值运算">构造/析构/赋值运算</h2>
+<ul>
+<li>
+<p>了解C++默默编写并调用哪些函数</p>
+<p>编译器可以暗自为class创建default构造函数、copy构造函数、copy assignment操作符，以及析构函数。</p>
+</li>
+<li>
+<p>若不想使用编译器自动生成的函数，就该明确拒绝</p>
+<p>为驳回编译器自动（暗自）提供的机能，可将相应的成员函数声明为private并且不予以实现。</p>
+</li>
+<li>
+<p>为多态基类声明virtual析构函数</p>
+<p>polymorphic（带多态性质的）base classes应该声明一个virtual析构函数。如果class带有任何virtual函数，它就应该拥有一个virtual析构函数；</p>
+<p>Classes的设计目的如果不是作为base classes使用，或不是为了具备多态性（polymorphically），就不该声明virtual析构函数。</p>
+</li>
+<li>
+<p>别让异常逃离析构函数</p>
+<p>析构函数绝对不要吐出异常。如果一个被析构函数调用的函数可能抛出异常，析构函数应该捕获任何异常，然后吐下它们（不传播）或结束程序；</p>
+<p>如果客户需要对某个操作函数运行期间抛出的异常做出反应，那么class应该提供一个普通函数（而非在析构函数中）执行该操作。</p>
+</li>
+<li>
+<p>绝不在构造和析构过程中调用virtual函数</p>
+<p>在构造和析构期间不要调用virtual函数，因为这类调用从不下降至derived class（比起当前执行构造函数和析构函数的那层）。</p>
+</li>
+<li>
+<p>令operator=返回一个reference to *this</p>
+<p>令赋值（assignment）操作符返回一个reference to *this。</p>
+</li>
+<li>
+<p>在operator=中处理“自我赋值”</p>
+<p>确保当对象自我赋值时operator=有良好行为。其中技术包括比较“来源图像”和“目标对象”的地址、精心周到的语句顺序、以及copy-and-swap；</p>
+<p>确定任何函数如果操作一个以上的对象，而其中多个对象时同一个对象时，其行为仍然正确。</p>
+</li>
+<li>
+<p>复制对象时勿忘其每一个成分</p>
+<p>Copying函数应该确保复制“对象内的所有成员变量”及“所有base class成分”；</p>
+<p>不要尝试以某个copying函数实现另一个copying函数。应该讲共同机能放进第三个函数中，并由两个copying函数共同调用。</p>
+</li>
+</ul>
+<h2 id="资源管理">资源管理</h2>
+<ul>
+<li>
+<p>以对象管理资源</p>
+<p>为防止资源泄露，请使用RAII对象，它们在构造函数中获得资源并在析构函数中释放资源；</p>
+<p>两个常常被使用的RAII classes分别是tr1::shared_ptr和auto_ptr。前者通常是较佳选择，因为其copy行为比较直观。若选择auto_ptr，复制动作会使它（被复制物）指向null。</p>
+</li>
+<li>
+<p>在资源管理类中小心copying行为</p>
+<p>复制RAII对象必须一并复制它所管理的资源，所以资源的copying行为决定RAII对象的copying行为；</p>
+<p>普遍而常见的RAII class copying行为是：抑制copying、施行引入计数法（reference counting）。不过其他行为也都可能被实现。</p>
+</li>
+<li>
+<p>在资源管理类中提供对原始资源的访问</p>
+<p>APIs往往要求访问原始资源（raw resources），所以每一个RAII class应该提供一个“取得其所管理之资源”的办法；</p>
+<p>对原始资源的访问可能经由显示转换或隐式转换。一般而言显示转换比较安全，但隐式转换对客户比较方便。</p>
+</li>
+<li>
+<p>成对使用new和delete时要采取相同的形式</p>
+<p>如果你在new表达式中使用[]，必须在相应的delete表达式中也是用[]。如果你在new表达式中不使用[]，一定不要在相应的delete表达式中使用[]。</p>
+</li>
+<li>
+<p>以独立语句将newed对象置入智能指针</p>
+<p>以独立语句将newed对象存储于（置入）智能指针内。如果不这样做，一旦异常被抛出，有可能导致难以察觉的资源泄露。</p>
+</li>
+</ul>
+<h2 id="设计与声明">设计与声明</h2>
+<ul>
+<li>
+<p>让接口容易被正确使用，不容易被误用</p>
+<p>好的接口很容易被正确使用，不容易被误用。你应该在你的所有接口中努力达成这些性质；</p>
+<p>“阻止误用”的办法是建立新类型、限制类型上的操作，束缚对象值，以及消除客户的资源管理任务；</p>
+<p>tr1::shared_ptr支持定制型删除器（custom deleter）。这可防范DLL问题，可被用来自动解除互斥锁（mutexes）等等。</p>
+</li>
+<li>
+<p>设计class犹如设计type</p>
+<p>Class的设计就是type的设计。在定义一个新type之前，请确定考虑新type对象的创建和销毁、对象的初始化和赋值、合法值、继承关系等。</p>
+</li>
+<li>
+<p>宁以pass-by-reference-to-const替换pass-by-value</p>
+<p>尽量以pass-by-reference-to-const替换pass-by-value。前者通常比较高效，并可避免切割问题；</p>
+<p>以上规则并不适用于内置类型，以及STL的迭代器和函数对象。对它们而言，pass-by-value往往比较适当。</p>
+</li>
+<li>
+<p>必须返回对象时，别妄想返回其reference</p>
+<p>绝不要返回pointer或reference指向一个local stack对象，或返回reference指向一个heap-allocated对象，或返回pointer或reference指向一个local static对象而有可能同时需要多个这样的对象。</p>
+</li>
+<li>
+<p>将成员变量声明为private</p>
+<p>切记将成员变量声明为private。这可赋予客户访问数据的一致性、可细微划分访问控制、允许约束条件获得保证，并提供class作者以充分的实现弹性；</p>
+<p>protected并不比public更具封装性。</p>
+</li>
+<li>
+<p>宁以non-member、non-friend替换member函数</p>
+<p>宁可拿non-member non-friend函数替换member函数。这样做可以增加封装性、包裹弹性（packaging flexibility）和机能扩充性。</p>
+</li>
+<li>
+<p>若所有参数皆需类型转换，请以此采用non-member函数</p>
+<p>如果你需要为某个函数的所有参数（包括被this指针所指的那个隐喻参数）进行类型转换，那么这个函数必须是个non-member。</p>
+</li>
+<li>
+<p>考虑写出一个不抛出异常的swap函数</p>
+<p>当std::swap对你的类型效率不高时，提供一个swap成员函数，并确定这个函数不抛出异常；</p>
+<p>如果你提供一个member swap，也该提供一个non-member swap用来调用前者。对于classes（而非templates），也请特化std::swap；</p>
+<p>调用swap时应针对std::swap使用using声明式，然后调用swap并且不带任何“命名空间资格修饰”；</p>
+<p>为“用户定义类型”进行std templates全特化是好的，但千万不要尝试在std内加入某些对std而言全新的东西。</p>
+</li>
+</ul>
+<h2 id="实现">实现</h2>
+<ul>
+<li>
+<p>尽可能延后变量定义式的出现时间</p>
+<p>尽可能延后变量定义式的出现。这样做可增加程序的清晰度并改善程序效率。</p>
+</li>
+<li>
+<p>尽量少做转型动作</p>
+<p>如果可以，尽量避免转型，特别是在注重效率的代码中避免dynamic_casts。如果有个设计需要转型动作，试着发展无需转型的替代设计；</p>
+<p>如果转型是必要的，试着将它隐藏于某个函数背后。客户随后可以调用该函数，而不需要将转型放进他们自己的代码内；</p>
+<p>宁可使用C++ style（新式）转型，不要使用旧式转型。前者很容易辨识出来，而且也比较有着分门别类的职掌。</p>
+</li>
+<li>
+<p>避免返回handles指向对象内部成分</p>
+<p>避免返回handles（包括references、指针、迭代器）指向对象内部。遵守这个条款可增加封装性，帮助const成员函数的行为像个const，并将发生“虚吊号码牌”的可能性降至最低。</p>
+</li>
+<li>
+<p>为“异常安全”而努力是值得的</p>
+<p>异常安全函数（Exception-safe functions）即使发生异常也不会泄露资源或允许任何数据结构败坏。这样的函数区分为三种可能的保证：基本型、强烈型、不抛异常型；</p>
+<p>“强烈保证”往往能够以copy-and-swap实现出来，但“强烈保证”并非对所有函数都可实现或具备现实意义；</p>
+<p>函数提供的“异常安全保证”通常最高只等于其所调用之各个函数的“异常安全保证”中的最弱者。</p>
+</li>
+<li>
+<p>透彻了解inlining的里里外外</p>
+<p>将大多数inlining限制在小型、被频繁调用的函数身上。这可使日后的调试过程和二进制升级（binary upgradability）更容易，也可使潜在的代码膨胀问题最小化，使程序的速度提升机会最大化；</p>
+<p>不要只因为function templates出现在头文件，就将它们声明为inline。</p>
+</li>
+<li>
+<p>将文件间的编译依存关系降至最低</p>
+<p>支持“编译依存性最小化”的一般构想是：相依于声明式，不要相依于定义式。基于此构想的两个手段是Handle classes和Interface classes；</p>
+<p>程序库头文件应该以“完全且仅有声明式”（full and declaration-only forms）的形式存在。这种做法不论是否涉及templates都适用。</p>
+</li>
+</ul>
+<h2 id="继承与面向对象设计">继承与面向对象设计</h2>
+<ul>
+<li>
+<p>确定你的public继承塑模出is-a关系</p>
+<p>“public继承”意味is-a。适用于base classes身上的每一件事情一定也适用于derived classes身上，因为每一个derived class对象也都是一个base class对象。</p>
+</li>
+<li>
+<p>避免遮蔽继承而来的名称</p>
+<p>derived classes内的名称会遮掩base classes内的名称。在public继承下从来没有人希望如此；</p>
+<p>为了让被遮掩的名称再见天日，可使用using声明式或转交函数（forwarding functions)。</p>
+</li>
+<li>
+<p>区分接口继承和实现继承</p>
+<p>接口继承和实现继承不同。在public继承之下，derived classes总是继承base class的接口；</p>
+<p>pure virtual函数只具体指定接口继承；</p>
+<p>简朴的（非纯）impure virtual函数具体指定接口继承及缺省实现继承；</p>
+<p>non-virtual函数具体指定接口继承以及强制性实现继承。</p>
+</li>
+<li>
+<p>考虑virtual函数以外的其他选择</p>
+<p>virtual函数的替代方案包括NVI手法及Strategy设计模式的多种形式。NVI手法自身是一个特殊形式的Template Method设计模式；</p>
+<p>将机能从成员函数移到class外部函数，带来的一个缺点是，非成员函数无法访问class的non-public成员；</p>
+<p>tr1::function对象的行为就像一般函数指针。这样的对象可接纳“与给定之目标签名式（target signature）兼容”的所有可调用物（callable entities）。</p>
+</li>
+<li>
+<p>绝不重定义继承而来的non-virtual函数</p>
+<p>绝不要重新定义继承而来的non-virtual函数。</p>
+</li>
+<li>
+<p>绝不重新定义继承而来的缺省参数值</p>
+<p>绝对不要重新定义一个继承而来的缺省参数值，因为缺省参数值都是静态绑定，而virtual函数——你唯一应该覆写的东西——却是动态绑定。</p>
+</li>
+<li>
+<p>通过复合塑模出has-a或“根据某物出现”</p>
+<p>复合（composition）的意义和public继承完全不同；</p>
+<p>在应用域（application domain），复合意味has-a（有一个）。在实现域（implementation domain），复合意味着is-implemented-in-terms-of（根据某物实现出）。</p>
+</li>
+<li>
+<p>明智而审慎地使用private继承</p>
+<p>Private继承意味着is-implement-in-terms-of（根据某物实现出）。它通常比复合（composition）的级别低。但是当derived class需要访问protected base class的成员，或需要重新定义继承而来的virtual函数时，这么设计是合理的；</p>
+<p>和复合（composition）不同，private继承可以造成empty base最优化。这对致力于“对象尺寸最小化”的程序开发者而言，可能很重要。</p>
+</li>
+<li>
+<p>明智而审慎地使用多重继承</p>
+<p>多重继承比单一继承复杂。它可能导致新的歧义性，以及对virtual继承的需要；</p>
+<p>virtual继承会增加大小、速度、初始化（及赋值）复杂度等等成本。如果virtual base classes不带任何数据，将是最具实用价值的情况；</p>
+<p>多重继承的确有正当用途。其中一个情节涉及“public继承某个Interface class”和“private继承某个协助实现的class”的两相结合。</p>
+</li>
+</ul>
+<h2 id="模板与泛型编程">模板与泛型编程</h2>
+<ul>
+<li>
+<p>了解隐式接口和编译器多态</p>
+<p>classes和template都支持接口（interfaces）和多态（polymorphism）；</p>
+<p>对classes而言接口是显示的（explicit），以函数签名为中心。多态则是通过virtual函数发生于运行期；</p>
+<p>对templates参数而言，接口是隐式的（implicit），奠基与有效表达式。对态则是通过template具现化和函数重载解析（function overloading resolution）发生于编译期。</p>
+</li>
+<li>
+<p>了解typename的双重意义</p>
+<p>声明template参数时，前缀关键字class和typename可互换；</p>
+<p>请使用关键字typename标识嵌套从属类型名称；但不得在base class lists（基类列）或member initialization list（成员初值列）内以它作为base class修饰符。</p>
+</li>
+<li>
+<p>学习处理模板化基类内的名称</p>
+<p>可在derived class templates内通过“this-&gt;”指涉base class templates内的成员名称，或籍由一个明白写出的“base class资格修饰符”完成。</p>
+</li>
+<li>
+<p>将与参数无关的代码抽离</p>
+<p>Templates生成多个classes和多个函数，所以任何template代码都不该与某个造成膨胀的template参数产生相依关系；</p>
+<p>因非类型模板参数（non-type template parameters）而造成的代码膨胀，往往可消除，做法是以函数参数或class成员变量替换template参数；</p>
+<p>因类型参数（type parameters）而造成的代码膨胀，往往可以降低，做法是让带有完全相同二进制表示（binary representations）的具现类型（instantiation types）共享实现码。</p>
+</li>
+<li>
+<p>运用成员函数模板接受所有兼容类型</p>
+<p>请使用member function templates（成员函数模板）生成“可接受所有兼容类型”的函数；</p>
+<p>如果你声明member templates用于“泛化copy构造”或“泛化assignment操作”，你还是需要声明正常的copy构造函数和copy assignment操作符。</p>
+</li>
+<li>
+<p>需要类型转换时请为模板定义非成员函数</p>
+<p>当我们编写一个class template，而它所提供之“与此template相关的”函数支持“所有参数之隐式类型转换”时，请将那些函数定义为“class template内部的friend函数”。</p>
+</li>
+<li>
+<p>请使用traits classes表现类型信息</p>
+<p>Traits classes使得“类型相关信息”在编译期可用。它们以templates和“templates特化”完成实现；</p>
+<p>整个重载技术（overloading）后，traits classes有可能在编译期对类型执行if…else测试。</p>
+</li>
+<li>
+<p>认识template元编程</p>
+<p>Template metaprogramming（TMP，模板元编程）可将工作由运行期移往编译期，因而得以实现早期错误侦测和更高的执行效率；</p>
+<p>TMP可被用来生成“基于政策选择组合”（based on combinations of pilicy choices）的客户定制代码，也可用来避免生成对某些特殊类型并不适合的代码。</p>
+</li>
+</ul>
+<h2 id="定制new和delete">定制new和delete</h2>
+<ul>
+<li>
+<p>了解new-handler的行为</p>
+<p>set_new_handler允许客户指定一个函数，在内存分配无法获得满足时被调用；</p>
+<p>Nothrow new是一个颇为局限的工具，因为它只适用于内存分配；后继的构造函数调用还是可能抛出异常。</p>
+</li>
+<li>
+<p>了解new和delete的合理替换时机</p>
+<p>有许多理由需要写个自定的new和delete，包括改善效能、对heap运用错误进行调试、收集heap使用信息。</p>
+</li>
+<li>
+<p>编写new和delete时需固守常规</p>
+<p>operator new应该内含一个无穷循环，并在其中尝试分配内存，如果它无法满足内存需求，就该调用new-handler。它也应该有能力处理0 bytes申请。Class专属版本则还应该处理“比正确大小更大的（错误）申请；</p>
+<p>operator delete应该在收到null指针时不做任何事。Class专属版本则还应该处理“比正确大小更大的（错误）申请。</p>
+</li>
+<li>
+<p>写了placement new也要写placement delete</p>
+<p>当你写一个placement operator new，请确定它也写出了对应的placement operator delete。如果没有这样做，你的程序可能会发生隐微而时断时续的内存泄露；</p>
+<p>当声明placement new和placement delete，请确定不要无意识（非故意）地遮盖了它们的正常版本。</p>
+</li>
+</ul>
+<h2 id="杂项讨论">杂项讨论</h2>
+<ul>
+<li>
+<p>不要请勿编译器的警告</p>
+<p>严肃对待编译器发生的警告信息。努力在你的编译器的最高（最苛刻）警告级别下争取“无任何警告”的荣誉；</p>
+<p>不要过度依赖编译器的报警功能，因为不同的编译器对待事情的态度并不相同。一旦移植到另一个编译器上，你原本依赖的警告信息有可能消失。</p>
+</li>
+<li>
+<p>让自己熟悉包括TR1在内的标准程序库</p>
+<p>C++标准程序库的主要机能由STL、iostreams、locales组成。并包含C99标准程序库；</p>
+<p>TR1添加了只能指针（如tr1::shared_ptr）、一般化函数指针（tr1::function）、hash-based容器、正则表达式（regular expression）以及另外10个组件的支持；</p>
+<p>TR1自身只是一份规范。为获得TR1提供的好处，需要一份实物。一个好的实物来源是Boost。</p>
+</li>
+<li>
+<p>让自己熟悉Boost</p>
+<p>Boost是一个社群，也是一个网站。致力于免费、源码开放、同僚复审的C++程序库开发。Boost在C++标准化过程中扮演具有影响力的角色；</p>
+<p>Boost提供许多TR1组件实现品，以及其他许多程序库。</p>
+</li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2023-01-23</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://zhangyuhu.github.io/posts/program/cpp/effective_cplus/effective_cplus/" data-title="Effective Cplus 摘要笔记" data-hashtags="Effective Cplus"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://zhangyuhu.github.io/posts/program/cpp/effective_cplus/effective_cplus/" data-hashtag="Effective Cplus"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://zhangyuhu.github.io/posts/program/cpp/effective_cplus/effective_cplus/" data-title="Effective Cplus 摘要笔记"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://zhangyuhu.github.io/posts/program/cpp/effective_cplus/effective_cplus/" data-title="Effective Cplus 摘要笔记"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://zhangyuhu.github.io/posts/program/cpp/effective_cplus/effective_cplus/" data-title="Effective Cplus 摘要笔记" data-ralateuid="ji"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/effective-cplus/">Effective Cplus</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/program/cpp/effective_cplus/effective_modern_cplus/" class="prev" rel="prev" title="Effective Modern Cplus 摘要笔记"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Effective Modern Cplus 摘要笔记</a>
+            <a href="/posts/program/cpp/cplus%E9%9A%90%E5%BC%8F%E8%BD%AC%E6%8D%A2%E9%97%AE%E9%A2%98/" class="next" rel="next" title="c&#43;&#43; 隐式转换问题">c++ 隐式转换问题<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="giscus" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://giscus.app">Giscus</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">为天地立心,为生民立命,为往圣继绝学,为万世开太平</div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://zhangyuhu.github.io/" target="_blank">zhangyuhu</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="http://creativecommons.org/licenses/by/4.0/" target="_blank">知识共享署名 4.0 国际许可协议</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/css/lightgallery-bundle.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/twemoji@14.0.2/dist/twemoji.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/lightgallery.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/thumbnail/lg-thumbnail.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/zoom/lg-zoom.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@8.6.0/dist/index.umd.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{"giscus":{"category":"Comments","categoryId":"DIC_kwDOIx2Cjs4CTnUX","darkTheme":"dark","emitMetadata":"0","inputPosition":"bottom","lang":"en","lazyLoading":false,"lightTheme":"light","mapping":"pathname","reactionsEnabled":"1","repo":"zhangyuhu/zhangyuhu.github.io","repoId":"R_kgDOIx2Cjg"}},"data":{"id-1":"HOME","id-2":"HOME"},"lightgallery":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"},"twemoji":true,"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.2970a33d719df7cd89cebf586152b32a8ed30012227fa81b44282950146e0f595d1c733779e4d423dda1004bdcf707ee64d0fadc3d21229cd66b960788f84bdb.js" integrity="sha512-KXCjPXGd982Jzr9YYVKzKo7TABIif6gbRCgpUBRuD1ldHHM3eeTUI92hAEvc9wfuZND63D0hIpzWa5YHiPhL2w=="></script></body>
+</html>
