@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>camera:单目相机标定 - 这是我的网站</title><meta name="Description" content="单目相机标定"><meta property="og:title" content="camera:单目相机标定" />
+<meta property="og:description" content="单目相机标定" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zhangyuhu.github.io/posts/computer_vision/camera/cameracalibration/%E5%8D%95%E7%9B%AE%E7%9B%B8%E6%9C%BA%E6%A0%87%E5%AE%9A/" /><meta property="og:image" content="https://zhangyuhu.github.io/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-01-30T14:32:52+08:00" />
+<meta property="article:modified_time" content="2023-01-30T15:11:52+08:00" /><meta property="og:site_name" content="我的网站" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://zhangyuhu.github.io/logo.png"/>
+
+<meta name="twitter:title" content="camera:单目相机标定"/>
+<meta name="twitter:description" content="单目相机标定"/>
+<meta name="application-name" content="我的网站">
+<meta name="apple-mobile-web-app-title" content="我的网站"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://zhangyuhu.github.io/posts/computer_vision/camera/cameracalibration/%E5%8D%95%E7%9B%AE%E7%9B%B8%E6%9C%BA%E6%A0%87%E5%AE%9A/" /><link rel="prev" href="https://zhangyuhu.github.io/posts/computer_vision/camera/stereocamera/realsense/realsensed450%E4%BB%8B%E7%BB%8D/" /><link rel="next" href="https://zhangyuhu.github.io/posts/computer_vision/camera/stereocamera/realsense/realsensed450%E6%B7%B1%E5%BA%A6%E5%AF%B9%E9%BD%90/" /><link rel="stylesheet" href="/css/style.min.61c0835a1733ac3f92b41b61b403dca9b8d4a3a7e4021c89af2c45a731f6343a82bc7fb214f4926e2c4669c8d258218b7da5d0e86d081ec97f3c1d823d48df2e.css" integrity="sha512-YcCDWhczrD+StBthtAPcqbjUo6fkAhyJryxFpzH2NDqCvH+yFPSSbixGacjSWCGLfaXQ6G0IHsl/PB2CPUjfLg=="><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "camera:单目相机标定",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/zhangyuhu.github.io\/posts\/computer_vision\/camera\/cameracalibration\/%E5%8D%95%E7%9B%AE%E7%9B%B8%E6%9C%BA%E6%A0%87%E5%AE%9A\/"
+        },"image": [{
+                            "@type": "ImageObject",
+                            "url": "https:\/\/zhangyuhu.github.io\/images\/Apple-Devices-Preview.png",
+                            "width":  3200 ,
+                            "height":  2048 
+                        }],"genre": "posts","keywords": "相机标定","wordcount":  4012 ,
+        "url": "https:\/\/zhangyuhu.github.io\/posts\/computer_vision\/camera\/cameracalibration\/%E5%8D%95%E7%9B%AE%E7%9B%B8%E6%9C%BA%E6%A0%87%E5%AE%9A\/","datePublished": "2023-01-30T14:32:52+08:00","dateModified": "2023-01-30T15:11:52+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "zhangyuhu"
+            },"description": "单目相机标定"
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="这是我的网站"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/" title="文章"><i class='fas fa-archive fa-fw fa-sm'></i> 文章 </a><a class="menu-item" href="/tags/"><i class='fas fa-tags fa-fw fa-sm'></i> 标签 </a><a class="menu-item" href="/categories/"><i class='fas fa-th fa-fw fa-sm'></i> 分类 </a><a class="menu-item" href="/about/"><i class='fas fa-user-tie fa-fw fa-sm'></i> 关于 </a><a class="menu-item" href="/tool/"><i class='fas fa-cube fa-fw fa-sm'></i> 工具箱 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="这是我的网站"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="文章"><i class='fas fa-archive fa-fw fa-sm'></i>文章</a><a class="menu-item" href="/tags/" title=""><i class='fas fa-tags fa-fw fa-sm'></i>标签</a><a class="menu-item" href="/categories/" title=""><i class='fas fa-th fa-fw fa-sm'></i>分类</a><a class="menu-item" href="/about/" title=""><i class='fas fa-user-tie fa-fw fa-sm'></i>关于</a><a class="menu-item" href="/tool/" title=""><i class='fas fa-cube fa-fw fa-sm'></i>工具箱</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">camera:单目相机标定</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://zhangyuhu.github.io/" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>zhangyuhu</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>计算机视觉</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-01-30">2023-01-30</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;4012 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;9 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#相机标定内容">相机标定内容</a></li>
+    <li><a href="#相机标定步骤">相机标定步骤</a>
+      <ul>
+        <li><a href="#提取角点">提取角点</a>
+          <ul>
+            <li><a href="#棋盘格角点检测">棋盘格角点检测</a></li>
+            <li><a href="#对粗提取的角点进行精确化">对粗提取的角点进行精确化</a></li>
+            <li><a href="#亚像素检测">亚像素检测</a></li>
+            <li><a href="#棋盘格角点的绘制">棋盘格角点的绘制</a></li>
+          </ul>
+        </li>
+        <li><a href="#相机标定">相机标定</a>
+          <ul>
+            <li><a href="#生成-objectpoints">生成 objectPoints</a></li>
+            <li><a href="#求相机的内参外参">求相机的内参外参</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#相机矫正">相机矫正</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#计算无畸变和修正转换映射">计算无畸变和修正转换映射</a></li>
+          </ul>
+        </li>
+        <li><a href="#remap">remap</a></li>
+      </ul>
+    </li>
+    <li><a href="#代码工程">代码工程</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><blockquote>
+<p>本文采用<a href="http://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreffer ">知识共享署名 4.0 国际许可协议</a>进行许可，转载时请注明原文链接，图片在使用时请保留全部内容，可适当缩放并在引用处附上图片所在的文章链接。</p>
+</blockquote>
+<!-- TOC -->
+<ul>
+<li><a href="#%e7%9b%b8%e6%9c%ba%e6%a0%87%e5%ae%9a%e5%86%85%e5%ae%b9" rel="">相机标定内容</a></li>
+<li><a href="#%e7%9b%b8%e6%9c%ba%e6%a0%87%e5%ae%9a%e6%ad%a5%e9%aa%a4" rel="">相机标定步骤</a>
+<ul>
+<li><a href="#%e6%8f%90%e5%8f%96%e8%a7%92%e7%82%b9" rel="">提取角点</a>
+<ul>
+<li><a href="#%e6%a3%8b%e7%9b%98%e6%a0%bc%e8%a7%92%e7%82%b9%e6%a3%80%e6%b5%8b" rel="">棋盘格角点检测</a></li>
+<li><a href="#%e5%af%b9%e7%b2%97%e6%8f%90%e5%8f%96%e7%9a%84%e8%a7%92%e7%82%b9%e8%bf%9b%e8%a1%8c%e7%b2%be%e7%a1%ae%e5%8c%96" rel="">对粗提取的角点进行精确化</a></li>
+<li><a href="#%e4%ba%9a%e5%83%8f%e7%b4%a0%e6%a3%80%e6%b5%8b" rel="">亚像素检测</a></li>
+<li><a href="#%e6%a3%8b%e7%9b%98%e6%a0%bc%e8%a7%92%e7%82%b9%e7%9a%84%e7%bb%98%e5%88%b6" rel="">棋盘格角点的绘制</a></li>
+</ul>
+</li>
+<li><a href="#%e7%9b%b8%e6%9c%ba%e6%a0%87%e5%ae%9a" rel="">相机标定</a>
+<ul>
+<li><a href="#%e7%94%9f%e6%88%90-objectpoints" rel="">生成 objectPoints</a></li>
+<li><a href="#%e6%b1%82%e7%9b%b8%e6%9c%ba%e7%9a%84%e5%86%85%e5%8f%82%e5%a4%96%e5%8f%82" rel="">求相机的内参外参</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#%e7%9b%b8%e6%9c%ba%e7%9f%ab%e6%ad%a3" rel="">相机矫正</a>
+- <a href="#%e8%ae%a1%e7%ae%97%e6%97%a0%e7%95%b8%e5%8f%98%e5%92%8c%e4%bf%ae%e6%ad%a3%e8%bd%ac%e6%8d%a2%e6%98%a0%e5%b0%84" rel="">计算无畸变和修正转换映射</a>
+<ul>
+<li><a href="#remap" rel="">remap</a></li>
+</ul>
+</li>
+<li><a href="#%e4%bb%a3%e7%a0%81%e5%b7%a5%e7%a8%8b" rel="">代码工程</a></li>
+</ul>
+<!-- /TOC -->
+<h1 id="相机标定内容">相机标定内容</h1>
+<p>相机标定即获取相机的内参,外参和畸变矩阵等相机参数</p>
+<p><strong>内参</strong></p>
+<p>相机内参矩阵是相机自身的属性，内参分别为：</p>
+<blockquote>
+<p><em>f</em>:焦距，单位毫米；</p>
+<p><em>fx</em>:使用像素来描述x轴方向焦距的长度；</p>
+<p><em>fy</em>:使用像素来描述y轴方向焦距的长度</p>
+<p><em>u</em>0,<em>v</em>0:   主点坐标（相对于成像平面），单位也是像素；</p>
+<p><em>γ</em>:为坐标轴倾斜参数，理想情况下为0；</p>
+</blockquote>
+<p><strong>外参</strong></p>
+<p>相机的旋转矩阵R和平移向量t</p>
+<blockquote>
+<p>旋转矩阵：描述了世界坐标系的坐标轴相对于摄像机坐标轴的方向</p>
+<p>平移矩阵：描述了在摄像机坐标系下，空间原点的位置</p>
+</blockquote>
+<p><strong>畸变参数</strong></p>
+<p>畸变参数：k1,k2,k3径向畸变系数，p1,p2是切向畸变系数。径向畸变发生在相机坐标系转图像物理坐标系的过程中。而切向畸变是发生在相机制作过程，其是由于感光元平面跟透镜不平行。径向畸变，即由于透镜的不同区域的焦距的不同而引起的畸变，分为枕形畸变和桶形畸变如下图所示，越靠近镜头边缘畸变越明显。</p>
+<p><a href="https://blog.csdn.net/weixin_42872123/article/details/110468692" target="_blank" rel="noopener noreffer ">相机内参和外参的解释</a></p>
+<p><a href="https://blog.csdn.net/qq_42394915/article/details/81082743" target="_blank" rel="noopener noreffer ">相机内参的标定方法</a></p>
+<h1 id="相机标定步骤">相机标定步骤</h1>
+<p><a href="https://docs.opencv.org/3.4.0/d9/d0c/group__calib3d.html" target="_blank" rel="noopener noreffer ">https://docs.opencv.org/3.4.0/d9/d0c/group__calib3d.html</a></p>
+<h2 id="提取角点">提取角点</h2>
+<h3 id="棋盘格角点检测">棋盘格角点检测</h3>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-1">1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-2">2</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-3">3</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-4">4</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-5">5</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#66d9ef">bool</span> <span style="color:#a6e22e">findChessboardCorners</span>( InputArray image, 
+</span></span><span style="display:flex;"><span>                                Size patternSize, 
+</span></span><span style="display:flex;"><span>                                OutputArray corners,
+</span></span><span style="display:flex;"><span>                                <span style="color:#66d9ef">int</span> flags <span style="color:#f92672">=</span> CALIB_CB_ADAPTIVE_THRESH <span style="color:#f92672">+</span> 
+</span></span><span style="display:flex;"><span>                                CALIB_CB_NORMALIZE_IMAGE );
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>第一个参数是输入的棋盘格图像（可以是8位单通道或三通道图像）；
+第二个参数是棋盘格内部的角点的行列数（注意：不是棋盘格的行列数，如棋盘格的行列数分别为4、8，而内部角点的行列数分别是3、7，因此这里应该指定为cv::Size(3, 7)）；
+第三个参数是检测到的棋盘格角点，类型为std::vectorcv::Point2f。
+第四个参数flag，用于指定在检测棋盘格角点的过程中所应用的一种或多种过滤方法，可以使用下面的一种或多种，如果都是用则使用OR：
+cv::CALIB_CB_ADAPTIVE_THRESH：使用自适应阈值将图像转化成二值图像
+cv::CALIB_CB_NORMALIZE_IMAGE：归一化图像灰度系数(用直方图均衡化或者自适应阈值)
+cv::CALIB_CB_FILTER_QUADS：在轮廓提取阶段，使用附加条件排除错误的假设
+cv::CALIB_CV_FAST_CHECK：快速检测</p>
+</blockquote>
+<h3 id="对粗提取的角点进行精确化">对粗提取的角点进行精确化</h3>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-1">1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-2">2</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-3">3</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#66d9ef">bool</span> <span style="color:#a6e22e">find4QuadCornerSubpix</span>( InputArray img, 
+</span></span><span style="display:flex;"><span>                      InputOutputArray corners, 
+</span></span><span style="display:flex;"><span>                      Size region_size );
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>image源图像
+corners，提供角点的初始坐标
+region_size： 搜索窗口的一般尺寸\</p>
+</blockquote>
+<h3 id="亚像素检测">亚像素检测</h3>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-1">1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-2">2</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-3">3</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-4">4</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-5">5</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">cornerSubPix</span>( InputArray image, 
+</span></span><span style="display:flex;"><span>                       InputOutputArray corners,
+</span></span><span style="display:flex;"><span>                       Size winSize, 
+</span></span><span style="display:flex;"><span>                       Size zeroZone,
+</span></span><span style="display:flex;"><span>                       TermCriteria criteria );
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>image源图像
+corners，提供角点的初始坐标，返回更加精确的点
+winSize，搜索窗口的一般尺寸，如果winSize=Size(5,5),则search windows为11*11
+winSize,死区的一般尺寸，用来避免自相关矩阵的奇点，(-1,-1)表示没有死区
+criteria，控制迭代次数和精度</p>
+</blockquote>
+<h3 id="棋盘格角点的绘制">棋盘格角点的绘制</h3>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-1">1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-2">2</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-3">3</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-4">4</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">drawChessboardCorners</span>( InputOutputArray image, 
+</span></span><span style="display:flex;"><span>                           Size patternSize,
+</span></span><span style="display:flex;"><span>                           InputArray corners, 
+</span></span><span style="display:flex;"><span>                           <span style="color:#66d9ef">bool</span> patternWasFound );
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>image为8-bit，三通道图像
+patternSize，每一行每一列的角
+corners，已经检测到的角
+patternWasFound，findChessboardCorners的返回值</p>
+</blockquote>
+<h2 id="相机标定">相机标定</h2>
+<h3 id="生成-objectpoints">生成 objectPoints</h3>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-1"> 1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-2"> 2</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-3"> 3</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-4"> 4</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-5"> 5</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-6"> 6</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-7"> 7</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-8"> 8</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-9"> 9</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-10"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-10">10</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-11"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-11">11</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-12"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-12">12</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-13"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-13">13</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-14"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-14">14</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> CCalibration<span style="color:#f92672">::</span>init3DPoints(cv<span style="color:#f92672">::</span>Size boardSize, cv<span style="color:#f92672">::</span>Size squareSize, vector<span style="color:#f92672">&lt;</span>cv<span style="color:#f92672">::</span>Point3f<span style="color:#f92672">&gt;</span> <span style="color:#f92672">&amp;</span>singlePatternPoint)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> boardSize.height; i<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; j <span style="color:#f92672">&lt;</span> boardSize.width; j<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            cv<span style="color:#f92672">::</span>Point3f tempPoint; <span style="color:#75715e">//单个角点的三维坐标
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            tempPoint.x <span style="color:#f92672">=</span> <span style="color:#66d9ef">float</span>(i <span style="color:#f92672">*</span> squareSize.width);
+</span></span><span style="display:flex;"><span>            tempPoint.y <span style="color:#f92672">=</span> <span style="color:#66d9ef">float</span>(j <span style="color:#f92672">*</span> squareSize.height);
+</span></span><span style="display:flex;"><span>            tempPoint.z <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>            singlePatternPoint.push_back(tempPoint);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="求相机的内参外参">求相机的内参外参</h3>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-1">1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-2">2</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-3">3</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-4">4</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-5">5</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-6">6</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-7">7</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-8">8</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-9">9</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#66d9ef">double</span> <span style="color:#a6e22e">calibrateCamera</span>( InputArrayOfArrays objectPoints,
+</span></span><span style="display:flex;"><span>                            InputArrayOfArrays imagePoints,
+</span></span><span style="display:flex;"><span>                            Size imageSize,
+</span></span><span style="display:flex;"><span>                            InputOutputArray cameraMatrix, 
+</span></span><span style="display:flex;"><span>                            InputOutputArray distCoeffs,
+</span></span><span style="display:flex;"><span>                            OutputArrayOfArrays rvecs, OutputArrayOfArrays tvecs,
+</span></span><span style="display:flex;"><span>                            <span style="color:#66d9ef">int</span> flags <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, 
+</span></span><span style="display:flex;"><span>                            TermCriteria criteria <span style="color:#f92672">=</span> TermCriteria(TermCriteria<span style="color:#f92672">::</span>COUNT <span style="color:#f92672">+</span> 
+</span></span><span style="display:flex;"><span>                            TermCriteria<span style="color:#f92672">::</span>EPS, <span style="color:#ae81ff">30</span>, DBL_EPSILON) );
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>objectPoints，世界坐标，用vector<vector>，输入x,y坐标，z坐标为0
+imagePoints，图像坐标，vector<vector>
+imageSize，图像的大小用于初始化标定摄像机的image的size
+<code>cameraMatrix</code>，内参数矩阵
+<code>distCoeffs</code>，畸变矩阵
+<code>rvecs</code>，位移向量
+<code>tvecs</code>，旋转向量
+flags，可以组合：
+<strong>CV_CALIB_USE_INTRINSIC_GUESS</strong>：使用该参数时，将包含有效的fx,fy,cx,cy的估计值的内参矩阵cameraMatrix，作为初始值输入，然后函数对其做进一步优化。如果不使用这个参数，用图像的中心点初始化光轴点坐标(cx, cy)，使用最小二乘估算出fx，fy（这种求法好像和张正友的论文不一样，不知道为何要这样处理）。注意，如果已知内部参数（内参矩阵和畸变系数），就不需要使用这个函数来估计外参，可以使用solvepnp()函数计算外参数矩阵。</p>
+<p><strong>CV_CALIB_FIX_PRINCIPAL_POINT</strong>：在进行优化时会固定光轴点，光轴点将保持为图像的中心点。当CV_CALIB_USE_INTRINSIC_GUESS参数被设置，保持为输入的值。</p>
+<p><strong>CV_CALIB_FIX_ASPECT_RATIO</strong>：固定fx/fy的比值，只将fy作为可变量，进行优化计算。当
+<strong>CV_CALIB_USE_INTRINSIC_GUESS</strong>没有被设置，fx和fy的实际输入值将会被忽略，只有fx/fy的比值被计算和使用。</p>
+<p><strong>CV_CALIB_ZERO_TANGENT_DIST</strong>：切向畸变系数（P1，P2）被设置为零并保持为零。</p>
+<p><strong>CV_CALIB_FIX_K1</strong>,…,<strong>CV_CALIB_FIX_K6</strong>：对应的径向畸变系数在优化中保持不变。如果设置了CV_CALIB_USE_INTRINSIC_GUESS参数，就从提供的畸变系数矩阵中得到。否则，设置为0。</p>
+<p><strong>CV_CALIB_RATIONAL_MODEL</strong>（理想模型）：启用畸变k4，k5，k6三个畸变参数。使标定函数使用有理模型，返回8个系数。如果没有设置，则只计算其它5个畸变参数。</p>
+<p>CALIB_THIN_PRISM_MODEL （薄棱镜畸变模型）：启用畸变系数S1、S2、S3和S4。使标定函数使用薄棱柱模型并返回12个系数。如果不设置标志，则函数计算并返回只有5个失真系数。</p>
+<p><strong>CALIB_FIX_S1_S2_S3_S4</strong> ：优化过程中不改变薄棱镜畸变系数S1、S2、S3、S4。如果cv_calib_use_intrinsic_guess设置，使用提供的畸变系数矩阵中的值。否则，设置为0。</p>
+<p>CALIB_TILTED_MODEL （倾斜模型）：启用畸变系数tauX and tauY。标定函数使用倾斜传感器模型并返回14个系数。如果不设置标志，则函数计算并返回只有5个失真系数。</p>
+<p><strong>CALIB_FIX_TAUX_TAUY</strong> ：在优化过程中，倾斜传感器模型的系数不被改变。如果cv_calib_use_intrinsic_guess设置，从提供的畸变系数矩阵中得到。否则，设置为0。</p>
+</blockquote>
+<h1 id="相机矫正">相机矫正</h1>
+<p>参考：</p>
+<p><a href="https://blog.csdn.net/qq_30815237/article/details/87622654" target="_blank" rel="noopener noreffer ">相机标定（4） 矫正畸变 undistort()和initUndistortRectifyMap()</a></p>
+<p><a href="https://docs.opencv.org/3.4.0/da/d54/group__imgproc__transform.html#ga7dfb72c9cf9780a347fbe3d1c47e5d5a" target="_blank" rel="noopener noreffer ">initUndistortRectifyMap</a></p>
+<h3 id="计算无畸变和修正转换映射">计算无畸变和修正转换映射</h3>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-1">1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-2">2</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-3">3</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-4">4</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-5">5</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-6">6</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-7">7</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-8">8</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-9">9</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span>CV_EXPORTS_W <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">initUndistortRectifyMap</span>( InputArray cameraMatrix, InputArray distCoeffs,
+</span></span><span style="display:flex;"><span>                           InputArray R, InputArray newCameraMatrix,
+</span></span><span style="display:flex;"><span>                           Size size, <span style="color:#66d9ef">int</span> m1type, OutputArray map1, OutputArray map2 );
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//! initializes maps for cv::remap() for wide-angle
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>CV_EXPORTS_W <span style="color:#66d9ef">float</span> <span style="color:#a6e22e">initWideAngleProjMap</span>( InputArray cameraMatrix, InputArray distCoeffs,
+</span></span><span style="display:flex;"><span>                                         Size imageSize, <span style="color:#66d9ef">int</span> destImageWidth,
+</span></span><span style="display:flex;"><span>                                         <span style="color:#66d9ef">int</span> m1type, OutputArray map1, OutputArray map2,
+</span></span><span style="display:flex;"><span>                                         <span style="color:#66d9ef">int</span> projType <span style="color:#f92672">=</span> PROJ_SPHERICAL_EQRECT, <span style="color:#66d9ef">double</span> alpha <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>);
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>1.<code>cameraMatrix</code>：输入相机矩阵
+2.<code>distCoeffs</code>：输入参数，相机的畸变系数： (<em>k</em>1,<em>k</em>2,<em>p</em>1,<em>p</em>2[,<em>k</em>3[,<em>k</em>4,<em>k</em>5,<em>k</em>6[,<em>s</em>1,<em>s</em>2,<em>s</em>3,<em>s</em>4[,<em>τ**x</em>,<em>τ**y</em>]]]]) ，有4，5,8,12或14个元素。如果这个向量是空的，就认为是零畸变系数。
+3.<code>R</code>：可选的修正变换矩阵，是个3*3的矩阵。通过<code>stereoRectify</code>计算得来的R1或R2可以放在这里。如果这个矩阵是空的，就假设为单位矩阵。在<code>cvInitUndistortMap</code>中，R被认为是单位矩阵。
+4.<code>newCameraMatrix</code>：新的相机矩阵
+5.<code>size</code>：未畸变的图像尺寸。
+6.<code>m1type</code>：第一个输出的映射的类型，可以为 CV_32FC1, CV_32FC2或CV_16SC2，参见<code>cv::convertMaps</code>。
+7.<code>map1</code>：第一个输出映射。
+8.<code>map2</code>：第二个输出映射。</p>
+</blockquote>
+<p>这个函数用于计算无畸变和修正转换关系，为了重映射，将结果以映射的形式表达。无畸变的图像看起来就像原始的图像，就像这个图像是用内参为newCameraMatrix的且无畸变的相机采集得到的。
+在单目相机例子中，newCameraMatrix一般和cameraMatrix相等，或者可以用cv::getOptimalNewCameraMatrix来计算，获得一个更好的有尺度的控制结果。
+在双目相机例子中，newCameraMatrix一般是用cv::stereoRectify计算而来的，设置为P1或P2。 此外，根据R，新的相机在坐标空间中的取向是不同的。例如，它帮助配准双目相机的两个相机方向，从而使得两个图像的极线是水平的，且y坐标相同（在双目相机的两个相机谁水平放置的情况下）。 该函数实际上为反向映射算法构建映射，供反向映射使用。也就是，对于在已经修正畸变的图像中的每个像素(u,v)，该函数计算原来图像（从相机中获得的原始图像）中对应的坐标系。</p>
+<p>函数输出得到map1和map2,然后使用remap()函数</p>
+<h2 id="remap">remap</h2>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-1">1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-2">2</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-3">3</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-4">4</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">remap</span>( InputArray src, OutputArray dst,
+</span></span><span style="display:flex;"><span>                         InputArray map1, InputArray map2,
+</span></span><span style="display:flex;"><span>                         <span style="color:#66d9ef">int</span> interpolation, <span style="color:#66d9ef">int</span> borderMode<span style="color:#f92672">=</span>BORDER_CONSTANT,
+</span></span><span style="display:flex;"><span>                         <span style="color:#66d9ef">const</span> Scalar<span style="color:#f92672">&amp;</span> borderValue<span style="color:#f92672">=</span>Scalar());
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>第一个参数：输入图像，即原图像，需要单通道8位或者浮点类型的图像
+第二个参数：输出图像，即目标图像，需和原图形一样的尺寸和类型
+第三个参数：它有两种可能表示的对象：（1）表示点（x,y）的第一个映射；（2）表示CV_16SC2，CV_32FC1等
+第四个参数：它有两种可能表示的对象：（1）若map1表示点（x,y）时，这个参数不代表任何值；（2）表示                                     CV_16UC1，CV_32FC1类型的Y值
+第五个参数：插值方式，有四种插值方式：
+（1）INTER_NEAREST——最近邻插值</p>
+<p>（2）INTER_LINEAR——双线性插值（默认）</p>
+<p>（3）INTER_CUBIC——双三样条插值（默认）</p>
+<p>（4）INTER_LANCZOS4——lanczos插值（默认）</p>
+<p>第六个参数：边界模式，默认BORDER_CONSTANT</p>
+<p>第七个参数：边界颜色，默认Scalar()黑色</p>
+</blockquote>
+<h1 id="代码工程">代码工程</h1>
+<p>完整代码工程（包含标定图片）：</p>
+<p><a href="https://gitee.com/fromyuhu/camera-calibration" target="_blank" rel="noopener noreffer ">camera-calibration</a></p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2023-01-30</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://zhangyuhu.github.io/posts/computer_vision/camera/cameracalibration/%E5%8D%95%E7%9B%AE%E7%9B%B8%E6%9C%BA%E6%A0%87%E5%AE%9A/" data-title="camera:单目相机标定" data-hashtags="相机标定"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://zhangyuhu.github.io/posts/computer_vision/camera/cameracalibration/%E5%8D%95%E7%9B%AE%E7%9B%B8%E6%9C%BA%E6%A0%87%E5%AE%9A/" data-hashtag="相机标定"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://zhangyuhu.github.io/posts/computer_vision/camera/cameracalibration/%E5%8D%95%E7%9B%AE%E7%9B%B8%E6%9C%BA%E6%A0%87%E5%AE%9A/" data-title="camera:单目相机标定"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://zhangyuhu.github.io/posts/computer_vision/camera/cameracalibration/%E5%8D%95%E7%9B%AE%E7%9B%B8%E6%9C%BA%E6%A0%87%E5%AE%9A/" data-title="camera:单目相机标定"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://zhangyuhu.github.io/posts/computer_vision/camera/cameracalibration/%E5%8D%95%E7%9B%AE%E7%9B%B8%E6%9C%BA%E6%A0%87%E5%AE%9A/" data-title="camera:单目相机标定" data-ralateuid="ji"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/%E7%9B%B8%E6%9C%BA%E6%A0%87%E5%AE%9A/">相机标定</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/computer_vision/camera/stereocamera/realsense/realsensed450%E4%BB%8B%E7%BB%8D/" class="prev" rel="prev" title="camera:深度相机realsense(D450)介绍"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>camera:深度相机realsense(D450)介绍</a>
+            <a href="/posts/computer_vision/camera/stereocamera/realsense/realsensed450%E6%B7%B1%E5%BA%A6%E5%AF%B9%E9%BD%90/" class="next" rel="next" title="camera:realsense(D450)深度对齐优化">camera:realsense(D450)深度对齐优化<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="giscus" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://giscus.app">Giscus</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">为天地立心,为生民立命,为往圣继绝学,为万世开太平</div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://zhangyuhu.github.io/" target="_blank">zhangyuhu</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="http://creativecommons.org/licenses/by/4.0/" target="_blank">知识共享署名 4.0 国际许可协议</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/css/lightgallery-bundle.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/twemoji@14.0.2/dist/twemoji.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/lightgallery.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/thumbnail/lg-thumbnail.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/zoom/lg-zoom.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@8.6.0/dist/index.umd.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{"giscus":{"category":"Comments","categoryId":"DIC_kwDOIx2Cjs4CTnUX","darkTheme":"dark","emitMetadata":"0","inputPosition":"bottom","lang":"en","lazyLoading":false,"lightTheme":"light","mapping":"pathname","reactionsEnabled":"1","repo":"zhangyuhu/zhangyuhu.github.io","repoId":"R_kgDOIx2Cjg"}},"data":{"id-1":"HOME","id-2":"HOME"},"lightgallery":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"},"twemoji":true,"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.2970a33d719df7cd89cebf586152b32a8ed30012227fa81b44282950146e0f595d1c733779e4d423dda1004bdcf707ee64d0fadc3d21229cd66b960788f84bdb.js" integrity="sha512-KXCjPXGd982Jzr9YYVKzKo7TABIif6gbRCgpUBRuD1ldHHM3eeTUI92hAEvc9wfuZND63D0hIpzWa5YHiPhL2w=="></script></body>
+</html>
