@@ -18,7 +18,7 @@
 <meta name="application-name" content="我的网站">
 <meta name="apple-mobile-web-app-title" content="我的网站"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://zhangyuhu.github.io/posts/open_source_software/parallel_computing/tbb/tbb/" /><link rel="prev" href="https://zhangyuhu.github.io/posts/tools/android/android_studio/" /><link rel="next" href="https://zhangyuhu.github.io/posts/open_source_software/threadpool/threadpool/" /><link rel="stylesheet" href="/css/style.min.61c0835a1733ac3f92b41b61b403dca9b8d4a3a7e4021c89af2c45a731f6343a82bc7fb214f4926e2c4669c8d258218b7da5d0e86d081ec97f3c1d823d48df2e.css" integrity="sha512-YcCDWhczrD+StBthtAPcqbjUo6fkAhyJryxFpzH2NDqCvH+yFPSSbixGacjSWCGLfaXQ6G0IHsl/PB2CPUjfLg=="><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://zhangyuhu.github.io/posts/open_source_software/parallel_computing/tbb/tbb/" /><link rel="prev" href="https://zhangyuhu.github.io/posts/tools/android/android_studio/" /><link rel="next" href="https://zhangyuhu.github.io/posts/open_source_software/threadpool/threadpool/" /><link rel="stylesheet" href="/css/style.min.990eb8dd228a2b662f63cfe59575be8aa494cb9d40ffd854f26b9d9e588e1f4fdadb6a34e3f9a9171244d3ee6c107521923ab30705f3ef50d3e435eda1afc910.css" integrity="sha512-mQ643SKKK2YvY8/llXW+iqSUy51A/9hU8mudnliOH0/a22o04/mpFxJE0+5sEHUhkjqzBwXz71DT5DXtoa/JEA=="><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
     {
@@ -204,9 +204,9 @@
 <ul>
 <li>blocked_range</li>
 </ul>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-1">1</a>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-1">1</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-2">2</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-3">3</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-4">4</a>
@@ -215,12 +215,12 @@
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-7">7</a>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#75715e">// 典型的c++泛型编程 blocked_range 是要处理的多个数据，3个参数依次是开始的指针（迭代器）、结束指针、每个任务分配的数据数
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//! Construct range over half-open interval [begin,end), with the given grainsize.
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>blocked_range( Value begin_, Value end_, size_type grainsize_<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span> ) <span style="color:#f92672">:</span>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#09f;font-style:italic">// 典型的c++泛型编程 blocked_range 是要处理的多个数据，3个参数依次是开始的指针（迭代器）、结束指针、每个任务分配的数据数
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic">//! Construct range over half-open interval [begin,end), with the given grainsize.
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>blocked_range( Value begin_, Value end_, size_type grainsize_<span style="color:#555">=</span><span style="color:#f60">1</span> ) <span style="color:#555">:</span>
 </span></span><span style="display:flex;"><span>    my_end(end_), my_begin(begin_), my_grainsize(grainsize_)
 </span></span><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>    __TBB_ASSERT( my_grainsize<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">0</span>, <span style="color:#e6db74">&#34;grainsize must be positive&#34;</span> );
+</span></span><span style="display:flex;"><span>    __TBB_ASSERT( my_grainsize<span style="color:#555">&gt;</span><span style="color:#f60">0</span>, <span style="color:#c30">&#34;grainsize must be positive&#34;</span> );
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></td></tr></table>
 </div>
@@ -232,9 +232,9 @@
 <ul>
 <li>parallel_for</li>
 </ul>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-1">1</a>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-1">1</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-2">2</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-3">3</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-4">4</a>
@@ -242,11 +242,11 @@
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-6">6</a>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#75715e">//! Parallel iteration over range with simple partitioner.
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#75715e">/** @ingroup algorithms **/</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">template</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">typename</span> Range, <span style="color:#66d9ef">typename</span> Body<span style="color:#f92672">&gt;</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> parallel_for( <span style="color:#66d9ef">const</span> Range<span style="color:#f92672">&amp;</span> range, <span style="color:#66d9ef">const</span> Body<span style="color:#f92672">&amp;</span> body, <span style="color:#66d9ef">const</span> simple_partitioner<span style="color:#f92672">&amp;</span> partitioner ) {
-</span></span><span style="display:flex;"><span>    internal<span style="color:#f92672">::</span>start_for<span style="color:#f92672">&lt;</span>Range,Body,<span style="color:#66d9ef">const</span> simple_partitioner<span style="color:#f92672">&gt;::</span>run(range,body,partitioner);
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#09f;font-style:italic">//! Parallel iteration over range with simple partitioner.
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span><span style="color:#09f;font-style:italic">/** @ingroup algorithms **/</span>
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">template</span><span style="color:#555">&lt;</span><span style="color:#069;font-weight:bold">typename</span> Range, <span style="color:#069;font-weight:bold">typename</span> Body<span style="color:#555">&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#078;font-weight:bold">void</span> parallel_for( <span style="color:#069;font-weight:bold">const</span> Range<span style="color:#555">&amp;</span> range, <span style="color:#069;font-weight:bold">const</span> Body<span style="color:#555">&amp;</span> body, <span style="color:#069;font-weight:bold">const</span> simple_partitioner<span style="color:#555">&amp;</span> partitioner ) {
+</span></span><span style="display:flex;"><span>    internal<span style="color:#555">::</span>start_for<span style="color:#555">&lt;</span>Range,Body,<span style="color:#069;font-weight:bold">const</span> simple_partitioner<span style="color:#555">&gt;::</span>run(range,body,partitioner);
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></td></tr></table>
 </div>
@@ -254,17 +254,17 @@
 1）range：指定划分block的范围。<br>
 2）body：指定对block应用的操作，Body可以看成是一个操作子functor，它的operator(&hellip;)会以blocked_range为参数进行调用，当然如果我们传过来的是一个函数指针也是可以的，只要它能以blocked_range为参数进行调用。<br>
 3）partitioner：指定划分器，可选的两种simple_partitioner和auto_partitioner。</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-1">1</a>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-1">1</a>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span>parallel_for(<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">100</span>,[](<span style="color:#66d9ef">int</span> v){cout<span style="color:#f92672">&lt;&lt;</span>v<span style="color:#f92672">&lt;&lt;</span>endl;});
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span>parallel_for(<span style="color:#f60">0</span>,<span style="color:#f60">100</span>,[](<span style="color:#078;font-weight:bold">int</span> v){cout<span style="color:#555">&lt;&lt;</span>v<span style="color:#555">&lt;&lt;</span>endl;});
 </span></span></code></pre></td></tr></table>
 </div>
-</div><div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+</div><div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-1"> 1</a>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-1"> 1</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-2"> 2</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-3"> 3</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-4"> 4</a>
@@ -281,28 +281,28 @@
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-15"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-15">15</a>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#75715e">// parallel_forFibBody可以简单理解为一个函数对象（c++里是用运算符重载实现的，即（）是通信的接口）
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>parallel_for( blocked_range<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span>( <span style="color:#ae81ff">1</span>, my_n, <span style="color:#ae81ff">10</span> ), parallel_forFibBody(my_stream) );
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#09f;font-style:italic">// parallel_forFibBody可以简单理解为一个函数对象（c++里是用运算符重载实现的，即（）是通信的接口）
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>parallel_for( blocked_range<span style="color:#555">&lt;</span><span style="color:#078;font-weight:bold">int</span><span style="color:#555">&gt;</span>( <span style="color:#f60">1</span>, my_n, <span style="color:#f60">10</span> ), parallel_forFibBody(my_stream) );
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">parallel_forFibBody</span> {
-</span></span><span style="display:flex;"><span>    QueueStream <span style="color:#f92672">&amp;</span>my_stream;
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//! fill functor arguments
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    parallel_forFibBody(QueueStream <span style="color:#f92672">&amp;</span>s) <span style="color:#f92672">:</span> my_stream(s) { }
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 这里是并行的代码
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">operator</span>()( <span style="color:#66d9ef">const</span> blocked_range<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> <span style="color:#f92672">&amp;</span>range ) <span style="color:#66d9ef">const</span> {
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> i_end <span style="color:#f92672">=</span> range.end();
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span>( <span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> range.begin(); i <span style="color:#f92672">!=</span> i_end; <span style="color:#f92672">++</span>i ) {
-</span></span><span style="display:flex;"><span>            my_stream.Queue.push( Matrix1110 ); <span style="color:#75715e">// push initial matrix
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        }
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">struct</span> <span style="color:#0a8;font-weight:bold">parallel_forFibBody</span> {
+</span></span><span style="display:flex;"><span>    QueueStream <span style="color:#555">&amp;</span>my_stream;
+</span></span><span style="display:flex;"><span>    <span style="color:#09f;font-style:italic">//! fill functor arguments
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>    parallel_forFibBody(QueueStream <span style="color:#555">&amp;</span>s) <span style="color:#555">:</span> my_stream(s) { }
+</span></span><span style="display:flex;"><span>    <span style="color:#09f;font-style:italic">// 这里是并行的代码
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>    <span style="color:#078;font-weight:bold">void</span> <span style="color:#c0f">operator</span>()( <span style="color:#069;font-weight:bold">const</span> blocked_range<span style="color:#555">&lt;</span><span style="color:#078;font-weight:bold">int</span><span style="color:#555">&gt;</span> <span style="color:#555">&amp;</span>range ) <span style="color:#069;font-weight:bold">const</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#078;font-weight:bold">int</span> i_end <span style="color:#555">=</span> range.end();
+</span></span><span style="display:flex;"><span>        <span style="color:#069;font-weight:bold">for</span>( <span style="color:#078;font-weight:bold">int</span> i <span style="color:#555">=</span> range.begin(); i <span style="color:#555">!=</span> i_end; <span style="color:#555">++</span>i ) {
+</span></span><span style="display:flex;"><span>            my_stream.Queue.push( Matrix1110 ); <span style="color:#09f;font-style:italic">// push initial matrix
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>        }
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>};
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="parallel_reduce">parallel_reduce</h4>
 <p>parallel_reduce 适合于需要汇总的情况，即各个数据的结果需要汇总回来。</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-1"> 1</a>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-1"> 1</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-2"> 2</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-3"> 3</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-4"> 4</a>
@@ -316,23 +316,23 @@
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-12"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-12">12</a>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#75715e">/** parallel_reduce overloads that work with anonymous function objects
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    (see also \ref parallel_reduce_lambda_req &#34;requirements on parallel_reduce anonymous function objects&#34;). **/</span>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#09f;font-style:italic">/** parallel_reduce overloads that work with anonymous function objects
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic">    (see also \ref parallel_reduce_lambda_req &#34;requirements on parallel_reduce anonymous function objects&#34;). **/</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">//! Parallel iteration with reduction and default partitioner.
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#75715e">/** @ingroup algorithms **/</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">template</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">typename</span> Range, <span style="color:#66d9ef">typename</span> Value, <span style="color:#66d9ef">typename</span> RealBody, <span style="color:#66d9ef">typename</span> Reduction<span style="color:#f92672">&gt;</span>
-</span></span><span style="display:flex;"><span>Value parallel_reduce( <span style="color:#66d9ef">const</span> Range<span style="color:#f92672">&amp;</span> range, <span style="color:#66d9ef">const</span> Value<span style="color:#f92672">&amp;</span> identity, <span style="color:#66d9ef">const</span> RealBody<span style="color:#f92672">&amp;</span> real_body, <span style="color:#66d9ef">const</span> Reduction<span style="color:#f92672">&amp;</span> reduction ) {
-</span></span><span style="display:flex;"><span>    internal<span style="color:#f92672">::</span>lambda_reduce_body<span style="color:#f92672">&lt;</span>Range,Value,RealBody,Reduction<span style="color:#f92672">&gt;</span> body(identity, real_body, reduction);
-</span></span><span style="display:flex;"><span>    internal<span style="color:#f92672">::</span>start_reduce<span style="color:#f92672">&lt;</span>Range,internal<span style="color:#f92672">::</span>lambda_reduce_body<span style="color:#f92672">&lt;</span>Range,Value,RealBody,Reduction<span style="color:#f92672">&gt;</span>,<span style="color:#66d9ef">const</span> __TBB_DEFAULT_PARTITIONER<span style="color:#f92672">&gt;</span>
-</span></span><span style="display:flex;"><span>                          <span style="color:#f92672">::</span>run(range, body, __TBB_DEFAULT_PARTITIONER() );
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> body.result();
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic">//! Parallel iteration with reduction and default partitioner.
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span><span style="color:#09f;font-style:italic">/** @ingroup algorithms **/</span>
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">template</span><span style="color:#555">&lt;</span><span style="color:#069;font-weight:bold">typename</span> Range, <span style="color:#069;font-weight:bold">typename</span> Value, <span style="color:#069;font-weight:bold">typename</span> RealBody, <span style="color:#069;font-weight:bold">typename</span> Reduction<span style="color:#555">&gt;</span>
+</span></span><span style="display:flex;"><span>Value parallel_reduce( <span style="color:#069;font-weight:bold">const</span> Range<span style="color:#555">&amp;</span> range, <span style="color:#069;font-weight:bold">const</span> Value<span style="color:#555">&amp;</span> identity, <span style="color:#069;font-weight:bold">const</span> RealBody<span style="color:#555">&amp;</span> real_body, <span style="color:#069;font-weight:bold">const</span> Reduction<span style="color:#555">&amp;</span> reduction ) {
+</span></span><span style="display:flex;"><span>    internal<span style="color:#555">::</span>lambda_reduce_body<span style="color:#555">&lt;</span>Range,Value,RealBody,Reduction<span style="color:#555">&gt;</span> body(identity, real_body, reduction);
+</span></span><span style="display:flex;"><span>    internal<span style="color:#555">::</span>start_reduce<span style="color:#555">&lt;</span>Range,internal<span style="color:#555">::</span>lambda_reduce_body<span style="color:#555">&lt;</span>Range,Value,RealBody,Reduction<span style="color:#555">&gt;</span>,<span style="color:#069;font-weight:bold">const</span> __TBB_DEFAULT_PARTITIONER<span style="color:#555">&gt;</span>
+</span></span><span style="display:flex;"><span>                          <span style="color:#555">::</span>run(range, body, __TBB_DEFAULT_PARTITIONER() );
+</span></span><span style="display:flex;"><span>    <span style="color:#069;font-weight:bold">return</span> body.result();
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></td></tr></table>
 </div>
-</div><div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+</div><div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-1"> 1</a>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-1"> 1</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-2"> 2</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-3"> 3</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-4"> 4</a>
@@ -350,27 +350,27 @@
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-16"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-16">16</a>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#66d9ef">float</span> <span style="color:#a6e22e">ParallelSumFoo</span>(<span style="color:#66d9ef">float</span> a[], size_t n) {
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#078;font-weight:bold">float</span> <span style="color:#c0f">ParallelSumFoo</span>(<span style="color:#078;font-weight:bold">float</span> a[], size_t n) {
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> parallel_reduce(tbb<span style="color:#f92672">::</span>blocked_range<span style="color:#f92672">&lt;</span>size_t<span style="color:#f92672">&gt;</span>(<span style="color:#ae81ff">0</span>, n),
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">float</span>(<span style="color:#ae81ff">0.f</span>),
-</span></span><span style="display:flex;"><span>        [a](<span style="color:#66d9ef">const</span> tbb<span style="color:#f92672">::</span>blocked_range<span style="color:#f92672">&lt;</span>size_t<span style="color:#f92672">&gt;&amp;</span> r, <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">float</span><span style="color:#f92672">&amp;</span> x) <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">float</span> {
-</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">float</span> sum <span style="color:#f92672">=</span> x;
-</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">for</span> (size_t i <span style="color:#f92672">=</span> r.begin(); i <span style="color:#f92672">!=</span> r.end(); <span style="color:#f92672">++</span>i) {
-</span></span><span style="display:flex;"><span>                sum <span style="color:#f92672">+=</span> foo(a[i]);
+</span></span><span style="display:flex;"><span>    <span style="color:#069;font-weight:bold">return</span> parallel_reduce(tbb<span style="color:#555">::</span>blocked_range<span style="color:#555">&lt;</span>size_t<span style="color:#555">&gt;</span>(<span style="color:#f60">0</span>, n),
+</span></span><span style="display:flex;"><span>        <span style="color:#078;font-weight:bold">float</span>(<span style="color:#f60">0.f</span>),
+</span></span><span style="display:flex;"><span>        [a](<span style="color:#069;font-weight:bold">const</span> tbb<span style="color:#555">::</span>blocked_range<span style="color:#555">&lt;</span>size_t<span style="color:#555">&gt;&amp;</span> r, <span style="color:#069;font-weight:bold">const</span> <span style="color:#078;font-weight:bold">float</span><span style="color:#555">&amp;</span> x) <span style="color:#555">-&gt;</span> <span style="color:#078;font-weight:bold">float</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#078;font-weight:bold">float</span> sum <span style="color:#555">=</span> x;
+</span></span><span style="display:flex;"><span>            <span style="color:#069;font-weight:bold">for</span> (size_t i <span style="color:#555">=</span> r.begin(); i <span style="color:#555">!=</span> r.end(); <span style="color:#555">++</span>i) {
+</span></span><span style="display:flex;"><span>                sum <span style="color:#555">+=</span> foo(a[i]);
 </span></span><span style="display:flex;"><span>            }
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> sum;
+</span></span><span style="display:flex;"><span>            <span style="color:#069;font-weight:bold">return</span> sum;
 </span></span><span style="display:flex;"><span>        },
-</span></span><span style="display:flex;"><span>        [](<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">float</span><span style="color:#f92672">&amp;</span> x, <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">float</span><span style="color:#f92672">&amp;</span> y) <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">float</span>{
-</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> x <span style="color:#f92672">+</span> y;
+</span></span><span style="display:flex;"><span>        [](<span style="color:#069;font-weight:bold">const</span> <span style="color:#078;font-weight:bold">float</span><span style="color:#555">&amp;</span> x, <span style="color:#069;font-weight:bold">const</span> <span style="color:#078;font-weight:bold">float</span><span style="color:#555">&amp;</span> y) <span style="color:#555">-&gt;</span> <span style="color:#078;font-weight:bold">float</span>{
+</span></span><span style="display:flex;"><span>            <span style="color:#069;font-weight:bold">return</span> x <span style="color:#555">+</span> y;
 </span></span><span style="display:flex;"><span>        });
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></td></tr></table>
 </div>
-</div><div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+</div><div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-1"> 1</a>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-1"> 1</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-2"> 2</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-3"> 3</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-4"> 4</a>
@@ -398,30 +398,30 @@
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-26"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-26">26</a>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#75715e">//注意分发下去和汇总回来的方法
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">float</span> <span style="color:#a6e22e">ParallelSumFoo</span>( <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">float</span> a[], size_t n ) {
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#09f;font-style:italic">//注意分发下去和汇总回来的方法
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span><span style="color:#078;font-weight:bold">float</span> <span style="color:#c0f">ParallelSumFoo</span>( <span style="color:#069;font-weight:bold">const</span> <span style="color:#078;font-weight:bold">float</span> a[], size_t n ) {
 </span></span><span style="display:flex;"><span>    SumFoo sf(a);
-</span></span><span style="display:flex;"><span>    parallel_reduce(blocked_range<span style="color:#f92672">&lt;</span>size_t<span style="color:#f92672">&gt;</span>(<span style="color:#ae81ff">0</span>,n,IdealGrainSize), sf );
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> sf.sum;
+</span></span><span style="display:flex;"><span>    parallel_reduce(blocked_range<span style="color:#555">&lt;</span>size_t<span style="color:#555">&gt;</span>(<span style="color:#f60">0</span>,n,IdealGrainSize), sf );
+</span></span><span style="display:flex;"><span>    <span style="color:#069;font-weight:bold">return</span> sf.sum;
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SumFoo</span> {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">float</span><span style="color:#f92672">*</span> my_a;
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">class</span> <span style="color:#0a8;font-weight:bold">SumFoo</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#078;font-weight:bold">float</span><span style="color:#555">*</span> my_a;
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">float</span> sum;
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">operator</span>()( <span style="color:#66d9ef">const</span> blocked_range<span style="color:#f92672">&lt;</span>size_t<span style="color:#f92672">&gt;&amp;</span> r ) {
-</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">float</span> <span style="color:#f92672">*</span>a <span style="color:#f92672">=</span> my_a;
-</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">for</span>( size_t i<span style="color:#f92672">=</span>r.begin(); i<span style="color:#f92672">!=</span>r.end(); <span style="color:#f92672">++</span>i )
-</span></span><span style="display:flex;"><span>                sum <span style="color:#f92672">+=</span> Foo(a[i]);
+</span></span><span style="display:flex;"><span>    <span style="color:#069;font-weight:bold">public</span><span style="color:#555">:</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#078;font-weight:bold">float</span> sum;
+</span></span><span style="display:flex;"><span>        <span style="color:#078;font-weight:bold">void</span> <span style="color:#c0f">operator</span>()( <span style="color:#069;font-weight:bold">const</span> blocked_range<span style="color:#555">&lt;</span>size_t<span style="color:#555">&gt;&amp;</span> r ) {
+</span></span><span style="display:flex;"><span>            <span style="color:#078;font-weight:bold">float</span> <span style="color:#555">*</span>a <span style="color:#555">=</span> my_a;
+</span></span><span style="display:flex;"><span>            <span style="color:#069;font-weight:bold">for</span>( size_t i<span style="color:#555">=</span>r.begin(); i<span style="color:#555">!=</span>r.end(); <span style="color:#555">++</span>i )
+</span></span><span style="display:flex;"><span>                sum <span style="color:#555">+=</span> Foo(a[i]);
 </span></span><span style="display:flex;"><span>        }
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        SumFoo( SumFoo<span style="color:#f92672">&amp;</span> x, split ) <span style="color:#f92672">:</span> my_a(x.my_a), sum(<span style="color:#ae81ff">0</span>) {} <span style="color:#75715e">// 分发任务，注意这个构造器要求是线程安全的
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">join</span>( <span style="color:#66d9ef">const</span> SumFoo<span style="color:#f92672">&amp;</span> y ) {sum<span style="color:#f92672">+=</span>y.sum;} <span style="color:#75715e">// 收集汇总结果
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span>        SumFoo(<span style="color:#66d9ef">float</span> a[] ) <span style="color:#f92672">:</span>
-</span></span><span style="display:flex;"><span>            my_a(a), sum(<span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>        SumFoo( SumFoo<span style="color:#555">&amp;</span> x, split ) <span style="color:#555">:</span> my_a(x.my_a), sum(<span style="color:#f60">0</span>) {} <span style="color:#09f;font-style:italic">// 分发任务，注意这个构造器要求是线程安全的
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>
+</span></span><span style="display:flex;"><span>        <span style="color:#078;font-weight:bold">void</span> <span style="color:#c0f">join</span>( <span style="color:#069;font-weight:bold">const</span> SumFoo<span style="color:#555">&amp;</span> y ) {sum<span style="color:#555">+=</span>y.sum;} <span style="color:#09f;font-style:italic">// 收集汇总结果
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>
+</span></span><span style="display:flex;"><span>        SumFoo(<span style="color:#078;font-weight:bold">float</span> a[] ) <span style="color:#555">:</span>
+</span></span><span style="display:flex;"><span>            my_a(a), sum(<span style="color:#f60">0</span>)
 </span></span><span style="display:flex;"><span>        {}
 </span></span><span style="display:flex;"><span>};
 </span></span></code></pre></td></tr></table>
@@ -445,9 +445,9 @@ parallel_reduce执行流程如下图所示：</p>
 <p>具体来说就是：当任务调度器发现有可供调度的工作线程时，parallel_reduce就调用代用split的构造函数为处理器创建一个子任务（Invoking the splitting constructor to create a subtask for the processor）；当子任务执行完成，parallel_reduce则调用join()方法累加子任务的结果。</p>
 <h4 id="parallel_while">parallel_while</h4>
 <p>有时不知道循环何时结束，即使用for的end未知，在这种情况下可以使用parallel_while。</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-1"> 1</a>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-1"> 1</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-2"> 2</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-3"> 3</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-4"> 4</a>
@@ -490,62 +490,62 @@ parallel_reduce执行流程如下图所示：</p>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-41"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-41">41</a>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#75715e">//注意pop_if_present、typedef Item* argument_type、operator()等部分的处理
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// 串行版本
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">SerialApplyFooToList</span>( Item<span style="color:#f92672">*</span>root ) {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span>( Item<span style="color:#f92672">*</span> ptr<span style="color:#f92672">=</span>root; ptr<span style="color:#f92672">!=</span>NULL; ptr<span style="color:#f92672">=</span>ptr<span style="color:#f92672">-&gt;</span>next )
-</span></span><span style="display:flex;"><span>        Foo(pointer<span style="color:#f92672">-&gt;</span>data);
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#09f;font-style:italic">//注意pop_if_present、typedef Item* argument_type、operator()等部分的处理
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic">// 串行版本
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span><span style="color:#078;font-weight:bold">void</span> <span style="color:#c0f">SerialApplyFooToList</span>( Item<span style="color:#555">*</span>root ) {
+</span></span><span style="display:flex;"><span>    <span style="color:#069;font-weight:bold">for</span>( Item<span style="color:#555">*</span> ptr<span style="color:#555">=</span>root; ptr<span style="color:#555">!=</span><span style="color:#366">NULL</span>; ptr<span style="color:#555">=</span>ptr<span style="color:#555">-&gt;</span>next )
+</span></span><span style="display:flex;"><span>        Foo(pointer<span style="color:#555">-&gt;</span>data);
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">// 并行版本
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ItemStream</span> {
-</span></span><span style="display:flex;"><span>    Item<span style="color:#f92672">*</span> my_ptr;
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic">// 并行版本
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span><span style="color:#069;font-weight:bold">class</span> <span style="color:#0a8;font-weight:bold">ItemStream</span> {
+</span></span><span style="display:flex;"><span>    Item<span style="color:#555">*</span> my_ptr;
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">bool</span> pop_if_present( Item<span style="color:#f92672">*&amp;</span> item ) { <span style="color:#75715e">// 用于提供下一个迭代器
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            <span style="color:#66d9ef">if</span>( my_ptr ) {
-</span></span><span style="display:flex;"><span>                item <span style="color:#f92672">=</span> my_ptr;
-</span></span><span style="display:flex;"><span>                my_ptr <span style="color:#f92672">=</span> my_ptr<span style="color:#f92672">-&gt;</span>next;
-</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">return</span> true;
-</span></span><span style="display:flex;"><span>            } <span style="color:#66d9ef">else</span> {
-</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">return</span> false;
+</span></span><span style="display:flex;"><span>    <span style="color:#069;font-weight:bold">public</span><span style="color:#555">:</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#078;font-weight:bold">bool</span> pop_if_present( Item<span style="color:#555">*&amp;</span> item ) { <span style="color:#09f;font-style:italic">// 用于提供下一个迭代器
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>            <span style="color:#069;font-weight:bold">if</span>( my_ptr ) {
+</span></span><span style="display:flex;"><span>                item <span style="color:#555">=</span> my_ptr;
+</span></span><span style="display:flex;"><span>                my_ptr <span style="color:#555">=</span> my_ptr<span style="color:#555">-&gt;</span>next;
+</span></span><span style="display:flex;"><span>                <span style="color:#069;font-weight:bold">return</span> <span style="color:#366">true</span>;
+</span></span><span style="display:flex;"><span>            } <span style="color:#069;font-weight:bold">else</span> {
+</span></span><span style="display:flex;"><span>                <span style="color:#069;font-weight:bold">return</span> <span style="color:#366">false</span>;
 </span></span><span style="display:flex;"><span>            }
 </span></span><span style="display:flex;"><span>        };
-</span></span><span style="display:flex;"><span>        ItemStream( Item<span style="color:#f92672">*</span> root ) <span style="color:#f92672">:</span> my_ptr(root) {}
+</span></span><span style="display:flex;"><span>        ItemStream( Item<span style="color:#555">*</span> root ) <span style="color:#555">:</span> my_ptr(root) {}
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ApplyFoo</span> {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">void</span> <span style="color:#66d9ef">operator</span>()( Item<span style="color:#f92672">*</span> item ) <span style="color:#66d9ef">const</span> { <span style="color:#75715e">// 要求一定是const的
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            Foo(item<span style="color:#f92672">-&gt;</span>data);
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">class</span> <span style="color:#0a8;font-weight:bold">ApplyFoo</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#069;font-weight:bold">public</span><span style="color:#555">:</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#078;font-weight:bold">void</span> <span style="color:#069;font-weight:bold">operator</span>()( Item<span style="color:#555">*</span> item ) <span style="color:#069;font-weight:bold">const</span> { <span style="color:#09f;font-style:italic">// 要求一定是const的
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>            Foo(item<span style="color:#555">-&gt;</span>data);
 </span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">typedef</span> Item<span style="color:#f92672">*</span> argument_type; <span style="color:#75715e">// 此句是必须的
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>};
+</span></span><span style="display:flex;"><span>        <span style="color:#069;font-weight:bold">typedef</span> Item<span style="color:#555">*</span> argument_type; <span style="color:#09f;font-style:italic">// 此句是必须的
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>};
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">ParallelApplyFooToList</span>( Item<span style="color:#f92672">*</span>root ) {
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// parallel_while是个class
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    parallel_while<span style="color:#f92672">&lt;</span>ApplyFoo<span style="color:#f92672">&gt;</span> w; <span style="color:#75715e">//  先建立个对象
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    ItemStream stream;
+</span></span><span style="display:flex;"><span><span style="color:#078;font-weight:bold">void</span> <span style="color:#c0f">ParallelApplyFooToList</span>( Item<span style="color:#555">*</span>root ) {
+</span></span><span style="display:flex;"><span>    <span style="color:#09f;font-style:italic">// parallel_while是个class
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>    parallel_while<span style="color:#555">&lt;</span>ApplyFoo<span style="color:#555">&gt;</span> w; <span style="color:#09f;font-style:italic">//  先建立个对象
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>    ItemStream stream;
 </span></span><span style="display:flex;"><span>    ApplyFoo body;
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 第一个参数提供数据指针，第二个参数提供函数体
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    w.run( stream, body );
+</span></span><span style="display:flex;"><span>    <span style="color:#09f;font-style:italic">// 第一个参数提供数据指针，第二个参数提供函数体
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>    w.run( stream, body );
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="graph">graph</h3>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-1">1</a>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-1">1</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-2">2</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-3">3</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-4">4</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-5">5</a>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#75715e">//! Makes an edge between a single predecessor and a single successor
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">template</span><span style="color:#f92672">&lt;</span> <span style="color:#66d9ef">typename</span> T <span style="color:#f92672">&gt;</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">inline</span> <span style="color:#66d9ef">void</span> make_edge( sender<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> <span style="color:#f92672">&amp;</span>p, receiver<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> <span style="color:#f92672">&amp;</span>s ) {
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#09f;font-style:italic">//! Makes an edge between a single predecessor and a single successor
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span><span style="color:#069;font-weight:bold">template</span><span style="color:#555">&lt;</span> <span style="color:#069;font-weight:bold">typename</span> T <span style="color:#555">&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">inline</span> <span style="color:#078;font-weight:bold">void</span> make_edge( sender<span style="color:#555">&lt;</span>T<span style="color:#555">&gt;</span> <span style="color:#555">&amp;</span>p, receiver<span style="color:#555">&lt;</span>T<span style="color:#555">&gt;</span> <span style="color:#555">&amp;</span>s ) {
 </span></span><span style="display:flex;"><span>    internal_make_edge( p, s );
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></td></tr></table>
@@ -607,5 +607,5 @@ set_capacity（）指定队列大小，会使push操作被阻塞<br>
             </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
                 <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
             </a>
-        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/css/lightgallery-bundle.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/twemoji@14.0.2/dist/twemoji.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/lightgallery.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/thumbnail/lg-thumbnail.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/zoom/lg-zoom.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@8.6.0/dist/index.umd.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{"giscus":{"category":"Comments","categoryId":"DIC_kwDOIx2Cjs4CTnUX","darkTheme":"dark","emitMetadata":"0","inputPosition":"bottom","lang":"en","lazyLoading":false,"lightTheme":"light","mapping":"pathname","reactionsEnabled":"1","repo":"zhangyuhu/zhangyuhu.github.io","repoId":"R_kgDOIx2Cjg"}},"data":{"id-1":"HOME","id-2":"HOME"},"lightgallery":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"},"twemoji":true,"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.2970a33d719df7cd89cebf586152b32a8ed30012227fa81b44282950146e0f595d1c733779e4d423dda1004bdcf707ee64d0fadc3d21229cd66b960788f84bdb.js" integrity="sha512-KXCjPXGd982Jzr9YYVKzKo7TABIif6gbRCgpUBRuD1ldHHM3eeTUI92hAEvc9wfuZND63D0hIpzWa5YHiPhL2w=="></script></body>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/css/lightgallery-bundle.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/twemoji@14.0.2/dist/twemoji.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/lightgallery.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/thumbnail/lg-thumbnail.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/zoom/lg-zoom.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@8.6.0/dist/index.umd.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":100},"comment":{"giscus":{"category":"Comments","categoryId":"DIC_kwDOIx2Cjs4CTnUX","darkTheme":"dark","emitMetadata":"0","inputPosition":"bottom","lang":"en","lazyLoading":false,"lightTheme":"light","mapping":"pathname","reactionsEnabled":"1","repo":"zhangyuhu/zhangyuhu.github.io","repoId":"R_kgDOIx2Cjg"}},"data":{"id-1":"HOME","id-2":"HOME"},"lightgallery":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"},"twemoji":true,"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.2970a33d719df7cd89cebf586152b32a8ed30012227fa81b44282950146e0f595d1c733779e4d423dda1004bdcf707ee64d0fadc3d21229cd66b960788f84bdb.js" integrity="sha512-KXCjPXGd982Jzr9YYVKzKo7TABIif6gbRCgpUBRuD1ldHHM3eeTUI92hAEvc9wfuZND63D0hIpzWa5YHiPhL2w=="></script></body>
 </html>

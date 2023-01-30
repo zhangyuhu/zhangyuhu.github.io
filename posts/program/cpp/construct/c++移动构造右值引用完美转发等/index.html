@@ -18,7 +18,7 @@
 <meta name="application-name" content="我的网站">
 <meta name="apple-mobile-web-app-title" content="我的网站"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://zhangyuhu.github.io/posts/program/cpp/construct/c&#43;&#43;%E7%A7%BB%E5%8A%A8%E6%9E%84%E9%80%A0%E5%8F%B3%E5%80%BC%E5%BC%95%E7%94%A8%E5%AE%8C%E7%BE%8E%E8%BD%AC%E5%8F%91%E7%AD%89/" /><link rel="prev" href="https://zhangyuhu.github.io/posts/basic_knowledge/arm/cortex-a/cortex-a/" /><link rel="next" href="https://zhangyuhu.github.io/posts/program/cpp/c&#43;&#43;%E9%9A%90%E5%BC%8F%E8%BD%AC%E6%8D%A2%E9%97%AE%E9%A2%98/" /><link rel="stylesheet" href="/css/style.min.61c0835a1733ac3f92b41b61b403dca9b8d4a3a7e4021c89af2c45a731f6343a82bc7fb214f4926e2c4669c8d258218b7da5d0e86d081ec97f3c1d823d48df2e.css" integrity="sha512-YcCDWhczrD+StBthtAPcqbjUo6fkAhyJryxFpzH2NDqCvH+yFPSSbixGacjSWCGLfaXQ6G0IHsl/PB2CPUjfLg=="><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://zhangyuhu.github.io/posts/program/cpp/construct/c&#43;&#43;%E7%A7%BB%E5%8A%A8%E6%9E%84%E9%80%A0%E5%8F%B3%E5%80%BC%E5%BC%95%E7%94%A8%E5%AE%8C%E7%BE%8E%E8%BD%AC%E5%8F%91%E7%AD%89/" /><link rel="prev" href="https://zhangyuhu.github.io/posts/basic_knowledge/arm/cortex-a/cortex-a/" /><link rel="next" href="https://zhangyuhu.github.io/posts/program/cpp/c&#43;&#43;%E9%9A%90%E5%BC%8F%E8%BD%AC%E6%8D%A2%E9%97%AE%E9%A2%98/" /><link rel="stylesheet" href="/css/style.min.990eb8dd228a2b662f63cfe59575be8aa494cb9d40ffd854f26b9d9e588e1f4fdadb6a34e3f9a9171244d3ee6c107521923ab30705f3ef50d3e435eda1afc910.css" integrity="sha512-mQ643SKKK2YvY8/llXW+iqSUy51A/9hU8mudnliOH0/a22o04/mpFxJE0+5sEHUhkjqzBwXz71DT5DXtoa/JEA=="><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
     {
@@ -307,9 +307,9 @@
 <p>一个常数5，我们在使用它时不会在内存中为其分配一个空间，而是直接把它放到寄存器中，所以它在C++中就是一个右值。</p>
 <p>再比如说我们定义了一个变量 a，它在内存中会分配空间，因此它在C++中就是左值。</p>
 <p>那么a+5是左值还是右值呢？当然是右值对吧，因为a+5的结果存放在寄存器中，它并没有在内存中分配新空间，所以它是右值。</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-1"> 1</a>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-1"> 1</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-2"> 2</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-3"> 3</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-4"> 4</a>
@@ -321,16 +321,16 @@
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-10"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-10">10</a>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">int</span> argc, <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>argv[]){
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#078;font-weight:bold">int</span> <span style="color:#c0f">main</span>(<span style="color:#078;font-weight:bold">int</span> argc, <span style="color:#078;font-weight:bold">char</span> <span style="color:#555">*</span>argv[]){
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> <span style="color:#f92672">&amp;&amp;</span> a <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span>;  <span style="color:#75715e">// 正确，5会被直接存放在寄存器中，所以它是右值
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> b <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>;
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> <span style="color:#f92672">&amp;&amp;</span> c <span style="color:#f92672">=</span> b;  <span style="color:#75715e">// 错误，b在内存中有空间，所以是右值；右值不能赋值给左值
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> <span style="color:#f92672">&amp;&amp;</span> d <span style="color:#f92672">=</span> b <span style="color:#f92672">+</span> <span style="color:#ae81ff">5</span>; <span style="color:#75715e">// 正确，虽然 b 在内存中，但 b+5 的结果放在寄存器中，它没有在内存中分配空间，因此是右值 
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> <span style="color:#f92672">&amp;&amp;</span> e <span style="color:#f92672">=</span> a; <span style="color:#75715e">// 错误，因为a是左值而e必须接收右值。
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> <span style="color:#f92672">&amp;&amp;</span> e <span style="color:#f92672">=</span> std<span style="color:#f92672">::</span>move(a); <span style="color:#75715e">// 正确，通过std::move可以将一个左值转成右值。e虽然接收的必须是右值，但它本身是左值。换句话说e是一种特殊的变量，它是只能接收右值的变量。我们再从左值的本质来看，e也是占内存空间的，所以它肯定是左值。
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span><span style="display:flex;"><span>    <span style="color:#078;font-weight:bold">int</span> <span style="color:#555">&amp;&amp;</span> a <span style="color:#555">=</span> <span style="color:#f60">5</span>;  <span style="color:#09f;font-style:italic">// 正确，5会被直接存放在寄存器中，所以它是右值
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>    <span style="color:#078;font-weight:bold">int</span> b <span style="color:#555">=</span> <span style="color:#f60">10</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#078;font-weight:bold">int</span> <span style="color:#555">&amp;&amp;</span> c <span style="color:#555">=</span> b;  <span style="color:#09f;font-style:italic">// 错误，b在内存中有空间，所以是右值；右值不能赋值给左值
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>    <span style="color:#078;font-weight:bold">int</span> <span style="color:#555">&amp;&amp;</span> d <span style="color:#555">=</span> b <span style="color:#555">+</span> <span style="color:#f60">5</span>; <span style="color:#09f;font-style:italic">// 正确，虽然 b 在内存中，但 b+5 的结果放在寄存器中，它没有在内存中分配空间，因此是右值 
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>
+</span></span><span style="display:flex;"><span>    <span style="color:#078;font-weight:bold">int</span> <span style="color:#555">&amp;&amp;</span> e <span style="color:#555">=</span> a; <span style="color:#09f;font-style:italic">// 错误，因为a是左值而e必须接收右值。
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>    <span style="color:#078;font-weight:bold">int</span> <span style="color:#555">&amp;&amp;</span> e <span style="color:#555">=</span> std<span style="color:#555">::</span>move(a); <span style="color:#09f;font-style:italic">// 正确，通过std::move可以将一个左值转成右值。e虽然接收的必须是右值，但它本身是左值。换句话说e是一种特殊的变量，它是只能接收右值的变量。我们再从左值的本质来看，e也是占内存空间的，所以它肯定是左值。
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>}
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h1 id="通用引用和右值引用">通用引用和右值引用</h1>
@@ -348,9 +348,9 @@
 <li>右值引用 一定是 type&amp;&amp;</li>
 <li>type&amp;&amp; 不一定是 右值引用（还有可能是通用引用）</li>
 </ul>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-1"> 1</a>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-1"> 1</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-2"> 2</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-3"> 3</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-4"> 4</a>
@@ -365,19 +365,19 @@
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-13"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-13">13</a>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">f</span>(Widget<span style="color:#f92672">&amp;&amp;</span> param);        <span style="color:#75715e">// 右值引用
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>Widget<span style="color:#f92672">&amp;&amp;</span> var1 <span style="color:#f92672">=</span> Widget();      <span style="color:#75715e">// 右值引用
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">auto</span><span style="color:#f92672">&amp;&amp;</span> var2 <span style="color:#f92672">=</span> var1;            <span style="color:#75715e">// 不是右值引用！！！
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">decltype</span>(var1) var3 <span style="color:#f92672">=</span> var1;    <span style="color:#75715e">// 无法编译通过
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>Widget<span style="color:#f92672">&amp;&amp;</span> var4 <span style="color:#f92672">=</span> var1;          <span style="color:#75715e">// 无法编译通过
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">template</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">typename</span> T<span style="color:#f92672">&gt;</span>           
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> f(std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;&amp;&amp;</span> param); <span style="color:#75715e">// 右值引用
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">template</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">typename</span> T<span style="color:#f92672">&gt;</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> f(T<span style="color:#f92672">&amp;&amp;</span> param);              <span style="color:#75715e">// 不是右值引用！！！
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#078;font-weight:bold">void</span> <span style="color:#c0f">f</span>(Widget<span style="color:#555">&amp;&amp;</span> param);        <span style="color:#09f;font-style:italic">// 右值引用
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>Widget<span style="color:#555">&amp;&amp;</span> var1 <span style="color:#555">=</span> Widget();      <span style="color:#09f;font-style:italic">// 右值引用
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">auto</span><span style="color:#555">&amp;&amp;</span> var2 <span style="color:#555">=</span> var1;            <span style="color:#09f;font-style:italic">// 不是右值引用！！！
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">decltype</span>(var1) var3 <span style="color:#555">=</span> var1;    <span style="color:#09f;font-style:italic">// 无法编译通过
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>Widget<span style="color:#555">&amp;&amp;</span> var4 <span style="color:#555">=</span> var1;          <span style="color:#09f;font-style:italic">// 无法编译通过
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">template</span><span style="color:#555">&lt;</span><span style="color:#069;font-weight:bold">typename</span> T<span style="color:#555">&gt;</span>           
+</span></span><span style="display:flex;"><span><span style="color:#078;font-weight:bold">void</span> f(std<span style="color:#555">::</span>vector<span style="color:#555">&lt;</span>T<span style="color:#555">&gt;&amp;&amp;</span> param); <span style="color:#09f;font-style:italic">// 右值引用
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">template</span><span style="color:#555">&lt;</span><span style="color:#069;font-weight:bold">typename</span> T<span style="color:#555">&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#078;font-weight:bold">void</span> f(T<span style="color:#555">&amp;&amp;</span> param);              <span style="color:#09f;font-style:italic">// 不是右值引用！！！
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>在这里，&ldquo;type&amp;&amp;&ldquo;中的&rdquo;&amp;&amp;&ldquo;意味着：</p>
@@ -395,9 +395,9 @@
 通用引用是需要初始化的，如果是左值，那就是左值引用，如果是右值，那就是右值引用。</p>
 <h1 id="移动构造函数和移动赋值运算符">移动构造函数和移动赋值运算符</h1>
 <p>为了支持移动语义，C++11 引用两个新的特殊成员函数，它们是移动构造函数和移动赋值运算符，想要支持移动操作的类必须定义它们。</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-1"> 1</a>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-1"> 1</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-2"> 2</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-3"> 3</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-4"> 4</a>
@@ -414,20 +414,20 @@
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-15"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-15">15</a>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Widget</span> {
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">private</span><span style="color:#f92672">:</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> i{<span style="color:#ae81ff">0</span>};
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#069;font-weight:bold">class</span> <span style="color:#0a8;font-weight:bold">Widget</span> {
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">private</span><span style="color:#555">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#078;font-weight:bold">int</span> i{<span style="color:#f60">0</span>};
 </span></span><span style="display:flex;"><span>    string s{};
-</span></span><span style="display:flex;"><span>    unique_ptr<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> pi{};
+</span></span><span style="display:flex;"><span>    unique_ptr<span style="color:#555">&lt;</span><span style="color:#078;font-weight:bold">int</span><span style="color:#555">&gt;</span> pi{};
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Move constructor
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// 该构造函数的参数是 Widget &amp;&amp;w。&amp;&amp;它表示的是C++中的右值，也就是只有创建Widget对象时传入的是右值才会执行该构造函数。 
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// 需要注意的是，在移动构造函数操作之后原 Widget 对象的指针地址已经指向NULL了，因此此时就不能再通过其访问之前的堆空间了
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    Widget(Widget <span style="color:#f92672">&amp;&amp;</span>w) <span style="color:#f92672">=</span> <span style="color:#66d9ef">default</span>;
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">public</span><span style="color:#555">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#09f;font-style:italic">// Move constructor
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>    <span style="color:#09f;font-style:italic">// 该构造函数的参数是 Widget &amp;&amp;w。&amp;&amp;它表示的是C++中的右值，也就是只有创建Widget对象时传入的是右值才会执行该构造函数。 
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>    <span style="color:#09f;font-style:italic">// 需要注意的是，在移动构造函数操作之后原 Widget 对象的指针地址已经指向NULL了，因此此时就不能再通过其访问之前的堆空间了
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>    Widget(Widget <span style="color:#555">&amp;&amp;</span>w) <span style="color:#555">=</span> <span style="color:#069;font-weight:bold">default</span>;
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Move assignment operator
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    Widget <span style="color:#f92672">&amp;</span><span style="color:#66d9ef">operator</span><span style="color:#f92672">=</span>(Widget <span style="color:#f92672">&amp;&amp;</span>w) <span style="color:#f92672">=</span> <span style="color:#66d9ef">default</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#09f;font-style:italic">// Move assignment operator
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>    Widget <span style="color:#555">&amp;</span><span style="color:#069;font-weight:bold">operator</span><span style="color:#555">=</span>(Widget <span style="color:#555">&amp;&amp;</span>w) <span style="color:#555">=</span> <span style="color:#069;font-weight:bold">default</span>;
 </span></span><span style="display:flex;"><span>};
 </span></span></code></pre></td></tr></table>
 </div>
@@ -487,19 +487,19 @@
 </ul>
 <h2 id="移动赋值运算符">移动赋值运算符</h2>
 <p>定义移动赋值运算符<strong>最简单</strong>的方法就是定义一个“拷贝并交换”的拷贝赋值运算符（如果你在疑惑该怎样自定义 swap 操作，请看 Effective C++ Item 25）：</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-1">1</a>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-1">1</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-2">2</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-3">3</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-4">4</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-5">5</a>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>ClassA<span style="color:#f92672">&amp;</span> ClassA<span style="color:#f92672">::</span><span style="color:#66d9ef">operator</span><span style="color:#f92672">=</span>(ClassA rhs)
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>ClassA<span style="color:#555">&amp;</span> ClassA<span style="color:#555">::</span><span style="color:#069;font-weight:bold">operator</span><span style="color:#555">=</span>(ClassA rhs)
 </span></span><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>    swap(<span style="color:#f92672">*</span><span style="color:#66d9ef">this</span>, rhs);
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#f92672">*</span><span style="color:#66d9ef">this</span>;
+</span></span><span style="display:flex;"><span>    swap(<span style="color:#555">*</span><span style="color:#069;font-weight:bold">this</span>, rhs);
+</span></span><span style="display:flex;"><span>    <span style="color:#069;font-weight:bold">return</span> <span style="color:#555">*</span><span style="color:#069;font-weight:bold">this</span>;
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></td></tr></table>
 </div>
@@ -522,9 +522,9 @@
 <p>C.20: If you can avoid defining default operations, do</p>
 </blockquote>
 <p>也就是说，如果默认行为够用，就不要再去定义自己的特殊成员函数。</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-1"> 1</a>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-1"> 1</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-2"> 2</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-3"> 3</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-4"> 4</a>
@@ -536,16 +536,16 @@
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-10"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-10">10</a>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">Named_map</span> {
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// ... no default operations declared ...
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">private</span><span style="color:#f92672">:</span>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#069;font-weight:bold">struct</span> <span style="color:#0a8;font-weight:bold">Named_map</span> {
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">public</span><span style="color:#555">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#09f;font-style:italic">// ... no default operations declared ...
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span><span style="color:#069;font-weight:bold">private</span><span style="color:#555">:</span>
 </span></span><span style="display:flex;"><span>    string name;
-</span></span><span style="display:flex;"><span>    map<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span>, <span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> rep;
+</span></span><span style="display:flex;"><span>    map<span style="color:#555">&lt;</span><span style="color:#078;font-weight:bold">int</span>, <span style="color:#078;font-weight:bold">int</span><span style="color:#555">&gt;</span> rep;
 </span></span><span style="display:flex;"><span>};
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>Named_map nm;        <span style="color:#75715e">// default construct
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>Named_map nm2 {nm};  <span style="color:#75715e">// copy construct
+</span></span><span style="display:flex;"><span>Named_map nm;        <span style="color:#09f;font-style:italic">// default construct
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>Named_map nm2 {nm};  <span style="color:#09f;font-style:italic">// copy construct
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>map 和 string 定义了所有的特殊成员函数，编译器生成的默认实现就已经够用了。</p>
@@ -566,9 +566,9 @@
 <li>规则 2：如果某个类定义了移动构造函数，没有定义拷贝构造函数，那么后者被编译器定义为删除的（对于赋值运算符也是一样的）</li>
 </ul>
 <p>如果定义了这些操作中的某一个，就应该把其他的操作都定义出来，以避免所有（潜在的）可移动的场景都变成昂贵的拷贝（对应规则 1）或者使得类型变成仅能移动的（对应规则 2）。</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-1"> 1</a>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-1"> 1</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-2"> 2</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-3"> 3</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-4"> 4</a>
@@ -587,23 +587,23 @@
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-17"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-17">17</a>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">M2</span> {   <span style="color:#75715e">// bad: incomplete set of copy/move/destructor operations
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// ...
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// ... no copy or move operations ...
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#f92672">~</span>M2() { <span style="color:#66d9ef">delete</span>[] rep; }
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">private</span><span style="color:#f92672">:</span>
-</span></span><span style="display:flex;"><span>    pair<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span>, <span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;*</span> rep;  <span style="color:#75715e">// zero-terminated set of pairs
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>};
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#069;font-weight:bold">struct</span> <span style="color:#0a8;font-weight:bold">M2</span> {   <span style="color:#09f;font-style:italic">// bad: incomplete set of copy/move/destructor operations
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span><span style="color:#069;font-weight:bold">public</span><span style="color:#555">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#09f;font-style:italic">// ...
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>    <span style="color:#09f;font-style:italic">// ... no copy or move operations ...
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>    <span style="color:#555">~</span>M2() { <span style="color:#069;font-weight:bold">delete</span>[] rep; }
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">private</span><span style="color:#555">:</span>
+</span></span><span style="display:flex;"><span>    pair<span style="color:#555">&lt;</span><span style="color:#078;font-weight:bold">int</span>, <span style="color:#078;font-weight:bold">int</span><span style="color:#555">&gt;*</span> rep;  <span style="color:#09f;font-style:italic">// zero-terminated set of pairs
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>};
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">use</span>()
+</span></span><span style="display:flex;"><span><span style="color:#078;font-weight:bold">void</span> <span style="color:#c0f">use</span>()
 </span></span><span style="display:flex;"><span>{
 </span></span><span style="display:flex;"><span>    M2 x;
 </span></span><span style="display:flex;"><span>    M2 y;
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// ...
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    x <span style="color:#f92672">=</span> y;   <span style="color:#75715e">// the default assignment
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// ...
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span><span style="display:flex;"><span>    <span style="color:#09f;font-style:italic">// ...
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>    x <span style="color:#555">=</span> y;   <span style="color:#09f;font-style:italic">// the default assignment
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>    <span style="color:#09f;font-style:italic">// ...
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>}
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>这段代码没能遵循 the rule of five，造成的后果是 rep 被 double free。</p>
@@ -617,19 +617,19 @@
 <h2 id="stdmove">std::move</h2>
 <p><a href="https://blog.csdn.net/p942005405/article/details/84644069" target="_blank" rel="noopener noreffer ">c++ 之 std::move 原理实现与用法总结</a></p>
 <p>一个简化的 move 实现是这样的：</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-1">1</a>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-1">1</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-2">2</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-3">3</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-4">4</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-5">5</a>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">template</span> <span style="color:#f92672">&lt;</span><span style="color:#66d9ef">typename</span> T<span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">typename</span> remove_reference<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;::</span>type <span style="color:#f92672">&amp;&amp;</span>move(T <span style="color:#f92672">&amp;&amp;</span>param) {
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">using</span> ReturnType <span style="color:#f92672">=</span> <span style="color:#66d9ef">typename</span> remove_reference<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;::</span>type <span style="color:#f92672">&amp;&amp;</span>;
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#069;font-weight:bold">template</span> <span style="color:#555">&lt;</span><span style="color:#069;font-weight:bold">typename</span> T<span style="color:#555">&gt;</span> <span style="color:#069;font-weight:bold">typename</span> remove_reference<span style="color:#555">&lt;</span>T<span style="color:#555">&gt;::</span>type <span style="color:#555">&amp;&amp;</span>move(T <span style="color:#555">&amp;&amp;</span>param) {
+</span></span><span style="display:flex;"><span>  <span style="color:#069;font-weight:bold">using</span> ReturnType <span style="color:#555">=</span> <span style="color:#069;font-weight:bold">typename</span> remove_reference<span style="color:#555">&lt;</span>T<span style="color:#555">&gt;::</span>type <span style="color:#555">&amp;&amp;</span>;
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">static_cast</span><span style="color:#f92672">&lt;</span>ReturnType<span style="color:#f92672">&gt;</span>(param);
+</span></span><span style="display:flex;"><span>  <span style="color:#069;font-weight:bold">return</span> <span style="color:#069;font-weight:bold">static_cast</span><span style="color:#555">&lt;</span>ReturnType<span style="color:#555">&gt;</span>(param);
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></td></tr></table>
 </div>
@@ -658,24 +658,24 @@
 </ul>
 <p>这种场景我们往往称之为完美转发，C++11 可以通过 <code>std::forward</code> 来实现。</p>
 <p>比如工厂函数需要将初始化参数传递给构造函数。一个常见的例子就是 make_unique C++14 才支持，如果我们想自己写一个 make_unique 应该怎么写呢？</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-1">1</a>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-1">1</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-2">2</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-3">3</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-4">4</a>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">template</span> <span style="color:#f92672">&lt;</span><span style="color:#66d9ef">typename</span> T, <span style="color:#66d9ef">typename</span>... Ts<span style="color:#f92672">&gt;</span>
-</span></span><span style="display:flex;"><span>std<span style="color:#f92672">::</span>unique_ptr<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> make_unique(Ts <span style="color:#f92672">&amp;&amp;</span>... params) {
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> std<span style="color:#f92672">::</span>unique_ptr<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span>(<span style="color:#66d9ef">new</span> T(std<span style="color:#f92672">::</span>forward<span style="color:#f92672">&lt;</span>Ts<span style="color:#f92672">&gt;</span>(params)...));
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#069;font-weight:bold">template</span> <span style="color:#555">&lt;</span><span style="color:#069;font-weight:bold">typename</span> T, <span style="color:#069;font-weight:bold">typename</span>... Ts<span style="color:#555">&gt;</span>
+</span></span><span style="display:flex;"><span>std<span style="color:#555">::</span>unique_ptr<span style="color:#555">&lt;</span>T<span style="color:#555">&gt;</span> make_unique(Ts <span style="color:#555">&amp;&amp;</span>... params) {
+</span></span><span style="display:flex;"><span>  <span style="color:#069;font-weight:bold">return</span> std<span style="color:#555">::</span>unique_ptr<span style="color:#555">&lt;</span>T<span style="color:#555">&gt;</span>(<span style="color:#069;font-weight:bold">new</span> T(std<span style="color:#555">::</span>forward<span style="color:#555">&lt;</span>Ts<span style="color:#555">&gt;</span>(params)...));
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="stdforward-的实现">std::forward 的实现</h3>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-1">1</a>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-1">1</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-2">2</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-3">3</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-4">4</a>
@@ -686,22 +686,22 @@
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-9">9</a>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">template</span><span style="color:#f92672">&lt;</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">T</span> <span style="color:#f92672">&gt;</span>
-</span></span><span style="display:flex;"><span>T<span style="color:#f92672">&amp;&amp;</span> forward( <span style="color:#66d9ef">typename</span> std<span style="color:#f92672">::</span>remove_reference<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;::</span>type<span style="color:#f92672">&amp;</span> t ) <span style="color:#66d9ef">noexcept</span> {  
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">static_cast</span><span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&amp;&amp;&gt;</span>(param);  
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#069;font-weight:bold">template</span><span style="color:#555">&lt;</span> <span style="color:#069;font-weight:bold">class</span> <span style="color:#0a8;font-weight:bold">T</span> <span style="color:#555">&gt;</span>
+</span></span><span style="display:flex;"><span>T<span style="color:#555">&amp;&amp;</span> forward( <span style="color:#069;font-weight:bold">typename</span> std<span style="color:#555">::</span>remove_reference<span style="color:#555">&lt;</span>T<span style="color:#555">&gt;::</span>type<span style="color:#555">&amp;</span> t ) <span style="color:#069;font-weight:bold">noexcept</span> {  
+</span></span><span style="display:flex;"><span>    <span style="color:#069;font-weight:bold">return</span> <span style="color:#069;font-weight:bold">static_cast</span><span style="color:#555">&lt;</span>T<span style="color:#555">&amp;&amp;&gt;</span>(param);  
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">template</span><span style="color:#f92672">&lt;</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">T</span> <span style="color:#f92672">&gt;</span>
-</span></span><span style="display:flex;"><span>T<span style="color:#f92672">&amp;&amp;</span> forward( <span style="color:#66d9ef">typename</span> std<span style="color:#f92672">::</span>remove_reference<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;::</span>type<span style="color:#f92672">&amp;&amp;</span> t ) <span style="color:#66d9ef">noexcept</span> {  
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">static_cast</span><span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&amp;&amp;&gt;</span>(param);
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">template</span><span style="color:#555">&lt;</span> <span style="color:#069;font-weight:bold">class</span> <span style="color:#0a8;font-weight:bold">T</span> <span style="color:#555">&gt;</span>
+</span></span><span style="display:flex;"><span>T<span style="color:#555">&amp;&amp;</span> forward( <span style="color:#069;font-weight:bold">typename</span> std<span style="color:#555">::</span>remove_reference<span style="color:#555">&lt;</span>T<span style="color:#555">&gt;::</span>type<span style="color:#555">&amp;&amp;</span> t ) <span style="color:#069;font-weight:bold">noexcept</span> {  
+</span></span><span style="display:flex;"><span>    <span style="color:#069;font-weight:bold">return</span> <span style="color:#069;font-weight:bold">static_cast</span><span style="color:#555">&lt;</span>T<span style="color:#555">&amp;&amp;&gt;</span>(param);
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>std::forward 的模板参数是没法推导的，称为无法推导的上下文（nondeduced context）。</p>
 <p>理解这个实现的重点在于它的返回值类型是 <code>T&amp;&amp;</code>，我们看一个例子：</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-9-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-9-1">1</a>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-9-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-9-1">1</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-9-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-9-2">2</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-9-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-9-3">3</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-9-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-9-4">4</a>
@@ -712,15 +712,15 @@
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-9-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-9-9">9</a>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">g</span>(<span style="color:#66d9ef">int</span> <span style="color:#f92672">&amp;&amp;</span>i, <span style="color:#66d9ef">int</span><span style="color:#f92672">&amp;</span> j);
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#078;font-weight:bold">void</span> <span style="color:#c0f">g</span>(<span style="color:#078;font-weight:bold">int</span> <span style="color:#555">&amp;&amp;</span>i, <span style="color:#078;font-weight:bold">int</span><span style="color:#555">&amp;</span> j);
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">template</span> <span style="color:#f92672">&lt;</span><span style="color:#66d9ef">typename</span> F, <span style="color:#66d9ef">typename</span>  T1, <span style="color:#66d9ef">typename</span> T2<span style="color:#f92672">&gt;</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> flip3(F f, T1 <span style="color:#f92672">&amp;&amp;</span>t1, T2 <span style="color:#f92672">&amp;&amp;</span>t2)
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">template</span> <span style="color:#555">&lt;</span><span style="color:#069;font-weight:bold">typename</span> F, <span style="color:#069;font-weight:bold">typename</span>  T1, <span style="color:#069;font-weight:bold">typename</span> T2<span style="color:#555">&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#078;font-weight:bold">void</span> flip3(F f, T1 <span style="color:#555">&amp;&amp;</span>t1, T2 <span style="color:#555">&amp;&amp;</span>t2)
 </span></span><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>    f(std<span style="color:#f92672">::</span>forward<span style="color:#f92672">&lt;</span>T2<span style="color:#f92672">&gt;</span>(t2), std<span style="color:#f92672">::</span>forward<span style="color:#f92672">&lt;</span>T1<span style="color:#f92672">&gt;</span>(t1));
+</span></span><span style="display:flex;"><span>    f(std<span style="color:#555">::</span>forward<span style="color:#555">&lt;</span>T2<span style="color:#555">&gt;</span>(t2), std<span style="color:#555">::</span>forward<span style="color:#555">&lt;</span>T1<span style="color:#555">&gt;</span>(t1));
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>flip3(g, i, <span style="color:#ae81ff">42</span>);
+</span></span><span style="display:flex;"><span>flip3(g, i, <span style="color:#f60">42</span>);
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>flip3 接受一个可调用对象，以及两个额外实参，将参数逆序传递给可调用对象。</p>
@@ -757,9 +757,9 @@
 <p>在右值引用上调用 std::forward 表现出的行为是正确的，但由于 std::forward 没法自动做类型推导，写出来的代码会比较繁琐；但如果在通用引用上调用 std::move，可能会导致左值被错误地修改，导致异常的行为。</p>
 <h2 id="什么时候用-move-和-forward">什么时候用 move 和 forward？</h2>
 <p>你可能需要在函数中多次使用某个右值引用或通用引用，那么只有在最后一次使用它的时候，才可以对它调 std::move 或 std::forward，因为将它转为右值后，它的内容就不能再被使用了。</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-1"> 1</a>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-1"> 1</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-2"> 2</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-3"> 3</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-4"> 4</a>
@@ -776,20 +776,20 @@
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-15"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-15">15</a>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">sink</span>(X<span style="color:#f92672">&amp;&amp;</span> x);   <span style="color:#75715e">// sink takes ownership of x
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">user</span>()
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#078;font-weight:bold">void</span> <span style="color:#c0f">sink</span>(X<span style="color:#555">&amp;&amp;</span> x);   <span style="color:#09f;font-style:italic">// sink takes ownership of x
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>
+</span></span><span style="display:flex;"><span><span style="color:#078;font-weight:bold">void</span> <span style="color:#c0f">user</span>()
 </span></span><span style="display:flex;"><span>{
 </span></span><span style="display:flex;"><span>    X x;
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// error: cannot bind an lvalue to a rvalue reference
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    sink(x);
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// OK: sink takes the contents of x, x must now be assumed to be empty
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    sink(std<span style="color:#f92672">::</span>move(x));
+</span></span><span style="display:flex;"><span>    <span style="color:#09f;font-style:italic">// error: cannot bind an lvalue to a rvalue reference
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>    sink(x);
+</span></span><span style="display:flex;"><span>    <span style="color:#09f;font-style:italic">// OK: sink takes the contents of x, x must now be assumed to be empty
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>    sink(std<span style="color:#555">::</span>move(x));
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// ...
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// probably a mistake
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    use(x);
+</span></span><span style="display:flex;"><span>    <span style="color:#09f;font-style:italic">// ...
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>
+</span></span><span style="display:flex;"><span>    <span style="color:#09f;font-style:italic">// probably a mistake
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>    use(x);
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></td></tr></table>
 </div>
@@ -800,20 +800,20 @@
 <h1 id="移动和返回值优化">移动和返回值优化</h1>
 <h2 id="rvo">RVO</h2>
 <p>如果 return 语句的操作数是 prvalue ，且它和返回值的类型相同。</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-11-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-11-1">1</a>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-11-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-11-1">1</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-11-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-11-2">2</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-11-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-11-3">3</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-11-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-11-4">4</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-11-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-11-5">5</a>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>T <span style="color:#a6e22e">f</span>() {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> T();
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>T <span style="color:#c0f">f</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#069;font-weight:bold">return</span> T();
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span> 
-</span></span><span style="display:flex;"><span>f(); <span style="color:#75715e">// only one call to default constructor of T
+</span></span><span style="display:flex;"><span>f(); <span style="color:#09f;font-style:italic">// only one call to default constructor of T
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>此时，编译器可以实施 copy elision（拷贝省略、拷贝消除），将对象直接构造到调用者的栈上去。</p>
@@ -822,9 +822,9 @@
 <p>C++17 强制编译器做 RVO，RVO 不再是一项可选的编译器优化，而是 C++ 对 prvalue 的新规定，即返回和使用 prvalue 时不再去实体化一个临时对象</p>
 </blockquote>
 <h2 id="nrvo">NRVO</h2>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-1">1</a>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-1">1</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-2">2</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-3">3</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-4">4</a>
@@ -832,18 +832,18 @@
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-6">6</a>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>X <span style="color:#a6e22e">bar</span>()  
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>X <span style="color:#c0f">bar</span>()  
 </span></span><span style="display:flex;"><span>{  
 </span></span><span style="display:flex;"><span>   X xx;  
-</span></span><span style="display:flex;"><span>   <span style="color:#75715e">// process xx ...  
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>   <span style="color:#66d9ef">return</span> xx;  
+</span></span><span style="display:flex;"><span>   <span style="color:#09f;font-style:italic">// process xx ...  
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>   <span style="color:#069;font-weight:bold">return</span> xx;  
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>对于上面的函数 bar，如果直接用参数 __result 代替命名的返回值 xx，即改写为：</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-13-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-13-1"> 1</a>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-13-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-13-1"> 1</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-13-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-13-2"> 2</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-13-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-13-3"> 3</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-13-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-13-4"> 4</a>
@@ -856,16 +856,16 @@
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-13-11"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-13-11">11</a>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">void</span>  
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">bar</span>( X <span style="color:#f92672">&amp;</span>__result )  
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#078;font-weight:bold">void</span>  
+</span></span><span style="display:flex;"><span><span style="color:#c0f">bar</span>( X <span style="color:#555">&amp;</span>__result )  
 </span></span><span style="display:flex;"><span>{  
-</span></span><span style="display:flex;"><span>   <span style="color:#75715e">// default constructor invocation  
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>   <span style="color:#75715e">// Pseudo C++ Code  
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>   __result.X<span style="color:#f92672">::</span>X();  
+</span></span><span style="display:flex;"><span>   <span style="color:#09f;font-style:italic">// default constructor invocation  
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>   <span style="color:#09f;font-style:italic">// Pseudo C++ Code  
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>   __result.X<span style="color:#555">::</span>X();  
 </span></span><span style="display:flex;"><span> 
-</span></span><span style="display:flex;"><span>   <span style="color:#75715e">// ... process in __result directly  
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span> 
-</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">return</span>;  
+</span></span><span style="display:flex;"><span>   <span style="color:#09f;font-style:italic">// ... process in __result directly  
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span> 
+</span></span><span style="display:flex;"><span>   <span style="color:#069;font-weight:bold">return</span>;  
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></td></tr></table>
 </div>
@@ -910,5 +910,5 @@
             </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
                 <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
             </a>
-        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/css/lightgallery-bundle.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/twemoji@14.0.2/dist/twemoji.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/lightgallery.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/thumbnail/lg-thumbnail.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/zoom/lg-zoom.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@8.6.0/dist/index.umd.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{"giscus":{"category":"Comments","categoryId":"DIC_kwDOIx2Cjs4CTnUX","darkTheme":"dark","emitMetadata":"0","inputPosition":"bottom","lang":"en","lazyLoading":false,"lightTheme":"light","mapping":"pathname","reactionsEnabled":"1","repo":"zhangyuhu/zhangyuhu.github.io","repoId":"R_kgDOIx2Cjg"}},"data":{"id-1":"HOME","id-2":"HOME"},"lightgallery":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"},"twemoji":true,"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.2970a33d719df7cd89cebf586152b32a8ed30012227fa81b44282950146e0f595d1c733779e4d423dda1004bdcf707ee64d0fadc3d21229cd66b960788f84bdb.js" integrity="sha512-KXCjPXGd982Jzr9YYVKzKo7TABIif6gbRCgpUBRuD1ldHHM3eeTUI92hAEvc9wfuZND63D0hIpzWa5YHiPhL2w=="></script></body>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/css/lightgallery-bundle.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/twemoji@14.0.2/dist/twemoji.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/lightgallery.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/thumbnail/lg-thumbnail.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/zoom/lg-zoom.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@8.6.0/dist/index.umd.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":100},"comment":{"giscus":{"category":"Comments","categoryId":"DIC_kwDOIx2Cjs4CTnUX","darkTheme":"dark","emitMetadata":"0","inputPosition":"bottom","lang":"en","lazyLoading":false,"lightTheme":"light","mapping":"pathname","reactionsEnabled":"1","repo":"zhangyuhu/zhangyuhu.github.io","repoId":"R_kgDOIx2Cjg"}},"data":{"id-1":"HOME","id-2":"HOME"},"lightgallery":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"},"twemoji":true,"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.2970a33d719df7cd89cebf586152b32a8ed30012227fa81b44282950146e0f595d1c733779e4d423dda1004bdcf707ee64d0fadc3d21229cd66b960788f84bdb.js" integrity="sha512-KXCjPXGd982Jzr9YYVKzKo7TABIif6gbRCgpUBRuD1ldHHM3eeTUI92hAEvc9wfuZND63D0hIpzWa5YHiPhL2w=="></script></body>
 </html>

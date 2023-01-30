@@ -18,7 +18,7 @@
 <meta name="application-name" content="我的网站">
 <meta name="apple-mobile-web-app-title" content="我的网站"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://zhangyuhu.github.io/posts/computer_vision/camera/cameracalibration/%E5%8D%95%E7%9B%AE%E7%9B%B8%E6%9C%BA%E6%A0%87%E5%AE%9A/" /><link rel="prev" href="https://zhangyuhu.github.io/posts/computer_vision/camera/stereocamera/realsense/realsensed450%E4%BB%8B%E7%BB%8D/" /><link rel="next" href="https://zhangyuhu.github.io/posts/computer_vision/camera/stereocamera/realsense/realsensed450%E6%B7%B1%E5%BA%A6%E5%AF%B9%E9%BD%90/" /><link rel="stylesheet" href="/css/style.min.61c0835a1733ac3f92b41b61b403dca9b8d4a3a7e4021c89af2c45a731f6343a82bc7fb214f4926e2c4669c8d258218b7da5d0e86d081ec97f3c1d823d48df2e.css" integrity="sha512-YcCDWhczrD+StBthtAPcqbjUo6fkAhyJryxFpzH2NDqCvH+yFPSSbixGacjSWCGLfaXQ6G0IHsl/PB2CPUjfLg=="><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://zhangyuhu.github.io/posts/computer_vision/camera/cameracalibration/%E5%8D%95%E7%9B%AE%E7%9B%B8%E6%9C%BA%E6%A0%87%E5%AE%9A/" /><link rel="prev" href="https://zhangyuhu.github.io/posts/computer_vision/camera/stereocamera/realsense/realsensed450%E4%BB%8B%E7%BB%8D/" /><link rel="next" href="https://zhangyuhu.github.io/posts/computer_vision/camera/stereocamera/realsense/realsensed450%E6%B7%B1%E5%BA%A6%E5%AF%B9%E9%BD%90/" /><link rel="stylesheet" href="/css/style.min.990eb8dd228a2b662f63cfe59575be8aa494cb9d40ffd854f26b9d9e588e1f4fdadb6a34e3f9a9171244d3ee6c107521923ab30705f3ef50d3e435eda1afc910.css" integrity="sha512-mQ643SKKK2YvY8/llXW+iqSUy51A/9hU8mudnliOH0/a22o04/mpFxJE0+5sEHUhkjqzBwXz71DT5DXtoa/JEA=="><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
     {
@@ -207,19 +207,19 @@
 <p><a href="https://docs.opencv.org/3.4.0/d9/d0c/group__calib3d.html" target="_blank" rel="noopener noreffer ">https://docs.opencv.org/3.4.0/d9/d0c/group__calib3d.html</a></p>
 <h2 id="提取角点">提取角点</h2>
 <h3 id="棋盘格角点检测">棋盘格角点检测</h3>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-1">1</a>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-1">1</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-2">2</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-3">3</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-4">4</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-5">5</a>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#66d9ef">bool</span> <span style="color:#a6e22e">findChessboardCorners</span>( InputArray image, 
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#078;font-weight:bold">bool</span> <span style="color:#c0f">findChessboardCorners</span>( InputArray image, 
 </span></span><span style="display:flex;"><span>                                Size patternSize, 
 </span></span><span style="display:flex;"><span>                                OutputArray corners,
-</span></span><span style="display:flex;"><span>                                <span style="color:#66d9ef">int</span> flags <span style="color:#f92672">=</span> CALIB_CB_ADAPTIVE_THRESH <span style="color:#f92672">+</span> 
+</span></span><span style="display:flex;"><span>                                <span style="color:#078;font-weight:bold">int</span> flags <span style="color:#555">=</span> CALIB_CB_ADAPTIVE_THRESH <span style="color:#555">+</span> 
 </span></span><span style="display:flex;"><span>                                CALIB_CB_NORMALIZE_IMAGE );
 </span></span></code></pre></td></tr></table>
 </div>
@@ -234,14 +234,14 @@ cv::CALIB_CB_FILTER_QUADS：在轮廓提取阶段，使用附加条件排除错�
 cv::CALIB_CV_FAST_CHECK：快速检测</p>
 </blockquote>
 <h3 id="对粗提取的角点进行精确化">对粗提取的角点进行精确化</h3>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-1">1</a>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-1">1</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-2">2</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-3">3</a>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#66d9ef">bool</span> <span style="color:#a6e22e">find4QuadCornerSubpix</span>( InputArray img, 
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#078;font-weight:bold">bool</span> <span style="color:#c0f">find4QuadCornerSubpix</span>( InputArray img, 
 </span></span><span style="display:flex;"><span>                      InputOutputArray corners, 
 </span></span><span style="display:flex;"><span>                      Size region_size );
 </span></span></code></pre></td></tr></table>
@@ -252,16 +252,16 @@ corners，提供角点的初始坐标
 region_size： 搜索窗口的一般尺寸\</p>
 </blockquote>
 <h3 id="亚像素检测">亚像素检测</h3>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-1">1</a>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-1">1</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-2">2</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-3">3</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-4">4</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-5">5</a>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">cornerSubPix</span>( InputArray image, 
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#078;font-weight:bold">void</span> <span style="color:#c0f">cornerSubPix</span>( InputArray image, 
 </span></span><span style="display:flex;"><span>                       InputOutputArray corners,
 </span></span><span style="display:flex;"><span>                       Size winSize, 
 </span></span><span style="display:flex;"><span>                       Size zeroZone,
@@ -276,18 +276,18 @@ winSize,死区的一般尺寸，用来避免自相关矩阵的奇点，(-1,-1)�
 criteria，控制迭代次数和精度</p>
 </blockquote>
 <h3 id="棋盘格角点的绘制">棋盘格角点的绘制</h3>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-1">1</a>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-1">1</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-2">2</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-3">3</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-4">4</a>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">drawChessboardCorners</span>( InputOutputArray image, 
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#078;font-weight:bold">void</span> <span style="color:#c0f">drawChessboardCorners</span>( InputOutputArray image, 
 </span></span><span style="display:flex;"><span>                           Size patternSize,
 </span></span><span style="display:flex;"><span>                           InputArray corners, 
-</span></span><span style="display:flex;"><span>                           <span style="color:#66d9ef">bool</span> patternWasFound );
+</span></span><span style="display:flex;"><span>                           <span style="color:#078;font-weight:bold">bool</span> patternWasFound );
 </span></span></code></pre></td></tr></table>
 </div>
 </div><blockquote>
@@ -298,9 +298,9 @@ patternWasFound，findChessboardCorners的返回值</p>
 </blockquote>
 <h2 id="相机标定">相机标定</h2>
 <h3 id="生成-objectpoints">生成 objectPoints</h3>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-1"> 1</a>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-1"> 1</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-2"> 2</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-3"> 3</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-4"> 4</a>
@@ -316,16 +316,16 @@ patternWasFound，findChessboardCorners的返回值</p>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-14"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-14">14</a>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> CCalibration<span style="color:#f92672">::</span>init3DPoints(cv<span style="color:#f92672">::</span>Size boardSize, cv<span style="color:#f92672">::</span>Size squareSize, vector<span style="color:#f92672">&lt;</span>cv<span style="color:#f92672">::</span>Point3f<span style="color:#f92672">&gt;</span> <span style="color:#f92672">&amp;</span>singlePatternPoint)
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#078;font-weight:bold">void</span> CCalibration<span style="color:#555">::</span>init3DPoints(cv<span style="color:#555">::</span>Size boardSize, cv<span style="color:#555">::</span>Size squareSize, vector<span style="color:#555">&lt;</span>cv<span style="color:#555">::</span>Point3f<span style="color:#555">&gt;</span> <span style="color:#555">&amp;</span>singlePatternPoint)
 </span></span><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> boardSize.height; i<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#069;font-weight:bold">for</span> (<span style="color:#078;font-weight:bold">int</span> i <span style="color:#555">=</span> <span style="color:#f60">0</span>; i <span style="color:#555">&lt;</span> boardSize.height; i<span style="color:#555">++</span>)
 </span></span><span style="display:flex;"><span>    {
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; j <span style="color:#f92672">&lt;</span> boardSize.width; j<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#069;font-weight:bold">for</span> (<span style="color:#078;font-weight:bold">int</span> j <span style="color:#555">=</span> <span style="color:#f60">0</span>; j <span style="color:#555">&lt;</span> boardSize.width; j<span style="color:#555">++</span>)
 </span></span><span style="display:flex;"><span>        {
-</span></span><span style="display:flex;"><span>            cv<span style="color:#f92672">::</span>Point3f tempPoint; <span style="color:#75715e">//单个角点的三维坐标
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            tempPoint.x <span style="color:#f92672">=</span> <span style="color:#66d9ef">float</span>(i <span style="color:#f92672">*</span> squareSize.width);
-</span></span><span style="display:flex;"><span>            tempPoint.y <span style="color:#f92672">=</span> <span style="color:#66d9ef">float</span>(j <span style="color:#f92672">*</span> squareSize.height);
-</span></span><span style="display:flex;"><span>            tempPoint.z <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>            cv<span style="color:#555">::</span>Point3f tempPoint; <span style="color:#09f;font-style:italic">//单个角点的三维坐标
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>            tempPoint.x <span style="color:#555">=</span> <span style="color:#078;font-weight:bold">float</span>(i <span style="color:#555">*</span> squareSize.width);
+</span></span><span style="display:flex;"><span>            tempPoint.y <span style="color:#555">=</span> <span style="color:#078;font-weight:bold">float</span>(j <span style="color:#555">*</span> squareSize.height);
+</span></span><span style="display:flex;"><span>            tempPoint.z <span style="color:#555">=</span> <span style="color:#f60">0</span>;
 </span></span><span style="display:flex;"><span>            singlePatternPoint.push_back(tempPoint);
 </span></span><span style="display:flex;"><span>        }
 </span></span><span style="display:flex;"><span>    }
@@ -333,9 +333,9 @@ patternWasFound，findChessboardCorners的返回值</p>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="求相机的内参外参">求相机的内参外参</h3>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-1">1</a>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-1">1</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-2">2</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-3">3</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-4">4</a>
@@ -346,15 +346,15 @@ patternWasFound，findChessboardCorners的返回值</p>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-9">9</a>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#66d9ef">double</span> <span style="color:#a6e22e">calibrateCamera</span>( InputArrayOfArrays objectPoints,
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#078;font-weight:bold">double</span> <span style="color:#c0f">calibrateCamera</span>( InputArrayOfArrays objectPoints,
 </span></span><span style="display:flex;"><span>                            InputArrayOfArrays imagePoints,
 </span></span><span style="display:flex;"><span>                            Size imageSize,
 </span></span><span style="display:flex;"><span>                            InputOutputArray cameraMatrix, 
 </span></span><span style="display:flex;"><span>                            InputOutputArray distCoeffs,
 </span></span><span style="display:flex;"><span>                            OutputArrayOfArrays rvecs, OutputArrayOfArrays tvecs,
-</span></span><span style="display:flex;"><span>                            <span style="color:#66d9ef">int</span> flags <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, 
-</span></span><span style="display:flex;"><span>                            TermCriteria criteria <span style="color:#f92672">=</span> TermCriteria(TermCriteria<span style="color:#f92672">::</span>COUNT <span style="color:#f92672">+</span> 
-</span></span><span style="display:flex;"><span>                            TermCriteria<span style="color:#f92672">::</span>EPS, <span style="color:#ae81ff">30</span>, DBL_EPSILON) );
+</span></span><span style="display:flex;"><span>                            <span style="color:#078;font-weight:bold">int</span> flags <span style="color:#555">=</span> <span style="color:#f60">0</span>, 
+</span></span><span style="display:flex;"><span>                            TermCriteria criteria <span style="color:#555">=</span> TermCriteria(TermCriteria<span style="color:#555">::</span>COUNT <span style="color:#555">+</span> 
+</span></span><span style="display:flex;"><span>                            TermCriteria<span style="color:#555">::</span>EPS, <span style="color:#f60">30</span>, DBL_EPSILON) );
 </span></span></code></pre></td></tr></table>
 </div>
 </div><blockquote>
@@ -383,9 +383,9 @@ flags，可以组合：
 <p><a href="https://blog.csdn.net/qq_30815237/article/details/87622654" target="_blank" rel="noopener noreffer ">相机标定（4） 矫正畸变 undistort()和initUndistortRectifyMap()</a></p>
 <p><a href="https://docs.opencv.org/3.4.0/da/d54/group__imgproc__transform.html#ga7dfb72c9cf9780a347fbe3d1c47e5d5a" target="_blank" rel="noopener noreffer ">initUndistortRectifyMap</a></p>
 <h3 id="计算无畸变和修正转换映射">计算无畸变和修正转换映射</h3>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-1">1</a>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-1">1</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-2">2</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-3">3</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-4">4</a>
@@ -396,15 +396,15 @@ flags，可以组合：
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-9">9</a>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span>CV_EXPORTS_W <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">initUndistortRectifyMap</span>( InputArray cameraMatrix, InputArray distCoeffs,
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span>CV_EXPORTS_W <span style="color:#078;font-weight:bold">void</span> <span style="color:#c0f">initUndistortRectifyMap</span>( InputArray cameraMatrix, InputArray distCoeffs,
 </span></span><span style="display:flex;"><span>                           InputArray R, InputArray newCameraMatrix,
-</span></span><span style="display:flex;"><span>                           Size size, <span style="color:#66d9ef">int</span> m1type, OutputArray map1, OutputArray map2 );
+</span></span><span style="display:flex;"><span>                           Size size, <span style="color:#078;font-weight:bold">int</span> m1type, OutputArray map1, OutputArray map2 );
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">//! initializes maps for cv::remap() for wide-angle
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>CV_EXPORTS_W <span style="color:#66d9ef">float</span> <span style="color:#a6e22e">initWideAngleProjMap</span>( InputArray cameraMatrix, InputArray distCoeffs,
-</span></span><span style="display:flex;"><span>                                         Size imageSize, <span style="color:#66d9ef">int</span> destImageWidth,
-</span></span><span style="display:flex;"><span>                                         <span style="color:#66d9ef">int</span> m1type, OutputArray map1, OutputArray map2,
-</span></span><span style="display:flex;"><span>                                         <span style="color:#66d9ef">int</span> projType <span style="color:#f92672">=</span> PROJ_SPHERICAL_EQRECT, <span style="color:#66d9ef">double</span> alpha <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>);
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic">//! initializes maps for cv::remap() for wide-angle
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>CV_EXPORTS_W <span style="color:#078;font-weight:bold">float</span> <span style="color:#c0f">initWideAngleProjMap</span>( InputArray cameraMatrix, InputArray distCoeffs,
+</span></span><span style="display:flex;"><span>                                         Size imageSize, <span style="color:#078;font-weight:bold">int</span> destImageWidth,
+</span></span><span style="display:flex;"><span>                                         <span style="color:#078;font-weight:bold">int</span> m1type, OutputArray map1, OutputArray map2,
+</span></span><span style="display:flex;"><span>                                         <span style="color:#078;font-weight:bold">int</span> projType <span style="color:#555">=</span> PROJ_SPHERICAL_EQRECT, <span style="color:#078;font-weight:bold">double</span> alpha <span style="color:#555">=</span> <span style="color:#f60">0</span>);
 </span></span></code></pre></td></tr></table>
 </div>
 </div><blockquote>
@@ -422,18 +422,18 @@ flags，可以组合：
 在双目相机例子中，newCameraMatrix一般是用cv::stereoRectify计算而来的，设置为P1或P2。 此外，根据R，新的相机在坐标空间中的取向是不同的。例如，它帮助配准双目相机的两个相机方向，从而使得两个图像的极线是水平的，且y坐标相同（在双目相机的两个相机谁水平放置的情况下）。 该函数实际上为反向映射算法构建映射，供反向映射使用。也就是，对于在已经修正畸变的图像中的每个像素(u,v)，该函数计算原来图像（从相机中获得的原始图像）中对应的坐标系。</p>
 <p>函数输出得到map1和map2,然后使用remap()函数</p>
 <h2 id="remap">remap</h2>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-1">1</a>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-1">1</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-2">2</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-3">3</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-4">4</a>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">remap</span>( InputArray src, OutputArray dst,
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#078;font-weight:bold">void</span> <span style="color:#c0f">remap</span>( InputArray src, OutputArray dst,
 </span></span><span style="display:flex;"><span>                         InputArray map1, InputArray map2,
-</span></span><span style="display:flex;"><span>                         <span style="color:#66d9ef">int</span> interpolation, <span style="color:#66d9ef">int</span> borderMode<span style="color:#f92672">=</span>BORDER_CONSTANT,
-</span></span><span style="display:flex;"><span>                         <span style="color:#66d9ef">const</span> Scalar<span style="color:#f92672">&amp;</span> borderValue<span style="color:#f92672">=</span>Scalar());
+</span></span><span style="display:flex;"><span>                         <span style="color:#078;font-weight:bold">int</span> interpolation, <span style="color:#078;font-weight:bold">int</span> borderMode<span style="color:#555">=</span>BORDER_CONSTANT,
+</span></span><span style="display:flex;"><span>                         <span style="color:#069;font-weight:bold">const</span> Scalar<span style="color:#555">&amp;</span> borderValue<span style="color:#555">=</span>Scalar());
 </span></span></code></pre></td></tr></table>
 </div>
 </div><blockquote>
@@ -489,5 +489,5 @@ flags，可以组合：
             </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
                 <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
             </a>
-        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/css/lightgallery-bundle.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/twemoji@14.0.2/dist/twemoji.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/lightgallery.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/thumbnail/lg-thumbnail.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/zoom/lg-zoom.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@8.6.0/dist/index.umd.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{"giscus":{"category":"Comments","categoryId":"DIC_kwDOIx2Cjs4CTnUX","darkTheme":"dark","emitMetadata":"0","inputPosition":"bottom","lang":"en","lazyLoading":false,"lightTheme":"light","mapping":"pathname","reactionsEnabled":"1","repo":"zhangyuhu/zhangyuhu.github.io","repoId":"R_kgDOIx2Cjg"}},"data":{"id-1":"HOME","id-2":"HOME"},"lightgallery":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"},"twemoji":true,"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.2970a33d719df7cd89cebf586152b32a8ed30012227fa81b44282950146e0f595d1c733779e4d423dda1004bdcf707ee64d0fadc3d21229cd66b960788f84bdb.js" integrity="sha512-KXCjPXGd982Jzr9YYVKzKo7TABIif6gbRCgpUBRuD1ldHHM3eeTUI92hAEvc9wfuZND63D0hIpzWa5YHiPhL2w=="></script></body>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/css/lightgallery-bundle.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/twemoji@14.0.2/dist/twemoji.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/lightgallery.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/thumbnail/lg-thumbnail.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/zoom/lg-zoom.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@8.6.0/dist/index.umd.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":100},"comment":{"giscus":{"category":"Comments","categoryId":"DIC_kwDOIx2Cjs4CTnUX","darkTheme":"dark","emitMetadata":"0","inputPosition":"bottom","lang":"en","lazyLoading":false,"lightTheme":"light","mapping":"pathname","reactionsEnabled":"1","repo":"zhangyuhu/zhangyuhu.github.io","repoId":"R_kgDOIx2Cjg"}},"data":{"id-1":"HOME","id-2":"HOME"},"lightgallery":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"},"twemoji":true,"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.2970a33d719df7cd89cebf586152b32a8ed30012227fa81b44282950146e0f595d1c733779e4d423dda1004bdcf707ee64d0fadc3d21229cd66b960788f84bdb.js" integrity="sha512-KXCjPXGd982Jzr9YYVKzKo7TABIif6gbRCgpUBRuD1ldHHM3eeTUI92hAEvc9wfuZND63D0hIpzWa5YHiPhL2w=="></script></body>
 </html>

@@ -18,7 +18,7 @@
 <meta name="application-name" content="我的网站">
 <meta name="apple-mobile-web-app-title" content="我的网站"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://zhangyuhu.github.io/posts/program/cmake/cmake%E7%9F%A5%E8%AF%86%E6%95%B4%E7%90%86/" /><link rel="prev" href="https://zhangyuhu.github.io/posts/program/cmake/cmake%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E9%85%8D%E7%BD%AE/" /><link rel="next" href="https://zhangyuhu.github.io/posts/program/cmake/note/" /><link rel="stylesheet" href="/css/style.min.61c0835a1733ac3f92b41b61b403dca9b8d4a3a7e4021c89af2c45a731f6343a82bc7fb214f4926e2c4669c8d258218b7da5d0e86d081ec97f3c1d823d48df2e.css" integrity="sha512-YcCDWhczrD+StBthtAPcqbjUo6fkAhyJryxFpzH2NDqCvH+yFPSSbixGacjSWCGLfaXQ6G0IHsl/PB2CPUjfLg=="><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://zhangyuhu.github.io/posts/program/cmake/cmake%E7%9F%A5%E8%AF%86%E6%95%B4%E7%90%86/" /><link rel="prev" href="https://zhangyuhu.github.io/posts/program/cmake/cmake%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91%E9%85%8D%E7%BD%AE/" /><link rel="next" href="https://zhangyuhu.github.io/posts/program/cmake/note/" /><link rel="stylesheet" href="/css/style.min.990eb8dd228a2b662f63cfe59575be8aa494cb9d40ffd854f26b9d9e588e1f4fdadb6a34e3f9a9171244d3ee6c107521923ab30705f3ef50d3e435eda1afc910.css" integrity="sha512-mQ643SKKK2YvY8/llXW+iqSUy51A/9hU8mudnliOH0/a22o04/mpFxJE0+5sEHUhkjqzBwXz71DT5DXtoa/JEA=="><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
     {
@@ -286,82 +286,82 @@ PATH 是 CMakeLists.txt 所在的目录
 <h2 id="cmake_minimum_required">CMAKE_MINIMUM_REQUIRED</h2>
 <p>该语句一般都可以放置在CMakeLists.txt的开头，用于说明CMake最低版本要求。
 这行命令是可选的，我们可以不写这句话，但在有些情况下，如果CMakeLists.txt文件中使用了一些高版本cmake特有的一些命令的时候，就需要加上这样一行，提醒用户升级到该版本之后再执行cmake。</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-1">1</a>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-1">1</a>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>cmake_minimum_required <span style="color:#f92672">(</span>VERSION 2.6<span style="color:#f92672">)</span>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>cmake_minimum_required <span style="color:#555">(</span>VERSION 2.6<span style="color:#555">)</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="project">PROJECT</h2>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-1">1</a>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-1">1</a>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>PROJECT<span style="color:#f92672">(</span>name<span style="color:#f92672">)</span>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>PROJECT<span style="color:#555">(</span>name<span style="color:#555">)</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>name：工程名称
 该指令一般置于CMakeLists.txt的开头，定义了工程的名称。但项目最终编译生成的可执行文件并不一定是这个项目名称。</p>
 <p>执行了该条指令之后，将会自动创建两个变量：</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-1">1</a>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-1">1</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-2">2</a>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>&lt; projectname &gt;_BINARY_DIR：二进制文件保存路径；
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>&lt; projectname &gt;_BINARY_DIR：二进制文件保存路径；
 </span></span><span style="display:flex;"><span>&lt; projectname &gt;_SOURCE_DIR：源代码路径；
 </span></span></code></pre></td></tr></table>
 </div>
-</div><div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+</div><div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-1">1</a>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-1">1</a>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>project<span style="color:#f92672">(</span>CRNode<span style="color:#f92672">)</span>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>project<span style="color:#555">(</span>CRNode<span style="color:#555">)</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>执行了上一条指令，即定义了一个项目名称CRNode，相应的会生成两个变量：CRNode_BINARY_DIR, CRNode_SOURCE_DIR。
 cmake中预定义了两个变量：PROJECT_BINARY_DIR与PROJECT_SOURCE_DIR。
 在这个例子中：</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-1">1</a>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-1">1</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-2">2</a>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>PROJECT_BINARY_DIR <span style="color:#f92672">=</span> CRNode_BINARY_DIR
-</span></span><span style="display:flex;"><span>PROJECT_SOURCE_DIR <span style="color:#f92672">=</span> CRNode_SOURCE_DIR
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#033">PROJECT_BINARY_DIR</span> <span style="color:#555">=</span> CRNode_BINARY_DIR
+</span></span><span style="display:flex;"><span><span style="color:#033">PROJECT_SOURCE_DIR</span> <span style="color:#555">=</span> CRNode_SOURCE_DIR
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>推荐直接使用PROJECT_BINARY_DIR与PROJECT_SOURCE_DIR，这样及时项目名称发生了变化，也不会影响CMakeLists.txt文件。
 关于上面两个变量是否相同的问题，涉及到编译方法是内部编译还是外部编译。如果是内部编译，则上面两个变量相同；如果是外部编译，则两个变量不同。</p>
 <h3 id="外部构建与内部构建">外部构建与内部构建</h3>
 <p>假设此时已经完成了CMakeLists.txt的编写，在CMakeLists.txt所在目录下，有两种执行cmake的方法：</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-1">1</a>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-1">1</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-2">2</a>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>cmake ./
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>cmake ./
 </span></span><span style="display:flex;"><span>make
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>以及：</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-1">1</a>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-1">1</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-2">2</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-3">3</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-4">4</a>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>mkdir build
-</span></span><span style="display:flex;"><span>cd ./build
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>mkdir build
+</span></span><span style="display:flex;"><span><span style="color:#366">cd</span> ./build
 </span></span><span style="display:flex;"><span>cmake ../
 </span></span><span style="display:flex;"><span>make
 </span></span></code></pre></td></tr></table>
@@ -370,41 +370,41 @@ cmake中预定义了两个变量：PROJECT_BINARY_DIR与PROJECT_SOURCE_DIR。
 内部构建方法中，cmake生成的中间文件和可执行文件都会存放在项目目录中；外部构建方法中，中间文件与可执行文件都存放在build目录中。
 建议使用外部构建方法。优点显而易见：最大限度的保持了代码目录的整洁，生成、编译与安装是不同于项目目录的其他目录中，在外部构建方法下，PROJECT_SOURCE_DIR指向目录与内部构建相同，为CMakeLists.txt所在根目录；而PROJECT_BINARY_DIR不同，它指向CMakeLists.txt所在根目录下的build目录。</p>
 <h2 id="set">SET</h2>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-1">1</a>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-1">1</a>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>SET(VAR [<span style="color:#66d9ef">VALUE] [CACHE TYPEDOCSTRING [FORCE]</span>])
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>SET(VAR [<span style="color:#360">VALUE] [CACHE TYPEDOCSTRING [FORCE]</span>])
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>eg:</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-1">1</a>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-1">1</a>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>SET<span style="color:#f92672">(</span>CMAKE_INSTALL_PREFIX /usr/local<span style="color:#f92672">)</span>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>SET<span style="color:#555">(</span>CMAKE_INSTALL_PREFIX /usr/local<span style="color:#555">)</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>我们显式的将CMAKE_INSTALL_PREFIX的值定义为/usr/local，如此在外部构建情况下执行make install命令时，make会将生成的可执行文件拷贝到/usr/local/bin目录下。
 当然，可执行文件的安装路径CMAKE_INSTALL_PREFIX也可以在执行cmake命令的时候指定，cmake参数如下：</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-9-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-9-1">1</a>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-9-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-9-1">1</a>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>cmake -DCMAKE_INSTALL_PREFIX<span style="color:#f92672">=</span>/usr ..
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>cmake -DCMAKE_INSTALL_PREFIX<span style="color:#555">=</span>/usr ..
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>如果cmake参数和CMakeLists.txt文件中都不指定该值的话，则该值为默认的/usr/local。</p>
 <h2 id="add_subdirectory">ADD_SUBDIRECTORY</h2>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-1">1</a>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-1">1</a>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>ADD_SUBDIRECTORY<span style="color:#f92672">(</span>source_dir <span style="color:#f92672">[</span>binary_dir<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>EXCLUDE_FROM_ALL<span style="color:#f92672">])</span>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>ADD_SUBDIRECTORY<span style="color:#555">(</span>source_dir <span style="color:#555">[</span>binary_dir<span style="color:#555">]</span> <span style="color:#555">[</span>EXCLUDE_FROM_ALL<span style="color:#555">])</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
@@ -415,12 +415,12 @@ cmake中预定义了两个变量：PROJECT_BINARY_DIR与PROJECT_SOURCE_DIR。
 <p>这个指令用于向当前工程添加存放源文件的子目录，并可以指定中间二进制和目标二进制存放的位置。
 EXCLUDE_FROM_ALL 参数的含义是将这个目录从编译过程中排除。比如，工程有时候存在example，可能就需要工程构建完成后，再进入example目录单独进行构建。</p>
 <h2 id="include_directories">INCLUDE_DIRECTORIES</h2>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-11-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-11-1">1</a>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-11-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-11-1">1</a>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>INCLUDE_DIRECTORIES<span style="color:#f92672">([</span>AFTER|BEFORE<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>SYSTEM<span style="color:#f92672">]</span> dir1 dir2 ...<span style="color:#f92672">)</span>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>INCLUDE_DIRECTORIES<span style="color:#555">([</span>AFTER|BEFORE<span style="color:#555">]</span> <span style="color:#555">[</span>SYSTEM<span style="color:#555">]</span> dir1 dir2 ...<span style="color:#555">)</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
@@ -432,21 +432,21 @@ EXCLUDE_FROM_ALL 参数的含义是将这个目录从编译过程中排除。比
 AFTER/BEFORE参数，控制追加或置前。默认情况下，追加当前头文件搜索路径的后面。
 注：如果路径包含空格，可以使用双引号将它括起来。
 eg：</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-1">1</a>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-1">1</a>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>INCLUDE_DIRECTORIES<span style="color:#f92672">(</span>/usr/include/thrift<span style="color:#f92672">)</span>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>INCLUDE_DIRECTORIES<span style="color:#555">(</span>/usr/include/thrift<span style="color:#555">)</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="add_executable">ADD_EXECUTABLE</h2>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-13-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-13-1">1</a>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-13-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-13-1">1</a>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>ADD_EXECUTABLE<span style="color:#f92672">(</span>exename srcname<span style="color:#f92672">)</span>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>ADD_EXECUTABLE<span style="color:#555">(</span>exename srcname<span style="color:#555">)</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
@@ -455,19 +455,19 @@ eg：</p>
 该命令给出源文件名称，并指出需要编译出的可执行文件名。
 eg：</li>
 </ul>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-14-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-14-1">1</a>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-14-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-14-1">1</a>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>ADD_EXECUTABLE<span style="color:#f92672">(</span>hello <span style="color:#e6db74">${</span>SRC_LIST<span style="color:#e6db74">}</span><span style="color:#f92672">)</span>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>ADD_EXECUTABLE<span style="color:#555">(</span>hello <span style="color:#a00">${</span><span style="color:#033">SRC_LIST</span><span style="color:#a00">}</span><span style="color:#555">)</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>上述例程说明SRC_LIST变量中的源文件，需要编译出名为hello的可执行文件。</p>
 <p>eg:</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-15-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-15-1"> 1</a>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-15-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-15-1"> 1</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-15-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-15-2"> 2</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-15-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-15-3"> 3</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-15-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-15-4"> 4</a>
@@ -479,27 +479,27 @@ eg：</li>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-15-10"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-15-10">10</a>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>SET<span style="color:#f92672">(</span>SRC_LIST main.cc
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>SET<span style="color:#555">(</span>SRC_LIST main.cc
 </span></span><span style="display:flex;"><span>        rpc/CRNode.cpp
 </span></span><span style="display:flex;"><span>        rpc/Schd_types.cpp
 </span></span><span style="display:flex;"><span>        task/TaskExecutor.cpp
 </span></span><span style="display:flex;"><span>        task/TaskMoniter.cpp
 </span></span><span style="display:flex;"><span>        util/Const.cpp
 </span></span><span style="display:flex;"><span>        util/Globals.cc
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#555">)</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>ADD_EXECUTABLE<span style="color:#f92672">(</span>CRNode <span style="color:#e6db74">${</span>SRC_LIST<span style="color:#e6db74">}</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>ADD_EXECUTABLE<span style="color:#555">(</span>CRNode <span style="color:#a00">${</span><span style="color:#033">SRC_LIST</span><span style="color:#a00">}</span><span style="color:#555">)</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>该例程中，定义了该工程会生成一个名为CRNode的可执行文件，所依赖的源文件是变量SRC_LIST定义的源文件列表。
 注：如果前文PROJECT()指令中定义的项目名称也定义为CRNode，也没有什么问题，两者之间没有任何关系。</p>
 <h2 id="add_library">ADD_LIBRARY</h2>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-16-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-16-1">1</a>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-16-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-16-1">1</a>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>ADD_LIBRARY<span style="color:#f92672">(</span>libname <span style="color:#f92672">[</span>SHARED|STATIC|MODULE<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>EXCLUDE_FROM_ALL<span style="color:#f92672">]</span> source1 source2 ... sourceN<span style="color:#f92672">)</span>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>ADD_LIBRARY<span style="color:#555">(</span>libname <span style="color:#555">[</span>SHARED|STATIC|MODULE<span style="color:#555">]</span> <span style="color:#555">[</span>EXCLUDE_FROM_ALL<span style="color:#555">]</span> source1 source2 ... sourceN<span style="color:#555">)</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
@@ -509,45 +509,45 @@ eg：</li>
 <li>source1, …, sourceN：生成库所依赖的源文件
 eg：</li>
 </ul>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-17-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-17-1">1</a>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-17-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-17-1">1</a>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>ADD_LIBRARY<span style="color:#f92672">(</span>hello SHARED <span style="color:#e6db74">${</span>LIBHELLO_SRC<span style="color:#e6db74">}</span><span style="color:#f92672">)</span>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>ADD_LIBRARY<span style="color:#555">(</span>hello SHARED <span style="color:#a00">${</span><span style="color:#033">LIBHELLO_SRC</span><span style="color:#a00">}</span><span style="color:#555">)</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="变量executable_output_path-library_output_path">变量EXECUTABLE_OUTPUT_PATH, LIBRARY_OUTPUT_PATH</h2>
 <p>EXECUTABLE_OUTPUT_PATH为生成可执行文件路径，LIBRARY_OUTPUT_PATH为生成库文件路径。
 我们可以通过SET指令对其进行设置最终的目标二进制的位置，即最终生成的工程可执行文件与最终的共享库，而不包含编译生成的中间文件。</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-18-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-18-1">1</a>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-18-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-18-1">1</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-18-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-18-2">2</a>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>SET<span style="color:#f92672">(</span>EXECUTABLE_OUTPUT_PATH <span style="color:#e6db74">${</span>PROJECT_BINARY_DIR<span style="color:#e6db74">}</span>/bin<span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>SET<span style="color:#f92672">(</span>LIBRARY_OUTPUT_PATH <span style="color:#e6db74">${</span>PROJECT_BINARY_DIR<span style="color:#e6db74">}</span>/lib<span style="color:#f92672">)</span>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>SET<span style="color:#555">(</span>EXECUTABLE_OUTPUT_PATH <span style="color:#a00">${</span><span style="color:#033">PROJECT_BINARY_DIR</span><span style="color:#a00">}</span>/bin<span style="color:#555">)</span>
+</span></span><span style="display:flex;"><span>SET<span style="color:#555">(</span>LIBRARY_OUTPUT_PATH <span style="color:#a00">${</span><span style="color:#033">PROJECT_BINARY_DIR</span><span style="color:#a00">}</span>/lib<span style="color:#555">)</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>注：指令ADD_EXECUTABLE, ADD_LIBRARY出现的位置，如果需要改变目标存放路径，就在该处添加上述定义。</p>
 <h2 id="link_directories">LINK_DIRECTORIES</h2>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-19-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-19-1">1</a>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-19-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-19-1">1</a>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>LINK_DIRECTORIES<span style="color:#f92672">(</span>directory1 directory2 ...<span style="color:#f92672">)</span>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>LINK_DIRECTORIES<span style="color:#555">(</span>directory1 directory2 ...<span style="color:#555">)</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>该指令用于添加外部库的搜索路径。</p>
 <h2 id="target_link_libraries">TARGET_LINK_LIBRARIES</h2>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-20-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-20-1">1</a>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-20-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-20-1">1</a>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>TARGET_LINK_LIBRARIES<span style="color:#f92672">(</span>target library1 &lt;debug | optimized&gt; library2 ..<span style="color:#f92672">)</span>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>TARGET_LINK_LIBRARIES<span style="color:#555">(</span>target library1 &lt;debug | optimized&gt; library2 ..<span style="color:#555">)</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
@@ -556,12 +556,12 @@ eg：</li>
 指定链接目标文件时需要链接的外部库，效果类似于gcc编译参数-L，解决外部库依赖的问题。</li>
 </ul>
 <h2 id="message">MESSAGE</h2>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-21-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-21-1">1</a>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-21-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-21-1">1</a>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>MESSAGE<span style="color:#f92672">([</span>SEND_ERROR | STATUS | FATAL_ERROR<span style="color:#f92672">]</span> “message to display” …<span style="color:#f92672">)</span>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>MESSAGE<span style="color:#555">([</span>SEND_ERROR | STATUS | FATAL_ERROR<span style="color:#555">]</span> “message to display” …<span style="color:#555">)</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>向终端输出用户定义的信息或变量值</p>
@@ -571,14 +571,14 @@ eg：</li>
 <li>FATAL_ERROR：立即终止所有cmake过程；</li>
 </ul>
 <h2 id="set_target_properties">SET_TARGET_PROPERTIES</h2>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-22-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-22-1">1</a>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-22-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-22-1">1</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-22-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-22-2">2</a>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>SET_TARGET_PROPERTIES<span style="color:#f92672">(</span>target1 target2 ...
-</span></span><span style="display:flex;"><span>            PROPERTIES prop1 value1 prop2 value2 ...<span style="color:#f92672">)</span>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>SET_TARGET_PROPERTIES<span style="color:#555">(</span>target1 target2 ...
+</span></span><span style="display:flex;"><span>            PROPERTIES prop1 value1 prop2 value2 ...<span style="color:#555">)</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>设置目标的某些属性，改变它们构建的方式。</p>
@@ -586,9 +586,9 @@ eg：</li>
 <h1 id="基本控制语法">基本控制语法</h1>
 <h1 id="实战">实战</h1>
 <h2 id="单个源文件">单个源文件</h2>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-23-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-23-1"> 1</a>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-23-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-23-1"> 1</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-23-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-23-2"> 2</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-23-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-23-3"> 3</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-23-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-23-4"> 4</a>
@@ -601,17 +601,17 @@ eg：</li>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-23-11"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-23-11">11</a>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#75715e"># CMake 最低版本号要求</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># cmake_minimum_required：指定运行此配置文件所需的 CMake 的最低版本</span>
-</span></span><span style="display:flex;"><span>cmake_minimum_required <span style="color:#f92672">(</span>VERSION 2.8<span style="color:#f92672">)</span>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># CMake 最低版本号要求</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># cmake_minimum_required：指定运行此配置文件所需的 CMake 的最低版本</span>
+</span></span><span style="display:flex;"><span>cmake_minimum_required <span style="color:#555">(</span>VERSION 2.8<span style="color:#555">)</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 项目信息</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># project：参数值是 Demo1，该命令表示项目的名称是 Demo1</span>
-</span></span><span style="display:flex;"><span>project <span style="color:#f92672">(</span>Demo1<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># 项目信息</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># project：参数值是 Demo1，该命令表示项目的名称是 Demo1</span>
+</span></span><span style="display:flex;"><span>project <span style="color:#555">(</span>Demo1<span style="color:#555">)</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 指定生成目标</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># add_executable： 将名为 main.cc 的源文件编译成一个名称为 Demo 的可执行文件</span>
-</span></span><span style="display:flex;"><span>add_executable<span style="color:#f92672">(</span>Demo main.cc<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># 指定生成目标</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># add_executable： 将名为 main.cc 的源文件编译成一个名称为 Demo 的可执行文件</span>
+</span></span><span style="display:flex;"><span>add_executable<span style="color:#555">(</span>Demo main.cc<span style="color:#555">)</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><blockquote>
@@ -619,9 +619,9 @@ eg：</li>
 </blockquote>
 <h2 id="多个源文件">多个源文件</h2>
 <h3 id="同一目录多个源文件">同一目录，多个源文件</h3>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-24-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-24-1">1</a>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-24-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-24-1">1</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-24-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-24-2">2</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-24-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-24-3">3</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-24-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-24-4">4</a>
@@ -631,28 +631,28 @@ eg：</li>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-24-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-24-8">8</a>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#75715e"># CMake 最低版本号要求</span>
-</span></span><span style="display:flex;"><span>cmake_minimum_required <span style="color:#f92672">(</span>VERSION 2.8<span style="color:#f92672">)</span>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># CMake 最低版本号要求</span>
+</span></span><span style="display:flex;"><span>cmake_minimum_required <span style="color:#555">(</span>VERSION 2.8<span style="color:#555">)</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 项目信息</span>
-</span></span><span style="display:flex;"><span>project <span style="color:#f92672">(</span>Demo2<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># 项目信息</span>
+</span></span><span style="display:flex;"><span>project <span style="color:#555">(</span>Demo2<span style="color:#555">)</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 指定生成目标</span>
-</span></span><span style="display:flex;"><span>add_executable<span style="color:#f92672">(</span>Demo main.cc MathFunctions.cc<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># 指定生成目标</span>
+</span></span><span style="display:flex;"><span>add_executable<span style="color:#555">(</span>Demo main.cc MathFunctions.cc<span style="color:#555">)</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>aux_source_directory: 查找指定目录下的所有源文件，然后将结果存进指定变量名。</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-25-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-25-1">1</a>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-25-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-25-1">1</a>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span> aux_source_directory<span style="color:#f92672">(</span>&lt;dir&gt; &lt;variable&gt;<span style="color:#f92672">)</span>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span> aux_source_directory<span style="color:#555">(</span>&lt;dir&gt; &lt;variable&gt;<span style="color:#555">)</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+</div><div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-26-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-26-1"> 1</a>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-26-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-26-1"> 1</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-26-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-26-2"> 2</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-26-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-26-3"> 3</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-26-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-26-4"> 4</a>
@@ -666,26 +666,26 @@ eg：</li>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-26-12"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-26-12">12</a>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#75715e"># CMake 最低版本号要求</span>
-</span></span><span style="display:flex;"><span>cmake_minimum_required <span style="color:#f92672">(</span>VERSION 2.8<span style="color:#f92672">)</span>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># CMake 最低版本号要求</span>
+</span></span><span style="display:flex;"><span>cmake_minimum_required <span style="color:#555">(</span>VERSION 2.8<span style="color:#555">)</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 项目信息</span>
-</span></span><span style="display:flex;"><span>project <span style="color:#f92672">(</span>Demo2<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># 项目信息</span>
+</span></span><span style="display:flex;"><span>project <span style="color:#555">(</span>Demo2<span style="color:#555">)</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 查找当前目录下的所有源文件</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 并将名称保存到 DIR_SRCS 变量</span>
-</span></span><span style="display:flex;"><span>aux_source_directory<span style="color:#f92672">(</span>. DIR_SRCS<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># 查找当前目录下的所有源文件</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># 并将名称保存到 DIR_SRCS 变量</span>
+</span></span><span style="display:flex;"><span>aux_source_directory<span style="color:#555">(</span>. DIR_SRCS<span style="color:#555">)</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 指定生成目标</span>
-</span></span><span style="display:flex;"><span>add_executable<span style="color:#f92672">(</span>Demo <span style="color:#e6db74">${</span>DIR_SRCS<span style="color:#e6db74">}</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># 指定生成目标</span>
+</span></span><span style="display:flex;"><span>add_executable<span style="color:#555">(</span>Demo <span style="color:#a00">${</span><span style="color:#033">DIR_SRCS</span><span style="color:#a00">}</span><span style="color:#555">)</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="多个目录多个源文件">多个目录，多个源文件</h3>
 <p>add_subdirectory : 项目包含一个子目录 math，这样 math 目录下的 CMakeLists.txt 文件和源代码也会被处理。
 target_link_libraries：指明可执行文件 main 需要连接一个名为 MathFunctions 的链接库 。</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-27-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-27-1"> 1</a>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-27-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-27-1"> 1</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-27-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-27-2"> 2</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-27-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-27-3"> 3</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-27-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-27-4"> 4</a>
@@ -705,30 +705,30 @@ target_link_libraries：指明可执行文件 main 需要连接一个名为 Math
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-27-18"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-27-18">18</a>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#75715e"># CMake 最低版本号要求</span>
-</span></span><span style="display:flex;"><span>cmake_minimum_required <span style="color:#f92672">(</span>VERSION 2.8<span style="color:#f92672">)</span>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># CMake 最低版本号要求</span>
+</span></span><span style="display:flex;"><span>cmake_minimum_required <span style="color:#555">(</span>VERSION 2.8<span style="color:#555">)</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 项目信息</span>
-</span></span><span style="display:flex;"><span>project <span style="color:#f92672">(</span>Demo3<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># 项目信息</span>
+</span></span><span style="display:flex;"><span>project <span style="color:#555">(</span>Demo3<span style="color:#555">)</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 查找当前目录下的所有源文件</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 并将名称保存到 DIR_SRCS 变量</span>
-</span></span><span style="display:flex;"><span>aux_source_directory<span style="color:#f92672">(</span>. DIR_SRCS<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># 查找当前目录下的所有源文件</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># 并将名称保存到 DIR_SRCS 变量</span>
+</span></span><span style="display:flex;"><span>aux_source_directory<span style="color:#555">(</span>. DIR_SRCS<span style="color:#555">)</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 添加 math 子目录</span>
-</span></span><span style="display:flex;"><span>add_subdirectory<span style="color:#f92672">(</span>math<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># 添加 math 子目录</span>
+</span></span><span style="display:flex;"><span>add_subdirectory<span style="color:#555">(</span>math<span style="color:#555">)</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 指定生成目标</span>
-</span></span><span style="display:flex;"><span>add_executable<span style="color:#f92672">(</span>Demo main.cc<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># 指定生成目标</span>
+</span></span><span style="display:flex;"><span>add_executable<span style="color:#555">(</span>Demo main.cc<span style="color:#555">)</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 添加链接库</span>
-</span></span><span style="display:flex;"><span>target_link_libraries<span style="color:#f92672">(</span>Demo MathFunctions<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># 添加链接库</span>
+</span></span><span style="display:flex;"><span>target_link_libraries<span style="color:#555">(</span>Demo MathFunctions<span style="color:#555">)</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>子目录中的 CMakeLists.txt：</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-28-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-28-1">1</a>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-28-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-28-1">1</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-28-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-28-2">2</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-28-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-28-3">3</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-28-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-28-4">4</a>
@@ -736,20 +736,20 @@ target_link_libraries：指明可执行文件 main 需要连接一个名为 Math
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-28-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-28-6">6</a>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#75715e"># 查找当前目录下的所有源文件</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 并将名称保存到 DIR_LIB_SRCS 变量</span>
-</span></span><span style="display:flex;"><span>aux_source_directory<span style="color:#f92672">(</span>. DIR_LIB_SRCS<span style="color:#f92672">)</span>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># 查找当前目录下的所有源文件</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># 并将名称保存到 DIR_LIB_SRCS 变量</span>
+</span></span><span style="display:flex;"><span>aux_source_directory<span style="color:#555">(</span>. DIR_LIB_SRCS<span style="color:#555">)</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 生成链接库</span>
-</span></span><span style="display:flex;"><span>add_library <span style="color:#f92672">(</span>MathFunctions <span style="color:#e6db74">${</span>DIR_LIB_SRCS<span style="color:#e6db74">}</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># 生成链接库</span>
+</span></span><span style="display:flex;"><span>add_library <span style="color:#555">(</span>MathFunctions <span style="color:#a00">${</span><span style="color:#033">DIR_LIB_SRCS</span><span style="color:#a00">}</span><span style="color:#555">)</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>该文件中使用命令 add_library 将 src 目录中的源文件编译为静态链接库。</p>
 <h2 id="自定义编译选项">自定义编译选项</h2>
 <p>CMake 允许为项目增加编译选项，从而可以根据用户的环境和需求选择最合适的编译方案。</p>
-<div class="highlight line-numbers"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<div class="highlight line-numbers"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-29-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-29-1"> 1</a>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-29-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-29-1"> 1</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-29-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-29-2"> 2</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-29-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-29-3"> 3</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-29-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-29-4"> 4</a>
@@ -781,36 +781,36 @@ target_link_libraries：指明可执行文件 main 需要连接一个名为 Math
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-29-30"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-29-30">30</a>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#75715e"># CMake 最低版本号要求</span>
-</span></span><span style="display:flex;"><span>cmake_minimum_required <span style="color:#f92672">(</span>VERSION 2.8<span style="color:#f92672">)</span>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># CMake 最低版本号要求</span>
+</span></span><span style="display:flex;"><span>cmake_minimum_required <span style="color:#555">(</span>VERSION 2.8<span style="color:#555">)</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 项目信息</span>
-</span></span><span style="display:flex;"><span>project <span style="color:#f92672">(</span>Demo4<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># 项目信息</span>
+</span></span><span style="display:flex;"><span>project <span style="color:#555">(</span>Demo4<span style="color:#555">)</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 加入一个配置头文件，用于处理 CMake 对源码的设置</span>
-</span></span><span style="display:flex;"><span>configure_file <span style="color:#f92672">(</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>PROJECT_SOURCE_DIR<span style="color:#e6db74">}</span><span style="color:#e6db74">/config.h.in&#34;</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>PROJECT_BINARY_DIR<span style="color:#e6db74">}</span><span style="color:#e6db74">/config.h&#34;</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># 加入一个配置头文件，用于处理 CMake 对源码的设置</span>
+</span></span><span style="display:flex;"><span>configure_file <span style="color:#555">(</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#c30">&#34;</span><span style="color:#a00">${</span><span style="color:#033">PROJECT_SOURCE_DIR</span><span style="color:#a00">}</span><span style="color:#c30">/config.h.in&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#c30">&#34;</span><span style="color:#a00">${</span><span style="color:#033">PROJECT_BINARY_DIR</span><span style="color:#a00">}</span><span style="color:#c30">/config.h&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#555">)</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 是否使用自己的 MathFunctions 库</span>
-</span></span><span style="display:flex;"><span>option <span style="color:#f92672">(</span>USE_MYMATH
-</span></span><span style="display:flex;"><span>       <span style="color:#e6db74">&#34;Use provided math implementation&#34;</span> ON<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># 是否使用自己的 MathFunctions 库</span>
+</span></span><span style="display:flex;"><span>option <span style="color:#555">(</span>USE_MYMATH
+</span></span><span style="display:flex;"><span>       <span style="color:#c30">&#34;Use provided math implementation&#34;</span> ON<span style="color:#555">)</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 是否加入 MathFunctions 库</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>USE_MYMATH<span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>  include_directories <span style="color:#f92672">(</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>PROJECT_SOURCE_DIR<span style="color:#e6db74">}</span><span style="color:#e6db74">/math&#34;</span><span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>  add_subdirectory <span style="color:#f92672">(</span>math<span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>  set <span style="color:#f92672">(</span>EXTRA_LIBS <span style="color:#e6db74">${</span>EXTRA_LIBS<span style="color:#e6db74">}</span> MathFunctions<span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>endif <span style="color:#f92672">(</span>USE_MYMATH<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># 是否加入 MathFunctions 库</span>
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">if</span> <span style="color:#555">(</span>USE_MYMATH<span style="color:#555">)</span>
+</span></span><span style="display:flex;"><span>  include_directories <span style="color:#555">(</span><span style="color:#c30">&#34;</span><span style="color:#a00">${</span><span style="color:#033">PROJECT_SOURCE_DIR</span><span style="color:#a00">}</span><span style="color:#c30">/math&#34;</span><span style="color:#555">)</span>
+</span></span><span style="display:flex;"><span>  add_subdirectory <span style="color:#555">(</span>math<span style="color:#555">)</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#366">set</span> <span style="color:#555">(</span>EXTRA_LIBS <span style="color:#a00">${</span><span style="color:#033">EXTRA_LIBS</span><span style="color:#a00">}</span> MathFunctions<span style="color:#555">)</span>
+</span></span><span style="display:flex;"><span>endif <span style="color:#555">(</span>USE_MYMATH<span style="color:#555">)</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 查找当前目录下的所有源文件</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 并将名称保存到 DIR_SRCS 变量</span>
-</span></span><span style="display:flex;"><span>aux_source_directory<span style="color:#f92672">(</span>. DIR_SRCS<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># 查找当前目录下的所有源文件</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># 并将名称保存到 DIR_SRCS 变量</span>
+</span></span><span style="display:flex;"><span>aux_source_directory<span style="color:#555">(</span>. DIR_SRCS<span style="color:#555">)</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 指定生成目标</span>
-</span></span><span style="display:flex;"><span>add_executable<span style="color:#f92672">(</span>Demo <span style="color:#e6db74">${</span>DIR_SRCS<span style="color:#e6db74">}</span><span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>target_link_libraries <span style="color:#f92672">(</span>Demo  <span style="color:#e6db74">${</span>EXTRA_LIBS<span style="color:#e6db74">}</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># 指定生成目标</span>
+</span></span><span style="display:flex;"><span>add_executable<span style="color:#555">(</span>Demo <span style="color:#a00">${</span><span style="color:#033">DIR_SRCS</span><span style="color:#a00">}</span><span style="color:#555">)</span>
+</span></span><span style="display:flex;"><span>target_link_libraries <span style="color:#555">(</span>Demo  <span style="color:#a00">${</span><span style="color:#033">EXTRA_LIBS</span><span style="color:#a00">}</span><span style="color:#555">)</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>其中：
@@ -818,12 +818,12 @@ target_link_libraries：指明可执行文件 main 需要连接一个名为 Math
 第13行的 option 命令添加了一个 USE_MYMATH 选项，并且默认值为 ON 。
 第17行根据 USE_MYMATH 变量的值来决定是否使用我们自己编写的 MathFunctions 库。</p>
 <p><strong>config.h.in</strong></p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-30-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-30-1">1</a>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-30-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-30-1">1</a>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>#cmakedefine USE_MYMATH
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>#cmakedefine USE_MYMATH
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>CMake 会自动根据 CMakeLists 配置文件中的设置自动生成 config.h 文件。</p>
@@ -832,39 +832,39 @@ target_link_libraries：指明可执行文件 main 需要连接一个名为 Math
 <p>CMake 也可以指定安装规则，以及添加测试。这两个功能分别可以通过在产生 Makefile 后使用 make install 和 make test 来执行。在以前的 GNU Makefile 里，你可能需要为此编写 install 和 test 两个伪目标和相应的规则，但在 CMake 里，这样的工作同样只需要简单的调用几条命令。</p>
 <h3 id="定制安装规则">定制安装规则</h3>
 <p>math/CMakeLists.txt 指明 MathFunctions 库的安装路径</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-31-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-31-1">1</a>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-31-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-31-1">1</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-31-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-31-2">2</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-31-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-31-3">3</a>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span> <span style="color:#75715e"># 指定 MathFunctions 库的安装路径</span>
-</span></span><span style="display:flex;"><span> install <span style="color:#f92672">(</span>TARGETS MathFunctions DESTINATION bin<span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span> install <span style="color:#f92672">(</span>FILES MathFunctions.h DESTINATION include<span style="color:#f92672">)</span>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span> <span style="color:#09f;font-style:italic"># 指定 MathFunctions 库的安装路径</span>
+</span></span><span style="display:flex;"><span> install <span style="color:#555">(</span>TARGETS MathFunctions DESTINATION bin<span style="color:#555">)</span>
+</span></span><span style="display:flex;"><span> install <span style="color:#555">(</span>FILES MathFunctions.h DESTINATION include<span style="color:#555">)</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>改根目录的 CMakeLists 文件</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-32-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-32-1">1</a>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-32-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-32-1">1</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-32-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-32-2">2</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-32-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-32-3">3</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-32-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-32-4">4</a>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#75715e"># 指定安装路径</span>
-</span></span><span style="display:flex;"><span>install <span style="color:#f92672">(</span>TARGETS Demo DESTINATION bin<span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>install <span style="color:#f92672">(</span>FILES <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>PROJECT_BINARY_DIR<span style="color:#e6db74">}</span><span style="color:#e6db74">/config.h&#34;</span>
-</span></span><span style="display:flex;"><span>         DESTINATION include<span style="color:#f92672">)</span>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># 指定安装路径</span>
+</span></span><span style="display:flex;"><span>install <span style="color:#555">(</span>TARGETS Demo DESTINATION bin<span style="color:#555">)</span>
+</span></span><span style="display:flex;"><span>install <span style="color:#555">(</span>FILES <span style="color:#c30">&#34;</span><span style="color:#a00">${</span><span style="color:#033">PROJECT_BINARY_DIR</span><span style="color:#a00">}</span><span style="color:#c30">/config.h&#34;</span>
+</span></span><span style="display:flex;"><span>         DESTINATION include<span style="color:#555">)</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>通过上面的定制，生成的 Demo 文件和 MathFunctions 函数库 libMathFunctions.o 文件将会被复制到 /usr/local/bin 中，而 MathFunctions.h 和生成的 config.h 文件则会被复制到 /usr/local/include 中。（这里的 /usr/local/ 是默认安装到的根目录，可以通过修改 CMAKE_INSTALL_PREFIX 变量的值来指定这些文件应该拷贝到哪个根目录）。</p>
 <h3 id="为工程添加测试">为工程添加测试</h3>
 <p>添加测试同样很简单。CMake 提供了一个称为 CTest 的测试工具。我们要做的只是在项目根目录的 CMakeLists 文件中调用一系列的 add_test 命令。</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-33-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-33-1"> 1</a>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-33-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-33-1"> 1</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-33-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-33-2"> 2</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-33-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-33-3"> 3</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-33-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-33-4"> 4</a>
@@ -894,41 +894,41 @@ target_link_libraries：指明可执行文件 main 需要连接一个名为 Math
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-33-28"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-33-28">28</a>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#75715e"># 启用测试</span>
-</span></span><span style="display:flex;"><span>enable_testing<span style="color:#f92672">()</span>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># 启用测试</span>
+</span></span><span style="display:flex;"><span>enable_testing<span style="color:#555">()</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 测试程序是否成功运行</span>
-</span></span><span style="display:flex;"><span>add_test <span style="color:#f92672">(</span>test_run Demo <span style="color:#ae81ff">5</span> 2<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># 测试程序是否成功运行</span>
+</span></span><span style="display:flex;"><span>add_test <span style="color:#555">(</span>test_run Demo <span style="color:#f60">5</span> 2<span style="color:#555">)</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 测试帮助信息是否可以正常提示</span>
-</span></span><span style="display:flex;"><span>add_test <span style="color:#f92672">(</span>test_usage Demo<span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>set_tests_properties <span style="color:#f92672">(</span>test_usage
-</span></span><span style="display:flex;"><span>  PROPERTIES PASS_REGULAR_EXPRESSION <span style="color:#e6db74">&#34;Usage: .* base exponent&#34;</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># 测试帮助信息是否可以正常提示</span>
+</span></span><span style="display:flex;"><span>add_test <span style="color:#555">(</span>test_usage Demo<span style="color:#555">)</span>
+</span></span><span style="display:flex;"><span>set_tests_properties <span style="color:#555">(</span>test_usage
+</span></span><span style="display:flex;"><span>  PROPERTIES PASS_REGULAR_EXPRESSION <span style="color:#c30">&#34;Usage: .* base exponent&#34;</span><span style="color:#555">)</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 测试 5 的平方</span>
-</span></span><span style="display:flex;"><span>add_test <span style="color:#f92672">(</span>test_5_2 Demo <span style="color:#ae81ff">5</span> 2<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># 测试 5 的平方</span>
+</span></span><span style="display:flex;"><span>add_test <span style="color:#555">(</span>test_5_2 Demo <span style="color:#f60">5</span> 2<span style="color:#555">)</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>set_tests_properties <span style="color:#f92672">(</span>test_5_2
-</span></span><span style="display:flex;"><span>PROPERTIES PASS_REGULAR_EXPRESSION <span style="color:#e6db74">&#34;is 25&#34;</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>set_tests_properties <span style="color:#555">(</span>test_5_2
+</span></span><span style="display:flex;"><span>PROPERTIES PASS_REGULAR_EXPRESSION <span style="color:#c30">&#34;is 25&#34;</span><span style="color:#555">)</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 测试 10 的 5 次方</span>
-</span></span><span style="display:flex;"><span>add_test <span style="color:#f92672">(</span>test_10_5 Demo <span style="color:#ae81ff">10</span> 5<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># 测试 10 的 5 次方</span>
+</span></span><span style="display:flex;"><span>add_test <span style="color:#555">(</span>test_10_5 Demo <span style="color:#f60">10</span> 5<span style="color:#555">)</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>set_tests_properties <span style="color:#f92672">(</span>test_10_5
-</span></span><span style="display:flex;"><span>PROPERTIES PASS_REGULAR_EXPRESSION <span style="color:#e6db74">&#34;is 100000&#34;</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>set_tests_properties <span style="color:#555">(</span>test_10_5
+</span></span><span style="display:flex;"><span>PROPERTIES PASS_REGULAR_EXPRESSION <span style="color:#c30">&#34;is 100000&#34;</span><span style="color:#555">)</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 测试 2 的 10 次方</span>
-</span></span><span style="display:flex;"><span>add_test <span style="color:#f92672">(</span>test_2_10 Demo <span style="color:#ae81ff">2</span> 10<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># 测试 2 的 10 次方</span>
+</span></span><span style="display:flex;"><span>add_test <span style="color:#555">(</span>test_2_10 Demo <span style="color:#f60">2</span> 10<span style="color:#555">)</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>set_tests_properties <span style="color:#f92672">(</span>test_2_10
-</span></span><span style="display:flex;"><span>PROPERTIES PASS_REGULAR_EXPRESSION <span style="color:#e6db74">&#34;is 1024&#34;</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>set_tests_properties <span style="color:#555">(</span>test_2_10
+</span></span><span style="display:flex;"><span>PROPERTIES PASS_REGULAR_EXPRESSION <span style="color:#c30">&#34;is 1024&#34;</span><span style="color:#555">)</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>上面的代码包含了四个测试。第一个测试 test_run 用来测试程序是否成功运行并返回 0 值。剩下的三个测试分别用来测试 5 的 平方、10 的 5 次方、2 的 10 次方是否都能得到正确的结果。其中 PASS_REGULAR_EXPRESSION 用来测试输出是否包含后面跟着的字符串。</p>
 <p>可以通过编写宏来实现</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-1"> 1</a>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-1"> 1</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-2"> 2</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-3"> 3</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-4"> 4</a>
@@ -941,17 +941,17 @@ target_link_libraries：指明可执行文件 main 需要连接一个名为 Math
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-11"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-11">11</a>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#75715e"># 定义一个宏，用来简化测试工作</span>
-</span></span><span style="display:flex;"><span>macro <span style="color:#f92672">(</span>do_test arg1 arg2 result<span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>  add_test <span style="color:#f92672">(</span>test_<span style="color:#e6db74">${</span>arg1<span style="color:#e6db74">}</span>_<span style="color:#e6db74">${</span>arg2<span style="color:#e6db74">}</span> Demo <span style="color:#e6db74">${</span>arg1<span style="color:#e6db74">}</span> <span style="color:#e6db74">${</span>arg2<span style="color:#e6db74">}</span><span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>  set_tests_properties <span style="color:#f92672">(</span>test_<span style="color:#e6db74">${</span>arg1<span style="color:#e6db74">}</span>_<span style="color:#e6db74">${</span>arg2<span style="color:#e6db74">}</span>
-</span></span><span style="display:flex;"><span>    PROPERTIES PASS_REGULAR_EXPRESSION <span style="color:#e6db74">${</span>result<span style="color:#e6db74">}</span><span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>endmacro <span style="color:#f92672">(</span>do_test<span style="color:#f92672">)</span>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># 定义一个宏，用来简化测试工作</span>
+</span></span><span style="display:flex;"><span>macro <span style="color:#555">(</span>do_test arg1 arg2 result<span style="color:#555">)</span>
+</span></span><span style="display:flex;"><span>  add_test <span style="color:#555">(</span>test_<span style="color:#a00">${</span><span style="color:#033">arg1</span><span style="color:#a00">}</span>_<span style="color:#a00">${</span><span style="color:#033">arg2</span><span style="color:#a00">}</span> Demo <span style="color:#a00">${</span><span style="color:#033">arg1</span><span style="color:#a00">}</span> <span style="color:#a00">${</span><span style="color:#033">arg2</span><span style="color:#a00">}</span><span style="color:#555">)</span>
+</span></span><span style="display:flex;"><span>  set_tests_properties <span style="color:#555">(</span>test_<span style="color:#a00">${</span><span style="color:#033">arg1</span><span style="color:#a00">}</span>_<span style="color:#a00">${</span><span style="color:#033">arg2</span><span style="color:#a00">}</span>
+</span></span><span style="display:flex;"><span>    PROPERTIES PASS_REGULAR_EXPRESSION <span style="color:#a00">${</span><span style="color:#033">result</span><span style="color:#a00">}</span><span style="color:#555">)</span>
+</span></span><span style="display:flex;"><span>endmacro <span style="color:#555">(</span>do_test<span style="color:#555">)</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 使用该宏进行一系列的数据测试</span>
-</span></span><span style="display:flex;"><span>do_test <span style="color:#f92672">(</span><span style="color:#ae81ff">5</span> <span style="color:#ae81ff">2</span> <span style="color:#e6db74">&#34;is 25&#34;</span><span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>do_test <span style="color:#f92672">(</span><span style="color:#ae81ff">10</span> <span style="color:#ae81ff">5</span> <span style="color:#e6db74">&#34;is 100000&#34;</span><span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>do_test <span style="color:#f92672">(</span><span style="color:#ae81ff">2</span> <span style="color:#ae81ff">10</span> <span style="color:#e6db74">&#34;is 1024&#34;</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># 使用该宏进行一系列的数据测试</span>
+</span></span><span style="display:flex;"><span>do_test <span style="color:#555">(</span><span style="color:#f60">5</span> <span style="color:#f60">2</span> <span style="color:#c30">&#34;is 25&#34;</span><span style="color:#555">)</span>
+</span></span><span style="display:flex;"><span>do_test <span style="color:#555">(</span><span style="color:#f60">10</span> <span style="color:#f60">5</span> <span style="color:#c30">&#34;is 100000&#34;</span><span style="color:#555">)</span>
+</span></span><span style="display:flex;"><span>do_test <span style="color:#555">(</span><span style="color:#f60">2</span> <span style="color:#f60">10</span> <span style="color:#c30">&#34;is 1024&#34;</span><span style="color:#555">)</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h1 id="参考资料">参考资料</h1>
@@ -995,5 +995,5 @@ target_link_libraries：指明可执行文件 main 需要连接一个名为 Math
             </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
                 <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
             </a>
-        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/css/lightgallery-bundle.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/twemoji@14.0.2/dist/twemoji.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/lightgallery.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/thumbnail/lg-thumbnail.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/zoom/lg-zoom.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@8.6.0/dist/index.umd.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{"giscus":{"category":"Comments","categoryId":"DIC_kwDOIx2Cjs4CTnUX","darkTheme":"dark","emitMetadata":"0","inputPosition":"bottom","lang":"en","lazyLoading":false,"lightTheme":"light","mapping":"pathname","reactionsEnabled":"1","repo":"zhangyuhu/zhangyuhu.github.io","repoId":"R_kgDOIx2Cjg"}},"data":{"id-1":"HOME","id-2":"HOME"},"lightgallery":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"},"twemoji":true,"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.2970a33d719df7cd89cebf586152b32a8ed30012227fa81b44282950146e0f595d1c733779e4d423dda1004bdcf707ee64d0fadc3d21229cd66b960788f84bdb.js" integrity="sha512-KXCjPXGd982Jzr9YYVKzKo7TABIif6gbRCgpUBRuD1ldHHM3eeTUI92hAEvc9wfuZND63D0hIpzWa5YHiPhL2w=="></script></body>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/css/lightgallery-bundle.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/twemoji@14.0.2/dist/twemoji.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/lightgallery.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/thumbnail/lg-thumbnail.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/zoom/lg-zoom.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@8.6.0/dist/index.umd.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":100},"comment":{"giscus":{"category":"Comments","categoryId":"DIC_kwDOIx2Cjs4CTnUX","darkTheme":"dark","emitMetadata":"0","inputPosition":"bottom","lang":"en","lazyLoading":false,"lightTheme":"light","mapping":"pathname","reactionsEnabled":"1","repo":"zhangyuhu/zhangyuhu.github.io","repoId":"R_kgDOIx2Cjg"}},"data":{"id-1":"HOME","id-2":"HOME"},"lightgallery":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"},"twemoji":true,"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.2970a33d719df7cd89cebf586152b32a8ed30012227fa81b44282950146e0f595d1c733779e4d423dda1004bdcf707ee64d0fadc3d21229cd66b960788f84bdb.js" integrity="sha512-KXCjPXGd982Jzr9YYVKzKo7TABIif6gbRCgpUBRuD1ldHHM3eeTUI92hAEvc9wfuZND63D0hIpzWa5YHiPhL2w=="></script></body>
 </html>

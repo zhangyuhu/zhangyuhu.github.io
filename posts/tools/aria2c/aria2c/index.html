@@ -18,7 +18,7 @@
 <meta name="application-name" content="我的网站">
 <meta name="apple-mobile-web-app-title" content="我的网站"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://zhangyuhu.github.io/posts/tools/aria2c/aria2c/" /><link rel="prev" href="https://zhangyuhu.github.io/posts/program/bash/bash_note_01/" /><link rel="next" href="https://zhangyuhu.github.io/posts/program/java/android%E5%BA%94%E7%94%A8%E4%B8%AD%E4%BD%BF%E7%94%A8c%E5%92%8Cc&#43;&#43;%E4%BB%A3%E7%A0%81/" /><link rel="stylesheet" href="/css/style.min.61c0835a1733ac3f92b41b61b403dca9b8d4a3a7e4021c89af2c45a731f6343a82bc7fb214f4926e2c4669c8d258218b7da5d0e86d081ec97f3c1d823d48df2e.css" integrity="sha512-YcCDWhczrD+StBthtAPcqbjUo6fkAhyJryxFpzH2NDqCvH+yFPSSbixGacjSWCGLfaXQ6G0IHsl/PB2CPUjfLg=="><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://zhangyuhu.github.io/posts/tools/aria2c/aria2c/" /><link rel="prev" href="https://zhangyuhu.github.io/posts/program/bash/bash_note_01/" /><link rel="next" href="https://zhangyuhu.github.io/posts/program/java/android%E5%BA%94%E7%94%A8%E4%B8%AD%E4%BD%BF%E7%94%A8c%E5%92%8Cc&#43;&#43;%E4%BB%A3%E7%A0%81/" /><link rel="stylesheet" href="/css/style.min.990eb8dd228a2b662f63cfe59575be8aa494cb9d40ffd854f26b9d9e588e1f4fdadb6a34e3f9a9171244d3ee6c107521923ab30705f3ef50d3e435eda1afc910.css" integrity="sha512-mQ643SKKK2YvY8/llXW+iqSUy51A/9hU8mudnliOH0/a22o04/mpFxJE0+5sEHUhkjqzBwXz71DT5DXtoa/JEA=="><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
     {
@@ -137,34 +137,34 @@
 <h1 id="简介">简介</h1>
 <p>Aria2 是一个多平台轻量级，支持 HTTP、FTP、BitTorrent 等多协议、多来源的命令行下载工具。Aria2 可以从多个来源、多个协议下载资源，最大的程度上利用了你的带宽。Aria2 有着非常小的资源占用，在关闭磁盘缓存的情况下，物理内存占用通常为 4M（正常 HTTP/FTP 下载的情况下），BitTorrent 下载每秒2.8M/S的情况下，CPU 占有率约为 6%。Aria2 支持 JSON-RPC 和 XML-RPC 接口远程调用。</p>
 <h1 id="安装">安装</h1>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-1">1</a>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-1">1</a>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>sudo apt-get install aria2
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>sudo apt-get install aria2
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h1 id="配置">配置</h1>
 <p>创建配置文件 :</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-1">1</a>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-1">1</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-2">2</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-3">3</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-4">4</a>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>sudo mkdir /etc/aria2    <span style="color:#75715e">#新建文件夹</span>
-</span></span><span style="display:flex;"><span>sudo touch /etc/aria2/aria2.session    <span style="color:#75715e">#新建session文件</span>
-</span></span><span style="display:flex;"><span>sudo chmod <span style="color:#ae81ff">777</span> /etc/aria2/aria2.session    <span style="color:#75715e">#设置aria2.session可写</span>
-</span></span><span style="display:flex;"><span>sudo vi /etc/aria2/aria2.conf    <span style="color:#75715e">#创建配置文件</span>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>sudo mkdir /etc/aria2    <span style="color:#09f;font-style:italic">#新建文件夹</span>
+</span></span><span style="display:flex;"><span>sudo touch /etc/aria2/aria2.session    <span style="color:#09f;font-style:italic">#新建session文件</span>
+</span></span><span style="display:flex;"><span>sudo chmod <span style="color:#f60">777</span> /etc/aria2/aria2.session    <span style="color:#09f;font-style:italic">#设置aria2.session可写</span>
+</span></span><span style="display:flex;"><span>sudo vi /etc/aria2/aria2.conf    <span style="color:#09f;font-style:italic">#创建配置文件</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>配置文件：</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-1">  1</a>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-1">  1</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-2">  2</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-3">  3</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-4">  4</a>
@@ -319,221 +319,221 @@
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-153"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-153">153</a>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#75715e">## 全局设置 ## ============================================================</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 日志</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#log-level=warn</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#log=/PATH/.aria2/aria2.log</span>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#09f;font-style:italic">## 全局设置 ## ============================================================</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># 日志</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic">#log-level=warn</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic">#log=/PATH/.aria2/aria2.log</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 后台运行</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#daemon=true</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># 后台运行</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic">#daemon=true</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 下载位置, 默认: 当前启动位置(***)</span>
-</span></span><span style="display:flex;"><span>dir<span style="color:#f92672">=</span>/home/***/Downloads
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># 下载位置, 默认: 当前启动位置(***)</span>
+</span></span><span style="display:flex;"><span><span style="color:#033">dir</span><span style="color:#555">=</span>/home/***/Downloads
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 从会话文件中读取下载任务(***)</span>
-</span></span><span style="display:flex;"><span>input-file<span style="color:#f92672">=</span>/usr/customer/aria2/aria2.session
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># 从会话文件中读取下载任务(***)</span>
+</span></span><span style="display:flex;"><span>input-file<span style="color:#555">=</span>/usr/customer/aria2/aria2.session
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 在Aria2退出时保存`错误/未完成`的下载任务到会话文件(***)</span>
-</span></span><span style="display:flex;"><span>save-session<span style="color:#f92672">=</span>/usr/customer/aria2/aria2.session
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># 在Aria2退出时保存`错误/未完成`的下载任务到会话文件(***)</span>
+</span></span><span style="display:flex;"><span>save-session<span style="color:#555">=</span>/usr/customer/aria2/aria2.session
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 定时保存会话, 0为退出时才保存, 需1.16.1以上版本, 默认:0</span>
-</span></span><span style="display:flex;"><span>save-session-interval<span style="color:#f92672">=</span><span style="color:#ae81ff">30</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># 定时保存会话, 0为退出时才保存, 需1.16.1以上版本, 默认:0</span>
+</span></span><span style="display:flex;"><span>save-session-interval<span style="color:#555">=</span><span style="color:#f60">30</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 断点续传</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">continue</span><span style="color:#f92672">=</span>true
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># 断点续传</span>
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">continue</span><span style="color:#555">=</span><span style="color:#366">true</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 启用磁盘缓存, 0为禁用缓存, 需1.16以上版本, 默认:16M</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#disk-cache=32M</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># 启用磁盘缓存, 0为禁用缓存, 需1.16以上版本, 默认:16M</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic">#disk-cache=32M</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 文件预分配方式, 能有效降低磁盘碎片, 默认:prealloc</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 预分配所需时间: none &lt; falloc ? trunc &lt; prealloc</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># falloc和trunc则需要文件系统和内核支持</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># NTFS建议使用falloc, EXT3/4建议trunc, MAC 下需要注释此项</span>
-</span></span><span style="display:flex;"><span>file-allocation<span style="color:#f92672">=</span>none
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># 文件预分配方式, 能有效降低磁盘碎片, 默认:prealloc</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># 预分配所需时间: none &lt; falloc ? trunc &lt; prealloc</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># falloc和trunc则需要文件系统和内核支持</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># NTFS建议使用falloc, EXT3/4建议trunc, MAC 下需要注释此项</span>
+</span></span><span style="display:flex;"><span>file-allocation<span style="color:#555">=</span>none
 </span></span><span style="display:flex;"><span>https://www.jianshu.com/p/6adf79d29add
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 客户端伪装</span>
-</span></span><span style="display:flex;"><span>user-agent<span style="color:#f92672">=</span>netdisk;5.2.6;PC;PC-Windows;6.2.9200;WindowsBaiduYunGuanJia
-</span></span><span style="display:flex;"><span>referer<span style="color:#f92672">=</span>http://pan.baidu.com/disk/home
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># 客户端伪装</span>
+</span></span><span style="display:flex;"><span>user-agent<span style="color:#555">=</span>netdisk;5.2.6;PC;PC-Windows;6.2.9200;WindowsBaiduYunGuanJia
+</span></span><span style="display:flex;"><span><span style="color:#033">referer</span><span style="color:#555">=</span>http://pan.baidu.com/disk/home
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 禁用IPv6, 默认:false</span>
-</span></span><span style="display:flex;"><span>disable-ipv6<span style="color:#f92672">=</span>true
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># 禁用IPv6, 默认:false</span>
+</span></span><span style="display:flex;"><span>disable-ipv6<span style="color:#555">=</span><span style="color:#366">true</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 其他</span>
-</span></span><span style="display:flex;"><span>always-resume<span style="color:#f92672">=</span>true
-</span></span><span style="display:flex;"><span>check-integrity<span style="color:#f92672">=</span>true
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># 其他</span>
+</span></span><span style="display:flex;"><span>always-resume<span style="color:#555">=</span><span style="color:#366">true</span>
+</span></span><span style="display:flex;"><span>check-integrity<span style="color:#555">=</span><span style="color:#366">true</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">## 下载位置 ## ============================================================</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 最大同时下载任务数, 运行时可修改, 默认:5</span>
-</span></span><span style="display:flex;"><span>max-concurrent-downloads<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic">## 下载位置 ## ============================================================</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># 最大同时下载任务数, 运行时可修改, 默认:5</span>
+</span></span><span style="display:flex;"><span>max-concurrent-downloads<span style="color:#555">=</span><span style="color:#f60">10</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 同一服务器连接数, 添加时可指定, 默认:1</span>
-</span></span><span style="display:flex;"><span>max-connection-per-server<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># 同一服务器连接数, 添加时可指定, 默认:1</span>
+</span></span><span style="display:flex;"><span>max-connection-per-server<span style="color:#555">=</span><span style="color:#f60">10</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 最小文件分片大小, 添加时可指定, 取值范围1M -1024M, 默认:20M</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 假定size=10M, 文件为20MiB 则使用两个来源下载; 文件为15MiB 则使用一个来源下载</span>
-</span></span><span style="display:flex;"><span>min-split-size<span style="color:#f92672">=</span>10M
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># 最小文件分片大小, 添加时可指定, 取值范围1M -1024M, 默认:20M</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># 假定size=10M, 文件为20MiB 则使用两个来源下载; 文件为15MiB 则使用一个来源下载</span>
+</span></span><span style="display:flex;"><span>min-split-size<span style="color:#555">=</span>10M
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 单个任务最大线程数, 添加时可指定, 默认:5</span>
-</span></span><span style="display:flex;"><span>split<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># 单个任务最大线程数, 添加时可指定, 默认:5</span>
+</span></span><span style="display:flex;"><span><span style="color:#033">split</span><span style="color:#555">=</span><span style="color:#f60">5</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 整体下载速度限制, 运行时可修改, 默认:0</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#max-overall-download-limit=0</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># 整体下载速度限制, 运行时可修改, 默认:0</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic">#max-overall-download-limit=0</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 单个任务下载速度限制, 默认:0</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#max-download-limit=0</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># 单个任务下载速度限制, 默认:0</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic">#max-download-limit=0</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 整体上传速度限制, 运行时可修改, 默认:0</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#max-overall-upload-limit=0</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># 整体上传速度限制, 运行时可修改, 默认:0</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic">#max-overall-upload-limit=0</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 单个任务上传速度限制, 默认:0</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#max-upload-limit=0</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># 单个任务上传速度限制, 默认:0</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic">#max-upload-limit=0</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">## RPC设置 ## ============================================================</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 启用RPC, 默认:false</span>
-</span></span><span style="display:flex;"><span>enable-rpc<span style="color:#f92672">=</span>true
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic">## RPC设置 ## ============================================================</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># 启用RPC, 默认:false</span>
+</span></span><span style="display:flex;"><span>enable-rpc<span style="color:#555">=</span><span style="color:#366">true</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 允许所有来源, 默认:false</span>
-</span></span><span style="display:flex;"><span>rpc-allow-origin-all<span style="color:#f92672">=</span>true
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># 允许所有来源, 默认:false</span>
+</span></span><span style="display:flex;"><span>rpc-allow-origin-all<span style="color:#555">=</span><span style="color:#366">true</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 允许非外部访问, 默认:false</span>
-</span></span><span style="display:flex;"><span>rpc-listen-all<span style="color:#f92672">=</span>true
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># 允许非外部访问, 默认:false</span>
+</span></span><span style="display:flex;"><span>rpc-listen-all<span style="color:#555">=</span><span style="color:#366">true</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 事件轮询方式, 取值:[epoll, kqueue, port, poll, select], 不同系统默认值不同</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#event-poll=select</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># 事件轮询方式, 取值:[epoll, kqueue, port, poll, select], 不同系统默认值不同</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic">#event-poll=select</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># RPC监听端口, 端口被占用时可以修改, 默认:6800</span>
-</span></span><span style="display:flex;"><span>rpc-listen-port<span style="color:#f92672">=</span><span style="color:#ae81ff">6800</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># RPC监听端口, 端口被占用时可以修改, 默认:6800</span>
+</span></span><span style="display:flex;"><span>rpc-listen-port<span style="color:#555">=</span><span style="color:#f60">6800</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 设置的RPC授权令牌, v1.18.4新增功能, 取代 --rpc-user 和 --rpc-passwd 选项</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#rpc-secret=&lt;TOKEN&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># 设置的RPC授权令牌, v1.18.4新增功能, 取代 --rpc-user 和 --rpc-passwd 选项</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic">#rpc-secret=&lt;TOKEN&gt;</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 是否启用 RPC 服务的 SSL/TLS 加密,</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 启用加密后 RPC 服务需要使用 https 或者 wss 协议连接</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#rpc-secure=true</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># 是否启用 RPC 服务的 SSL/TLS 加密,</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># 启用加密后 RPC 服务需要使用 https 或者 wss 协议连接</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic">#rpc-secure=true</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 在 RPC 服务中启用 SSL/TLS 加密时的证书文件,</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 使用 PEM 格式时，您必须通过 --rpc-private-key 指定私钥</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#rpc-certificate=/path/to/certificate.pem</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># 在 RPC 服务中启用 SSL/TLS 加密时的证书文件,</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># 使用 PEM 格式时，您必须通过 --rpc-private-key 指定私钥</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic">#rpc-certificate=/path/to/certificate.pem</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 在 RPC 服务中启用 SSL/TLS 加密时的私钥文件</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#rpc-private-key=/path/to/certificate.key</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># 在 RPC 服务中启用 SSL/TLS 加密时的私钥文件</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic">#rpc-private-key=/path/to/certificate.key</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">## BT/PT下载相关 ## ============================================================</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 当下载的是一个种子(以.torrent结尾)时, 自动开始BT任务, 默认:true</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#follow-torrent=true</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic">## BT/PT下载相关 ## ============================================================</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># 当下载的是一个种子(以.torrent结尾)时, 自动开始BT任务, 默认:true</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic">#follow-torrent=true</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># BT监听端口, 当端口被屏蔽时使用, 默认:6881-6999</span>
-</span></span><span style="display:flex;"><span>listen-port<span style="color:#f92672">=</span><span style="color:#ae81ff">51413</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># BT监听端口, 当端口被屏蔽时使用, 默认:6881-6999</span>
+</span></span><span style="display:flex;"><span>listen-port<span style="color:#555">=</span><span style="color:#f60">51413</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 单个种子最大连接数, 默认:55</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#bt-max-peers=55</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># 单个种子最大连接数, 默认:55</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic">#bt-max-peers=55</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 打开DHT功能, PT需要禁用, 默认:true</span>
-</span></span><span style="display:flex;"><span>enable-dht<span style="color:#f92672">=</span>false
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># 打开DHT功能, PT需要禁用, 默认:true</span>
+</span></span><span style="display:flex;"><span>enable-dht<span style="color:#555">=</span><span style="color:#366">false</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 打开IPv6 DHT功能, PT需要禁用</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#enable-dht6=false</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># 打开IPv6 DHT功能, PT需要禁用</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic">#enable-dht6=false</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># DHT网络监听端口, 默认:6881-6999</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#dht-listen-port=6881-6999</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># DHT网络监听端口, 默认:6881-6999</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic">#dht-listen-port=6881-6999</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>dht-file-path<span style="color:#f92672">=</span>/opt/var/aria2/dht.dat
-</span></span><span style="display:flex;"><span>dht-file-path6<span style="color:#f92672">=</span>/opt/var/aria2/dht6.dat
+</span></span><span style="display:flex;"><span>dht-file-path<span style="color:#555">=</span>/opt/var/aria2/dht.dat
+</span></span><span style="display:flex;"><span>dht-file-path6<span style="color:#555">=</span>/opt/var/aria2/dht6.dat
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 本地节点查找, PT需要禁用, 默认:false</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#bt-enable-lpd=false</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># 本地节点查找, PT需要禁用, 默认:false</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic">#bt-enable-lpd=false</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 种子交换, PT需要禁用, 默认:true</span>
-</span></span><span style="display:flex;"><span>enable-peer-exchange<span style="color:#f92672">=</span>false
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># 种子交换, PT需要禁用, 默认:true</span>
+</span></span><span style="display:flex;"><span>enable-peer-exchange<span style="color:#555">=</span><span style="color:#366">false</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 每个种子限速, 对少种的PT很有用, 默认:50K</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#bt-request-peer-speed-limit=50K</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># 每个种子限速, 对少种的PT很有用, 默认:50K</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic">#bt-request-peer-speed-limit=50K</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 设置 peer id 前缀</span>
-</span></span><span style="display:flex;"><span>peer-id-prefix<span style="color:#f92672">=</span>-TR2770-
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># 设置 peer id 前缀</span>
+</span></span><span style="display:flex;"><span>peer-id-prefix<span style="color:#555">=</span>-TR2770-
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 当种子的分享率达到这个数时, 自动停止做种, 0为一直做种, 默认:1.0</span>
-</span></span><span style="display:flex;"><span>seed-ratio<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># 当种子的分享率达到这个数时, 自动停止做种, 0为一直做种, 默认:1.0</span>
+</span></span><span style="display:flex;"><span>seed-ratio<span style="color:#555">=</span><span style="color:#f60">0</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 强制保存会话, 即使任务已经完成, 默认:false</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 较新的版本开启后会在任务完成后依然保留.aria2文件</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#force-save=false</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># 强制保存会话, 即使任务已经完成, 默认:false</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># 较新的版本开启后会在任务完成后依然保留.aria2文件</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic">#force-save=false</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># BT校验相关, 默认:true</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#bt-hash-check-seed=true</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># BT校验相关, 默认:true</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic">#bt-hash-check-seed=true</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 继续之前的BT任务时, 无需再次校验, 默认:false</span>
-</span></span><span style="display:flex;"><span>bt-seed-unverified<span style="color:#f92672">=</span>true
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># 继续之前的BT任务时, 无需再次校验, 默认:false</span>
+</span></span><span style="display:flex;"><span>bt-seed-unverified<span style="color:#555">=</span><span style="color:#366">true</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 保存磁力链接元数据为种子文件(.torrent文件), 默认:false</span>
-</span></span><span style="display:flex;"><span>bt-save-metadata<span style="color:#f92672">=</span>true
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># 保存磁力链接元数据为种子文件(.torrent文件), 默认:false</span>
+</span></span><span style="display:flex;"><span>bt-save-metadata<span style="color:#555">=</span><span style="color:#366">true</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>bt-max-open-files<span style="color:#f92672">=</span><span style="color:#ae81ff">16</span>
+</span></span><span style="display:flex;"><span>bt-max-open-files<span style="color:#555">=</span><span style="color:#f60">16</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Http/FTP 相关</span>
-</span></span><span style="display:flex;"><span>connect-timeout<span style="color:#f92672">=</span><span style="color:#ae81ff">120</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># Http/FTP 相关</span>
+</span></span><span style="display:flex;"><span>connect-timeout<span style="color:#555">=</span><span style="color:#f60">120</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>启动下载器：</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-1">1</a>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-1">1</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-2">2</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-3">3</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-4">4</a>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>sudo aria2c --conf-path<span style="color:#f92672">=</span>/etc/aria2/aria2.conf
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>sudo aria2c --conf-path<span style="color:#555">=</span>/etc/aria2/aria2.conf
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#如果没问题，改为后台启动：</span>
-</span></span><span style="display:flex;"><span>sudo aria2c --conf-path<span style="color:#f92672">=</span>/etc/aria2/aria2.conf -D
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic">#如果没问题，改为后台启动：</span>
+</span></span><span style="display:flex;"><span>sudo aria2c --conf-path<span style="color:#555">=</span>/etc/aria2/aria2.conf -D
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>#使用</p>
 <p>使用 aria2 下载文件，只需在命令后附加地址即可。注意：命令是<strong>aria2c</strong>。比如我们下载ubuntu如：</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-1">1</a>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-1">1</a>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>aria2c http://www.mirror.tw/pub/ubuntu/releases/jaunty/ubuntu-9.04-desktop-i386.iso
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>aria2c http://www.mirror.tw/pub/ubuntu/releases/jaunty/ubuntu-9.04-desktop-i386.iso
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>分段下载利用 aria2 的分段下载功能可以加快文件的下载速度，对于下载大文件时特别有用,为了<strong>使用 aria2 的分段下载功能，你需要在命令中指定 s 选项</strong>。如：</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-1">1</a>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-1">1</a>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>aria2c -s <span style="color:#ae81ff">2</span> http://www.mirror.tw/pub/ubuntu/releases/jaunty/ubuntu-9.04-desktop-i386.iso
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>aria2c -s <span style="color:#f60">2</span> http://www.mirror.tw/pub/ubuntu/releases/jaunty/ubuntu-9.04-desktop-i386.iso
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>这将使用 2 个连接来下载该文件，s 后面的参数值介于 1~5 之间，你可以根据实际情况选择。
 <strong>使用 c 选项可以断点续传文件</strong>如：</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-1">1</a>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-1">1</a>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>aria2c -c http://www.mirror.tw/pub/ubuntu/releases/jaunty/ubuntu-9.04-desktop-i386.iso
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>aria2c -c http://www.mirror.tw/pub/ubuntu/releases/jaunty/ubuntu-9.04-desktop-i386.iso
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>下载 torrent 文件你也可以使用 aria2 下载 BitTorrent 文件。如：</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-1">1</a>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-1">1</a>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span> aria2c -o gutsy.torrent http://cdimage.ubuntu.com/daily-live/current/gutsy-desktop-i386.iso.torrent
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span> aria2c -o gutsy.torrent http://cdimage.ubuntu.com/daily-live/current/gutsy-desktop-i386.iso.torrent
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>下载磁力连接 ：</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-1">1</a>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-1">1</a>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>aria2c -x <span style="color:#ae81ff">16</span> <span style="color:#e6db74">&#34;magnet:?xt=urn:btih:74d5293cb3efa1f1457bc5f3184cfbc35e16a49d&amp;dn=%e9%98%b3%e5%85%89%e7%94%b5%e5%bd%b1www.ygdy8.com.%e4%bd%a0%e5%a5%bd%ef%bc%8c%e6%9d%8e%e7%84%95%e8%8b%b1.2021.HD.1080P.%e5%9b%bd%e8%af%ad%e4%b8%ad%e8%8b%b1%e5%8f%8c%e5%ad%97.mkv&amp;tr=udp%3a%2f%2ftracker.opentrackr.org%3a1337%2fannounce&amp;tr=udp%3a%2f%2fexodus.desync.com%3a6969%2fannounce&#34;</span>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>aria2c -x <span style="color:#f60">16</span> <span style="color:#c30">&#34;magnet:?xt=urn:btih:74d5293cb3efa1f1457bc5f3184cfbc35e16a49d&amp;dn=%e9%98%b3%e5%85%89%e7%94%b5%e5%bd%b1www.ygdy8.com.%e4%bd%a0%e5%a5%bd%ef%bc%8c%e6%9d%8e%e7%84%95%e8%8b%b1.2021.HD.1080P.%e5%9b%bd%e8%af%ad%e4%b8%ad%e8%8b%b1%e5%8f%8c%e5%ad%97.mkv&amp;tr=udp%3a%2f%2ftracker.opentrackr.org%3a1337%2fannounce&amp;tr=udp%3a%2f%2fexodus.desync.com%3a6969%2fannounce&#34;</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
@@ -541,18 +541,18 @@
 <ol>
 <li>增加开机启动脚本</li>
 </ol>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-9-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-9-1">1</a>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-9-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-9-1">1</a>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span>sudo vi /etc/<span style="color:#66d9ef">init</span>.d/aria2c
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span>sudo vi /etc/<span style="color:#069;font-weight:bold">init</span>.d/aria2c
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>添加如下内容：</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-1"> 1</a>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-1"> 1</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-2"> 2</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-3"> 3</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-4"> 4</a>
@@ -582,78 +582,78 @@
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-28"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-28">28</a>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e">#!/bin/sh
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#75715e">### BEGIN INIT INFO</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Provides: aria2</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Required-Start: $remote_fs $network</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Required-Stop: $remote_fs $network</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Default-Start: 2 3 4 5</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Default-Stop: 0 1 6</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Short-Description: Aria2 Downloader</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">### END INIT INFO</span>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#099">#!/bin/sh
+</span></span></span><span style="display:flex;"><span><span style="color:#099"></span><span style="color:#09f;font-style:italic">### BEGIN INIT INFO</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># Provides: aria2</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># Required-Start: $remote_fs $network</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># Required-Stop: $remote_fs $network</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># Default-Start: 2 3 4 5</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># Default-Stop: 0 1 6</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># Short-Description: Aria2 Downloader</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic">### END INIT INFO</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#34;</span>$1<span style="color:#e6db74">&#34;</span> in
-</span></span><span style="display:flex;"><span>start<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">case</span> <span style="color:#c30">&#34;</span><span style="color:#033">$1</span><span style="color:#c30">&#34;</span> in
+</span></span><span style="display:flex;"><span>start<span style="color:#555">)</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span> echo -n <span style="color:#e6db74">&#34;已开启Aria2c&#34;</span>
-</span></span><span style="display:flex;"><span> sudo aria2c --conf-path<span style="color:#f92672">=</span>/usr/customer/aria2/aria2.conf -D
+</span></span><span style="display:flex;"><span> <span style="color:#366">echo</span> -n <span style="color:#c30">&#34;已开启Aria2c&#34;</span>
+</span></span><span style="display:flex;"><span> sudo aria2c --conf-path<span style="color:#555">=</span>/usr/customer/aria2/aria2.conf -D
 </span></span><span style="display:flex;"><span>;;
-</span></span><span style="display:flex;"><span>stop<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>stop<span style="color:#555">)</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span> echo -n <span style="color:#e6db74">&#34;已关闭Aria2c&#34;</span>
+</span></span><span style="display:flex;"><span> <span style="color:#366">echo</span> -n <span style="color:#c30">&#34;已关闭Aria2c&#34;</span>
 </span></span><span style="display:flex;"><span> killall aria2c
 </span></span><span style="display:flex;"><span>;;
-</span></span><span style="display:flex;"><span>restart<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>restart<span style="color:#555">)</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span> killall aria2c
-</span></span><span style="display:flex;"><span> sudo aria2c --conf-path<span style="color:#f92672">=</span>/usr/customer/aria2/aria2.conf -D
+</span></span><span style="display:flex;"><span> sudo aria2c --conf-path<span style="color:#555">=</span>/usr/customer/aria2/aria2.conf -D
 </span></span><span style="display:flex;"><span>;;
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">esac</span>
-</span></span><span style="display:flex;"><span>exit
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">esac</span>
+</span></span><span style="display:flex;"><span><span style="color:#366">exit</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><ol>
 <li>修改文件权限为755 (a+x)</li>
 </ol>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-11-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-11-1">1</a>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-11-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-11-1">1</a>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>sudo chmod <span style="color:#ae81ff">755</span> /etc/init.d/aria2c
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>sudo chmod <span style="color:#f60">755</span> /etc/init.d/aria2c
 </span></span></code></pre></td></tr></table>
 </div>
 </div><ol>
 <li>添加aria2c服务到开机启动</li>
 </ol>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-1">1</a>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-1">1</a>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>sudo update-rc.d aria2c defaults
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>sudo update-rc.d aria2c defaults
 </span></span></code></pre></td></tr></table>
 </div>
 </div><ol>
 <li>启动服务</li>
 </ol>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-13-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-13-1">1</a>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-13-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-13-1">1</a>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>sudo service aria2c start
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>sudo service aria2c start
 </span></span></code></pre></td></tr></table>
 </div>
 </div><ol>
 <li>查看服务状态</li>
 </ol>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-14-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-14-1">1</a>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-14-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-14-1">1</a>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>sudo systemctl status aria2c
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>sudo systemctl status aria2c
 </span></span></code></pre></td></tr></table>
 </div>
 </div></div><div class="post-footer" id="post-footer">
@@ -694,5 +694,5 @@
             </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
                 <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
             </a>
-        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/css/lightgallery-bundle.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/twemoji@14.0.2/dist/twemoji.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/lightgallery.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/thumbnail/lg-thumbnail.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/zoom/lg-zoom.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@8.6.0/dist/index.umd.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{"giscus":{"category":"Comments","categoryId":"DIC_kwDOIx2Cjs4CTnUX","darkTheme":"dark","emitMetadata":"0","inputPosition":"bottom","lang":"en","lazyLoading":false,"lightTheme":"light","mapping":"pathname","reactionsEnabled":"1","repo":"zhangyuhu/zhangyuhu.github.io","repoId":"R_kgDOIx2Cjg"}},"data":{"id-1":"HOME","id-2":"HOME"},"lightgallery":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"},"twemoji":true,"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.2970a33d719df7cd89cebf586152b32a8ed30012227fa81b44282950146e0f595d1c733779e4d423dda1004bdcf707ee64d0fadc3d21229cd66b960788f84bdb.js" integrity="sha512-KXCjPXGd982Jzr9YYVKzKo7TABIif6gbRCgpUBRuD1ldHHM3eeTUI92hAEvc9wfuZND63D0hIpzWa5YHiPhL2w=="></script></body>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/css/lightgallery-bundle.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/twemoji@14.0.2/dist/twemoji.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/lightgallery.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/thumbnail/lg-thumbnail.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/zoom/lg-zoom.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@8.6.0/dist/index.umd.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":100},"comment":{"giscus":{"category":"Comments","categoryId":"DIC_kwDOIx2Cjs4CTnUX","darkTheme":"dark","emitMetadata":"0","inputPosition":"bottom","lang":"en","lazyLoading":false,"lightTheme":"light","mapping":"pathname","reactionsEnabled":"1","repo":"zhangyuhu/zhangyuhu.github.io","repoId":"R_kgDOIx2Cjg"}},"data":{"id-1":"HOME","id-2":"HOME"},"lightgallery":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"},"twemoji":true,"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.2970a33d719df7cd89cebf586152b32a8ed30012227fa81b44282950146e0f595d1c733779e4d423dda1004bdcf707ee64d0fadc3d21229cd66b960788f84bdb.js" integrity="sha512-KXCjPXGd982Jzr9YYVKzKo7TABIif6gbRCgpUBRuD1ldHHM3eeTUI92hAEvc9wfuZND63D0hIpzWa5YHiPhL2w=="></script></body>
 </html>

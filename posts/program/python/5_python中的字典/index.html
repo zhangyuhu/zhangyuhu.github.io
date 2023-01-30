@@ -18,7 +18,7 @@
 <meta name="application-name" content="我的网站">
 <meta name="apple-mobile-web-app-title" content="我的网站"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://zhangyuhu.github.io/posts/program/python/5_python%E4%B8%AD%E7%9A%84%E5%AD%97%E5%85%B8/" /><link rel="prev" href="https://zhangyuhu.github.io/posts/program/python/8_python%E5%AD%97%E5%85%B8%E5%92%8C%E9%9B%86%E5%90%88/" /><link rel="next" href="https://zhangyuhu.github.io/posts/program/python/7_python%E5%88%97%E8%A1%A8%E5%92%8C%E5%85%83%E7%BB%84/" /><link rel="stylesheet" href="/css/style.min.61c0835a1733ac3f92b41b61b403dca9b8d4a3a7e4021c89af2c45a731f6343a82bc7fb214f4926e2c4669c8d258218b7da5d0e86d081ec97f3c1d823d48df2e.css" integrity="sha512-YcCDWhczrD+StBthtAPcqbjUo6fkAhyJryxFpzH2NDqCvH+yFPSSbixGacjSWCGLfaXQ6G0IHsl/PB2CPUjfLg=="><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://zhangyuhu.github.io/posts/program/python/5_python%E4%B8%AD%E7%9A%84%E5%AD%97%E5%85%B8/" /><link rel="prev" href="https://zhangyuhu.github.io/posts/program/python/8_python%E5%AD%97%E5%85%B8%E5%92%8C%E9%9B%86%E5%90%88/" /><link rel="next" href="https://zhangyuhu.github.io/posts/program/python/7_python%E5%88%97%E8%A1%A8%E5%92%8C%E5%85%83%E7%BB%84/" /><link rel="stylesheet" href="/css/style.min.990eb8dd228a2b662f63cfe59575be8aa494cb9d40ffd854f26b9d9e588e1f4fdadb6a34e3f9a9171244d3ee6c107521923ab30705f3ef50d3e435eda1afc910.css" integrity="sha512-mQ643SKKK2YvY8/llXW+iqSUy51A/9hU8mudnliOH0/a22o04/mpFxJE0+5sEHUhkjqzBwXz71DT5DXtoa/JEA=="><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
     {
@@ -151,21 +151,21 @@
 <h1 id="1-简介">1. 简介</h1>
 <p>字典是另一种可变容器模型，且可存储任意类型对象。</p>
 <p>字典的每个键值 <strong>key=&gt;value</strong> 对用冒号 <strong>:</strong> 分割，每个对之间用逗号(<strong>,</strong>)分割，整个字典包括在花括号 <strong>{}</strong> 中 ,格式如下所示：</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-1">1</a>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-1">1</a>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>d <span style="color:#f92672">=</span> {key1 : value1, key2 : value2, key3 : value3 }
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>d <span style="color:#555">=</span> {key1 : value1, key2 : value2, key3 : value3 }
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>键必须是唯一的，但值则不必。</p>
 <p>值可以取任何数据类型，但键必须是不可变的，如字符串，数字。</p>
 <h1 id="11-字典排序">1.1. 字典排序</h1>
 <h2 id="12-字典排序">1.2. 字典排序</h2>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-1"> 1</a>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-1"> 1</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-2"> 2</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-3"> 3</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-4"> 4</a>
@@ -197,42 +197,42 @@
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-30"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-30">30</a>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># coding:utf-8</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> random <span style="color:#f92672">import</span> randint
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># coding:utf-8</span>
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">from</span> <span style="color:#0cf;font-weight:bold">random</span> <span style="color:#069;font-weight:bold">import</span> randint
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">key_sort</span>(dict):
-</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#34;按键(key)排序:&#34;</span>)
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># sorted(key_value) 返回重新排序的列表</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 字典按键排序</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> sorted(dict):
-</span></span><span style="display:flex;"><span>        print((i, dict[i]), end<span style="color:#f92672">=</span><span style="color:#e6db74">&#34; &#34;</span>)
-</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\r</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">def</span> <span style="color:#c0f">key_sort</span>(<span style="color:#366">dict</span>):
+</span></span><span style="display:flex;"><span>    <span style="color:#366">print</span>(<span style="color:#c30">&#34;按键(key)排序:&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#09f;font-style:italic"># sorted(key_value) 返回重新排序的列表</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#09f;font-style:italic"># 字典按键排序</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#069;font-weight:bold">for</span> i <span style="color:#000;font-weight:bold">in</span> <span style="color:#366">sorted</span>(<span style="color:#366">dict</span>):
+</span></span><span style="display:flex;"><span>        <span style="color:#366">print</span>((i, <span style="color:#366">dict</span>[i]), end<span style="color:#555">=</span><span style="color:#c30">&#34; &#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#366">print</span>(<span style="color:#c30">&#34;</span><span style="color:#c30;font-weight:bold">\r</span><span style="color:#c30">&#34;</span>)
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">value_sort</span>(dict):
-</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#34;按键(value)排序:&#34;</span>)
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># sorted(key_value) 返回重新排序的列表</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 字典按键排序</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> sorted(dict<span style="color:#f92672">.</span>items(), key<span style="color:#f92672">=</span><span style="color:#66d9ef">lambda</span> kv: (kv[<span style="color:#ae81ff">1</span>])):
-</span></span><span style="display:flex;"><span>        print(i)
-</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\r</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">def</span> <span style="color:#c0f">value_sort</span>(<span style="color:#366">dict</span>):
+</span></span><span style="display:flex;"><span>    <span style="color:#366">print</span>(<span style="color:#c30">&#34;按键(value)排序:&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#09f;font-style:italic"># sorted(key_value) 返回重新排序的列表</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#09f;font-style:italic"># 字典按键排序</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#069;font-weight:bold">for</span> i <span style="color:#000;font-weight:bold">in</span> <span style="color:#366">sorted</span>(<span style="color:#366">dict</span><span style="color:#555">.</span>items(), key<span style="color:#555">=</span><span style="color:#069;font-weight:bold">lambda</span> kv: (kv[<span style="color:#f60">1</span>])):
+</span></span><span style="display:flex;"><span>        <span style="color:#366">print</span>(i)
+</span></span><span style="display:flex;"><span>    <span style="color:#366">print</span>(<span style="color:#c30">&#34;</span><span style="color:#c30;font-weight:bold">\r</span><span style="color:#c30">&#34;</span>)
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">main</span>():
-</span></span><span style="display:flex;"><span>    d <span style="color:#f92672">=</span> {x: randint(<span style="color:#ae81ff">60</span>, <span style="color:#ae81ff">100</span>) <span style="color:#66d9ef">for</span> x <span style="color:#f92672">in</span> <span style="color:#e6db74">&#34;xyzabc&#34;</span>}
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">def</span> <span style="color:#c0f">main</span>():
+</span></span><span style="display:flex;"><span>    d <span style="color:#555">=</span> {x: randint(<span style="color:#f60">60</span>, <span style="color:#f60">100</span>) <span style="color:#069;font-weight:bold">for</span> x <span style="color:#000;font-weight:bold">in</span> <span style="color:#c30">&#34;xyzabc&#34;</span>}
 </span></span><span style="display:flex;"><span>    key_sort(d)
 </span></span><span style="display:flex;"><span>    value_sort(d)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 主函数</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>:
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># 主函数</span>
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">if</span> __name__ <span style="color:#555">==</span> <span style="color:#c30">&#34;__main__&#34;</span>:
 </span></span><span style="display:flex;"><span>    main()
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="13-字典列表排序">1.3. 字典列表排序</h2>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-1"> 1</a>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-1"> 1</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-2"> 2</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-3"> 3</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-4"> 4</a>
@@ -265,43 +265,43 @@
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-31"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-31">31</a>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># coding:utf-8</span>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># coding:utf-8</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">main</span>():
-</span></span><span style="display:flex;"><span>    lis <span style="color:#f92672">=</span> [
-</span></span><span style="display:flex;"><span>        {<span style="color:#e6db74">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;Taobao&#34;</span>, <span style="color:#e6db74">&#34;age&#34;</span>: <span style="color:#ae81ff">100</span>},
-</span></span><span style="display:flex;"><span>        {<span style="color:#e6db74">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;Runoob&#34;</span>, <span style="color:#e6db74">&#34;age&#34;</span>: <span style="color:#ae81ff">7</span>},
-</span></span><span style="display:flex;"><span>        {<span style="color:#e6db74">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;Google&#34;</span>, <span style="color:#e6db74">&#34;age&#34;</span>: <span style="color:#ae81ff">100</span>},
-</span></span><span style="display:flex;"><span>        {<span style="color:#e6db74">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;Wiki&#34;</span>, <span style="color:#e6db74">&#34;age&#34;</span>: <span style="color:#ae81ff">200</span>},
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">def</span> <span style="color:#c0f">main</span>():
+</span></span><span style="display:flex;"><span>    lis <span style="color:#555">=</span> [
+</span></span><span style="display:flex;"><span>        {<span style="color:#c30">&#34;name&#34;</span>: <span style="color:#c30">&#34;Taobao&#34;</span>, <span style="color:#c30">&#34;age&#34;</span>: <span style="color:#f60">100</span>},
+</span></span><span style="display:flex;"><span>        {<span style="color:#c30">&#34;name&#34;</span>: <span style="color:#c30">&#34;Runoob&#34;</span>, <span style="color:#c30">&#34;age&#34;</span>: <span style="color:#f60">7</span>},
+</span></span><span style="display:flex;"><span>        {<span style="color:#c30">&#34;name&#34;</span>: <span style="color:#c30">&#34;Google&#34;</span>, <span style="color:#c30">&#34;age&#34;</span>: <span style="color:#f60">100</span>},
+</span></span><span style="display:flex;"><span>        {<span style="color:#c30">&#34;name&#34;</span>: <span style="color:#c30">&#34;Wiki&#34;</span>, <span style="color:#c30">&#34;age&#34;</span>: <span style="color:#f60">200</span>},
 </span></span><span style="display:flex;"><span>    ]
-</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\r</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#366">print</span>(<span style="color:#c30">&#34;</span><span style="color:#c30;font-weight:bold">\r</span><span style="color:#c30">&#34;</span>)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 通过 age 升序排序</span>
-</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#34;列表通过 age 升序排序: &#34;</span>)
-</span></span><span style="display:flex;"><span>    print(sorted(lis, key<span style="color:#f92672">=</span><span style="color:#66d9ef">lambda</span> i: i[<span style="color:#e6db74">&#34;age&#34;</span>]))
+</span></span><span style="display:flex;"><span>    <span style="color:#09f;font-style:italic"># 通过 age 升序排序</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#366">print</span>(<span style="color:#c30">&#34;列表通过 age 升序排序: &#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#366">print</span>(<span style="color:#366">sorted</span>(lis, key<span style="color:#555">=</span><span style="color:#069;font-weight:bold">lambda</span> i: i[<span style="color:#c30">&#34;age&#34;</span>]))
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\r</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#366">print</span>(<span style="color:#c30">&#34;</span><span style="color:#c30;font-weight:bold">\r</span><span style="color:#c30">&#34;</span>)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 先按 age 排序，再按 name 排序</span>
-</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#34;列表通过 age 和 name 排序: &#34;</span>)
-</span></span><span style="display:flex;"><span>    print(sorted(lis, key<span style="color:#f92672">=</span><span style="color:#66d9ef">lambda</span> i: (i[<span style="color:#e6db74">&#34;age&#34;</span>], i[<span style="color:#e6db74">&#34;name&#34;</span>])))
+</span></span><span style="display:flex;"><span>    <span style="color:#09f;font-style:italic"># 先按 age 排序，再按 name 排序</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#366">print</span>(<span style="color:#c30">&#34;列表通过 age 和 name 排序: &#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#366">print</span>(<span style="color:#366">sorted</span>(lis, key<span style="color:#555">=</span><span style="color:#069;font-weight:bold">lambda</span> i: (i[<span style="color:#c30">&#34;age&#34;</span>], i[<span style="color:#c30">&#34;name&#34;</span>])))
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\r</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#366">print</span>(<span style="color:#c30">&#34;</span><span style="color:#c30;font-weight:bold">\r</span><span style="color:#c30">&#34;</span>)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 按 age 降序排序</span>
-</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#34;列表通过 age 降序排序: &#34;</span>)
-</span></span><span style="display:flex;"><span>    print(sorted(lis, key<span style="color:#f92672">=</span><span style="color:#66d9ef">lambda</span> i: i[<span style="color:#e6db74">&#34;age&#34;</span>], reverse<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>))
+</span></span><span style="display:flex;"><span>    <span style="color:#09f;font-style:italic"># 按 age 降序排序</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#366">print</span>(<span style="color:#c30">&#34;列表通过 age 降序排序: &#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#366">print</span>(<span style="color:#366">sorted</span>(lis, key<span style="color:#555">=</span><span style="color:#069;font-weight:bold">lambda</span> i: i[<span style="color:#c30">&#34;age&#34;</span>], reverse<span style="color:#555">=</span><span style="color:#069;font-weight:bold">True</span>))
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 主函数</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>:
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># 主函数</span>
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">if</span> __name__ <span style="color:#555">==</span> <span style="color:#c30">&#34;__main__&#34;</span>:
 </span></span><span style="display:flex;"><span>    main()
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h1 id="2-计算字典值之和">2. 计算字典值之和</h1>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-1"> 1</a>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-1"> 1</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-2"> 2</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-3"> 3</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-4"> 4</a>
@@ -322,31 +322,31 @@
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-19"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-19">19</a>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># coding:utf-8</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> random <span style="color:#f92672">import</span> randint
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># coding:utf-8</span>
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">from</span> <span style="color:#0cf;font-weight:bold">random</span> <span style="color:#069;font-weight:bold">import</span> randint
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">returnSum</span>(Dict):
-</span></span><span style="display:flex;"><span>    sum <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> Dict:
-</span></span><span style="display:flex;"><span>        sum <span style="color:#f92672">=</span> sum <span style="color:#f92672">+</span> Dict[i]
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">def</span> <span style="color:#c0f">returnSum</span>(Dict):
+</span></span><span style="display:flex;"><span>    <span style="color:#366">sum</span> <span style="color:#555">=</span> <span style="color:#f60">0</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#069;font-weight:bold">for</span> i <span style="color:#000;font-weight:bold">in</span> Dict:
+</span></span><span style="display:flex;"><span>        <span style="color:#366">sum</span> <span style="color:#555">=</span> <span style="color:#366">sum</span> <span style="color:#555">+</span> Dict[i]
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> sum
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">main</span>():
-</span></span><span style="display:flex;"><span>    d <span style="color:#f92672">=</span> {x: randint(<span style="color:#ae81ff">60</span>, <span style="color:#ae81ff">100</span>) <span style="color:#66d9ef">for</span> x <span style="color:#f92672">in</span> <span style="color:#e6db74">&#34;xyzabc&#34;</span>}
-</span></span><span style="display:flex;"><span>    print(returnSum(d))
+</span></span><span style="display:flex;"><span>    <span style="color:#069;font-weight:bold">return</span> <span style="color:#366">sum</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 主函数</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>:
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">def</span> <span style="color:#c0f">main</span>():
+</span></span><span style="display:flex;"><span>    d <span style="color:#555">=</span> {x: randint(<span style="color:#f60">60</span>, <span style="color:#f60">100</span>) <span style="color:#069;font-weight:bold">for</span> x <span style="color:#000;font-weight:bold">in</span> <span style="color:#c30">&#34;xyzabc&#34;</span>}
+</span></span><span style="display:flex;"><span>    <span style="color:#366">print</span>(returnSum(d))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># 主函数</span>
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">if</span> __name__ <span style="color:#555">==</span> <span style="color:#c30">&#34;__main__&#34;</span>:
 </span></span><span style="display:flex;"><span>    main()
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h1 id="3-移除字典点键值">3. 移除字典点键值</h1>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-1"> 1</a>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-1"> 1</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-2"> 2</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-3"> 3</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-4"> 4</a>
@@ -375,39 +375,39 @@
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-27"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-27">27</a>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># coding:utf-8</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> random <span style="color:#f92672">import</span> randint
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># coding:utf-8</span>
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">from</span> <span style="color:#0cf;font-weight:bold">random</span> <span style="color:#069;font-weight:bold">import</span> randint
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">main</span>():
-</span></span><span style="display:flex;"><span>    test_dict <span style="color:#f92672">=</span> {x: randint(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">50</span>) <span style="color:#66d9ef">for</span> x <span style="color:#f92672">in</span> <span style="color:#e6db74">&#34;abcdefg&#34;</span>}
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 输出原始的字典</span>
-</span></span><span style="display:flex;"><span>    print (<span style="color:#e6db74">&#34;字典移除前 : &#34;</span> <span style="color:#f92672">+</span> str(test_dict))
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">def</span> <span style="color:#c0f">main</span>():
+</span></span><span style="display:flex;"><span>    test_dict <span style="color:#555">=</span> {x: randint(<span style="color:#f60">0</span>, <span style="color:#f60">50</span>) <span style="color:#069;font-weight:bold">for</span> x <span style="color:#000;font-weight:bold">in</span> <span style="color:#c30">&#34;abcdefg&#34;</span>}
+</span></span><span style="display:flex;"><span>    <span style="color:#09f;font-style:italic"># 输出原始的字典</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#366">print</span> (<span style="color:#c30">&#34;字典移除前 : &#34;</span> <span style="color:#555">+</span> <span style="color:#366">str</span>(test_dict))
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 使用 del 移除 Zhihu</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">del</span> test_dict[<span style="color:#e6db74">&#39;a&#39;</span>]
+</span></span><span style="display:flex;"><span>    <span style="color:#09f;font-style:italic"># 使用 del 移除 Zhihu</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#069;font-weight:bold">del</span> test_dict[<span style="color:#c30">&#39;a&#39;</span>]
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 使用 pop 移除 Zhihu</span>
-</span></span><span style="display:flex;"><span>    removed_value <span style="color:#f92672">=</span> test_dict<span style="color:#f92672">.</span>pop(<span style="color:#e6db74">&#39;b&#39;</span>)
-</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#34;removed_value : &#34;</span> <span style="color:#f92672">+</span> str(removed_value))
+</span></span><span style="display:flex;"><span>    <span style="color:#09f;font-style:italic"># 使用 pop 移除 Zhihu</span>
+</span></span><span style="display:flex;"><span>    removed_value <span style="color:#555">=</span> test_dict<span style="color:#555">.</span>pop(<span style="color:#c30">&#39;b&#39;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#366">print</span>(<span style="color:#c30">&#34;removed_value : &#34;</span> <span style="color:#555">+</span> <span style="color:#366">str</span>(removed_value))
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 使用 pop 移除 Zhihu</span>
-</span></span><span style="display:flex;"><span>    new_dict <span style="color:#f92672">=</span> {key:val <span style="color:#66d9ef">for</span> key, val <span style="color:#f92672">in</span> test_dict<span style="color:#f92672">.</span>items() <span style="color:#66d9ef">if</span> key <span style="color:#f92672">!=</span> <span style="color:#e6db74">&#39;c&#39;</span>}
+</span></span><span style="display:flex;"><span>    <span style="color:#09f;font-style:italic"># 使用 pop 移除 Zhihu</span>
+</span></span><span style="display:flex;"><span>    new_dict <span style="color:#555">=</span> {key:val <span style="color:#069;font-weight:bold">for</span> key, val <span style="color:#000;font-weight:bold">in</span> test_dict<span style="color:#555">.</span>items() <span style="color:#069;font-weight:bold">if</span> key <span style="color:#555">!=</span> <span style="color:#c30">&#39;c&#39;</span>}
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 输出移除后的字典</span>
-</span></span><span style="display:flex;"><span>    print (<span style="color:#e6db74">&#34;字典移除后 : &#34;</span> <span style="color:#f92672">+</span> str(test_dict))
-</span></span><span style="display:flex;"><span>    print (<span style="color:#e6db74">&#34;字典移除后 : &#34;</span> <span style="color:#f92672">+</span> str(new_dict))
+</span></span><span style="display:flex;"><span>    <span style="color:#09f;font-style:italic"># 输出移除后的字典</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#366">print</span> (<span style="color:#c30">&#34;字典移除后 : &#34;</span> <span style="color:#555">+</span> <span style="color:#366">str</span>(test_dict))
+</span></span><span style="display:flex;"><span>    <span style="color:#366">print</span> (<span style="color:#c30">&#34;字典移除后 : &#34;</span> <span style="color:#555">+</span> <span style="color:#366">str</span>(new_dict))
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 主函数</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>:
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># 主函数</span>
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">if</span> __name__ <span style="color:#555">==</span> <span style="color:#c30">&#34;__main__&#34;</span>:
 </span></span><span style="display:flex;"><span>    main()
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h1 id="4-合并字典">4. 合并字典</h1>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-1"> 1</a>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-1"> 1</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-2"> 2</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-3"> 3</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-4"> 4</a>
@@ -432,35 +432,35 @@
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-23"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-23">23</a>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># coding:utf-8</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> random <span style="color:#f92672">import</span> randint
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># coding:utf-8</span>
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">from</span> <span style="color:#0cf;font-weight:bold">random</span> <span style="color:#069;font-weight:bold">import</span> randint
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">Merge1</span>(dict1, dict2):
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span>(dict2<span style="color:#f92672">.</span>update(dict1))
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">def</span> <span style="color:#c0f">Merge1</span>(dict1, dict2):
+</span></span><span style="display:flex;"><span>    <span style="color:#069;font-weight:bold">return</span>(dict2<span style="color:#555">.</span>update(dict1))
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">Merge2</span>(dict1, dict2):
-</span></span><span style="display:flex;"><span>    res <span style="color:#f92672">=</span> {<span style="color:#f92672">**</span>dict1, <span style="color:#f92672">**</span>dict2}
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> res
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">def</span> <span style="color:#c0f">Merge2</span>(dict1, dict2):
+</span></span><span style="display:flex;"><span>    res <span style="color:#555">=</span> {<span style="color:#555">**</span>dict1, <span style="color:#555">**</span>dict2}
+</span></span><span style="display:flex;"><span>    <span style="color:#069;font-weight:bold">return</span> res
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">main</span>():
-</span></span><span style="display:flex;"><span>    d1 <span style="color:#f92672">=</span> {x: randint(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">50</span>) <span style="color:#66d9ef">for</span> x <span style="color:#f92672">in</span> <span style="color:#e6db74">&#34;abc&#34;</span>}
-</span></span><span style="display:flex;"><span>    d2 <span style="color:#f92672">=</span> {x: randint(<span style="color:#ae81ff">50</span>, <span style="color:#ae81ff">100</span>) <span style="color:#66d9ef">for</span> x <span style="color:#f92672">in</span> <span style="color:#e6db74">&#34;xyz&#34;</span>}
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">def</span> <span style="color:#c0f">main</span>():
+</span></span><span style="display:flex;"><span>    d1 <span style="color:#555">=</span> {x: randint(<span style="color:#f60">0</span>, <span style="color:#f60">50</span>) <span style="color:#069;font-weight:bold">for</span> x <span style="color:#000;font-weight:bold">in</span> <span style="color:#c30">&#34;abc&#34;</span>}
+</span></span><span style="display:flex;"><span>    d2 <span style="color:#555">=</span> {x: randint(<span style="color:#f60">50</span>, <span style="color:#f60">100</span>) <span style="color:#069;font-weight:bold">for</span> x <span style="color:#000;font-weight:bold">in</span> <span style="color:#c30">&#34;xyz&#34;</span>}
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    Merge1(d1, d2)
-</span></span><span style="display:flex;"><span>    print(d2)
+</span></span><span style="display:flex;"><span>    <span style="color:#366">print</span>(d2)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    dict2 <span style="color:#f92672">=</span> Merge2(d1, d2)
-</span></span><span style="display:flex;"><span>    print(dict2)
+</span></span><span style="display:flex;"><span>    dict2 <span style="color:#555">=</span> Merge2(d1, d2)
+</span></span><span style="display:flex;"><span>    <span style="color:#366">print</span>(dict2)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 主函数</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>:
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># 主函数</span>
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">if</span> __name__ <span style="color:#555">==</span> <span style="color:#c30">&#34;__main__&#34;</span>:
 </span></span><span style="display:flex;"><span>    main()
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h1 id="5-使用字典格式化字符串">5. 使用字典格式化字符串</h1>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-1"> 1</a>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-1"> 1</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-2"> 2</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-3"> 3</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-4"> 4</a>
@@ -480,23 +480,23 @@
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-18"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-18">18</a>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># coding:utf-8</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> random <span style="color:#f92672">import</span> randint
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># coding:utf-8</span>
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">from</span> <span style="color:#0cf;font-weight:bold">random</span> <span style="color:#069;font-weight:bold">import</span> randint
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">main</span>():
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 字符串模板中使用key</span>
-</span></span><span style="display:flex;"><span>    temp <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;教程是:</span><span style="color:#e6db74">%(name)s</span><span style="color:#e6db74">, 价格是:</span><span style="color:#e6db74">%(price)010.2f</span><span style="color:#e6db74">, 出版社是:</span><span style="color:#e6db74">%(publish)s</span><span style="color:#e6db74">&#39;</span>
-</span></span><span style="display:flex;"><span>    book <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#39;name&#39;</span>:<span style="color:#e6db74">&#39;Python基础教程&#39;</span>, <span style="color:#e6db74">&#39;price&#39;</span>: <span style="color:#ae81ff">99</span>, <span style="color:#e6db74">&#39;publish&#39;</span>: <span style="color:#e6db74">&#39;C语言中文网&#39;</span>}
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 使用字典为字符串模板中的key传入值</span>
-</span></span><span style="display:flex;"><span>    print(temp <span style="color:#f92672">%</span> book)
-</span></span><span style="display:flex;"><span>    book <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#39;name&#39;</span>:<span style="color:#e6db74">&#39;C语言小白变怪兽&#39;</span>, <span style="color:#e6db74">&#39;price&#39;</span>:<span style="color:#ae81ff">159</span>, <span style="color:#e6db74">&#39;publish&#39;</span>: <span style="color:#e6db74">&#39;C语言中文网&#39;</span>}
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 使用字典为字符串模板中的key传入值</span>
-</span></span><span style="display:flex;"><span>    print(temp <span style="color:#f92672">%</span> book)
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">def</span> <span style="color:#c0f">main</span>():
+</span></span><span style="display:flex;"><span>    <span style="color:#09f;font-style:italic"># 字符串模板中使用key</span>
+</span></span><span style="display:flex;"><span>    temp <span style="color:#555">=</span> <span style="color:#c30">&#39;教程是:</span><span style="color:#a00">%(name)s</span><span style="color:#c30">, 价格是:</span><span style="color:#a00">%(price)010.2f</span><span style="color:#c30">, 出版社是:</span><span style="color:#a00">%(publish)s</span><span style="color:#c30">&#39;</span>
+</span></span><span style="display:flex;"><span>    book <span style="color:#555">=</span> {<span style="color:#c30">&#39;name&#39;</span>:<span style="color:#c30">&#39;Python基础教程&#39;</span>, <span style="color:#c30">&#39;price&#39;</span>: <span style="color:#f60">99</span>, <span style="color:#c30">&#39;publish&#39;</span>: <span style="color:#c30">&#39;C语言中文网&#39;</span>}
+</span></span><span style="display:flex;"><span>    <span style="color:#09f;font-style:italic"># 使用字典为字符串模板中的key传入值</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#366">print</span>(temp <span style="color:#555">%</span> book)
+</span></span><span style="display:flex;"><span>    book <span style="color:#555">=</span> {<span style="color:#c30">&#39;name&#39;</span>:<span style="color:#c30">&#39;C语言小白变怪兽&#39;</span>, <span style="color:#c30">&#39;price&#39;</span>:<span style="color:#f60">159</span>, <span style="color:#c30">&#39;publish&#39;</span>: <span style="color:#c30">&#39;C语言中文网&#39;</span>}
+</span></span><span style="display:flex;"><span>    <span style="color:#09f;font-style:italic"># 使用字典为字符串模板中的key传入值</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#366">print</span>(temp <span style="color:#555">%</span> book)
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 主函数</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>:
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># 主函数</span>
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">if</span> __name__ <span style="color:#555">==</span> <span style="color:#c30">&#34;__main__&#34;</span>:
 </span></span><span style="display:flex;"><span>    main()
 </span></span></code></pre></td></tr></table>
 </div>
@@ -537,5 +537,5 @@
             </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
                 <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
             </a>
-        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/css/lightgallery-bundle.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/twemoji@14.0.2/dist/twemoji.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/lightgallery.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/thumbnail/lg-thumbnail.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/zoom/lg-zoom.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@8.6.0/dist/index.umd.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{"giscus":{"category":"Comments","categoryId":"DIC_kwDOIx2Cjs4CTnUX","darkTheme":"dark","emitMetadata":"0","inputPosition":"bottom","lang":"en","lazyLoading":false,"lightTheme":"light","mapping":"pathname","reactionsEnabled":"1","repo":"zhangyuhu/zhangyuhu.github.io","repoId":"R_kgDOIx2Cjg"}},"data":{"id-1":"HOME","id-2":"HOME"},"lightgallery":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"},"twemoji":true,"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.2970a33d719df7cd89cebf586152b32a8ed30012227fa81b44282950146e0f595d1c733779e4d423dda1004bdcf707ee64d0fadc3d21229cd66b960788f84bdb.js" integrity="sha512-KXCjPXGd982Jzr9YYVKzKo7TABIif6gbRCgpUBRuD1ldHHM3eeTUI92hAEvc9wfuZND63D0hIpzWa5YHiPhL2w=="></script></body>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/css/lightgallery-bundle.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/twemoji@14.0.2/dist/twemoji.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/lightgallery.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/thumbnail/lg-thumbnail.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/zoom/lg-zoom.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@8.6.0/dist/index.umd.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":100},"comment":{"giscus":{"category":"Comments","categoryId":"DIC_kwDOIx2Cjs4CTnUX","darkTheme":"dark","emitMetadata":"0","inputPosition":"bottom","lang":"en","lazyLoading":false,"lightTheme":"light","mapping":"pathname","reactionsEnabled":"1","repo":"zhangyuhu/zhangyuhu.github.io","repoId":"R_kgDOIx2Cjg"}},"data":{"id-1":"HOME","id-2":"HOME"},"lightgallery":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"},"twemoji":true,"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.2970a33d719df7cd89cebf586152b32a8ed30012227fa81b44282950146e0f595d1c733779e4d423dda1004bdcf707ee64d0fadc3d21229cd66b960788f84bdb.js" integrity="sha512-KXCjPXGd982Jzr9YYVKzKo7TABIif6gbRCgpUBRuD1ldHHM3eeTUI92hAEvc9wfuZND63D0hIpzWa5YHiPhL2w=="></script></body>
 </html>

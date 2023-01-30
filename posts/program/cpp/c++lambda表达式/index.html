@@ -18,7 +18,7 @@
 <meta name="application-name" content="我的网站">
 <meta name="apple-mobile-web-app-title" content="我的网站"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://zhangyuhu.github.io/posts/program/cpp/c&#43;&#43;lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/" /><link rel="prev" href="https://zhangyuhu.github.io/posts/computer_vision/deeplearning/01-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" /><link rel="next" href="https://zhangyuhu.github.io/posts/program/cpp/c&#43;&#43;%E9%94%99%E8%AF%AF%E6%94%B6%E9%9B%86/" /><link rel="stylesheet" href="/css/style.min.61c0835a1733ac3f92b41b61b403dca9b8d4a3a7e4021c89af2c45a731f6343a82bc7fb214f4926e2c4669c8d258218b7da5d0e86d081ec97f3c1d823d48df2e.css" integrity="sha512-YcCDWhczrD+StBthtAPcqbjUo6fkAhyJryxFpzH2NDqCvH+yFPSSbixGacjSWCGLfaXQ6G0IHsl/PB2CPUjfLg=="><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://zhangyuhu.github.io/posts/program/cpp/c&#43;&#43;lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/" /><link rel="prev" href="https://zhangyuhu.github.io/posts/computer_vision/deeplearning/01-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" /><link rel="next" href="https://zhangyuhu.github.io/posts/program/cpp/c&#43;&#43;%E9%94%99%E8%AF%AF%E6%94%B6%E9%9B%86/" /><link rel="stylesheet" href="/css/style.min.990eb8dd228a2b662f63cfe59575be8aa494cb9d40ffd854f26b9d9e588e1f4fdadb6a34e3f9a9171244d3ee6c107521923ab30705f3ef50d3e435eda1afc910.css" integrity="sha512-mQ643SKKK2YvY8/llXW+iqSUy51A/9hU8mudnliOH0/a22o04/mpFxJE0+5sEHUhkjqzBwXz71DT5DXtoa/JEA=="><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
     {
@@ -169,12 +169,12 @@
 <h1 id="认识-lambda">认识 lambda</h1>
 <p>C++ 11 中的 Lambda 表达式用于定义并创建匿名的函数对象，以简化编程工作。
 Lambda 的语法形式如下：</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-1">1</a>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-1">1</a>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>[函数对象参数] (操作符重载函数参数) mutable 或 exception 声明 -&gt; 返回值类型 {函数体}
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>[函数对象参数] (操作符重载函数参数) mutable 或 exception 声明 -&gt; 返回值类型 {函数体}
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>可以看到，Lambda 主要分为五个部分：[函数对象参数]、(操作符重载函数参数)、mutable 或 exception 声明、-&gt; 返回值类型、{函数体}.</p>
@@ -203,34 +203,34 @@ Lambda 的语法形式如下：</p>
 <h2 id="函数体">{函数体}</h2>
 <p>标识函数的实现，这部分不能省略，但函数体可以为空。</p>
 <h1 id="示例">示例</h1>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-1">1</a>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-1">1</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-2">2</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-3">3</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-4">4</a>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span>[] (<span style="color:#66d9ef">int</span> x, <span style="color:#66d9ef">int</span> y) { <span style="color:#66d9ef">return</span> x <span style="color:#f92672">+</span> y; } <span style="color:#75715e">// 隐式返回类型
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>[] (<span style="color:#66d9ef">int</span><span style="color:#f92672">&amp;</span> x) { <span style="color:#f92672">++</span>x;  } <span style="color:#75715e">// 没有 return 语句 -&gt; Lambda 函数的返回类型是 &#39;void&#39;
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>[] () { <span style="color:#f92672">++</span>global_x;  } <span style="color:#75715e">// 没有参数，仅访问某个全局变量
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>[] { <span style="color:#f92672">++</span>global_x; } <span style="color:#75715e">// 与上一个相同，省略了 (操作符重载函数参数)
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span>[] (<span style="color:#078;font-weight:bold">int</span> x, <span style="color:#078;font-weight:bold">int</span> y) { <span style="color:#069;font-weight:bold">return</span> x <span style="color:#555">+</span> y; } <span style="color:#09f;font-style:italic">// 隐式返回类型
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>[] (<span style="color:#078;font-weight:bold">int</span><span style="color:#555">&amp;</span> x) { <span style="color:#555">++</span>x;  } <span style="color:#09f;font-style:italic">// 没有 return 语句 -&gt; Lambda 函数的返回类型是 &#39;void&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>[] () { <span style="color:#555">++</span>global_x;  } <span style="color:#09f;font-style:italic">// 没有参数，仅访问某个全局变量
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>[] { <span style="color:#555">++</span>global_x; } <span style="color:#09f;font-style:italic">// 与上一个相同，省略了 (操作符重载函数参数)
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>可以像下面这样显示指定返回类型：</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-1">1</a>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-1">1</a>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span>[] (<span style="color:#66d9ef">int</span> x, <span style="color:#66d9ef">int</span> y) <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">int</span> { <span style="color:#66d9ef">int</span> z <span style="color:#f92672">=</span> x <span style="color:#f92672">+</span> y; <span style="color:#66d9ef">return</span> z; }
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span>[] (<span style="color:#078;font-weight:bold">int</span> x, <span style="color:#078;font-weight:bold">int</span> y) <span style="color:#555">-&gt;</span> <span style="color:#078;font-weight:bold">int</span> { <span style="color:#078;font-weight:bold">int</span> z <span style="color:#555">=</span> x <span style="color:#555">+</span> y; <span style="color:#069;font-weight:bold">return</span> z; }
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>在这个例子中创建了一个临时变量 z 来存储中间值。和普通函数一样，这个中间值不会保存到下次调用。什么也不返回的Lambda 函数可以省略返回类型，而不需要使用 -&gt; void 形式。</p>
 <p>Lambda 函数可以引用在它之外声明的变量. 这些变量的集合叫做一个闭包. 闭包被定义在 Lambda 表达式声明中的方括号 [] 内。这个机制允许这些变量被按值或按引用捕获。如下例子：</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-1">1</a>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-1">1</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-2">2</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-3">3</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-4">4</a>
@@ -238,18 +238,18 @@ Lambda 的语法形式如下：</p>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-6">6</a>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span>[]        <span style="color:#75715e">//未定义变量.试图在Lambda内使用任何外部变量都是错误的.
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>[x, <span style="color:#f92672">&amp;</span>y]   <span style="color:#75715e">//x 按值捕获, y 按引用捕获.
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>[<span style="color:#f92672">&amp;</span>]       <span style="color:#75715e">//用到的任何外部变量都隐式按引用捕获
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>[<span style="color:#f92672">=</span>]       <span style="color:#75715e">//用到的任何外部变量都隐式按值捕获
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>[<span style="color:#f92672">&amp;</span>, x]    <span style="color:#75715e">//x显式地按值捕获. 其它变量按引用捕获
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>[<span style="color:#f92672">=</span>, <span style="color:#f92672">&amp;</span>z]   <span style="color:#75715e">//z按引用捕获. 其它变量按值捕获
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span>[]        <span style="color:#09f;font-style:italic">//未定义变量.试图在Lambda内使用任何外部变量都是错误的.
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>[x, <span style="color:#555">&amp;</span>y]   <span style="color:#09f;font-style:italic">//x 按值捕获, y 按引用捕获.
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>[<span style="color:#555">&amp;</span>]       <span style="color:#09f;font-style:italic">//用到的任何外部变量都隐式按引用捕获
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>[<span style="color:#555">=</span>]       <span style="color:#09f;font-style:italic">//用到的任何外部变量都隐式按值捕获
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>[<span style="color:#555">&amp;</span>, x]    <span style="color:#09f;font-style:italic">//x显式地按值捕获. 其它变量按引用捕获
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>[<span style="color:#555">=</span>, <span style="color:#555">&amp;</span>z]   <span style="color:#09f;font-style:italic">//z按引用捕获. 其它变量按值捕获
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="示例-1">示例 1</h2>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-1">1</a>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-1">1</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-2">2</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-3">3</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-4">4</a>
@@ -258,20 +258,20 @@ Lambda 的语法形式如下：</p>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-7">7</a>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span>std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> some_list;
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> total <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">5</span>; <span style="color:#f92672">++</span>i) some_list.push_back(i);
-</span></span><span style="display:flex;"><span>std<span style="color:#f92672">::</span>for_each(begin(some_list), end(some_list), [<span style="color:#f92672">&amp;</span>total](<span style="color:#66d9ef">int</span> x)
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span>std<span style="color:#555">::</span>vector<span style="color:#555">&lt;</span><span style="color:#078;font-weight:bold">int</span><span style="color:#555">&gt;</span> some_list;
+</span></span><span style="display:flex;"><span><span style="color:#078;font-weight:bold">int</span> total <span style="color:#555">=</span> <span style="color:#f60">0</span>;
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">for</span> (<span style="color:#078;font-weight:bold">int</span> i <span style="color:#555">=</span> <span style="color:#f60">0</span>; i <span style="color:#555">&lt;</span> <span style="color:#f60">5</span>; <span style="color:#555">++</span>i) some_list.push_back(i);
+</span></span><span style="display:flex;"><span>std<span style="color:#555">::</span>for_each(begin(some_list), end(some_list), [<span style="color:#555">&amp;</span>total](<span style="color:#078;font-weight:bold">int</span> x)
 </span></span><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>    total <span style="color:#f92672">+=</span> x;
+</span></span><span style="display:flex;"><span>    total <span style="color:#555">+=</span> x;
 </span></span><span style="display:flex;"><span>});
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>此例计算 list 中所有元素的总和。变量 total 被存为 Lambda <strong>函数闭包</strong>的一部分。因为它是栈变量（局部变量）total 引用，所以可以改变它的值。</p>
 <h2 id="示例-2">示例 2</h2>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-1">1</a>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-1">1</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-2">2</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-3">3</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-4">4</a>
@@ -280,21 +280,21 @@ Lambda 的语法形式如下：</p>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-7">7</a>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span>std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> some_list;
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> total <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> value <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span>;
-</span></span><span style="display:flex;"><span>std<span style="color:#f92672">::</span>for_each(begin(some_list), end(some_list), [<span style="color:#f92672">&amp;</span>, value, <span style="color:#66d9ef">this</span>](<span style="color:#66d9ef">int</span> x)
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span>std<span style="color:#555">::</span>vector<span style="color:#555">&lt;</span><span style="color:#078;font-weight:bold">int</span><span style="color:#555">&gt;</span> some_list;
+</span></span><span style="display:flex;"><span><span style="color:#078;font-weight:bold">int</span> total <span style="color:#555">=</span> <span style="color:#f60">0</span>;
+</span></span><span style="display:flex;"><span><span style="color:#078;font-weight:bold">int</span> value <span style="color:#555">=</span> <span style="color:#f60">5</span>;
+</span></span><span style="display:flex;"><span>std<span style="color:#555">::</span>for_each(begin(some_list), end(some_list), [<span style="color:#555">&amp;</span>, value, <span style="color:#069;font-weight:bold">this</span>](<span style="color:#078;font-weight:bold">int</span> x)
 </span></span><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>    total <span style="color:#f92672">+=</span> x <span style="color:#f92672">*</span> value <span style="color:#f92672">*</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>some_func();
+</span></span><span style="display:flex;"><span>    total <span style="color:#555">+=</span> x <span style="color:#555">*</span> value <span style="color:#555">*</span> <span style="color:#069;font-weight:bold">this</span><span style="color:#555">-&gt;</span>some_func();
 </span></span><span style="display:flex;"><span>});
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>此例中 total 会存为引用, value 则会存一份值拷贝。对 this 的捕获比较特殊，它只能按值捕获。this 只有当包含它的最靠近它的函数不是静态成员函数时才能被捕获。对 protect 和 private 成员来说，这个 Lambda 函数与创建它的成员函数有相同的访问控制。如果 this 被捕获了，不管是显式还是隐式的，那么它的类的作用域对 Lambda 函数就是可见的。访问 this 的成员不必使用 this-&gt; 语法，可以直接访问。</p>
 <h2 id="示例-3">示例 3</h2>
 <p>泛型的 lambda在 C++14 里，lambda 表达式又多了一项新本领，可以实现“泛型化”，相当于简化了的模板函数，具体语法还是利用了“多才多艺”的 auto：</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-1"> 1</a>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-1"> 1</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-2"> 2</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-3"> 3</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-4"> 4</a>
@@ -306,16 +306,16 @@ Lambda 的语法形式如下：</p>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-10"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-10">10</a>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#66d9ef">auto</span> f <span style="color:#f92672">=</span> [](<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">auto</span><span style="color:#f92672">&amp;</span> x)        <span style="color:#75715e">// 参数使用auto声明，泛型化
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>{
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> x <span style="color:#f92672">+</span> x;
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#069;font-weight:bold">auto</span> f <span style="color:#555">=</span> [](<span style="color:#069;font-weight:bold">const</span> <span style="color:#069;font-weight:bold">auto</span><span style="color:#555">&amp;</span> x)        <span style="color:#09f;font-style:italic">// 参数使用auto声明，泛型化
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#069;font-weight:bold">return</span> x <span style="color:#555">+</span> x;
 </span></span><span style="display:flex;"><span>};
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>cout <span style="color:#f92672">&lt;&lt;</span> f(<span style="color:#ae81ff">3</span>) <span style="color:#f92672">&lt;&lt;</span> endl;             <span style="color:#75715e">// 参数类型是int
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>cout <span style="color:#f92672">&lt;&lt;</span> f(<span style="color:#ae81ff">0.618</span>) <span style="color:#f92672">&lt;&lt;</span> endl;         <span style="color:#75715e">// 参数类型是double
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span>string str <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;matrix&#34;</span>;
-</span></span><span style="display:flex;"><span>cout <span style="color:#f92672">&lt;&lt;</span> f(str) <span style="color:#f92672">&lt;&lt;</span> endl;          <span style="color:#75715e">// 参数类型是string
+</span></span><span style="display:flex;"><span>cout <span style="color:#555">&lt;&lt;</span> f(<span style="color:#f60">3</span>) <span style="color:#555">&lt;&lt;</span> endl;             <span style="color:#09f;font-style:italic">// 参数类型是int
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>cout <span style="color:#555">&lt;&lt;</span> f(<span style="color:#f60">0.618</span>) <span style="color:#555">&lt;&lt;</span> endl;         <span style="color:#09f;font-style:italic">// 参数类型是double
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>
+</span></span><span style="display:flex;"><span>string str <span style="color:#555">=</span> <span style="color:#c30">&#34;matrix&#34;</span>;
+</span></span><span style="display:flex;"><span>cout <span style="color:#555">&lt;&lt;</span> f(str) <span style="color:#555">&lt;&lt;</span> endl;          <span style="color:#09f;font-style:italic">// 参数类型是string
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>这个新特性在写泛型函数的时候非常方便，摆脱了冗长的模板参数和函数参数列表。如果你愿意的话，可以尝试在今后的代码里都使用 lambda 来代替普通函数，能够少写很多代码。</p>
@@ -324,20 +324,20 @@ Lambda 的语法形式如下：</p>
 <p>因为 lambda 表达式是一个变量，所以，我们就可以“按需分配”，随时随地在调用点“就地”定义函数，限制它的作用域和生命周期，实现函数的局部化。</p>
 <p>如果一个闭包含有局部变量的引用，在超出创建它的作用域之外的地方被使用的话，这种行为是未定义的!</p>
 <p>Lambda 函数是一个依赖于实现的函数对象类型,这个类型的名字只有编译器知道. 如果用户想把 lambda 函数做为一个参数来传递, 那么形参的类型必须是模板类型或者必须能创建一个 std::function 类似的对象去捕获 lambda 函数.使用 auto 关键字可以帮助存储 lambda 函数,</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-1">1</a>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-1">1</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-2">2</a>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#66d9ef">auto</span> my_lambda_func <span style="color:#f92672">=</span> [<span style="color:#f92672">&amp;</span>](<span style="color:#66d9ef">int</span> x) { <span style="color:#75715e">/* ... */</span> };
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">auto</span> my_onheap_lambda_func <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">auto</span>([<span style="color:#f92672">=</span>](<span style="color:#66d9ef">int</span> x) { <span style="color:#75715e">/* ... */</span> });
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#069;font-weight:bold">auto</span> my_lambda_func <span style="color:#555">=</span> [<span style="color:#555">&amp;</span>](<span style="color:#078;font-weight:bold">int</span> x) { <span style="color:#09f;font-style:italic">/* ... */</span> };
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">auto</span> my_onheap_lambda_func <span style="color:#555">=</span> <span style="color:#069;font-weight:bold">new</span> <span style="color:#069;font-weight:bold">auto</span>([<span style="color:#555">=</span>](<span style="color:#078;font-weight:bold">int</span> x) { <span style="color:#09f;font-style:italic">/* ... */</span> });
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>这里有一个例子, 把匿名函数存储在变量、数组或 vector 中,并把它们当做命名参数来传递</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-1"> 1</a>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-1"> 1</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-2"> 2</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-3"> 3</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-4"> 4</a>
@@ -377,57 +377,57 @@ Lambda 的语法形式如下：</p>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-38"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-38">38</a>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;functional&gt;</span><span style="color:#75715e">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;vector&gt;</span><span style="color:#75715e">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">double</span> <span style="color:#a6e22e">eval</span>(std<span style="color:#f92672">::</span>function <span style="color:#f92672">&lt;</span><span style="color:#66d9ef">double</span>(<span style="color:#66d9ef">double</span>)<span style="color:#f92672">&gt;</span> f, <span style="color:#66d9ef">double</span> x <span style="color:#f92672">=</span> <span style="color:#ae81ff">2.0</span>)
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#099">#include</span> <span style="color:#099">&lt;functional&gt;</span><span style="color:#099">
+</span></span></span><span style="display:flex;"><span><span style="color:#099">#include</span> <span style="color:#099">&lt;vector&gt;</span><span style="color:#099">
+</span></span></span><span style="display:flex;"><span><span style="color:#099">#include</span> <span style="color:#099">&lt;iostream&gt;</span><span style="color:#099">
+</span></span></span><span style="display:flex;"><span><span style="color:#099"></span>
+</span></span><span style="display:flex;"><span><span style="color:#078;font-weight:bold">double</span> <span style="color:#c0f">eval</span>(std<span style="color:#555">::</span>function <span style="color:#555">&lt;</span><span style="color:#078;font-weight:bold">double</span>(<span style="color:#078;font-weight:bold">double</span>)<span style="color:#555">&gt;</span> f, <span style="color:#078;font-weight:bold">double</span> x <span style="color:#555">=</span> <span style="color:#f60">2.0</span>)
 </span></span><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> f(x);
+</span></span><span style="display:flex;"><span>    <span style="color:#069;font-weight:bold">return</span> f(x);
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+</span></span><span style="display:flex;"><span><span style="color:#078;font-weight:bold">int</span> <span style="color:#c0f">main</span>()
 </span></span><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//explicit type
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    std<span style="color:#f92672">::</span>function<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">double</span>(<span style="color:#66d9ef">double</span>)<span style="color:#f92672">&gt;</span> f0    <span style="color:#f92672">=</span> [](<span style="color:#66d9ef">double</span> x){<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;};
+</span></span><span style="display:flex;"><span>    <span style="color:#09f;font-style:italic">//explicit type
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>    std<span style="color:#555">::</span>function<span style="color:#555">&lt;</span><span style="color:#078;font-weight:bold">double</span>(<span style="color:#078;font-weight:bold">double</span>)<span style="color:#555">&gt;</span> f0    <span style="color:#555">=</span> [](<span style="color:#078;font-weight:bold">double</span> x){<span style="color:#069;font-weight:bold">return</span> <span style="color:#f60">1</span>;};
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//auto (deduced) type same as before
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">auto</span>                          f1    <span style="color:#f92672">=</span> [](<span style="color:#66d9ef">double</span> x){<span style="color:#66d9ef">return</span> x;};
+</span></span><span style="display:flex;"><span>    <span style="color:#09f;font-style:italic">//auto (deduced) type same as before
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>    <span style="color:#069;font-weight:bold">auto</span>                          f1    <span style="color:#555">=</span> [](<span style="color:#078;font-weight:bold">double</span> x){<span style="color:#069;font-weight:bold">return</span> x;};
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">decltype</span>(f0)                  fa[<span style="color:#ae81ff">3</span>] <span style="color:#f92672">=</span> {f0,f1,[](<span style="color:#66d9ef">double</span> x){<span style="color:#66d9ef">return</span> x<span style="color:#f92672">*</span>x;}};
+</span></span><span style="display:flex;"><span>    <span style="color:#069;font-weight:bold">decltype</span>(f0)                  fa[<span style="color:#f60">3</span>] <span style="color:#555">=</span> {f0,f1,[](<span style="color:#078;font-weight:bold">double</span> x){<span style="color:#069;font-weight:bold">return</span> x<span style="color:#555">*</span>x;}};
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//Something like NSt3__18functionIFddEEE
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#66d9ef">typeid</span>(<span style="color:#66d9ef">decltype</span>(f0)).name() <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl;
+</span></span><span style="display:flex;"><span>    <span style="color:#09f;font-style:italic">//Something like NSt3__18functionIFddEEE
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>    std<span style="color:#555">::</span>cout <span style="color:#555">&lt;&lt;</span> <span style="color:#069;font-weight:bold">typeid</span>(<span style="color:#069;font-weight:bold">decltype</span>(f0)).name() <span style="color:#555">&lt;&lt;</span> std<span style="color:#555">::</span>endl;
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">decltype</span>(f0)<span style="color:#f92672">&gt;</span>     fv    <span style="color:#f92672">=</span> {f0,f1};
-</span></span><span style="display:flex;"><span>    fv.push_back                  ([](<span style="color:#66d9ef">double</span> x){<span style="color:#66d9ef">return</span> x<span style="color:#f92672">*</span>x;});
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;i<span style="color:#f92672">&lt;</span>fv.size();i<span style="color:#f92672">++</span>)
-</span></span><span style="display:flex;"><span>        std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> fv[i](<span style="color:#ae81ff">2.0</span>) <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl;
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;i<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">3</span>;i<span style="color:#f92672">++</span>)
-</span></span><span style="display:flex;"><span>        std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> fa[i](<span style="color:#ae81ff">2.0</span>) <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl;
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">auto</span> <span style="color:#f92672">&amp;</span>f : fv)
-</span></span><span style="display:flex;"><span>        std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> f(<span style="color:#ae81ff">2.0</span>) <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl;
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">auto</span> <span style="color:#f92672">&amp;</span>f : fa)
-</span></span><span style="display:flex;"><span>        std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> f(<span style="color:#ae81ff">2.0</span>) <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl;
-</span></span><span style="display:flex;"><span>    std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> eval(f0) <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl;
-</span></span><span style="display:flex;"><span>    std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> eval(f1) <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl;
-</span></span><span style="display:flex;"><span>    std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> eval([](<span style="color:#66d9ef">double</span> x){<span style="color:#66d9ef">return</span> x<span style="color:#f92672">*</span>x;}) <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl;
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>    std<span style="color:#555">::</span>vector<span style="color:#555">&lt;</span><span style="color:#069;font-weight:bold">decltype</span>(f0)<span style="color:#555">&gt;</span>     fv    <span style="color:#555">=</span> {f0,f1};
+</span></span><span style="display:flex;"><span>    fv.push_back                  ([](<span style="color:#078;font-weight:bold">double</span> x){<span style="color:#069;font-weight:bold">return</span> x<span style="color:#555">*</span>x;});
+</span></span><span style="display:flex;"><span>    <span style="color:#069;font-weight:bold">for</span>(<span style="color:#078;font-weight:bold">int</span> i<span style="color:#555">=</span><span style="color:#f60">0</span>;i<span style="color:#555">&lt;</span>fv.size();i<span style="color:#555">++</span>)
+</span></span><span style="display:flex;"><span>        std<span style="color:#555">::</span>cout <span style="color:#555">&lt;&lt;</span> fv[i](<span style="color:#f60">2.0</span>) <span style="color:#555">&lt;&lt;</span> std<span style="color:#555">::</span>endl;
+</span></span><span style="display:flex;"><span>    <span style="color:#069;font-weight:bold">for</span>(<span style="color:#078;font-weight:bold">int</span> i<span style="color:#555">=</span><span style="color:#f60">0</span>;i<span style="color:#555">&lt;</span><span style="color:#f60">3</span>;i<span style="color:#555">++</span>)
+</span></span><span style="display:flex;"><span>        std<span style="color:#555">::</span>cout <span style="color:#555">&lt;&lt;</span> fa[i](<span style="color:#f60">2.0</span>) <span style="color:#555">&lt;&lt;</span> std<span style="color:#555">::</span>endl;
+</span></span><span style="display:flex;"><span>    <span style="color:#069;font-weight:bold">for</span>(<span style="color:#069;font-weight:bold">auto</span> <span style="color:#555">&amp;</span><span style="color:#99f">f</span> : fv)
+</span></span><span style="display:flex;"><span>        std<span style="color:#555">::</span>cout <span style="color:#555">&lt;&lt;</span> f(<span style="color:#f60">2.0</span>) <span style="color:#555">&lt;&lt;</span> std<span style="color:#555">::</span>endl;
+</span></span><span style="display:flex;"><span>    <span style="color:#069;font-weight:bold">for</span>(<span style="color:#069;font-weight:bold">auto</span> <span style="color:#555">&amp;</span><span style="color:#99f">f</span> : fa)
+</span></span><span style="display:flex;"><span>        std<span style="color:#555">::</span>cout <span style="color:#555">&lt;&lt;</span> f(<span style="color:#f60">2.0</span>) <span style="color:#555">&lt;&lt;</span> std<span style="color:#555">::</span>endl;
+</span></span><span style="display:flex;"><span>    std<span style="color:#555">::</span>cout <span style="color:#555">&lt;&lt;</span> eval(f0) <span style="color:#555">&lt;&lt;</span> std<span style="color:#555">::</span>endl;
+</span></span><span style="display:flex;"><span>    std<span style="color:#555">::</span>cout <span style="color:#555">&lt;&lt;</span> eval(f1) <span style="color:#555">&lt;&lt;</span> std<span style="color:#555">::</span>endl;
+</span></span><span style="display:flex;"><span>    std<span style="color:#555">::</span>cout <span style="color:#555">&lt;&lt;</span> eval([](<span style="color:#078;font-weight:bold">double</span> x){<span style="color:#069;font-weight:bold">return</span> x<span style="color:#555">*</span>x;}) <span style="color:#555">&lt;&lt;</span> std<span style="color:#555">::</span>endl;
+</span></span><span style="display:flex;"><span>    <span style="color:#069;font-weight:bold">return</span> <span style="color:#f60">0</span>;
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>    
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>一个没有指定任何捕获的 lambda 函数,可以显式转换成一个具有相同声明形式函数指针.所以,像下面这样做是合法的:</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-9-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-9-1">1</a>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-9-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-9-1">1</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-9-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-9-2">2</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-9-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-9-3">3</a>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#66d9ef">auto</span> a_lambda_func <span style="color:#f92672">=</span> [](<span style="color:#66d9ef">int</span> x) { <span style="color:#75715e">/* ... */</span> };
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> (<span style="color:#f92672">*</span>func_ptr)(<span style="color:#66d9ef">int</span>) <span style="color:#f92672">=</span> a_lambda_func;
-</span></span><span style="display:flex;"><span>func_ptr(<span style="color:#ae81ff">4</span>); <span style="color:#75715e">// calls the lambda
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#069;font-weight:bold">auto</span> a_lambda_func <span style="color:#555">=</span> [](<span style="color:#078;font-weight:bold">int</span> x) { <span style="color:#09f;font-style:italic">/* ... */</span> };
+</span></span><span style="display:flex;"><span><span style="color:#078;font-weight:bold">void</span> (<span style="color:#555">*</span>func_ptr)(<span style="color:#078;font-weight:bold">int</span>) <span style="color:#555">=</span> a_lambda_func;
+</span></span><span style="display:flex;"><span>func_ptr(<span style="color:#f60">4</span>); <span style="color:#09f;font-style:italic">// calls the lambda
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><h1 id="资料">资料</h1>
@@ -435,9 +435,9 @@ Lambda 的语法形式如下：</p>
 <a href="https://time.geekbang.org/column/article/241052" target="_blank" rel="noopener noreffer ">罗剑锋的C++实战笔记</a></p>
 <p><a href="https://blog.csdn.net/u014114777/article/details/52734323" target="_blank" rel="noopener noreffer ">C语言实现C++多态&mdash;&mdash;函数指针</a></p>
 <h1 id="代码及编译">代码及编译</h1>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-1"> 1</a>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-1"> 1</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-2"> 2</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-3"> 3</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-4"> 4</a>
@@ -458,30 +458,30 @@ Lambda 的语法形式如下：</p>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-19"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-19">19</a>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;functional&gt;</span><span style="color:#75715e">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;vector&gt;</span><span style="color:#75715e">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;algorithm&gt;</span><span style="color:#75715e">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#099">#include</span><span style="color:#099">&lt;functional&gt;</span><span style="color:#099">
+</span></span></span><span style="display:flex;"><span><span style="color:#099">#include</span><span style="color:#099">&lt;iostream&gt;</span><span style="color:#099">
+</span></span></span><span style="display:flex;"><span><span style="color:#099">#include</span><span style="color:#099">&lt;vector&gt;</span><span style="color:#099">
+</span></span></span><span style="display:flex;"><span><span style="color:#099">#include</span><span style="color:#099">&lt;algorithm&gt;</span><span style="color:#099">
+</span></span></span><span style="display:flex;"><span><span style="color:#099"></span>
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">using</span> <span style="color:#069;font-weight:bold">namespace</span> std;
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">//lambda表达式简单案例
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(){
-</span></span><span style="display:flex;"><span>  <span style="color:#75715e">//[函数对象参数]、(操作符重载函数参数)、mutable或exception声明、-&gt;返回值类型、{函数体 }
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">auto</span> fun1 <span style="color:#f92672">=</span> []()<span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">int</span>{cout <span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34;hellochina&#34;</span><span style="color:#f92672">&lt;&lt;</span>endl; <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;};
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic">//lambda表达式简单案例
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span><span style="color:#078;font-weight:bold">int</span> <span style="color:#c0f">main</span>(){
+</span></span><span style="display:flex;"><span>  <span style="color:#09f;font-style:italic">//[函数对象参数]、(操作符重载函数参数)、mutable或exception声明、-&gt;返回值类型、{函数体 }
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>  <span style="color:#069;font-weight:bold">auto</span> fun1 <span style="color:#555">=</span> []()<span style="color:#555">-&gt;</span> <span style="color:#078;font-weight:bold">int</span>{cout <span style="color:#555">&lt;&lt;</span><span style="color:#c30">&#34;hellochina&#34;</span><span style="color:#555">&lt;&lt;</span>endl; <span style="color:#069;font-weight:bold">return</span> <span style="color:#f60">0</span>;};
 </span></span><span style="display:flex;"><span>  fun1();
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">auto</span> fun2 <span style="color:#f92672">=</span> [](<span style="color:#66d9ef">int</span> a,<span style="color:#66d9ef">int</span> b){<span style="color:#66d9ef">return</span> a <span style="color:#f92672">+</span>b; };
-</span></span><span style="display:flex;"><span>  cout <span style="color:#f92672">&lt;&lt;</span>fun2(<span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">9</span>) <span style="color:#f92672">&lt;&lt;</span>endl;
+</span></span><span style="display:flex;"><span>  <span style="color:#069;font-weight:bold">auto</span> fun2 <span style="color:#555">=</span> [](<span style="color:#078;font-weight:bold">int</span> a,<span style="color:#078;font-weight:bold">int</span> b){<span style="color:#069;font-weight:bold">return</span> a <span style="color:#555">+</span>b; };
+</span></span><span style="display:flex;"><span>  cout <span style="color:#555">&lt;&lt;</span>fun2(<span style="color:#f60">10</span>, <span style="color:#f60">9</span>) <span style="color:#555">&lt;&lt;</span>endl;
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  std<span style="color:#f92672">::</span>cin.get();
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>  std<span style="color:#555">::</span>cin.get();
+</span></span><span style="display:flex;"><span>  <span style="color:#069;font-weight:bold">return</span> <span style="color:#f60">0</span>;
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></td></tr></table>
 </div>
-</div><div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+</div><div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-11-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-11-1"> 1</a>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-11-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-11-1"> 1</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-11-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-11-2"> 2</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-11-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-11-3"> 3</a>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-11-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-11-4"> 4</a>
@@ -554,76 +554,76 @@ Lambda 的语法形式如下：</p>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-11-71"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-11-71">71</a>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;functional&gt;</span><span style="color:#75715e">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;vector&gt;</span><span style="color:#75715e">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;algorithm&gt;</span><span style="color:#75715e">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#099">#include</span><span style="color:#099">&lt;functional&gt;</span><span style="color:#099">
+</span></span></span><span style="display:flex;"><span><span style="color:#099">#include</span><span style="color:#099">&lt;iostream&gt;</span><span style="color:#099">
+</span></span></span><span style="display:flex;"><span><span style="color:#099">#include</span><span style="color:#099">&lt;vector&gt;</span><span style="color:#099">
+</span></span></span><span style="display:flex;"><span><span style="color:#099">#include</span><span style="color:#099">&lt;algorithm&gt;</span><span style="color:#099">
+</span></span></span><span style="display:flex;"><span><span style="color:#099"></span>
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">using</span> <span style="color:#069;font-weight:bold">namespace</span> std;
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">//lambda表达式简单案例
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic">//lambda表达式简单案例
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span><span style="color:#078;font-weight:bold">int</span> <span style="color:#c0f">main</span>()
 </span></span><span style="display:flex;"><span>{
 </span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">__lambda_11_15</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#069;font-weight:bold">class</span> <span style="color:#0a8;font-weight:bold">__lambda_11_15</span>
 </span></span><span style="display:flex;"><span>  {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span><span style="color:#f92672">:</span> 
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">inline</span> <span style="color:#66d9ef">int</span> <span style="color:#66d9ef">operator</span>()() <span style="color:#66d9ef">const</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#069;font-weight:bold">public</span><span style="color:#555">:</span> 
+</span></span><span style="display:flex;"><span>    <span style="color:#069;font-weight:bold">inline</span> <span style="color:#078;font-weight:bold">int</span> <span style="color:#069;font-weight:bold">operator</span>()() <span style="color:#069;font-weight:bold">const</span>
 </span></span><span style="display:flex;"><span>    {
-</span></span><span style="display:flex;"><span>      std<span style="color:#f92672">::</span><span style="color:#66d9ef">operator</span><span style="color:#f92672">&lt;&lt;</span>(std<span style="color:#f92672">::</span>cout, <span style="color:#e6db74">&#34;hellochina&#34;</span>).<span style="color:#66d9ef">operator</span><span style="color:#f92672">&lt;&lt;</span>(std<span style="color:#f92672">::</span>endl);
-</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>      std<span style="color:#555">::</span><span style="color:#069;font-weight:bold">operator</span><span style="color:#555">&lt;&lt;</span>(std<span style="color:#555">::</span>cout, <span style="color:#c30">&#34;hellochina&#34;</span>).<span style="color:#069;font-weight:bold">operator</span><span style="color:#555">&lt;&lt;</span>(std<span style="color:#555">::</span>endl);
+</span></span><span style="display:flex;"><span>      <span style="color:#069;font-weight:bold">return</span> <span style="color:#f60">0</span>;
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">using</span> retType_11_15 <span style="color:#f92672">=</span> <span style="color:#66d9ef">auto</span> (<span style="color:#f92672">*</span>)() <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">int</span>;
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">inline</span> <span style="color:#66d9ef">operator</span> retType_11_15 () <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">noexcept</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#069;font-weight:bold">using</span> retType_11_15 <span style="color:#555">=</span> <span style="color:#069;font-weight:bold">auto</span> (<span style="color:#555">*</span>)() <span style="color:#555">-&gt;</span> <span style="color:#078;font-weight:bold">int</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#069;font-weight:bold">inline</span> <span style="color:#069;font-weight:bold">operator</span> retType_11_15 () <span style="color:#069;font-weight:bold">const</span> <span style="color:#069;font-weight:bold">noexcept</span>
 </span></span><span style="display:flex;"><span>    {
-</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span> __invoke;
+</span></span><span style="display:flex;"><span>      <span style="color:#069;font-weight:bold">return</span> __invoke;
 </span></span><span style="display:flex;"><span>    };
 </span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span><span style="color:#f92672">:</span> 
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">inline</span> <span style="color:#66d9ef">int</span> __invoke()
+</span></span><span style="display:flex;"><span>    <span style="color:#069;font-weight:bold">private</span><span style="color:#555">:</span> 
+</span></span><span style="display:flex;"><span>    <span style="color:#069;font-weight:bold">static</span> <span style="color:#069;font-weight:bold">inline</span> <span style="color:#078;font-weight:bold">int</span> __invoke()
 </span></span><span style="display:flex;"><span>    {
-</span></span><span style="display:flex;"><span>      std<span style="color:#f92672">::</span><span style="color:#66d9ef">operator</span><span style="color:#f92672">&lt;&lt;</span>(std<span style="color:#f92672">::</span>cout, <span style="color:#e6db74">&#34;hellochina&#34;</span>).<span style="color:#66d9ef">operator</span><span style="color:#f92672">&lt;&lt;</span>(std<span style="color:#f92672">::</span>endl);
-</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>      std<span style="color:#555">::</span><span style="color:#069;font-weight:bold">operator</span><span style="color:#555">&lt;&lt;</span>(std<span style="color:#555">::</span>cout, <span style="color:#c30">&#34;hellochina&#34;</span>).<span style="color:#069;font-weight:bold">operator</span><span style="color:#555">&lt;&lt;</span>(std<span style="color:#555">::</span>endl);
+</span></span><span style="display:flex;"><span>      <span style="color:#069;font-weight:bold">return</span> <span style="color:#f60">0</span>;
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span><span style="color:#f92672">:</span> 
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// inline /*constexpr */ __lambda_11_15(__lambda_11_15 &amp;&amp;) noexcept = default;
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#069;font-weight:bold">public</span><span style="color:#555">:</span> 
+</span></span><span style="display:flex;"><span>    <span style="color:#09f;font-style:italic">// inline /*constexpr */ __lambda_11_15(__lambda_11_15 &amp;&amp;) noexcept = default;
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>    
 </span></span><span style="display:flex;"><span>  };
 </span></span><span style="display:flex;"><span>  
-</span></span><span style="display:flex;"><span>  __lambda_11_15 fun1 <span style="color:#f92672">=</span> __lambda_11_15(__lambda_11_15{});
-</span></span><span style="display:flex;"><span>  fun1.<span style="color:#66d9ef">operator</span>()();
+</span></span><span style="display:flex;"><span>  __lambda_11_15 fun1 <span style="color:#555">=</span> __lambda_11_15(__lambda_11_15{});
+</span></span><span style="display:flex;"><span>  fun1.<span style="color:#069;font-weight:bold">operator</span>()();
 </span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">__lambda_14_15</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#069;font-weight:bold">class</span> <span style="color:#0a8;font-weight:bold">__lambda_14_15</span>
 </span></span><span style="display:flex;"><span>  {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span><span style="color:#f92672">:</span> 
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">inline</span> <span style="color:#66d9ef">int</span> <span style="color:#66d9ef">operator</span>()(<span style="color:#66d9ef">int</span> a, <span style="color:#66d9ef">int</span> b) <span style="color:#66d9ef">const</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#069;font-weight:bold">public</span><span style="color:#555">:</span> 
+</span></span><span style="display:flex;"><span>    <span style="color:#069;font-weight:bold">inline</span> <span style="color:#078;font-weight:bold">int</span> <span style="color:#069;font-weight:bold">operator</span>()(<span style="color:#078;font-weight:bold">int</span> a, <span style="color:#078;font-weight:bold">int</span> b) <span style="color:#069;font-weight:bold">const</span>
 </span></span><span style="display:flex;"><span>    {
-</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span> a <span style="color:#f92672">+</span> b;
+</span></span><span style="display:flex;"><span>      <span style="color:#069;font-weight:bold">return</span> a <span style="color:#555">+</span> b;
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">using</span> retType_14_15 <span style="color:#f92672">=</span> <span style="color:#66d9ef">int</span> (<span style="color:#f92672">*</span>)(<span style="color:#66d9ef">int</span>, <span style="color:#66d9ef">int</span>);
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">inline</span> <span style="color:#66d9ef">operator</span> retType_14_15 () <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">noexcept</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#069;font-weight:bold">using</span> retType_14_15 <span style="color:#555">=</span> <span style="color:#078;font-weight:bold">int</span> (<span style="color:#555">*</span>)(<span style="color:#078;font-weight:bold">int</span>, <span style="color:#078;font-weight:bold">int</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#069;font-weight:bold">inline</span> <span style="color:#069;font-weight:bold">operator</span> retType_14_15 () <span style="color:#069;font-weight:bold">const</span> <span style="color:#069;font-weight:bold">noexcept</span>
 </span></span><span style="display:flex;"><span>    {
-</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span> __invoke;
+</span></span><span style="display:flex;"><span>      <span style="color:#069;font-weight:bold">return</span> __invoke;
 </span></span><span style="display:flex;"><span>    };
 </span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span><span style="color:#f92672">:</span> 
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">inline</span> <span style="color:#66d9ef">int</span> __invoke(<span style="color:#66d9ef">int</span> a, <span style="color:#66d9ef">int</span> b)
+</span></span><span style="display:flex;"><span>    <span style="color:#069;font-weight:bold">private</span><span style="color:#555">:</span> 
+</span></span><span style="display:flex;"><span>    <span style="color:#069;font-weight:bold">static</span> <span style="color:#069;font-weight:bold">inline</span> <span style="color:#078;font-weight:bold">int</span> __invoke(<span style="color:#078;font-weight:bold">int</span> a, <span style="color:#078;font-weight:bold">int</span> b)
 </span></span><span style="display:flex;"><span>    {
-</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span> a <span style="color:#f92672">+</span> b;
+</span></span><span style="display:flex;"><span>      <span style="color:#069;font-weight:bold">return</span> a <span style="color:#555">+</span> b;
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span><span style="color:#f92672">:</span> 
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// inline /*constexpr */ __lambda_14_15(__lambda_14_15 &amp;&amp;) noexcept = default;
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#069;font-weight:bold">public</span><span style="color:#555">:</span> 
+</span></span><span style="display:flex;"><span>    <span style="color:#09f;font-style:italic">// inline /*constexpr */ __lambda_14_15(__lambda_14_15 &amp;&amp;) noexcept = default;
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>    
 </span></span><span style="display:flex;"><span>  };
 </span></span><span style="display:flex;"><span>  
-</span></span><span style="display:flex;"><span>  __lambda_14_15 fun2 <span style="color:#f92672">=</span> __lambda_14_15(__lambda_14_15{});
-</span></span><span style="display:flex;"><span>  std<span style="color:#f92672">::</span>cout.<span style="color:#66d9ef">operator</span><span style="color:#f92672">&lt;&lt;</span>(fun2.<span style="color:#66d9ef">operator</span>()(<span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">9</span>)).<span style="color:#66d9ef">operator</span><span style="color:#f92672">&lt;&lt;</span>(std<span style="color:#f92672">::</span>endl);
-</span></span><span style="display:flex;"><span>  std<span style="color:#f92672">::</span>cin.get();
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>  __lambda_14_15 fun2 <span style="color:#555">=</span> __lambda_14_15(__lambda_14_15{});
+</span></span><span style="display:flex;"><span>  std<span style="color:#555">::</span>cout.<span style="color:#069;font-weight:bold">operator</span><span style="color:#555">&lt;&lt;</span>(fun2.<span style="color:#069;font-weight:bold">operator</span>()(<span style="color:#f60">10</span>, <span style="color:#f60">9</span>)).<span style="color:#069;font-weight:bold">operator</span><span style="color:#555">&lt;&lt;</span>(std<span style="color:#555">::</span>endl);
+</span></span><span style="display:flex;"><span>  std<span style="color:#555">::</span>cin.get();
+</span></span><span style="display:flex;"><span>  <span style="color:#069;font-weight:bold">return</span> <span style="color:#f60">0</span>;
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></td></tr></table>
 </div>
@@ -664,5 +664,5 @@ Lambda 的语法形式如下：</p>
             </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
                 <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
             </a>
-        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/css/lightgallery-bundle.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/twemoji@14.0.2/dist/twemoji.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/lightgallery.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/thumbnail/lg-thumbnail.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/zoom/lg-zoom.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@8.6.0/dist/index.umd.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{"giscus":{"category":"Comments","categoryId":"DIC_kwDOIx2Cjs4CTnUX","darkTheme":"dark","emitMetadata":"0","inputPosition":"bottom","lang":"en","lazyLoading":false,"lightTheme":"light","mapping":"pathname","reactionsEnabled":"1","repo":"zhangyuhu/zhangyuhu.github.io","repoId":"R_kgDOIx2Cjg"}},"data":{"id-1":"HOME","id-2":"HOME"},"lightgallery":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"},"twemoji":true,"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.2970a33d719df7cd89cebf586152b32a8ed30012227fa81b44282950146e0f595d1c733779e4d423dda1004bdcf707ee64d0fadc3d21229cd66b960788f84bdb.js" integrity="sha512-KXCjPXGd982Jzr9YYVKzKo7TABIif6gbRCgpUBRuD1ldHHM3eeTUI92hAEvc9wfuZND63D0hIpzWa5YHiPhL2w=="></script></body>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/css/lightgallery-bundle.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/twemoji@14.0.2/dist/twemoji.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/lightgallery.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/thumbnail/lg-thumbnail.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/zoom/lg-zoom.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@8.6.0/dist/index.umd.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":100},"comment":{"giscus":{"category":"Comments","categoryId":"DIC_kwDOIx2Cjs4CTnUX","darkTheme":"dark","emitMetadata":"0","inputPosition":"bottom","lang":"en","lazyLoading":false,"lightTheme":"light","mapping":"pathname","reactionsEnabled":"1","repo":"zhangyuhu/zhangyuhu.github.io","repoId":"R_kgDOIx2Cjg"}},"data":{"id-1":"HOME","id-2":"HOME"},"lightgallery":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"},"twemoji":true,"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.2970a33d719df7cd89cebf586152b32a8ed30012227fa81b44282950146e0f595d1c733779e4d423dda1004bdcf707ee64d0fadc3d21229cd66b960788f84bdb.js" integrity="sha512-KXCjPXGd982Jzr9YYVKzKo7TABIif6gbRCgpUBRuD1ldHHM3eeTUI92hAEvc9wfuZND63D0hIpzWa5YHiPhL2w=="></script></body>
 </html>
