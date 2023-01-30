@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>深度学习开发环境搭建 - 这是我的网站</title><meta name="Description" content="深度学习开发环境搭建"><meta property="og:title" content="深度学习开发环境搭建" />
+        <title>DL:深度学习开发环境搭建 - 这是我的网站</title><meta name="Description" content="深度学习开发环境搭建"><meta property="og:title" content="DL:深度学习开发环境搭建" />
 <meta property="og:description" content="深度学习开发环境搭建" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://zhangyuhu.github.io/posts/computer_vision/deeplearning/01-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" /><meta property="og:image" content="https://zhangyuhu.github.io/logo.png"/><meta property="article:section" content="posts" />
@@ -13,7 +13,7 @@
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://zhangyuhu.github.io/logo.png"/>
 
-<meta name="twitter:title" content="深度学习开发环境搭建"/>
+<meta name="twitter:title" content="DL:深度学习开发环境搭建"/>
 <meta name="twitter:description" content="深度学习开发环境搭建"/>
 <meta name="application-name" content="我的网站">
 <meta name="apple-mobile-web-app-title" content="我的网站"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
@@ -24,7 +24,7 @@
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
-        "headline": "深度学习开发环境搭建",
+        "headline": "DL:深度学习开发环境搭建",
         "inLanguage": "zh-CN",
         "mainEntityOfPage": {
             "@type": "WebPage",
@@ -34,7 +34,7 @@
                             "url": "https:\/\/zhangyuhu.github.io\/images\/Apple-Devices-Preview.png",
                             "width":  3200 ,
                             "height":  2048 
-                        }],"genre": "posts","keywords": "环境搭建","wordcount":  3771 ,
+                        }],"genre": "posts","keywords": "环境搭建","wordcount":  3866 ,
         "url": "https:\/\/zhangyuhu.github.io\/posts\/computer_vision\/deeplearning\/01-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA\/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA\/","datePublished": "2023-01-30T14:52:52+08:00","dateModified": "2023-01-30T17:11:52+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -106,9 +106,9 @@
                 <div class="container"><div class="toc" id="toc-auto">
             <h2 class="toc-title">Contents</h2>
             <div class="toc-content" id="toc-content-auto"></div>
-        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">深度学习开发环境搭建</h1><div class="post-meta">
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">DL:深度学习开发环境搭建</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://zhangyuhu.github.io/" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>zhangyuhu</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>计算机视觉</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-01-30">2023-01-30</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;3771 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-01-30">2023-01-30</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;3866 words&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;8 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
@@ -140,7 +140,28 @@
             </div><div class="content" id="content"><blockquote>
 <p>本文采用<a href="http://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreffer ">知识共享署名 4.0 国际许可协议</a>进行许可，转载时请注明原文链接，图片在使用时请保留全部内容，可适当缩放并在引用处附上图片所在的文章链接。</p>
 </blockquote>
-<p>[TOC]</p>
+<!-- TOC -->
+<ul>
+<li><a href="#%e7%a1%ac%e4%bb%b6%e7%8e%af%e5%a2%83" rel="">硬件环境</a></li>
+<li><a href="#%e6%b7%b1%e5%ba%a6%e5%ad%a6%e4%b9%a0%e5%bc%80%e5%8f%91%e7%8e%af%e5%a2%83%e6%90%ad%e5%bb%ba" rel="">深度学习开发环境搭建</a>
+<ul>
+<li><a href="#%e6%9b%b4%e6%94%b9%e7%b3%bb%e7%bb%9f%e8%bd%af%e4%bb%b6%e6%ba%90" rel="">更改系统软件源</a></li>
+<li><a href="#%e5%ae%89%e8%a3%85python%e5%92%8cpip" rel="">安装Python和pip</a></li>
+<li><a href="#%e5%ae%89%e8%a3%85nvidia%e6%98%be%e5%8d%a1%e9%a9%b1%e5%8a%a8" rel="">安装Nvidia显卡驱动</a></li>
+<li><a href="#%e5%ae%89%e8%a3%85cuda" rel="">安装CUDA</a></li>
+<li><a href="#%e5%ae%89%e8%a3%85cudnn" rel="">安装CuDNN</a></li>
+<li><a href="#%e5%ae%89%e8%a3%85conda%e7%8e%af%e5%a2%83" rel="">安装Conda环境</a>
+<ul>
+<li><a href="#%e4%bb%80%e4%b9%88%e6%98%afconda" rel="">什么是Conda</a></li>
+<li><a href="#%e5%ae%89%e8%a3%85conda" rel="">安装conda</a></li>
+<li><a href="#conda-%e7%ae%80%e5%8d%95%e4%bd%bf%e7%94%a8" rel="">conda 简单使用</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#%e6%b5%8b%e8%af%95%e4%b8%80%e4%b8%8bgpu%e8%ae%ad%e7%bb%83" rel="">测试一下GPU训练</a></li>
+</ul>
+<!-- /TOC -->
 <h1 id="硬件环境">硬件环境</h1>
 <p>处理器：AMD® Ryzen 5 3600 6-core processor × 12</p>
 <p>显卡：NVIDIA Corporation TU104 [GeForce RTX 2060]</p>
@@ -1133,7 +1154,7 @@
         <div class="post-info-line">
             <div class="post-info-md"></div>
             <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://zhangyuhu.github.io/posts/computer_vision/deeplearning/01-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" data-title="深度学习开发环境搭建" data-hashtags="环境搭建"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://zhangyuhu.github.io/posts/computer_vision/deeplearning/01-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" data-hashtag="环境搭建"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://zhangyuhu.github.io/posts/computer_vision/deeplearning/01-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" data-title="深度学习开发环境搭建"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://zhangyuhu.github.io/posts/computer_vision/deeplearning/01-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" data-title="深度学习开发环境搭建"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://zhangyuhu.github.io/posts/computer_vision/deeplearning/01-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" data-title="深度学习开发环境搭建" data-ralateuid="ji"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://zhangyuhu.github.io/posts/computer_vision/deeplearning/01-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" data-title="DL:深度学习开发环境搭建" data-hashtags="环境搭建"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://zhangyuhu.github.io/posts/computer_vision/deeplearning/01-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" data-hashtag="环境搭建"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://zhangyuhu.github.io/posts/computer_vision/deeplearning/01-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" data-title="DL:深度学习开发环境搭建"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://zhangyuhu.github.io/posts/computer_vision/deeplearning/01-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" data-title="DL:深度学习开发环境搭建"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://zhangyuhu.github.io/posts/computer_vision/deeplearning/01-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" data-title="DL:深度学习开发环境搭建" data-ralateuid="ji"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
             </div>
         </div>
     </div>
@@ -1145,7 +1166,7 @@
         </section>
     </div>
 
-    <div class="post-nav"><a href="/posts/computer_vision/deeplearning/01-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BAdocker/" class="prev" rel="prev" title="深度学习开发环境搭建(docker)"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>深度学习开发环境搭建(docker)</a>
+    <div class="post-nav"><a href="/posts/computer_vision/deeplearning/01-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BAdocker/" class="prev" rel="prev" title="DL:深度学习开发环境搭建(docker)"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>DL:深度学习开发环境搭建(docker)</a>
             <a href="/posts/program/cpp/c&#43;&#43;lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="next" rel="next" title="C&#43;&#43;:Lambda表达式">C++:Lambda表达式<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
 </div>
 <div id="comments"><div id="giscus" class="comment"></div><noscript>
