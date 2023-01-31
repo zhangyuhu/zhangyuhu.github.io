@@ -34,7 +34,7 @@
                             "url": "https:\/\/zhangyuhu.github.io\/images\/Apple-Devices-Preview.png",
                             "width":  3200 ,
                             "height":  2048 
-                        }],"genre": "posts","keywords": "ffmpeg, opencv","wordcount":  1285 ,
+                        }],"genre": "posts","keywords": "ffmpeg, opencv","wordcount":  1381 ,
         "url": "https:\/\/zhangyuhu.github.io\/posts\/open_source_software\/opencv\/ffmpeg_opencv_4.5.0_install\/ffmpeg_opencv_4.5.0_install\/","datePublished": "2023-01-16T17:52:52+08:00","dateModified": "2023-01-18T13:11:00+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -108,7 +108,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">开源软件:ffmpeg & opencv_4.5.0  安装</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://zhangyuhu.github.io/" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>zhangyuhu</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>开源软件</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-01-16">2023-01-16</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1285 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-01-16">2023-01-16</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1381 words&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;3 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
@@ -144,15 +144,46 @@
 <li><a href="#3-ffmpeg" rel="">3. ffmpeg</a>
 <ul>
 <li><a href="#31-%e4%b8%8b%e8%bd%bd%e7%bc%96%e8%af%91" rel="">3.1. 下载编译</a></li>
+</ul>
+</li>
+<li><a href="#binbash" rel="">!/bin/bash</a></li>
+<li><a href="#binbash" rel="">!/bin/bash</a></li>
+<li><a href="#download" rel="">download</a>
+<ul>
 <li><a href="#32-cmake%e6%94%af%e6%8c%81" rel="">3.2. cmake支持</a></li>
 </ul>
 </li>
+<li><a href="#usrbinenv-python" rel="">!/usr/bin/env python</a></li>
+<li><a href="#usrbinenv-python" rel="">!/usr/bin/env python</a></li>
+<li><a href="#coding-utf-8" rel="">coding: utf-8</a></li>
+<li><a href="#note-the-order-matters" rel="">note: the order matters</a></li>
+<li><a href="#ref-httpsblogcsdnnetzijin0802034articledetails52779791" rel="">ref: https://blog.csdn.net/zijin0802034/article/details/52779791</a></li>
+<li><a href="#setup-library-names" rel="">setup library names</a></li>
+<li><a href="#setup-library-found" rel="">setup library found</a></li>
+<li><a href="#setup-library-versions" rel="">setup library versions</a></li>
+<li><a href="#final-stuffs" rel="">final stuffs</a></li>
+<li><a href="#summary-up-and-write" rel="">summary up and write</a></li>
 <li><a href="#4-opencv" rel="">4. opencv</a>
 <ul>
 <li><a href="#41-toolchain" rel="">4.1. toolchain</a></li>
+</ul>
+</li>
+<li><a href="#messagebegin-child-cmake" rel="">message(&ldquo;begin child cmake&rdquo;)</a></li>
+<li><a href="#messagebegin-child-cmake" rel="">message(&ldquo;begin child cmake&rdquo;)</a></li>
+<li><a href="#set-cross-compiled-system-type-its-better-not-use-the-type-which-cmake-cannot-recognized" rel="">set cross-compiled system type, it&rsquo;s better not use the type which cmake cannot recognized.</a></li>
+<li><a href="#when-gcc-arm-aarch64-none-linux-gnu-was-installed-toolchain-was-available-as-below" rel="">when gcc-arm-aarch64-none-linux-gnu was installed, toolchain was available as below:</a></li>
+<li><a href="#set-searching-rules-for-cross-compiler" rel="">set searching rules for cross-compiler</a></li>
+<li><a href="#other-needed-options" rel="">other needed options</a></li>
+<li><a href="#setgnueabihfcflags--wall--fpic--mcpucortex-a9--mfpuneon-fp16--mfloat-abihard--mthumb-interwork--marm-cache-internal-docstring" rel="">set(GNUEABIHFCFLAGS &ldquo;-Wall -fPIC -mcpu=cortex-a9 -mfpu=neon-fp16 -mfloat-abi=hard -mthumb-interwork -marm&rdquo; CACHE INTERNAL docstring)</a></li>
+<li><a href="#setgnueabihfcflags--wall--fpic--wl-rpath-linkhomezzsoftffmpegaarch64-none-linux-gnulib-cache-internal-docstring--for-shared-libs-rpath-required" rel="">set(GNUEABIHFCFLAGS &ldquo;-Wall -fPIC -Wl,-rpath-link=/home/zz/soft/ffmpeg/aarch64-none-linux-gnu/lib&rdquo; CACHE INTERNAL docstring) # for shared libs, rpath required</a>
+<ul>
 <li><a href="#42-%e4%b8%8b%e8%bd%bd%e7%bc%96%e8%af%91" rel="">4.2. 下载编译</a></li>
 </ul>
 </li>
+<li><a href="#binbash" rel="">!/bin/bash</a></li>
+<li><a href="#binbash" rel="">!/bin/bash</a></li>
+<li><a href="#download" rel="">download</a></li>
+<li><a href="#%e7%bc%96%e8%af%91" rel="">编译</a></li>
 <li><a href="#5-references" rel="">5. References</a></li>
 </ul>
 <!-- /TOC -->
