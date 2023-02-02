@@ -18,7 +18,7 @@
 <meta name="application-name" content="我的网站">
 <meta name="apple-mobile-web-app-title" content="我的网站"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://zhangyuhu.github.io/posts/computer_vision/multimedia/ffmpeg/ffmpeg/" /><link rel="prev" href="https://zhangyuhu.github.io/posts/program/cpp/%E5%B9%B6%E5%8F%91%E5%92%8C%E5%A4%9A%E7%BA%BF%E7%A8%8B/c&#43;&#43;%E5%B9%B6%E8%A1%8C%E5%BC%80%E5%8F%91/" /><link rel="stylesheet" href="/css/style.min.990eb8dd228a2b662f63cfe59575be8aa494cb9d40ffd854f26b9d9e588e1f4fdadb6a34e3f9a9171244d3ee6c107521923ab30705f3ef50d3e435eda1afc910.css" integrity="sha512-mQ643SKKK2YvY8/llXW+iqSUy51A/9hU8mudnliOH0/a22o04/mpFxJE0+5sEHUhkjqzBwXz71DT5DXtoa/JEA=="><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://zhangyuhu.github.io/posts/computer_vision/multimedia/ffmpeg/ffmpeg/" /><link rel="prev" href="https://zhangyuhu.github.io/posts/program/cpp/%E5%B9%B6%E5%8F%91%E5%92%8C%E5%A4%9A%E7%BA%BF%E7%A8%8B/c&#43;&#43;%E5%B9%B6%E8%A1%8C%E5%BC%80%E5%8F%91/" /><link rel="next" href="https://zhangyuhu.github.io/posts/open_source_software/parallel_computing/cgraph/cgraph-cgraph-%E8%AF%AD%E6%B3%95%E8%A7%A3%E9%87%8A/" /><link rel="stylesheet" href="/css/style.min.990eb8dd228a2b662f63cfe59575be8aa494cb9d40ffd854f26b9d9e588e1f4fdadb6a34e3f9a9171244d3ee6c107521923ab30705f3ef50d3e435eda1afc910.css" integrity="sha512-mQ643SKKK2YvY8/llXW+iqSUy51A/9hU8mudnliOH0/a22o04/mpFxJE0+5sEHUhkjqzBwXz71DT5DXtoa/JEA=="><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
     {
@@ -212,15 +212,15 @@
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-12"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-12">12</a>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>ffmpeg version 3.4.8-0ubuntu0.2 Copyright (c) 2000-2020 the FFmpeg developers 
-</span></span><span style="display:flex;"><span>built with gcc 7 (Ubuntu 7.5.0-3ubuntu1~18.04)
-</span></span><span style="display:flex;"><span>configuration: --prefix=/usr --extra-version=0ubuntu0.2 --toolchain=hardened --libdir=/usr/lib/x86_64-linux-gnu --incdir=/usr/include/x86_64-linux-gnu --enable-gpl --disable-stripping --enable-avresample --enable-avisynth --enable-gnutls --enable-ladspa --enable-libass --enable-libbluray --enable-libbs2b --enable-libcaca --enable-libcdio --enable-libflite --enable-libfontconfig --enable-libfreetype --enable-libfribidi --enable-libgme --enable-libgsm --enable-libmp3lame --enable-libmysofa --enable-libopenjpeg --enable-libopenmpt --enable-libopus --enable-libpulse --enable-librubberband --enable-librsvg --enable-libshine --enable-libsnappy --enable-libsoxr --enable-libspeex --enable-libssh --enable-libtheora --enable-libtwolame --enable-libvorbis --enable-libvpx --enable-libwavpack --enable-libwebp --enable-libx265 --enable-libxml2 --enable-libxvid --enable-libzmq --enable-libzvbi --enable-omx --enable-openal --enable-opengl --enable-sdl2 --enable-libdc1394 --enable-libdrm --enable-libiec61883 --enable-chromaprint --enable-frei0r --enable-libopencv --enable-libx264 --enable-shared
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ffmpeg version 3.4.8-0ubuntu0.2 Copyright <span style="color:#555">(</span>c<span style="color:#555">)</span> 2000-2020 the FFmpeg developers 
+</span></span><span style="display:flex;"><span>built with gcc <span style="color:#f60">7</span> <span style="color:#555">(</span>Ubuntu 7.5.0-3ubuntu1~18.04<span style="color:#555">)</span>
+</span></span><span style="display:flex;"><span>configuration: --prefix<span style="color:#555">=</span>/usr --extra-version<span style="color:#555">=</span>0ubuntu0.2 --toolchain<span style="color:#555">=</span>hardened --libdir<span style="color:#555">=</span>/usr/lib/x86_64-linux-gnu --incdir<span style="color:#555">=</span>/usr/include/x86_64-linux-gnu --enable-gpl --disable-stripping --enable-avresample --enable-avisynth --enable-gnutls --enable-ladspa --enable-libass --enable-libbluray --enable-libbs2b --enable-libcaca --enable-libcdio --enable-libflite --enable-libfontconfig --enable-libfreetype --enable-libfribidi --enable-libgme --enable-libgsm --enable-libmp3lame --enable-libmysofa --enable-libopenjpeg --enable-libopenmpt --enable-libopus --enable-libpulse --enable-librubberband --enable-librsvg --enable-libshine --enable-libsnappy --enable-libsoxr --enable-libspeex --enable-libssh --enable-libtheora --enable-libtwolame --enable-libvorbis --enable-libvpx --enable-libwavpack --enable-libwebp --enable-libx265 --enable-libxml2 --enable-libxvid --enable-libzmq --enable-libzvbi --enable-omx --enable-openal --enable-opengl --enable-sdl2 --enable-libdc1394 --enable-libdrm --enable-libiec61883 --enable-chromaprint --enable-frei0r --enable-libopencv --enable-libx264 --enable-shared
 </span></span><span style="display:flex;"><span>libavutil      55. 78.100 / 55. 78.100
 </span></span><span style="display:flex;"><span>libavcodec     57.107.100 / 57.107.100
 </span></span><span style="display:flex;"><span>libavformat    57. 83.100 / 57. 83.100
 </span></span><span style="display:flex;"><span>libavdevice    57. 10.100 / 57. 10.100
 </span></span><span style="display:flex;"><span>libavfilter     6.107.100 /  6.107.100
-</span></span><span style="display:flex;"><span>libavresample   3.  7.  0 /  3.  7.  0
+</span></span><span style="display:flex;"><span>libavresample   3.  7.  <span style="color:#f60">0</span> /  3.  7.  <span style="color:#f60">0</span>
 </span></span><span style="display:flex;"><span>libswscale      4.  8.100 /  4.  8.100
 </span></span><span style="display:flex;"><span>libswresample   2.  9.100 /  2.  9.100
 </span></span><span style="display:flex;"><span>libpostproc    54.  7.100 / 54.  7.100
@@ -288,53 +288,53 @@
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-48"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-48">48</a>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>ffmpeg version 4.2.4-1ubuntu0.1 Copyright (c) 2000-2020 the FFmpeg developers
-</span></span><span style="display:flex;"><span>  built with gcc 9 (Ubuntu 9.3.0-10ubuntu2)
-</span></span><span style="display:flex;"><span>  configuration: --prefix=/usr --extra-version=1ubuntu0.1 --toolchain=hardened --libdir=/usr/lib/x86_64-linux-gnu --incdir=/usr/include/x86_64-linux-gnu --arch=amd64 --enable-gpl --disable-stripping --enable-avresample --disable-filter=resample --enable-avisynth --enable-gnutls --enable-ladspa --enable-libaom --enable-libass --enable-libbluray --enable-libbs2b --enable-libcaca --enable-libcdio --enable-libcodec2 --enable-libflite --enable-libfontconfig --enable-libfreetype --enable-libfribidi --enable-libgme --enable-libgsm --enable-libjack --enable-libmp3lame --enable-libmysofa --enable-libopenjpeg --enable-libopenmpt --enable-libopus --enable-libpulse --enable-librsvg --enable-librubberband --enable-libshine --enable-libsnappy --enable-libsoxr --enable-libspeex --enable-libssh --enable-libtheora --enable-libtwolame --enable-libvidstab --enable-libvorbis --enable-libvpx --enable-libwavpack --enable-libwebp --enable-libx265 --enable-libxml2 --enable-libxvid --enable-libzmq --enable-libzvbi --enable-lv2 --enable-omx --enable-openal --enable-opencl --enable-opengl --enable-sdl2 --enable-libdc1394 --enable-libdrm --enable-libiec61883 --enable-nvenc --enable-chromaprint --enable-frei0r --enable-libx264 --enable-shared
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ffmpeg version 4.2.4-1ubuntu0.1 Copyright <span style="color:#555">(</span>c<span style="color:#555">)</span> 2000-2020 the FFmpeg developers
+</span></span><span style="display:flex;"><span>  built with gcc <span style="color:#f60">9</span> <span style="color:#555">(</span>Ubuntu 9.3.0-10ubuntu2<span style="color:#555">)</span>
+</span></span><span style="display:flex;"><span>  configuration: --prefix<span style="color:#555">=</span>/usr --extra-version<span style="color:#555">=</span>1ubuntu0.1 --toolchain<span style="color:#555">=</span>hardened --libdir<span style="color:#555">=</span>/usr/lib/x86_64-linux-gnu --incdir<span style="color:#555">=</span>/usr/include/x86_64-linux-gnu --arch<span style="color:#555">=</span>amd64 --enable-gpl --disable-stripping --enable-avresample --disable-filter<span style="color:#555">=</span>resample --enable-avisynth --enable-gnutls --enable-ladspa --enable-libaom --enable-libass --enable-libbluray --enable-libbs2b --enable-libcaca --enable-libcdio --enable-libcodec2 --enable-libflite --enable-libfontconfig --enable-libfreetype --enable-libfribidi --enable-libgme --enable-libgsm --enable-libjack --enable-libmp3lame --enable-libmysofa --enable-libopenjpeg --enable-libopenmpt --enable-libopus --enable-libpulse --enable-librsvg --enable-librubberband --enable-libshine --enable-libsnappy --enable-libsoxr --enable-libspeex --enable-libssh --enable-libtheora --enable-libtwolame --enable-libvidstab --enable-libvorbis --enable-libvpx --enable-libwavpack --enable-libwebp --enable-libx265 --enable-libxml2 --enable-libxvid --enable-libzmq --enable-libzvbi --enable-lv2 --enable-omx --enable-openal --enable-opencl --enable-opengl --enable-sdl2 --enable-libdc1394 --enable-libdrm --enable-libiec61883 --enable-nvenc --enable-chromaprint --enable-frei0r --enable-libx264 --enable-shared
 </span></span><span style="display:flex;"><span>  libavutil      56. 31.100 / 56. 31.100
 </span></span><span style="display:flex;"><span>  libavcodec     58. 54.100 / 58. 54.100
 </span></span><span style="display:flex;"><span>  libavformat    58. 29.100 / 58. 29.100
 </span></span><span style="display:flex;"><span>  libavdevice    58.  8.100 / 58.  8.100
 </span></span><span style="display:flex;"><span>  libavfilter     7. 57.100 /  7. 57.100
-</span></span><span style="display:flex;"><span>  libavresample   4.  0.  0 /  4.  0.  0
+</span></span><span style="display:flex;"><span>  libavresample   4.  0.  <span style="color:#f60">0</span> /  4.  0.  <span style="color:#f60">0</span>
 </span></span><span style="display:flex;"><span>  libswscale      5.  5.100 /  5.  5.100
 </span></span><span style="display:flex;"><span>  libswresample   3.  5.100 /  3.  5.100
 </span></span><span style="display:flex;"><span>  libpostproc    55.  5.100 / 55.  5.100
-</span></span><span style="display:flex;"><span>Input #0, mov,mp4,m4a,3gp,3g2,mj2, from &#39;GstTest.mp4&#39;:
+</span></span><span style="display:flex;"><span>Input <span style="color:#09f;font-style:italic">#0, mov,mp4,m4a,3gp,3g2,mj2, from &#39;GstTest.mp4&#39;:</span>
 </span></span><span style="display:flex;"><span>  Metadata:
 </span></span><span style="display:flex;"><span>    major_brand     : mp42
-</span></span><span style="display:flex;"><span>    minor_version   : 0
+</span></span><span style="display:flex;"><span>    minor_version   : <span style="color:#f60">0</span>
 </span></span><span style="display:flex;"><span>    compatible_brands: mp42isom
 </span></span><span style="display:flex;"><span>    creation_time   : 2020-07-26T12:09:43.000000Z
-</span></span><span style="display:flex;"><span>  Duration: 00:00:09.17, start: 0.000000, bitrate: 900 kb/s
-</span></span><span style="display:flex;"><span>    Stream #0:0(und): Audio: aac (LC) (mp4a / 0x6134706D), 44100 Hz, stereo, fltp, 48 kb/s (default)
+</span></span><span style="display:flex;"><span>  Duration: 00:00:09.17, start: 0.000000, bitrate: <span style="color:#f60">900</span> kb/s
+</span></span><span style="display:flex;"><span>    Stream <span style="color:#09f;font-style:italic">#0:0(und): Audio: aac (LC) (mp4a / 0x6134706D), 44100 Hz, stereo, fltp, 48 kb/s (default)</span>
 </span></span><span style="display:flex;"><span>    Metadata:
 </span></span><span style="display:flex;"><span>      creation_time   : 2020-07-26T12:09:43.000000Z
-</span></span><span style="display:flex;"><span>    Stream #0:1(und): Video: h264 (High) (avc1 / 0x31637661), yuv420p, 960x544, 852 kb/s, 28.91 fps, 28.92 tbr, 90k tbn, 180k tbc (default)
+</span></span><span style="display:flex;"><span>    Stream <span style="color:#09f;font-style:italic">#0:1(und): Video: h264 (High) (avc1 / 0x31637661), yuv420p, 960x544, 852 kb/s, 28.91 fps, 28.92 tbr, 90k tbn, 180k tbc (default)</span>
 </span></span><span style="display:flex;"><span>    Metadata:
 </span></span><span style="display:flex;"><span>      creation_time   : 2020-07-26T12:09:43.000000Z
 </span></span><span style="display:flex;"><span>      encoder         : JVT/AVC Coding
 </span></span><span style="display:flex;"><span>Stream mapping:
-</span></span><span style="display:flex;"><span>  Stream #0:1 -&gt; #0:0 (h264 (native) -&gt; mpeg4 (native))
-</span></span><span style="display:flex;"><span>  Stream #0:0 -&gt; #0:1 (aac (native) -&gt; mp3 (libmp3lame))
-</span></span><span style="display:flex;"><span>Press [q] to stop, [?] for help
-</span></span><span style="display:flex;"><span>Output #0, avi, to &#39;output.avi&#39;:
+</span></span><span style="display:flex;"><span>  Stream <span style="color:#09f;font-style:italic">#0:1 -&gt; #0:0 (h264 (native) -&gt; mpeg4 (native))</span>
+</span></span><span style="display:flex;"><span>  Stream <span style="color:#09f;font-style:italic">#0:0 -&gt; #0:1 (aac (native) -&gt; mp3 (libmp3lame))</span>
+</span></span><span style="display:flex;"><span>Press <span style="color:#555">[</span>q<span style="color:#555">]</span> to stop, <span style="color:#555">[</span>?<span style="color:#555">]</span> <span style="color:#069;font-weight:bold">for</span> <span style="color:#366">help</span>
+</span></span><span style="display:flex;"><span>Output <span style="color:#09f;font-style:italic">#0, avi, to &#39;output.avi&#39;:</span>
 </span></span><span style="display:flex;"><span>  Metadata:
 </span></span><span style="display:flex;"><span>    major_brand     : mp42
-</span></span><span style="display:flex;"><span>    minor_version   : 0
+</span></span><span style="display:flex;"><span>    minor_version   : <span style="color:#f60">0</span>
 </span></span><span style="display:flex;"><span>    compatible_brands: mp42isom
 </span></span><span style="display:flex;"><span>    ISFT            : Lavf58.29.100
-</span></span><span style="display:flex;"><span>    Stream #0:0(und): Video: mpeg4 (FMP4 / 0x34504D46), yuv420p, 960x544, q=2-31, 200 kb/s, 28.92 fps, 28.92 tbn, 28.92 tbc (default)
+</span></span><span style="display:flex;"><span>    Stream <span style="color:#09f;font-style:italic">#0:0(und): Video: mpeg4 (FMP4 / 0x34504D46), yuv420p, 960x544, q=2-31, 200 kb/s, 28.92 fps, 28.92 tbn, 28.92 tbc (default)</span>
 </span></span><span style="display:flex;"><span>    Metadata:
 </span></span><span style="display:flex;"><span>      creation_time   : 2020-07-26T12:09:43.000000Z
 </span></span><span style="display:flex;"><span>      encoder         : Lavc58.54.100 mpeg4
 </span></span><span style="display:flex;"><span>    Side data:
-</span></span><span style="display:flex;"><span>      cpb: bitrate max/min/avg: 0/0/200000 buffer size: 0 vbv_delay: -1
-</span></span><span style="display:flex;"><span>    Stream #0:1(und): Audio: mp3 (libmp3lame) (U[0][0][0] / 0x0055), 44100 Hz, stereo, fltp (default)
+</span></span><span style="display:flex;"><span>      cpb: bitrate max/min/avg: 0/0/200000 buffer size: <span style="color:#f60">0</span> vbv_delay: -1
+</span></span><span style="display:flex;"><span>    Stream <span style="color:#09f;font-style:italic">#0:1(und): Audio: mp3 (libmp3lame) (U[0][0][0] / 0x0055), 44100 Hz, stereo, fltp (default)</span>
 </span></span><span style="display:flex;"><span>    Metadata:
 </span></span><span style="display:flex;"><span>      creation_time   : 2020-07-26T12:09:43.000000Z
 </span></span><span style="display:flex;"><span>      encoder         : Lavc58.54.100 libmp3lame
-</span></span><span style="display:flex;"><span>frame=  264 fps=145 q=31.0 Lsize=     732kB time=00:00:09.19 bitrate= 651.8kbits/s speed=5.04x    
+</span></span><span style="display:flex;"><span><span style="color:#033">frame</span><span style="color:#555">=</span>  <span style="color:#f60">264</span> <span style="color:#033">fps</span><span style="color:#555">=</span><span style="color:#f60">145</span> <span style="color:#033">q</span><span style="color:#555">=</span>31.0 <span style="color:#033">Lsize</span><span style="color:#555">=</span>     732kB <span style="color:#033">time</span><span style="color:#555">=</span>00:00:09.19 <span style="color:#033">bitrate</span><span style="color:#555">=</span> 651.8kbits/s <span style="color:#033">speed</span><span style="color:#555">=</span>5.04x    
 </span></span><span style="display:flex;"><span>video:563kB audio:144kB subtitle:0kB other streams:0kB global headers:0kB muxing overhead: 3.440192%
 </span></span></code></pre></td></tr></table>
 </div>
@@ -566,7 +566,8 @@
         </section>
     </div>
 
-    <div class="post-nav"><a href="/posts/program/cpp/%E5%B9%B6%E5%8F%91%E5%92%8C%E5%A4%9A%E7%BA%BF%E7%A8%8B/c&#43;&#43;%E5%B9%B6%E8%A1%8C%E5%BC%80%E5%8F%91/" class="prev" rel="prev" title="C&#43;&#43;:并行开发"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>C++:并行开发</a></div>
+    <div class="post-nav"><a href="/posts/program/cpp/%E5%B9%B6%E5%8F%91%E5%92%8C%E5%A4%9A%E7%BA%BF%E7%A8%8B/c&#43;&#43;%E5%B9%B6%E8%A1%8C%E5%BC%80%E5%8F%91/" class="prev" rel="prev" title="C&#43;&#43;:并行开发"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>C++:并行开发</a>
+            <a href="/posts/open_source_software/parallel_computing/cgraph/cgraph-cgraph-%E8%AF%AD%E6%B3%95%E8%A7%A3%E9%87%8A/" class="next" rel="next" title="开源软件:CGraph 语法解释">开源软件:CGraph 语法解释<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
 </div>
 <div id="comments"><div id="giscus" class="comment"></div><noscript>
                 Please enable JavaScript to view the comments powered by <a href="https://giscus.app">Giscus</a>.
