@@ -34,7 +34,7 @@
                             "url": "https:\/\/zhangyuhu.github.io\/images\/Apple-Devices-Preview.png",
                             "width":  3200 ,
                             "height":  2048 
-                        }],"genre": "posts","keywords": "Embedded, 芯片\u0026开发板","wordcount":  536 ,
+                        }],"genre": "posts","keywords": "Embedded, 芯片\u0026开发板","wordcount":  597 ,
         "url": "https:\/\/zhangyuhu.github.io\/posts\/embedded\/developmentboard\/ar9201\/ar9201\/","datePublished": "2023-02-09T14:32:52+08:00","dateModified": "2023-02-09T15:11:52+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -108,7 +108,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Embedded:AR9201</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://zhangyuhu.github.io/" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>zhangyuhu</a></span>&nbsp;<span class="post-category">included in <a href="/categories/embedded/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Embedded</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-02-09">2023-02-09</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;536 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-02-09">2023-02-09</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;597 words&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;2 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
@@ -154,56 +154,95 @@
 <!-- /TOC -->
 <h1 id="sdk编译">SDK编译</h1>
 <h2 id="toolchain-的安装">toolchain 的安装</h2>
-<pre><code>```shell
-sudo mkdir /opt/toolchain
-
-sudo tar -xvf  gcc-linaro-5.4.1-2017.05-x86_64_arm-linux-gnueabihf.tar.xz -C /opt/toolchain
-
-sudo tar -jxvf gcc-arm-none-eabi-5_2-2015q4-20151219-linux.tar.bz2 -C /opt/toolchain
-```
-</code></pre>
-<h2 id="build-server-环境的建立">Build server 环境的建立</h2>
-<pre><code>```shell
-
-sudo dpkg-reconfigure dash : choose &quot;no&quot;.
-
-sudo apt-get update
-sudo apt-get install fakeroot zlib1g-dev libmagickwand-dev python-pip vim
-lib32z1 lib32ncurses5
-
-sudo apt-get install libbz2-1.0:i386 lib32stdc++6 squashfs-tools mtd-utils git autoconf automake texinfo autopoint bison flex
-sudo apt-get install liblz4-tool u-boot-tools tree
-sudo pip install Wand
-```
-</code></pre>
-<h2 id="编译-sdk">编译 SDK</h2>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-1">1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-2">2</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-3">3</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-4">4</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-5">5</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo mkdir /opt/toolchain
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>sudo tar -xvf  gcc-linaro-5.4.1-2017.05-x86_64_arm-linux-gnueabihf.tar.xz -C /opt/toolchain
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>sudo tar -jxvf gcc-arm-none-eabi-5_2-2015q4-20151219-linux.tar.bz2 -C /opt/toolchain
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="build-server-环境的建立">Build server 环境的建立</h2>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-1">1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-2">2</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-3">3</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-4">4</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-5">5</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-6">6</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-7">7</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-8">8</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-9">9</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo dpkg-reconfigure dash : choose <span style="color:#c30">&#34;no&#34;</span>.
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>sudo apt-get update
+</span></span><span style="display:flex;"><span>sudo apt-get install fakeroot zlib1g-dev libmagickwand-dev python-pip vim
+</span></span><span style="display:flex;"><span>    lib32z1 lib32ncurses5
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>sudo apt-get install libbz2-1.0:i386 lib32stdc++6 squashfs-tools mtd-utils git autoconf automake texinfo autopoint bison flex
+</span></span><span style="display:flex;"><span>sudo apt-get install liblz4-tool u-boot-tools tree
+</span></span><span style="display:flex;"><span>sudo pip install Wand
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="编译-sdk">编译 SDK</h2>
 <h3 id="解压文件">解压文件</h3>
-<pre><code>```
-# 解压SDK 到想要的工程目录
-sudo tar -zxvf sdk34_dual.tar.gz
-
-# 删除SDK 中编译残留的中间文件
-find ./ -type f -name *.d | xargs rm -rf
-find ./ -type f -name *.o | xargs rm -rf
-find ./ -type f -name *.depend | xargs rm -rf
-```
-</code></pre>
-<h3 id="修改编译">修改编译</h3>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-1">1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-2">2</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-3">3</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-4">4</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-5">5</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-6">6</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-7">7</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># 解压SDK 到想要的工程目录</span>
+</span></span><span style="display:flex;"><span>sudo tar -zxvf sdk34_dual.tar.gz
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># 删除SDK 中编译残留的中间文件</span>
+</span></span><span style="display:flex;"><span>find ./ -type f -name *.d | xargs rm -rf
+</span></span><span style="display:flex;"><span>find ./ -type f -name *.o | xargs rm -rf
+</span></span><span style="display:flex;"><span>find ./ -type f -name *.depend | xargs rm -rf
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="修改编译">修改编译</h3>
 <p><strong>选择编译选项</strong></p>
 <p>xxx/AR_SDK/sdk-artosyn-ar-sirius-evb-hdmi-sirius-001-d-0.0.0.34/.product_profile</p>
-<pre><code>```
-gCUSTOMER_BUILD = y
-
-ifeq (x$(gCUSTOMER_BUILD), xy)
-
-gCUSTOMER_BUILD_UBOOT	= y
-gCUSTOMER_BUILD_KERNEL	= y
-gCUSTOMER_BUILD_A7FW	= y
-gCUSTOMER_BUILD_CEVA	= y
-
-```
-</code></pre>
-<ul>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-1">1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-2">2</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-3">3</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-4">4</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-5">5</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-6">6</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-7">7</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-8">8</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#033">gCUSTOMER_BUILD</span> <span style="color:#555">=</span> y
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>ifeq <span style="color:#555">(</span>x<span style="color:#069;font-weight:bold">$(</span>gCUSTOMER_BUILD<span style="color:#069;font-weight:bold">)</span>, xy<span style="color:#555">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#033">gCUSTOMER_BUILD_UBOOT</span>	<span style="color:#555">=</span> y
+</span></span><span style="display:flex;"><span><span style="color:#033">gCUSTOMER_BUILD_KERNEL</span>	<span style="color:#555">=</span> y
+</span></span><span style="display:flex;"><span><span style="color:#033">gCUSTOMER_BUILD_A7FW</span>	<span style="color:#555">=</span> y
+</span></span><span style="display:flex;"><span><span style="color:#033">gCUSTOMER_BUILD_CEVA</span>	<span style="color:#555">=</span> y
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
 <li>UBOOT : uboot</li>
 <li>KERNEL : linux kernel</li>
 <li>A7FW : free rtos</li>
@@ -213,54 +252,106 @@ gCUSTOMER_BUILD_CEVA	= y
 <p>xxx/AR_SDK/sdk-artosyn-ar-sirius-evb-hdmi-sirius-001-d-0.0.0.34/app/artosyn/usr_test<br>
 创建.c、.h 源文件和 Makefile 文件</p>
 <p>xxx/AR_SDK/sdk-artosyn-ar-sirius-evb-hdmi-sirius-001-d-0.0.0.34/.product_profile</p>
-<pre><code>```shell
-#======================================================================
-#== User Test
-#======================================================================
-gUSER_TEST_LIST   = test_sample
-gUSER_TEST_LIST   += test_ion
-#gUSER_TEST_LIST   += test_vcodec
-gUSER_TEST_LIST   += test_icc
-gUSER_TEST_LIST   += test_spi
-gUSER_TEST_LIST   += test_icc_proxy_rpc_src
-gUSER_TEST_LIST   += test_icc_proxy_sink
-gUSER_TEST_LIST   += test_cam_src
-#gUSER_TEST_LIST   += test_dzoom
-gUSER_TEST_LIST   += test_isp_output_format
-#gUSER_TEST_LIST   += test_yuv_multi_input
-#gUSER_TEST_LIST   += test_yuv_pipeline_ctl
-#gUSER_TEST_LIST   += test_yuv_pipeline_client
-#gUSER_TEST_LIST   += test_yuv_isp
-gUSER_TEST_LIST   += test_crypto
-#gUSER_TEST_LIST   += test_ar_gui
-#gUSER_TEST_LIST   += test_ar_gui_random
-gUSER_TEST_LIST   += test_mem_watch
-gUSER_TEST_LIST   += test_send_data
-gUSER_TEST_LIST   += test_hid_service
-#gUSER_TEST_LIST   += test_yuv_sensor
-#gUSER_TEST_LIST   += test_pseudo_yuv_multi_input
-#gUSER_TEST_LIST   += test_pseudo_multi_input_hevc
-#gUSER_TEST_LIST   += test_pipeline
-#gUSER_TEST_LIST   += test_comp_osd
-#gUSER_TEST_LIST   += test_pipe_onoff
-gUSER_TEST_LIST   += test_framebuffer
-#gUSER_TEST_LIST   += test_yuv_framebuffer
-gUSER_TEST_LIST   += test_ipcam
-gUSER_TEST_LIST   += test_mouse_read
-#gUSER_TEST_LIST   += 1.ico
-#gUSER_TEST_LIST +=cam_raw_test
-gUSER_TEST_LIST   += test_remote_i2c
-#gUSER_TEST_LIST   += test_get_af_info
-gUSER_TEST_LIST   += test_pwm
-gUSER_TEST_LIST   += test_axi_dma
-gUSER_TEST_LIST   += hello
-
-gUSER_TEST_LIST   +=  $(gCUSTOMER_USER_TEST_LIST)
-```
-</code></pre>
-<p><strong>编译</strong>
-<code>bash make img </code></p>
-<h2 id="其他问题">其他问题</h2>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-1"> 1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-2"> 2</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-3"> 3</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-4"> 4</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-5"> 5</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-6"> 6</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-7"> 7</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-8"> 8</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-9"> 9</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-10"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-10">10</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-11"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-11">11</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-12"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-12">12</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-13"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-13">13</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-14"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-14">14</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-15"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-15">15</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-16"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-16">16</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-17"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-17">17</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-18"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-18">18</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-19"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-19">19</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-20"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-20">20</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-21"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-21">21</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-22"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-22">22</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-23"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-23">23</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-24"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-24">24</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-25"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-25">25</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-26"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-26">26</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-27"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-27">27</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-28"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-28">28</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-29"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-29">29</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-30"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-30">30</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-31"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-31">31</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-32"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-32">32</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-33"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-33">33</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-34"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-34">34</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-35"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-35">35</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-36"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-36">36</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-37"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-37">37</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-38"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-38">38</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-39"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-39">39</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-40"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-40">40</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-41"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-41">41</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-42"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-42">42</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#09f;font-style:italic">#======================================================================</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic">#== User Test</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic">#======================================================================</span>
+</span></span><span style="display:flex;"><span><span style="color:#033">gUSER_TEST_LIST</span>   <span style="color:#555">=</span> test_sample
+</span></span><span style="display:flex;"><span><span style="color:#033">gUSER_TEST_LIST</span>   <span style="color:#555">+=</span> test_ion
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic">#gUSER_TEST_LIST   += test_vcodec</span>
+</span></span><span style="display:flex;"><span><span style="color:#033">gUSER_TEST_LIST</span>   <span style="color:#555">+=</span> test_icc
+</span></span><span style="display:flex;"><span><span style="color:#033">gUSER_TEST_LIST</span>   <span style="color:#555">+=</span> test_spi
+</span></span><span style="display:flex;"><span><span style="color:#033">gUSER_TEST_LIST</span>   <span style="color:#555">+=</span> test_icc_proxy_rpc_src
+</span></span><span style="display:flex;"><span><span style="color:#033">gUSER_TEST_LIST</span>   <span style="color:#555">+=</span> test_icc_proxy_sink
+</span></span><span style="display:flex;"><span><span style="color:#033">gUSER_TEST_LIST</span>   <span style="color:#555">+=</span> test_cam_src
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic">#gUSER_TEST_LIST   += test_dzoom</span>
+</span></span><span style="display:flex;"><span><span style="color:#033">gUSER_TEST_LIST</span>   <span style="color:#555">+=</span> test_isp_output_format
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic">#gUSER_TEST_LIST   += test_yuv_multi_input</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic">#gUSER_TEST_LIST   += test_yuv_pipeline_ctl</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic">#gUSER_TEST_LIST   += test_yuv_pipeline_client</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic">#gUSER_TEST_LIST   += test_yuv_isp</span>
+</span></span><span style="display:flex;"><span><span style="color:#033">gUSER_TEST_LIST</span>   <span style="color:#555">+=</span> test_crypto
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic">#gUSER_TEST_LIST   += test_ar_gui</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic">#gUSER_TEST_LIST   += test_ar_gui_random</span>
+</span></span><span style="display:flex;"><span><span style="color:#033">gUSER_TEST_LIST</span>   <span style="color:#555">+=</span> test_mem_watch
+</span></span><span style="display:flex;"><span><span style="color:#033">gUSER_TEST_LIST</span>   <span style="color:#555">+=</span> test_send_data
+</span></span><span style="display:flex;"><span><span style="color:#033">gUSER_TEST_LIST</span>   <span style="color:#555">+=</span> test_hid_service
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic">#gUSER_TEST_LIST   += test_yuv_sensor</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic">#gUSER_TEST_LIST   += test_pseudo_yuv_multi_input</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic">#gUSER_TEST_LIST   += test_pseudo_multi_input_hevc</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic">#gUSER_TEST_LIST   += test_pipeline</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic">#gUSER_TEST_LIST   += test_comp_osd</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic">#gUSER_TEST_LIST   += test_pipe_onoff</span>
+</span></span><span style="display:flex;"><span><span style="color:#033">gUSER_TEST_LIST</span>   <span style="color:#555">+=</span> test_framebuffer
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic">#gUSER_TEST_LIST   += test_yuv_framebuffer</span>
+</span></span><span style="display:flex;"><span><span style="color:#033">gUSER_TEST_LIST</span>   <span style="color:#555">+=</span> test_ipcam
+</span></span><span style="display:flex;"><span><span style="color:#033">gUSER_TEST_LIST</span>   <span style="color:#555">+=</span> test_mouse_read
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic">#gUSER_TEST_LIST   += 1.ico</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic">#gUSER_TEST_LIST +=cam_raw_test</span>
+</span></span><span style="display:flex;"><span><span style="color:#033">gUSER_TEST_LIST</span>   <span style="color:#555">+=</span> test_remote_i2c
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic">#gUSER_TEST_LIST   += test_get_af_info</span>
+</span></span><span style="display:flex;"><span><span style="color:#033">gUSER_TEST_LIST</span>   <span style="color:#555">+=</span> test_pwm
+</span></span><span style="display:flex;"><span><span style="color:#033">gUSER_TEST_LIST</span>   <span style="color:#555">+=</span> test_axi_dma
+</span></span><span style="display:flex;"><span><span style="color:#033">gUSER_TEST_LIST</span>   <span style="color:#555">+=</span> hello
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#033">gUSER_TEST_LIST</span>   <span style="color:#555">+=</span>  <span style="color:#069;font-weight:bold">$(</span>gCUSTOMER_USER_TEST_LIST<span style="color:#069;font-weight:bold">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>编译</strong></p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-1">1</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>make img
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="其他问题">其他问题</h2>
 <p>中文ubuntu 需要替换文件(xxx/AR_SDK/sdk-artosyn-ar-sirius-evb-hdmi-sirius-001-d-0.0.0.34/makery)：</p>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
