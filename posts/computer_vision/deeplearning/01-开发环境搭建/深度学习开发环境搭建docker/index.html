@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>DL:深度学习开发环境搭建(docker) - 这是我的网站</title><meta name="Description" content="深度学习开发环境搭建"><meta property="og:title" content="DL:深度学习开发环境搭建(docker)" />
+<meta property="og:description" content="深度学习开发环境搭建" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zhangyuhu.github.io/posts/computer_vision/deeplearning/01-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BAdocker/" /><meta property="og:image" content="https://zhangyuhu.github.io/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-01-30T14:52:52+08:00" />
+<meta property="article:modified_time" content="2023-01-30T17:11:52+08:00" /><meta property="og:site_name" content="我的网站" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://zhangyuhu.github.io/logo.png"/>
+
+<meta name="twitter:title" content="DL:深度学习开发环境搭建(docker)"/>
+<meta name="twitter:description" content="深度学习开发环境搭建"/>
+<meta name="application-name" content="我的网站">
+<meta name="apple-mobile-web-app-title" content="我的网站"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://zhangyuhu.github.io/posts/computer_vision/deeplearning/01-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BAdocker/" /><link rel="prev" href="https://zhangyuhu.github.io/posts/computer_vision/camera/stereocamera/realsense/realsensed450%E6%B7%B1%E5%BA%A6%E5%AF%B9%E9%BD%90/" /><link rel="next" href="https://zhangyuhu.github.io/posts/computer_vision/deeplearning/01-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" /><link rel="stylesheet" href="/css/style.min.990eb8dd228a2b662f63cfe59575be8aa494cb9d40ffd854f26b9d9e588e1f4fdadb6a34e3f9a9171244d3ee6c107521923ab30705f3ef50d3e435eda1afc910.css" integrity="sha512-mQ643SKKK2YvY8/llXW+iqSUy51A/9hU8mudnliOH0/a22o04/mpFxJE0+5sEHUhkjqzBwXz71DT5DXtoa/JEA=="><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "DL:深度学习开发环境搭建(docker)",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/zhangyuhu.github.io\/posts\/computer_vision\/deeplearning\/01-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA\/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BAdocker\/"
+        },"image": [{
+                            "@type": "ImageObject",
+                            "url": "https:\/\/zhangyuhu.github.io\/images\/Apple-Devices-Preview.png",
+                            "width":  3200 ,
+                            "height":  2048 
+                        }],"genre": "posts","keywords": "环境搭建","wordcount":  2109 ,
+        "url": "https:\/\/zhangyuhu.github.io\/posts\/computer_vision\/deeplearning\/01-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA\/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BAdocker\/","datePublished": "2023-01-30T14:52:52+08:00","dateModified": "2023-01-30T17:11:52+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "zhangyuhu"
+            },"description": "深度学习开发环境搭建"
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="这是我的网站"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/" title="文章"><i class='fas fa-archive fa-fw fa-sm'></i> 文章 </a><a class="menu-item" href="/tags/"><i class='fas fa-tags fa-fw fa-sm'></i> 标签 </a><a class="menu-item" href="/categories/"><i class='fas fa-th fa-fw fa-sm'></i> 分类 </a><a class="menu-item" href="/about/"><i class='fas fa-user-tie fa-fw fa-sm'></i> 关于 </a><a class="menu-item" href="/tool/"><i class='fas fa-cube fa-fw fa-sm'></i> 工具箱 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="这是我的网站"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="文章"><i class='fas fa-archive fa-fw fa-sm'></i>文章</a><a class="menu-item" href="/tags/" title=""><i class='fas fa-tags fa-fw fa-sm'></i>标签</a><a class="menu-item" href="/categories/" title=""><i class='fas fa-th fa-fw fa-sm'></i>分类</a><a class="menu-item" href="/about/" title=""><i class='fas fa-user-tie fa-fw fa-sm'></i>关于</a><a class="menu-item" href="/tool/" title=""><i class='fas fa-cube fa-fw fa-sm'></i>工具箱</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">DL:深度学习开发环境搭建(docker)</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://zhangyuhu.github.io/" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>zhangyuhu</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>计算机视觉</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-01-30">2023-01-30</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2109 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;5 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#硬件环境">硬件环境</a></li>
+    <li><a href="#深度学习开发环境搭建docker">深度学习开发环境搭建docker</a>
+      <ul>
+        <li><a href="#docker">Docker</a></li>
+        <li><a href="#nvidia-docker-安装">NVIDIA Docker 安装</a></li>
+        <li><a href="#docker基本使用">Docker基本使用</a>
+          <ul>
+            <li><a href="#启动已停止运行的容器">启动已停止运行的容器</a></li>
+            <li><a href="#停止一个容器">停止一个容器</a></li>
+            <li><a href="#进入容器">进入容器</a></li>
+            <li><a href="#导出和导入容器">导出和导入容器</a></li>
+            <li><a href="#删除容器">删除容器</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#docker-训练模型">docker 训练模型</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><blockquote>
+<p>本文采用<a href="http://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreffer ">知识共享署名 4.0 国际许可协议</a>进行许可，转载时请注明原文链接，图片在使用时请保留全部内容，可适当缩放并在引用处附上图片所在的文章链接。</p>
+</blockquote>
+<!-- TOC -->
+<ul>
+<li><a href="#%e7%a1%ac%e4%bb%b6%e7%8e%af%e5%a2%83" rel="">硬件环境</a></li>
+<li><a href="#%e6%b7%b1%e5%ba%a6%e5%ad%a6%e4%b9%a0%e5%bc%80%e5%8f%91%e7%8e%af%e5%a2%83%e6%90%ad%e5%bb%badocker" rel="">深度学习开发环境搭建docker</a>
+<ul>
+<li><a href="#docker" rel="">Docker</a></li>
+<li><a href="#nvidia-docker-%e5%ae%89%e8%a3%85" rel="">NVIDIA Docker 安装</a></li>
+<li><a href="#docker%e5%9f%ba%e6%9c%ac%e4%bd%bf%e7%94%a8" rel="">Docker基本使用</a>
+<ul>
+<li><a href="#%e5%90%af%e5%8a%a8%e5%b7%b2%e5%81%9c%e6%ad%a2%e8%bf%90%e8%a1%8c%e7%9a%84%e5%ae%b9%e5%99%a8" rel="">启动已停止运行的容器</a></li>
+<li><a href="#%e5%81%9c%e6%ad%a2%e4%b8%80%e4%b8%aa%e5%ae%b9%e5%99%a8" rel="">停止一个容器</a></li>
+<li><a href="#%e8%bf%9b%e5%85%a5%e5%ae%b9%e5%99%a8" rel="">进入容器</a></li>
+<li><a href="#%e5%af%bc%e5%87%ba%e5%92%8c%e5%af%bc%e5%85%a5%e5%ae%b9%e5%99%a8" rel="">导出和导入容器</a></li>
+<li><a href="#%e5%88%a0%e9%99%a4%e5%ae%b9%e5%99%a8" rel="">删除容器</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#docker-%e8%ae%ad%e7%bb%83%e6%a8%a1%e5%9e%8b" rel="">docker 训练模型</a></li>
+</ul>
+<!-- /TOC -->
+<h1 id="硬件环境">硬件环境</h1>
+<p>处理器：AMD® Ryzen 5 3600 6-core processor × 12</p>
+<p>显卡：NVIDIA Corporation TU104 [GeForce RTX 2060]</p>
+<p>内存：16G DDR4</p>
+<p>硬盘：1T	SSD</p>
+<p>系统：Ubuntu 20.04.1 LTS</p>
+<h1 id="深度学习开发环境搭建docker">深度学习开发环境搭建docker</h1>
+<h2 id="docker">Docker</h2>
+<p>Docker 是一个开源的应用容器引擎，基于 go语言并遵从 Apache2.0 协议开源。</p>
+<p>Docker 可以让开发者打包他们的应用以及依赖包到一个轻量级、可移植的容器中，然后发布到任何流行的 Linux 机器上，也可以实现虚拟化。</p>
+<p>容器是完全使用沙箱机制，相互之间不会有任何接口（类似 iPhone 的 app）,更重要的是容器性能开销极低。</p>
+<h2 id="nvidia-docker-安装">NVIDIA Docker 安装</h2>
+<ol>
+<li>docker安装 官网上有详细的介绍：Install Docker Engine on Ubuntudocs.docker.com 或者运行下面的命令安装：</li>
+</ol>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-1">1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-2">2</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-3">3</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-4">4</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo apt-get updatesudo 
+</span></span><span style="display:flex;"><span>apt-get install docker.io
+</span></span><span style="display:flex;"><span>systemctl start docker
+</span></span><span style="display:flex;"><span>systemctl <span style="color:#366">enable</span> docker
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>可以运行这条命令检查是否安装成功：</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-1">1</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker version
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li>安装NVIDIA Container Toolkit</li>
+</ol>
+<p><a href="https://github.com/NVIDIA/nvidia-docker" target="_blank" rel="noopener noreffer ">NVIDIA/nvidia-docker</a></p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-1">1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-2">2</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-3">3</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-4">4</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> <span style="color:#09f;font-style:italic">#首先要确保已经安装了</span>
+</span></span><span style="display:flex;"><span> nvidia driver 
+</span></span><span style="display:flex;"><span> <span style="color:#09f;font-style:italic"># 2. 添加源 distribution=$(. /etc/os-release;echo $ID$VERSION_ID) curl -s -L https://nvidia.github.io/nvidia-docker/gpgkey | sudo apt-key add - curl -s -L https://nvidia.github.io/nvidia-docker/$distribution/nvidia-docker.list | sudo tee /etc/apt/sources.list.d/nvidia-docker.list</span>
+</span></span><span style="display:flex;"><span> <span style="color:#09f;font-style:italic"># 2. 安装并重启 sudo apt-get update &amp;&amp; sudo apt-get install -y nvidia-container-toolkit sudo systemctl restart docker</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-1">1</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo docker run -it --name test_nvidia_docker --gpus all nvidia/cuda:11.0-base
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>其中最后的参数nvidia/cuda:11.0-base 是Nvidia官方的镜像，需要根据工作站主机中实际安装的cuda版本进行修改，版本可以用nvcc -V查看。</p>
+<p>进入容器之后可以跑一下nvidia-smi命令看看：</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-1"> 1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-2"> 2</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-3"> 3</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-4"> 4</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-5"> 5</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-6"> 6</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-7"> 7</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-8"> 8</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-9"> 9</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-10"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-10">10</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-11"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-11">11</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-12"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-12">12</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-13"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-13">13</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-14"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-14">14</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-15"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-15">15</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-16"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-16">16</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-17"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-17">17</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-18"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-18">18</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-19"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-19">19</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>Mon Jan 18 22:59:37 2021       
+</span></span><span style="display:flex;"><span>+-----------------------------------------------------------------------------+
+</span></span><span style="display:flex;"><span>| NVIDIA-SMI 450.102.04   Driver Version: 450.102.04   CUDA Version: 11.0     |
+</span></span><span style="display:flex;"><span>|-------------------------------+----------------------+----------------------+
+</span></span><span style="display:flex;"><span>| GPU  Name        Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC |
+</span></span><span style="display:flex;"><span>| Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |
+</span></span><span style="display:flex;"><span>|                               |                      |               MIG M. |
+</span></span><span style="display:flex;"><span>|===============================+======================+======================|
+</span></span><span style="display:flex;"><span>|   0  GeForce RTX 2060    Off  | 00000000:26:00.0  On |                  N/A |
+</span></span><span style="display:flex;"><span>|  0%   41C    P8     8W / 160W |    947MiB /  5931MiB |      5%      Default |
+</span></span><span style="display:flex;"><span>|                               |                      |                  N/A |
+</span></span><span style="display:flex;"><span>+-------------------------------+----------------------+----------------------+
+</span></span><span style="display:flex;"><span>                                                                               
+</span></span><span style="display:flex;"><span>+-----------------------------------------------------------------------------+
+</span></span><span style="display:flex;"><span>| Processes:                                                                  |
+</span></span><span style="display:flex;"><span>|  GPU   GI   CI        PID   Type   Process name                  GPU Memory |
+</span></span><span style="display:flex;"><span>|        ID   ID                                                   Usage      |
+</span></span><span style="display:flex;"><span>|=============================================================================|
+</span></span><span style="display:flex;"><span>+-----------------------------------------------------------------------------+
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="docker基本使用">Docker基本使用</h2>
+<h3 id="启动已停止运行的容器">启动已停止运行的容器</h3>
+<p>查看所有的容器命令如下：</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-1">1</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ docker ps -a
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>点击图片查看大图：</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-1">1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-2">2</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-3">3</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>CONTAINER ID        IMAGE                   COMMAND             CREATED             STATUS                      PORTS               NAMES
+</span></span><span style="display:flex;"><span>e8240c787e2f        nvidia/cuda:11.0-base   &#34;/bin/bash&#34;         26 minutes ago      Exited (0) 52 seconds ago                       train_mnist
+</span></span><span style="display:flex;"><span>ae3d00922c08        nvidia/cuda:11.0-base   &#34;/bin/bash&#34;         37 hours ago        Exited (0) 37 hours ago                         test_nvidia_docker
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>使用 docker start 启动一个已停止的容器：</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-1">1</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ docker start ae3d00922c08 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-1">1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-2">2</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>zyh@zyh:~$ sudo docker start ae3d00922c08 
+</span></span><span style="display:flex;"><span>ae3d00922c08
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="停止一个容器">停止一个容器</h3>
+<p>停止容器的命令如下：</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-9-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-9-1">1</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ docker stop &lt;容器 ID&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>停止的容器可以通过 docker restart 重启：</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-1">1</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ docker restart &lt;容器 ID&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="进入容器">进入容器</h3>
+<p>在使用 <strong>-d</strong> 参数时，容器启动后会进入后台。此时想要进入容器，可以通过以下指令进入：</p>
+<ul>
+<li><strong>docker attach</strong></li>
+<li><strong>docker exec</strong>：推荐大家使用 docker exec 命令，因为此退出容器终端，不会导致容器的停止。</li>
+</ul>
+<p><strong>attach 命令</strong></p>
+<p>下面演示了使用 docker attach 命令。</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-11-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-11-1">1</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ docker attach e8240c787e2f 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>注意：</strong> 如果从这个容器退出，会导致容器的停止。</p>
+<p><strong>exec 命令</strong></p>
+<p>下面演示了使用 docker exec 命令。</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-1">1</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker <span style="color:#366">exec</span> -it e8240c787e2f /bin/bash
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>注意：</strong> 如果从这个容器退出，容器不会停止，这就是为什么推荐大家使用 <strong>docker exec</strong> 的原因。</p>
+<p>更多参数说明请使用 <strong>docker exec &ndash;help</strong> 命令查看。</p>
+<h3 id="导出和导入容器">导出和导入容器</h3>
+<p><strong>导出容器</strong></p>
+<p>如果要导出本地某个容器，可以使用 <strong>docker export</strong> 命令。</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-13-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-13-1">1</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ docker <span style="color:#366">export</span> e8240c787e2f &gt; train_mnist.tar
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>导出容器 e8240c787e2f 快照到本地文件 train_mnist.tar。</p>
+<p>这样将导出容器快照到本地文件。</p>
+<p><strong>导入容器快照</strong></p>
+<p>可以使用 docker import 从容器快照文件中再导入为镜像，以下实例将快照文件 ubuntu.tar 导入到镜像 test/ubuntu:v1:</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-14-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-14-1">1</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ cat docker/train_mnist.tar | docker import - test/train_mnist:v1
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>此外，也可以通过指定 URL 或者某个目录来导入，例如：</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-15-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-15-1">1</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ docker import http://example.com/exampleimage.tgz example/imagerepo
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="删除容器">删除容器</h3>
+<p>删除容器使用 <strong>docker rm</strong> 命令：</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-16-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-16-1">1</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ docker rm -f ae3d00922c08
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>下面的命令可以清理掉所有处于终止状态的容器。</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-17-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-17-1">1</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ docker container prune
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>拷贝本地文件到docker</p>
+<ol>
+<li>
+<p>查找容器</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-18-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-18-1">1</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker ps -a
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-19-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-19-1">1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-19-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-19-2">2</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>CONTAINER ID        IMAGE                   COMMAND             CREATED             STATUS              PORTS               NAMES
+</span></span><span style="display:flex;"><span>e8240c787e2f        nvidia/cuda:11.0-base   &#34;/bin/bash&#34;         42 minutes ago      Up 8 minutes                            train_mnist
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>确定我们的容器名，并获取容器长ID</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-20-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-20-1">1</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker inspect -f <span style="color:#c30">&#39;{{.ID}}&#39;</span> train_mnist
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-21-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-21-1">1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-21-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-21-2">2</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>zyh@zyh:~/temp$ sudo docker inspect -f <span style="color:#c30">&#39;{{.ID}}&#39;</span> train_mnist
+</span></span><span style="display:flex;"><span>e8240c787e2fde06a3f1066db71bc63cb52514c3cb0175d51713f248a2e2b56c
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>复制文件</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-22-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-22-1">1</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo docker cp /home/zyh/temp/cuda_11.0.2_450.51.05_linux.run e8240c787e2fde06a3f1066db71bc63cb52514c3cb0175d51713f248a2e2b56c:/home/zyh
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<h1 id="docker-训练模型">docker 训练模型</h1>
+<ol>
+<li>
+<p>创建docker</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-23-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-23-1">1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-23-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-23-2">2</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-23-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-23-3">3</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-23-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-23-4">4</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-23-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-23-5">5</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> sudo docker run  -it  --name train_mnist <span style="color:#c30;font-weight:bold">\
+</span></span></span><span style="display:flex;"><span><span style="color:#c30;font-weight:bold"></span> -v /etc/timezone:/etc/timezone <span style="color:#c30;font-weight:bold">\
+</span></span></span><span style="display:flex;"><span><span style="color:#c30;font-weight:bold"></span> -v /etc/localtime:/etc/localtime <span style="color:#c30;font-weight:bold">\
+</span></span></span><span style="display:flex;"><span><span style="color:#c30;font-weight:bold"></span> -v /home/zyh/WorkSpace/_share:/home/workspace/_share  <span style="color:#c30;font-weight:bold">\
+</span></span></span><span style="display:flex;"><span><span style="color:#c30;font-weight:bold"></span> --gpus all nvidia/cuda:11.0-base
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>查看 nvidia 驱动</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-24-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-24-1">1</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>nvidia-smi
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>安装 cuda</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-25-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-25-1">1</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo sh ./cuda_11.0.2_450.51.05_linux.run
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>配置环境变量</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-26-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-26-1">1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-26-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-26-2">2</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-26-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-26-3">3</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-26-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-26-4">4</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-26-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-26-5">5</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-26-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-26-6">6</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-26-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-26-7">7</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>vim ~/.bashrc
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#366">export</span> <span style="color:#033">CUDA_HOME</span><span style="color:#555">=</span>/usr/local/cuda-11.0
+</span></span><span style="display:flex;"><span><span style="color:#366">export</span> <span style="color:#033">LD_LIBRARY_PATH</span><span style="color:#555">=</span><span style="color:#a00">${</span><span style="color:#033">CUDA_HOME</span><span style="color:#a00">}</span>/lib64
+</span></span><span style="display:flex;"><span><span style="color:#366">export</span> <span style="color:#033">PATH</span><span style="color:#555">=</span><span style="color:#a00">${</span><span style="color:#033">CUDA_HOME</span><span style="color:#a00">}</span>/bin:<span style="color:#a00">${</span><span style="color:#033">PATH</span><span style="color:#a00">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#366">source</span> ~/.bashrc
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>查看安装版本</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-27-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-27-1">1</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>nvcc -V
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>安装 CuDNN</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-28-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-28-1">1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-28-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-28-2">2</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-28-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-28-3">3</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-28-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-28-4">4</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> tar -xzvf cudnn-11.0-linux-x64-v8.0.5.39.tgz
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span> sudo cp cuda/lib64/* /usr/local/cuda-11.0/lib64/
+</span></span><span style="display:flex;"><span> sudo cp cuda/include/* /usr/local/cuda-11.0/include/
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>查看 CUDNN的版本</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-29-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-29-1">1</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cat /usr/local/cuda/include/cudnn_version.h | grep CUDNN_MAJOR -A <span style="color:#f60">2</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>安装conda</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-30-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-30-1">1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-30-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-30-2">2</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-30-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-30-3">3</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>chmod +x Anaconda3-2020.11-Linux-x86_64.sh
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>./Anaconda3-2020.11-Linux-x86_64.sh
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>测试</p>
+<p>创建 python3.8+pytorch1.7+cuda11.0的虚拟环境</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-31-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-31-1">1</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>conda create --name python_38-pytorch_1.7.0 <span style="color:#033">python</span><span style="color:#555">=</span>3.8
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>进入环境</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-32-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-32-1">1</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>conda activate python_38-pytorch_1.7.0
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>安装pytorch</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-33-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-33-1">1</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>pip install <span style="color:#033">torch</span><span style="color:#555">==</span>1.7.0+cu110 <span style="color:#033">torchvision</span><span style="color:#555">==</span>0.8.1+cu110 <span style="color:#033">torchaudio</span><span style="color:#555">===</span>0.7.0 -f https://download.pytorch.org/whl/torch_stable.html
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>测试文件</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-1">  1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-2">  2</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-3">  3</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-4">  4</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-5">  5</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-6">  6</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-7">  7</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-8">  8</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-9">  9</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-10"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-10"> 10</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-11"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-11"> 11</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-12"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-12"> 12</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-13"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-13"> 13</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-14"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-14"> 14</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-15"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-15"> 15</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-16"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-16"> 16</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-17"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-17"> 17</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-18"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-18"> 18</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-19"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-19"> 19</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-20"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-20"> 20</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-21"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-21"> 21</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-22"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-22"> 22</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-23"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-23"> 23</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-24"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-24"> 24</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-25"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-25"> 25</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-26"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-26"> 26</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-27"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-27"> 27</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-28"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-28"> 28</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-29"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-29"> 29</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-30"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-30"> 30</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-31"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-31"> 31</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-32"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-32"> 32</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-33"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-33"> 33</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-34"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-34"> 34</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-35"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-35"> 35</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-36"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-36"> 36</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-37"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-37"> 37</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-38"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-38"> 38</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-39"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-39"> 39</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-40"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-40"> 40</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-41"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-41"> 41</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-42"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-42"> 42</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-43"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-43"> 43</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-44"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-44"> 44</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-45"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-45"> 45</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-46"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-46"> 46</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-47"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-47"> 47</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-48"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-48"> 48</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-49"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-49"> 49</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-50"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-50"> 50</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-51"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-51"> 51</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-52"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-52"> 52</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-53"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-53"> 53</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-54"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-54"> 54</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-55"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-55"> 55</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-56"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-56"> 56</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-57"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-57"> 57</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-58"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-58"> 58</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-59"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-59"> 59</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-60"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-60"> 60</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-61"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-61"> 61</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-62"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-62"> 62</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-63"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-63"> 63</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-64"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-64"> 64</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-65"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-65"> 65</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-66"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-66"> 66</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-67"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-67"> 67</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-68"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-68"> 68</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-69"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-69"> 69</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-70"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-70"> 70</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-71"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-71"> 71</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-72"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-72"> 72</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-73"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-73"> 73</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-74"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-74"> 74</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-75"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-75"> 75</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-76"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-76"> 76</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-77"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-77"> 77</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-78"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-78"> 78</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-79"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-79"> 79</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-80"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-80"> 80</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-81"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-81"> 81</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-82"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-82"> 82</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-83"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-83"> 83</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-84"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-84"> 84</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-85"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-85"> 85</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-86"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-86"> 86</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-87"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-87"> 87</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-88"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-88"> 88</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-89"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-89"> 89</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-90"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-90"> 90</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-91"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-91"> 91</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-92"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-92"> 92</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-93"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-93"> 93</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-94"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-94"> 94</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-95"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-95"> 95</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-96"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-96"> 96</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-97"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-97"> 97</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-98"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-98"> 98</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-99"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-99"> 99</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-100"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-100">100</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-101"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-101">101</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-102"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-102">102</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-103"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-103">103</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-104"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-104">104</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-105"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-105">105</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-106"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-106">106</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-107"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-107">107</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-108"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-108">108</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-109"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-109">109</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-110"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-110">110</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-111"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-111">111</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-112"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-112">112</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-113"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-113">113</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-114"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-114">114</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-115"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-115">115</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-116"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-116">116</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-117"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-117">117</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-118"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-118">118</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">argparse</span>
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">torch</span>
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">torch.nn</span> <span style="color:#069;font-weight:bold">as</span> <span style="color:#0cf;font-weight:bold">nn</span>
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">torch.nn.functional</span> <span style="color:#069;font-weight:bold">as</span> <span style="color:#0cf;font-weight:bold">F</span>
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">torch.optim</span> <span style="color:#069;font-weight:bold">as</span> <span style="color:#0cf;font-weight:bold">optim</span>
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">from</span> <span style="color:#0cf;font-weight:bold">torchvision</span> <span style="color:#069;font-weight:bold">import</span> datasets, transforms
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">class</span> <span style="color:#0a8;font-weight:bold">Net</span>(nn<span style="color:#555">.</span>Module):
+</span></span><span style="display:flex;"><span>    <span style="color:#069;font-weight:bold">def</span> __init__(self):
+</span></span><span style="display:flex;"><span>        <span style="color:#366">super</span>(Net, self)<span style="color:#555">.</span>__init__()
+</span></span><span style="display:flex;"><span>        self<span style="color:#555">.</span>conv1 <span style="color:#555">=</span> nn<span style="color:#555">.</span>Conv2d(<span style="color:#f60">1</span>, <span style="color:#f60">20</span>, <span style="color:#f60">5</span>, <span style="color:#f60">1</span>)
+</span></span><span style="display:flex;"><span>        self<span style="color:#555">.</span>conv2 <span style="color:#555">=</span> nn<span style="color:#555">.</span>Conv2d(<span style="color:#f60">20</span>, <span style="color:#f60">50</span>, <span style="color:#f60">5</span>, <span style="color:#f60">1</span>)
+</span></span><span style="display:flex;"><span>        self<span style="color:#555">.</span>fc1 <span style="color:#555">=</span> nn<span style="color:#555">.</span>Linear(<span style="color:#f60">4</span> <span style="color:#555">*</span> <span style="color:#f60">4</span> <span style="color:#555">*</span> <span style="color:#f60">50</span>, <span style="color:#f60">500</span>)
+</span></span><span style="display:flex;"><span>        self<span style="color:#555">.</span>fc2 <span style="color:#555">=</span> nn<span style="color:#555">.</span>Linear(<span style="color:#f60">500</span>, <span style="color:#f60">10</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#069;font-weight:bold">def</span> <span style="color:#c0f">forward</span>(self, x):
+</span></span><span style="display:flex;"><span>        x <span style="color:#555">=</span> F<span style="color:#555">.</span>relu(self<span style="color:#555">.</span>conv1(x))
+</span></span><span style="display:flex;"><span>        x <span style="color:#555">=</span> F<span style="color:#555">.</span>max_pool2d(x, <span style="color:#f60">2</span>, <span style="color:#f60">2</span>)
+</span></span><span style="display:flex;"><span>        x <span style="color:#555">=</span> F<span style="color:#555">.</span>relu(self<span style="color:#555">.</span>conv2(x))
+</span></span><span style="display:flex;"><span>        x <span style="color:#555">=</span> F<span style="color:#555">.</span>max_pool2d(x, <span style="color:#f60">2</span>, <span style="color:#f60">2</span>)
+</span></span><span style="display:flex;"><span>        x <span style="color:#555">=</span> x<span style="color:#555">.</span>view(<span style="color:#555">-</span><span style="color:#f60">1</span>, <span style="color:#f60">4</span> <span style="color:#555">*</span> <span style="color:#f60">4</span> <span style="color:#555">*</span> <span style="color:#f60">50</span>)
+</span></span><span style="display:flex;"><span>        x <span style="color:#555">=</span> F<span style="color:#555">.</span>relu(self<span style="color:#555">.</span>fc1(x))
+</span></span><span style="display:flex;"><span>        x <span style="color:#555">=</span> self<span style="color:#555">.</span>fc2(x)
+</span></span><span style="display:flex;"><span>        <span style="color:#069;font-weight:bold">return</span> F<span style="color:#555">.</span>log_softmax(x, dim<span style="color:#555">=</span><span style="color:#f60">1</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">def</span> <span style="color:#c0f">train</span>(args, model, device, train_loader, optimizer, epoch):
+</span></span><span style="display:flex;"><span>    model<span style="color:#555">.</span>train()
+</span></span><span style="display:flex;"><span>    <span style="color:#069;font-weight:bold">for</span> batch_idx, (data, target) <span style="color:#000;font-weight:bold">in</span> <span style="color:#366">enumerate</span>(train_loader):
+</span></span><span style="display:flex;"><span>        data, target <span style="color:#555">=</span> data<span style="color:#555">.</span>to(device), target<span style="color:#555">.</span>to(device)
+</span></span><span style="display:flex;"><span>        optimizer<span style="color:#555">.</span>zero_grad()
+</span></span><span style="display:flex;"><span>        output <span style="color:#555">=</span> model(data)
+</span></span><span style="display:flex;"><span>        loss <span style="color:#555">=</span> F<span style="color:#555">.</span>nll_loss(output, target)
+</span></span><span style="display:flex;"><span>        loss<span style="color:#555">.</span>backward()
+</span></span><span style="display:flex;"><span>        optimizer<span style="color:#555">.</span>step()
+</span></span><span style="display:flex;"><span>        <span style="color:#069;font-weight:bold">if</span> batch_idx <span style="color:#555">%</span> args<span style="color:#555">.</span>log_interval <span style="color:#555">==</span> <span style="color:#f60">0</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#366">print</span>(<span style="color:#c30">&#39;Train Epoch: </span><span style="color:#a00">{}</span><span style="color:#c30"> [</span><span style="color:#a00">{}</span><span style="color:#c30">/</span><span style="color:#a00">{}</span><span style="color:#c30"> (</span><span style="color:#a00">{:.0f}</span><span style="color:#c30">%)]</span><span style="color:#c30;font-weight:bold">\t</span><span style="color:#c30">Loss: </span><span style="color:#a00">{:.6f}</span><span style="color:#c30">&#39;</span><span style="color:#555">.</span>format(
+</span></span><span style="display:flex;"><span>                epoch, batch_idx <span style="color:#555">*</span> <span style="color:#366">len</span>(data), <span style="color:#366">len</span>(train_loader<span style="color:#555">.</span>dataset),
+</span></span><span style="display:flex;"><span>                <span style="color:#f60">100.</span> <span style="color:#555">*</span> batch_idx <span style="color:#555">/</span> <span style="color:#366">len</span>(train_loader), loss<span style="color:#555">.</span>item()))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">def</span> <span style="color:#c0f">test</span>(args, model, device, test_loader):
+</span></span><span style="display:flex;"><span>    model<span style="color:#555">.</span>eval()
+</span></span><span style="display:flex;"><span>    test_loss <span style="color:#555">=</span> <span style="color:#f60">0</span>
+</span></span><span style="display:flex;"><span>    correct <span style="color:#555">=</span> <span style="color:#f60">0</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#069;font-weight:bold">with</span> torch<span style="color:#555">.</span>no_grad():
+</span></span><span style="display:flex;"><span>        <span style="color:#069;font-weight:bold">for</span> data, target <span style="color:#000;font-weight:bold">in</span> test_loader:
+</span></span><span style="display:flex;"><span>            data, target <span style="color:#555">=</span> data<span style="color:#555">.</span>to(device), target<span style="color:#555">.</span>to(device)
+</span></span><span style="display:flex;"><span>            output <span style="color:#555">=</span> model(data)
+</span></span><span style="display:flex;"><span>            <span style="color:#09f;font-style:italic"># sum up batch loss</span>
+</span></span><span style="display:flex;"><span>            test_loss <span style="color:#555">+=</span> F<span style="color:#555">.</span>nll_loss(output, target, reduction<span style="color:#555">=</span><span style="color:#c30">&#39;sum&#39;</span>)<span style="color:#555">.</span>item()
+</span></span><span style="display:flex;"><span>            <span style="color:#09f;font-style:italic"># get the index of the max log-probability</span>
+</span></span><span style="display:flex;"><span>            pred <span style="color:#555">=</span> output<span style="color:#555">.</span>argmax(dim<span style="color:#555">=</span><span style="color:#f60">1</span>, keepdim<span style="color:#555">=</span><span style="color:#069;font-weight:bold">True</span>)
+</span></span><span style="display:flex;"><span>            correct <span style="color:#555">+=</span> pred<span style="color:#555">.</span>eq(target<span style="color:#555">.</span>view_as(pred))<span style="color:#555">.</span>sum()<span style="color:#555">.</span>item()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    test_loss <span style="color:#555">/=</span> <span style="color:#366">len</span>(test_loader<span style="color:#555">.</span>dataset)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#366">print</span>(<span style="color:#c30">&#39;</span><span style="color:#c30;font-weight:bold">\n</span><span style="color:#c30">Test set: Average loss: </span><span style="color:#a00">{:.4f}</span><span style="color:#c30">, Accuracy: </span><span style="color:#a00">{}</span><span style="color:#c30">/</span><span style="color:#a00">{}</span><span style="color:#c30"> (</span><span style="color:#a00">{:.0f}</span><span style="color:#c30">%)</span><span style="color:#c30;font-weight:bold">\n</span><span style="color:#c30">&#39;</span><span style="color:#555">.</span>format(
+</span></span><span style="display:flex;"><span>        test_loss, correct, <span style="color:#366">len</span>(test_loader<span style="color:#555">.</span>dataset),
+</span></span><span style="display:flex;"><span>        <span style="color:#f60">100.</span> <span style="color:#555">*</span> correct <span style="color:#555">/</span> <span style="color:#366">len</span>(test_loader<span style="color:#555">.</span>dataset)))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">def</span> <span style="color:#c0f">main</span>():
+</span></span><span style="display:flex;"><span>    parser <span style="color:#555">=</span> argparse<span style="color:#555">.</span>ArgumentParser(description<span style="color:#555">=</span><span style="color:#c30">&#39;PyTorch MNIST Example&#39;</span>)
+</span></span><span style="display:flex;"><span>    parser<span style="color:#555">.</span>add_argument(<span style="color:#c30">&#39;--batch-size&#39;</span>, <span style="color:#366">type</span><span style="color:#555">=</span><span style="color:#366">int</span>, default<span style="color:#555">=</span><span style="color:#f60">64</span>, metavar<span style="color:#555">=</span><span style="color:#c30">&#39;N&#39;</span>,
+</span></span><span style="display:flex;"><span>                        help<span style="color:#555">=</span><span style="color:#c30">&#39;input batch size for training (default: 64)&#39;</span>)
+</span></span><span style="display:flex;"><span>    parser<span style="color:#555">.</span>add_argument(<span style="color:#c30">&#39;--test-batch-size&#39;</span>, <span style="color:#366">type</span><span style="color:#555">=</span><span style="color:#366">int</span>, default<span style="color:#555">=</span><span style="color:#f60">1000</span>, metavar<span style="color:#555">=</span><span style="color:#c30">&#39;N&#39;</span>,
+</span></span><span style="display:flex;"><span>                        help<span style="color:#555">=</span><span style="color:#c30">&#39;input batch size for testing (default: 1000)&#39;</span>)
+</span></span><span style="display:flex;"><span>    parser<span style="color:#555">.</span>add_argument(<span style="color:#c30">&#39;--epochs&#39;</span>, <span style="color:#366">type</span><span style="color:#555">=</span><span style="color:#366">int</span>, default<span style="color:#555">=</span><span style="color:#f60">10</span>, metavar<span style="color:#555">=</span><span style="color:#c30">&#39;N&#39;</span>,
+</span></span><span style="display:flex;"><span>                        help<span style="color:#555">=</span><span style="color:#c30">&#39;number of epochs to train (default: 10)&#39;</span>)
+</span></span><span style="display:flex;"><span>    parser<span style="color:#555">.</span>add_argument(<span style="color:#c30">&#39;--lr&#39;</span>, <span style="color:#366">type</span><span style="color:#555">=</span><span style="color:#366">float</span>, default<span style="color:#555">=</span><span style="color:#f60">0.01</span>, metavar<span style="color:#555">=</span><span style="color:#c30">&#39;LR&#39;</span>,
+</span></span><span style="display:flex;"><span>                        help<span style="color:#555">=</span><span style="color:#c30">&#39;learning rate (default: 0.01)&#39;</span>)
+</span></span><span style="display:flex;"><span>    parser<span style="color:#555">.</span>add_argument(<span style="color:#c30">&#39;--momentum&#39;</span>, <span style="color:#366">type</span><span style="color:#555">=</span><span style="color:#366">float</span>, default<span style="color:#555">=</span><span style="color:#f60">0.5</span>, metavar<span style="color:#555">=</span><span style="color:#c30">&#39;M&#39;</span>,
+</span></span><span style="display:flex;"><span>                        help<span style="color:#555">=</span><span style="color:#c30">&#39;SGD momentum (default: 0.5)&#39;</span>)
+</span></span><span style="display:flex;"><span>    parser<span style="color:#555">.</span>add_argument(<span style="color:#c30">&#39;--no-cuda&#39;</span>, action<span style="color:#555">=</span><span style="color:#c30">&#39;store_true&#39;</span>, default<span style="color:#555">=</span><span style="color:#069;font-weight:bold">False</span>,
+</span></span><span style="display:flex;"><span>                        help<span style="color:#555">=</span><span style="color:#c30">&#39;disables CUDA training&#39;</span>)
+</span></span><span style="display:flex;"><span>    parser<span style="color:#555">.</span>add_argument(<span style="color:#c30">&#39;--seed&#39;</span>, <span style="color:#366">type</span><span style="color:#555">=</span><span style="color:#366">int</span>, default<span style="color:#555">=</span><span style="color:#f60">1</span>, metavar<span style="color:#555">=</span><span style="color:#c30">&#39;S&#39;</span>,
+</span></span><span style="display:flex;"><span>                        help<span style="color:#555">=</span><span style="color:#c30">&#39;random seed (default: 1)&#39;</span>)
+</span></span><span style="display:flex;"><span>    parser<span style="color:#555">.</span>add_argument(<span style="color:#c30">&#39;--log-interval&#39;</span>, <span style="color:#366">type</span><span style="color:#555">=</span><span style="color:#366">int</span>, default<span style="color:#555">=</span><span style="color:#f60">10</span>, metavar<span style="color:#555">=</span><span style="color:#c30">&#39;N&#39;</span>,
+</span></span><span style="display:flex;"><span>                        help<span style="color:#555">=</span><span style="color:#c30">&#39;how many batches to wait before logging training status&#39;</span>)
+</span></span><span style="display:flex;"><span>    parser<span style="color:#555">.</span>add_argument(<span style="color:#c30">&#39;--save-model&#39;</span>, action<span style="color:#555">=</span><span style="color:#c30">&#39;store_true&#39;</span>, default<span style="color:#555">=</span><span style="color:#069;font-weight:bold">False</span>,
+</span></span><span style="display:flex;"><span>                        help<span style="color:#555">=</span><span style="color:#c30">&#39;For Saving the current Model&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    args <span style="color:#555">=</span> parser<span style="color:#555">.</span>parse_args()
+</span></span><span style="display:flex;"><span>    use_cuda <span style="color:#555">=</span> <span style="color:#000;font-weight:bold">not</span> args<span style="color:#555">.</span>no_cuda <span style="color:#000;font-weight:bold">and</span> torch<span style="color:#555">.</span>cuda<span style="color:#555">.</span>is_available()
+</span></span><span style="display:flex;"><span>    torch<span style="color:#555">.</span>manual_seed(args<span style="color:#555">.</span>seed)
+</span></span><span style="display:flex;"><span>    device <span style="color:#555">=</span> torch<span style="color:#555">.</span>device(<span style="color:#c30">&#34;cuda&#34;</span> <span style="color:#069;font-weight:bold">if</span> use_cuda <span style="color:#069;font-weight:bold">else</span> <span style="color:#c30">&#34;cpu&#34;</span>)
+</span></span><span style="display:flex;"><span>    kwargs <span style="color:#555">=</span> {<span style="color:#c30">&#39;num_workers&#39;</span>: <span style="color:#f60">1</span>, <span style="color:#c30">&#39;pin_memory&#39;</span>: <span style="color:#069;font-weight:bold">True</span>} <span style="color:#069;font-weight:bold">if</span> use_cuda <span style="color:#069;font-weight:bold">else</span> {}
+</span></span><span style="display:flex;"><span>    train_loader <span style="color:#555">=</span> torch<span style="color:#555">.</span>utils<span style="color:#555">.</span>data<span style="color:#555">.</span>DataLoader(
+</span></span><span style="display:flex;"><span>        datasets<span style="color:#555">.</span>MNIST(<span style="color:#c30">&#39;./data&#39;</span>, train<span style="color:#555">=</span><span style="color:#069;font-weight:bold">True</span>, download<span style="color:#555">=</span><span style="color:#069;font-weight:bold">True</span>,
+</span></span><span style="display:flex;"><span>                       transform<span style="color:#555">=</span>transforms<span style="color:#555">.</span>Compose([
+</span></span><span style="display:flex;"><span>                           transforms<span style="color:#555">.</span>ToTensor(),
+</span></span><span style="display:flex;"><span>                           transforms<span style="color:#555">.</span>Normalize((<span style="color:#f60">0.1307</span>,), (<span style="color:#f60">0.3081</span>,))
+</span></span><span style="display:flex;"><span>                       ])),
+</span></span><span style="display:flex;"><span>        batch_size<span style="color:#555">=</span>args<span style="color:#555">.</span>batch_size, shuffle<span style="color:#555">=</span><span style="color:#069;font-weight:bold">True</span>, <span style="color:#555">**</span>kwargs)
+</span></span><span style="display:flex;"><span>    test_loader <span style="color:#555">=</span> torch<span style="color:#555">.</span>utils<span style="color:#555">.</span>data<span style="color:#555">.</span>DataLoader(
+</span></span><span style="display:flex;"><span>        datasets<span style="color:#555">.</span>MNIST(<span style="color:#c30">&#39;./data&#39;</span>, train<span style="color:#555">=</span><span style="color:#069;font-weight:bold">False</span>, transform<span style="color:#555">=</span>transforms<span style="color:#555">.</span>Compose([
+</span></span><span style="display:flex;"><span>            transforms<span style="color:#555">.</span>ToTensor(),
+</span></span><span style="display:flex;"><span>            transforms<span style="color:#555">.</span>Normalize((<span style="color:#f60">0.1307</span>,), (<span style="color:#f60">0.3081</span>,))
+</span></span><span style="display:flex;"><span>        ])),
+</span></span><span style="display:flex;"><span>        batch_size<span style="color:#555">=</span>args<span style="color:#555">.</span>test_batch_size, shuffle<span style="color:#555">=</span><span style="color:#069;font-weight:bold">True</span>, <span style="color:#555">**</span>kwargs)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    model <span style="color:#555">=</span> Net()<span style="color:#555">.</span>to(device)
+</span></span><span style="display:flex;"><span>    optimizer <span style="color:#555">=</span> optim<span style="color:#555">.</span>SGD(model<span style="color:#555">.</span>parameters(), lr<span style="color:#555">=</span>args<span style="color:#555">.</span>lr,
+</span></span><span style="display:flex;"><span>                          momentum<span style="color:#555">=</span>args<span style="color:#555">.</span>momentum)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#069;font-weight:bold">for</span> epoch <span style="color:#000;font-weight:bold">in</span> <span style="color:#366">range</span>(<span style="color:#f60">1</span>, args<span style="color:#555">.</span>epochs <span style="color:#555">+</span> <span style="color:#f60">1</span>):
+</span></span><span style="display:flex;"><span>        train(args, model, device, train_loader, optimizer, epoch)
+</span></span><span style="display:flex;"><span>        test(args, model, device, test_loader)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#069;font-weight:bold">if</span> (args<span style="color:#555">.</span>save_model):
+</span></span><span style="display:flex;"><span>        torch<span style="color:#555">.</span>save(model<span style="color:#555">.</span>state_dict(), <span style="color:#c30">&#34;mnist_cnn.pt&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">if</span> __name__ <span style="color:#555">==</span> <span style="color:#c30">&#39;__main__&#39;</span>:
+</span></span><span style="display:flex;"><span>    main()
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2023-01-30</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://zhangyuhu.github.io/posts/computer_vision/deeplearning/01-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BAdocker/" data-title="DL:深度学习开发环境搭建(docker)" data-hashtags="环境搭建"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://zhangyuhu.github.io/posts/computer_vision/deeplearning/01-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BAdocker/" data-hashtag="环境搭建"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://zhangyuhu.github.io/posts/computer_vision/deeplearning/01-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BAdocker/" data-title="DL:深度学习开发环境搭建(docker)"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://zhangyuhu.github.io/posts/computer_vision/deeplearning/01-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BAdocker/" data-title="DL:深度学习开发环境搭建(docker)"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://zhangyuhu.github.io/posts/computer_vision/deeplearning/01-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BAdocker/" data-title="DL:深度学习开发环境搭建(docker)" data-ralateuid="ji"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">环境搭建</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/computer_vision/camera/stereocamera/realsense/realsensed450%E6%B7%B1%E5%BA%A6%E5%AF%B9%E9%BD%90/" class="prev" rel="prev" title="camera:realsense(D450)深度对齐优化"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>camera:realsense(D450)深度对齐优化</a>
+            <a href="/posts/computer_vision/deeplearning/01-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" class="next" rel="next" title="DL:深度学习开发环境搭建">DL:深度学习开发环境搭建<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="giscus" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://giscus.app">Giscus</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">为天地立心,为生民立命,为往圣继绝学,为万世开太平</div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://zhangyuhu.github.io/" target="_blank">zhangyuhu</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="http://creativecommons.org/licenses/by/4.0/" target="_blank">知识共享署名 4.0 国际许可协议</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/css/lightgallery-bundle.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/twemoji@14.0.2/dist/twemoji.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/lightgallery.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/thumbnail/lg-thumbnail.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/zoom/lg-zoom.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@8.6.0/dist/index.umd.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":100},"comment":{"giscus":{"category":"Comments","categoryId":"DIC_kwDOIx2Cjs4CTnUX","darkTheme":"dark","emitMetadata":"0","inputPosition":"bottom","lang":"en","lazyLoading":false,"lightTheme":"light","mapping":"pathname","reactionsEnabled":"1","repo":"zhangyuhu/zhangyuhu.github.io","repoId":"R_kgDOIx2Cjg"}},"data":{"id-1":"HOME","id-2":"HOME"},"lightgallery":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"},"twemoji":true,"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.2970a33d719df7cd89cebf586152b32a8ed30012227fa81b44282950146e0f595d1c733779e4d423dda1004bdcf707ee64d0fadc3d21229cd66b960788f84bdb.js" integrity="sha512-KXCjPXGd982Jzr9YYVKzKo7TABIif6gbRCgpUBRuD1ldHHM3eeTUI92hAEvc9wfuZND63D0hIpzWa5YHiPhL2w=="></script></body>
+</html>

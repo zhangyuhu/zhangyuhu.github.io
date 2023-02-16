@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Computer:CPU和显卡 - 这是我的网站</title><meta name="Description" content="CPU和显卡"><meta property="og:title" content="Computer:CPU和显卡" />
+<meta property="og:description" content="CPU和显卡" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zhangyuhu.github.io/posts/basic_knowledge/computer/computerbase/" /><meta property="og:image" content="https://zhangyuhu.github.io/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-02-09T14:32:52+08:00" />
+<meta property="article:modified_time" content="2023-02-09T15:11:52+08:00" /><meta property="og:site_name" content="我的网站" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://zhangyuhu.github.io/logo.png"/>
+
+<meta name="twitter:title" content="Computer:CPU和显卡"/>
+<meta name="twitter:description" content="CPU和显卡"/>
+<meta name="application-name" content="我的网站">
+<meta name="apple-mobile-web-app-title" content="我的网站"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://zhangyuhu.github.io/posts/basic_knowledge/computer/computerbase/" /><link rel="prev" href="https://zhangyuhu.github.io/posts/embedded/aichip/" /><link rel="next" href="https://zhangyuhu.github.io/posts/tools/conda/conda/" /><link rel="stylesheet" href="/css/style.min.990eb8dd228a2b662f63cfe59575be8aa494cb9d40ffd854f26b9d9e588e1f4fdadb6a34e3f9a9171244d3ee6c107521923ab30705f3ef50d3e435eda1afc910.css" integrity="sha512-mQ643SKKK2YvY8/llXW+iqSUy51A/9hU8mudnliOH0/a22o04/mpFxJE0+5sEHUhkjqzBwXz71DT5DXtoa/JEA=="><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Computer:CPU和显卡",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/zhangyuhu.github.io\/posts\/basic_knowledge\/computer\/computerbase\/"
+        },"image": [{
+                            "@type": "ImageObject",
+                            "url": "https:\/\/zhangyuhu.github.io\/images\/Apple-Devices-Preview.png",
+                            "width":  3200 ,
+                            "height":  2048 
+                        }],"genre": "posts","keywords": "Computer","wordcount":  4080 ,
+        "url": "https:\/\/zhangyuhu.github.io\/posts\/basic_knowledge\/computer\/computerbase\/","datePublished": "2023-02-09T14:32:52+08:00","dateModified": "2023-02-09T15:11:52+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "zhangyuhu"
+            },"description": "CPU和显卡"
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="这是我的网站"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/" title="文章"><i class='fas fa-archive fa-fw fa-sm'></i> 文章 </a><a class="menu-item" href="/tags/"><i class='fas fa-tags fa-fw fa-sm'></i> 标签 </a><a class="menu-item" href="/categories/"><i class='fas fa-th fa-fw fa-sm'></i> 分类 </a><a class="menu-item" href="/about/"><i class='fas fa-user-tie fa-fw fa-sm'></i> 关于 </a><a class="menu-item" href="/tool/"><i class='fas fa-cube fa-fw fa-sm'></i> 工具箱 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="这是我的网站"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="文章"><i class='fas fa-archive fa-fw fa-sm'></i>文章</a><a class="menu-item" href="/tags/" title=""><i class='fas fa-tags fa-fw fa-sm'></i>标签</a><a class="menu-item" href="/categories/" title=""><i class='fas fa-th fa-fw fa-sm'></i>分类</a><a class="menu-item" href="/about/" title=""><i class='fas fa-user-tie fa-fw fa-sm'></i>关于</a><a class="menu-item" href="/tool/" title=""><i class='fas fa-cube fa-fw fa-sm'></i>工具箱</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Computer:CPU和显卡</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://zhangyuhu.github.io/" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>zhangyuhu</a></span>&nbsp;<span class="post-category">included in <a href="/categories/computer/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Computer</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-02-09">2023-02-09</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;4080 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;9 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#显卡gpu">显卡GPU</a>
+      <ul>
+        <li><a href="#显卡分类">显卡分类</a>
+          <ul>
+            <li><a href="#集成显卡">集成显卡</a></li>
+            <li><a href="#独立显卡">独立显卡</a></li>
+            <li><a href="#核芯显卡">核芯显卡</a></li>
+          </ul>
+        </li>
+        <li><a href="#显卡性能">显卡性能</a>
+          <ul>
+            <li><a href="#架构">架构</a></li>
+            <li><a href="#流处理器">流处理器</a></li>
+            <li><a href="#核心频率">核心频率</a></li>
+            <li><a href="#显存位宽">显存位宽</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#异构计算">异构计算</a>
+      <ul>
+        <li><a href="#cpugpu">CPU+GPU</a></li>
+      </ul>
+    </li>
+    <li><a href="#cuda">CUDA</a>
+      <ul>
+        <li><a href="#cuda编程模型">CUDA编程模型</a>
+          <ul>
+            <li><a href="#检查的gpu的硬件配置">检查的GPU的硬件配置</a></li>
+            <li><a href="#__global___device____host__">_<em>global</em>/<strong>device</strong>/<strong>host</strong></a></li>
+          </ul>
+        </li>
+        <li><a href="#kernel">kernel</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><blockquote>
+<p>本文采用<a href="http://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreffer ">知识共享署名 4.0 国际许可协议</a>进行许可，转载时请注明原文链接，图片在使用时请保留全部内容，可适当缩放并在引用处附上图片所在的文章链接。</p>
+</blockquote>
+<ul>
+<li><a href="#%e6%98%be%e5%8d%a1gpu" rel="">显卡GPU</a>
+<ul>
+<li><a href="#%e6%98%be%e5%8d%a1%e5%88%86%e7%b1%bb" rel="">显卡分类</a>
+<ul>
+<li><a href="#%e9%9b%86%e6%88%90%e6%98%be%e5%8d%a1" rel="">集成显卡</a></li>
+<li><a href="#%e7%8b%ac%e7%ab%8b%e6%98%be%e5%8d%a1" rel="">独立显卡</a></li>
+<li><a href="#%e6%a0%b8%e8%8a%af%e6%98%be%e5%8d%a1" rel="">核芯显卡</a></li>
+</ul>
+</li>
+<li><a href="#%e6%98%be%e5%8d%a1%e6%80%a7%e8%83%bd" rel="">显卡性能</a>
+<ul>
+<li><a href="#%e6%9e%b6%e6%9e%84" rel="">架构</a></li>
+<li><a href="#%e6%b5%81%e5%a4%84%e7%90%86%e5%99%a8" rel="">流处理器</a></li>
+<li><a href="#%e6%a0%b8%e5%bf%83%e9%a2%91%e7%8e%87" rel="">核心频率</a></li>
+<li><a href="#%e6%98%be%e5%ad%98%e4%bd%8d%e5%ae%bd" rel="">显存位宽</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#%e5%bc%82%e6%9e%84%e8%ae%a1%e7%ae%97" rel="">异构计算</a>
+<ul>
+<li><a href="#cpugpu" rel="">CPU+GPU</a></li>
+</ul>
+</li>
+<li><a href="#cuda" rel="">CUDA</a>
+<ul>
+<li><a href="#cuda%e7%bc%96%e7%a8%8b%e6%a8%a1%e5%9e%8b" rel="">CUDA编程模型</a>
+<ul>
+<li><a href="#%e6%a3%80%e6%9f%a5%e7%9a%84gpu%e7%9a%84%e7%a1%ac%e4%bb%b6%e9%85%8d%e7%bd%ae" rel="">检查的GPU的硬件配置</a></li>
+<li><a href="#_globaldevicehost" rel="">_<em>global</em>/<strong>device</strong>/<strong>host</strong></a></li>
+</ul>
+</li>
+<li><a href="#kernel" rel="">kernel</a></li>
+</ul>
+</li>
+</ul>
+<h1 id="显卡gpu">显卡GPU</h1>
+<p>显卡：将计算机系统需要的显示信息进行转换驱动显示器，并向显示器提供逐行或隔行扫描信号，控制显示器的正确显示，是连接显示器和个人计算机主板的重要组件，是“人机”的重要设备之一，其内置的并行计算能力现阶段也用于深度学习等运算。<br>
+用NVIDIA显示芯片的显卡称为N卡，而将采用AMD显示芯片的显卡称为A卡。</p>
+<h2 id="显卡分类">显卡分类</h2>
+<h3 id="集成显卡">集成显卡</h3>
+<p>集成显卡是将显示芯片、显存及其相关电路都集成在主板上，与其融为一体的元件；集成显卡的显示芯片有单独的，但大部分都集成在主板的北桥芯片中；一些主板集成的显卡也在主板上单独安装了显存，但其容量较小。<br>
+集成显卡的优点是功耗低、发热量小，集成显卡的缺点是性能相对略低，且固化在主板或CPU上，本身无法更换，如果必须换，就只能换主板。</p>
+<h3 id="独立显卡">独立显卡</h3>
+<p>独立显卡是指将显示芯片、显存及其相关电路单独做在一块电路板上，自成一体而作为一块独立的板卡存在，它需占用主板的扩展插槽(ISA、 PCI、AGP或PCI-E)。<br>
+独立显卡的优点是单独安装有显存，一般不占用系统内存，在技术上也较集成显卡先进得多，但性能肯定不差于集成显卡，容易进行显卡的硬件升级。独立显卡的缺点是系统功耗有所加大，发热量也较大。</p>
+<h3 id="核芯显卡">核芯显卡</h3>
+<p>核芯显卡是Intel产品新一代图形处理核心，和以往的显卡设计不同，Intel 凭借其在处理器制程上的先进工艺以及新的架构设计，将图形核心与处理核心整合在同一块基板上，构成一个完整的处理器。智能处理器架构这种设计上的整合大大缩减了处理核心、图形核心、内存及内存控制器间的数据周转时间，有效提升处理效能并大幅降低芯片组整体功耗，有助于缩小核心组件的尺寸，为笔记本、一体机等产品的设计提供了更大选择空间。<br>
+需要注意的是，核芯显卡和传统意义上的集成显卡并不相同。笔记本平台采用的图形解决方案主要有“独立”和“集成”两种，前者拥有单独的图形核心和独立的显存，能够满足复杂庞大的图形处理需求，并提供高效的视频编码应用；集成显卡则将图形核心以单独芯片的方式集成在主板上，并且动态共享部分系统内存作为显存使用，因此能够提供简单的图形处理能力，以及较为流畅的编码应用。相对于前两者，核芯显卡则将图形核心整合在处理器当中，进一步加强了图形处理的效率，并把集成显卡中的“处理器+南桥+北桥(图形核心+内存控制+显示输出)”三芯片解决方案精简为“处理器(处理核心+图形核心十内存控制)十主板芯片(显示输出)”的双芯片模式，有效降低了核心组件的整体功耗，更利于延长笔记本的续航时间。</p>
+<h2 id="显卡性能">显卡性能</h2>
+<p>显卡的作用就在于接收CPU送来的影像资料，并经过GPU处理，再送到显示器。显卡相当于一个转运体系，将CPU送来的货经过GPU的加工，再送到显示器。本质上，显卡的性能就是处理“货”，也就是数据的能力强弱。</p>
+<h3 id="架构">架构</h3>
+<p>英伟达从960时代的麦克斯架构 到10时代的帕斯卡架构 再到现在20系显卡采用的图灵架构。（帕斯卡用GP缩写 图灵用TU缩写）。</p>
+<h3 id="流处理器">流处理器</h3>
+<p>流处理器（简称SP）是显卡参数中核心的核心，其能直接影响到显卡性能，个数说则显卡性能强。流处理器的作用是将图像的像素点一个一个的渲染，也就不难理解上述提到的越多越好的结论了，毕竟人多力量大。</p>
+<h3 id="核心频率">核心频率</h3>
+<p>一般认为核心频率越高，显卡性能就越强。</p>
+<h3 id="显存位宽">显存位宽</h3>
+<p>显存位宽表示一个时钟周期内所能传送数据的位数，位数越大则传输量越大，常见的有64位、128位和256位显卡。在显存频率相当情况下，显存位宽决定着带宽的大小。（显存带宽=显存频率 * 显存位宽 ）</p>
+<h1 id="异构计算">异构计算</h1>
+<p>异构计算的英文名称是Heterogeneous computing，主要是指使用不同类型指令集和体系架构的计算单元组成系统的计算方式。<br>
+常见的计算单元类别包括CPU、GPU等协处理器、DSP、ASIC、FPGA等。我们常说的并行计算正是异构计算中的重要组成部分异构计算近年来得到更多关注，主要是因为通过提升CPU时钟频率和内核数量而提高计算能力的传统方式遇到了散热和能耗瓶颈。而与此同时，GPU等专用计算单元虽然工作频率较低，具有更多的内核数和并行计算能力，总体性能/芯片面积的比和性能/功耗比都很高，却远远没有得到充分利用。</p>
+<h2 id="cpugpu">CPU+GPU</h2>
+<blockquote>
+<p>CPU的目标是快速执行单一指令流；<br>
+CPU将其用于乱序执行、寄存器重命名、分支预测以及巨大的cache上，这些设计都是为了加速单一线程的执行速度；<br>
+CPU利用cache来降低内存访问延迟；<br>
+CPU通过大量的cache和分支预测来降低延迟，这些机制消耗了大量的晶体管的电能；<br>
+CPU每个核心支持1~2个线程；<br>
+CPU切换线程的代价是数百个时钟周期；<br>
+CPU通过SIMD（单指令多数据）来处理矢量数据；<br>
+Intel的CPU没有集成内存控制器</p>
+</blockquote>
+<blockquote>
+<p>GPU的目标是快速执行大量的并行指令流；<br>
+GPU将晶体管用于处理器阵列、多线程管理、共享内存、内存控制器；<br>
+这些设计并不着眼于提高单一线程的执行速度，而是为了使GPU可以同时执行成千上万的线程；<br>
+实现线程间通信，并提供极高的内存带宽；<br>
+GPU使用cache来放大内存带宽；<br>
+GPU通过同时运行上千个线程来隐藏延迟，等待内存访问的线程会被切换掉，GPU切换线程不耗时间；<br>
+对于支持CUDA的GPU，每个流处理器可以同时处理1024个线程；<br>
+GPU切换线程的代价是0，事实上GPU通常每个时钟周期都切换线程；<br>
+GPU则使用SIMT（单指令多线程），SIMT的好处是无需开发者费力把数据凑成合适的矢量长度，并且SIMT允许每个线程有不同的分支；<br>
+支持CUDA的GPU集成有8个内存控制器，GPU的内存带宽通常是CPU的十倍。</p>
+</blockquote>
+<blockquote>
+<p>CPU的长项是整数计算，GPU的优势则是浮点计算。</p>
+</blockquote>
+<h1 id="cuda">CUDA</h1>
+<p><a href="https://docs.nvidia.com/cuda/index.html" target="_blank" rel="noopener noreffer ">CUDA Toolkit Documentation v11.0.3</a><br>
+CUDA是NVIDIA公司所开发的GPU编程模型，它提供了GPU编程的简易接口，基于CUDA编程可以构建基于GPU计算的应用程序，利用GPUs的并行计算引擎来更加高效地解决比较复杂的计算难题。近年来，GPU最成功的一个应用就是深度学习领域，基于GPU的并行计算已经成为训练深度学习模型的标配。</p>
+<p>GPU并不是一个独立运行的计算平台，而需要与CPU协同工作，可以看成是CPU的协处理器，因此当我们在说GPU并行计算时，其实是指的基于CPU+GPU的异构计算架构。在异构计算架构中，GPU与CPU通过PCIe总线连接在一起来协同工作，CPU所在位置称为为主机端（host），而GPU所在位置称为设备端（device），如下:</p>
+<div align=center>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202302092028271.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202302092028271.png, https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202302092028271.png 1.5x, https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202302092028271.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202302092028271.png"
+        title="xxx" /></p>
+</div> 
+<p>GPU包括更多的运算核心，其特别适合数据并行的计算密集型任务，如大型矩阵运算，而CPU的运算核心较少，但是其可以实现复杂的逻辑运算，因此其适合控制密集型任务。另外，CPU上的线程是重量级的，上下文切换开销大，但是GPU由于存在很多核心，其线程是轻量级的。因此，基于CPU+GPU的异构计算平台可以优势互补，CPU负责处理逻辑复杂的串行程序，而GPU重点处理数据密集型的并行计算程序，从而发挥最大功效。</p>
+<div align=center>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202302092028656.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202302092028656.png, https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202302092028656.png 1.5x, https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202302092028656.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202302092028656.png"
+        title="xxx" /></p>
+</div> 
+<h2 id="cuda编程模型">CUDA编程模型</h2>
+<p><a href="https://blog.csdn.net/xiaohu2022/article/details/79599947" target="_blank" rel="noopener noreffer ">CUDA编程入门极简教程</a><br>
+<a href="https://www.zhihu.com/question/46400432" target="_blank" rel="noopener noreffer ">CUDA运算速度和显卡CUDA核心数量关系大吗?</a></p>
+<p>CUDA编程模型是一个异构模型，需要CPU和GPU协同工作。在CUDA中，host和device是两个重要的概念，我们用host指代CPU及其内存，而用device指代GPU及其内存。CUDA程序中既包含host程序，又包含device程序，它们分别在CPU和GPU上运行。同时，host与device之间可以进行通信，这样它们之间可以进行数据拷贝。典型的CUDA程序的执行流程如下：</p>
+<ol>
+<li>分配host内存，并进行数据初始化；</li>
+<li>分配device内存，并从host将数据拷贝到device上；</li>
+<li>调用CUDA的核函数在device上完成指定的运算；</li>
+<li>将device上的运算结果拷贝到host上；</li>
+<li>释放device和host上分配的内存。</li>
+</ol>
+<h3 id="检查的gpu的硬件配置">检查的GPU的硬件配置</h3>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-1"> 1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-2"> 2</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-3"> 3</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-4"> 4</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-5"> 5</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-6"> 6</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-7"> 7</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-8"> 8</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-9"> 9</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-10"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-10">10</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-11"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-11">11</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-12"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-12">12</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-13"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-13">13</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-14"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-14">14</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-15"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-15">15</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-16"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-16">16</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-17"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-17">17</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span>    <span style="color:#078;font-weight:bold">int</span> dev <span style="color:#555">=</span> <span style="color:#f60">0</span>;
+</span></span><span style="display:flex;"><span>    cudaDeviceProp devProp;
+</span></span><span style="display:flex;"><span>    CHECK(cudaGetDeviceProperties(<span style="color:#555">&amp;</span>devProp, dev));
+</span></span><span style="display:flex;"><span>    std<span style="color:#555">::</span>cout <span style="color:#555">&lt;&lt;</span> <span style="color:#c30">&#34;使用GPU device &#34;</span> <span style="color:#555">&lt;&lt;</span> dev <span style="color:#555">&lt;&lt;</span> <span style="color:#c30">&#34;: &#34;</span> <span style="color:#555">&lt;&lt;</span> devProp.name <span style="color:#555">&lt;&lt;</span> std<span style="color:#555">::</span>endl;
+</span></span><span style="display:flex;"><span>    std<span style="color:#555">::</span>cout <span style="color:#555">&lt;&lt;</span> <span style="color:#c30">&#34;SM的数量：&#34;</span> <span style="color:#555">&lt;&lt;</span> devProp.multiProcessorCount <span style="color:#555">&lt;&lt;</span> std<span style="color:#555">::</span>endl;
+</span></span><span style="display:flex;"><span>    std<span style="color:#555">::</span>cout <span style="color:#555">&lt;&lt;</span> <span style="color:#c30">&#34;每个线程块的共享内存大小：&#34;</span> <span style="color:#555">&lt;&lt;</span> devProp.sharedMemPerBlock <span style="color:#555">/</span> <span style="color:#f60">1024.0</span> <span style="color:#555">&lt;&lt;</span> <span style="color:#c30">&#34; KB&#34;</span> <span style="color:#555">&lt;&lt;</span> std<span style="color:#555">::</span>endl;
+</span></span><span style="display:flex;"><span>    std<span style="color:#555">::</span>cout <span style="color:#555">&lt;&lt;</span> <span style="color:#c30">&#34;每个线程块的最大线程数：&#34;</span> <span style="color:#555">&lt;&lt;</span> devProp.maxThreadsPerBlock <span style="color:#555">&lt;&lt;</span> std<span style="color:#555">::</span>endl;
+</span></span><span style="display:flex;"><span>    std<span style="color:#555">::</span>cout <span style="color:#555">&lt;&lt;</span> <span style="color:#c30">&#34;每个EM的最大线程数：&#34;</span> <span style="color:#555">&lt;&lt;</span> devProp.maxThreadsPerMultiProcessor <span style="color:#555">&lt;&lt;</span> std<span style="color:#555">::</span>endl;
+</span></span><span style="display:flex;"><span>    std<span style="color:#555">::</span>cout <span style="color:#555">&lt;&lt;</span> <span style="color:#c30">&#34;每个EM的最大线程束数：&#34;</span> <span style="color:#555">&lt;&lt;</span> devProp.maxThreadsPerMultiProcessor <span style="color:#555">/</span> <span style="color:#f60">32</span> <span style="color:#555">&lt;&lt;</span> std<span style="color:#555">::</span>endl;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#09f;font-style:italic">// 输出如下
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>    <span style="color:#a00;background-color:#faa">使用</span>GPU device <span style="color:#f60">0</span><span style="color:#555">:</span> GeForce GT <span style="color:#f60">730</span>
+</span></span><span style="display:flex;"><span>    SM<span style="color:#a00;background-color:#faa">的数量：</span><span style="color:#f60">2</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a00;background-color:#faa">每个线程块的共享内存大小：</span><span style="color:#f60">48</span> KB
+</span></span><span style="display:flex;"><span>    <span style="color:#a00;background-color:#faa">每个线程块的最大线程数：</span><span style="color:#f60">1024</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a00;background-color:#faa">每个</span>EM<span style="color:#a00;background-color:#faa">的最大线程数：</span><span style="color:#f60">2048</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a00;background-color:#faa">每个</span>EM<span style="color:#a00;background-color:#faa">的最大线程束数：</span><span style="color:#f60">64</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="__global___device____host__">_<em>global</em>/<strong>device</strong>/<strong>host</strong></h3>
+<p>GPU实际上是异构模型，所以需要区分host和device上的代码，在CUDA中是通过函数类型限定词开区别host和device上的函数，主要的三个函数类型限定词如下：</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-1">1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-2">2</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-3">3</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>__global__：在device上执行，从host中调用（一些特定的GPU也可以从device上调用），返回类型必须是void，不支持可变参数参数，不能成为类成员函数。注意用__global__定义的kernel是异步的，这意味着host不会等待kernel执行完就执行下一步。
+</span></span><span style="display:flex;"><span>__device__：在device上执行，单仅可以从device中调用，不可以和__global__同时用。
+</span></span><span style="display:flex;"><span>__host__：在host上执行，仅可以从host上调用，一般省略不写，不可以和__global__同时用，但可和__device__，此时函数会在device和host都编译。
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="kernel">kernel</h2>
+<p>GPU上很多并行化的轻量级线程。kernel在device上执行时实际上是启动很多线程，一个kernel所启动的所有线程称为一个网格（grid），同一个网格上的线程共享相同的全局内存空间，grid是线程结构的第一层次，而网格又可以分为很多线程块（block），一个线程块里面包含很多线程，这是第二个层次。如下：</p>
+<div align=center>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202302092028402.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202302092028402.png, https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202302092028402.png 1.5x, https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202302092028402.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202302092028402.png"
+        title="xxx" /></p>
+</div> </div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2023-02-09</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://zhangyuhu.github.io/posts/basic_knowledge/computer/computerbase/" data-title="Computer:CPU和显卡" data-hashtags="Computer"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://zhangyuhu.github.io/posts/basic_knowledge/computer/computerbase/" data-hashtag="Computer"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://zhangyuhu.github.io/posts/basic_knowledge/computer/computerbase/" data-title="Computer:CPU和显卡"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://zhangyuhu.github.io/posts/basic_knowledge/computer/computerbase/" data-title="Computer:CPU和显卡"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://zhangyuhu.github.io/posts/basic_knowledge/computer/computerbase/" data-title="Computer:CPU和显卡" data-ralateuid="ji"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/computer/">Computer</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/embedded/aichip/" class="prev" rel="prev" title="Embedded:AI 芯片 XPU 简介"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Embedded:AI 芯片 XPU 简介</a>
+            <a href="/posts/tools/conda/conda/" class="next" rel="next" title="tool:conda">tool:conda<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="giscus" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://giscus.app">Giscus</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">为天地立心,为生民立命,为往圣继绝学,为万世开太平</div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://zhangyuhu.github.io/" target="_blank">zhangyuhu</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="http://creativecommons.org/licenses/by/4.0/" target="_blank">知识共享署名 4.0 国际许可协议</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/css/lightgallery-bundle.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/twemoji@14.0.2/dist/twemoji.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/lightgallery.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/thumbnail/lg-thumbnail.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/zoom/lg-zoom.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@8.6.0/dist/index.umd.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":100},"comment":{"giscus":{"category":"Comments","categoryId":"DIC_kwDOIx2Cjs4CTnUX","darkTheme":"dark","emitMetadata":"0","inputPosition":"bottom","lang":"en","lazyLoading":false,"lightTheme":"light","mapping":"pathname","reactionsEnabled":"1","repo":"zhangyuhu/zhangyuhu.github.io","repoId":"R_kgDOIx2Cjg"}},"data":{"id-1":"HOME","id-2":"HOME"},"lightgallery":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"},"twemoji":true,"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.2970a33d719df7cd89cebf586152b32a8ed30012227fa81b44282950146e0f595d1c733779e4d423dda1004bdcf707ee64d0fadc3d21229cd66b960788f84bdb.js" integrity="sha512-KXCjPXGd982Jzr9YYVKzKo7TABIif6gbRCgpUBRuD1ldHHM3eeTUI92hAEvc9wfuZND63D0hIpzWa5YHiPhL2w=="></script></body>
+</html>

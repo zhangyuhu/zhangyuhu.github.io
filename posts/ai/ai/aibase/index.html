@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>AI：深度学习基本概念 - 这是我的网站</title><meta name="Description" content="深度学习基本概念"><meta property="og:title" content="AI：深度学习基本概念" />
+<meta property="og:description" content="深度学习基本概念" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zhangyuhu.github.io/posts/ai/ai/aibase/" /><meta property="og:image" content="https://zhangyuhu.github.io/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-02-15T13:52:52+08:00" />
+<meta property="article:modified_time" content="2023-02-15T13:11:52+08:00" /><meta property="og:site_name" content="我的网站" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://zhangyuhu.github.io/logo.png"/>
+
+<meta name="twitter:title" content="AI：深度学习基本概念"/>
+<meta name="twitter:description" content="深度学习基本概念"/>
+<meta name="application-name" content="我的网站">
+<meta name="apple-mobile-web-app-title" content="我的网站"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://zhangyuhu.github.io/posts/ai/ai/aibase/" /><link rel="prev" href="https://zhangyuhu.github.io/posts/tools/conda/conda/" /><link rel="next" href="https://zhangyuhu.github.io/posts/ai/math/mathbase/" /><link rel="stylesheet" href="/css/style.min.990eb8dd228a2b662f63cfe59575be8aa494cb9d40ffd854f26b9d9e588e1f4fdadb6a34e3f9a9171244d3ee6c107521923ab30705f3ef50d3e435eda1afc910.css" integrity="sha512-mQ643SKKK2YvY8/llXW+iqSUy51A/9hU8mudnliOH0/a22o04/mpFxJE0+5sEHUhkjqzBwXz71DT5DXtoa/JEA=="><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "AI：深度学习基本概念",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/zhangyuhu.github.io\/posts\/ai\/ai\/aibase\/"
+        },"image": [{
+                            "@type": "ImageObject",
+                            "url": "https:\/\/zhangyuhu.github.io\/images\/Apple-Devices-Preview.png",
+                            "width":  3200 ,
+                            "height":  2048 
+                        }],"genre": "posts","keywords": "AI","wordcount":  2550 ,
+        "url": "https:\/\/zhangyuhu.github.io\/posts\/ai\/ai\/aibase\/","datePublished": "2023-02-15T13:52:52+08:00","dateModified": "2023-02-15T13:11:52+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "zhangyuhu"
+            },"description": "深度学习基本概念"
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="这是我的网站"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/" title="文章"><i class='fas fa-archive fa-fw fa-sm'></i> 文章 </a><a class="menu-item" href="/tags/"><i class='fas fa-tags fa-fw fa-sm'></i> 标签 </a><a class="menu-item" href="/categories/"><i class='fas fa-th fa-fw fa-sm'></i> 分类 </a><a class="menu-item" href="/about/"><i class='fas fa-user-tie fa-fw fa-sm'></i> 关于 </a><a class="menu-item" href="/tool/"><i class='fas fa-cube fa-fw fa-sm'></i> 工具箱 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="这是我的网站"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="文章"><i class='fas fa-archive fa-fw fa-sm'></i>文章</a><a class="menu-item" href="/tags/" title=""><i class='fas fa-tags fa-fw fa-sm'></i>标签</a><a class="menu-item" href="/categories/" title=""><i class='fas fa-th fa-fw fa-sm'></i>分类</a><a class="menu-item" href="/about/" title=""><i class='fas fa-user-tie fa-fw fa-sm'></i>关于</a><a class="menu-item" href="/tool/" title=""><i class='fas fa-cube fa-fw fa-sm'></i>工具箱</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">AI：深度学习基本概念</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://zhangyuhu.github.io/" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>zhangyuhu</a></span>&nbsp;<span class="post-category">included in <a href="/categories/ai/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>AI</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-02-15">2023-02-15</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2550 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;6 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#计算机视觉">计算机视觉</a>
+      <ul>
+        <li><a href="#图像分类">图像分类</a></li>
+        <li><a href="#目标检测">目标检测</a></li>
+        <li><a href="#语义分割">语义分割</a></li>
+        <li><a href="#实例分割">实例分割</a></li>
+        <li><a href="#视频分类">视频分类</a></li>
+        <li><a href="#人体关键点检测">人体关键点检测</a></li>
+        <li><a href="#场景文字识别">场景文字识别</a></li>
+        <li><a href="#目标跟踪">目标跟踪</a></li>
+      </ul>
+    </li>
+    <li><a href="#模型算法和训练的关系">模型、算法和训练的关系</a></li>
+    <li><a href="#卷积神经网络">卷积神经网络</a>
+      <ul>
+        <li><a href="#cnn-的基本原理">CNN 的基本原理</a></li>
+      </ul>
+    </li>
+    <li><a href="#mnn">MNN</a></li>
+    <li><a href="#nnie">NNIE</a></li>
+    <li><a href="#神经网络模型可视化工具netron">神经网络模型可视化工具netron</a></li>
+    <li><a href="#名词解释">名词解释</a>
+      <ul>
+        <li><a href="#算力tops">算力（TOPS）</a></li>
+        <li><a href="#监督学习和非监督学习">监督学习和非监督学习</a></li>
+        <li><a href="#训练集和测试集">训练集和测试集</a></li>
+        <li><a href="#损失函数loss-function">损失函数（Loss Function）</a></li>
+        <li><a href="#优化器optimizer">优化器（optimizer）</a></li>
+        <li><a href="#转移学习transfer-learning">转移学习（transfer learning）</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><ul>
+<li><a href="#%e8%ae%a1%e7%ae%97%e6%9c%ba%e8%a7%86%e8%a7%89" rel="">计算机视觉</a>
+<ul>
+<li><a href="#%e5%9b%be%e5%83%8f%e5%88%86%e7%b1%bb" rel="">图像分类</a></li>
+<li><a href="#%e7%9b%ae%e6%a0%87%e6%a3%80%e6%b5%8b" rel="">目标检测</a></li>
+<li><a href="#%e8%af%ad%e4%b9%89%e5%88%86%e5%89%b2" rel="">语义分割</a></li>
+<li><a href="#%e5%ae%9e%e4%be%8b%e5%88%86%e5%89%b2" rel="">实例分割</a></li>
+<li><a href="#%e8%a7%86%e9%a2%91%e5%88%86%e7%b1%bb" rel="">视频分类</a></li>
+<li><a href="#%e4%ba%ba%e4%bd%93%e5%85%b3%e9%94%ae%e7%82%b9%e6%a3%80%e6%b5%8b" rel="">人体关键点检测</a></li>
+<li><a href="#%e5%9c%ba%e6%99%af%e6%96%87%e5%ad%97%e8%af%86%e5%88%ab" rel="">场景文字识别</a></li>
+<li><a href="#%e7%9b%ae%e6%a0%87%e8%b7%9f%e8%b8%aa" rel="">目标跟踪</a></li>
+</ul>
+</li>
+<li><a href="#%e6%a8%a1%e5%9e%8b%e7%ae%97%e6%b3%95%e5%92%8c%e8%ae%ad%e7%bb%83%e7%9a%84%e5%85%b3%e7%b3%bb" rel="">模型、算法和训练的关系</a></li>
+<li><a href="#%e5%8d%b7%e7%a7%af%e7%a5%9e%e7%bb%8f%e7%bd%91%e7%bb%9c" rel="">卷积神经网络</a>
+<ul>
+<li><a href="#cnn-%e7%9a%84%e5%9f%ba%e6%9c%ac%e5%8e%9f%e7%90%86" rel="">CNN 的基本原理</a></li>
+</ul>
+</li>
+<li><a href="#mnn" rel="">MNN</a></li>
+<li><a href="#nnie" rel="">NNIE</a></li>
+<li><a href="#%e7%a5%9e%e7%bb%8f%e7%bd%91%e7%bb%9c%e6%a8%a1%e5%9e%8b%e5%8f%af%e8%a7%86%e5%8c%96%e5%b7%a5%e5%85%b7netron" rel="">神经网络模型可视化工具netron</a></li>
+<li><a href="#%e5%90%8d%e8%af%8d%e8%a7%a3%e9%87%8a" rel="">名词解释</a>
+<ul>
+<li><a href="#%e7%ae%97%e5%8a%9btops" rel="">算力（TOPS）</a></li>
+<li><a href="#%e7%9b%91%e7%9d%a3%e5%ad%a6%e4%b9%a0%e5%92%8c%e9%9d%9e%e7%9b%91%e7%9d%a3%e5%ad%a6%e4%b9%a0" rel="">监督学习和非监督学习</a></li>
+<li><a href="#%e8%ae%ad%e7%bb%83%e9%9b%86%e5%92%8c%e6%b5%8b%e8%af%95%e9%9b%86" rel="">训练集和测试集</a></li>
+<li><a href="#%e6%8d%9f%e5%a4%b1%e5%87%bd%e6%95%b0loss-function" rel="">损失函数（Loss Function）</a></li>
+<li><a href="#%e4%bc%98%e5%8c%96%e5%99%a8optimizer" rel="">优化器（optimizer）</a></li>
+<li><a href="#%e8%bd%ac%e7%a7%bb%e5%ad%a6%e4%b9%a0transfer-learning" rel="">转移学习（transfer learning）</a></li>
+</ul>
+</li>
+</ul>
+<p>CV : Computer Vision 计算机视觉<br>
+CNN : Convolutional Neural Network 卷积神经网络</p>
+<h1 id="计算机视觉">计算机视觉</h1>
+<h2 id="图像分类">图像分类</h2>
+<p>图像分类是计算机视觉中重要的基础问题。
+举几个典型的例子：人脸识别、图片鉴黄、相册根据人物自动分类等。</p>
+<h2 id="目标检测">目标检测</h2>
+<p>目标检测任务的目标是给定一张图像或是一个视频帧，让计算机找出其中所有目标的位置，并给出每个目标的具体类别。</p>
+<h2 id="语义分割">语义分割</h2>
+<p>它将整个图像分成像素组，然后对像素组进行标记和分类。语义分割试图在语义上理解图像中每个像素是什么（人、车、狗、树…）。<br>
+如下图，除了识别人、道路、汽车、树木等之外，我们还必须确定每个物体的边界。</p>
+<h2 id="实例分割">实例分割</h2>
+<p>除了语义分割之外，实例分割将不同类型的实例进行分类，比如用 5 种不同颜色来标记 5 辆汽车。我们会看到多个重叠物体和不同背景的复杂景象，我们不仅需要将这些不同的对象进行分类，而且还要确定对象的边界、差异和彼此之间的关系！</p>
+<h2 id="视频分类">视频分类</h2>
+<p>与图像分类不同的是，分类的对象不再是静止的图像，而是一个由多帧图像构成的、包含语音数据、包含运动信息等的视频对象，因此理解视频需要获得更多的上下文信息，不仅要理解每帧图像是什么、包含什么，还需要结合不同帧，知道上下文的关联信息。</p>
+<h2 id="人体关键点检测">人体关键点检测</h2>
+<p>体关键点检测，通过人体关键节点的组合和追踪来识别人的运动和行为，对于描述人体姿态，预测人体行为至关重要。<br>
+在 Xbox 中就有利用到这个技术。</p>
+<h2 id="场景文字识别">场景文字识别</h2>
+<p>很多照片中都有一些文字信息，这对理解图像有重要的作用。<br>
+场景文字识别是在图像背景复杂、分辨率低下、字体多样、分布随意等情况下，将图像信息转化为文字序列的过程。<br>
+停车场、收费站的车牌识别就是典型的应用场景。</p>
+<h2 id="目标跟踪">目标跟踪</h2>
+<p>目标跟踪，是指在特定场景跟踪某一个或多个特定感兴趣对象的过程。传统的应用就是视频和真实世界的交互，在检测到初始对象之后进行观察。<br>
+无人驾驶里就会用到这个技术。</p>
+<h1 id="模型算法和训练的关系">模型、算法和训练的关系</h1>
+<p>数据算法模型的关系：</p>
+<div align=center><img src="image/数据算法模型.png"/></div>  
+普通程序：
+<div align=center><img src="image/普通程序.png"/></div>  
+模型和训练程序：
+<div align=center><img src="image/模型和训练程序.png"/></div>  
+<h1 id="卷积神经网络">卷积神经网络</h1>
+<p>CNN 有2大特点：</p>
+<ol>
+<li>能够有效的将大数据量的图片降维成小数据量</li>
+<li>能够有效的保留图片特征，符合图片处理的原则</li>
+</ol>
+<h2 id="cnn-的基本原理">CNN 的基本原理</h2>
+<p><a href="https://zhuanlan.zhihu.com/p/95158245" target="_blank" rel="noopener noreffer ">卷积神经网络（CNN）原理及应用</a></p>
+<h1 id="mnn">MNN</h1>
+<p>MNN : 轻量级的深度神经网络推理引擎<br>
+开源的端上推理引擎除了OpenCV的DNN之外，还有tensorFlow-lite、paddle-lite、NCNN、MNN等多个推理框架。目前端上推理引擎主要支持CPU及端上GPU，主流的的设备是CPU(arm)+GPU(mali qualcomm powerVR),主要的编程语言包括c、neon、汇编、OpenCL、OpenGL、vulkan,其中前三种主要是针对CPU的优化，后三种是GPU编程语言。</p>
+<h1 id="nnie">NNIE</h1>
+<p>NNIE : Neural Network Inference Engine<br>
+海思媒体 SoC 中专门针对神经网 络特别是深度学习卷积神经网络进行加速处理的硬件单元，支持现有大部分的公开网 络，如 Alexnet、VGG16、Googlenet、Resnet18、Resnet50 等分类网络，Faster R- CNN、YOLO、SSD、RFCN 等检测网络，以及 SegNet、FCN 等场景分割网络。目前 NNIE 配套软件及工具链仅支持以 Caffe 框架，使用其他框架的网络模型需要转化 为 Caffe 框架下的模型。</p>
+<h1 id="神经网络模型可视化工具netron">神经网络模型可视化工具netron</h1>
+<p><a href="https://github.com/lutzroeder/Netron" target="_blank" rel="noopener noreffer ">netron</a></p>
+<h1 id="名词解释">名词解释</h1>
+<h2 id="算力tops">算力（TOPS）</h2>
+<p>TOPS是Tera Operations Per Second的缩写，1TOPS代表处理器每秒钟可进行一万亿次（10^12）操作。<br>
+与此对应的还有GOPS（Giga Operations Per Second），MOPS（Million Operation Per Second）算力单位。1GOPS代表处理器每秒钟可进行十亿次（10^9）操作，1MOPS代表处理器每秒钟可进行一百万次（10^6）操作。TOPS同GOPS与MOPS可以换算，都代表每秒钟能处理的次数，单位不同而已。<br>
+在某些情况下，还使用 TOPS/W 来作为评价处理器运算能力的一个性能指标，TOPS/W 用于度量在1W功耗的情况下，处理器能进行多少万亿次操作。</p>
+<h2 id="监督学习和非监督学习">监督学习和非监督学习</h2>
+<p>监督学习是指存在先验知识的情况下进行训练，通过用带标签的数据来进行训练，然后运用训练结果来推导新的样本。<br>
+非监督学习是指在没有带标记的样本数据下进行训练（无先验知识），比如说想从大量的服务器日志中去找到异常的的记录，但是事先我们并不知道异常记录的特征是什么样的，没有任何的带标记的数据，只有靠计算机去找到其中隐藏的某种模式。非监督学习主要是一些聚类算法，即按照数据的相似度将它们分类。</p>
+<h2 id="训练集和测试集">训练集和测试集</h2>
+<p>训练集很好理解，就是真正用来训练模型的数据；测试集是用来检验训练效果的数据，简单来说就是用训练完的模型来推导测试集的数据，对比推导结果和测试数据的标签来评估训练效果，如准确率。<br>
+训练集和测试集的划分有很多方法，最简单的是将数据顺序打乱以后，按照一定比例进行切分，比如 70% 的数据划分到训练集，剩下 30% 的划分到测试集。</p>
+<h2 id="损失函数loss-function">损失函数（Loss Function）</h2>
+<p>损失函数是用来衡量学习预测和现实结果差距的转换为具体数值（损失 Loss）的一方法，那么整个训练过程的就是不停的迭代优化（optimize），将损失减少到最小。比如我们用训练得到的模型来推导测试数据集里面的数据，将得到的结果和数据的真实标签进行对比，把他们的差距量化为一个数值，即损失值。然后再想办法降低这个损失值。</p>
+<h2 id="优化器optimizer">优化器（optimizer）</h2>
+<p>一个算法的参数可能有几十来个，对于复杂的神经网络，参数可能有成千上万个，显然用人来调整是不现实的，所以这个工作也是由计算机来完成的，即优化器（optimizer）。它的原理是先选择一个参数集作为起始的参数集，完成一次训练后，根据学习效果（损失值）按照一定算法调整参数，然后不停的迭代调整寻找最优参数集（损失值最小）。常见的优化算法有梯度下降和其变种，Adadelta、Adagrad、RMSProp 等。</p>
+<h2 id="转移学习transfer-learning">转移学习（transfer learning）</h2>
+<p>转移学习：将已经训练好的模型的参数移植到新的模型上面帮助其训练，比起从零开始训练一个新模型，使用转移学习进行的训练所花的时间将大大减少。</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2023-02-15</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://zhangyuhu.github.io/posts/ai/ai/aibase/" data-title="AI：深度学习基本概念" data-hashtags="AI"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://zhangyuhu.github.io/posts/ai/ai/aibase/" data-hashtag="AI"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://zhangyuhu.github.io/posts/ai/ai/aibase/" data-title="AI：深度学习基本概念"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://zhangyuhu.github.io/posts/ai/ai/aibase/" data-title="AI：深度学习基本概念"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://zhangyuhu.github.io/posts/ai/ai/aibase/" data-title="AI：深度学习基本概念" data-ralateuid="ji"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/ai/">AI</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/tools/conda/conda/" class="prev" rel="prev" title="tool:conda"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>tool:conda</a>
+            <a href="/posts/ai/math/mathbase/" class="next" rel="next" title="AI：数学基础概念">AI：数学基础概念<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="giscus" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://giscus.app">Giscus</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">为天地立心,为生民立命,为往圣继绝学,为万世开太平</div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://zhangyuhu.github.io/" target="_blank">zhangyuhu</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="http://creativecommons.org/licenses/by/4.0/" target="_blank">知识共享署名 4.0 国际许可协议</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/css/lightgallery-bundle.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/twemoji@14.0.2/dist/twemoji.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/lightgallery.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/thumbnail/lg-thumbnail.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/zoom/lg-zoom.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@8.6.0/dist/index.umd.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":100},"comment":{"giscus":{"category":"Comments","categoryId":"DIC_kwDOIx2Cjs4CTnUX","darkTheme":"dark","emitMetadata":"0","inputPosition":"bottom","lang":"en","lazyLoading":false,"lightTheme":"light","mapping":"pathname","reactionsEnabled":"1","repo":"zhangyuhu/zhangyuhu.github.io","repoId":"R_kgDOIx2Cjg"}},"data":{"id-1":"HOME","id-2":"HOME"},"lightgallery":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"},"twemoji":true,"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.2970a33d719df7cd89cebf586152b32a8ed30012227fa81b44282950146e0f595d1c733779e4d423dda1004bdcf707ee64d0fadc3d21229cd66b960788f84bdb.js" integrity="sha512-KXCjPXGd982Jzr9YYVKzKo7TABIif6gbRCgpUBRuD1ldHHM3eeTUI92hAEvc9wfuZND63D0hIpzWa5YHiPhL2w=="></script></body>
+</html>

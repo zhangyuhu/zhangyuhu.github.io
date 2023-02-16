@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>开源软件:httplib - 这是我的网站</title><meta name="Description" content="开源软件"><meta property="og:title" content="开源软件:httplib" />
+<meta property="og:description" content="开源软件" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zhangyuhu.github.io/posts/open_source_software/httplib/httplib/" /><meta property="og:image" content="https://zhangyuhu.github.io/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-01-16T17:52:52+08:00" />
+<meta property="article:modified_time" content="2023-01-18T13:11:00+08:00" /><meta property="og:site_name" content="我的网站" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://zhangyuhu.github.io/logo.png"/>
+
+<meta name="twitter:title" content="开源软件:httplib"/>
+<meta name="twitter:description" content="开源软件"/>
+<meta name="application-name" content="我的网站">
+<meta name="apple-mobile-web-app-title" content="我的网站"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://zhangyuhu.github.io/posts/open_source_software/httplib/httplib/" /><link rel="prev" href="https://zhangyuhu.github.io/posts/open_source_software/opencv/opencv3.2_install/opencv3.2.0_install/" /><link rel="next" href="https://zhangyuhu.github.io/posts/open_source_software/opencv/ffmpeg_opencv_4.5.0_install/ffmpeg_opencv_4.5.0_install/" /><link rel="stylesheet" href="/css/style.min.990eb8dd228a2b662f63cfe59575be8aa494cb9d40ffd854f26b9d9e588e1f4fdadb6a34e3f9a9171244d3ee6c107521923ab30705f3ef50d3e435eda1afc910.css" integrity="sha512-mQ643SKKK2YvY8/llXW+iqSUy51A/9hU8mudnliOH0/a22o04/mpFxJE0+5sEHUhkjqzBwXz71DT5DXtoa/JEA=="><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "开源软件:httplib",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/zhangyuhu.github.io\/posts\/open_source_software\/httplib\/httplib\/"
+        },"image": [{
+                            "@type": "ImageObject",
+                            "url": "https:\/\/zhangyuhu.github.io\/images\/Apple-Devices-Preview.png",
+                            "width":  3200 ,
+                            "height":  2048 
+                        }],"genre": "posts","keywords": "httplib","wordcount":  1888 ,
+        "url": "https:\/\/zhangyuhu.github.io\/posts\/open_source_software\/httplib\/httplib\/","datePublished": "2023-01-16T17:52:52+08:00","dateModified": "2023-01-18T13:11:00+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "zhangyuhu"
+            },"description": "开源软件"
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="这是我的网站"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/" title="文章"><i class='fas fa-archive fa-fw fa-sm'></i> 文章 </a><a class="menu-item" href="/tags/"><i class='fas fa-tags fa-fw fa-sm'></i> 标签 </a><a class="menu-item" href="/categories/"><i class='fas fa-th fa-fw fa-sm'></i> 分类 </a><a class="menu-item" href="/about/"><i class='fas fa-user-tie fa-fw fa-sm'></i> 关于 </a><a class="menu-item" href="/tool/"><i class='fas fa-cube fa-fw fa-sm'></i> 工具箱 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="这是我的网站"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="文章"><i class='fas fa-archive fa-fw fa-sm'></i>文章</a><a class="menu-item" href="/tags/" title=""><i class='fas fa-tags fa-fw fa-sm'></i>标签</a><a class="menu-item" href="/categories/" title=""><i class='fas fa-th fa-fw fa-sm'></i>分类</a><a class="menu-item" href="/about/" title=""><i class='fas fa-user-tie fa-fw fa-sm'></i>关于</a><a class="menu-item" href="/tool/" title=""><i class='fas fa-cube fa-fw fa-sm'></i>工具箱</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">开源软件:httplib</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://zhangyuhu.github.io/" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>zhangyuhu</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>开源软件</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-01-16">2023-01-16</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1888 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;4 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#explicit--implicit">explicit &amp; implicit</a></li>
+            <li><a href="#stdstreambuf">std::streambuf</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><blockquote>
+<p>本文采用<a href="http://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreffer ">知识共享署名 4.0 国际许可协议</a>进行许可，转载时请注明原文链接，图片在使用时请保留全部内容，可适当缩放并在引用处附上图片所在的文章链接。</p>
+</blockquote>
+<h3 id="explicit--implicit">explicit &amp; implicit</h3>
+<p>C++中的explicit关键字只能用于修饰只有一个参数的类构造函数, 它的作用是表明该构造函数是显示的, 而非隐式的, 跟它相对应的另一个关键字是implicit, 意思是隐藏的,类构造函数默认情况下即声明为implicit(隐式).</p>
+<h3 id="stdstreambuf">std::streambuf</h3>
+<p><a href="https://blog.csdn.net/man_sion/article/details/78110842" target="_blank" rel="noopener noreffer ">https://blog.csdn.net/man_sion/article/details/78110842</a></p>
+<p>using ContentProvider = std::function&lt;bool(size_t offset, size_t length, DataSink &amp;sink)&gt;;
+using ContentProviderWithoutLength = std::function&lt;bool(size_t offset, DataSink &amp;sink)&gt;;
+using ContentProviderResourceReleaser = std::function&lt;void(bool success)&gt;;
+using ContentReceiverWithProgress = std::function&lt;bool(const char *data, size_t data_length, uint64_t offset,uint64_t total_length)&gt;;
+using ContentReceiver = std::function&lt;bool(const char *data, size_t data_length)&gt;;
+using MultipartContentHeader = std::function&lt;bool(const MultipartFormData &amp;file)&gt;;</p>
+<p>class ContentReader {
+public:
+using Reader = std::function&lt;bool(ContentReceiver receiver)&gt;;
+using MultipartReader = std::function&lt;bool(MultipartContentHeader header,
+ContentReceiver receiver)&gt;;</p>
+<p>ContentReader(Reader reader, MultipartReader multipart_reader)
+: reader_(std::move(reader)),
+multipart_reader_(std::move(multipart_reader)) {}</p>
+<p>bool operator()(MultipartContentHeader header,
+ContentReceiver receiver) const {
+return multipart_reader_(std::move(header), std::move(receiver));
+}</p>
+<p>bool operator()(ContentReceiver receiver) const {
+return reader_(std::move(receiver));
+}</p>
+<p>Reader reader_;
+MultipartReader multipart_reader_;
+};</p>
+<p>class Stream {
+public:
+virtual ~Stream() = default;</p>
+<p>virtual bool is_readable() const = 0;
+virtual bool is_writable() const = 0;</p>
+<p>virtual ssize_t read(char *ptr, size_t size) = 0;
+virtual ssize_t write(const char *ptr, size_t size) = 0;
+virtual void get_remote_ip_and_port(std::string &amp;ip, int &amp;port) const = 0;
+virtual socket_t socket() const = 0;</p>
+<p>template &lt;typename&hellip; Args&gt;
+ssize_t write_format(const char *fmt, const Args &amp;&hellip;args);
+ssize_t write(const char *ptr);
+ssize_t write(const std::string &amp;s);
+};</p>
+<p>class TaskQueue {
+public:
+TaskQueue() = default;
+virtual ~TaskQueue() = default;</p>
+<p>virtual void enqueue(std::function&lt;void()&gt; fn) = 0;
+virtual void shutdown() = 0;</p>
+<p>virtual void on_idle() {}
+};</p>
+<p>class ThreadPool : public TaskQueue {
+public:
+explicit ThreadPool(size_t n) : shutdown_(false) {
+while (n) {
+threads_.emplace_back(worker(*this));
+n&ndash;;
+}
+}</p>
+<p>ThreadPool(const ThreadPool &amp;) = delete;
+~ThreadPool() override = default;</p>
+<p>void enqueue(std::function&lt;void()&gt; fn) override {
+std::unique_lock<a href="std::mutex" rel="">std::mutex</a> lock(mutex_);
+jobs_.push_back(std::move(fn));
+cond_.notify_one();
+}</p>
+<p>void shutdown() override {
+// Stop all worker threads&hellip;
+{
+std::unique_lock<a href="std::mutex" rel="">std::mutex</a> lock(mutex_);
+shutdown_ = true;
+}</p>
+<pre><code>cond_.notify_all();
+
+// Join...
+for (auto &amp;t : threads_) {
+  t.join();
+}
+</code></pre>
+<p>}</p>
+<p>private:
+struct worker {
+explicit worker(ThreadPool &amp;pool) : pool_(pool) {}</p>
+<pre><code>void operator()() {
+  for (;;) {
+    std::function&lt;void()&gt; fn;
+    {
+      std::unique_lock&lt;std::mutex&gt; lock(pool_.mutex_);
+
+      pool_.cond_.wait(
+          lock, [&amp;] { return !pool_.jobs_.empty() || pool_.shutdown_; });
+
+      if (pool_.shutdown_ &amp;&amp; pool_.jobs_.empty()) { break; }
+
+      fn = pool_.jobs_.front();
+      pool_.jobs_.pop_front();
+    }
+
+    assert(true == static_cast&lt;bool&gt;(fn));
+    fn();
+  }
+}
+
+ThreadPool &amp;pool_;
+</code></pre>
+<p>};
+friend struct worker;</p>
+<p>std::vector<a href="std::thread" rel="">std::thread</a> threads_;
+std::list&lt;std::function&lt;void()&raquo; jobs_;</p>
+<p>bool shutdown_;</p>
+<p>std::condition_variable cond_;
+std::mutex mutex_;
+};</p>
+<p>std::vector<a href="std::thread" rel="">std::thread</a> threads_;
+ThreadPool &amp;pool_;
+std::list&lt;std::function&lt;void()&raquo; jobs_;</p>
+<p>using SocketOptions = std::function&lt;void(socket_t sock)&gt;;</p>
+<p>line_reader</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-1">  1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-2">  2</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-3">  3</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-4">  4</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-5">  5</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-6">  6</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-7">  7</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-8">  8</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-9">  9</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-10"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-10"> 10</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-11"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-11"> 11</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-12"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-12"> 12</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-13"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-13"> 13</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-14"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-14"> 14</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-15"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-15"> 15</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-16"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-16"> 16</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-17"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-17"> 17</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-18"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-18"> 18</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-19"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-19"> 19</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-20"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-20"> 20</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-21"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-21"> 21</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-22"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-22"> 22</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-23"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-23"> 23</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-24"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-24"> 24</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-25"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-25"> 25</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-26"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-26"> 26</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-27"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-27"> 27</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-28"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-28"> 28</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-29"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-29"> 29</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-30"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-30"> 30</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-31"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-31"> 31</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-32"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-32"> 32</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-33"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-33"> 33</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-34"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-34"> 34</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-35"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-35"> 35</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-36"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-36"> 36</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-37"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-37"> 37</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-38"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-38"> 38</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-39"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-39"> 39</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-40"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-40"> 40</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-41"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-41"> 41</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-42"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-42"> 42</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-43"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-43"> 43</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-44"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-44"> 44</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-45"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-45"> 45</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-46"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-46"> 46</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-47"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-47"> 47</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-48"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-48"> 48</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-49"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-49"> 49</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-50"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-50"> 50</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-51"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-51"> 51</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-52"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-52"> 52</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-53"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-53"> 53</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-54"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-54"> 54</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-55"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-55"> 55</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-56"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-56"> 56</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-57"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-57"> 57</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-58"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-58"> 58</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-59"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-59"> 59</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-60"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-60"> 60</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-61"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-61"> 61</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-62"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-62"> 62</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-63"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-63"> 63</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-64"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-64"> 64</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-65"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-65"> 65</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-66"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-66"> 66</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-67"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-67"> 67</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-68"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-68"> 68</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-69"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-69"> 69</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-70"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-70"> 70</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-71"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-71"> 71</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-72"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-72"> 72</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-73"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-73"> 73</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-74"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-74"> 74</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-75"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-75"> 75</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-76"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-76"> 76</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-77"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-77"> 77</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-78"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-78"> 78</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-79"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-79"> 79</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-80"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-80"> 80</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-81"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-81"> 81</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-82"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-82"> 82</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-83"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-83"> 83</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-84"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-84"> 84</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-85"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-85"> 85</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-86"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-86"> 86</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-87"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-87"> 87</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-88"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-88"> 88</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-89"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-89"> 89</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-90"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-90"> 90</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-91"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-91"> 91</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-92"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-92"> 92</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-93"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-93"> 93</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-94"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-94"> 94</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-95"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-95"> 95</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-96"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-96"> 96</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-97"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-97"> 97</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-98"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-98"> 98</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-99"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-99"> 99</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-100"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-100">100</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#069;font-weight:bold">inline</span> <span style="color:#078;font-weight:bold">bool</span> <span style="color:#c0f">is_file</span>(<span style="color:#069;font-weight:bold">const</span> std<span style="color:#555">::</span>string <span style="color:#555">&amp;</span>path) {
+</span></span><span style="display:flex;"><span>  <span style="color:#069;font-weight:bold">struct</span> <span style="color:#0a8;font-weight:bold">stat</span> st;
+</span></span><span style="display:flex;"><span>  <span style="color:#069;font-weight:bold">return</span> stat(path.c_str(), <span style="color:#555">&amp;</span>st) <span style="color:#555">&gt;=</span> <span style="color:#f60">0</span> <span style="color:#555">&amp;&amp;</span> S_ISREG(st.st_mode);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">inline</span> <span style="color:#078;font-weight:bold">bool</span> <span style="color:#c0f">is_dir</span>(<span style="color:#069;font-weight:bold">const</span> std<span style="color:#555">::</span>string <span style="color:#555">&amp;</span>path) {
+</span></span><span style="display:flex;"><span>  <span style="color:#069;font-weight:bold">struct</span> <span style="color:#0a8;font-weight:bold">stat</span> st;
+</span></span><span style="display:flex;"><span>  <span style="color:#069;font-weight:bold">return</span> stat(path.c_str(), <span style="color:#555">&amp;</span>st) <span style="color:#555">&gt;=</span> <span style="color:#f60">0</span> <span style="color:#555">&amp;&amp;</span> S_ISDIR(st.st_mode);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">inline</span> <span style="color:#078;font-weight:bold">bool</span> <span style="color:#c0f">is_valid_path</span>(<span style="color:#069;font-weight:bold">const</span> std<span style="color:#555">::</span>string <span style="color:#555">&amp;</span>path) {
+</span></span><span style="display:flex;"><span>  size_t level <span style="color:#555">=</span> <span style="color:#f60">0</span>;
+</span></span><span style="display:flex;"><span>  size_t i <span style="color:#555">=</span> <span style="color:#f60">0</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#09f;font-style:italic">// Skip slash
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>  <span style="color:#069;font-weight:bold">while</span> (i <span style="color:#555">&lt;</span> path.size() <span style="color:#555">&amp;&amp;</span> path[i] <span style="color:#555">==</span> <span style="color:#c30">&#39;/&#39;</span>) {
+</span></span><span style="display:flex;"><span>    i<span style="color:#555">++</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#069;font-weight:bold">while</span> (i <span style="color:#555">&lt;</span> path.size()) {
+</span></span><span style="display:flex;"><span>    <span style="color:#09f;font-style:italic">// Read component
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>    <span style="color:#069;font-weight:bold">auto</span> beg <span style="color:#555">=</span> i;
+</span></span><span style="display:flex;"><span>    <span style="color:#069;font-weight:bold">while</span> (i <span style="color:#555">&lt;</span> path.size() <span style="color:#555">&amp;&amp;</span> path[i] <span style="color:#555">!=</span> <span style="color:#c30">&#39;/&#39;</span>) {
+</span></span><span style="display:flex;"><span>      i<span style="color:#555">++</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#069;font-weight:bold">auto</span> len <span style="color:#555">=</span> i <span style="color:#555">-</span> beg;
+</span></span><span style="display:flex;"><span>    assert(len <span style="color:#555">&gt;</span> <span style="color:#f60">0</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#069;font-weight:bold">if</span> (<span style="color:#555">!</span>path.compare(beg, len, <span style="color:#c30">&#34;.&#34;</span>)) {
+</span></span><span style="display:flex;"><span>      ;
+</span></span><span style="display:flex;"><span>    } <span style="color:#069;font-weight:bold">else</span> <span style="color:#069;font-weight:bold">if</span> (<span style="color:#555">!</span>path.compare(beg, len, <span style="color:#c30">&#34;..&#34;</span>)) {
+</span></span><span style="display:flex;"><span>      <span style="color:#069;font-weight:bold">if</span> (level <span style="color:#555">==</span> <span style="color:#f60">0</span>) { <span style="color:#069;font-weight:bold">return</span> <span style="color:#366">false</span>; }
+</span></span><span style="display:flex;"><span>      level<span style="color:#555">--</span>;
+</span></span><span style="display:flex;"><span>    } <span style="color:#069;font-weight:bold">else</span> {
+</span></span><span style="display:flex;"><span>      level<span style="color:#555">++</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#09f;font-style:italic">// Skip slash
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>    <span style="color:#069;font-weight:bold">while</span> (i <span style="color:#555">&lt;</span> path.size() <span style="color:#555">&amp;&amp;</span> path[i] <span style="color:#555">==</span> <span style="color:#c30">&#39;/&#39;</span>) {
+</span></span><span style="display:flex;"><span>      i<span style="color:#555">++</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#069;font-weight:bold">return</span> <span style="color:#366">true</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">inline</span> <span style="color:#078;font-weight:bold">void</span> <span style="color:#c0f">read_file</span>(<span style="color:#069;font-weight:bold">const</span> std<span style="color:#555">::</span>string <span style="color:#555">&amp;</span>path, std<span style="color:#555">::</span>string <span style="color:#555">&amp;</span>out) {
+</span></span><span style="display:flex;"><span>  std<span style="color:#555">::</span>ifstream fs(path, std<span style="color:#555">::</span>ios_base<span style="color:#555">::</span>binary);
+</span></span><span style="display:flex;"><span>  fs.seekg(<span style="color:#f60">0</span>, std<span style="color:#555">::</span>ios_base<span style="color:#555">::</span>end);
+</span></span><span style="display:flex;"><span>  <span style="color:#069;font-weight:bold">auto</span> size <span style="color:#555">=</span> fs.tellg();
+</span></span><span style="display:flex;"><span>  fs.seekg(<span style="color:#f60">0</span>);
+</span></span><span style="display:flex;"><span>  out.resize(<span style="color:#069;font-weight:bold">static_cast</span><span style="color:#555">&lt;</span>size_t<span style="color:#555">&gt;</span>(size));
+</span></span><span style="display:flex;"><span>  fs.read(<span style="color:#555">&amp;</span>out[<span style="color:#f60">0</span>], <span style="color:#069;font-weight:bold">static_cast</span><span style="color:#555">&lt;</span>std<span style="color:#555">::</span>streamsize<span style="color:#555">&gt;</span>(size));
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">inline</span> std<span style="color:#555">::</span>string file_extension(<span style="color:#069;font-weight:bold">const</span> std<span style="color:#555">::</span>string <span style="color:#555">&amp;</span>path) {
+</span></span><span style="display:flex;"><span>  std<span style="color:#555">::</span>smatch m;
+</span></span><span style="display:flex;"><span>  <span style="color:#069;font-weight:bold">static</span> <span style="color:#069;font-weight:bold">auto</span> re <span style="color:#555">=</span> std<span style="color:#555">::</span>regex(<span style="color:#c30">&#34;</span><span style="color:#c30;font-weight:bold">\\</span><span style="color:#c30">.([a-zA-Z0-9]+)$&#34;</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#069;font-weight:bold">if</span> (std<span style="color:#555">::</span>regex_search(path, m, re)) { <span style="color:#069;font-weight:bold">return</span> m[<span style="color:#f60">1</span>].str(); }
+</span></span><span style="display:flex;"><span>  <span style="color:#069;font-weight:bold">return</span> std<span style="color:#555">::</span>string();
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">inline</span> <span style="color:#078;font-weight:bold">bool</span> <span style="color:#c0f">is_space_or_tab</span>(<span style="color:#078;font-weight:bold">char</span> c) { <span style="color:#069;font-weight:bold">return</span> c <span style="color:#555">==</span> <span style="color:#c30">&#39; &#39;</span> <span style="color:#555">||</span> c <span style="color:#555">==</span> <span style="color:#c30">&#39;\t&#39;</span>; }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">inline</span> std<span style="color:#555">::</span>pair<span style="color:#555">&lt;</span>size_t, size_t<span style="color:#555">&gt;</span> trim(<span style="color:#069;font-weight:bold">const</span> <span style="color:#078;font-weight:bold">char</span> <span style="color:#555">*</span>b, <span style="color:#069;font-weight:bold">const</span> <span style="color:#078;font-weight:bold">char</span> <span style="color:#555">*</span>e, size_t left,
+</span></span><span style="display:flex;"><span>                                      size_t right) {
+</span></span><span style="display:flex;"><span>  <span style="color:#069;font-weight:bold">while</span> (b <span style="color:#555">+</span> left <span style="color:#555">&lt;</span> e <span style="color:#555">&amp;&amp;</span> is_space_or_tab(b[left])) {
+</span></span><span style="display:flex;"><span>    left<span style="color:#555">++</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#069;font-weight:bold">while</span> (right <span style="color:#555">&gt;</span> <span style="color:#f60">0</span> <span style="color:#555">&amp;&amp;</span> is_space_or_tab(b[right <span style="color:#555">-</span> <span style="color:#f60">1</span>])) {
+</span></span><span style="display:flex;"><span>    right<span style="color:#555">--</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#069;font-weight:bold">return</span> std<span style="color:#555">::</span>make_pair(left, right);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">inline</span> std<span style="color:#555">::</span>string trim_copy(<span style="color:#069;font-weight:bold">const</span> std<span style="color:#555">::</span>string <span style="color:#555">&amp;</span>s) {
+</span></span><span style="display:flex;"><span>  <span style="color:#069;font-weight:bold">auto</span> r <span style="color:#555">=</span> trim(s.data(), s.data() <span style="color:#555">+</span> s.size(), <span style="color:#f60">0</span>, s.size());
+</span></span><span style="display:flex;"><span>  <span style="color:#069;font-weight:bold">return</span> s.substr(r.first, r.second <span style="color:#555">-</span> r.first);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">inline</span> <span style="color:#078;font-weight:bold">void</span> <span style="color:#c0f">split</span>(<span style="color:#069;font-weight:bold">const</span> <span style="color:#078;font-weight:bold">char</span> <span style="color:#555">*</span>b, <span style="color:#069;font-weight:bold">const</span> <span style="color:#078;font-weight:bold">char</span> <span style="color:#555">*</span>e, <span style="color:#078;font-weight:bold">char</span> d,
+</span></span><span style="display:flex;"><span>                  std<span style="color:#555">::</span>function<span style="color:#555">&lt;</span><span style="color:#078;font-weight:bold">void</span>(<span style="color:#069;font-weight:bold">const</span> <span style="color:#078;font-weight:bold">char</span> <span style="color:#555">*</span>, <span style="color:#069;font-weight:bold">const</span> <span style="color:#078;font-weight:bold">char</span> <span style="color:#555">*</span>)<span style="color:#555">&gt;</span> fn) {
+</span></span><span style="display:flex;"><span>  size_t i <span style="color:#555">=</span> <span style="color:#f60">0</span>;
+</span></span><span style="display:flex;"><span>  size_t beg <span style="color:#555">=</span> <span style="color:#f60">0</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#069;font-weight:bold">while</span> (e <span style="color:#555">?</span> (b <span style="color:#555">+</span> i <span style="color:#555">&lt;</span> e) <span style="color:#555">:</span> (b[i] <span style="color:#555">!=</span> <span style="color:#c30">&#39;\0&#39;</span>)) {
+</span></span><span style="display:flex;"><span>    <span style="color:#069;font-weight:bold">if</span> (b[i] <span style="color:#555">==</span> d) {
+</span></span><span style="display:flex;"><span>      <span style="color:#069;font-weight:bold">auto</span> r <span style="color:#555">=</span> trim(b, e, beg, i);
+</span></span><span style="display:flex;"><span>      <span style="color:#069;font-weight:bold">if</span> (r.first <span style="color:#555">&lt;</span> r.second) { fn(<span style="color:#555">&amp;</span>b[r.first], <span style="color:#555">&amp;</span>b[r.second]); }
+</span></span><span style="display:flex;"><span>      beg <span style="color:#555">=</span> i <span style="color:#555">+</span> <span style="color:#f60">1</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    i<span style="color:#555">++</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#069;font-weight:bold">if</span> (i) {
+</span></span><span style="display:flex;"><span>    <span style="color:#069;font-weight:bold">auto</span> r <span style="color:#555">=</span> trim(b, e, beg, i);
+</span></span><span style="display:flex;"><span>    <span style="color:#069;font-weight:bold">if</span> (r.first <span style="color:#555">&lt;</span> r.second) { fn(<span style="color:#555">&amp;</span>b[r.first], <span style="color:#555">&amp;</span>b[r.second]); }
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>trim : 修剪</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-1"> 1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-2"> 2</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-3"> 3</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-4"> 4</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-5"> 5</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-6"> 6</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-7"> 7</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-8"> 8</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-9"> 9</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-10"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-10">10</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-11"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-11">11</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-12"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-12">12</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-13"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-13">13</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-14"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-14">14</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-15"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-15">15</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-16"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-16">16</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-17"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-17">17</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#069;font-weight:bold">class</span> <span style="color:#0a8;font-weight:bold">Stream</span> {
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">public</span><span style="color:#555">:</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#069;font-weight:bold">virtual</span> <span style="color:#555">~</span>Stream() <span style="color:#555">=</span> <span style="color:#069;font-weight:bold">default</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#069;font-weight:bold">virtual</span> <span style="color:#078;font-weight:bold">bool</span> <span style="color:#c0f">is_readable</span>() <span style="color:#069;font-weight:bold">const</span> <span style="color:#555">=</span> <span style="color:#f60">0</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#069;font-weight:bold">virtual</span> <span style="color:#078;font-weight:bold">bool</span> <span style="color:#c0f">is_writable</span>() <span style="color:#069;font-weight:bold">const</span> <span style="color:#555">=</span> <span style="color:#f60">0</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#069;font-weight:bold">virtual</span> ssize_t <span style="color:#c0f">read</span>(<span style="color:#078;font-weight:bold">char</span> <span style="color:#555">*</span>ptr, size_t size) <span style="color:#555">=</span> <span style="color:#f60">0</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#069;font-weight:bold">virtual</span> ssize_t <span style="color:#c0f">write</span>(<span style="color:#069;font-weight:bold">const</span> <span style="color:#078;font-weight:bold">char</span> <span style="color:#555">*</span>ptr, size_t size) <span style="color:#555">=</span> <span style="color:#f60">0</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#069;font-weight:bold">virtual</span> <span style="color:#078;font-weight:bold">void</span> <span style="color:#c0f">get_remote_ip_and_port</span>(std<span style="color:#555">::</span>string <span style="color:#555">&amp;</span>ip, <span style="color:#078;font-weight:bold">int</span> <span style="color:#555">&amp;</span>port) <span style="color:#069;font-weight:bold">const</span> <span style="color:#555">=</span> <span style="color:#f60">0</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#069;font-weight:bold">virtual</span> socket_t <span style="color:#c0f">socket</span>() <span style="color:#069;font-weight:bold">const</span> <span style="color:#555">=</span> <span style="color:#f60">0</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#069;font-weight:bold">template</span> <span style="color:#555">&lt;</span><span style="color:#069;font-weight:bold">typename</span>... Args<span style="color:#555">&gt;</span>
+</span></span><span style="display:flex;"><span>  ssize_t write_format(<span style="color:#069;font-weight:bold">const</span> <span style="color:#078;font-weight:bold">char</span> <span style="color:#555">*</span>fmt, <span style="color:#069;font-weight:bold">const</span> Args <span style="color:#555">&amp;</span>...args);
+</span></span><span style="display:flex;"><span>  ssize_t <span style="color:#c0f">write</span>(<span style="color:#069;font-weight:bold">const</span> <span style="color:#078;font-weight:bold">char</span> <span style="color:#555">*</span>ptr);
+</span></span><span style="display:flex;"><span>  ssize_t <span style="color:#c0f">write</span>(<span style="color:#069;font-weight:bold">const</span> std<span style="color:#555">::</span>string <span style="color:#555">&amp;</span>s);
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-1"> 1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-2"> 2</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-3"> 3</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-4"> 4</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-5"> 5</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-6"> 6</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-7"> 7</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-8"> 8</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-9"> 9</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-10"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-10">10</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-11"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-11">11</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-12"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-12">12</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-13"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-13">13</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-14"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-14">14</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-15"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-15">15</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-16"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-16">16</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-17"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-17">17</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-18"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-18">18</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-19"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-19">19</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-20"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-20">20</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-21"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-21">21</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-22"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-22">22</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-23"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-23">23</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-24"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-24">24</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-25"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-25">25</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-26"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-26">26</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-27"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-27">27</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-28"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-28">28</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-29"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-29">29</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>template &lt;typename T&gt;
+</span></span><span style="display:flex;"><span>bool read_content(Stream &amp;strm, T &amp;x, size_t payload_max_length, int &amp;status,
+</span></span><span style="display:flex;"><span>                  Progress progress, ContentReceiverWithProgress receiver,
+</span></span><span style="display:flex;"><span>                  bool decompress) {
+</span></span><span style="display:flex;"><span>  return prepare_content_receiver(
+</span></span><span style="display:flex;"><span>      x, status, std::move(receiver), decompress,
+</span></span><span style="display:flex;"><span>      [&amp;](const ContentReceiverWithProgress &amp;out) {
+</span></span><span style="display:flex;"><span>        auto ret = true;
+</span></span><span style="display:flex;"><span>        auto exceed_payload_max_length = false;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        if (is_chunked_transfer_encoding(x.headers)) {
+</span></span><span style="display:flex;"><span>          ret = read_content_chunked(strm, out);
+</span></span><span style="display:flex;"><span>        } else if (!has_header(x.headers, &#34;Content-Length&#34;)) {
+</span></span><span style="display:flex;"><span>          ret = read_content_without_length(strm, out);
+</span></span><span style="display:flex;"><span>        } else {
+</span></span><span style="display:flex;"><span>          auto len = get_header_value&lt;uint64_t&gt;(x.headers, &#34;Content-Length&#34;);
+</span></span><span style="display:flex;"><span>          if (len &gt; payload_max_length) {
+</span></span><span style="display:flex;"><span>            exceed_payload_max_length = true;
+</span></span><span style="display:flex;"><span>            skip_content_with_length(strm, len);
+</span></span><span style="display:flex;"><span>            ret = false;
+</span></span><span style="display:flex;"><span>          } else if (len &gt; 0) {
+</span></span><span style="display:flex;"><span>            ret = read_content_with_length(strm, len, std::move(progress), out);
+</span></span><span style="display:flex;"><span>          }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        if (!ret) { status = exceed_payload_max_length ? 413 : 400; }
+</span></span><span style="display:flex;"><span>        return ret;
+</span></span><span style="display:flex;"><span>      });
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><a href="https://leon-liu.blog.csdn.net/article/details/53432408?spm=1001.2101.3001.6650.1&amp;utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7ELandingCtr%7Edefault-1.queryctr&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7ELandingCtr%7Edefault-1.queryctr&amp;utm_relevant_index=2" target="_blank" rel="noopener noreffer ">https://leon-liu.blog.csdn.net/article/details/53432408?spm=1001.2101.3001.6650.1&utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7ELandingCtr%7Edefault-1.queryctr&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7ELandingCtr%7Edefault-1.queryctr&utm_relevant_index=2</a></p>
+<p><a href="http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx" target="_blank" rel="noopener noreffer ">http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx</a></p>
+<p>client</p>
+<p>std::array&lt;char, 2048&gt; buf{};</p>
+<p>httplib socket recv 有默认大小设置</p>
+<p>如果传输是支持分片的 （chunked）则接收可以分片传输</p>
+<p>swerver 静态文件服务 默认是range 下发</p>
+<p>httplib 由 socket  接收数据 ：</p>
+<ol>
+<li>先申请 2048 的数据  std::array&lt;char, 2048&gt; buf{};   ，用于接收头数据</li>
+<li>解析头数据
+<ul>
+<li>如果是 chunked （&ldquo;Transfer-Encoding&rdquo;, &ldquo;chunked&rdquo;）分片下载则可以通过注册的回调函数 分片拿到数据</li>
+<li>如果 Content-Length 有数据则按照 且不是 chunked 模式则按照 Content-Length 读取数据(如果 Content-Length 超过设置设置大小 则 报错 ，返回HTTP 状态码 ： 413  &ldquo;Payload Too Large“)</li>
+<li>如果没有 Content-Length  则按照默认recv（CPPHTTPLIB_RECV_BUFSIZ (4096） 大小下载</li>
+</ul>
+</li>
+</ol>
+<p>结论 ： 目前httplib 如果想实现边下载边落盘的功能，只能是  协议上支持 range 或者 chunked 模式。</p>
+<ul>
+<li>
+<p>range 方式实现是 应用层多次请求不同range 然后写入文件</p>
+</li>
+<li>
+<p>chunked 方式是 可以注册回调函数，一次请求多次回调内实现多次由 socket 内读取数据</p>
+</li>
+</ul>
+<p>如果服务器并没有支持 chunked / range 方式 ，基于 httplib 库无法实现 边读socket 边落盘方式 （这种我理解不是标准的 http 交互的行为）</p>
+<ol>
+<li>如果 chunked</li>
+</ol>
+<p>CPPHTTPLIB_RECV_BUFSIZ</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-1"> 1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-2"> 2</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-3"> 3</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-4"> 4</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-5"> 5</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-6"> 6</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-7"> 7</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-8"> 8</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-9"> 9</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-10"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-10">10</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-11"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-11">11</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-12"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-12">12</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-13"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-13">13</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-14"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-14">14</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-15"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-15">15</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-16"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-16">16</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-17"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-17">17</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-18"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-18">18</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-19"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-19">19</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-20"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-20">20</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-21"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-21">21</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-22"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-22">22</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-23"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-23">23</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-24"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-24">24</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-25"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-25">25</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-26"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-26">26</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-27"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-27">27</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-28"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-28">28</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-29"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-29">29</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#069;font-weight:bold">template</span> <span style="color:#555">&lt;</span><span style="color:#069;font-weight:bold">typename</span> T<span style="color:#555">&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#078;font-weight:bold">bool</span> read_content(Stream <span style="color:#555">&amp;</span>strm, T <span style="color:#555">&amp;</span>x, size_t payload_max_length, <span style="color:#078;font-weight:bold">int</span> <span style="color:#555">&amp;</span>status,
+</span></span><span style="display:flex;"><span>                  Progress progress, ContentReceiverWithProgress receiver,
+</span></span><span style="display:flex;"><span>                  <span style="color:#078;font-weight:bold">bool</span> decompress) {
+</span></span><span style="display:flex;"><span>  <span style="color:#069;font-weight:bold">return</span> <span style="color:#c0f">prepare_content_receiver</span>(
+</span></span><span style="display:flex;"><span>      x, status, std<span style="color:#555">::</span>move(receiver), decompress,
+</span></span><span style="display:flex;"><span>      [<span style="color:#555">&amp;</span>](<span style="color:#069;font-weight:bold">const</span> ContentReceiverWithProgress <span style="color:#555">&amp;</span>out) {
+</span></span><span style="display:flex;"><span>        <span style="color:#069;font-weight:bold">auto</span> ret <span style="color:#555">=</span> <span style="color:#366">true</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#069;font-weight:bold">auto</span> exceed_payload_max_length <span style="color:#555">=</span> <span style="color:#366">false</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#069;font-weight:bold">if</span> (is_chunked_transfer_encoding(x.headers)) {
+</span></span><span style="display:flex;"><span>          ret <span style="color:#555">=</span> read_content_chunked(strm, out);
+</span></span><span style="display:flex;"><span>        } <span style="color:#069;font-weight:bold">else</span> <span style="color:#069;font-weight:bold">if</span> (<span style="color:#555">!</span>has_header(x.headers, <span style="color:#c30">&#34;Content-Length&#34;</span>)) {
+</span></span><span style="display:flex;"><span>          ret <span style="color:#555">=</span> read_content_without_length(strm, out);
+</span></span><span style="display:flex;"><span>        } <span style="color:#069;font-weight:bold">else</span> {
+</span></span><span style="display:flex;"><span>          <span style="color:#069;font-weight:bold">auto</span> len <span style="color:#555">=</span> get_header_value<span style="color:#555">&lt;</span><span style="color:#078;font-weight:bold">uint64_t</span><span style="color:#555">&gt;</span>(x.headers, <span style="color:#c30">&#34;Content-Length&#34;</span>);
+</span></span><span style="display:flex;"><span>          <span style="color:#069;font-weight:bold">if</span> (len <span style="color:#555">&gt;</span> payload_max_length) {
+</span></span><span style="display:flex;"><span>            exceed_payload_max_length <span style="color:#555">=</span> <span style="color:#366">true</span>;
+</span></span><span style="display:flex;"><span>            skip_content_with_length(strm, len);
+</span></span><span style="display:flex;"><span>            ret <span style="color:#555">=</span> <span style="color:#366">false</span>;
+</span></span><span style="display:flex;"><span>          } <span style="color:#069;font-weight:bold">else</span> <span style="color:#069;font-weight:bold">if</span> (len <span style="color:#555">&gt;</span> <span style="color:#f60">0</span>) {
+</span></span><span style="display:flex;"><span>            ret <span style="color:#555">=</span> read_content_with_length(strm, len, std<span style="color:#555">::</span>move(progress), out);
+</span></span><span style="display:flex;"><span>          }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#069;font-weight:bold">if</span> (<span style="color:#555">!</span>ret) { status <span style="color:#555">=</span> exceed_payload_max_length <span style="color:#555">?</span> <span style="color:#f60">413</span> <span style="color:#555">:</span> <span style="color:#f60">400</span>; }
+</span></span><span style="display:flex;"><span>        <span style="color:#069;font-weight:bold">return</span> ret;
+</span></span><span style="display:flex;"><span>      });
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-1"> 1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-2"> 2</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-3"> 3</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-4"> 4</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-5"> 5</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-6"> 6</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-7"> 7</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-8"> 8</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-9"> 9</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-10"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-10">10</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-11"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-11">11</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-12"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-12">12</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-13"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-13">13</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-14"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-14">14</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-15"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-15">15</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-16"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-16">16</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-17"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-17">17</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-18"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-18">18</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-19"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-19">19</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-20"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-20">20</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-21"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-21">21</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#069;font-weight:bold">inline</span> <span style="color:#078;font-weight:bold">bool</span> <span style="color:#c0f">read_content_with_length</span>(Stream <span style="color:#555">&amp;</span>strm, <span style="color:#078;font-weight:bold">uint64_t</span> len,
+</span></span><span style="display:flex;"><span>                                     Progress progress,
+</span></span><span style="display:flex;"><span>                                     ContentReceiverWithProgress out) {
+</span></span><span style="display:flex;"><span>  <span style="color:#078;font-weight:bold">char</span> buf[CPPHTTPLIB_RECV_BUFSIZ];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#078;font-weight:bold">uint64_t</span> r <span style="color:#555">=</span> <span style="color:#f60">0</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#069;font-weight:bold">while</span> (r <span style="color:#555">&lt;</span> len) {
+</span></span><span style="display:flex;"><span>    <span style="color:#069;font-weight:bold">auto</span> read_len <span style="color:#555">=</span> <span style="color:#069;font-weight:bold">static_cast</span><span style="color:#555">&lt;</span>size_t<span style="color:#555">&gt;</span>(len <span style="color:#555">-</span> r);
+</span></span><span style="display:flex;"><span>    <span style="color:#069;font-weight:bold">auto</span> n <span style="color:#555">=</span> strm.read(buf, (std<span style="color:#555">::</span>min)(read_len, CPPHTTPLIB_RECV_BUFSIZ));
+</span></span><span style="display:flex;"><span>    <span style="color:#069;font-weight:bold">if</span> (n <span style="color:#555">&lt;=</span> <span style="color:#f60">0</span>) { <span style="color:#069;font-weight:bold">return</span> <span style="color:#366">false</span>; }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#069;font-weight:bold">if</span> (<span style="color:#555">!</span>out(buf, <span style="color:#069;font-weight:bold">static_cast</span><span style="color:#555">&lt;</span>size_t<span style="color:#555">&gt;</span>(n), r, len)) { <span style="color:#069;font-weight:bold">return</span> <span style="color:#366">false</span>; }
+</span></span><span style="display:flex;"><span>    r <span style="color:#555">+=</span> <span style="color:#069;font-weight:bold">static_cast</span><span style="color:#555">&lt;</span><span style="color:#078;font-weight:bold">uint64_t</span><span style="color:#555">&gt;</span>(n);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#069;font-weight:bold">if</span> (progress) {
+</span></span><span style="display:flex;"><span>      <span style="color:#069;font-weight:bold">if</span> (<span style="color:#555">!</span>progress(r, len)) { <span style="color:#069;font-weight:bold">return</span> <span style="color:#366">false</span>; }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#069;font-weight:bold">return</span> <span style="color:#366">true</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>[DrHttp] 更新DrHttp 实现
++) 增加form-data 数据上传</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2023-01-18&nbsp;<a class="git-hash" href="https://github.com/zhangyuhu/zhangyuhu.github.io/commit/d1ac348ddf52a073ef726b5b05a0c3110e0c02cd" target="_blank" title="commit by zhangyuhu(zhangyuhude@163.com) d1ac348ddf52a073ef726b5b05a0c3110e0c02cd: update">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>d1ac348</a></span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://zhangyuhu.github.io/posts/open_source_software/httplib/httplib/" data-title="开源软件:httplib" data-hashtags="httplib"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://zhangyuhu.github.io/posts/open_source_software/httplib/httplib/" data-hashtag="httplib"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://zhangyuhu.github.io/posts/open_source_software/httplib/httplib/" data-title="开源软件:httplib"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://zhangyuhu.github.io/posts/open_source_software/httplib/httplib/" data-title="开源软件:httplib"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://zhangyuhu.github.io/posts/open_source_software/httplib/httplib/" data-title="开源软件:httplib" data-ralateuid="ji"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/httplib/">httplib</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/open_source_software/opencv/opencv3.2_install/opencv3.2.0_install/" class="prev" rel="prev" title="开源软件:opencv &amp; opencv_contrib 3.2.0 安装"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>开源软件:opencv & opencv_contrib 3.2.0 安装</a>
+            <a href="/posts/open_source_software/opencv/ffmpeg_opencv_4.5.0_install/ffmpeg_opencv_4.5.0_install/" class="next" rel="next" title="开源软件:ffmpeg &amp; opencv_4.5.0  安装">开源软件:ffmpeg & opencv_4.5.0  安装<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="giscus" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://giscus.app">Giscus</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">为天地立心,为生民立命,为往圣继绝学,为万世开太平</div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://zhangyuhu.github.io/" target="_blank">zhangyuhu</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="http://creativecommons.org/licenses/by/4.0/" target="_blank">知识共享署名 4.0 国际许可协议</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/css/lightgallery-bundle.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/twemoji@14.0.2/dist/twemoji.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/lightgallery.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/thumbnail/lg-thumbnail.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/zoom/lg-zoom.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@8.6.0/dist/index.umd.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":100},"comment":{"giscus":{"category":"Comments","categoryId":"DIC_kwDOIx2Cjs4CTnUX","darkTheme":"dark","emitMetadata":"0","inputPosition":"bottom","lang":"en","lazyLoading":false,"lightTheme":"light","mapping":"pathname","reactionsEnabled":"1","repo":"zhangyuhu/zhangyuhu.github.io","repoId":"R_kgDOIx2Cjg"}},"data":{"id-1":"HOME","id-2":"HOME"},"lightgallery":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"},"twemoji":true,"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.2970a33d719df7cd89cebf586152b32a8ed30012227fa81b44282950146e0f595d1c733779e4d423dda1004bdcf707ee64d0fadc3d21229cd66b960788f84bdb.js" integrity="sha512-KXCjPXGd982Jzr9YYVKzKo7TABIif6gbRCgpUBRuD1ldHHM3eeTUI92hAEvc9wfuZND63D0hIpzWa5YHiPhL2w=="></script></body>
+</html>

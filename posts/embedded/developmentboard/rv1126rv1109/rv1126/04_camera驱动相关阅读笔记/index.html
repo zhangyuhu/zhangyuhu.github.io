@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Embedded:RV1126 camera驱动相关阅读笔记 - 这是我的网站</title><meta name="Description" content="RV1126 camera驱动相关阅读笔记"><meta property="og:title" content="Embedded:RV1126 camera驱动相关阅读笔记" />
+<meta property="og:description" content="RV1126 camera驱动相关阅读笔记" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zhangyuhu.github.io/posts/embedded/developmentboard/rv1126rv1109/rv1126/04_camera%E9%A9%B1%E5%8A%A8%E7%9B%B8%E5%85%B3%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/" /><meta property="og:image" content="https://zhangyuhu.github.io/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-02-09T14:32:52+08:00" />
+<meta property="article:modified_time" content="2023-02-09T15:11:52+08:00" /><meta property="og:site_name" content="我的网站" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://zhangyuhu.github.io/logo.png"/>
+
+<meta name="twitter:title" content="Embedded:RV1126 camera驱动相关阅读笔记"/>
+<meta name="twitter:description" content="RV1126 camera驱动相关阅读笔记"/>
+<meta name="application-name" content="我的网站">
+<meta name="apple-mobile-web-app-title" content="我的网站"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://zhangyuhu.github.io/posts/embedded/developmentboard/rv1126rv1109/rv1126/04_camera%E9%A9%B1%E5%8A%A8%E7%9B%B8%E5%85%B3%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/" /><link rel="prev" href="https://zhangyuhu.github.io/posts/embedded/developmentboard/rv1126rv1109/rv1126/02_usb_camera%E5%BA%94%E7%94%A8%E4%BB%A3%E7%A0%81%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/" /><link rel="next" href="https://zhangyuhu.github.io/posts/embedded/developmentboard/rv1126rv1109/rv1126_camera%E8%B0%83%E8%AF%95%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" /><link rel="stylesheet" href="/css/style.min.990eb8dd228a2b662f63cfe59575be8aa494cb9d40ffd854f26b9d9e588e1f4fdadb6a34e3f9a9171244d3ee6c107521923ab30705f3ef50d3e435eda1afc910.css" integrity="sha512-mQ643SKKK2YvY8/llXW+iqSUy51A/9hU8mudnliOH0/a22o04/mpFxJE0+5sEHUhkjqzBwXz71DT5DXtoa/JEA=="><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Embedded:RV1126 camera驱动相关阅读笔记",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/zhangyuhu.github.io\/posts\/embedded\/developmentboard\/rv1126rv1109\/rv1126\/04_camera%E9%A9%B1%E5%8A%A8%E7%9B%B8%E5%85%B3%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0\/"
+        },"image": [{
+                            "@type": "ImageObject",
+                            "url": "https:\/\/zhangyuhu.github.io\/images\/Apple-Devices-Preview.png",
+                            "width":  3200 ,
+                            "height":  2048 
+                        }],"genre": "posts","keywords": "Embedded, 芯片\u0026开发板, RV1126","wordcount":  3537 ,
+        "url": "https:\/\/zhangyuhu.github.io\/posts\/embedded\/developmentboard\/rv1126rv1109\/rv1126\/04_camera%E9%A9%B1%E5%8A%A8%E7%9B%B8%E5%85%B3%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0\/","datePublished": "2023-02-09T14:32:52+08:00","dateModified": "2023-02-09T15:11:52+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "zhangyuhu"
+            },"description": "RV1126 camera驱动相关阅读笔记"
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="这是我的网站"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/" title="文章"><i class='fas fa-archive fa-fw fa-sm'></i> 文章 </a><a class="menu-item" href="/tags/"><i class='fas fa-tags fa-fw fa-sm'></i> 标签 </a><a class="menu-item" href="/categories/"><i class='fas fa-th fa-fw fa-sm'></i> 分类 </a><a class="menu-item" href="/about/"><i class='fas fa-user-tie fa-fw fa-sm'></i> 关于 </a><a class="menu-item" href="/tool/"><i class='fas fa-cube fa-fw fa-sm'></i> 工具箱 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="这是我的网站"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="文章"><i class='fas fa-archive fa-fw fa-sm'></i>文章</a><a class="menu-item" href="/tags/" title=""><i class='fas fa-tags fa-fw fa-sm'></i>标签</a><a class="menu-item" href="/categories/" title=""><i class='fas fa-th fa-fw fa-sm'></i>分类</a><a class="menu-item" href="/about/" title=""><i class='fas fa-user-tie fa-fw fa-sm'></i>关于</a><a class="menu-item" href="/tool/" title=""><i class='fas fa-cube fa-fw fa-sm'></i>工具箱</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Embedded:RV1126 camera驱动相关阅读笔记</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://zhangyuhu.github.io/" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>zhangyuhu</a></span>&nbsp;<span class="post-category">included in <a href="/categories/embedded/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Embedded</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-02-09">2023-02-09</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;3537 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;8 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#isp20应用开发参考">ISP20应用开发参考</a></li>
+    <li><a href="#rkisp-驱动">RKISP 驱动</a>
+      <ul>
+        <li><a href="#ciscmos-image-sensor驱动">CIS(cmos image sensor)驱动</a></li>
+        <li><a href="#vcm驱动">VCM驱动</a></li>
+        <li><a href="#flashlight驱动">FlashLight驱动</a></li>
+        <li><a href="#focus-zoom-p-iris驱动">FOCUS ZOOM P-IRIS驱动</a></li>
+        <li><a href="#dc-iris驱动">DC-IRIS驱动</a></li>
+        <li><a href="#rk-ircut驱动">RK-IRCUT驱动</a></li>
+      </ul>
+    </li>
+    <li><a href="#isp-系统调优">ISP 系统调优</a>
+      <ul>
+        <li><a href="#线性模式图像质量调优">线性模式图像质量调优</a></li>
+        <li><a href="#hdr-模式图像质量调优">HDR 模式图像质量调优</a></li>
+      </ul>
+    </li>
+    <li><a href="#其他">其他</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><blockquote>
+<p>本文采用<a href="http://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreffer ">知识共享署名 4.0 国际许可协议</a>进行许可，转载时请注明原文链接，图片在使用时请保留全部内容，可适当缩放并在引用处附上图片所在的文章链接。</p>
+</blockquote>
+<!-- TOC -->
+<ul>
+<li><a href="#isp20%e5%ba%94%e7%94%a8%e5%bc%80%e5%8f%91%e5%8f%82%e8%80%83" rel="">ISP20应用开发参考</a></li>
+<li><a href="#rkisp-%e9%a9%b1%e5%8a%a8" rel="">RKISP 驱动</a>
+<ul>
+<li><a href="#ciscmos-image-sensor%e9%a9%b1%e5%8a%a8" rel="">CIS(cmos image sensor)驱动</a></li>
+<li><a href="#vcm%e9%a9%b1%e5%8a%a8" rel="">VCM驱动</a></li>
+<li><a href="#flashlight%e9%a9%b1%e5%8a%a8" rel="">FlashLight驱动</a></li>
+<li><a href="#focus-zoom-p-iris%e9%a9%b1%e5%8a%a8" rel="">FOCUS ZOOM P-IRIS驱动</a></li>
+<li><a href="#dc-iris%e9%a9%b1%e5%8a%a8" rel="">DC-IRIS驱动</a></li>
+<li><a href="#rk-ircut%e9%a9%b1%e5%8a%a8" rel="">RK-IRCUT驱动</a></li>
+</ul>
+</li>
+<li><a href="#isp-%e7%b3%bb%e7%bb%9f%e8%b0%83%e4%bc%98" rel="">ISP 系统调优</a>
+<ul>
+<li><a href="#%e7%ba%bf%e6%80%a7%e6%a8%a1%e5%bc%8f%e5%9b%be%e5%83%8f%e8%b4%a8%e9%87%8f%e8%b0%83%e4%bc%98" rel="">线性模式图像质量调优</a></li>
+<li><a href="#hdr-%e6%a8%a1%e5%bc%8f%e5%9b%be%e5%83%8f%e8%b4%a8%e9%87%8f%e8%b0%83%e4%bc%98" rel="">HDR 模式图像质量调优</a></li>
+</ul>
+</li>
+<li><a href="#%e5%85%b6%e4%bb%96" rel="">其他</a></li>
+</ul>
+<!-- /TOC -->
+<blockquote>
+<p>文档地址：/rv1126_rv1109_linux_201230/docs/RV1126_RV1109/Camera</p>
+</blockquote>
+<h1 id="isp20应用开发参考">ISP20应用开发参考</h1>
+<p>文档：Rockchip_Instruction_Linux_Application_ISP20_CN.pdf</p>
+<p>ISP20 源码路径： camera_engine_rkaiq/hwi/isp20</p>
+<p>介绍如何获取Camera数据流以及RkAiq 3A Server独立进程。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202302101001178.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202302101001178.png, https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202302101001178.png 1.5x, https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202302101001178.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202302101001178.png"
+        title="image-20210225150450200" /></p>
+<p>ISP20可以输出四路数据流</p>
+<table>
+<thead>
+<tr>
+<th>entity name</th>
+<th>video id</th>
+<th>max width</th>
+<th>support output fmt</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>rkispp_m_bypass</td>
+<td>/dev/video13</td>
+<td>不支持设置分辨率,不支持缩放</td>
+<td>NV12/NV16/YUYV/FBC0/FBC2/</td>
+</tr>
+<tr>
+<td>rkispp_scale0</td>
+<td>/dev/video14</td>
+<td>max width: 3264, 最大支持 8 倍缩放</td>
+<td>NV12/NV16/YUYV</td>
+</tr>
+<tr>
+<td>rkispp_scale1</td>
+<td>/dev/video15</td>
+<td>max width: 1280, 最大支持 8 倍缩放</td>
+<td>NV12/NV16/YUYV</td>
+</tr>
+<tr>
+<td>rkispp_scale2</td>
+<td>/dev/video16</td>
+<td>max width: 1280, 最大支持 8 倍缩放</td>
+<td>NV12/NV16/YUYV</td>
+</tr>
+</tbody>
+</table>
+<h1 id="rkisp-驱动">RKISP 驱动</h1>
+<p>文档：</p>
+<p>视频：</p>
+<p>RKISP驱动主要是依据v4l2 / media framework实现硬件的配置、中断处理、控制 buffer轮转,以及控制subdevice(如 mipi dphy及sensor)的上下电等功能。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202302101001951.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202302101001951.png, https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202302101001951.png 1.5x, https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202302101001951.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202302101001951.png"
+        title="image-20210225151937472" /></p>
+<h2 id="ciscmos-image-sensor驱动">CIS(cmos image sensor)驱动</h2>
+<p><strong>多sensor 注册</strong></p>
+<p>sensor0-&gt;csi_dphy0-&gt;csi2-&gt;cif-&gt;isp0-&gt;ispp0
+sensor1-&gt;csi_dphy1-&gt;isp1-&gt;ispp1</p>
+<p>实例参考arch/arm/boot/dts/rv1109-evb-ddr3-v12-facial-gate.dts
+<strong>gc2053-&gt;csi_dphy0-&gt;csi2-&gt;cif-&gt;isp1-&gt;ispp1</strong>
+<strong>ov2718-&gt;csi_dphy1-&gt;isp0-&gt;ispp0</strong></p>
+<h2 id="vcm驱动">VCM驱动</h2>
+<p>VCM： 即音圈电机，利用法拉第定律，通过改变马达线圈电流的大小，改变产生的电磁力大小，来控制弹簧片的拉伸位置，从而带动LENSE的运动。</p>
+<h2 id="flashlight驱动">FlashLight驱动</h2>
+<p>闪光灯</p>
+<h2 id="focus-zoom-p-iris驱动">FOCUS ZOOM P-IRIS驱动</h2>
+<p>P-IRIS是通过控制P-IRIS镜头中的步进电机动态精确的控制光圈大小。</p>
+<h2 id="dc-iris驱动">DC-IRIS驱动</h2>
+<p>自动光圈能够根据光线亮度的变化自动调节光圈孔。</p>
+<h2 id="rk-ircut驱动">RK-IRCUT驱动</h2>
+<p>IR-CUT双滤镜是指在摄像头镜头组里内置了一组滤镜，当镜头外的红外感应点侦测到光线的强弱变化后，内置的IR-CUT自动切换滤镜能够根据外部光线的强弱随之自动切换，使图像达到最佳效果。</p>
+<h1 id="isp-系统调优">ISP 系统调优</h1>
+<p>文档 ：Rockchip_Tuning_Guide_ISP2x_CN_v1.5.0.pdf</p>
+<p>ISP模块支持标准的Sensor图像数据处理,包括自动白平衡,自动曝光,Demosaic,坏点矫正及镜头阴影矫正等基本功能,也支持HDR、去雾、降噪等高级处理功能。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202302092106863.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202302092106863.png, https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202302092106863.png 1.5x, https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202302092106863.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202302092106863.png"
+        title="image-image-ISP20功能框图" /></p>
+<p><strong>Demosaic模块</strong></p>
+<p>Sensor输出RAW数据后，需要经过Demosaic模块（ISP中）将其转成RGB图像。</p>
+<h2 id="线性模式图像质量调优">线性模式图像质量调优</h2>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202302101001271.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202302101001271.png, https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202302101001271.png 1.5x, https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202302101001271.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202302101001271.png"
+        title="image-20210225163858667" /></p>
+<h2 id="hdr-模式图像质量调优">HDR 模式图像质量调优</h2>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202302092106267.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202302092106267.png, https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202302092106267.png 1.5x, https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202302092106267.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202302092106267.png"
+        title="image-20210225164022820" /></p>
+<h1 id="其他">其他</h1>
+<p><strong>ISP（Image Signal Process）</strong></p>
+<ul>
+<li>
+<p>（1）BLC（Black Level Correction）/ Black Level Compensate (OBC) ：黑电平校正。</p>
+</li>
+<li>
+<p>（2）DPC/BPD（Defect Pixel Correction/Bad Pixel Detect）：坏点校正/坏点检测。</p>
+</li>
+<li>
+<p>（3）FPN（Fix Pattern Noise）：固定模式噪声。</p>
+</li>
+<li>
+<p>（4）LSC（Lens Shading Correction）/Color Shading ：阴影校正。</p>
+</li>
+<li>
+<p>（5）Flare offset：光学上称Flare也叫stray light,耀斑补偿。</p>
+</li>
+<li>
+<p>（6）AE（Auto Exposure）：自动曝光。</p>
+</li>
+<li>
+<p>（7）AF（Auto Focus）：自动对焦。</p>
+</li>
+<li>
+<p>（8）AWB（Auto White Balance ）：自动白平衡。解决环境光不同色温导致整幅图片偏色的情况。</p>
+</li>
+<li>
+<p>（9）DM（Demosaicing/Color Filter Array Interpolation/CFA插值）：CMOS Sensor出来的RawData是Bayer格式的图像，每个像素只有一个通道的信息。DM是将Bayer格式的图像恢复成每个像素用RGB三通道表示的方式。</p>
+</li>
+<li>
+<p>（10）CCM（Color Correction Matrix/ DSC color calibration）：颜色校正矩阵。</p>
+</li>
+<li>
+<p>（11）NR（Noise Reduction/Denoise）：去噪。采用特定的LPF（Low Pass Filter）对图片进行滤波，滤除图像的噪声成分，而Bilateral filtering即双边滤波器，它是一种保护边缘的平滑滤波器，这样既可以滤除噪声，edge又可以保留下来。</p>
+</li>
+<li>
+<p>（12）EE（Edge Enhancement/Edge Sharpening）：锐化，边缘增强。通过滤波器获取图像的高频分量，按照一定的比例将高频部分和原图进行加权求和获取锐化后的图像。</p>
+</li>
+<li>
+<p>（13）DRC/HDR（Dynamic Range Compression/ High-Dynamic Range）：宽动态。高动态图像的拍摄出来的结果通常会有，亮部太亮，暗部太暗的问题。DRC是调整图像暗部亮度使之变亮，调整亮部亮度使之变暗，而且保持图像的对比度。</p>
+</li>
+<li>
+<p>（14）PCA/VDE：Hue，Saturation，Contrast，Brightness调试。单独针对Hue，Saturation，Contrast，Brightness各图像分量进行调节。</p>
+</li>
+<li>
+<p>（15）Histogram：直方图均衡化。重新分布图片的亮度。使图片的亮度分布更加均匀。</p>
+</li>
+<li>
+<p>（16）FlashLight Control：闪光灯控制</p>
+</li>
+<li>
+<p>（17）Cross talk：Optical cross-talk是当主光线进光角度过大，导致光线不能有效地进入本像素的Microlens内，而是进入相邻像素单元或其他无效区域内的现象。</p>
+</li>
+<li>
+<p>（18）Gradation Control（GDC）：可能是对图像数据精度进行的操作</p>
+</li>
+<li>
+<p>（19）Scaler：对图像进行缩放，缩放的过程中采样和插值直接影响图像的细节质量。</p>
+</li>
+<li>
+<p>（20）Adaptive tone scale：(这个没有办法处理多种场景)进来的影像，根据histogram，可以调节，让其明暗亮度的曲线比较好看。</p>
+</li>
+<li>
+<p>（21）Dynamic Range Compression：就是把暗的地方变亮一些，亮的地方变暗一些。AE的主要目的是避免亮度饱和的pixels，其余exposure的pixel可以通过DRC校准回来。</p>
+</li>
+</ul>
+<p><strong>镜头的结构</strong></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202302092106290.jpg"
+        data-srcset="https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202302092106290.jpg, https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202302092106290.jpg 1.5x, https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202302092106290.jpg 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202302092106290.jpg"
+        title="img" /></p>
+<p>Lens-&gt;VCM音圈马达-&gt;底座支架-&gt;Sensor-&gt;Driver IC-&gt;output interface</p>
+<p>AF模组通常由镜头，VCM，Sensor，底座，驱动IC以及电源构成。</p>
+<ol>
+<li>镜头： 由几片透镜组成，通常有玻璃透镜和塑料透镜</li>
+<li>VCM： 即音圈电机，利用法拉第定律，通过改变马达线圈电流的大小，改变产生的电磁力大小，来控制弹簧片的拉伸位置，从而带动LENSE的运动。</li>
+<li>Sensor：一般有CCD和CMOS两种，CMOS和CCD相比在制造工艺，能耗水平和成本方面都有优势，业内使用的比较多，CCD在低ISO时对图像细节的刻画比较好，但只有少数厂家生产使用。</li>
+<li>底座：用于固定模组;</li>
+<li>驱动芯片：用于控制和通信；</li>
+<li>电源：常用的有3.3V和2.5V，在使用AF模组时要注意根据说明提供电源。</li>
+</ol>
+<p><strong>IR-CUT双滤镜（Infrared-CUT）</strong></p>
+<p>IR-CUT双滤镜是指在摄像头镜头组里内置了一组滤镜，当镜头外的红外感应点侦测到光线的强弱变化后，内置的IR-CUT自动切换滤镜能够根据外部光线的强弱随之自动切换，使图像达到最佳效果。也就是说，在白天或黑夜下，双滤光片能够自动切换滤镜，因此不论是在白天还是黑夜下，都能得到最佳成像效果。</p>
+<p>IR CUT双滤光片切换器的驱动方式和机构多种多样，主要分电感线圈式和电机式：</p>
+<p>A、电感线圈式又分线圈运动或磁铁运动。线圈驱动方式的体积小，造价低，但驱动力小，自锁能力差，线圈运动的寿命很短，而磁铁运动的寿命很长，钟摆运动方式的相对自锁能力较好，但不能驱动大尺寸滤光片的。</p>
+<p>B、电机式又分齿轮齿条式、蜗轮蜗杆式和螺旋副式等。螺旋副式的结构紧凑，动力大，自锁力强，是一种较好的选择。</p>
+<p><strong>DC-IRIS 和 P-IRIS</strong></p>
+<p>DC-IRIS原理及问题：
+　　自动光圈能够根据光线亮度的变化自动调节光圈孔。早期的DC-IRIS只是单纯的根据光线亮度来调节光圈，并没有考虑光圈对其他图像因素（光圈）的影响。<strong>DC-IRIS只知道根据光线亮度来打开或关闭光圈，不能提供给摄像机光圈的位置</strong>，因此无法有效控制光圈大小以优化图像质量。
+P-IRIS工作原理：
+　　P-IRIS是通过控制P-IRIS镜头中的步进电机动态精确的控制光圈大小。与DC-IRIS的主要任务是不停的调节光圈大小不同，<strong>P-IRIS的主要目的是设置最佳光圈位置，以便大部分镜头中心及效果最佳的部分得到使用，在此位置光学误差大大减小，从而提高图像质量。</strong>
+　　P-IrIS需要与<strong>增益</strong>和<strong>曝光时间</strong>相配合来管理光线的微小变化从而进一步优化图像质量，使最佳光圈位置保留尽可能长的时间。但超过增益和曝光时间的调节能力时，P-IRIS再调节光圈到不同位置。</p>
+<p><strong>HDR模式</strong></p>
+<p>HDR是指高动bai态光照渲染（High-Dynamic Range，简称HDR）图像du，相zhi比普通的图像，可以dao提供更多的动态范围zhuan和图像细节，利shu用每个曝光时间相对应最佳细节的LDR图像来合成最终HDR图像，能够更好地反映出真实环境中的视觉效果。</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2023-02-09</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://zhangyuhu.github.io/posts/embedded/developmentboard/rv1126rv1109/rv1126/04_camera%E9%A9%B1%E5%8A%A8%E7%9B%B8%E5%85%B3%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/" data-title="Embedded:RV1126 camera驱动相关阅读笔记" data-hashtags="Embedded,芯片&开发板,RV1126"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://zhangyuhu.github.io/posts/embedded/developmentboard/rv1126rv1109/rv1126/04_camera%E9%A9%B1%E5%8A%A8%E7%9B%B8%E5%85%B3%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/" data-hashtag="Embedded"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://zhangyuhu.github.io/posts/embedded/developmentboard/rv1126rv1109/rv1126/04_camera%E9%A9%B1%E5%8A%A8%E7%9B%B8%E5%85%B3%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/" data-title="Embedded:RV1126 camera驱动相关阅读笔记"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://zhangyuhu.github.io/posts/embedded/developmentboard/rv1126rv1109/rv1126/04_camera%E9%A9%B1%E5%8A%A8%E7%9B%B8%E5%85%B3%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/" data-title="Embedded:RV1126 camera驱动相关阅读笔记"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://zhangyuhu.github.io/posts/embedded/developmentboard/rv1126rv1109/rv1126/04_camera%E9%A9%B1%E5%8A%A8%E7%9B%B8%E5%85%B3%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/" data-title="Embedded:RV1126 camera驱动相关阅读笔记" data-ralateuid="ji"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/embedded/">Embedded</a>,&nbsp;<a href="/tags/%E8%8A%AF%E7%89%87%E5%BC%80%E5%8F%91%E6%9D%BF/">芯片&amp;开发板</a>,&nbsp;<a href="/tags/rv1126/">RV1126</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/embedded/developmentboard/rv1126rv1109/rv1126/02_usb_camera%E5%BA%94%E7%94%A8%E4%BB%A3%E7%A0%81%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/" class="prev" rel="prev" title="Embedded:RV1126 USB_Camera应用代码阅读笔记"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Embedded:RV1126 USB_Camera应用代码阅读笔记</a>
+            <a href="/posts/embedded/developmentboard/rv1126rv1109/rv1126_camera%E8%B0%83%E8%AF%95%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" class="next" rel="next" title="Embedded:RV1126 camera调试常用命令">Embedded:RV1126 camera调试常用命令<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="giscus" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://giscus.app">Giscus</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">为天地立心,为生民立命,为往圣继绝学,为万世开太平</div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://zhangyuhu.github.io/" target="_blank">zhangyuhu</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="http://creativecommons.org/licenses/by/4.0/" target="_blank">知识共享署名 4.0 国际许可协议</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/css/lightgallery-bundle.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/twemoji@14.0.2/dist/twemoji.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/lightgallery.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/thumbnail/lg-thumbnail.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/zoom/lg-zoom.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@8.6.0/dist/index.umd.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":100},"comment":{"giscus":{"category":"Comments","categoryId":"DIC_kwDOIx2Cjs4CTnUX","darkTheme":"dark","emitMetadata":"0","inputPosition":"bottom","lang":"en","lazyLoading":false,"lightTheme":"light","mapping":"pathname","reactionsEnabled":"1","repo":"zhangyuhu/zhangyuhu.github.io","repoId":"R_kgDOIx2Cjg"}},"data":{"id-1":"HOME","id-2":"HOME"},"lightgallery":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"},"twemoji":true,"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.2970a33d719df7cd89cebf586152b32a8ed30012227fa81b44282950146e0f595d1c733779e4d423dda1004bdcf707ee64d0fadc3d21229cd66b960788f84bdb.js" integrity="sha512-KXCjPXGd982Jzr9YYVKzKo7TABIif6gbRCgpUBRuD1ldHHM3eeTUI92hAEvc9wfuZND63D0hIpzWa5YHiPhL2w=="></script></body>
+</html>

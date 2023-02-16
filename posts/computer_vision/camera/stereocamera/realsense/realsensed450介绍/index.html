@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>camera:深度相机realsense(D450)介绍 - 这是我的网站</title><meta name="Description" content="深度相机realsense(D450)介绍"><meta property="og:title" content="camera:深度相机realsense(D450)介绍" />
+<meta property="og:description" content="深度相机realsense(D450)介绍" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zhangyuhu.github.io/posts/computer_vision/camera/stereocamera/realsense/realsensed450%E4%BB%8B%E7%BB%8D/" /><meta property="og:image" content="https://zhangyuhu.github.io/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-01-30T14:32:52+08:00" />
+<meta property="article:modified_time" content="2023-01-30T15:11:52+08:00" /><meta property="og:site_name" content="我的网站" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://zhangyuhu.github.io/logo.png"/>
+
+<meta name="twitter:title" content="camera:深度相机realsense(D450)介绍"/>
+<meta name="twitter:description" content="深度相机realsense(D450)介绍"/>
+<meta name="application-name" content="我的网站">
+<meta name="apple-mobile-web-app-title" content="我的网站"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://zhangyuhu.github.io/posts/computer_vision/camera/stereocamera/realsense/realsensed450%E4%BB%8B%E7%BB%8D/" /><link rel="prev" href="https://zhangyuhu.github.io/posts/computer_vision/basic/%E5%9B%BE%E5%83%8F%E5%8F%8A%E8%A7%86%E9%A2%91%E7%AD%89%E7%9B%B8%E5%85%B3%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" /><link rel="next" href="https://zhangyuhu.github.io/posts/computer_vision/camera/cameracalibration/%E5%8D%95%E7%9B%AE%E7%9B%B8%E6%9C%BA%E6%A0%87%E5%AE%9A/" /><link rel="stylesheet" href="/css/style.min.990eb8dd228a2b662f63cfe59575be8aa494cb9d40ffd854f26b9d9e588e1f4fdadb6a34e3f9a9171244d3ee6c107521923ab30705f3ef50d3e435eda1afc910.css" integrity="sha512-mQ643SKKK2YvY8/llXW+iqSUy51A/9hU8mudnliOH0/a22o04/mpFxJE0+5sEHUhkjqzBwXz71DT5DXtoa/JEA=="><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "camera:深度相机realsense(D450)介绍",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/zhangyuhu.github.io\/posts\/computer_vision\/camera\/stereocamera\/realsense\/realsensed450%E4%BB%8B%E7%BB%8D\/"
+        },"image": [{
+                            "@type": "ImageObject",
+                            "url": "https:\/\/zhangyuhu.github.io\/images\/Apple-Devices-Preview.png",
+                            "width":  3200 ,
+                            "height":  2048 
+                        }],"genre": "posts","keywords": "camera","wordcount":  1431 ,
+        "url": "https:\/\/zhangyuhu.github.io\/posts\/computer_vision\/camera\/stereocamera\/realsense\/realsensed450%E4%BB%8B%E7%BB%8D\/","datePublished": "2023-01-30T14:32:52+08:00","dateModified": "2023-01-30T15:11:52+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "zhangyuhu"
+            },"description": "深度相机realsense(D450)介绍"
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="这是我的网站"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/" title="文章"><i class='fas fa-archive fa-fw fa-sm'></i> 文章 </a><a class="menu-item" href="/tags/"><i class='fas fa-tags fa-fw fa-sm'></i> 标签 </a><a class="menu-item" href="/categories/"><i class='fas fa-th fa-fw fa-sm'></i> 分类 </a><a class="menu-item" href="/about/"><i class='fas fa-user-tie fa-fw fa-sm'></i> 关于 </a><a class="menu-item" href="/tool/"><i class='fas fa-cube fa-fw fa-sm'></i> 工具箱 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="这是我的网站"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="文章"><i class='fas fa-archive fa-fw fa-sm'></i>文章</a><a class="menu-item" href="/tags/" title=""><i class='fas fa-tags fa-fw fa-sm'></i>标签</a><a class="menu-item" href="/categories/" title=""><i class='fas fa-th fa-fw fa-sm'></i>分类</a><a class="menu-item" href="/about/" title=""><i class='fas fa-user-tie fa-fw fa-sm'></i>关于</a><a class="menu-item" href="/tool/" title=""><i class='fas fa-cube fa-fw fa-sm'></i>工具箱</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">camera:深度相机realsense(D450)介绍</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://zhangyuhu.github.io/" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>zhangyuhu</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>计算机视觉</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-01-30">2023-01-30</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1431 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;3 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#原理">原理</a></li>
+    <li><a href="#d455450技术规格">D455/450技术规格</a>
+      <ul>
+        <li><a href="#参数表">参数表</a></li>
+        <li><a href="#invalid-depth-band">Invalid Depth Band</a></li>
+        <li><a href="#depth-quality-specification">Depth Quality Specification</a></li>
+      </ul>
+    </li>
+    <li><a href="#软件开发">软件开发</a>
+      <ul>
+        <li><a href="#sdk-及开发者文档">sdk 及开发者文档</a></li>
+        <li><a href="#pc-安装realsense-sdk">PC 安装realsense SDK</a></li>
+        <li><a href="#realsense-获取深度彩色相机内参外参">realsense 获取深度、彩色相机内参外参</a></li>
+        <li><a href="#realsense-设置laser开关">realsense 设置laser开关</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><blockquote>
+<p>本文采用<a href="http://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreffer ">知识共享署名 4.0 国际许可协议</a>进行许可，转载时请注明原文链接，图片在使用时请保留全部内容，可适当缩放并在引用处附上图片所在的文章链接。</p>
+</blockquote>
+<!-- TOC -->
+<ul>
+<li><a href="#d455450%e6%8a%80%e6%9c%af%e8%a7%84%e6%a0%bc" rel="">D455/450技术规格</a>
+<ul>
+<li><a href="#%e5%8f%82%e6%95%b0%e8%a1%a8" rel="">参数表</a></li>
+<li><a href="#invalid-depth-band" rel="">Invalid Depth Band</a></li>
+<li><a href="#depth-quality-specification" rel="">Depth Quality Specification</a></li>
+</ul>
+</li>
+<li><a href="#%e8%bd%af%e4%bb%b6%e5%bc%80%e5%8f%91" rel="">软件开发</a>
+<ul>
+<li><a href="#sdk-%e5%8f%8a%e5%bc%80%e5%8f%91%e8%80%85%e6%96%87%e6%a1%a3" rel="">sdk 及开发者文档</a></li>
+<li><a href="#pc-%e5%ae%89%e8%a3%85realsense-sdk" rel="">PC 安装realsense SDK</a></li>
+<li><a href="#realsense-%e8%8e%b7%e5%8f%96%e6%b7%b1%e5%ba%a6%e5%bd%a9%e8%89%b2%e7%9b%b8%e6%9c%ba%e5%86%85%e5%8f%82%e5%a4%96%e5%8f%82" rel="">realsense 获取深度、彩色相机内参外参</a></li>
+<li><a href="#realsense-%e8%ae%be%e7%bd%aelaser%e5%bc%80%e5%85%b3" rel="">realsense 设置laser开关</a></li>
+</ul>
+</li>
+</ul>
+<!-- /TOC -->
+<h1 id="原理">原理</h1>
+<p>Interl RealSence D4×× 系列，都是采用经典的双目视觉的方式测量深度。尽管具有红外投射器，但并不是采用红外反射测距。它的作用仅仅是投射不可见的固定的红外纹理样式，提高在纹理不明显的1环境中（例如白墙）的深度计算精度，辅助双目视觉测距。左右两个相机将图像数据送入内置的深度处理器，在其中基于双目测距的原理计算每个像素的深度值。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202301302001185.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202301302001185.png, https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202301302001185.png 1.5x, https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202301302001185.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202301302001185.png"
+        title="image-20210416145005665" /></p>
+<h1 id="d455450技术规格">D455/450技术规格</h1>
+<h2 id="参数表">参数表</h2>
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th><strong>使用环境：</strong> 室内/室外  <strong>深度快门类型：</strong> 全局快门，3μm × 3μm 像素大小</th>
+<th><strong>推荐范围：</strong> 0.6-6 米  <strong>惯性量测单元：</strong> Bosch BMI055</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>深度</td>
+<td><strong>深度技术：</strong> 主动 IR 立体  <strong>最小深度距离 (Min-Z)：</strong> ~0.52 米  <strong>深度精度</strong> &lt;2% 位于4 米1</td>
+<td><strong>深度视场 (FOV)：</strong> 86° × 57° (±3°)  <strong>深度输出分辨率：</strong> 高达 1280 x 720  <strong>深度帧率：</strong> 高达 90 帧/秒</td>
+</tr>
+<tr>
+<td>RGB</td>
+<td><strong>RGB帧分辨率：</strong> 高达 1280 × 800  <strong>RGB 帧速率：</strong> 30 帧/秒  <strong>RGB 传感器技术：</strong> 全局快门</td>
+<td><strong>RGB 传感器 FOV (H × V)：</strong> 90° × 65° (±3)  <strong>RGB传感器分辨率:</strong> 1 MP</td>
+</tr>
+<tr>
+<td>主要组件</td>
+<td><strong>摄像头模块：</strong> 英特尔实感模块 D450</td>
+<td><strong>计算处理器板：</strong> 英特尔实感视觉处理器 D4</td>
+</tr>
+<tr>
+<td>物理</td>
+<td><strong>外形：</strong> 摄像头外设  <strong>长度 × 深度 × 高度：</strong> 124 毫米 × 26 毫米 × 29 毫米</td>
+<td><strong>接头：</strong> USB‑C* 3.1 Gen 1*  <strong>安装机构：</strong> – 一个 1/4‑20 UNC 螺纹安装点。 – 两个 M3 螺纹安装点。 – 三脚架</td>
+</tr>
+</tbody>
+</table>
+<h2 id="invalid-depth-band">Invalid Depth Band</h2>
+<blockquote>
+<p>The depth data generated with stereo vision uses the left imager as the reference for stereo matching resulting in a non-overlap region in the field of view of left and right imagers where we will not have depth data at the left edge of the frame. Closer scenes result in a wider invalid depth band than scenes at larger distances.</p>
+</blockquote>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202301302001383.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202301302001383.png, https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202301302001383.png 1.5x, https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202301302001383.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202301302001383.png"
+        title="image-20210415112033341" /></p>
+<h2 id="depth-quality-specification">Depth Quality Specification</h2>
+<p>FOV 80% 做评估</p>
+<table>
+<thead>
+<tr>
+<th>METRIC</th>
+<th>DEFINITION</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Depth Accuracy ： 深度精度</td>
+<td>测量相对于地面真实表面的有效像素的差异。</td>
+</tr>
+<tr>
+<td>Fill Rate：Fill Rate</td>
+<td>具有有效深度值的像素百分比。</td>
+</tr>
+<tr>
+<td>Depth Standard Deviation ：深度标准差</td>
+<td>测量每个有效像素相对于最佳拟合平面的总空间噪声。</td>
+</tr>
+<tr>
+<td>Pixel Temporal Noise：像素时间噪声</td>
+<td>测量相对于最佳拟合平面的每个有效像素的总时间噪声。</td>
+</tr>
+</tbody>
+</table>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202301302001769.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202301302001769.png, https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202301302001769.png 1.5x, https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202301302001769.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202301302001769.png"
+        title="image-20210415173450887" /></p>
+<h1 id="软件开发">软件开发</h1>
+<h2 id="sdk-及开发者文档">sdk 及开发者文档</h2>
+<p><a href="https://www.intelrealsense.com/zh-hans/developers/" target="_blank" rel="noopener noreffer ">开发者支持</a></p>
+<p><a href="https://dev.intelrealsense.com/docs/compiling-librealsense-for-linux-ubuntu-guide" target="_blank" rel="noopener noreffer ">Linux/Ubuntu - RealSense SDK 2.0 Build Guide</a></p>
+<p><a href="https://dev.intelrealsense.com/docs/code-samples" target="_blank" rel="noopener noreffer ">List of Intel RealSense SDK 2.0 Examples</a></p>
+<p><a href="https://github.com/IntelRealSense/librealsense/wiki/API-How-To#controlling-the-laser" target="_blank" rel="noopener noreffer ">API How To</a></p>
+<h2 id="pc-安装realsense-sdk">PC 安装realsense SDK</h2>
+<p>Ubuntu下Realsense SDK的安装
+下载源码</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-1">1</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>git clone https://github.com/IntelRealSense/librealsense.git
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>安装依赖环境</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-1">1</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>sudo apt-get install libusb-1.0-0-dev libglfw3-dev libgtk-3-dev
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>libusb是一个USB设备访问接口库</p>
+<p>gtk是一个图形工具包</p>
+<p>glfw是一个OpenGL应用框架</p>
+<p>将英特尔服务器添加到存储库列表中</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-1">1</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#366">echo</span> <span style="color:#c30">&#39;deb http://realsense-hw-public.s3.amazonaws.com/Debian/apt-repo xenial main&#39;</span> | sudo tee /etc/apt/sources.list.d/realsense-public.list
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>注册服务器的公钥</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-1">1</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>sudo apt-key adv --keyserver keys.gnupg.net --recv-key 6F3EFCDE
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>刷新apt列表</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-1">1</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>sudo apt-get update
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>安装相关包</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-1">1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-2">2</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>sudo apt-get install librealsense2-dkms
+</span></span><span style="display:flex;"><span>sudo apt-get install librealsense2-utils
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>dkms是内核驱动包，utils是工具包</p>
+<p>检查安装</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-1">1</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>modinfo uvcvideo | grep &#34;version:&#34; 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>终端会返回相关版本信息</p>
+<p>比如我的电脑上会返回</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-1">1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-2">2</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-3">3</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>zyh@zyh ~ $ modinfo uvcvideo | grep &#34;version:&#34; 
+</span></span><span style="display:flex;"><span>version:        1.1.1
+</span></span><span style="display:flex;"><span>srcversion:     32217DB1DE9B0BC725EDF5D
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>编译</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-1">1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-2">2</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-3">3</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-4">4</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-5">5</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-6">6</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>cd librealsense
+</span></span><span style="display:flex;"><span>mkdir build
+</span></span><span style="display:flex;"><span>cd build
+</span></span><span style="display:flex;"><span>cmake ..
+</span></span><span style="display:flex;"><span>make -j8
+</span></span><span style="display:flex;"><span>sudo make install
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="realsense-获取深度彩色相机内参外参">realsense 获取深度、彩色相机内参外参</h2>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-9-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-9-1">1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-9-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-9-2">2</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-9-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-9-3">3</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-9-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-9-4">4</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span>rs2_intrinsics depth_intrin <span style="color:#555">=</span> depth_profile.as<span style="color:#555">&lt;</span>rs2<span style="color:#555">::</span>video_stream_profile<span style="color:#555">&gt;</span>().get_intrinsics();
+</span></span><span style="display:flex;"><span>rs2_intrinsics color_intrin <span style="color:#555">=</span> color_profile.as<span style="color:#555">&lt;</span>rs2<span style="color:#555">::</span>video_stream_profile<span style="color:#555">&gt;</span>().get_intrinsics();
+</span></span><span style="display:flex;"><span>rs2_extrinsics depth_extrin_to_color <span style="color:#555">=</span> depth_profile.as<span style="color:#555">&lt;</span>rs2<span style="color:#555">::</span>video_stream_profile<span style="color:#555">&gt;</span>().get_extrinsics_to(color_profile);
+</span></span><span style="display:flex;"><span>rs2_extrinsics color_extrin_to_depth <span style="color:#555">=</span> color_profile.as<span style="color:#555">&lt;</span>rs2<span style="color:#555">::</span>video_stream_profile<span style="color:#555">&gt;</span>().get_extrinsics_to(depth_profile);
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>rs2_intrinsics</strong>:</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-1"> 1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-2"> 2</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-3"> 3</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-4"> 4</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-5"> 5</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-6"> 6</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-7"> 7</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-8"> 8</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-9"> 9</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-10"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-10">10</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-11"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-11">11</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-12"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-12">12</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#09f;font-style:italic">/** \brief Video stream intrinsics. */</span>
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">typedef</span> <span style="color:#069;font-weight:bold">struct</span> <span style="color:#0a8;font-weight:bold">rs2_intrinsics</span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#078;font-weight:bold">int</span>           width;     <span style="color:#09f;font-style:italic">/**&lt; Width of the image in pixels */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#078;font-weight:bold">int</span>           height;    <span style="color:#09f;font-style:italic">/**&lt; Height of the image in pixels */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#078;font-weight:bold">float</span>         ppx;       <span style="color:#09f;font-style:italic">/**&lt; Horizontal coordinate of the principal point of the image, as a pixel offset from the left edge */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#078;font-weight:bold">float</span>         ppy;       <span style="color:#09f;font-style:italic">/**&lt; Vertical coordinate of the principal point of the image, as a pixel offset from the top edge */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#078;font-weight:bold">float</span>         fx;        <span style="color:#09f;font-style:italic">/**&lt; Focal length of the image plane, as a multiple of pixel width */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#078;font-weight:bold">float</span>         fy;        <span style="color:#09f;font-style:italic">/**&lt; Focal length of the image plane, as a multiple of pixel height */</span>
+</span></span><span style="display:flex;"><span>    rs2_distortion model;    <span style="color:#09f;font-style:italic">/**&lt; Distortion model of the image */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#078;font-weight:bold">float</span>         coeffs[<span style="color:#f60">5</span>]; <span style="color:#09f;font-style:italic">/**&lt; Distortion coefficients. Order for Brown-Conrady: [k1, k2, p1, p2, k3]. Order for F-Theta Fish-eye: [k1, k2, k3, k4, 0]. Other models are subject to their own interpretations */</span>
+</span></span><span style="display:flex;"><span>} rs2_intrinsics;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>rs2_extrinsics</strong>:</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-11-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-11-1">1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-11-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-11-2">2</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-11-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-11-3">3</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-11-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-11-4">4</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-11-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-11-5">5</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-11-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-11-6">6</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#09f;font-style:italic">/** \brief Cross-stream extrinsics: encodes the topology describing how the different devices are oriented. */</span>
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">typedef</span> <span style="color:#069;font-weight:bold">struct</span> <span style="color:#0a8;font-weight:bold">rs2_extrinsics</span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#078;font-weight:bold">float</span> rotation[<span style="color:#f60">9</span>];    <span style="color:#09f;font-style:italic">/**&lt; Column-major 3x3 rotation matrix */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#078;font-weight:bold">float</span> translation[<span style="color:#f60">3</span>]; <span style="color:#09f;font-style:italic">/**&lt; Three-element translation vector, in meters */</span>
+</span></span><span style="display:flex;"><span>} rs2_extrinsics;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="realsense-设置laser开关">realsense 设置laser开关</h2>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-1"> 1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-2"> 2</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-3"> 3</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-4"> 4</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-5"> 5</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-6"> 6</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-7"> 7</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-8"> 8</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-9"> 9</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-10"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-10">10</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-11"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-11">11</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-12"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-12">12</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-13"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-13">13</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-14"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-14">14</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-15"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-15">15</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-16"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-16">16</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-17"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-17">17</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span>rs2<span style="color:#555">::</span>pipeline pipe; 
+</span></span><span style="display:flex;"><span>rs2<span style="color:#555">::</span>pipeline_profile selection <span style="color:#555">=</span> pipe.start();
+</span></span><span style="display:flex;"><span>rs2<span style="color:#555">::</span>device selected_device <span style="color:#555">=</span> selection.get_device();
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">auto</span> depth_sensor <span style="color:#555">=</span> selected_device.first<span style="color:#555">&lt;</span>rs2<span style="color:#555">::</span>depth_sensor<span style="color:#555">&gt;</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">if</span> (depth_sensor.supports(RS2_OPTION_EMITTER_ENABLED))
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    depth_sensor.set_option(RS2_OPTION_EMITTER_ENABLED, <span style="color:#f60">1.f</span>); <span style="color:#09f;font-style:italic">// Enable emitter
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>    depth_sensor.set_option(RS2_OPTION_EMITTER_ENABLED, <span style="color:#f60">0.f</span>); <span style="color:#09f;font-style:italic">// Disable emitter
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>}
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">if</span> (depth_sensor.supports(RS2_OPTION_LASER_POWER))
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#09f;font-style:italic">// Query min and max values:
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>    <span style="color:#069;font-weight:bold">auto</span> range <span style="color:#555">=</span> depth_sensor.get_option_range(RS2_OPTION_LASER_POWER);
+</span></span><span style="display:flex;"><span>    depth_sensor.set_option(RS2_OPTION_LASER_POWER, range.max); <span style="color:#09f;font-style:italic">// Set max power
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>    depth_sensor.set_option(RS2_OPTION_LASER_POWER, <span style="color:#f60">0.f</span>); <span style="color:#09f;font-style:italic">// Disable laser
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>}
+</span></span></code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2023-01-30</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://zhangyuhu.github.io/posts/computer_vision/camera/stereocamera/realsense/realsensed450%E4%BB%8B%E7%BB%8D/" data-title="camera:深度相机realsense(D450)介绍" data-hashtags="camera"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://zhangyuhu.github.io/posts/computer_vision/camera/stereocamera/realsense/realsensed450%E4%BB%8B%E7%BB%8D/" data-hashtag="camera"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://zhangyuhu.github.io/posts/computer_vision/camera/stereocamera/realsense/realsensed450%E4%BB%8B%E7%BB%8D/" data-title="camera:深度相机realsense(D450)介绍"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://zhangyuhu.github.io/posts/computer_vision/camera/stereocamera/realsense/realsensed450%E4%BB%8B%E7%BB%8D/" data-title="camera:深度相机realsense(D450)介绍"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://zhangyuhu.github.io/posts/computer_vision/camera/stereocamera/realsense/realsensed450%E4%BB%8B%E7%BB%8D/" data-title="camera:深度相机realsense(D450)介绍" data-ralateuid="ji"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/camera/">camera</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/computer_vision/basic/%E5%9B%BE%E5%83%8F%E5%8F%8A%E8%A7%86%E9%A2%91%E7%AD%89%E7%9B%B8%E5%85%B3%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" class="prev" rel="prev" title="图像及视频等相关基础知识"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>图像及视频等相关基础知识</a>
+            <a href="/posts/computer_vision/camera/cameracalibration/%E5%8D%95%E7%9B%AE%E7%9B%B8%E6%9C%BA%E6%A0%87%E5%AE%9A/" class="next" rel="next" title="camera:单目相机标定">camera:单目相机标定<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="giscus" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://giscus.app">Giscus</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">为天地立心,为生民立命,为往圣继绝学,为万世开太平</div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://zhangyuhu.github.io/" target="_blank">zhangyuhu</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="http://creativecommons.org/licenses/by/4.0/" target="_blank">知识共享署名 4.0 国际许可协议</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/css/lightgallery-bundle.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/twemoji@14.0.2/dist/twemoji.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/lightgallery.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/thumbnail/lg-thumbnail.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/zoom/lg-zoom.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@8.6.0/dist/index.umd.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":100},"comment":{"giscus":{"category":"Comments","categoryId":"DIC_kwDOIx2Cjs4CTnUX","darkTheme":"dark","emitMetadata":"0","inputPosition":"bottom","lang":"en","lazyLoading":false,"lightTheme":"light","mapping":"pathname","reactionsEnabled":"1","repo":"zhangyuhu/zhangyuhu.github.io","repoId":"R_kgDOIx2Cjg"}},"data":{"id-1":"HOME","id-2":"HOME"},"lightgallery":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"},"twemoji":true,"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.2970a33d719df7cd89cebf586152b32a8ed30012227fa81b44282950146e0f595d1c733779e4d423dda1004bdcf707ee64d0fadc3d21229cd66b960788f84bdb.js" integrity="sha512-KXCjPXGd982Jzr9YYVKzKo7TABIif6gbRCgpUBRuD1ldHHM3eeTUI92hAEvc9wfuZND63D0hIpzWa5YHiPhL2w=="></script></body>
+</html>

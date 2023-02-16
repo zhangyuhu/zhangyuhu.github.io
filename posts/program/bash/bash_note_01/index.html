@@ -1,0 +1,1317 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>bash 编程笔记 (一) - 这是我的网站</title><meta name="Description" content="bash 编程笔记"><meta property="og:title" content="bash 编程笔记 (一)" />
+<meta property="og:description" content="bash 编程笔记" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zhangyuhu.github.io/posts/program/bash/bash_note_01/" /><meta property="og:image" content="https://zhangyuhu.github.io/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-01-15T17:52:52+08:00" />
+<meta property="article:modified_time" content="2023-01-18T13:11:00+08:00" /><meta property="og:site_name" content="我的网站" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://zhangyuhu.github.io/logo.png"/>
+
+<meta name="twitter:title" content="bash 编程笔记 (一)"/>
+<meta name="twitter:description" content="bash 编程笔记"/>
+<meta name="application-name" content="我的网站">
+<meta name="apple-mobile-web-app-title" content="我的网站"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://zhangyuhu.github.io/posts/program/bash/bash_note_01/" /><link rel="prev" href="https://zhangyuhu.github.io/posts/program/bash/bash_note_03/" /><link rel="next" href="https://zhangyuhu.github.io/posts/program/java/android%E5%BA%94%E7%94%A8%E4%B8%AD%E4%BD%BF%E7%94%A8c%E5%92%8Cc&#43;&#43;%E4%BB%A3%E7%A0%81/" /><link rel="stylesheet" href="/css/style.min.990eb8dd228a2b662f63cfe59575be8aa494cb9d40ffd854f26b9d9e588e1f4fdadb6a34e3f9a9171244d3ee6c107521923ab30705f3ef50d3e435eda1afc910.css" integrity="sha512-mQ643SKKK2YvY8/llXW+iqSUy51A/9hU8mudnliOH0/a22o04/mpFxJE0+5sEHUhkjqzBwXz71DT5DXtoa/JEA=="><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "bash 编程笔记 (一)",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/zhangyuhu.github.io\/posts\/program\/bash\/bash_note_01\/"
+        },"image": [{
+                            "@type": "ImageObject",
+                            "url": "https:\/\/zhangyuhu.github.io\/images\/Apple-Devices-Preview.png",
+                            "width":  3200 ,
+                            "height":  2048 
+                        }],"genre": "posts","keywords": "bash","wordcount":  7244 ,
+        "url": "https:\/\/zhangyuhu.github.io\/posts\/program\/bash\/bash_note_01\/","datePublished": "2023-01-15T17:52:52+08:00","dateModified": "2023-01-18T13:11:00+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "zhangyuhu"
+            },"description": "bash 编程笔记"
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="这是我的网站"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/" title="文章"><i class='fas fa-archive fa-fw fa-sm'></i> 文章 </a><a class="menu-item" href="/tags/"><i class='fas fa-tags fa-fw fa-sm'></i> 标签 </a><a class="menu-item" href="/categories/"><i class='fas fa-th fa-fw fa-sm'></i> 分类 </a><a class="menu-item" href="/about/"><i class='fas fa-user-tie fa-fw fa-sm'></i> 关于 </a><a class="menu-item" href="/tool/"><i class='fas fa-cube fa-fw fa-sm'></i> 工具箱 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="这是我的网站"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="文章"><i class='fas fa-archive fa-fw fa-sm'></i>文章</a><a class="menu-item" href="/tags/" title=""><i class='fas fa-tags fa-fw fa-sm'></i>标签</a><a class="menu-item" href="/categories/" title=""><i class='fas fa-th fa-fw fa-sm'></i>分类</a><a class="menu-item" href="/about/" title=""><i class='fas fa-user-tie fa-fw fa-sm'></i>关于</a><a class="menu-item" href="/tool/" title=""><i class='fas fa-cube fa-fw fa-sm'></i>工具箱</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">bash 编程笔记 (一)</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://zhangyuhu.github.io/" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>zhangyuhu</a></span>&nbsp;<span class="post-category">included in <a href="/categories/bash/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>bash</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-01-15">2023-01-15</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;7244 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;15 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#第一部分-bash简介">第一部分 bash简介</a></li>
+    <li><a href="#第二部分-bash示例和书写流程">第二部分 bash示例和书写流程</a></li>
+    <li><a href="#第三部分-bash基础语法">第三部分 bash基础语法</a>
+      <ul>
+        <li><a href="#1-条件判断">1. 条件判断</a>
+          <ul>
+            <li><a href="#11-test判断语句">1.1 test判断语句</a></li>
+            <li><a href="#12-条件判断">1.2 []条件判断</a></li>
+            <li><a href="#13-测试逻辑表达式">1.3 测试逻辑表达式</a></li>
+          </ul>
+        </li>
+        <li><a href="#2-if-then-else语句">2. if then else语句</a></li>
+        <li><a href="#3-case语句">3. case语句</a></li>
+        <li><a href="#4-for循环">4. for循环</a></li>
+        <li><a href="#5-until循环">5. until循环</a></li>
+        <li><a href="#6-while循环">6. while循环</a></li>
+        <li><a href="#7-使用break和continue控制循环">7. 使用break和continue控制循环</a></li>
+      </ul>
+    </li>
+    <li><a href="#第四部分-bash数组">第四部分 bash数组</a>
+      <ul>
+        <li><a href="#1-数组定义">1. 数组定义</a></li>
+        <li><a href="#2-数组操作">2. 数组操作</a></li>
+      </ul>
+    </li>
+    <li><a href="#第五部分-函数">第五部分 函数</a>
+      <ul>
+        <li><a href="#1-函数定义">1. 函数定义</a></li>
+        <li><a href="#2-函数调用和传参">2. 函数调用和传参</a></li>
+        <li><a href="#3-函数返回值">3. 函数返回值</a></li>
+        <li><a href="#4-应用实例">4. 应用实例</a></li>
+      </ul>
+    </li>
+    <li><a href="#第六部分-数值运算">第六部分 数值运算</a>
+      <ul>
+        <li><a href="#应用实例一分别用上面四种方式实现352">应用实例一：分别用上面四种方式实现&quot;3*(5+2)&quot;。</a></li>
+        <li><a href="#应用实例二分别勇上面四种方式实现数值1">应用实例二：分别勇上面四种方式实现“数值+1”。</a></li>
+        <li><a href="#应用实例三计算13保留3位小数">应用实例三：计算1/3,保留3位小数。</a></li>
+      </ul>
+    </li>
+    <li><a href="#第七部分-字符运算">第七部分 字符运算</a>
+      <ul>
+        <li><a href="#1-字符串定义">1. 字符串定义</a></li>
+        <li><a href="#2-字符串操作">2. 字符串操作</a>
+          <ul>
+            <li><a href="#21-string操作公式表">2.1 string操作公式表</a></li>
+            <li><a href="#22-应用实例">2.2 应用实例</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#第八部分-bash自带参数">第八部分 bash自带参数</a></li>
+    <li><a href="#第九部分-bash调试">第九部分 bash调试</a>
+      <ul>
+        <li><a href="#1-bash命令调试">1. bash命令调试</a></li>
+        <li><a href="#2-echo调试">2. echo调试</a></li>
+        <li><a href="#3-printf">3. printf</a></li>
+      </ul>
+    </li>
+    <li><a href="#第十部分-bash注释">第十部分 bash注释</a>
+      <ul>
+        <li><a href="#1-单行注释">1. 单行注释</a></li>
+        <li><a href="#2-多行注释">2. 多行注释</a></li>
+      </ul>
+    </li>
+    <li><a href="#第十一部分-bash内建指令">第十一部分 bash内建指令</a>
+      <ul>
+        <li><a href="#1-内建命令查看方法">1. 内建命令查看方法</a></li>
+        <li><a href="#2-常用内建命令说明">2. 常用内建命令说明</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><blockquote>
+<p>本文采用<a href="http://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreffer ">知识共享署名 4.0 国际许可协议</a>进行许可，转载时请注明原文链接，图片在使用时请保留全部内容，可适当缩放并在引用处附上图片所在的文章链接。</p>
+</blockquote>
+<!-- TOC -->
+<ul>
+<li><a href="#%e7%ac%ac%e4%b8%80%e9%83%a8%e5%88%86-bash%e7%ae%80%e4%bb%8b" rel="">第一部分 bash简介</a></li>
+<li><a href="#%e7%ac%ac%e4%ba%8c%e9%83%a8%e5%88%86-bash%e7%a4%ba%e4%be%8b%e5%92%8c%e4%b9%a6%e5%86%99%e6%b5%81%e7%a8%8b" rel="">第二部分 bash示例和书写流程</a></li>
+<li><a href="#%e7%ac%ac%e4%b8%89%e9%83%a8%e5%88%86-bash%e5%9f%ba%e7%a1%80%e8%af%ad%e6%b3%95" rel="">第三部分 bash基础语法</a>
+<ul>
+<li><a href="#1-%e6%9d%a1%e4%bb%b6%e5%88%a4%e6%96%ad" rel="">1. 条件判断</a>
+<ul>
+<li><a href="#11-test%e5%88%a4%e6%96%ad%e8%af%ad%e5%8f%a5" rel="">1.1 test判断语句</a></li>
+<li><a href="#12-%e6%9d%a1%e4%bb%b6%e5%88%a4%e6%96%ad" rel="">1.2 []条件判断</a></li>
+<li><a href="#13-%e6%b5%8b%e8%af%95%e9%80%bb%e8%be%91%e8%a1%a8%e8%be%be%e5%bc%8f" rel="">1.3 测试逻辑表达式</a></li>
+</ul>
+</li>
+<li><a href="#2-if-then-else%e8%af%ad%e5%8f%a5" rel="">2. if then else语句</a></li>
+<li><a href="#3-case%e8%af%ad%e5%8f%a5" rel="">3. case语句</a></li>
+<li><a href="#4-for%e5%be%aa%e7%8e%af" rel="">4. for循环</a></li>
+<li><a href="#5-until%e5%be%aa%e7%8e%af" rel="">5. until循环</a></li>
+<li><a href="#6-while%e5%be%aa%e7%8e%af" rel="">6. while循环</a></li>
+<li><a href="#7-%e4%bd%bf%e7%94%a8break%e5%92%8ccontinue%e6%8e%a7%e5%88%b6%e5%be%aa%e7%8e%af" rel="">7. 使用break和continue控制循环</a></li>
+</ul>
+</li>
+<li><a href="#%e7%ac%ac%e5%9b%9b%e9%83%a8%e5%88%86-bash%e6%95%b0%e7%bb%84" rel="">第四部分 bash数组</a>
+<ul>
+<li><a href="#1-%e6%95%b0%e7%bb%84%e5%ae%9a%e4%b9%89" rel="">1. 数组定义</a></li>
+<li><a href="#2-%e6%95%b0%e7%bb%84%e6%93%8d%e4%bd%9c" rel="">2. 数组操作</a></li>
+</ul>
+</li>
+<li><a href="#%e7%ac%ac%e4%ba%94%e9%83%a8%e5%88%86-%e5%87%bd%e6%95%b0" rel="">第五部分 函数</a>
+<ul>
+<li><a href="#1-%e5%87%bd%e6%95%b0%e5%ae%9a%e4%b9%89" rel="">1. 函数定义</a></li>
+<li><a href="#2-%e5%87%bd%e6%95%b0%e8%b0%83%e7%94%a8%e5%92%8c%e4%bc%a0%e5%8f%82" rel="">2. 函数调用和传参</a></li>
+<li><a href="#3-%e5%87%bd%e6%95%b0%e8%bf%94%e5%9b%9e%e5%80%bc" rel="">3. 函数返回值</a></li>
+<li><a href="#4-%e5%ba%94%e7%94%a8%e5%ae%9e%e4%be%8b" rel="">4. 应用实例</a></li>
+</ul>
+</li>
+<li><a href="#%e7%ac%ac%e5%85%ad%e9%83%a8%e5%88%86-%e6%95%b0%e5%80%bc%e8%bf%90%e7%ae%97" rel="">第六部分 数值运算</a>
+<ul>
+<li><a href="#%e5%ba%94%e7%94%a8%e5%ae%9e%e4%be%8b%e4%b8%80%e5%88%86%e5%88%ab%e7%94%a8%e4%b8%8a%e9%9d%a2%e5%9b%9b%e7%a7%8d%e6%96%b9%e5%bc%8f%e5%ae%9e%e7%8e%b0352" rel="">应用实例一：分别用上面四种方式实现&quot;3*(5+2)&quot;。</a></li>
+<li><a href="#%e5%ba%94%e7%94%a8%e5%ae%9e%e4%be%8b%e4%ba%8c%e5%88%86%e5%88%ab%e5%8b%87%e4%b8%8a%e9%9d%a2%e5%9b%9b%e7%a7%8d%e6%96%b9%e5%bc%8f%e5%ae%9e%e7%8e%b0%e6%95%b0%e5%80%bc1" rel="">应用实例二：分别勇上面四种方式实现“数值+1”。</a></li>
+<li><a href="#%e5%ba%94%e7%94%a8%e5%ae%9e%e4%be%8b%e4%b8%89%e8%ae%a1%e7%ae%9713%e4%bf%9d%e7%95%993%e4%bd%8d%e5%b0%8f%e6%95%b0" rel="">应用实例三：计算1/3,保留3位小数。</a></li>
+</ul>
+</li>
+<li><a href="#%e7%ac%ac%e4%b8%83%e9%83%a8%e5%88%86-%e5%ad%97%e7%ac%a6%e8%bf%90%e7%ae%97" rel="">第七部分 字符运算</a>
+<ul>
+<li><a href="#1-%e5%ad%97%e7%ac%a6%e4%b8%b2%e5%ae%9a%e4%b9%89" rel="">1. 字符串定义</a></li>
+<li><a href="#2-%e5%ad%97%e7%ac%a6%e4%b8%b2%e6%93%8d%e4%bd%9c" rel="">2. 字符串操作</a>
+<ul>
+<li><a href="#21-string%e6%93%8d%e4%bd%9c%e5%85%ac%e5%bc%8f%e8%a1%a8" rel="">2.1 string操作公式表</a></li>
+<li><a href="#22-%e5%ba%94%e7%94%a8%e5%ae%9e%e4%be%8b" rel="">2.2 应用实例</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#%e7%ac%ac%e5%85%ab%e9%83%a8%e5%88%86-bash%e8%87%aa%e5%b8%a6%e5%8f%82%e6%95%b0" rel="">第八部分 bash自带参数</a></li>
+<li><a href="#%e7%ac%ac%e4%b9%9d%e9%83%a8%e5%88%86-bash%e8%b0%83%e8%af%95" rel="">第九部分 bash调试</a>
+<ul>
+<li><a href="#1-bash%e5%91%bd%e4%bb%a4%e8%b0%83%e8%af%95" rel="">1. bash命令调试</a></li>
+<li><a href="#2-echo%e8%b0%83%e8%af%95" rel="">2. echo调试</a></li>
+<li><a href="#3-printf" rel="">3. printf</a></li>
+</ul>
+</li>
+<li><a href="#%e7%ac%ac%e5%8d%81%e9%83%a8%e5%88%86-bash%e6%b3%a8%e9%87%8a" rel="">第十部分 bash注释</a>
+<ul>
+<li><a href="#1-%e5%8d%95%e8%a1%8c%e6%b3%a8%e9%87%8a" rel="">1. 单行注释</a></li>
+<li><a href="#2-%e5%a4%9a%e8%a1%8c%e6%b3%a8%e9%87%8a" rel="">2. 多行注释</a></li>
+</ul>
+</li>
+<li><a href="#%e7%ac%ac%e5%8d%81%e4%b8%80%e9%83%a8%e5%88%86-bash%e5%86%85%e5%bb%ba%e6%8c%87%e4%bb%a4" rel="">第十一部分 bash内建指令</a>
+<ul>
+<li><a href="#1-%e5%86%85%e5%bb%ba%e5%91%bd%e4%bb%a4%e6%9f%a5%e7%9c%8b%e6%96%b9%e6%b3%95" rel="">1. 内建命令查看方法</a></li>
+<li><a href="#2-%e5%b8%b8%e7%94%a8%e5%86%85%e5%bb%ba%e5%91%bd%e4%bb%a4%e8%af%b4%e6%98%8e" rel="">2. 常用内建命令说明</a></li>
+</ul>
+</li>
+</ul>
+<!-- /TOC -->
+<h1 id="第一部分-bash简介">第一部分 bash简介</h1>
+<p>在介绍bash之前，需要先了解它的起源——shell。</p>
+<p>shell俗称壳，它是指UNIX系统下的一个命令解析器；主要用于用户和系统的交互。
+UNIX系统上有很多种Shell。首个shell，即Bourne Shell，于1978年在V7(AT&amp;T的第7版)UNIX上推出。后来，又演变出C shell、bash等不同版本的shell。</p>
+<p>bash，全称为Bourne-Again Shell。它是一个为GNU项目编写的Unix shell。bash脚本功能非常强大，尤其是在处理自动循环或大的任务方面可节省大量的时间。bash是许多Linux平台的内定Shell，这也是我们介绍它主要的原因。</p>
+<h1 id="第二部分-bash示例和书写流程">第二部分 bash示例和书写流程</h1>
+<p><strong>1 新建文件test.sh</strong></p>
+<pre><code>$ touch test.sh
+</code></pre>
+<p><strong>2 添加可执行权限</strong></p>
+<pre><code>$ chmod +x test.sh
+</code></pre>
+<p><strong>3 编辑test.sh，test.sh内容如下：</strong></p>
+<pre><code>#!/bin/bash
+
+echo &quot;hello bash&quot;
+
+exit 0
+</code></pre>
+<p>说明：
+(01) #!/bin/bash : 它是bash文件声明语句，表示是以/bin/bash程序执行该文件。它必须写在文件的第一行！
+(02) echo &ldquo;hello bash&rdquo; : 表示在终端输出“hello bash”
+(03) exit 0 : 表示返回0。在bash中，0表示执行成功，其他表示失败。</p>
+<p><strong>4 执行bash脚本</strong></p>
+<pre><code>$ ./test.sh
+</code></pre>
+<p>在终端输出“bash hello”</p>
+<h1 id="第三部分-bash基础语法">第三部分 bash基础语法</h1>
+<h2 id="1-条件判断">1. 条件判断</h2>
+<p>条件判断有2中格式，分别是“test EXPRESSION”和“[ EXPRESSION ]”。</p>
+<p>“test”判断语句，在实际中应用的比较少；相反的，“[]”判断语句应用很广。下面分别对它们进行介绍</p>
+<h3 id="11-test判断语句">1.1 test判断语句</h3>
+<p><strong>基本格式</strong></p>
+<pre><code>test EXPRESSION
+</code></pre>
+<p><strong>格式说明</strong></p>
+<p>test是关键字，表示判断；
+EXPRESSION是被判断的语句。</p>
+<p><strong>应用实例</strong></p>
+<table>
+<thead>
+<tr>
+<th>表达式</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>test -d File</td>
+<td>判断File是不是&quot;目录&quot;</td>
+</tr>
+<tr>
+<td>test -f File</td>
+<td>判断File是不是&quot;普通文件&quot;</td>
+</tr>
+<tr>
+<td>test -L File</td>
+<td>判断File是不是&quot;符号链接&quot;</td>
+</tr>
+<tr>
+<td>test -r File</td>
+<td>判断File是不是&quot;可读&quot;</td>
+</tr>
+<tr>
+<td>test -s File</td>
+<td>判断File是不是&quot;文件长度大于0、非空&quot;</td>
+</tr>
+<tr>
+<td>test -w File</td>
+<td>判断File是不是&quot;可写&quot;</td>
+</tr>
+<tr>
+<td>test -u File</td>
+<td>判断File是不是&quot;有suid位设置&quot;</td>
+</tr>
+<tr>
+<td>test -x File</td>
+<td>判断File是不是&quot;可执行&quot;</td>
+</tr>
+</tbody>
+</table>
+<h3 id="12-条件判断">1.2 []条件判断</h3>
+<p><strong>基本格式</strong></p>
+<pre><code>[ EXPRESSION ]
+</code></pre>
+<p><strong>格式说明</strong></p>
+<p>中括号的左右扩弧和EXPRESSION之间都必须有空格！</p>
+<p><strong>应用实例</strong></p>
+<table>
+<thead>
+<tr>
+<th>表达式</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>[ (expr) ]</td>
+<td>expr为真</td>
+</tr>
+<tr>
+<td>[ !expr ]</td>
+<td>expr为假</td>
+</tr>
+<tr>
+<td>[ expr1 -a expr2 ]</td>
+<td>expr1和expr2同时为真</td>
+</tr>
+<tr>
+<td>[ expr1 -o expr2 ]</td>
+<td>expr1或expr2为真</td>
+</tr>
+<tr>
+<td>[ -n string ]</td>
+<td>string的长度不为0</td>
+</tr>
+<tr>
+<td>[ -z string ]</td>
+<td>string的长度为0</td>
+</tr>
+<tr>
+<td>[ string1 = string2 ]</td>
+<td>两个字符串string1和string2相等</td>
+</tr>
+<tr>
+<td>[ string1 != string2 ]</td>
+<td>两个字符串string1和string2不等</td>
+</tr>
+<tr>
+<td>[ integer1 -eq integer2 ]</td>
+<td>两个integer1和integer2整数相等</td>
+</tr>
+<tr>
+<td>[ integer1 -ne integer2 ]</td>
+<td>integer1不等于integer2</td>
+</tr>
+<tr>
+<td>[ integer1 -ge integer2 ]</td>
+<td>integer1大于或等于integer2</td>
+</tr>
+<tr>
+<td>[ integer1 -gt integer2 ]</td>
+<td>integer1大于integer2</td>
+</tr>
+<tr>
+<td>[ integer1 -le integer2 ]</td>
+<td>integer1小于或等于integer2</td>
+</tr>
+<tr>
+<td>[ integer1 -lt integer2 ]</td>
+<td>integer1小于integer2</td>
+</tr>
+<tr>
+<td>[ file1 -ef file2 ]</td>
+<td>文件file1和file2有相同的device和inode数目</td>
+</tr>
+<tr>
+<td>[ file1 -nt file2 ]</td>
+<td>file1的修改事件早于file2</td>
+</tr>
+<tr>
+<td>[ file1 -ot file2 ]</td>
+<td>file1的修改事件晚于file2</td>
+</tr>
+<tr>
+<td>[ -b file ]</td>
+<td>file是块设备</td>
+</tr>
+<tr>
+<td>[ -c file ]</td>
+<td>file是字符设备</td>
+</tr>
+<tr>
+<td>[ -d file ]</td>
+<td>file是文件夹</td>
+</tr>
+<tr>
+<td>[ -e file ]</td>
+<td>file是存在</td>
+</tr>
+<tr>
+<td>[ -f file ]</td>
+<td>file是普通文件</td>
+</tr>
+<tr>
+<td>[ -g file ]</td>
+<td>file存在，且有group-ID</td>
+</tr>
+<tr>
+<td>[ -G file ]</td>
+<td>file存在，且group-ID是有效的</td>
+</tr>
+<tr>
+<td>[ -h file ]</td>
+<td>file存在，且是一个硬链接</td>
+</tr>
+<tr>
+<td>[ -L file ]</td>
+<td>file存在，且是一个软链接</td>
+</tr>
+<tr>
+<td>[ -r file ]</td>
+<td>file存在，且可读</td>
+</tr>
+<tr>
+<td>[ -w file ]</td>
+<td>file存在，且可写</td>
+</tr>
+<tr>
+<td>[ -x file ]</td>
+<td>file存在，且可执行</td>
+</tr>
+</tbody>
+</table>
+<p>例如，</p>
+<p>一、判断文件/home/skywang/123.txt是否存在</p>
+<pre><code>$ [ -f /home/skywang/123.txt ]
+</code></pre>
+<p>二、判断变量val是否等于字符串“skywang”</p>
+<pre><code>$ [ &quot;$val&quot; = &quot;skywang&quot; ]
+</code></pre>
+<p>三，判断变量num是否等于数字100</p>
+<pre><code>$ [ &quot;$num&quot; -eq &quot;100&quot; ]
+</code></pre>
+<h3 id="13-测试逻辑表达式">1.3 测试逻辑表达式</h3>
+<p><strong>基本格式</strong></p>
+<table>
+<thead>
+<tr>
+<th>符号</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-a</td>
+<td>逻辑与,操作符两边均为真,结果为真,否则为假。</td>
+</tr>
+<tr>
+<td>-o</td>
+<td>逻辑或,操作符两边一边为真,结果为真,否则为假。</td>
+</tr>
+<tr>
+<td>!</td>
+<td>逻辑否,条件为假,结果为真。</td>
+</tr>
+</tbody>
+</table>
+<p><strong>应用实例</strong></p>
+<p>一、判断文件123.txt是不是可读写</p>
+<pre><code>$ [ -r 123.txt -a -w 123.txt ]
+</code></pre>
+<p>等价于</p>
+<pre><code>$ [ -r 123.txt ] &amp;&amp; [ -w 123.txt ]
+</code></pre>
+<p>二、判断变量num是不是等于数字101或102</p>
+<pre><code>$ [ &quot;$num&quot; -eq &quot;101&quot; -o &quot;$num&quot; -eq &quot;102&quot; ]
+</code></pre>
+<p>等价于</p>
+<pre><code>$ [ -r 123.txt ] || [ -w 123.txt ]
+</code></pre>
+<p>三、判断文件123.txt是不是不可读</p>
+<pre><code>$ [ ! -r 123.txt ]
+</code></pre>
+<h2 id="2-if-then-else语句">2. if then else语句</h2>
+<p><strong>基本格式</strong></p>
+<pre><code>if 条件1
+then 命令1
+elif 条件2
+then 命令2
+else 命令3
+if
+</code></pre>
+<p><strong>格式说明</strong></p>
+<p>if 语句必须以单词 fi 终止。
+elif 和 else 为可选项,如果语句中没有否则部分,那么就不需要 elif 和 else 部分。
+if 语句可以有许多 elif 部分。最常用的 if 语句是 if then fi 结构。</p>
+<p><strong>应用实例</strong></p>
+<p>一、判断文件文件123.txt是否存在，存在则输出“file exist”；没有则输出“file not exist”。bash文件内容如下：</p>
+<pre><code>#!/bin/bash
+
+if [ -f 123.txt ];then
+echo &quot;file exist&quot;
+else
+echo &quot;file not exist&quot;
+fi
+
+exit 0
+</code></pre>
+<p>二、提示用户输入值。若输入的值小于0，则输出“negtive number”；若等于0,则输出“number zero”，否则，输出“positive number”。bash文件内容如下：</p>
+<pre><code>#!/bin/bash
+
+# 提示用户输入一个值
+echo -n &quot;please input a number:&quot;
+
+# 保存用户输入的值到num中
+read num
+
+if [ &quot;$num&quot; -lt &quot;0&quot; ];then
+# 小于0,则输出“negtive number”
+echo &quot;negtive number&quot;
+elif [ &quot;$num&quot; -gt &quot;0&quot; ];then
+# 大于0,则输出“positive number”
+echo &quot;positive number&quot;
+else
+# 大于0,则输出&quot;number zero&quot;
+echo &quot;number zero&quot;
+fi
+
+exit 0
+</code></pre>
+<h2 id="3-case语句">3. case语句</h2>
+<p>case语句为多选择语句。可以用case语句匹配一个值与一个模式,如果匹配成功,执行相匹配的命令。</p>
+<p><strong>基本格式</strong></p>
+<pre><code>case 值 in
+模式1}
+命令1
+...
+;;
+模式2)
+命令2
+...
+;;
+esac
+</code></pre>
+<p><strong>格式说明</strong></p>
+<p>“模式”部分可能包括元字符，即:</p>
+<table>
+<thead>
+<tr>
+<th>符号</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>*</td>
+<td>任意字符。</td>
+</tr>
+<tr>
+<td>?</td>
+<td>任意单字符。</td>
+</tr>
+<tr>
+<td>[..]</td>
+<td>类或范围中任意字符</td>
+</tr>
+</tbody>
+</table>
+<p><strong>应用实例</strong></p>
+<p>一、提示用户输入Y/y或N/n。若输入Y/y，则输出“yes”；若输入N/n,则输出“no”；否则，“incorrect input”。bash文件内容如下：</p>
+<pre><code>#!/bin/bash
+
+# 提示用户输入一个值
+echo -n &quot;are you femail(Y/N):&quot;
+
+# 保存用户输入的值到val中
+read val
+
+case $val in
+Y|y)
+# 用户输入Y或y
+echo &quot;yes&quot;
+;;
+N|n)
+# 用户输入N或n
+&quot;no&quot;
+;;
+*)
+# 其它输入
+echo &quot;incorrect input&quot;
+;;
+esac
+
+exit 0
+</code></pre>
+<h2 id="4-for循环">4. for循环</h2>
+<p><strong>基本格式</strong></p>
+<pre><code>for 变量名in列表
+do
+命令1
+命令2...
+done
+</code></pre>
+<p><strong>格式说明</strong></p>
+<p>当变量值在列表里, for循环即执行一次所有命令,使用变量名访问列表中取值。
+命令可为任何有效的 shell命令和语句。变量名为任何单词。 in列表用法是可选的,如果不用它, for循环使用命令行的位置参数。</p>
+<p><strong>应用实例</strong></p>
+<p>一、输入当前文件夹的一级子目录中文件名字。bash脚本内容如下：</p>
+<pre><code>#!/bin/bash
+
+# 将ls的结果保存到变量CUR_DIR中
+CUR_DIR=`ls`
+
+# 显示ls的结果
+echo $CUR_DIR
+
+for val in $CUR_DIR
+do
+# 若val是文件，则输出该文件名
+if [ -f $val ];then
+echo &quot;FILE: $val&quot;
+fi
+done
+
+exit 0
+</code></pre>
+<p>二、输出1-10之间数字的总和。bash脚本内容如下：</p>
+<pre><code>#!/bin/bash
+
+sum=0
+for ((i=1;i&lt;10;i++))
+do
+((sum=$sum+$i))
+done
+
+echo &quot;sum=$sum&quot;
+
+exit 0
+</code></pre>
+<h2 id="5-until循环">5. until循环</h2>
+<p>until循环执行一系列命令直至条件为真时停止。</p>
+<p>until循环与 while循环在处理方式上刚好相反。一般 while循环优于until循环,但在某些时候 — 也只是极少数情况下, until循环更加有用。</p>
+<p><strong>基本格式</strong></p>
+<pre><code>until 条件
+命令1
+...
+done
+</code></pre>
+<p><strong>格式说明</strong></p>
+<p>条件可为任意测试条件,测试发生在循环末尾,因此循环至少执行一次 — 请注意这一点。</p>
+<p><strong>应用实例</strong></p>
+<p>一、从0开始逐步递增，当数值等于5时，停止递增。Bash脚本内容如下：</p>
+<pre><code>#!/bin/bash
+
+# 设置起始值为0
+val=0
+
+until [ &quot;$val&quot; -eq &quot;5&quot; ]
+do
+# 输出数值
+echo &quot;val=$val&quot;
+# 将数值加1
+((val++))
+done
+
+exit 0
+</code></pre>
+<h2 id="6-while循环">6. while循环</h2>
+<p><strong>基本格式</strong></p>
+<pre><code>while 命令
+do
+命令1
+命令2
+...
+done
+</code></pre>
+<p><strong>应用实例</strong></p>
+<p>一、从0开始逐步递增，当数值等于5时，停止递增。Bash脚本内容如下：</p>
+<pre><code>#!/bin/bash
+
+# 设置起始值为0
+val=0
+
+while [ &quot;$val&quot; -lt &quot;5&quot; ]
+do
+# 输出数值
+echo &quot;val=$val&quot;
+# 将数值加1
+((val++))
+done
+
+exit 0
+</code></pre>
+<h2 id="7-使用break和continue控制循环">7. 使用break和continue控制循环</h2>
+<p><strong>基本格式</strong></p>
+<p>break命令允许跳出循环。</p>
+<p>continue命令类似于 break命令,只有一点重要差别,它不会跳出循环,只是跳过这个循环步。</p>
+<p><strong>应用实例</strong></p>
+<p>一、[break应用]从0开始逐步递增，当数值等于5时，停止递增。Bash脚本内容如下：</p>
+<pre><code>#!/bin/bash
+
+# 设置起始值为0
+val=0
+
+while true
+do
+if [ &quot;$val&quot; -eq &quot;5&quot; ];then
+# 如果val=5，则跳出循环
+break;
+else
+# 输出数值
+echo &quot;val=$val&quot;
+# 将数值加1
+((val++))
+fi
+done
+
+exit 0
+</code></pre>
+<p>二、[continue应用]从0开始逐步递增到10：当数值为5时，将数值递增2；否则，输出数值。Bash脚本内容如下：</p>
+<pre><code>#!/bin/bash
+
+# 设置起始值为0
+val=0
+
+while [ &quot;$val&quot; -le &quot;10&quot; ]
+do
+if [ &quot;$val&quot; -eq &quot;5&quot; ];then
+# 如果val=5，则将数值加2
+((val=$val+2))
+continue;
+else
+# 输出数值
+echo &quot;val=$val&quot;
+# 将数值加1
+((val++))
+fi
+done
+
+exit 0
+</code></pre>
+<h1 id="第四部分-bash数组">第四部分 bash数组</h1>
+<h2 id="1-数组定义">1. 数组定义</h2>
+<p><strong>方法一</strong></p>
+<pre><code>array=(10 20 30 40 50)
+</code></pre>
+<p>一对括号表示是数组，数组元素用“空格”符号分割开。引用数组时从序号0开始。</p>
+<p><strong>方法二</strong></p>
+<pre><code>array[0]=10
+array[1]=20
+array[2]=30
+array[3]=40
+array[4]=50
+</code></pre>
+<p><strong>方法三</strong></p>
+<pre><code>var=&quot;10 20 30 40 50&quot;; array=($var)
+</code></pre>
+<h2 id="2-数组操作">2. 数组操作</h2>
+<p>(01) 显示数组中第2项</p>
+<pre><code>$ echo ${array[i]}
+</code></pre>
+<p>说明：数组是从序号0开始计算(即第1项为array[0])。</p>
+<p>(02) 显示数组中的所有元素</p>
+<pre><code>$ echo ${array[@]}
+</code></pre>
+<p>或者</p>
+<pre><code>$ echo ${array[*]}
+</code></pre>
+<p>(03) 显示数组长度</p>
+<pre><code>$ echo ${#array[@]}
+</code></pre>
+<p>或者</p>
+<pre><code>$ echo ${#array[*]}
+</code></pre>
+<p>(04) 删除数组第2项元素</p>
+<pre><code>$ unset array[1]
+</code></pre>
+<p>说明：unset仅仅只清除array[1]的值，并没有将array[1]删除掉</p>
+<p>(05) 删除整个数组</p>
+<pre><code>$ unset array
+</code></pre>
+<p>(06) 输出数组的第1-3项</p>
+<pre><code>$ echo ${array[@]:0:3}
+</code></pre>
+<p>说明：参考“${数组名[@或*]:起始位置:长度}”</p>
+<p>(07) 将数组中的0替换成1</p>
+<pre><code>$ echo ${a[@]/0/1}
+</code></pre>
+<p>说明：${数组名[@或*]/查找字符/替换字符</p>
+<h1 id="第五部分-函数">第五部分 函数</h1>
+<h2 id="1-函数定义">1. 函数定义</h2>
+<p><strong>基本格式</strong></p>
+<pre><code>function 函数名()
+{
+...
+}
+</code></pre>
+<p><strong>格式说明</strong></p>
+<p>function可有可无。但建议保留，因为保留的话看起来更加直观。</p>
+<p><strong>应用实例</strong></p>
+<pre><code>function foo()
+{
+    # 定义局部变量i
+    local i=0
+    # 定义局部变量total=传入foo的参数总数
+    local total=$#
+    # 输出参数总数
+    echo &quot;total param =$total&quot;
+    # 输出传入foo的每一个参数
+    for val in $@
+    do
+        ((i++))
+        echo &quot;$i -- val=$val&quot;
+    done
+
+    # 返回参数总数
+    return $total
+}
+</code></pre>
+<h2 id="2-函数调用和传参">2. 函数调用和传参</h2>
+<p><strong>调用方法</strong></p>
+<p>直接通过函数名去调用。</p>
+<p><strong>应用实例</strong></p>
+<pre><code>foo param1 param2 param3
+</code></pre>
+<p>说明：调用函数foo，并传入param1 param2 param3三个参数</p>
+<h2 id="3-函数返回值">3. 函数返回值</h2>
+<p><strong>使用方法</strong></p>
+<pre><code>return 返回值
+</code></pre>
+<p><strong>方法说明</strong></p>
+<p>例如，foo param1 param2 param3之后，再调用$?就是上次调用的返回值</p>
+<h2 id="4-应用实例">4. 应用实例</h2>
+<p>编辑一个函数foo：打印foo的输入参数的总数，并输入每个参数和参数对应的序号。</p>
+<pre><code>#!/bin/bash
+
+function foo()
+{
+    # 定义局部变量i
+    local i=0
+    # 定义局部变量total=传入foo的参数总数
+    local total=$#
+    # 输出参数总数
+    echo &quot;total param =$total&quot;
+    # 输出传入foo的每一个参数
+    for val in $@
+    do
+        ((i++))
+        echo &quot;$i -- val=$val&quot;
+    done
+
+    # 返回参数总数
+    return $total
+}
+
+foo
+foo param1 param2 param3
+# 输出foo param1 param2 param3的返回值
+echo &quot;return value=$?&quot;
+
+exit 0
+</code></pre>
+<p>输出结果:</p>
+<pre><code>total param =0
+total param =3
+1 -- val=param1
+2 -- val=param2
+3 -- val=param3
+return value=3
+</code></pre>
+<h1 id="第六部分-数值运算">第六部分 数值运算</h1>
+<p>数值比较请参考&quot;第三部分&quot;的1.2节，本部分只介绍数值运算。</p>
+<p>常用的4种数值运算说明</p>
+<p>数值元算主要有4种实现方式：<strong>(())、let、expr、bc</strong>。</p>
+<p><strong>工作效率</strong>：(()) == let &gt; expr &gt; bc</p>
+<p>(01), (())和let是bash内建命令，执行效率高；而expr和bc是系统命令，会消耗内存，执行效率低。
+(02), (())、let和expr只支持整数运算，不支持浮点运算；而bc支持浮点运算。</p>
+<p>下面分别介绍这4种实现方式的使用方法。</p>
+<h2 id="应用实例一分别用上面四种方式实现352">应用实例一：分别用上面四种方式实现&quot;3*(5+2)&quot;。</h2>
+<pre><code>#!/bin/bash
+
+# 数值i=3*(5+2) (方法一:$(())实现)
+val=$((3*(5+2)))
+echo &quot;val=$val&quot;
+
+# 数值i=3*(5+2) (方法二:let实现)
+let &quot;val=3*(5+2)&quot;
+echo &quot;val=$val&quot;
+
+# 数值i=3*(5+2) (方法三:expr实现)
+val=`expr 3 \* \( 5 + 2 \)`
+echo &quot;val=$val&quot;
+
+# 数值i=3*(5+2) (方法四:bc实现)
+val=`echo &quot;3*(5+2)&quot;|bc`
+echo &quot;val=$val&quot;
+
+exit 0
+</code></pre>
+<h2 id="应用实例二分别勇上面四种方式实现数值1">应用实例二：分别勇上面四种方式实现“数值+1”。</h2>
+<pre><code>#!/bin/bash
+
+val=0
+# 数值加1 (方法一)
+((val++))
+echo &quot;val=$val&quot;
+
+val=0
+# 数值加1 (方法二)
+let val++
+echo &quot;val=$val&quot;
+
+val=0
+# 数值加1 (方法三)
+val=`expr $val + 1`
+echo &quot;val=$val&quot;
+
+val=0
+# 数值加1(方法四)
+val=`echo &quot;$val+1&quot;|bc`
+echo &quot;val=$val&quot;
+
+exit 0
+</code></pre>
+<h2 id="应用实例三计算13保留3位小数">应用实例三：计算1/3,保留3位小数。</h2>
+<pre><code>#!/bin/bash
+
+# 数值i=3*(5+2) (方法四:bc实现)
+val=`echo &quot;scale=3; 1/3&quot;|bc`
+echo &quot;val=$val&quot;
+
+exit 0
+</code></pre>
+<h1 id="第七部分-字符运算">第七部分 字符运算</h1>
+<h2 id="1-字符串定义">1. 字符串定义</h2>
+<table>
+<thead>
+<tr>
+<th>表达式</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>${var}</td>
+<td>变量var的值, 与$var相同</td>
+</tr>
+<tr>
+<td>${var-DEFAULT}</td>
+<td>如果var没有被声明, 那么就以$DEFAULT作为其值</td>
+</tr>
+<tr>
+<td>${var:-DEFAULT}</td>
+<td>如果var没有被声明, 或者其值为空, 那么就以$DEFAULT作为其值</td>
+</tr>
+<tr>
+<td>${var=DEFAULT}</td>
+<td>如果var没有被声明, 那么就以$DEFAULT作为其值</td>
+</tr>
+<tr>
+<td>${var:=DEFAULT}</td>
+<td>如果var没有被声明, 或者其值为空, 那么就以$DEFAULT作为其值</td>
+</tr>
+<tr>
+<td>${var+OTHER}</td>
+<td>如果var声明了, 那么其值就是$OTHER, 否则就为null字符串</td>
+</tr>
+<tr>
+<td>${var:+OTHER}</td>
+<td>如果var被设置了, 那么其值就是$OTHER, 否则就为null字符串</td>
+</tr>
+<tr>
+<td>${var?ERR_MSG}</td>
+<td>如果var没被声明, 那么就打印$ERR_MSG</td>
+</tr>
+<tr>
+<td>${var:?ERR_MSG}</td>
+<td>如果var没被设置, 那么就打印$ERR_MSG</td>
+</tr>
+<tr>
+<td>${!varprefix*}</td>
+<td>匹配之前所有以varprefix开头进行声明的变量</td>
+</tr>
+<tr>
+<td>${!varprefix@}</td>
+<td>匹配之前所有以varprefix开头进行声明的变量</td>
+</tr>
+</tbody>
+</table>
+<h2 id="2-字符串操作">2. 字符串操作</h2>
+<h3 id="21-string操作公式表">2.1 string操作公式表</h3>
+<table>
+<thead>
+<tr>
+<th>表达式</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>${#string}</td>
+<td>$string的长度</td>
+</tr>
+<tr>
+<td>${string:position}</td>
+<td>在$string中, 从位置$position开始提取子串</td>
+</tr>
+<tr>
+<td>${string:position:length}</td>
+<td>在$string中, 从位置$position开始提取长度为$length的子串</td>
+</tr>
+<tr>
+<td>${string#substring}</td>
+<td>从变量$string的开头, 删除最短匹配$substring的子串</td>
+</tr>
+<tr>
+<td>${string##substring}</td>
+<td>从变量$string的开头, 删除最长匹配$substring的子串</td>
+</tr>
+<tr>
+<td>${string%substring}</td>
+<td>从变量$string的结尾, 删除最短匹配$substring的子串</td>
+</tr>
+<tr>
+<td>${string%%substring}</td>
+<td>从变量$string的结尾, 删除最长匹配$substring的子串</td>
+</tr>
+<tr>
+<td>${string/substring/replacement}</td>
+<td>使用$replacement, 来代替第一个匹配的$substring</td>
+</tr>
+<tr>
+<td>${string//substring/replacement}</td>
+<td>使用$replacement, 代替所有匹配的$substring</td>
+</tr>
+<tr>
+<td>${string/#substring/replacement}</td>
+<td>如果$string的前缀匹配$substring, 那么就用$replacement来代替匹配到的$substring</td>
+</tr>
+<tr>
+<td>${string/%substring/replacement}</td>
+<td>如果$string的后缀匹配$substring, 那么就用$replacement来代替匹配到的$substring</td>
+</tr>
+</tbody>
+</table>
+<h3 id="22-应用实例">2.2 应用实例</h3>
+<p>首先，我们定义个str字符串变量，然后再对此变量进行字符串操作。</p>
+<pre><code>$ str=&quot;hello world&quot;
+</code></pre>
+<p>(01) 显示字符串长度</p>
+<pre><code>$ echo ${#str}
+</code></pre>
+<p>(02) 提取world</p>
+<pre><code>$ echo ${str:6}
+</code></pre>
+<p>(03) 提取or</p>
+<pre><code>$ echo ${str:7:2}
+</code></pre>
+<p>(04) 删除hello</p>
+<pre><code>$ echo ${str#hello}
+</code></pre>
+<p>或</p>
+<pre><code>$ echo ${str#*lo}
+</code></pre>
+<p>(05) 删除world</p>
+<pre><code>$ echo ${str%world}
+</code></pre>
+<p>或</p>
+<pre><code>$ echo ${str%wo*}
+</code></pre>
+<p>(06) 将所有的字符“l”替换为“m”</p>
+<pre><code>$ echo ${str//l/m}
+</code></pre>
+<h1 id="第八部分-bash自带参数">第八部分 bash自带参数</h1>
+<table>
+<thead>
+<tr>
+<th>表达式</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$?</td>
+<td>上次指令或程序的执行结果。如果执行成功则为0，否则为非0</td>
+</tr>
+<tr>
+<td>$#</td>
+<td>参数个数</td>
+</tr>
+<tr>
+<td>$@</td>
+<td>代表全部变量，例如，&quot;$1&quot; &ldquo;$2&rdquo; &ldquo;$3&rdquo; &ldquo;$4&rdquo;，每个变量是独立的，且用双引号括起来</td>
+</tr>
+<tr>
+<td>$*</td>
+<td>代表全部变量，例如，$1 $2 $3 $4</td>
+</tr>
+<tr>
+<td>$-</td>
+<td>在shell启动或使用set命令时提供选项</td>
+</tr>
+<tr>
+<td>$$</td>
+<td>当前shell的进程号</td>
+</tr>
+<tr>
+<td>$0</td>
+<td>当前shell进程名</td>
+</tr>
+<tr>
+<td>$n</td>
+<td>n表示数字。例如，$1表示第1个参数，$2表示第2个参数</td>
+</tr>
+</tbody>
+</table>
+<h1 id="第九部分-bash调试">第九部分 bash调试</h1>
+<h2 id="1-bash命令调试">1. bash命令调试</h2>
+<pre><code>bash [-nvx] scripts.sh
+</code></pre>
+<p>选项与参数:
+-n :不要执行 script,仅查询语法的问题;
+-v :再执行 sccript 前,先将 scripts 的内容输出到屏幕上;
+-x :将使用到的 script 内容显示到屏幕上,这是很有用的参数!</p>
+<p>例如，想要执行bash脚本，并查看bash的调用流程，可以通过以下命令：</p>
+<pre><code>$ bash -x test.sh
+</code></pre>
+<h2 id="2-echo调试">2. echo调试</h2>
+<pre><code>echo [OPTION] STRING
+</code></pre>
+<p>说明：
+-n : 输出内容之后，不换行。默认是输入内容之后，换行。
+-e : 开启反斜线“\”转义功能
+-E : 开启反斜线“\”转义功能（默认）。</p>
+<p>例如，输出“please input a number:”之后不换行。</p>
+<pre><code>$ echo -n &quot;please input a number:&quot;
+</code></pre>
+<h2 id="3-printf">3. printf</h2>
+<p>和echo一样，printf也能用于输出。语法格式和C语言中printf一样。</p>
+<p>例如，输出“hello printf”之后换行。</p>
+<pre><code>$ printf &quot;hello printf\n&quot;
+</code></pre>
+<h1 id="第十部分-bash注释">第十部分 bash注释</h1>
+<h2 id="1-单行注释">1. 单行注释</h2>
+<pre><code># echo &quot;single line&quot;
+</code></pre>
+<p>说明：#放在文件开头，表示注释掉本行。</p>
+<h2 id="2-多行注释">2. 多行注释</h2>
+<p>可以通过以下两种方法实现多行注释：</p>
+<pre><code>:||{
+....被注释的多行内容
+}
+</code></pre>
+<p>或者</p>
+<pre><code>if false ; then
+....被注释的多行内容
+fi
+</code></pre>
+<h1 id="第十一部分-bash内建指令">第十一部分 bash内建指令</h1>
+<h2 id="1-内建命令查看方法">1. 内建命令查看方法</h2>
+<p><strong>基本格式</strong></p>
+<pre><code>type cmd
+</code></pre>
+<p><strong>格式说明</strong></p>
+<p>type是命令关键字，cmd表示查看的命令；若输出builtin，则该命令是bash的内建命令。</p>
+<p>例如:</p>
+<pre><code>$ type echo
+</code></pre>
+<p>除此之外，用户也可以通过man bash或者man builtins查看bash的全部内置命令.</p>
+<h2 id="2-常用内建命令说明">2. 常用内建命令说明</h2>
+<table>
+<thead>
+<tr>
+<th>指令</th>
+<th>使用示例</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>echo</td>
+<td>echo arg</td>
+<td>在屏幕上显示出由arg指定的字串</td>
+</tr>
+<tr>
+<td>read</td>
+<td>read变量名表</td>
+<td>从标准输入设备读入一行，分解成若干字，赋值给bash程序内部定义的变量</td>
+</tr>
+<tr>
+<td>shift</td>
+<td>shift [N] <br/> (N为大于0的整数；当N省略时，等价与于“shift 1”)</td>
+<td>所有的参数依次向左移动N个位置，并使用$#减少N，直到$#=0为止。</td>
+</tr>
+<tr>
+<td>alias</td>
+<td>alias name=&lsquo;value&rsquo;</td>
+<td>别名。用name替换value，value要用单引号括住。</td>
+</tr>
+<tr>
+<td>export</td>
+<td>export变量名[=变量值]</td>
+<td>export可以把bash的变量向下带入子bash(即子bash中可以使用父bash的变量)，从而让子进程继承父进程中的环境变量。但子bash不能用export把它的变量向上带入父bash。</td>
+</tr>
+<tr>
+<td>readonly</td>
+<td>readonly 变量名</td>
+<td>定义只读变量。不带任何参数的readonly命令将显示出所有只读变量。</td>
+</tr>
+<tr>
+<td>exec</td>
+<td>exec 命令参数</td>
+<td>当bash执行到exec语句时，不会去创建新的子进程，而是转去执行指定的命令，当指定的命令执行完时，该进程（也就是最初的bash）就终止了，所以bash程序中exec后面的语句将不再被执行。</td>
+</tr>
+<tr>
+<td>&ldquo;.&quot;(点)</td>
+<td>bash程序文件名</td>
+<td>使bash读入指定的bash程序文件并依次执行文件中的所有语句。</td>
+</tr>
+<tr>
+<td>exit</td>
+<td>exit N</td>
+<td>退出Shell程序。在exit之后可有选择地指定一个数位作为返回状态。</td>
+</tr>
+</tbody>
+</table>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2023-01-18&nbsp;<a class="git-hash" href="https://github.com/zhangyuhu/zhangyuhu.github.io/commit/d1ac348ddf52a073ef726b5b05a0c3110e0c02cd" target="_blank" title="commit by zhangyuhu(zhangyuhude@163.com) d1ac348ddf52a073ef726b5b05a0c3110e0c02cd: update">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>d1ac348</a></span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://zhangyuhu.github.io/posts/program/bash/bash_note_01/" data-title="bash 编程笔记 (一)" data-hashtags="bash"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://zhangyuhu.github.io/posts/program/bash/bash_note_01/" data-hashtag="bash"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://zhangyuhu.github.io/posts/program/bash/bash_note_01/" data-title="bash 编程笔记 (一)"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://zhangyuhu.github.io/posts/program/bash/bash_note_01/" data-title="bash 编程笔记 (一)"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://zhangyuhu.github.io/posts/program/bash/bash_note_01/" data-title="bash 编程笔记 (一)" data-ralateuid="ji"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/bash/">bash</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/program/bash/bash_note_03/" class="prev" rel="prev" title="bash 编程笔记 (三)"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>bash 编程笔记 (三)</a>
+            <a href="/posts/program/java/android%E5%BA%94%E7%94%A8%E4%B8%AD%E4%BD%BF%E7%94%A8c%E5%92%8Cc&#43;&#43;%E4%BB%A3%E7%A0%81/" class="next" rel="next" title="Android应用中使用C和C&#43;&#43;代码">Android应用中使用C和C++代码<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="giscus" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://giscus.app">Giscus</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">为天地立心,为生民立命,为往圣继绝学,为万世开太平</div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://zhangyuhu.github.io/" target="_blank">zhangyuhu</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="http://creativecommons.org/licenses/by/4.0/" target="_blank">知识共享署名 4.0 国际许可协议</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/css/lightgallery-bundle.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/twemoji@14.0.2/dist/twemoji.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/lightgallery.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/thumbnail/lg-thumbnail.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/zoom/lg-zoom.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@8.6.0/dist/index.umd.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":100},"comment":{"giscus":{"category":"Comments","categoryId":"DIC_kwDOIx2Cjs4CTnUX","darkTheme":"dark","emitMetadata":"0","inputPosition":"bottom","lang":"en","lazyLoading":false,"lightTheme":"light","mapping":"pathname","reactionsEnabled":"1","repo":"zhangyuhu/zhangyuhu.github.io","repoId":"R_kgDOIx2Cjg"}},"data":{"id-1":"HOME","id-2":"HOME"},"lightgallery":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"},"twemoji":true,"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.2970a33d719df7cd89cebf586152b32a8ed30012227fa81b44282950146e0f595d1c733779e4d423dda1004bdcf707ee64d0fadc3d21229cd66b960788f84bdb.js" integrity="sha512-KXCjPXGd982Jzr9YYVKzKo7TABIif6gbRCgpUBRuD1ldHHM3eeTUI92hAEvc9wfuZND63D0hIpzWa5YHiPhL2w=="></script></body>
+</html>

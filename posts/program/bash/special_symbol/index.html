@@ -1,0 +1,1174 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>shell 中的特殊符号 - 这是我的网站</title><meta name="Description" content="bash 编程笔记"><meta property="og:title" content="shell 中的特殊符号" />
+<meta property="og:description" content="bash 编程笔记" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zhangyuhu.github.io/posts/program/bash/special_symbol/" /><meta property="og:image" content="https://zhangyuhu.github.io/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-01-15T17:52:52+08:00" />
+<meta property="article:modified_time" content="2023-01-18T13:11:00+08:00" /><meta property="og:site_name" content="我的网站" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://zhangyuhu.github.io/logo.png"/>
+
+<meta name="twitter:title" content="shell 中的特殊符号"/>
+<meta name="twitter:description" content="bash 编程笔记"/>
+<meta name="application-name" content="我的网站">
+<meta name="apple-mobile-web-app-title" content="我的网站"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://zhangyuhu.github.io/posts/program/bash/special_symbol/" /><link rel="prev" href="https://zhangyuhu.github.io/posts/tools/git/repo/" /><link rel="next" href="https://zhangyuhu.github.io/posts/program/bash/shell/" /><link rel="stylesheet" href="/css/style.min.990eb8dd228a2b662f63cfe59575be8aa494cb9d40ffd854f26b9d9e588e1f4fdadb6a34e3f9a9171244d3ee6c107521923ab30705f3ef50d3e435eda1afc910.css" integrity="sha512-mQ643SKKK2YvY8/llXW+iqSUy51A/9hU8mudnliOH0/a22o04/mpFxJE0+5sEHUhkjqzBwXz71DT5DXtoa/JEA=="><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "shell 中的特殊符号",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/zhangyuhu.github.io\/posts\/program\/bash\/special_symbol\/"
+        },"image": [{
+                            "@type": "ImageObject",
+                            "url": "https:\/\/zhangyuhu.github.io\/images\/Apple-Devices-Preview.png",
+                            "width":  3200 ,
+                            "height":  2048 
+                        }],"genre": "posts","keywords": "bash","wordcount":  6978 ,
+        "url": "https:\/\/zhangyuhu.github.io\/posts\/program\/bash\/special_symbol\/","datePublished": "2023-01-15T17:52:52+08:00","dateModified": "2023-01-18T13:11:00+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "zhangyuhu"
+            },"description": "bash 编程笔记"
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="这是我的网站"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/" title="文章"><i class='fas fa-archive fa-fw fa-sm'></i> 文章 </a><a class="menu-item" href="/tags/"><i class='fas fa-tags fa-fw fa-sm'></i> 标签 </a><a class="menu-item" href="/categories/"><i class='fas fa-th fa-fw fa-sm'></i> 分类 </a><a class="menu-item" href="/about/"><i class='fas fa-user-tie fa-fw fa-sm'></i> 关于 </a><a class="menu-item" href="/tool/"><i class='fas fa-cube fa-fw fa-sm'></i> 工具箱 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="这是我的网站"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="文章"><i class='fas fa-archive fa-fw fa-sm'></i>文章</a><a class="menu-item" href="/tags/" title=""><i class='fas fa-tags fa-fw fa-sm'></i>标签</a><a class="menu-item" href="/categories/" title=""><i class='fas fa-th fa-fw fa-sm'></i>分类</a><a class="menu-item" href="/about/" title=""><i class='fas fa-user-tie fa-fw fa-sm'></i>关于</a><a class="menu-item" href="/tool/" title=""><i class='fas fa-cube fa-fw fa-sm'></i>工具箱</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">shell 中的特殊符号</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://zhangyuhu.github.io/" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>zhangyuhu</a></span>&nbsp;<span class="post-category">included in <a href="/categories/bash/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>bash</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-01-15">2023-01-15</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;6978 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;14 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#-井号-comments"># 井号 (comments)</a></li>
+    <li><a href="#-帐户的-home-目录">~ 帐户的 home 目录</a></li>
+    <li><a href="#-分号-command-separator">; 分号 (Command separator)</a></li>
+    <li><a href="#-连续分号-terminator">;; 连续分号 (Terminator)</a></li>
+    <li><a href="#逗号-dot就是点">逗号 (dot,就是“点”)</a></li>
+    <li><a href="#string-单引号-single-quote">&lsquo;string&rsquo; 单引号 (single quote)</a></li>
+    <li><a href="#string-双引号-double-quote">&quot;string&quot; 双引号 (double quote)</a></li>
+    <li><a href="#command-倒引号-backticks"><code>command</code> 倒引号 (backticks)</a></li>
+    <li><a href="#-逗点-comma标点中的逗号">, 逗点 (comma，标点中的逗号)</a></li>
+    <li><a href="#-斜线-forward-slash">/ 斜线 (forward slash)</a></li>
+    <li><a href="#-倒斜线">\ 倒斜线</a></li>
+    <li><a href="#-管道-pipeline">| 管道 (pipeline)</a></li>
+    <li><a href="#-惊叹号negate-or-reverse">! 惊叹号(negate or reverse)</a></li>
+    <li><a href="#-冒号">: 冒号</a></li>
+    <li><a href="#-问号-wild-card">? 问号 (wild card)</a></li>
+    <li><a href="#-星号-wild-card">* 星号 (wild card)</a></li>
+    <li><a href="#-次方运算">** 次方运算</a></li>
+    <li><a href="#-钱号dollar-sign">$ 钱号(dollar sign)</a>
+      <ul>
+        <li><a href="#1-变量替换variable-substitution的代表符号">1. 变量替换(Variable Substitution)的代表符号。</a></li>
+        <li><a href="#2--变量的正规表达式">2. ${} 变量的正规表达式</a></li>
+        <li><a href="#3-">3. $*</a></li>
+        <li><a href="#4-">4. $@</a></li>
+        <li><a href="#5-">5. $#</a></li>
+        <li><a href="#6--状态值-status-variable">6. $? 状态值 (status variable)</a></li>
+        <li><a href="#7-">7. $$</a></li>
+      </ul>
+    </li>
+    <li><a href="#-指令群组-command-group">() 指令群组 (command group)</a>
+      <ul>
+        <li><a href="#1-">1. (()))</a></li>
+      </ul>
+    </li>
+    <li><a href="#-大括号-block-of-code">{} 大括号 (Block of code)</a>
+      <ul>
+        <li><a href="#1-常规用法">1. 常规用法</a>
+          <ul>
+            <li><a href="#11-大括号拓展">1.1. 大括号拓展</a></li>
+            <li><a href="#12-代码块">1.2. 代码块</a></li>
+          </ul>
+        </li>
+        <li><a href="#2-几种特殊的替换结构">2. 几种特殊的替换结构</a></li>
+        <li><a href="#3-四种模式匹配替换结构">3. 四种模式匹配替换结构</a></li>
+        <li><a href="#4-字符串提取和替换">4. 字符串提取和替换</a></li>
+      </ul>
+    </li>
+    <li><a href="#-中括号">[] 中括号</a></li>
+    <li><a href="#heading">[[]]</a></li>
+    <li><a href="#--">|| &amp;&amp; &amp;</a>
+      <ul>
+        <li><a href="#1-或逻辑符号">1. ||或逻辑符号</a></li>
+        <li><a href="#2--逻辑符号">2. &amp;&amp; 逻辑符号</a></li>
+        <li><a href="#3-后台工作">3. &amp;后台工作</a></li>
+      </ul>
+    </li>
+    <li><a href="#-单字边界">/ 单字边界</a></li>
+    <li><a href="#-加号-plus">+ 加号 (plus)</a></li>
+    <li><a href="#--减号-dash">- 减号 (dash)</a></li>
+    <li><a href="#-除法-modulo">% 除法 (Modulo)</a></li>
+    <li><a href="#-等号-equals">= 等号 (Equals)</a></li>
+    <li><a href="#-等号-equals-1">== 等号 (Equals)</a></li>
+    <li><a href="#-不等于">!= 不等于</a></li>
+    <li><a href="#heading-1">^</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><blockquote>
+<p>本文采用<a href="http://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreffer ">知识共享署名 4.0 国际许可协议</a>进行许可，转载时请注明原文链接，图片在使用时请保留全部内容，可适当缩放并在引用处附上图片所在的文章链接。</p>
+</blockquote>
+<!-- TOC -->
+<ul>
+<li><a href="#-%e4%ba%95%e5%8f%b7-comments" rel=""># 井号 (comments)</a></li>
+<li><a href="#-%e5%b8%90%e6%88%b7%e7%9a%84-home-%e7%9b%ae%e5%bd%95" rel="">~ 帐户的 home 目录</a></li>
+<li><a href="#-%e5%88%86%e5%8f%b7-command-separator" rel="">; 分号 (Command separator)</a></li>
+<li><a href="#-%e8%bf%9e%e7%bb%ad%e5%88%86%e5%8f%b7-terminator" rel="">;; 连续分号 (Terminator)</a></li>
+<li><a href="#%e9%80%97%e5%8f%b7-dot%e5%b0%b1%e6%98%af%e7%82%b9" rel="">逗号 (dot,就是“点”)</a></li>
+<li><a href="#string-%e5%8d%95%e5%bc%95%e5%8f%b7-single-quote" rel="">&lsquo;string&rsquo; 单引号 (single quote)</a></li>
+<li><a href="#string-%e5%8f%8c%e5%bc%95%e5%8f%b7-double-quote" rel="">&ldquo;string&rdquo; 双引号 (double quote)</a></li>
+<li><a href="#command-%e5%80%92%e5%bc%95%e5%8f%b7-backticks" rel=""><code>command</code> 倒引号 (backticks)</a></li>
+<li><a href="#-%e9%80%97%e7%82%b9-comma%e6%a0%87%e7%82%b9%e4%b8%ad%e7%9a%84%e9%80%97%e5%8f%b7" rel="">, 逗点 (comma，标点中的逗号)</a></li>
+<li><a href="#-%e6%96%9c%e7%ba%bf-forward-slash" rel="">/ 斜线 (forward slash)</a></li>
+<li><a href="#-%e5%80%92%e6%96%9c%e7%ba%bf" rel="">\ 倒斜线</a></li>
+<li><a href="#-%e7%ae%a1%e9%81%93-pipeline" rel="">| 管道 (pipeline)</a></li>
+<li><a href="#-%e6%83%8a%e5%8f%b9%e5%8f%b7negate-or-reverse" rel="">! 惊叹号(negate or reverse)</a></li>
+<li><a href="#-%e5%86%92%e5%8f%b7" rel="">: 冒号</a></li>
+<li><a href="#-%e9%97%ae%e5%8f%b7-wild-card" rel="">? 问号 (wild card)</a></li>
+<li><a href="#-%e6%98%9f%e5%8f%b7-wild-card" rel="">* 星号 (wild card)</a></li>
+<li><a href="#-%e6%ac%a1%e6%96%b9%e8%bf%90%e7%ae%97" rel="">** 次方运算</a></li>
+<li><a href="#-%e9%92%b1%e5%8f%b7dollar-sign" rel="">$ 钱号(dollar sign)</a>
+<ul>
+<li><a href="#1-%e5%8f%98%e9%87%8f%e6%9b%bf%e6%8d%a2variable-substitution%e7%9a%84%e4%bb%a3%e8%a1%a8%e7%ac%a6%e5%8f%b7" rel="">1. 变量替换(Variable Substitution)的代表符号。</a></li>
+<li><a href="#2--%e5%8f%98%e9%87%8f%e7%9a%84%e6%ad%a3%e8%a7%84%e8%a1%a8%e8%be%be%e5%bc%8f" rel="">2. ${} 变量的正规表达式</a></li>
+<li><a href="#3-" rel="">3. $*</a></li>
+<li><a href="#4-" rel="">4. $@</a></li>
+<li><a href="#5-" rel="">5. $#</a></li>
+<li><a href="#6--%e7%8a%b6%e6%80%81%e5%80%bc-status-variable" rel="">6. $? 状态值 (status variable)</a></li>
+<li><a href="#7-" rel="">7. $$</a></li>
+</ul>
+</li>
+<li><a href="#-%e6%8c%87%e4%bb%a4%e7%be%a4%e7%bb%84-command-group" rel="">() 指令群组 (command group)</a>
+<ul>
+<li><a href="#1-" rel="">1. (()))</a></li>
+</ul>
+</li>
+<li><a href="#-%e5%a4%a7%e6%8b%ac%e5%8f%b7-block-of-code" rel="">{} 大括号 (Block of code)</a>
+<ul>
+<li><a href="#1-%e5%b8%b8%e8%a7%84%e7%94%a8%e6%b3%95" rel="">1. 常规用法</a>
+<ul>
+<li><a href="#11-%e5%a4%a7%e6%8b%ac%e5%8f%b7%e6%8b%93%e5%b1%95" rel="">1.1. 大括号拓展</a></li>
+<li><a href="#12-%e4%bb%a3%e7%a0%81%e5%9d%97" rel="">1.2. 代码块</a></li>
+</ul>
+</li>
+<li><a href="#2-%e5%87%a0%e7%a7%8d%e7%89%b9%e6%ae%8a%e7%9a%84%e6%9b%bf%e6%8d%a2%e7%bb%93%e6%9e%84" rel="">2. 几种特殊的替换结构</a></li>
+<li><a href="#3-%e5%9b%9b%e7%a7%8d%e6%a8%a1%e5%bc%8f%e5%8c%b9%e9%85%8d%e6%9b%bf%e6%8d%a2%e7%bb%93%e6%9e%84" rel="">3. 四种模式匹配替换结构</a></li>
+<li><a href="#4-%e5%ad%97%e7%ac%a6%e4%b8%b2%e6%8f%90%e5%8f%96%e5%92%8c%e6%9b%bf%e6%8d%a2" rel="">4. 字符串提取和替换</a></li>
+</ul>
+</li>
+<li><a href="#-%e4%b8%ad%e6%8b%ac%e5%8f%b7" rel="">[] 中括号</a></li>
+<li><a href="#" rel="">[[]]</a></li>
+<li><a href="#--" rel="">|| &amp;&amp; &amp;</a>
+<ul>
+<li><a href="#1-%e6%88%96%e9%80%bb%e8%be%91%e7%ac%a6%e5%8f%b7" rel="">1. ||或逻辑符号</a></li>
+<li><a href="#2--%e9%80%bb%e8%be%91%e7%ac%a6%e5%8f%b7" rel="">2. &amp;&amp; 逻辑符号</a></li>
+<li><a href="#3-%e5%90%8e%e5%8f%b0%e5%b7%a5%e4%bd%9c" rel="">3. &amp;后台工作</a></li>
+</ul>
+</li>
+<li><a href="#-%e5%8d%95%e5%ad%97%e8%be%b9%e7%95%8c" rel="">/ 单字边界</a></li>
+<li><a href="#-%e5%8a%a0%e5%8f%b7-plus" rel="">+ 加号 (plus)</a></li>
+<li><a href="#--%e5%87%8f%e5%8f%b7-dash" rel="">- 减号 (dash)</a></li>
+<li><a href="#-%e9%99%a4%e6%b3%95-modulo" rel="">% 除法 (Modulo)</a></li>
+<li><a href="#-%e7%ad%89%e5%8f%b7-equals" rel="">= 等号 (Equals)</a></li>
+<li><a href="#-%e7%ad%89%e5%8f%b7-equals-1" rel="">== 等号 (Equals)</a></li>
+<li><a href="#-%e4%b8%8d%e7%ad%89%e4%ba%8e" rel="">!= 不等于</a></li>
+<li><a href="#-1" rel="">^</a></li>
+</ul>
+<!-- /TOC -->
+<p>参考：
+<a href="https://www.cnblogs.com/zhouhbing/p/4783147.html" target="_blank" rel="noopener noreffer "></a></p>
+<p><a href="https://www.runoob.com/w3cnote/linux-shell-brackets-features.html" target="_blank" rel="noopener noreffer "></a></p>
+<p>在shell中常用的特殊符号罗列如下：</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-1">1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-2">2</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-3">3</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-4">4</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-5">5</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># ;   ;; . , / \\ &#39;string&#39;| !   $   ${}   $? $$   $*</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#c30;font-weight:bold">\&#34;</span>string<span style="color:#c30;font-weight:bold">\&#34;</span>* **   ? : ^ <span style="color:#033">$#</span>   <span style="color:#033">$@</span> <span style="color:#c30">`</span><span style="color:#366">command</span><span style="color:#c30">`</span><span style="color:#555">{}</span>   <span style="color:#555">[]</span> <span style="color:#555">[[]]</span> <span style="color:#555">()</span>   <span style="color:#555">(())</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#555">||</span>   <span style="color:#555">&amp;&amp;</span> <span style="color:#555">{</span>xx,yy,zz,...<span style="color:#555">}</span>~   ~+   ~-   &amp;   <span style="color:#c30;font-weight:bold">\\</span>&lt;...<span style="color:#c30;font-weight:bold">\\</span>&gt;   + - %<span style="color:#555">=</span>   <span style="color:#555">==</span>   !<span style="color:#555">=</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="-井号-comments"># 井号 (comments)</h1>
+<p>这几乎是个满场都有的符号，除了先前已经提过的&quot;第一行&quot;
+#!/bin/bash
+井号也常出现在一行的开头，或者位于完整指令之后，这类情况表示符号后面的是注解文字，不会被执行。</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-1">1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-2">2</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># This line is comments.</span>
+</span></span><span style="display:flex;"><span><span style="color:#366">echo</span> <span style="color:#c30;font-weight:bold">\&#34;</span><span style="color:#033">a</span> <span style="color:#555">=</span> <span style="color:#033">$a</span><span style="color:#c30;font-weight:bold">\&#34;</span> <span style="color:#09f;font-style:italic"># a = 0</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>由于这个特性，当临时不想执行某行指令时，只需在该行开头加上 # 就行了。这常用在撰写过程中。</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-1">1</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#366">echo</span> <span style="color:#c30;font-weight:bold">\&#34;</span><span style="color:#033">a</span> <span style="color:#555">=</span> <span style="color:#033">$a</span><span style="color:#c30;font-weight:bold">\&#34;</span> <span style="color:#09f;font-style:italic"># a = 0</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果被用在指令中，或者引号双引号括住的话，或者在倒斜线的后面，那他就变成一般符号，不具上述的特殊功能。</p>
+<h1 id="-帐户的-home-目录">~ 帐户的 home 目录</h1>
+<p>算是个常见的符号，代表使用者的 home 目录：cd ~；也可以直接在符号后加上某帐户的名称：cd ~user或者当成是路径的一部份：</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-1">1</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>~/bin
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>~+ 当前的工作目录，这个符号代表当前的工作目录，她和内建指令 pwd的作用是相同的。</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-1">1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-2">2</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># echo ~+/</span>
+</span></span><span style="display:flex;"><span>var/log
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>~- 上次的工作目录，这个符号代表上次的工作目录。</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-1">1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-2">2</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># echo ~-</span>
+</span></span><span style="display:flex;"><span>/etc/httpd/logs
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="-分号-command-separator">; 分号 (Command separator)</h1>
+<p>在 shell 中，担任&quot;连续指令&quot;功能的符号就是&quot;分号&quot;。譬如以下的例子：</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-1">1</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#366">cd</span> ~/backup ; mkdir  startup ;cp ~/.* startup/.
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="-连续分号-terminator">;; 连续分号 (Terminator)</h1>
+<p>专用在 case 的选项，担任 Terminator 的角色。</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-1">1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-2">2</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-3">3</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-4">4</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-5">5</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-6">6</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-7">7</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-8">8</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#069;font-weight:bold">case</span> <span style="color:#c30;font-weight:bold">\&#34;</span><span style="color:#033">$fop</span><span style="color:#c30;font-weight:bold">\&#34;</span>
+</span></span><span style="display:flex;"><span>   inhelp<span style="color:#555">)</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#366">echo</span> <span style="color:#c30;font-weight:bold">\&#34;</span>Usage: Command -help -version filename<span style="color:#c30;font-weight:bold">\&#34;</span>
+</span></span><span style="display:flex;"><span>      ;;
+</span></span><span style="display:flex;"><span>   version<span style="color:#555">)</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#366">echo</span> <span style="color:#c30;font-weight:bold">\&#34;</span>version 0.1<span style="color:#c30;font-weight:bold">\&#34;</span>
+</span></span><span style="display:flex;"><span>      ;;
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">esac</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="逗号-dot就是点">逗号 (dot,就是“点”)</h1>
+<p>在 shell 中，使用者应该都清楚，一个 dot 代表当前目录，两个 dot 代表上层目录。</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-1">1</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#033">CDPATH</span><span style="color:#555">=</span>.:~:/home:/home/web:/var:/usr/local
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>在上行 CDPATH 的设定中，等号后的 dot 代表的就是当前目录的意思。</p>
+<p>如果档案名称以 dot 开头，该档案就属特殊档案，用 ls 指令必须加上 -a 选项才会显示。</p>
+<p>除此之外，在  regular expression 中，一个 dot 代表匹配一个字元。</p>
+<h1 id="string-单引号-single-quote">&lsquo;string&rsquo; 单引号 (single quote)</h1>
+<p>被单引号用括住的内容，将被视为单一字串。在引号内的代表变数的$符号，没有作用，也就是说，他被视为一般符号处理，防止任何变量替换。</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-9-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-9-1">1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-9-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-9-2">2</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#033">heyyou</span><span style="color:#555">=</span>home
+</span></span><span style="display:flex;"><span><span style="color:#366">echo</span> <span style="color:#c30">&#39;$heyyou&#39;</span> <span style="color:#09f;font-style:italic"># We get $heyyou</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="string-双引号-double-quote">&quot;string&quot; 双引号 (double quote)</h1>
+<p>被双引号用括住的内容，将被视为单一字串。它防止<strong>通配符</strong>扩展，但允许变量扩展。这点与单引数的处理方式不同。</p>
+<p>通配符是一种特殊语句，主要有星号(*)和问号(?)，用来模糊搜索文件。</p>
+<p>当查找文件夹时，可以使用它来代替一个或多个真正字符；当不知道真正字符或者懒得输入完整名字时，常常使用通配符代替一个或多个真正的字符。</p>
+<p>实际上用“*Not?pad”可以对应Notepad\MyNotepad【*可以代表任何字符串；?仅代表单个字符串，但此单字必须存在】;Notep[ao]d可以对应Notepad\Notepod【ao代表a与o里二选一】，其余以此类推。</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-1">1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-2">2</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#033">heyyou</span><span style="color:#555">=</span>home
+</span></span><span style="display:flex;"><span><span style="color:#366">echo</span> <span style="color:#c30">&#34;</span><span style="color:#033">$heyyou</span><span style="color:#c30">&#34;</span> <span style="color:#09f;font-style:italic"># We get home</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="command-倒引号-backticks"><code>command</code> 倒引号 (backticks)</h1>
+<p>在前面的单双引号，括住的是字串，但如果该字串是一列命令列，会怎样？答案是不会执行。要处理这种情况，我们得用倒单引号来做。</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-11-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-11-1">1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-11-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-11-2">2</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#033">fdv</span><span style="color:#555">=</span><span style="color:#c30">`</span>date +%F<span style="color:#c30">`</span>
+</span></span><span style="display:flex;"><span><span style="color:#366">echo</span> <span style="color:#c30">&#34;Today </span><span style="color:#033">$fdv</span><span style="color:#c30">&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>在倒引号内的 date +%F 会被视为指令，执行的结果会带入 fdv 变数中。</p>
+<h1 id="-逗点-comma标点中的逗号">, 逗点 (comma，标点中的逗号)</h1>
+<p>这个符号常运用在运算当中当做&quot;区隔&quot;用途。如下例</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-1">1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-2">2</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#366">let</span> <span style="color:#c30">&#34;t1= ((a = 5 + 3, b = 7 - 1, c = 15 / 5),(a + b + c))&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#366">echo</span> <span style="color:#c30">&#34;t1= </span><span style="color:#033">$t1</span><span style="color:#c30">, a = </span><span style="color:#033">$a</span><span style="color:#c30">, b = </span><span style="color:#033">$b</span><span style="color:#c30">&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>let 命令是 BASH 中用于计算的工具，用于执行一个或多个表达式，变量计算中不需要加上 $ 来表示变量。</p>
+<p>如果表达式中包含了空格或其他特殊字符，则必须引起来。</p>
+<h1 id="-斜线-forward-slash">/ 斜线 (forward slash)</h1>
+<p>在路径表示时，代表目录。</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-13-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-13-1">1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-13-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-13-2">2</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-13-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-13-3">3</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#366">cd</span> /etc/rc.d
+</span></span><span style="display:flex;"><span><span style="color:#366">cd</span> ../..
+</span></span><span style="display:flex;"><span><span style="color:#366">cd</span> /
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>通常单一的 / 代表 root 根目录的意思；
+在四则运算中，代表除法的符号。
+let &quot;num1 = ((a = 10 / 2, b = 25 / 5))&quot;</p>
+<h1 id="-倒斜线">\ 倒斜线</h1>
+<p>在交互模式下的escape 字元，有几个作用:
+放在指令前，有取消 aliases的作用；
+放在特殊符号前，则该特殊符号的作用消失；
+放在指令的最末端，表示指令连接下一行。</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-14-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-14-1">1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-14-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-14-2">2</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># type rmrm is aliased to `rm -i&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># \\rm ./*.log</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>上例，我在 rm 指令前加上 escape 字元，作用是暂时取消别名的功能，将 rm 指令还原。</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-15-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-15-1">1</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># bkdir=/home# echo \&#34;Backup dir, \\$bkdir = $bkdir\&#34;Backup dir,$bkdir = /home</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>上例 echo 内的 \$bkdir，escape 将 $ 变数的功能取消了，因此，会输出 $bkdir，而第二个 $bkdir则会输出变数的内容 /home。</p>
+<h1 id="-管道-pipeline">| 管道 (pipeline)</h1>
+<p>pipeline 是 UNIX 系统，基础且重要的观念。连结上个指令的标准输出，做为下个指令的标准输入。</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-16-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-16-1">1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-16-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-16-2">2</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-16-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-16-3">3</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-16-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-16-4">4</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-16-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-16-5">5</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>who | wc -l
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># wc命令的功能为统计指定文件中的字节数、字数、行数, 并将统计结果显示输出。</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># - c 统计字节数。</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># - l 统计行数。</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># - w 统计字数。</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>善用这个观念，对精简 script 有相当的帮助。</p>
+<h1 id="-惊叹号negate-or-reverse">! 惊叹号(negate or reverse)</h1>
+<p>通常它代表反逻辑的作用，譬如条件侦测中，用 != 来代表”不等于”</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-17-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-17-1">1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-17-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-17-2">2</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-17-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-17-3">3</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-17-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-17-4">4</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#069;font-weight:bold">if</span> <span style="color:#555">[</span> <span style="color:#c30">&#34;</span><span style="color:#033">$?</span><span style="color:#c30">&#34;</span> !<span style="color:#555">=</span> <span style="color:#f60">0</span> <span style="color:#555">]</span><span style="color:#069;font-weight:bold">then</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#366">echo</span> <span style="color:#c30">&#34;Executes error&#34;</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#366">exit</span> <span style="color:#f60">1</span>
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">fi</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>在规则表达式中她担任 “反逻辑” 的角色</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-18-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-18-1">1</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ls a<span style="color:#555">[</span>!0-9<span style="color:#555">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>上例，代表显示除了a0, a1 …. a9 这几个文件的其他文件。</p>
+<h1 id="-冒号">: 冒号</h1>
+<p>在 bash 中，这是一个内建指令：”什么事都不干”，但返回状态值 0。</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-19-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-19-1">1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-19-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-19-2">2</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-19-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-19-3">3</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>:
+</span></span><span style="display:flex;"><span><span style="color:#366">echo</span> <span style="color:#033">$?</span> <span style="color:#09f;font-style:italic"># 回应为 0</span>
+</span></span><span style="display:flex;"><span>: &gt; f.<span style="color:#033">$$</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>上面这一行，相当于 cat /dev/null &gt; f.$$。不仅写法简短了，而且执行效率也好上许多。</p>
+<p>有时，也会出现以下这类的用法</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-20-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-20-1">1</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>: <span style="color:#a00">${</span><span style="color:#033">HOSTNAME</span>?<span style="color:#a00">}</span> <span style="color:#a00">${</span><span style="color:#033">USER</span>?<span style="color:#a00">}</span> <span style="color:#a00">${</span><span style="color:#033">MAIL</span>?<span style="color:#a00">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这行的作用是，检查这些环境变数是否已设置，没有设置的将会以标准错误显示错误讯息。像这种检查如果使用类似 test 或 if 这类的做法，基本上也可以处理，但都比不上上例的简洁与效率。
+除了上述之外，还有一个地方必须使用冒号</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-21-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-21-1">1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-21-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-21-2">2</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-21-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-21-3">3</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-21-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-21-4">4</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#366">export</span> <span style="color:#033">PATH</span><span style="color:#555">=</span><span style="color:#033">$PATH</span>:<span style="color:#033">$HOME</span>/fbin:<span style="color:#033">$HOME</span>/fperl:/usr/local/mozilla
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#366">export</span> <span style="color:#033">LD_LIBRARY_PATH</span><span style="color:#555">=</span><span style="color:#069;font-weight:bold">$(</span><span style="color:#366">pwd</span><span style="color:#069;font-weight:bold">)</span>/lib:/usr/local/lib:/usr/lib
+</span></span><span style="display:flex;"><span><span style="color:#366">export</span> <span style="color:#033">PATH</span><span style="color:#555">=</span><span style="color:#069;font-weight:bold">$(</span><span style="color:#366">pwd</span><span style="color:#069;font-weight:bold">)</span>:<span style="color:#033">$PATH</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>在使用者自己的HOME 目录下的 .bash_profile 或任何功能相似的档案中，设定关于”路径”的场合中，我们都使用冒号，来做区隔。</p>
+<h1 id="-问号-wild-card">? 问号 (wild card)</h1>
+<p>在文件名扩展(Filename expansion)上扮演的角色是匹配<strong>一个</strong>任意的字元，但<strong>不包含 null 字元</strong>。</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-22-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-22-1">1</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># ls a?a1</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>善用她的特点，可以做比较精确的档名匹配。</p>
+<h1 id="-星号-wild-card">* 星号 (wild card)</h1>
+<p>相当常用的符号。在文件名扩展(Filename expansion)上，她用来代表<strong>任何字元</strong>，<strong>包含 null 字元</strong>。</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-23-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-23-1">1</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># ls a*a a1 access_log</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>在运算时，它则代表 “乘法”。</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-24-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-24-1">1</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#366">let</span> “fmult<span style="color:#555">=</span>2*3″
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>除了内建指令 let，还有一个关于运算的指令 expr，星号在这里也担任”乘法”的角色。不过在使用上得小心，他的前面必须加上escape 字元。</p>
+<h1 id="-次方运算">** 次方运算</h1>
+<p>两个星号在运算时代表 “次方” 的意思。</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-25-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-25-1">1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-25-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-25-2">2</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-25-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-25-3">3</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#366">let</span> “sus<span style="color:#555">=</span>2**3″
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#366">echo</span> “sus <span style="color:#555">=</span> <span style="color:#033">$sus</span>” <span style="color:#09f;font-style:italic"># sus = 8</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="-钱号dollar-sign">$ 钱号(dollar sign)</h1>
+<h2 id="1-变量替换variable-substitution的代表符号">1. 变量替换(Variable Substitution)的代表符号。</h2>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-26-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-26-1">1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-26-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-26-2">2</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#033">vrs</span><span style="color:#555">=</span><span style="color:#f60">123</span>
+</span></span><span style="display:flex;"><span><span style="color:#366">echo</span> <span style="color:#c30">&#34;vrs = </span><span style="color:#033">$vrs</span><span style="color:#c30">&#34;</span> <span style="color:#09f;font-style:italic"># vrs = 123</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>另外，在 Regular Expressions 里被定义为 “行” 的最末端 (end-of-line)。这个常用在 grep、sed、awk 以及 vim(vi) 当中。</p>
+<h2 id="2--变量的正规表达式">2. ${} 变量的正规表达式</h2>
+<p>bash 对 ${} 定义了不少用法。以下是取自线上说明的表列</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-27-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-27-1">1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-27-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-27-2">2</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-27-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-27-3">3</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-27-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-27-4">4</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-27-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-27-5">5</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#a00">${</span><span style="color:#033">parameter</span><span style="color:#069;font-weight:bold">:-</span><span style="color:#033">word</span><span style="color:#a00">}</span> <span style="color:#a00">${</span><span style="color:#033">parameter</span>:=word<span style="color:#a00">}</span> <span style="color:#a00">${</span><span style="color:#033">parameter</span>:?word<span style="color:#a00">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#a00">${</span><span style="color:#033">parameter</span>:+word<span style="color:#a00">}</span> <span style="color:#a00">${</span><span style="color:#033">parameter</span>:<span style="color:#033">offset</span><span style="color:#a00">}</span> <span style="color:#a00">${</span><span style="color:#033">parameter</span>:<span style="color:#033">offset</span>:<span style="color:#033">length</span><span style="color:#a00">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#a00">${</span>!prefix*<span style="color:#a00">}</span> <span style="color:#a00">${#</span><span style="color:#033">parameter</span><span style="color:#a00">}</span> <span style="color:#a00">${</span><span style="color:#033">parameter</span>#word<span style="color:#a00">}</span> <span style="color:#a00">${</span><span style="color:#033">parameter</span>##word<span style="color:#a00">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#a00">${</span><span style="color:#033">parameter</span>%word<span style="color:#a00">}</span> <span style="color:#a00">${</span><span style="color:#033">parameter</span>%%word<span style="color:#a00">}</span> <span style="color:#a00">${</span><span style="color:#033">parameter</span>/pattern/string<span style="color:#a00">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#a00">${</span><span style="color:#033">parameter</span>//pattern/string<span style="color:#a00">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="3-">3. $*</h2>
+<p>$* 引用script 的执行引用变量，引用参数的算法与一般指令相同，指令本身为0，其后为1，然后依此类推。引用变量的代表方式如下：</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-28-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-28-1">1</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#033">$0</span>, <span style="color:#033">$1</span>, <span style="color:#033">$2</span>, <span style="color:#033">$3</span>, <span style="color:#033">$4</span>, <span style="color:#033">$5</span>, <span style="color:#033">$6</span>, <span style="color:#033">$7</span>, <span style="color:#033">$8</span>, <span style="color:#033">$9</span>, <span style="color:#a00">${</span><span style="color:#033">10</span><span style="color:#a00">}</span>, <span style="color:#a00">${</span><span style="color:#033">11</span><span style="color:#a00">}</span>…..
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>个位数的，可直接使用数字，但两位数以上，则必须使用 {} 符号来括住。
+$* 则是代表所有引用变量的符号。使用时，得视情况加上双引号。</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-29-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-29-1">1</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#366">echo</span> “<span style="color:#033">$*</span>”
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="4-">4. $@</h2>
+<p>$@ 与 $* 具有相同作用的符号，不过她们两者有一个不同点。
+符号 $* 将所有的引用变量视为一个整体。但符号 $@ 则仍旧保留每个引用变量的区段观念。</p>
+<h2 id="5-">5. $#</h2>
+<p>这也是与引用变量相关的符号，她的作用是告诉你，引用变量的总数量是多少。</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-30-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-30-1">1</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#366">echo</span> “<span style="color:#033">$#</span>”
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="6--状态值-status-variable">6. $? 状态值 (status variable)</h2>
+<p>一般来说，UNIX(linux) 系统的进程以执行系统调用exit() 来结束的。这个回传值就是status值。回传给父进程，用来检查子进程的执行状态。
+一般指令程序倘若执行成功，其回传值为 0；失败为 1。</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-31-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-31-1">1</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>tar cvfz dfbackup.tar.gz /home/user &gt; /dev/nullecho “<span style="color:#033">$?</span>”
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="7-">7. $$</h2>
+<p>由于进程的ID是唯一的，所以在同一个时间，不可能有重复性的 PID。有时，script 会需要产生临时文件，用来存放必要的资料。
+而此script亦有可能在同一时间被使用者们使用。在这种情况下，固定文件名在写法上就显的不可靠。唯有产生动态文件名，才能符合需要。
+符号$$或许可以符合这种需求。它代表当前shell 的 PID。</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-32-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-32-1">1</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#366">echo</span> “<span style="color:#033">$HOSTNAME</span>, <span style="color:#033">$USER</span>, <span style="color:#033">$MAIL</span>” &gt; ftmp.<span style="color:#033">$$</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>使用它来作为文件名的一部份，可以避免在同一时间，产生相同文件名的覆盖现象。
+ps: 基本上，系统会回收执行完毕的 PID，然后再次依需要分配使用。所以 script 即使临时文件是使用动态档名的写法，如果 script 执行完毕后仍不加以清除，会产生其他问题。</p>
+<h1 id="-指令群组-command-group">() 指令群组 (command group)</h1>
+<p>用括号将一串连续指令括起来，这种用法对 shell 来说，称为指令群组。如下面的例子：</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-33-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-33-1">1</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#555">(</span><span style="color:#366">cd</span> ~ ; <span style="color:#033">vcgh</span><span style="color:#555">=</span><span style="color:#c30">`</span><span style="color:#366">pwd</span><span style="color:#c30">`</span> ; <span style="color:#366">echo</span> <span style="color:#033">$vcgh</span><span style="color:#555">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>指令群组有一个特性，shell会以产生 subshell来执行这组指令。因此，在其中所定义的变数，仅作用于指令群组本身。我们来看个例子</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-34-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-34-1">1</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># cat ftmp-01#!/bin/basha=fsh(a=incg ; echo -e “/n $a /n”)echo $a# ./ftmp-01incgfsh</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>除了上述的指令群组，括号也用在 array 变数的定义上；另外也应用在其他可能需要加上escape 字元才能使用的场合，如运算式。</p>
+<h2 id="1-">1. (()))</h2>
+<p>这组符号的作用与 let 指令相似，用在算数运算上，是 bash 的内建功能。所以，在执行效率上会比使用 let 指令要好许多。</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-35-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-35-1">1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-35-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-35-2">2</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-35-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-35-3">3</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-35-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-35-4">4</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-35-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-35-5">5</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#099">#!/bin/bash
+</span></span></span><span style="display:flex;"><span><span style="color:#099"></span><span style="color:#555">((</span> <span style="color:#033">a</span> <span style="color:#555">=</span> <span style="color:#f60">10</span> <span style="color:#555">))</span>
+</span></span><span style="display:flex;"><span><span style="color:#366">echo</span> -e <span style="color:#c30">&#34;inital value, a = </span><span style="color:#033">$a</span><span style="color:#c30">/n&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#555">((</span> a++ <span style="color:#555">))</span>
+</span></span><span style="display:flex;"><span><span style="color:#366">echo</span> <span style="color:#c30">&#34;after a++, a = </span><span style="color:#033">$a</span><span style="color:#c30">&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="-大括号-block-of-code">{} 大括号 (Block of code)</h1>
+<h2 id="1-常规用法">1. 常规用法</h2>
+<h3 id="11-大括号拓展">1.1. 大括号拓展</h3>
+<p>(通配(globbing))将对大括号中的文件名做扩展。在大括号中，不允许有空白，除非这个空白被引用或转义。第一种：对大括号中的以逗号分割的文件列表进行拓展。如 touch {a,b}.txt 结果为a.txt b.txt。第二种：对大括号中以点点（..）分割的顺序文件列表起拓展作用，如：touch {a..d}.txt 结果为a.txt b.txt c.txt d.txt</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-36-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-36-1">1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-36-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-36-2">2</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-36-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-36-3">3</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-36-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-36-4">4</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-36-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-36-5">5</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-36-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-36-6">6</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># ls {ex1,ex2}.sh</span>
+</span></span><span style="display:flex;"><span>ex1.sh  ex2.sh
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># ls {ex{1..3},ex4}.sh</span>
+</span></span><span style="display:flex;"><span>ex1.sh  ex2.sh  ex3.sh  ex4.sh
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># ls {ex[1-3],ex4}.sh</span>
+</span></span><span style="display:flex;"><span>ex1.sh  ex2.sh  ex3.sh  ex4.sh
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="12-代码块">1.2. 代码块</h3>
+<p>又被称为内部组，这个结构事实上创建了一个匿名函数 。与小括号中的命令不同，大括号内的命令不会新开一个子shell运行，即脚本余下部分仍可使用括号内变量。括号内的命令间用分号隔开，最后一个也必须有分号。<strong>{}的第一个命令和左括号之间必须要有一个空格</strong>。
+大括号也被运用在 “函数” 的功能上。广义地说，单纯只使用大括号时，作用就像是个没有指定名称的函数一般。因此，这样写 script 也是相当好的一件事。尤其对输出输入的重导向上，这个做法可精简 script 的复杂度。</p>
+<h2 id="2-几种特殊的替换结构">2. 几种特殊的替换结构</h2>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-37-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-37-1">1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-37-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-37-2">2</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-37-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-37-3">3</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-37-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-37-4">4</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#a00">${</span><span style="color:#033">var</span><span style="color:#069;font-weight:bold">:-</span><span style="color:#033">string</span><span style="color:#a00">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#a00">${</span><span style="color:#033">var</span>:+string<span style="color:#a00">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#a00">${</span><span style="color:#033">var</span>:=string<span style="color:#a00">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#a00">${</span><span style="color:#033">var</span>:?string<span style="color:#a00">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>1、${var:-string}和${var:=string}:若变量var为空，则用在命令行中用string来替换${var:-string}，否则变量var不为空时，则用变量var的值来替换${var:-string}；对于${var:=string}的替换规则和${var:-string}是一样的，所不同之处是${var:=string}若var为空时，用string替换${var:=string}的同时，把string赋给变量var： ${var:=string}很常用的一种用法是，判断某个变量是否赋值，没有的话则给它赋上一个默认值。</p>
+<p>2、${var:+string}的替换规则和上面的相反，即只有当var不是空的时候才替换成string，若var为空时则不替换或者说是替换成变量 var的值，即空值。(因为变量var此时为空，所以这两种说法是等价的)</p>
+<p>3、{var:?string}替换规则为：若变量var不为空，则用变量var的值来替换${var:?string}；若变量var为空，则把string输出到标准错误中，并从脚本中退出。我们可利用此特性来检查是否设置了变量的值。</p>
+<p><strong>补充扩展</strong>：在上面这五种替换结构中string不一定是常值的，可用另外一个变量的值或是一种命令的输出。</p>
+<p>此外，大括号还有另一种用法，如下</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-38-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-38-1">1</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#555">{</span>xx,yy,zz,…<span style="color:#555">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这种大括号的组合，常用在字串的组合上，来看个例子</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-39-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-39-1">1</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>mkdir <span style="color:#555">{</span>userA,userB,userC<span style="color:#555">}</span>-<span style="color:#555">{</span>home,bin,data<span style="color:#555">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>我们得到
+userA-home, userA-bin, userA-data, userB-home, userB-bin,userB-data, userC-home, userC-bin,userC-data，这几个目录。这组符号在适用性上相当广泛。能加以善用的话，回报是精简与效率。像下面的例子</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-40-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-40-1">1</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>chown root /usr/<span style="color:#555">{</span>ucb/<span style="color:#555">{</span>ex,edit<span style="color:#555">}</span>,lib/<span style="color:#555">{</span>ex?.?*,how_ex<span style="color:#555">}}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果不是因为这种用法，我们得写几行重复几次呀！</p>
+<h2 id="3-四种模式匹配替换结构">3. 四种模式匹配替换结构</h2>
+<p>模式匹配记忆方法：</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-41-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-41-1">1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-41-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-41-2">2</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># 是去掉左边(在键盘上#在$之左边)</span>
+</span></span><span style="display:flex;"><span>% 是去掉右边<span style="color:#555">(</span>在键盘上%在$之右边<span style="color:#555">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>#和%中的单一符号是最小匹配，两个相同符号是最大匹配。</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-42-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-42-1">1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-42-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-42-2">2</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-42-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-42-3">3</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-42-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-42-4">4</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#a00">${</span><span style="color:#033">var</span>%pattern<span style="color:#a00">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#a00">${</span><span style="color:#033">var</span>%%pattern
+</span></span><span style="display:flex;"><span><span style="color:#a00">${</span><span style="color:#033">var</span>#pattern<span style="color:#a00">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#a00">${</span><span style="color:#033">var</span>##pattern<span style="color:#a00">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>第一种模式：${variable%pattern}，这种模式时，shell在variable中查找，看它是否以给的模式pattern结尾，如果是，就从命令行把variable中的内容去掉右边最短的匹配模式</li>
+<li>第二种模式： ${variable%%pattern}，这种模式时，shell在variable中查找，看它是否以给的模式pattern结尾，如果是，就从命令行把variable中的内容去掉右边最长的匹配模式</li>
+<li>第三种模式：${variable#pattern} 这种模式时，shell在variable中查找，看它是否以给的模式pattern开始，如果是，就从命令行把variable中的内容去掉左边最短的匹配模式</li>
+<li>第四种模式： ${variable##pattern} 这种模式时，shell在variable中查找，看它是否以给的模式pattern结尾，如果是，就从命令行把variable中的内容去掉右边最长的匹配模式</li>
+<li>这四种模式中都不会改变variable的值，其中，只有在pattern中使用了*匹配符号时，%和%%，#和##才有区别。结构中的pattern支持通配符，*表示零个或多个任意字符，?表示仅与一个任意字符匹配，[&hellip;]表示匹配中括号里面的字符，[!&hellip;]表示不匹配中括号里面的字符。</li>
+</ul>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-43-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-43-1"> 1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-43-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-43-2"> 2</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-43-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-43-3"> 3</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-43-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-43-4"> 4</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-43-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-43-5"> 5</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-43-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-43-6"> 6</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-43-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-43-7"> 7</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-43-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-43-8"> 8</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-43-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-43-9"> 9</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-43-10"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-43-10">10</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-43-11"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-43-11">11</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-43-12"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-43-12">12</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-43-13"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-43-13">13</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-43-14"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-43-14">14</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-43-15"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-43-15">15</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-43-16"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-43-16">16</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-43-17"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-43-17">17</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-43-18"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-43-18">18</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-43-19"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-43-19">19</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># var=testcase</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># echo $var</span>
+</span></span><span style="display:flex;"><span>testcase
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># echo ${var%s*e}</span>
+</span></span><span style="display:flex;"><span>testca
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># echo $var</span>
+</span></span><span style="display:flex;"><span>testcase
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># echo ${var%%s*e}</span>
+</span></span><span style="display:flex;"><span>te
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># echo ${var#?e}</span>
+</span></span><span style="display:flex;"><span>stcase
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># echo ${var##?e}</span>
+</span></span><span style="display:flex;"><span>stcase
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># echo ${var##*e}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># echo ${var##*s}</span>
+</span></span><span style="display:flex;"><span>e
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># echo ${var##test}</span>
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">case</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="4-字符串提取和替换">4. 字符串提取和替换</h2>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-44-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-44-1">1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-44-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-44-2">2</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-44-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-44-3">3</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-44-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-44-4">4</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#a00">${</span><span style="color:#033">var</span>:<span style="color:#033">num</span><span style="color:#a00">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#a00">${</span><span style="color:#033">var</span>:<span style="color:#033">num1</span>:<span style="color:#033">num2</span><span style="color:#a00">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#a00">${</span><span style="color:#033">var</span>/pattern/pattern<span style="color:#a00">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#a00">${</span><span style="color:#033">var</span>//pattern/pattern<span style="color:#a00">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>第一种模式：${var:num}，这种模式时，shell在var中提取第num个字符到末尾的所有字符。若num为正数，从左边0处开始；若num为负数，从右边开始提取字串，但必须使用在冒号后面加空格或一个数字或整个num加上括号，如${var: -2}、${var:1-3}或${var:(-2)}。</li>
+<li>第二种模式：${var:num1:num2}，num1是位置，num2是长度。表示从$var字符串的第$num1个位置开始提取长度为$num2的子串。不能为负数。</li>
+<li>第三种模式：${var/pattern/pattern}表示将var字符串的第一个匹配的pattern替换为另一个pattern。</li>
+<li>第四种模式：${var//pattern/pattern}表示将var字符串中的所有能匹配的pattern替换为另一个pattern。</li>
+</ul>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-45-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-45-1"> 1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-45-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-45-2"> 2</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-45-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-45-3"> 3</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-45-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-45-4"> 4</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-45-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-45-5"> 5</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-45-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-45-6"> 6</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-45-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-45-7"> 7</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-45-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-45-8"> 8</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-45-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-45-9"> 9</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-45-10"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-45-10">10</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-45-11"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-45-11">11</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-45-12"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-45-12">12</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-45-13"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-45-13">13</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-45-14"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-45-14">14</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-45-15"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-45-15">15</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#555">[</span>root@centos ~<span style="color:#555">]</span><span style="color:#09f;font-style:italic"># var=/home/centos</span>
+</span></span><span style="display:flex;"><span><span style="color:#555">[</span>root@centos ~<span style="color:#555">]</span><span style="color:#09f;font-style:italic"># echo $var</span>
+</span></span><span style="display:flex;"><span>/home/centos
+</span></span><span style="display:flex;"><span><span style="color:#555">[</span>root@centos ~<span style="color:#555">]</span><span style="color:#09f;font-style:italic"># echo ${var:5}</span>
+</span></span><span style="display:flex;"><span>/centos
+</span></span><span style="display:flex;"><span><span style="color:#555">[</span>root@centos ~<span style="color:#555">]</span><span style="color:#09f;font-style:italic"># echo ${var: -6}</span>
+</span></span><span style="display:flex;"><span>centos
+</span></span><span style="display:flex;"><span><span style="color:#555">[</span>root@centos ~<span style="color:#555">]</span><span style="color:#09f;font-style:italic"># echo ${var:(-6)}</span>
+</span></span><span style="display:flex;"><span>centos
+</span></span><span style="display:flex;"><span><span style="color:#555">[</span>root@centos ~<span style="color:#555">]</span><span style="color:#09f;font-style:italic"># echo ${var:1:4}</span>
+</span></span><span style="display:flex;"><span>home
+</span></span><span style="display:flex;"><span><span style="color:#555">[</span>root@centos ~<span style="color:#555">]</span><span style="color:#09f;font-style:italic"># echo ${var/o/h}</span>
+</span></span><span style="display:flex;"><span>/hhme/centos
+</span></span><span style="display:flex;"><span><span style="color:#555">[</span>root@centos ~<span style="color:#555">]</span><span style="color:#09f;font-style:italic"># echo ${var//o/h}</span>
+</span></span><span style="display:flex;"><span>/hhme/cenths
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="-中括号">[] 中括号</h1>
+<p>常出现在流程控制中，扮演括住判断式的作用。</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-46-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-46-1">1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-46-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-46-2">2</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-46-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-46-3">3</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-46-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-46-4">4</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#069;font-weight:bold">if</span> <span style="color:#555">[</span> <span style="color:#c30">&#34;</span><span style="color:#033">$?</span><span style="color:#c30">&#34;</span> !<span style="color:#555">=</span> <span style="color:#f60">0</span> <span style="color:#555">]</span><span style="color:#069;font-weight:bold">then</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#366">echo</span> <span style="color:#c30">&#34;Executes error&#34;</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#366">exit</span> <span style="color:#f60">1</span>
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">fi</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这个符号在正则表达式中担任类似 “范围” 或 “集合” 的角色</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-47-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-47-1">1</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>rm -r 200<span style="color:#555">[</span>1234<span style="color:#555">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>上例，代表删除 2001, 2002, 2003, 2004 等目录的意思。</p>
+<h1 id="heading">[[]]</h1>
+<p>这组符号与先前的 [] 符号，基本上作用相同，但她允许在其中直接使用 || 与 &amp;&amp; 逻辑等符号。</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-48-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-48-1">1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-48-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-48-2">2</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-48-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-48-3">3</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-48-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-48-4">4</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-48-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-48-5">5</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#099">#!/bin/bash
+</span></span></span><span style="display:flex;"><span><span style="color:#099"></span><span style="color:#366">read</span> ak
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">if</span> <span style="color:#555">[[</span> <span style="color:#033">$ak</span> &gt; <span style="color:#f60">5</span> <span style="color:#555">||</span> <span style="color:#033">$ak</span> &lt; <span style="color:#f60">9</span> <span style="color:#555">]]</span><span style="color:#069;font-weight:bold">then</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#366">echo</span> <span style="color:#033">$ak</span>
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">fi</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="--">|| &amp;&amp; &amp;</h1>
+<h2 id="1-或逻辑符号">1. ||或逻辑符号</h2>
+<p>这个会时常看到，代表 or 逻辑的符号。</p>
+<h2 id="2--逻辑符号">2. &amp;&amp; 逻辑符号</h2>
+<p>这个也会常看到，代表 and 逻辑的符号。</p>
+<h2 id="3-后台工作">3. &amp;后台工作</h2>
+<p>单一个&amp; 符号，且放在完整指令列的最后端，即表示将该指令列放入后台中工作。</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-49-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-49-1">1</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>tar cvfz data.tar.gz data &gt; /dev/null &amp;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="-单字边界">/ 单字边界</h1>
+<p>这组符号在规则表达式中，被定义为”边界”的意思。譬如，当我们想找寻 the 这个单字时，如果我们用</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-50-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-50-1">1</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>grep the FileA
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>你将会发现，像 there 这类的单字，也会被当成是匹配的单字。因为 the 正巧是 there 的一部份。如果我们要必免这种情况，就得加上 “边界” 的符号</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-51-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-51-1">1</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>grep ‘/<span style="color:#a00;background-color:#faa">&#39;</span> FileA
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="-加号-plus">+ 加号 (plus)</h1>
+<p>在运算式中，她用来表示 “加法”。</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-52-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-52-1">1</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>expr <span style="color:#f60">1</span> + <span style="color:#f60">2</span> + <span style="color:#f60">3</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>此外在规则表达式中，用来表示”很多个”的前面字元的意思。</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-53-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-53-1">1</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># grep &#39;10/+9′ fileB109100910000910000931010009#这个符号在使用时，前面必须加上 escape 字元。</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="--减号-dash">- 减号 (dash)</h1>
+<p>在运算式中，她用来表示 “减法”。</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-54-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-54-1">1</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>expr <span style="color:#f60">10</span> – <span style="color:#f60">2</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>此外也是系统指令的选项符号。</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-55-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-55-1">1</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ls -expr <span style="color:#f60">10</span> – <span style="color:#f60">2</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>在 GNU 指令中，如果单独使用 – 符号，不加任何该加的文件名称时，代表”标准输入”的意思。这是 GNU 指令的共通选项。譬如下例</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-56-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-56-1">1</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>tar xpvf -
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这里的 – 符号，既代表从标准输入读取资料。
+不过，在 cd 指令中则比较特别</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-57-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-57-1">1</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#366">cd</span> -
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这代表变更工作目录到”上一次”工作目录。</p>
+<h1 id="-除法-modulo">% 除法 (Modulo)</h1>
+<p>在运算式中，用来表示 “除法”。</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-58-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-58-1">1</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>expr <span style="color:#f60">10</span> % <span style="color:#f60">2</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>此外，也被运用在关于变量的规则表达式当中的下列</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-59-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-59-1">1</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#a00">${</span><span style="color:#033">parameter</span>%word<span style="color:#a00">}${</span><span style="color:#033">parameter</span>%%word<span style="color:#a00">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>一个 % 表示最短的 word 匹配，两个表示最长的 word 匹配。</p>
+<h1 id="-等号-equals">= 等号 (Equals)</h1>
+<p>常在设定变数时看到的符号。</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-60-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-60-1">1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-60-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-60-2">2</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#033">vara</span><span style="color:#555">=</span><span style="color:#f60">123</span>
+</span></span><span style="display:flex;"><span><span style="color:#366">echo</span> <span style="color:#c30">&#34;vara = </span><span style="color:#033">$vara</span><span style="color:#c30">&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>或者像是 PATH 的设定，甚至应用在运算或判断式等此类用途上。</p>
+<h1 id="-等号-equals-1">== 等号 (Equals)</h1>
+<p>常在条件判断式中看到，代表 “等于” 的意思。</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-61-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-61-1">1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-61-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-61-2">2</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#069;font-weight:bold">if</span> <span style="color:#555">[</span> <span style="color:#033">$vara</span> <span style="color:#555">==</span> <span style="color:#033">$varb</span> <span style="color:#555">]</span>
+</span></span><span style="display:flex;"><span>…下略
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="-不等于">!= 不等于</h1>
+<p>常在条件判断式中看到，代表 “不等于” 的意思。</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-62-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-62-1">1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-62-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-62-2">2</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#069;font-weight:bold">if</span> <span style="color:#555">[</span> <span style="color:#033">$vara</span> !<span style="color:#555">=</span> <span style="color:#033">$varb</span> <span style="color:#555">]</span>
+</span></span><span style="display:flex;"><span>…下略
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="heading-1">^</h1>
+<p>这个符号在规则表达式中，代表行的 “开头” 位置</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2023-01-18&nbsp;<a class="git-hash" href="https://github.com/zhangyuhu/zhangyuhu.github.io/commit/d1ac348ddf52a073ef726b5b05a0c3110e0c02cd" target="_blank" title="commit by zhangyuhu(zhangyuhude@163.com) d1ac348ddf52a073ef726b5b05a0c3110e0c02cd: update">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>d1ac348</a></span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://zhangyuhu.github.io/posts/program/bash/special_symbol/" data-title="shell 中的特殊符号" data-hashtags="bash"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://zhangyuhu.github.io/posts/program/bash/special_symbol/" data-hashtag="bash"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://zhangyuhu.github.io/posts/program/bash/special_symbol/" data-title="shell 中的特殊符号"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://zhangyuhu.github.io/posts/program/bash/special_symbol/" data-title="shell 中的特殊符号"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://zhangyuhu.github.io/posts/program/bash/special_symbol/" data-title="shell 中的特殊符号" data-ralateuid="ji"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/bash/">bash</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/tools/git/repo/" class="prev" rel="prev" title="tool: repo 代码库管理工具"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>tool: repo 代码库管理工具</a>
+            <a href="/posts/program/bash/shell/" class="next" rel="next" title="shell">shell<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="giscus" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://giscus.app">Giscus</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">为天地立心,为生民立命,为往圣继绝学,为万世开太平</div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://zhangyuhu.github.io/" target="_blank">zhangyuhu</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="http://creativecommons.org/licenses/by/4.0/" target="_blank">知识共享署名 4.0 国际许可协议</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/css/lightgallery-bundle.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/twemoji@14.0.2/dist/twemoji.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/lightgallery.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/thumbnail/lg-thumbnail.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/zoom/lg-zoom.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@8.6.0/dist/index.umd.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":100},"comment":{"giscus":{"category":"Comments","categoryId":"DIC_kwDOIx2Cjs4CTnUX","darkTheme":"dark","emitMetadata":"0","inputPosition":"bottom","lang":"en","lazyLoading":false,"lightTheme":"light","mapping":"pathname","reactionsEnabled":"1","repo":"zhangyuhu/zhangyuhu.github.io","repoId":"R_kgDOIx2Cjg"}},"data":{"id-1":"HOME","id-2":"HOME"},"lightgallery":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"},"twemoji":true,"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.2970a33d719df7cd89cebf586152b32a8ed30012227fa81b44282950146e0f595d1c733779e4d423dda1004bdcf707ee64d0fadc3d21229cd66b960788f84bdb.js" integrity="sha512-KXCjPXGd982Jzr9YYVKzKo7TABIif6gbRCgpUBRuD1ldHHM3eeTUI92hAEvc9wfuZND63D0hIpzWa5YHiPhL2w=="></script></body>
+</html>

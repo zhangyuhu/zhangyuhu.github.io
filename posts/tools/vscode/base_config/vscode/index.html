@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>tool:vscode基础配置 - 这是我的网站</title><meta name="Description" content="vscode基础配置"><meta property="og:title" content="tool:vscode基础配置" />
+<meta property="og:description" content="vscode基础配置" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zhangyuhu.github.io/posts/tools/vscode/base_config/vscode/" /><meta property="og:image" content="https://zhangyuhu.github.io/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-01-15T17:52:52+08:00" />
+<meta property="article:modified_time" content="2023-01-18T13:11:00+08:00" /><meta property="og:site_name" content="我的网站" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://zhangyuhu.github.io/logo.png"/>
+
+<meta name="twitter:title" content="tool:vscode基础配置"/>
+<meta name="twitter:description" content="vscode基础配置"/>
+<meta name="application-name" content="我的网站">
+<meta name="apple-mobile-web-app-title" content="我的网站"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://zhangyuhu.github.io/posts/tools/vscode/base_config/vscode/" /><link rel="prev" href="https://zhangyuhu.github.io/posts/tools/vscode/config_files/vscode_config/" /><link rel="next" href="https://zhangyuhu.github.io/posts/tools/uml/uml/" /><link rel="stylesheet" href="/css/style.min.990eb8dd228a2b662f63cfe59575be8aa494cb9d40ffd854f26b9d9e588e1f4fdadb6a34e3f9a9171244d3ee6c107521923ab30705f3ef50d3e435eda1afc910.css" integrity="sha512-mQ643SKKK2YvY8/llXW+iqSUy51A/9hU8mudnliOH0/a22o04/mpFxJE0+5sEHUhkjqzBwXz71DT5DXtoa/JEA=="><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "tool:vscode基础配置",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/zhangyuhu.github.io\/posts\/tools\/vscode\/base_config\/vscode\/"
+        },"image": [{
+                            "@type": "ImageObject",
+                            "url": "https:\/\/zhangyuhu.github.io\/images\/Apple-Devices-Preview.png",
+                            "width":  3200 ,
+                            "height":  2048 
+                        }],"genre": "posts","keywords": "vsoced","wordcount":  1077 ,
+        "url": "https:\/\/zhangyuhu.github.io\/posts\/tools\/vscode\/base_config\/vscode\/","datePublished": "2023-01-15T17:52:52+08:00","dateModified": "2023-01-18T13:11:00+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "zhangyuhu"
+            },"description": "vscode基础配置"
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="这是我的网站"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/" title="文章"><i class='fas fa-archive fa-fw fa-sm'></i> 文章 </a><a class="menu-item" href="/tags/"><i class='fas fa-tags fa-fw fa-sm'></i> 标签 </a><a class="menu-item" href="/categories/"><i class='fas fa-th fa-fw fa-sm'></i> 分类 </a><a class="menu-item" href="/about/"><i class='fas fa-user-tie fa-fw fa-sm'></i> 关于 </a><a class="menu-item" href="/tool/"><i class='fas fa-cube fa-fw fa-sm'></i> 工具箱 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="这是我的网站"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="文章"><i class='fas fa-archive fa-fw fa-sm'></i>文章</a><a class="menu-item" href="/tags/" title=""><i class='fas fa-tags fa-fw fa-sm'></i>标签</a><a class="menu-item" href="/categories/" title=""><i class='fas fa-th fa-fw fa-sm'></i>分类</a><a class="menu-item" href="/about/" title=""><i class='fas fa-user-tie fa-fw fa-sm'></i>关于</a><a class="menu-item" href="/tool/" title=""><i class='fas fa-cube fa-fw fa-sm'></i>工具箱</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">tool:vscode基础配置</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://zhangyuhu.github.io/" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>zhangyuhu</a></span>&nbsp;<span class="post-category">included in <a href="/categories/tools/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>tools</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-01-15">2023-01-15</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1077 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;3 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-资料">1. 资料</a></li>
+    <li><a href="#2-vs-code-快捷键">2. vs code 快捷键</a>
+      <ul>
+        <li><a href="#21-将下一个查找匹配项添加到选择">2.1. 将下一个查找匹配项添加到选择</a></li>
+      </ul>
+    </li>
+    <li><a href="#3-vs-插件">3. VS 插件</a>
+      <ul>
+        <li><a href="#31-markdown-toc">3.1. Markdown TOC</a></li>
+        <li><a href="#32-markdown-preview-enhanced">3.2. Markdown Preview Enhanced</a></li>
+        <li><a href="#33-markdown-all-in-one">3.3. Markdown All in One</a></li>
+        <li><a href="#34-gitlens">3.4. GitLens</a></li>
+        <li><a href="#35-code-spell-checker">3.5. Code Spell Checker</a></li>
+        <li><a href="#36-remote---ssh">3.6. Remote - SSH</a></li>
+        <li><a href="#37-vscode-fileheader">3.7. vscode-fileheader</a></li>
+        <li><a href="#38-rainbow-brackets">3.8. Rainbow Brackets</a></li>
+        <li><a href="#39-vscode-pdf">3.9. vscode-pdf</a></li>
+        <li><a href="#310-vscode-drawio">3.10. vscode-drawio</a></li>
+        <li><a href="#311-comment-translate">3.11. Comment Translate</a></li>
+        <li><a href="#312-shellman">3.12. shellman</a></li>
+        <li><a href="#313-shell-format">3.13. shell-format</a></li>
+        <li><a href="#314-shellcheck">3.14. shellcheck</a></li>
+      </ul>
+    </li>
+    <li><a href="#4-问题及配置">4. 问题及配置</a>
+      <ul>
+        <li><a href="#41-ubuntu-vscode-字体间隔大">4.1. ubuntu vscode 字体间隔大</a></li>
+        <li><a href="#42-ubuntu-vscode-代码空格小">4.2. ubuntu vscode 代码空格小</a></li>
+        <li><a href="#43-显示空格和tab">4.3. 显示空格和tab</a></li>
+        <li><a href="#44-保存去除行尾字符">4.4. 保存去除行尾字符</a></li>
+        <li><a href="#45-markdown-去除-保存去除行尾字符">4.5. markdown 去除 保存去除行尾字符</a></li>
+        <li><a href="#46-linux下vscode编写cpp占用内存过高问题">4.6. linux下vscode编写cpp占用内存过高问题</a></li>
+        <li><a href="#47-设置忽略文件">4.7. 设置忽略文件</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><blockquote>
+<p>本文采用<a href="http://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreffer ">知识共享署名 4.0 国际许可协议</a>进行许可，转载时请注明原文链接，图片在使用时请保留全部内容，可适当缩放并在引用处附上图片所在的文章链接。</p>
+</blockquote>
+<!-- TOC -->
+<ul>
+<li><a href="#1-%e8%b5%84%e6%96%99" rel="">1. 资料</a></li>
+<li><a href="#2-vs-code-%e5%bf%ab%e6%8d%b7%e9%94%ae" rel="">2. vs code 快捷键</a>
+<ul>
+<li><a href="#21-%e5%b0%86%e4%b8%8b%e4%b8%80%e4%b8%aa%e6%9f%a5%e6%89%be%e5%8c%b9%e9%85%8d%e9%a1%b9%e6%b7%bb%e5%8a%a0%e5%88%b0%e9%80%89%e6%8b%a9" rel="">2.1. 将下一个查找匹配项添加到选择</a></li>
+</ul>
+</li>
+<li><a href="#3-vs-%e6%8f%92%e4%bb%b6" rel="">3. VS 插件</a>
+<ul>
+<li><a href="#31-markdown-toc" rel="">3.1. Markdown TOC</a></li>
+<li><a href="#32-markdown-preview-enhanced" rel="">3.2. Markdown Preview Enhanced</a></li>
+<li><a href="#33-markdown-all-in-one" rel="">3.3. Markdown All in One</a></li>
+<li><a href="#34-gitlens" rel="">3.4. GitLens</a></li>
+<li><a href="#35-code-spell-checker" rel="">3.5. Code Spell Checker</a></li>
+<li><a href="#36-remote---ssh" rel="">3.6. Remote - SSH</a></li>
+<li><a href="#37-vscode-fileheader" rel="">3.7. vscode-fileheader</a></li>
+<li><a href="#38-rainbow-brackets" rel="">3.8. Rainbow Brackets</a></li>
+<li><a href="#39-vscode-pdf" rel="">3.9. vscode-pdf</a></li>
+<li><a href="#310-vscode-drawio" rel="">3.10. vscode-drawio</a></li>
+<li><a href="#311-comment-translate" rel="">3.11. Comment Translate</a></li>
+<li><a href="#312-shellman" rel="">3.12. shellman</a></li>
+<li><a href="#313-shell-format" rel="">3.13. shell-format</a></li>
+<li><a href="#314-shellcheck" rel="">3.14. shellcheck</a></li>
+</ul>
+</li>
+<li><a href="#4-%e9%97%ae%e9%a2%98%e5%8f%8a%e9%85%8d%e7%bd%ae" rel="">4. 问题及配置</a>
+<ul>
+<li><a href="#41-ubuntu-vscode-%e5%ad%97%e4%bd%93%e9%97%b4%e9%9a%94%e5%a4%a7" rel="">4.1. ubuntu vscode 字体间隔大</a></li>
+<li><a href="#42-ubuntu-vscode-%e4%bb%a3%e7%a0%81%e7%a9%ba%e6%a0%bc%e5%b0%8f" rel="">4.2. ubuntu vscode 代码空格小</a></li>
+<li><a href="#43-%e6%98%be%e7%a4%ba%e7%a9%ba%e6%a0%bc%e5%92%8ctab" rel="">4.3. 显示空格和tab</a></li>
+<li><a href="#44-%e4%bf%9d%e5%ad%98%e5%8e%bb%e9%99%a4%e8%a1%8c%e5%b0%be%e5%ad%97%e7%ac%a6" rel="">4.4. 保存去除行尾字符</a></li>
+<li><a href="#45-markdown-%e5%8e%bb%e9%99%a4-%e4%bf%9d%e5%ad%98%e5%8e%bb%e9%99%a4%e8%a1%8c%e5%b0%be%e5%ad%97%e7%ac%a6" rel="">4.5. markdown 去除 保存去除行尾字符</a></li>
+<li><a href="#46-linux%e4%b8%8bvscode%e7%bc%96%e5%86%99cpp%e5%8d%a0%e7%94%a8%e5%86%85%e5%ad%98%e8%bf%87%e9%ab%98%e9%97%ae%e9%a2%98" rel="">4.6. linux下vscode编写cpp占用内存过高问题</a></li>
+<li><a href="#47-%e8%ae%be%e7%bd%ae%e5%bf%bd%e7%95%a5%e6%96%87%e4%bb%b6" rel="">4.7. 设置忽略文件</a></li>
+</ul>
+</li>
+</ul>
+<!-- /TOC -->
+<h1 id="1-资料">1. 资料</h1>
+<p><a href="https://code.visualstudio.com/docs" target="_blank" rel="noopener noreffer ">官方文档</a>
+<a href="https://zhuanlan.zhihu.com/p/62913725" target="_blank" rel="noopener noreffer ">第一次使用VS Code时你应该知道的一切配置</a></p>
+<h1 id="2-vs-code-快捷键">2. vs code 快捷键</h1>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-1"> 1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-2"> 2</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-3"> 3</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-4"> 4</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-5"> 5</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-6"> 6</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-7"> 7</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-8"> 8</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-9"> 9</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-10"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-10">10</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-11"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-11">11</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-12"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-12">12</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>The cmd key for Windows is ctrl.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Shortcuts	Functionality
+</span></span><span style="display:flex;"><span>cmd-k v or ctrl-k v	Open preview to the Side
+</span></span><span style="display:flex;"><span>cmd-shift-v or ctrl-shift-v	Open preview
+</span></span><span style="display:flex;"><span>ctrl-shift-s	Sync preview / Sync source
+</span></span><span style="display:flex;"><span>shift-enter	Run Code Chunk
+</span></span><span style="display:flex;"><span>ctrl-shift-enter	Run all Code Chunks
+</span></span><span style="display:flex;"><span>cmd-= or cmd-shift-=	Preview zoom in
+</span></span><span style="display:flex;"><span>cmd-- or cmd-shift-_	Preview zoom out
+</span></span><span style="display:flex;"><span>cmd-0	Preview reset zoom
+</span></span><span style="display:flex;"><span>esc	Toggle sidebar TOC
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="21-将下一个查找匹配项添加到选择">2.1. 将下一个查找匹配项添加到选择</h2>
+<p>vsCode多选多个元素进行统一修改</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-1">1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-2">2</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-3">3</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-4">4</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-5">5</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#309;font-weight:bold">&#34;key&#34;</span>: <span style="color:#c30">&#34;ctrl+d&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#309;font-weight:bold">&#34;command&#34;</span>: <span style="color:#c30">&#34;editor.action.addSelectionToNextFindMatch&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#309;font-weight:bold">&#34;when&#34;</span>: <span style="color:#c30">&#34;editorFocus&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="3-vs-插件">3. VS 插件</h1>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202302061345416.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202302061345416.png, https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202302061345416.png 1.5x, https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202302061345416.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202302061345416.png"
+        title="image-20220727122642550" /></p>
+<h2 id="31-markdown-toc">3.1. Markdown TOC</h2>
+<p>自动生成目录
+<a href="https://www.cnblogs.com/heenhui2016/p/12691690.html" target="_blank" rel="noopener noreffer ">VScode markdown md TOC 插件目录生成错误auto</a>
+搜索eol
+改为&rsquo;\n'</p>
+<h2 id="32-markdown-preview-enhanced">3.2. Markdown Preview Enhanced</h2>
+<p>markdown 预览</p>
+<h2 id="33-markdown-all-in-one">3.3. Markdown All in One</h2>
+<h2 id="34-gitlens">3.4. GitLens</h2>
+<p><a href="https://www.jianshu.com/p/a91cb8a2e55d" target="_blank" rel="noopener noreffer ">VsCode中好用的git源代码管理插件GitLens</a></p>
+<h2 id="35-code-spell-checker">3.5. Code Spell Checker</h2>
+<p>代码拼写检查工具</p>
+<h2 id="36-remote---ssh">3.6. Remote - SSH</h2>
+<p>连接远程主机</p>
+<h2 id="37-vscode-fileheader">3.7. vscode-fileheader</h2>
+<p>自动生成文件头</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-1">1</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>/*   \r\n* @file      xxx\r\n* @brief     xxx\r\n* @author    ZYH\r\n* @version   v0.1\r\n* @date      2020/07/22\r\n* @copyright 2019, Deepglint All rights reserved.\r\n*/
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="38-rainbow-brackets">3.8. Rainbow Brackets</h2>
+<p>彩虹括号</p>
+<h2 id="39-vscode-pdf">3.9. vscode-pdf</h2>
+<p>PDF 查看器</p>
+<h2 id="310-vscode-drawio">3.10. vscode-drawio</h2>
+<p>VSCode Drawio</p>
+<h2 id="311-comment-translate">3.11. Comment Translate</h2>
+<p>VSCode 注释翻译</p>
+<h2 id="312-shellman">3.12. shellman</h2>
+<p>编辑过程中会有代码提示</p>
+<h2 id="313-shell-format">3.13. shell-format</h2>
+<p>右键 -&gt; 格式化文档（Ctrl + Alt + L）</p>
+<h2 id="314-shellcheck">3.14. shellcheck</h2>
+<p>语法错误检查插件
+安装shellcheck（shellcheck插件依赖于shellcheck） : sudo apt-get install shellcheck
+在编辑过程中，会提示语法错误</p>
+<h1 id="4-问题及配置">4. 问题及配置</h1>
+<h2 id="41-ubuntu-vscode-字体间隔大">4.1. ubuntu vscode 字体间隔大</h2>
+<p>修改：&ldquo;terminal.integrated.fontFamily&rdquo;: &ldquo;monospace&rdquo;，</p>
+<h2 id="42-ubuntu-vscode-代码空格小">4.2. ubuntu vscode 代码空格小</h2>
+<p>修改： &quot; Editor:Font Family&quot;:&lsquo;monospace&rsquo;</p>
+<h2 id="43-显示空格和tab">4.3. 显示空格和tab</h2>
+<p>修改 ：&quot; Editor: Render Whitespace &ldquo;:all</p>
+<h2 id="44-保存去除行尾字符">4.4. 保存去除行尾字符</h2>
+<p>启用 ：trimTrailingWhitespace</p>
+<h2 id="45-markdown-去除-保存去除行尾字符">4.5. markdown 去除 保存去除行尾字符</h2>
+<p>markdown 文件根目录配置</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-1">1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-2">2</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-3">3</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#309;font-weight:bold">&#34;files.trimTrailingWhitespace&#34;</span>: <span style="color:#069;font-weight:bold">false</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="46-linux下vscode编写cpp占用内存过高问题">4.6. linux下vscode编写cpp占用内存过高问题</h2>
+<p>intelli Sense Cache Size 默认大小为5G,将其改为2048(2G)或者其他任意，不要太大。</p>
+<h2 id="47-设置忽略文件">4.7. 设置忽略文件</h2>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-1"> 1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-2"> 2</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-3"> 3</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-4"> 4</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-5"> 5</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-6"> 6</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-7"> 7</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-8"> 8</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-9"> 9</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-10"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-10">10</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-11"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-11">11</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-12"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-12">12</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-13"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-13">13</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-14"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-14">14</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-15"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-15">15</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-16"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-16">16</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-17"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-17">17</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-18"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-18">18</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-19"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-19">19</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-20"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-20">20</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-21"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-21">21</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-22"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-22">22</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-23"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-23">23</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-24"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-24">24</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-25"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-25">25</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> <span style="color:#c30">&#34;files.exclude&#34;</span>: <span style="color:#555">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#c30">&#34;*.metadata&#34;</span>: true,
+</span></span><span style="display:flex;"><span>        <span style="color:#c30">&#34;*.settings&#34;</span>: true,
+</span></span><span style="display:flex;"><span>        <span style="color:#c30">&#34;**/*.pyc&#34;</span>: true, //隐藏所有pyc文件
+</span></span><span style="display:flex;"><span>        <span style="color:#c30">&#34;**/*.meta&#34;</span>: true, //隐藏所有meta文件
+</span></span><span style="display:flex;"><span>        <span style="color:#c30">&#34;**/*.prefab&#34;</span>: true, //隐藏所有prefab文件
+</span></span><span style="display:flex;"><span>        <span style="color:#c30">&#34;**/*.d.ts&#34;</span>: true, //隐藏所有d.ts文件
+</span></span><span style="display:flex;"><span>        <span style="color:#c30">&#34;**/*.fnt&#34;</span>: true,
+</span></span><span style="display:flex;"><span>        <span style="color:#c30">&#34;**/*.sln&#34;</span>: true,
+</span></span><span style="display:flex;"><span>        <span style="color:#c30">&#34;**/*.csproj&#34;</span>: true,
+</span></span><span style="display:flex;"><span>        <span style="color:#c30">&#34;**/.vscode&#34;</span>: true,
+</span></span><span style="display:flex;"><span>        <span style="color:#c30">&#34;**/*.anim&#34;</span>: true,
+</span></span><span style="display:flex;"><span>        <span style="color:#c30">&#34;**/*.controller&#34;</span>: true,
+</span></span><span style="display:flex;"><span>        <span style="color:#c30">&#34;**/Logs&#34;</span>: true,
+</span></span><span style="display:flex;"><span>        <span style="color:#c30">&#34;**/[Pp]lugins&#34;</span>: true, //使用中括号时表示不区分大小写
+</span></span><span style="display:flex;"><span>        <span style="color:#c30">&#34;**/[Mm]aterials&#34;</span>: true,
+</span></span><span style="display:flex;"><span>        <span style="color:#c30">&#34;**/[Aa]nimation&#34;</span>: true,
+</span></span><span style="display:flex;"><span>        <span style="color:#c30">&#34;**/[Pp]ackages&#34;</span>: true,
+</span></span><span style="display:flex;"><span>        <span style="color:#c30">&#34;**/[Tt]extures&#34;</span>: true,
+</span></span><span style="display:flex;"><span>        <span style="color:#c30">&#34;**/[Ss]cenes&#34;</span>: true,
+</span></span><span style="display:flex;"><span>        <span style="color:#c30">&#34;**/temp&#34;</span>: true, //隐藏temp文件夹
+</span></span><span style="display:flex;"><span>        <span style="color:#c30">&#34;**/library&#34;</span>: true, //隐藏library文件夹
+</span></span><span style="display:flex;"><span>        <span style="color:#c30">&#34;**/audio&#34;</span>: true, //隐藏audio文件夹
+</span></span><span style="display:flex;"><span>        <span style="color:#c30">&#34;**/video&#34;</span>: true, //隐藏video文件夹
+</span></span><span style="display:flex;"><span>    <span style="color:#555">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2023-01-18&nbsp;<a class="git-hash" href="https://github.com/zhangyuhu/zhangyuhu.github.io/commit/d1ac348ddf52a073ef726b5b05a0c3110e0c02cd" target="_blank" title="commit by zhangyuhu(zhangyuhude@163.com) d1ac348ddf52a073ef726b5b05a0c3110e0c02cd: update">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>d1ac348</a></span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://zhangyuhu.github.io/posts/tools/vscode/base_config/vscode/" data-title="tool:vscode基础配置" data-hashtags="vsoced"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://zhangyuhu.github.io/posts/tools/vscode/base_config/vscode/" data-hashtag="vsoced"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://zhangyuhu.github.io/posts/tools/vscode/base_config/vscode/" data-title="tool:vscode基础配置"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://zhangyuhu.github.io/posts/tools/vscode/base_config/vscode/" data-title="tool:vscode基础配置"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://zhangyuhu.github.io/posts/tools/vscode/base_config/vscode/" data-title="tool:vscode基础配置" data-ralateuid="ji"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/vsoced/">vsoced</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/tools/vscode/config_files/vscode_config/" class="prev" rel="prev" title="tool:vscode配置文件(config.json)设置"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>tool:vscode配置文件(config.json)设置</a>
+            <a href="/posts/tools/uml/uml/" class="next" rel="next" title="tool:UML图标示意">tool:UML图标示意<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="giscus" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://giscus.app">Giscus</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">为天地立心,为生民立命,为往圣继绝学,为万世开太平</div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://zhangyuhu.github.io/" target="_blank">zhangyuhu</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="http://creativecommons.org/licenses/by/4.0/" target="_blank">知识共享署名 4.0 国际许可协议</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/css/lightgallery-bundle.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/twemoji@14.0.2/dist/twemoji.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/lightgallery.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/thumbnail/lg-thumbnail.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/zoom/lg-zoom.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@8.6.0/dist/index.umd.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":100},"comment":{"giscus":{"category":"Comments","categoryId":"DIC_kwDOIx2Cjs4CTnUX","darkTheme":"dark","emitMetadata":"0","inputPosition":"bottom","lang":"en","lazyLoading":false,"lightTheme":"light","mapping":"pathname","reactionsEnabled":"1","repo":"zhangyuhu/zhangyuhu.github.io","repoId":"R_kgDOIx2Cjg"}},"data":{"id-1":"HOME","id-2":"HOME"},"lightgallery":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"},"twemoji":true,"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.2970a33d719df7cd89cebf586152b32a8ed30012227fa81b44282950146e0f595d1c733779e4d423dda1004bdcf707ee64d0fadc3d21229cd66b960788f84bdb.js" integrity="sha512-KXCjPXGd982Jzr9YYVKzKo7TABIif6gbRCgpUBRuD1ldHHM3eeTUI92hAEvc9wfuZND63D0hIpzWa5YHiPhL2w=="></script></body>
+</html>

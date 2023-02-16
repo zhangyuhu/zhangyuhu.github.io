@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>opencv Mat 操作 - 这是我的网站</title><meta name="Description" content="开源软件"><meta property="og:title" content="opencv Mat 操作" />
+<meta property="og:description" content="开源软件" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zhangyuhu.github.io/posts/open_source_software/opencv/learn/mat/opencv_mat/" /><meta property="og:image" content="https://zhangyuhu.github.io/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-01-16T17:52:52+08:00" />
+<meta property="article:modified_time" content="2023-01-18T13:11:00+08:00" /><meta property="og:site_name" content="我的网站" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://zhangyuhu.github.io/logo.png"/>
+
+<meta name="twitter:title" content="opencv Mat 操作"/>
+<meta name="twitter:description" content="开源软件"/>
+<meta name="application-name" content="我的网站">
+<meta name="apple-mobile-web-app-title" content="我的网站"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://zhangyuhu.github.io/posts/open_source_software/opencv/learn/mat/opencv_mat/" /><link rel="prev" href="https://zhangyuhu.github.io/posts/open_source_software/opencv/learn/opencv%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0/" /><link rel="next" href="https://zhangyuhu.github.io/posts/open_source_software/opencv/learn/dnn/opencv_dnn/" /><link rel="stylesheet" href="/css/style.min.990eb8dd228a2b662f63cfe59575be8aa494cb9d40ffd854f26b9d9e588e1f4fdadb6a34e3f9a9171244d3ee6c107521923ab30705f3ef50d3e435eda1afc910.css" integrity="sha512-mQ643SKKK2YvY8/llXW+iqSUy51A/9hU8mudnliOH0/a22o04/mpFxJE0+5sEHUhkjqzBwXz71DT5DXtoa/JEA=="><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "opencv Mat 操作",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/zhangyuhu.github.io\/posts\/open_source_software\/opencv\/learn\/mat\/opencv_mat\/"
+        },"image": [{
+                            "@type": "ImageObject",
+                            "url": "https:\/\/zhangyuhu.github.io\/images\/Apple-Devices-Preview.png",
+                            "width":  3200 ,
+                            "height":  2048 
+                        }],"genre": "posts","keywords": "opencv","wordcount":  3957 ,
+        "url": "https:\/\/zhangyuhu.github.io\/posts\/open_source_software\/opencv\/learn\/mat\/opencv_mat\/","datePublished": "2023-01-16T17:52:52+08:00","dateModified": "2023-01-18T13:11:00+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "zhangyuhu"
+            },"description": "开源软件"
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="这是我的网站"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/" title="文章"><i class='fas fa-archive fa-fw fa-sm'></i> 文章 </a><a class="menu-item" href="/tags/"><i class='fas fa-tags fa-fw fa-sm'></i> 标签 </a><a class="menu-item" href="/categories/"><i class='fas fa-th fa-fw fa-sm'></i> 分类 </a><a class="menu-item" href="/about/"><i class='fas fa-user-tie fa-fw fa-sm'></i> 关于 </a><a class="menu-item" href="/tool/"><i class='fas fa-cube fa-fw fa-sm'></i> 工具箱 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="这是我的网站"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="文章"><i class='fas fa-archive fa-fw fa-sm'></i>文章</a><a class="menu-item" href="/tags/" title=""><i class='fas fa-tags fa-fw fa-sm'></i>标签</a><a class="menu-item" href="/categories/" title=""><i class='fas fa-th fa-fw fa-sm'></i>分类</a><a class="menu-item" href="/about/" title=""><i class='fas fa-user-tie fa-fw fa-sm'></i>关于</a><a class="menu-item" href="/tool/" title=""><i class='fas fa-cube fa-fw fa-sm'></i>工具箱</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">opencv Mat 操作</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://zhangyuhu.github.io/" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>zhangyuhu</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>开源软件</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-01-16">2023-01-16</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;3957 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;8 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#mat">Mat</a></li>
+    <li><a href="#成员变量">成员变量</a></li>
+    <li><a href="#mat-通道理解">Mat 通道理解</a>
+      <ul>
+        <li><a href="#通道">通道</a></li>
+        <li><a href="#图像类型的转换与显示">图像类型的转换与显示</a></li>
+        <li><a href="#通道的合成与分解">通道的合成与分解</a></li>
+      </ul>
+    </li>
+    <li><a href="#创建一个mat">创建一个Mat</a>
+      <ul>
+        <li><a href="#scalar">Scalar</a></li>
+        <li><a href="#cvmatones">cv::Mat::ones</a></li>
+        <li><a href="#cvmatzeros">cv::Mat::zeros</a></li>
+        <li><a href="#cvmateye">cv::Mat::eye</a></li>
+      </ul>
+    </li>
+    <li><a href="#mat类中数据部分组成">Mat类中数据部分组成</a></li>
+    <li><a href="#参考">参考</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><!-- TOC -->
+<ul>
+<li><a href="#mat" rel="">Mat</a></li>
+<li><a href="#%e6%88%90%e5%91%98%e5%8f%98%e9%87%8f" rel="">成员变量</a></li>
+<li><a href="#mat-%e9%80%9a%e9%81%93%e7%90%86%e8%a7%a3" rel="">Mat 通道理解</a>
+<ul>
+<li><a href="#%e9%80%9a%e9%81%93" rel="">通道</a></li>
+<li><a href="#%e5%9b%be%e5%83%8f%e7%b1%bb%e5%9e%8b%e7%9a%84%e8%bd%ac%e6%8d%a2%e4%b8%8e%e6%98%be%e7%a4%ba" rel="">图像类型的转换与显示</a></li>
+<li><a href="#%e9%80%9a%e9%81%93%e7%9a%84%e5%90%88%e6%88%90%e4%b8%8e%e5%88%86%e8%a7%a3" rel="">通道的合成与分解</a></li>
+</ul>
+</li>
+<li><a href="#%e5%88%9b%e5%bb%ba%e4%b8%80%e4%b8%aamat" rel="">创建一个Mat</a>
+<ul>
+<li><a href="#scalar" rel="">Scalar</a></li>
+<li><a href="#cvmatones" rel="">cv::Mat::ones</a></li>
+<li><a href="#cvmatzeros" rel="">cv::Mat::zeros</a></li>
+<li><a href="#cvmateye" rel="">cv::Mat::eye</a></li>
+</ul>
+</li>
+<li><a href="#mat%e7%b1%bb%e4%b8%ad%e6%95%b0%e6%8d%ae%e9%83%a8%e5%88%86%e7%bb%84%e6%88%90" rel="">Mat类中数据部分组成</a></li>
+<li><a href="#%e5%8f%82%e8%80%83" rel="">参考</a></li>
+</ul>
+<!-- /TOC -->
+<h1 id="mat">Mat</h1>
+<p>The class Mat represents an n-dimensional dense numerical single-channel or multi-channel array. It can be used to store real or complex-valued vectors and matrices, grayscale or color images, voxel volumes, vector fields, point clouds, tensors, histograms (though, very high-dimensional histograms may be better stored in a SparseMat ).<br>
+上面的一段话引用自官方的文档，Mat类用于表示一个多维的单通道或者多通道的稠密数组。能够用来保存实数或复数的向量、矩阵，灰度或彩色图像，立体元素，点云，张量以及直方图（高维的直方图使用SparseMat保存比较好）。简而言之，Mat就是用来保存多维的矩阵的。</p>
+<h1 id="成员变量">成员变量</h1>
+<ul>
+<li>
+<p>data:  uchar型的指针。Mat类分为了两个部分:矩阵头和指向矩阵数据部分的指针，data就是指向矩阵数据的指针。</p>
+</li>
+<li>
+<p>dims:  矩阵的维度，例如5*6矩阵是二维矩阵，则dims=2，三维矩阵dims=3.</p>
+</li>
+<li>
+<p>rows:  矩阵的行数</p>
+</li>
+<li>
+<p>cols:  矩阵的列数</p>
+</li>
+<li>
+<p>size:  矩阵的大小，size(cols,rows),如果矩阵的维数大于2，则是size(-1,-1)</p>
+</li>
+<li>
+<p>channels:  矩阵元素拥有的通道数，例如常见的彩色图像，每一个像素由BGR三部分组成，则channels = 3。</p>
+</li>
+<li>
+<p>type:  表示了矩阵中元素的类型以及矩阵的通道个数，它是一系列的预定义的常量，其命名规则为CV_(位数）+（数据类型）+（通道数）。这里U（unsigned integer）表示的是无符号整数，S（signed integer）是有符号整数，F（float）是浮点数。</p>
+</li>
+</ul>
+<p>例如：CV_16UC2，表示的是元素类型是一个16位的无符号整数，通道为2. C1，C2，C3，C4则表示通道是1,2,3,4。type一般是在创建Mat对象时设定，如果要取得Mat的元素类型，则无需使用type，使用下面的depth</p>
+<div align=center><img src="../image/v2-9824973e7d9cd7cee0e1b45dd3d5b926_r.jpg"/></div>  
+<ul>
+<li>depth  :矩阵中元素的一个通道的数据类型，这个值和type是相关的。</li>
+</ul>
+<p>例如 type为 CV_16SC2，一个2通道的16位的有符号整数。那么，depth则是CV_16S。depth也是一系列的预定义值，将type的预定义值去掉通道信息就是depth值:CV_8U CV_8S CV_16U CV_16S CV_32S CV_32F CV_64F</p>
+<ul>
+<li>
+<p>elemSize  :矩阵一个元素占用的字节数，例如：type是CV_16SC3，那么elemSize = 3 * 16 / 8 = 6 bytes</p>
+</li>
+<li>
+<p>elemSize1:矩阵元素一个通道占用的字节数，例如：type是CV_16CS3，那么elemSize1 = 16 / 8 = 2 bytes = elemSize / channels</p>
+</li>
+</ul>
+<h1 id="mat-通道理解">Mat 通道理解</h1>
+<h2 id="通道">通道</h2>
+<p>一个图像的通道数是N，就表明每个像素点处有N个数，一个a×b的N通道图像，其图像矩阵实际上是b行N×a列的数字矩阵。</p>
+<p>OpenCV中图像的通道可以是1、2、3和4。其中常见的是1通道和3通道，2通道和4通道不常见。</p>
+<blockquote>
+<p>1通道的是灰度图。
+3通道的是彩色图像，比如RGB图像。
+4通道的图像是RGBA，是RGB加上一个A通道，也叫alpha通道，表示透明度。PNG图像是一种典型的4通道图像。alpha通道可以赋值0到1，或者0到255，表示透明到不透明。
+2通道的图像是RGB555和RGB565。2通道图在程序处理中会用到，如傅里叶变换，可能会用到，一个通道为实数，一个通道为虚数，主要是编程方便。RGB555是16位的，2个字节，5+6+5，第一字节的前5位是R，后三位+第二字节是G，第二字节后5位是B，可见对原图像进行压缩了。</p>
+</blockquote>
+<h2 id="图像类型的转换与显示">图像类型的转换与显示</h2>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-1"> 1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-2"> 2</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-3"> 3</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-4"> 4</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-5"> 5</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-6"> 6</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-7"> 7</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-8"> 8</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-9"> 9</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-10"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-10">10</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-11"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-11">11</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-12"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-12">12</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-13"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-13">13</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-14"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-14">14</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-15"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-15">15</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-16"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-16">16</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-17"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-17">17</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-18"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-18">18</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-19"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-19">19</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span>Mat image<span style="color:#555">=</span>imread(<span style="color:#c30">&#34;../images/RGB.jpg&#34;</span>);  
+</span></span><span style="display:flex;"><span>Mat imageGRAY,imageRGBA,imageRGB555;
+</span></span><span style="display:flex;"><span>cvtColor(image,imageGRAY,CV_RGB2GRAY);            <span style="color:#09f;font-style:italic">//RGB转GRAY
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>cvtColor(image,imageRGBA,CV_RGB2BGRA);            <span style="color:#09f;font-style:italic">//RGB转RGBA
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>cvtColor(image,imageRGB555,CV_RGB2BGR555);        <span style="color:#09f;font-style:italic">//RGB转RGB555
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic">//来看看通道数
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span><span style="color:#078;font-weight:bold">int</span> n <span style="color:#555">=</span> image.channels();                        <span style="color:#09f;font-style:italic">//n=3
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span><span style="color:#078;font-weight:bold">int</span> nGRAY <span style="color:#555">=</span> imageGRAY.channels();                <span style="color:#09f;font-style:italic">//nGRAY = 1
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span><span style="color:#078;font-weight:bold">int</span> nRGBA <span style="color:#555">=</span> imageRGBA.channels();                <span style="color:#09f;font-style:italic">//nRGBA = 4
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span><span style="color:#078;font-weight:bold">int</span> nRGB555 <span style="color:#555">=</span> imageRGB555.channels();            <span style="color:#09f;font-style:italic">//nRGB555 = 2
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>
+</span></span><span style="display:flex;"><span>cout <span style="color:#555">&lt;&lt;</span> <span style="color:#c30">&#34;n: &#34;</span> <span style="color:#555">&lt;&lt;</span> n <span style="color:#555">&lt;&lt;</span> <span style="color:#c30">&#34;  nGRAY: &#34;</span> <span style="color:#555">&lt;&lt;</span> nGRAY <span style="color:#555">&lt;&lt;</span> <span style="color:#c30">&#34;  nRGBA: &#34;</span> <span style="color:#555">&lt;&lt;</span> nRGBA <span style="color:#555">&lt;&lt;</span> <span style="color:#c30">&#34;  nRGB555: &#34;</span> <span style="color:#555">&lt;&lt;</span> nRGB555 <span style="color:#555">&lt;&lt;</span> endl;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic">//显示GRAY、RGB和RGBA图像
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>imshow(<span style="color:#c30">&#34;image&#34;</span>,image);
+</span></span><span style="display:flex;"><span>imshow(<span style="color:#c30">&#34;imageGRAY&#34;</span>,imageGRAY);
+</span></span><span style="display:flex;"><span>imshow(<span style="color:#c30">&#34;imageRGBA&#34;</span>,imageRGBA);
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic">//imshow(&#34;imageRGB555&#34;,imageRGB555);             //无法显示
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../image/RGB.png"
+        data-srcset="../image/RGB.png, ../image/RGB.png 1.5x, ../image/RGB.png 2x"
+        data-sizes="auto"
+        alt="../image/RGB.png"
+        title="image-20210422142025781" /></p>
+<p>RGB转GRAY是根据一个心理学公式来的：Gray = R<em>0.299 + G</em>0.587 + B*0.114</p>
+<p>RGB转GRBA，默认A通道的数值是255，也就是不透明的。</p>
+<h2 id="通道的合成与分解">通道的合成与分解</h2>
+<p><strong>分解</strong></p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-1">1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-2">2</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span>C<span style="color:#555">++:</span> <span style="color:#078;font-weight:bold">void</span> split(<span style="color:#069;font-weight:bold">const</span> Mat<span style="color:#555">&amp;</span> mtx, Mat<span style="color:#555">*</span> mv)
+</span></span><span style="display:flex;"><span>C<span style="color:#555">++:</span> <span style="color:#078;font-weight:bold">void</span> split(<span style="color:#069;font-weight:bold">const</span> Mat<span style="color:#555">&amp;</span> mtx, vector<span style="color:#555">&lt;</span>Mat<span style="color:#555">&gt;&amp;</span> mv)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>参数：mtx   输入矩阵
+mv    输出矩阵或矩阵数组<br>
+src   输入矩阵<br>
+dst0、dst1、dst2、dst3   最多4个单通道的输出矩阵</p>
+</blockquote>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-1"> 1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-2"> 2</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-3"> 3</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-4"> 4</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-5"> 5</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-6"> 6</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-7"> 7</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-8"> 8</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-9"> 9</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-10"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-10">10</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-11"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-11">11</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-12"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-12">12</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-13"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-13">13</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-14"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-14">14</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-15"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-15">15</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-16"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-16">16</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-17"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-17">17</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-18"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-18">18</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-19"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-19">19</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-20"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-20">20</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-21"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-21">21</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-22"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-22">22</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#078;font-weight:bold">void</span> <span style="color:#c0f">Mat_split</span>(<span style="color:#078;font-weight:bold">void</span>)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>     Mat rgb(<span style="color:#f60">3</span>, <span style="color:#f60">4</span>, CV_8UC3, Scalar(<span style="color:#f60">1</span>, <span style="color:#f60">2</span>, <span style="color:#f60">3</span>, <span style="color:#f60">4</span>)); <span style="color:#09f;font-style:italic">//这里 由于类型是 CV_8UC3 Scalar 第四个值没有用
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>
+</span></span><span style="display:flex;"><span>     vector<span style="color:#555">&lt;</span>Mat<span style="color:#555">&gt;</span> channels;
+</span></span><span style="display:flex;"><span>     split(rgb, channels);
+</span></span><span style="display:flex;"><span>     Mat R <span style="color:#555">=</span> channels.at(<span style="color:#f60">0</span>); <span style="color:#09f;font-style:italic">//从vector中读数据用vector::at()
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>     Mat G <span style="color:#555">=</span> channels.at(<span style="color:#f60">1</span>);
+</span></span><span style="display:flex;"><span>     Mat B <span style="color:#555">=</span> channels.at(<span style="color:#f60">2</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>     cout <span style="color:#555">&lt;&lt;</span> <span style="color:#c30">&#34;RGB=&#34;</span> <span style="color:#555">&lt;&lt;</span> endl
+</span></span><span style="display:flex;"><span>          <span style="color:#555">&lt;&lt;</span> rgb <span style="color:#555">&lt;&lt;</span> endl;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>     cout <span style="color:#555">&lt;&lt;</span> <span style="color:#c30">&#34;R=&#34;</span> <span style="color:#555">&lt;&lt;</span> endl
+</span></span><span style="display:flex;"><span>          <span style="color:#555">&lt;&lt;</span> R <span style="color:#555">&lt;&lt;</span> endl;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>     cout <span style="color:#555">&lt;&lt;</span> <span style="color:#c30">&#34;G=&#34;</span> <span style="color:#555">&lt;&lt;</span> endl
+</span></span><span style="display:flex;"><span>          <span style="color:#555">&lt;&lt;</span> G <span style="color:#555">&lt;&lt;</span> endl;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>     cout <span style="color:#555">&lt;&lt;</span> <span style="color:#c30">&#34;B=&#34;</span> <span style="color:#555">&lt;&lt;</span> endl
+</span></span><span style="display:flex;"><span>          <span style="color:#555">&lt;&lt;</span> B <span style="color:#555">&lt;&lt;</span> endl;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-1"> 1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-2"> 2</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-3"> 3</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-4"> 4</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-5"> 5</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-6"> 6</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-7"> 7</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-8"> 8</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-9"> 9</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-10"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-10">10</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-11"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-11">11</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-12"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-12">12</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-13"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-13">13</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-14"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-14">14</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-15"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-15">15</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-16"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-16">16</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>RGB=
+</span></span><span style="display:flex;"><span>[  1,   2,   3,   1,   2,   3,   1,   2,   3,   1,   2,   3;
+</span></span><span style="display:flex;"><span>   1,   2,   3,   1,   2,   3,   1,   2,   3,   1,   2,   3;
+</span></span><span style="display:flex;"><span>   1,   2,   3,   1,   2,   3,   1,   2,   3,   1,   2,   3]
+</span></span><span style="display:flex;"><span>R=
+</span></span><span style="display:flex;"><span>[  1,   1,   1,   1;
+</span></span><span style="display:flex;"><span>   1,   1,   1,   1;
+</span></span><span style="display:flex;"><span>   1,   1,   1,   1]
+</span></span><span style="display:flex;"><span>G=
+</span></span><span style="display:flex;"><span>[  2,   2,   2,   2;
+</span></span><span style="display:flex;"><span>   2,   2,   2,   2;
+</span></span><span style="display:flex;"><span>   2,   2,   2,   2]
+</span></span><span style="display:flex;"><span>B=
+</span></span><span style="display:flex;"><span>[  3,   3,   3,   3;
+</span></span><span style="display:flex;"><span>   3,   3,   3,   3;
+</span></span><span style="display:flex;"><span>   3,   3,   3,   3]
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>合成</strong></p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-1">1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-2">2</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span>C<span style="color:#555">++:</span> <span style="color:#078;font-weight:bold">void</span> merge(<span style="color:#069;font-weight:bold">const</span> Mat<span style="color:#555">*</span> mv, size_t count, OutputArray dst)
+</span></span><span style="display:flex;"><span>C<span style="color:#555">++:</span> <span style="color:#078;font-weight:bold">void</span> merge(<span style="color:#069;font-weight:bold">const</span> vector<span style="color:#555">&lt;</span>Mat<span style="color:#555">&gt;&amp;</span> mv, OutputArray dst)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>参数：mv    输入矩阵
+count   当mv是C形式的array时，count表示输入矩阵个数<br>
+dst   输出矩阵<br>
+src0、src1、src2、src3   最多4个单通道的输入矩阵</p>
+</blockquote>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-1"> 1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-2"> 2</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-3"> 3</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-4"> 4</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-5"> 5</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-6"> 6</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-7"> 7</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-8"> 8</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-9"> 9</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-10"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-10">10</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-11"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-11">11</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-12"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-12">12</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-13"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-13">13</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-14"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-14">14</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-15"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-15">15</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-16"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-16">16</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-17"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-17">17</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-18"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-18">18</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-19"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-19">19</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-20"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-20">20</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-21"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-21">21</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-22"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-22">22</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-23"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-23">23</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-24"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-24">24</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#078;font-weight:bold">void</span> <span style="color:#c0f">Mat_merge</span>(<span style="color:#078;font-weight:bold">void</span>)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>     Mat R(<span style="color:#f60">3</span>, <span style="color:#f60">4</span>, CV_8UC1, Scalar(<span style="color:#f60">3</span>));
+</span></span><span style="display:flex;"><span>     Mat G(<span style="color:#f60">3</span>, <span style="color:#f60">4</span>, CV_8UC1, Scalar(<span style="color:#f60">2</span>));
+</span></span><span style="display:flex;"><span>     Mat B(<span style="color:#f60">3</span>, <span style="color:#f60">4</span>, CV_8UC1, Scalar(<span style="color:#f60">1</span>));
+</span></span><span style="display:flex;"><span>     Mat RGB(<span style="color:#f60">3</span>, <span style="color:#f60">4</span>, CV_8UC3);
+</span></span><span style="display:flex;"><span>     vector<span style="color:#555">&lt;</span>Mat<span style="color:#555">&gt;</span> src;
+</span></span><span style="display:flex;"><span>     src.push_back(R); <span style="color:#09f;font-style:italic">//往vector里存数据要用vector::push_back()
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>     src.push_back(G);
+</span></span><span style="display:flex;"><span>     src.push_back(B);
+</span></span><span style="display:flex;"><span>     merge(src, RGB);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>     cout <span style="color:#555">&lt;&lt;</span> <span style="color:#c30">&#34;R=&#34;</span> <span style="color:#555">&lt;&lt;</span> endl
+</span></span><span style="display:flex;"><span>          <span style="color:#555">&lt;&lt;</span> R <span style="color:#555">&lt;&lt;</span> endl;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>     cout <span style="color:#555">&lt;&lt;</span> <span style="color:#c30">&#34;G=&#34;</span> <span style="color:#555">&lt;&lt;</span> endl
+</span></span><span style="display:flex;"><span>          <span style="color:#555">&lt;&lt;</span> G <span style="color:#555">&lt;&lt;</span> endl;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>     cout <span style="color:#555">&lt;&lt;</span> <span style="color:#c30">&#34;B=&#34;</span> <span style="color:#555">&lt;&lt;</span> endl
+</span></span><span style="display:flex;"><span>          <span style="color:#555">&lt;&lt;</span> B <span style="color:#555">&lt;&lt;</span> endl;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>     cout <span style="color:#555">&lt;&lt;</span> <span style="color:#c30">&#34;RGB=&#34;</span> <span style="color:#555">&lt;&lt;</span> endl
+</span></span><span style="display:flex;"><span>          <span style="color:#555">&lt;&lt;</span> RGB <span style="color:#555">&lt;&lt;</span> endl;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-1"> 1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-2"> 2</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-3"> 3</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-4"> 4</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-5"> 5</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-6"> 6</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-7"> 7</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-8"> 8</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-9"> 9</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-10"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-10">10</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-11"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-11">11</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-12"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-12">12</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-13"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-13">13</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-14"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-14">14</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-15"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-15">15</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-16"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-16">16</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>R=
+</span></span><span style="display:flex;"><span>[  3,   3,   3,   3;
+</span></span><span style="display:flex;"><span>   3,   3,   3,   3;
+</span></span><span style="display:flex;"><span>   3,   3,   3,   3]
+</span></span><span style="display:flex;"><span>G=
+</span></span><span style="display:flex;"><span>[  2,   2,   2,   2;
+</span></span><span style="display:flex;"><span>   2,   2,   2,   2;
+</span></span><span style="display:flex;"><span>   2,   2,   2,   2]
+</span></span><span style="display:flex;"><span>B=
+</span></span><span style="display:flex;"><span>[  1,   1,   1,   1;
+</span></span><span style="display:flex;"><span>   1,   1,   1,   1;
+</span></span><span style="display:flex;"><span>   1,   1,   1,   1]
+</span></span><span style="display:flex;"><span>RGB=
+</span></span><span style="display:flex;"><span>[  3,   2,   1,   3,   2,   1,   3,   2,   1,   3,   2,   1;
+</span></span><span style="display:flex;"><span>   3,   2,   1,   3,   2,   1,   3,   2,   1,   3,   2,   1;
+</span></span><span style="display:flex;"><span>   3,   2,   1,   3,   2,   1,   3,   2,   1,   3,   2,   1]
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>split( )和merge( )都是mixChannels( )的特例</strong></p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-1">1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-2">2</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span>C<span style="color:#555">++:</span> <span style="color:#078;font-weight:bold">void</span> mixChannels(<span style="color:#069;font-weight:bold">const</span> Mat<span style="color:#555">*</span> src, <span style="color:#078;font-weight:bold">int</span> nsrc, Mat<span style="color:#555">*</span> dst, <span style="color:#078;font-weight:bold">int</span> ndst, <span style="color:#069;font-weight:bold">const</span> <span style="color:#078;font-weight:bold">int</span><span style="color:#555">*</span> fromTo, size_t npairs)
+</span></span><span style="display:flex;"><span>C<span style="color:#555">++:</span> <span style="color:#078;font-weight:bold">void</span> mixChannels(<span style="color:#069;font-weight:bold">const</span> vector<span style="color:#555">&lt;</span>Mat<span style="color:#555">&gt;&amp;</span> src, vector<span style="color:#555">&lt;</span>Mat<span style="color:#555">&gt;&amp;</span> dst, <span style="color:#069;font-weight:bold">const</span> <span style="color:#078;font-weight:bold">int</span><span style="color:#555">*</span> fromTo, <span style="color:#078;font-weight:bold">int</span> npairs)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>参数：src  输入的矩阵，可以是一个矩阵也可以是多个矩阵构成的vector<br>
+nsrc   输入矩阵的个数<br>
+dst   输出矩阵，可以是一个矩阵也可以是多个矩阵构成的vector<br>
+ndst   输出矩阵的个数<br>
+fromTo   src到dst通道对应数组  <br>
+npairs    fromTo中有几组对应关系</p>
+</blockquote>
+<p>mixChannels( )本质是改变了几个通道的顺序，输入一共有几个通道，输出肯定也有几个通道，所以定义fromTo时，要知道有多少个通道，而且通道的编号一定是0,1,2，&hellip;</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-1"> 1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-2"> 2</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-3"> 3</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-4"> 4</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-5"> 5</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-6"> 6</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-7"> 7</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-8"> 8</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-9"> 9</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-10"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-10">10</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-11"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-11">11</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-12"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-12">12</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-13"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-13">13</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-14"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-14">14</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-15"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-15">15</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-16"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-16">16</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-17"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-17">17</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-18"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-18">18</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-19"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-19">19</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-20"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-20">20</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-21"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-21">21</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-22"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-22">22</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-23"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-23">23</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-24"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-24">24</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-25"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-25">25</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-26"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-26">26</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-27"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-27">27</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-28"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-28">28</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-29"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-29">29</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-30"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-30">30</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#078;font-weight:bold">void</span> <span style="color:#c0f">Mat_mixchannels</span>(<span style="color:#078;font-weight:bold">void</span>)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>     Mat RGB(<span style="color:#f60">3</span>, <span style="color:#f60">4</span>, CV_8UC3, Scalar(<span style="color:#f60">1</span>, <span style="color:#f60">2</span>, <span style="color:#f60">3</span>, <span style="color:#f60">4</span>));
+</span></span><span style="display:flex;"><span>     Mat A(<span style="color:#f60">3</span>, <span style="color:#f60">4</span>, CV_8UC1, Scalar(<span style="color:#f60">6</span>));
+</span></span><span style="display:flex;"><span>     cout <span style="color:#555">&lt;&lt;</span> <span style="color:#c30">&#34;RGB=&#34;</span> <span style="color:#555">&lt;&lt;</span> endl
+</span></span><span style="display:flex;"><span>          <span style="color:#555">&lt;&lt;</span> RGB <span style="color:#555">&lt;&lt;</span> endl;
+</span></span><span style="display:flex;"><span>     cout <span style="color:#555">&lt;&lt;</span> <span style="color:#c30">&#34;A=&#34;</span> <span style="color:#555">&lt;&lt;</span> endl
+</span></span><span style="display:flex;"><span>          <span style="color:#555">&lt;&lt;</span> A <span style="color:#555">&lt;&lt;</span> endl;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>     <span style="color:#09f;font-style:italic">//RGB+A合成为RGBA
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>     cout <span style="color:#555">&lt;&lt;</span> <span style="color:#c30">&#34;RGB+A合成为RGBA&#34;</span> <span style="color:#555">&lt;&lt;</span> endl;
+</span></span><span style="display:flex;"><span>     Mat RGBA(<span style="color:#f60">3</span>, <span style="color:#f60">4</span>, CV_8UC4);
+</span></span><span style="display:flex;"><span>     Mat in[] <span style="color:#555">=</span> {RGB, A};
+</span></span><span style="display:flex;"><span>     <span style="color:#078;font-weight:bold">int</span> fromTo1[] <span style="color:#555">=</span> {<span style="color:#f60">0</span>, <span style="color:#f60">0</span>, <span style="color:#f60">1</span>, <span style="color:#f60">1</span>, <span style="color:#f60">2</span>, <span style="color:#f60">2</span>, <span style="color:#f60">3</span>, <span style="color:#f60">3</span>};
+</span></span><span style="display:flex;"><span>     mixChannels(in, <span style="color:#f60">2</span>, <span style="color:#555">&amp;</span>RGBA, <span style="color:#f60">1</span>, fromTo1, <span style="color:#f60">4</span>);
+</span></span><span style="display:flex;"><span>     cout <span style="color:#555">&lt;&lt;</span> <span style="color:#c30">&#34;RGBA=&#34;</span> <span style="color:#555">&lt;&lt;</span> endl
+</span></span><span style="display:flex;"><span>          <span style="color:#555">&lt;&lt;</span> RGBA <span style="color:#555">&lt;&lt;</span> endl;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>     <span style="color:#09f;font-style:italic">//RGB分解为R+GB
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>     cout <span style="color:#555">&lt;&lt;</span> <span style="color:#c30">&#34;RGB分解为R+GB&#34;</span> <span style="color:#555">&lt;&lt;</span> endl;
+</span></span><span style="display:flex;"><span>     Mat R(<span style="color:#f60">3</span>, <span style="color:#f60">4</span>, CV_8UC1);
+</span></span><span style="display:flex;"><span>     Mat GB(<span style="color:#f60">3</span>, <span style="color:#f60">4</span>, CV_8UC2);
+</span></span><span style="display:flex;"><span>     Mat out[] <span style="color:#555">=</span> {R, GB};
+</span></span><span style="display:flex;"><span>     <span style="color:#078;font-weight:bold">int</span> fromTo2[] <span style="color:#555">=</span> {<span style="color:#f60">0</span>, <span style="color:#f60">2</span>, <span style="color:#f60">1</span>, <span style="color:#f60">1</span>, <span style="color:#f60">2</span>, <span style="color:#f60">0</span>};
+</span></span><span style="display:flex;"><span>     mixChannels(<span style="color:#555">&amp;</span>RGB, <span style="color:#f60">1</span>, out, <span style="color:#f60">2</span>, fromTo2, <span style="color:#f60">3</span>);
+</span></span><span style="display:flex;"><span>     cout <span style="color:#555">&lt;&lt;</span> <span style="color:#c30">&#34;R=&#34;</span> <span style="color:#555">&lt;&lt;</span> endl
+</span></span><span style="display:flex;"><span>          <span style="color:#555">&lt;&lt;</span> R <span style="color:#555">&lt;&lt;</span> endl;
+</span></span><span style="display:flex;"><span>     cout <span style="color:#555">&lt;&lt;</span> <span style="color:#c30">&#34;GB=&#34;</span> <span style="color:#555">&lt;&lt;</span> endl
+</span></span><span style="display:flex;"><span>          <span style="color:#555">&lt;&lt;</span> GB <span style="color:#555">&lt;&lt;</span> endl;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-9-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-9-1"> 1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-9-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-9-2"> 2</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-9-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-9-3"> 3</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-9-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-9-4"> 4</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-9-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-9-5"> 5</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-9-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-9-6"> 6</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-9-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-9-7"> 7</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-9-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-9-8"> 8</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-9-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-9-9"> 9</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-9-10"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-9-10">10</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-9-11"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-9-11">11</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-9-12"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-9-12">12</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-9-13"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-9-13">13</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-9-14"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-9-14">14</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-9-15"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-9-15">15</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-9-16"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-9-16">16</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-9-17"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-9-17">17</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-9-18"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-9-18">18</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-9-19"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-9-19">19</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-9-20"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-9-20">20</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-9-21"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-9-21">21</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-9-22"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-9-22">22</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>RGB=
+</span></span><span style="display:flex;"><span>[  1,   2,   3,   1,   2,   3,   1,   2,   3,   1,   2,   3;
+</span></span><span style="display:flex;"><span>   1,   2,   3,   1,   2,   3,   1,   2,   3,   1,   2,   3;
+</span></span><span style="display:flex;"><span>   1,   2,   3,   1,   2,   3,   1,   2,   3,   1,   2,   3]
+</span></span><span style="display:flex;"><span>A=
+</span></span><span style="display:flex;"><span>[  6,   6,   6,   6;
+</span></span><span style="display:flex;"><span>   6,   6,   6,   6;
+</span></span><span style="display:flex;"><span>   6,   6,   6,   6]
+</span></span><span style="display:flex;"><span>RGB+A合成为RGBA
+</span></span><span style="display:flex;"><span>RGBA=
+</span></span><span style="display:flex;"><span>[  1,   2,   3,   6,   1,   2,   3,   6,   1,   2,   3,   6,   1,   2,   3,   6;
+</span></span><span style="display:flex;"><span>   1,   2,   3,   6,   1,   2,   3,   6,   1,   2,   3,   6,   1,   2,   3,   6;
+</span></span><span style="display:flex;"><span>   1,   2,   3,   6,   1,   2,   3,   6,   1,   2,   3,   6,   1,   2,   3,   6]
+</span></span><span style="display:flex;"><span>RGB分解为R+GB
+</span></span><span style="display:flex;"><span>R=
+</span></span><span style="display:flex;"><span>[  3,   3,   3,   3;
+</span></span><span style="display:flex;"><span>   3,   3,   3,   3;
+</span></span><span style="display:flex;"><span>   3,   3,   3,   3]
+</span></span><span style="display:flex;"><span>GB=
+</span></span><span style="display:flex;"><span>[  2,   1,   2,   1,   2,   1,   2,   1;
+</span></span><span style="display:flex;"><span>   2,   1,   2,   1,   2,   1,   2,   1;
+</span></span><span style="display:flex;"><span>   2,   1,   2,   1,   2,   1,   2,   1]
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="创建一个mat">创建一个Mat</h1>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-1"> 1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-2"> 2</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-3"> 3</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-4"> 4</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-5"> 5</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-6"> 6</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-7"> 7</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-8"> 8</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-9"> 9</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-10"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-10">10</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-11"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-11">11</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-12"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-12">12</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-13"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-13">13</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-14"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-14">14</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-15"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-15">15</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-16"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-16">16</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-17"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-17">17</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-18"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-18">18</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-19"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-19">19</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-20"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-20">20</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-21"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-21">21</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-22"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-22">22</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-23"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-23">23</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-24"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-24">24</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#078;font-weight:bold">void</span> <span style="color:#c0f">Mat_demo</span>()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    cv<span style="color:#555">::</span>Mat M(<span style="color:#f60">2</span>, <span style="color:#f60">2</span>, CV_8UC3, Scalar(<span style="color:#f60">0</span>, <span style="color:#f60">0</span>, <span style="color:#f60">255</span>));
+</span></span><span style="display:flex;"><span>    cout <span style="color:#555">&lt;&lt;</span> M <span style="color:#555">&lt;&lt;</span> endl;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    cv<span style="color:#555">::</span>Mat Z <span style="color:#555">=</span> cv<span style="color:#555">::</span>Mat<span style="color:#555">::</span>zeros(<span style="color:#f60">3</span>, <span style="color:#f60">3</span>, CV_64F);
+</span></span><span style="display:flex;"><span>    cout <span style="color:#555">&lt;&lt;</span> Z <span style="color:#555">&lt;&lt;</span> endl;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    cv<span style="color:#555">::</span>Mat F <span style="color:#555">=</span> cv<span style="color:#555">::</span>Mat<span style="color:#555">::</span>ones(<span style="color:#f60">2</span>, <span style="color:#f60">2</span>, CV_64F);
+</span></span><span style="display:flex;"><span>    cout <span style="color:#555">&lt;&lt;</span> F <span style="color:#555">&lt;&lt;</span> endl;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    cv<span style="color:#555">::</span>Mat M0(<span style="color:#f60">1</span>,<span style="color:#f60">2</span>,CV_8UC3);
+</span></span><span style="display:flex;"><span>    cout <span style="color:#555">&lt;&lt;</span> M0 <span style="color:#555">&lt;&lt;</span> endl;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#078;font-weight:bold">float</span> K[<span style="color:#f60">3</span>][<span style="color:#f60">3</span>] <span style="color:#555">=</span> {<span style="color:#f60">1</span>, <span style="color:#f60">0</span>, <span style="color:#f60">1</span>, <span style="color:#f60">0</span>, <span style="color:#f60">1</span>, <span style="color:#f60">1</span>, <span style="color:#f60">0</span>, <span style="color:#f60">0</span>, <span style="color:#f60">1</span>};
+</span></span><span style="display:flex;"><span>    cv<span style="color:#555">::</span>Mat M1 <span style="color:#555">=</span> cv<span style="color:#555">::</span>Mat(<span style="color:#f60">3</span>,<span style="color:#f60">3</span>,CV_32FC1,K);
+</span></span><span style="display:flex;"><span>    cout <span style="color:#555">&lt;&lt;</span> M1 <span style="color:#555">&lt;&lt;</span> endl;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    cv<span style="color:#555">::</span>Mat M2 <span style="color:#555">=</span> (cv<span style="color:#555">::</span>Mat_<span style="color:#555">&lt;</span><span style="color:#078;font-weight:bold">float</span><span style="color:#555">&gt;</span>(<span style="color:#f60">3</span>,<span style="color:#f60">3</span>) <span style="color:#555">&lt;&lt;</span> <span style="color:#f60">0</span>,<span style="color:#555">-</span><span style="color:#f60">1</span>,<span style="color:#f60">0</span>,<span style="color:#555">-</span><span style="color:#f60">1</span>,<span style="color:#f60">5</span>,<span style="color:#555">-</span><span style="color:#f60">1</span>,<span style="color:#f60">0</span>,<span style="color:#555">-</span><span style="color:#f60">1</span>,<span style="color:#f60">0</span>);
+</span></span><span style="display:flex;"><span>    cout <span style="color:#555">&lt;&lt;</span> M2 <span style="color:#555">&lt;&lt;</span> endl;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    cv<span style="color:#555">::</span>Mat M3 <span style="color:#555">=</span> (Mat_<span style="color:#555">&lt;</span><span style="color:#078;font-weight:bold">double</span><span style="color:#555">&gt;</span>(<span style="color:#f60">3</span>, <span style="color:#f60">3</span>) <span style="color:#555">&lt;&lt;</span> <span style="color:#f60">0</span>, <span style="color:#f60">1</span>, <span style="color:#f60">2</span>, <span style="color:#f60">1</span>, <span style="color:#f60">2</span>, <span style="color:#f60">3</span>, <span style="color:#f60">2</span>, <span style="color:#f60">3</span>, <span style="color:#f60">4</span>);
+</span></span><span style="display:flex;"><span>    cout <span style="color:#555">&lt;&lt;</span> M3 <span style="color:#555">&lt;&lt;</span> endl;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="scalar">Scalar</h2>
+<p>Scalar是一个由长度为4的数组作为元素构成的结构体，Scalar最多可以存储四个值，没有提供的值默认是0。</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-11-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-11-1">1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-11-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-11-2">2</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-11-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-11-3">3</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-11-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-11-4">4</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span>  <span style="color:#069;font-weight:bold">typedef</span> <span style="color:#069;font-weight:bold">struct</span> Scalar
+</span></span><span style="display:flex;"><span>  {
+</span></span><span style="display:flex;"><span>      <span style="color:#078;font-weight:bold">double</span> val[<span style="color:#f60">4</span>];
+</span></span><span style="display:flex;"><span> }Scalar;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-1">1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-2">2</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-3">3</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-4">4</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-5">5</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-6">6</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-7">7</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-8">8</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-9">9</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#09f;font-style:italic">// 创建一个2通道，且每个通道的值都为（1,3），深度为32，4行4列的图像矩阵。
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>Mat <span style="color:#c0f">M</span>(<span style="color:#f60">4</span>, <span style="color:#f60">4</span>, CV_32FC2, Scalar(<span style="color:#f60">1</span>, <span style="color:#f60">3</span>));
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic">/*
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic">[1, 3, 1, 3, 1, 3, 1, 3;
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"> 1, 3, 1, 3, 1, 3, 1, 3;
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"> 1, 3, 1, 3, 1, 3, 1, 3;
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"> 1, 3, 1, 3, 1, 3, 1, 3]
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"> */</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-13-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-13-1">1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-13-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-13-2">2</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-13-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-13-3">3</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-13-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-13-4">4</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-13-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-13-5">5</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-13-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-13-6">6</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-13-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-13-7">7</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-13-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-13-8">8</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-13-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-13-9">9</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#09f;font-style:italic">// 创建一个3通道，且每个通道的值都为（1,2,3），深度为32，4行4列的图像矩阵。
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>Mat <span style="color:#c0f">M</span>(<span style="color:#f60">4</span>, <span style="color:#f60">4</span>, CV_32FC3, Scalar(<span style="color:#f60">1</span>, <span style="color:#f60">2</span>, <span style="color:#f60">3</span>));
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic">/*
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic">[1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3;
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"> 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3;
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"> 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3;
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"> 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3]
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic">*/</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-14-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-14-1">1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-14-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-14-2">2</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-14-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-14-3">3</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-14-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-14-4">4</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-14-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-14-5">5</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-14-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-14-6">6</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-14-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-14-7">7</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-14-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-14-8">8</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-14-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-14-9">9</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#09f;font-style:italic">// 创建一个4通道，且每个通道的值都为（1,2,3,0）(默认为0)，深度为32，4行4列的图像矩阵。
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>Mat <span style="color:#c0f">M</span>(<span style="color:#f60">4</span>, <span style="color:#f60">4</span>, CV_32FC4, Scalar(<span style="color:#f60">1</span>, <span style="color:#f60">2</span>, <span style="color:#f60">3</span>));
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic">/*
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic">[1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0;
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"> 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0;
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"> 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0;
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"> 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0]
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic">*/</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-15-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-15-1"> 1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-15-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-15-2"> 2</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-15-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-15-3"> 3</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-15-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-15-4"> 4</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-15-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-15-5"> 5</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-15-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-15-6"> 6</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-15-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-15-7"> 7</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-15-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-15-8"> 8</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-15-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-15-9"> 9</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-15-10"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-15-10">10</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-15-11"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-15-11">11</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-15-12"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-15-12">12</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span>Mat <span style="color:#c0f">blue_m</span>(<span style="color:#f60">256</span>, <span style="color:#f60">256</span>, CV_8UC3, Scalar(<span style="color:#f60">255</span>, <span style="color:#f60">0</span>, <span style="color:#f60">0</span>));
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic">//cout&lt;&lt;blue_m&lt;&lt;endl;
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>Mat <span style="color:#c0f">green_m</span>(<span style="color:#f60">256</span>, <span style="color:#f60">256</span>, CV_8UC3, Scalar(<span style="color:#f60">0</span>, <span style="color:#f60">255</span>, <span style="color:#f60">0</span>));
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic">//cout&lt;&lt;green_m&lt;&lt;endl;
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>Mat <span style="color:#c0f">red_m</span>(<span style="color:#f60">256</span>, <span style="color:#f60">256</span>, CV_8UC3, Scalar(<span style="color:#f60">0</span>, <span style="color:#f60">0</span>, <span style="color:#f60">255</span>));
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic">//cout&lt;&lt;red_m&lt;&lt;endl;
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>Mat <span style="color:#c0f">previewImg</span>(<span style="color:#f60">256</span>, <span style="color:#f60">256</span>, CV_8UC3);
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic">//CV_EXPORTS void hconcat(InputArray src1, InputArray src2, OutputArray dst);
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>hconcat(blue_m, green_m, previewImg);
+</span></span><span style="display:flex;"><span>hconcat(previewImg, red_m, previewImg);
+</span></span><span style="display:flex;"><span>imshow(<span style="color:#c30">&#34;previewImg&#34;</span>, previewImg);
+</span></span><span style="display:flex;"><span>waitKey(<span style="color:#f60">0</span>);
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../image/image-20210422142025781.png"
+        data-srcset="../image/image-20210422142025781.png, ../image/image-20210422142025781.png 1.5x, ../image/image-20210422142025781.png 2x"
+        data-sizes="auto"
+        alt="../image/image-20210422142025781.png"
+        title="image-20210422142025781" /></p>
+<h2 id="cvmatones">cv::Mat::ones</h2>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-16-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-16-1">1</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span>Mat m <span style="color:#555">=</span> Mat<span style="color:#555">::</span>ones(<span style="color:#f60">2</span>, <span style="color:#f60">2</span>, CV_8UC3); <span style="color:#a00;background-color:#faa">相当于：</span>Mat m <span style="color:#555">=</span> Mat(<span style="color:#f60">2</span>, <span style="color:#f60">2</span>, CV_8UC3, <span style="color:#f60">1</span>);
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>// OpenCV replaces 1 with Scalar(1,0,0)相当于每个像素的第一个通道为1，其余两个通道为0；</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-17-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-17-1">1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-17-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-17-2">2</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-17-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-17-3">3</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-17-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-17-4">4</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-17-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-17-5">5</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-17-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-17-6">6</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-17-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-17-7">7</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span>cv<span style="color:#555">::</span>Mat F <span style="color:#555">=</span> cv<span style="color:#555">::</span>Mat<span style="color:#555">::</span>ones(<span style="color:#f60">3</span>, <span style="color:#f60">3</span>, CV_64F);
+</span></span><span style="display:flex;"><span>cout <span style="color:#555">&lt;&lt;</span> F <span style="color:#555">&lt;&lt;</span> endl;
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic">/*
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic">[1, 1, 1;
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"> 1, 1, 1;
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"> 1, 1, 1]
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic">*/</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="cvmatzeros">cv::Mat::zeros</h2>
+<p>Mat m = Mat::zeros(2, 2, CV_8UC3);
+//相当于创建一张黑色的图，每个像素的每个通道都为0,<code>Scalar(0,0,0)</code>；</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-18-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-18-1">1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-18-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-18-2">2</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-18-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-18-3">3</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-18-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-18-4">4</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-18-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-18-5">5</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-18-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-18-6">6</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-18-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-18-7">7</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span>cv<span style="color:#555">::</span>Mat Z <span style="color:#555">=</span> cv<span style="color:#555">::</span>Mat<span style="color:#555">::</span>zeros(<span style="color:#f60">3</span>, <span style="color:#f60">3</span>, CV_64F);
+</span></span><span style="display:flex;"><span>cout <span style="color:#555">&lt;&lt;</span> Z <span style="color:#555">&lt;&lt;</span> endl;
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic">/*
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic">[0, 0, 0;
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"> 0, 0, 0;
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"> 0, 0, 0]
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic">*/</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="cvmateye">cv::Mat::eye</h2>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-19-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-19-1">1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-19-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-19-2">2</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-19-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-19-3">3</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-19-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-19-4">4</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-19-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-19-5">5</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-19-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-19-6">6</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-19-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-19-7">7</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span>cv<span style="color:#555">::</span>Mat Y <span style="color:#555">=</span> cv<span style="color:#555">::</span>Mat<span style="color:#555">::</span>eye(<span style="color:#f60">3</span>, <span style="color:#f60">3</span>, CV_64F);
+</span></span><span style="display:flex;"><span>cout <span style="color:#555">&lt;&lt;</span> Y <span style="color:#555">&lt;&lt;</span> endl;
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic">/*
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic">[1, 0, 0;
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"> 0, 1, 0;
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"> 0, 0, 1]
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic">*/</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="mat类中数据部分组成">Mat类中数据部分组成</h1>
+<ul>
+<li>矩阵头：包括矩阵尺寸、存储方法、存储地址等。</li>
+<li>指针：该指针指向存储所有像素值的矩阵。<br>
+因为图片的数据量比较大，所以OpenCV中的Mat定义都是只申请了矩阵头和指针，尽量避免对指针指向的内容进行拷贝操作。</li>
+</ul>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-20-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-20-1"> 1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-20-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-20-2"> 2</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-20-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-20-3"> 3</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-20-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-20-4"> 4</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-20-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-20-5"> 5</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-20-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-20-6"> 6</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-20-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-20-7"> 7</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-20-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-20-8"> 8</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-20-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-20-9"> 9</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-20-10"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-20-10">10</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-20-11"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-20-11">11</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-20-12"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-20-12">12</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-20-13"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-20-13">13</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-20-14"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-20-14">14</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-20-15"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-20-15">15</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-20-16"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-20-16">16</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-20-17"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-20-17">17</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-20-18"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-20-18">18</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-20-19"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-20-19">19</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-20-20"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-20-20">20</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-20-21"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-20-21">21</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-20-22"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-20-22">22</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-20-23"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-20-23">23</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-20-24"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-20-24">24</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-20-25"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-20-25">25</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-20-26"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-20-26">26</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-20-27"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-20-27">27</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-20-28"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-20-28">28</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-20-29"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-20-29">29</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-20-30"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-20-30">30</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-20-31"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-20-31">31</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-20-32"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-20-32">32</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-20-33"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-20-33">33</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-20-34"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-20-34">34</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-20-35"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-20-35">35</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-20-36"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-20-36">36</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-20-37"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-20-37">37</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-20-38"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-20-38">38</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#078;font-weight:bold">void</span> <span style="color:#c0f">Mat_demo1</span>()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    Mat A, C; <span style="color:#09f;font-style:italic">// Identify header only
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>    cout <span style="color:#555">&lt;&lt;</span> <span style="color:#c30">&#34;sizeof(A): &#34;</span> <span style="color:#555">&lt;&lt;</span> <span style="color:#069;font-weight:bold">sizeof</span>(A) <span style="color:#555">&lt;&lt;</span> <span style="color:#c30">&#34;; sizeof(C): &#34;</span> <span style="color:#555">&lt;&lt;</span> <span style="color:#069;font-weight:bold">sizeof</span>(C) <span style="color:#555">&lt;&lt;</span> endl;
+</span></span><span style="display:flex;"><span>    cout <span style="color:#555">&lt;&lt;</span> <span style="color:#c30">&#34;A:</span><span style="color:#c30;font-weight:bold">\n</span><span style="color:#c30">&#34;</span>
+</span></span><span style="display:flex;"><span>         <span style="color:#555">&lt;&lt;</span> A <span style="color:#555">&lt;&lt;</span> endl;
+</span></span><span style="display:flex;"><span>    A <span style="color:#555">=</span> Mat<span style="color:#555">::</span>ones(Size(<span style="color:#f60">3</span>, <span style="color:#f60">3</span>), CV_8UC1);
+</span></span><span style="display:flex;"><span>    C <span style="color:#555">=</span> A;
+</span></span><span style="display:flex;"><span>    cout <span style="color:#555">&lt;&lt;</span> <span style="color:#c30">&#34;sizeof(A): &#34;</span> <span style="color:#555">&lt;&lt;</span> <span style="color:#069;font-weight:bold">sizeof</span>(A) <span style="color:#555">&lt;&lt;</span> <span style="color:#c30">&#34;; sizeof(C): &#34;</span> <span style="color:#555">&lt;&lt;</span> <span style="color:#069;font-weight:bold">sizeof</span>(C) <span style="color:#555">&lt;&lt;</span> endl;
+</span></span><span style="display:flex;"><span>    cout <span style="color:#555">&lt;&lt;</span> <span style="color:#c30">&#34;A:</span><span style="color:#c30;font-weight:bold">\n</span><span style="color:#c30">&#34;</span>
+</span></span><span style="display:flex;"><span>         <span style="color:#555">&lt;&lt;</span> A <span style="color:#555">&lt;&lt;</span> endl;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    Mat B(A);
+</span></span><span style="display:flex;"><span>    cout <span style="color:#555">&lt;&lt;</span> <span style="color:#c30">&#34;B:</span><span style="color:#c30;font-weight:bold">\n</span><span style="color:#c30">&#34;</span>
+</span></span><span style="display:flex;"><span>         <span style="color:#555">&lt;&lt;</span> B <span style="color:#555">&lt;&lt;</span> endl;
+</span></span><span style="display:flex;"><span>    B.at<span style="color:#555">&lt;</span>uchar<span style="color:#555">&gt;</span>(<span style="color:#f60">1</span>, <span style="color:#f60">1</span>) <span style="color:#555">=</span> <span style="color:#f60">255</span>;
+</span></span><span style="display:flex;"><span>    cout <span style="color:#555">&lt;&lt;</span> <span style="color:#c30">&#34;C:</span><span style="color:#c30;font-weight:bold">\n</span><span style="color:#c30">&#34;</span>
+</span></span><span style="display:flex;"><span>         <span style="color:#555">&lt;&lt;</span> C <span style="color:#555">&lt;&lt;</span> endl;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    Mat D <span style="color:#555">=</span> A.clone();
+</span></span><span style="display:flex;"><span>    cout <span style="color:#555">&lt;&lt;</span> <span style="color:#c30">&#34;D:</span><span style="color:#c30;font-weight:bold">\n</span><span style="color:#c30">&#34;</span>
+</span></span><span style="display:flex;"><span>         <span style="color:#555">&lt;&lt;</span> D <span style="color:#555">&lt;&lt;</span> endl;
+</span></span><span style="display:flex;"><span>    D.at<span style="color:#555">&lt;</span>uchar<span style="color:#555">&gt;</span>(<span style="color:#f60">0</span>, <span style="color:#f60">0</span>) <span style="color:#555">=</span> <span style="color:#f60">123</span>;
+</span></span><span style="display:flex;"><span>    cout <span style="color:#555">&lt;&lt;</span> <span style="color:#c30">&#34;A:</span><span style="color:#c30;font-weight:bold">\n</span><span style="color:#c30">&#34;</span>
+</span></span><span style="display:flex;"><span>         <span style="color:#555">&lt;&lt;</span> A <span style="color:#555">&lt;&lt;</span> endl;
+</span></span><span style="display:flex;"><span>    cout <span style="color:#555">&lt;&lt;</span> <span style="color:#c30">&#34;D:</span><span style="color:#c30;font-weight:bold">\n</span><span style="color:#c30">&#34;</span>
+</span></span><span style="display:flex;"><span>         <span style="color:#555">&lt;&lt;</span> D <span style="color:#555">&lt;&lt;</span> endl;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    Mat E;
+</span></span><span style="display:flex;"><span>    A.copyTo(E);
+</span></span><span style="display:flex;"><span>    cout <span style="color:#555">&lt;&lt;</span> <span style="color:#c30">&#34;E:</span><span style="color:#c30;font-weight:bold">\n</span><span style="color:#c30">&#34;</span>
+</span></span><span style="display:flex;"><span>         <span style="color:#555">&lt;&lt;</span> E <span style="color:#555">&lt;&lt;</span> endl;
+</span></span><span style="display:flex;"><span>    E.at<span style="color:#555">&lt;</span>uchar<span style="color:#555">&gt;</span>(<span style="color:#f60">2</span>, <span style="color:#f60">2</span>) <span style="color:#555">=</span> <span style="color:#f60">100</span>;
+</span></span><span style="display:flex;"><span>    cout <span style="color:#555">&lt;&lt;</span> <span style="color:#c30">&#34;A:</span><span style="color:#c30;font-weight:bold">\n</span><span style="color:#c30">&#34;</span>
+</span></span><span style="display:flex;"><span>         <span style="color:#555">&lt;&lt;</span> A <span style="color:#555">&lt;&lt;</span> endl;
+</span></span><span style="display:flex;"><span>    cout <span style="color:#555">&lt;&lt;</span> <span style="color:#c30">&#34;E:</span><span style="color:#c30;font-weight:bold">\n</span><span style="color:#c30">&#34;</span>
+</span></span><span style="display:flex;"><span>         <span style="color:#555">&lt;&lt;</span> E <span style="color:#555">&lt;&lt;</span> endl;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Mat类型的变量定义以及赋值分为：</p>
+<ul>
+<li>公用一个数据块</li>
+</ul>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-21-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-21-1">1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-21-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-21-2">2</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>=
+</span></span><span style="display:flex;"><span>构造函数
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>不公用一个数据块</li>
+</ul>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-22-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-22-1">1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-22-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-22-2">2</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>clone
+</span></span><span style="display:flex;"><span>copyto
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="参考">参考</h1>
+<p><a href="https://blog.csdn.net/weixin_42142612/article/details/80804039" target="_blank" rel="noopener noreffer ">OpenCV CV_RGB2GRAY与CV_BGR2GRAY的区别</a></p>
+<p><a href="https://blog.csdn.net/GDFSG/article/details/50927257" target="_blank" rel="noopener noreffer ">学习OpenCV2——Mat之通道的理解</a></p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2023-01-18&nbsp;<a class="git-hash" href="https://github.com/zhangyuhu/zhangyuhu.github.io/commit/d1ac348ddf52a073ef726b5b05a0c3110e0c02cd" target="_blank" title="commit by zhangyuhu(zhangyuhude@163.com) d1ac348ddf52a073ef726b5b05a0c3110e0c02cd: update">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>d1ac348</a></span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://zhangyuhu.github.io/posts/open_source_software/opencv/learn/mat/opencv_mat/" data-title="opencv Mat 操作" data-hashtags="opencv"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://zhangyuhu.github.io/posts/open_source_software/opencv/learn/mat/opencv_mat/" data-hashtag="opencv"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://zhangyuhu.github.io/posts/open_source_software/opencv/learn/mat/opencv_mat/" data-title="opencv Mat 操作"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://zhangyuhu.github.io/posts/open_source_software/opencv/learn/mat/opencv_mat/" data-title="opencv Mat 操作"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://zhangyuhu.github.io/posts/open_source_software/opencv/learn/mat/opencv_mat/" data-title="opencv Mat 操作" data-ralateuid="ji"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/opencv/">opencv</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/open_source_software/opencv/learn/opencv%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0/" class="prev" rel="prev" title="opencv 常用函数"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>opencv 常用函数</a>
+            <a href="/posts/open_source_software/opencv/learn/dnn/opencv_dnn/" class="next" rel="next" title="opencv DNN 模块">opencv DNN 模块<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="giscus" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://giscus.app">Giscus</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">为天地立心,为生民立命,为往圣继绝学,为万世开太平</div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://zhangyuhu.github.io/" target="_blank">zhangyuhu</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="http://creativecommons.org/licenses/by/4.0/" target="_blank">知识共享署名 4.0 国际许可协议</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/css/lightgallery-bundle.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/twemoji@14.0.2/dist/twemoji.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/lightgallery.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/thumbnail/lg-thumbnail.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/zoom/lg-zoom.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@8.6.0/dist/index.umd.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":100},"comment":{"giscus":{"category":"Comments","categoryId":"DIC_kwDOIx2Cjs4CTnUX","darkTheme":"dark","emitMetadata":"0","inputPosition":"bottom","lang":"en","lazyLoading":false,"lightTheme":"light","mapping":"pathname","reactionsEnabled":"1","repo":"zhangyuhu/zhangyuhu.github.io","repoId":"R_kgDOIx2Cjg"}},"data":{"id-1":"HOME","id-2":"HOME"},"lightgallery":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"},"twemoji":true,"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.2970a33d719df7cd89cebf586152b32a8ed30012227fa81b44282950146e0f595d1c733779e4d423dda1004bdcf707ee64d0fadc3d21229cd66b960788f84bdb.js" integrity="sha512-KXCjPXGd982Jzr9YYVKzKo7TABIif6gbRCgpUBRuD1ldHHM3eeTUI92hAEvc9wfuZND63D0hIpzWa5YHiPhL2w=="></script></body>
+</html>

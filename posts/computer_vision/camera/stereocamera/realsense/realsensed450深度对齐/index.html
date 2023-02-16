@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>camera:realsense(D450)深度对齐优化 - 这是我的网站</title><meta name="Description" content="realsense(D450)深度对齐优化"><meta property="og:title" content="camera:realsense(D450)深度对齐优化" />
+<meta property="og:description" content="realsense(D450)深度对齐优化" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zhangyuhu.github.io/posts/computer_vision/camera/stereocamera/realsense/realsensed450%E6%B7%B1%E5%BA%A6%E5%AF%B9%E9%BD%90/" /><meta property="og:image" content="https://zhangyuhu.github.io/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-01-30T14:32:52+08:00" />
+<meta property="article:modified_time" content="2023-01-30T15:11:52+08:00" /><meta property="og:site_name" content="我的网站" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://zhangyuhu.github.io/logo.png"/>
+
+<meta name="twitter:title" content="camera:realsense(D450)深度对齐优化"/>
+<meta name="twitter:description" content="realsense(D450)深度对齐优化"/>
+<meta name="application-name" content="我的网站">
+<meta name="apple-mobile-web-app-title" content="我的网站"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://zhangyuhu.github.io/posts/computer_vision/camera/stereocamera/realsense/realsensed450%E6%B7%B1%E5%BA%A6%E5%AF%B9%E9%BD%90/" /><link rel="prev" href="https://zhangyuhu.github.io/posts/computer_vision/camera/cameracalibration/%E5%8D%95%E7%9B%AE%E7%9B%B8%E6%9C%BA%E6%A0%87%E5%AE%9A/" /><link rel="next" href="https://zhangyuhu.github.io/posts/computer_vision/deeplearning/01-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BAdocker/" /><link rel="stylesheet" href="/css/style.min.990eb8dd228a2b662f63cfe59575be8aa494cb9d40ffd854f26b9d9e588e1f4fdadb6a34e3f9a9171244d3ee6c107521923ab30705f3ef50d3e435eda1afc910.css" integrity="sha512-mQ643SKKK2YvY8/llXW+iqSUy51A/9hU8mudnliOH0/a22o04/mpFxJE0+5sEHUhkjqzBwXz71DT5DXtoa/JEA=="><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "camera:realsense(D450)深度对齐优化",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/zhangyuhu.github.io\/posts\/computer_vision\/camera\/stereocamera\/realsense\/realsensed450%E6%B7%B1%E5%BA%A6%E5%AF%B9%E9%BD%90\/"
+        },"image": [{
+                            "@type": "ImageObject",
+                            "url": "https:\/\/zhangyuhu.github.io\/images\/Apple-Devices-Preview.png",
+                            "width":  3200 ,
+                            "height":  2048 
+                        }],"genre": "posts","keywords": "camera","wordcount":  1973 ,
+        "url": "https:\/\/zhangyuhu.github.io\/posts\/computer_vision\/camera\/stereocamera\/realsense\/realsensed450%E6%B7%B1%E5%BA%A6%E5%AF%B9%E9%BD%90\/","datePublished": "2023-01-30T14:32:52+08:00","dateModified": "2023-01-30T15:11:52+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "zhangyuhu"
+            },"description": "realsense(D450)深度对齐优化"
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="这是我的网站"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/" title="文章"><i class='fas fa-archive fa-fw fa-sm'></i> 文章 </a><a class="menu-item" href="/tags/"><i class='fas fa-tags fa-fw fa-sm'></i> 标签 </a><a class="menu-item" href="/categories/"><i class='fas fa-th fa-fw fa-sm'></i> 分类 </a><a class="menu-item" href="/about/"><i class='fas fa-user-tie fa-fw fa-sm'></i> 关于 </a><a class="menu-item" href="/tool/"><i class='fas fa-cube fa-fw fa-sm'></i> 工具箱 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="这是我的网站"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="文章"><i class='fas fa-archive fa-fw fa-sm'></i>文章</a><a class="menu-item" href="/tags/" title=""><i class='fas fa-tags fa-fw fa-sm'></i>标签</a><a class="menu-item" href="/categories/" title=""><i class='fas fa-th fa-fw fa-sm'></i>分类</a><a class="menu-item" href="/about/" title=""><i class='fas fa-user-tie fa-fw fa-sm'></i>关于</a><a class="menu-item" href="/tool/" title=""><i class='fas fa-cube fa-fw fa-sm'></i>工具箱</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">camera:realsense(D450)深度对齐优化</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://zhangyuhu.github.io/" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>zhangyuhu</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>计算机视觉</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-01-30">2023-01-30</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1973 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;4 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#sdk-中的对齐实现">SDK 中的对齐实现</a></li>
+    <li><a href="#转化为opencv-mat格式">转化为opencv Mat格式</a></li>
+    <li><a href="#realsense-对齐流程">realsense 对齐流程</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><blockquote>
+<p>本文采用<a href="http://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreffer ">知识共享署名 4.0 国际许可协议</a>进行许可，转载时请注明原文链接，图片在使用时请保留全部内容，可适当缩放并在引用处附上图片所在的文章链接。</p>
+</blockquote>
+<!-- TOC -->
+<ul>
+<li><a href="#sdk-%e4%b8%ad%e7%9a%84%e5%af%b9%e9%bd%90%e5%ae%9e%e7%8e%b0" rel="">SDK 中的对齐实现</a></li>
+<li><a href="#%e8%bd%ac%e5%8c%96%e4%b8%baopencv-mat%e6%a0%bc%e5%bc%8f" rel="">转化为opencv Mat格式</a></li>
+<li><a href="#realsense-%e5%af%b9%e9%bd%90%e6%b5%81%e7%a8%8b" rel="">realsense 对齐流程</a></li>
+</ul>
+<!-- /TOC -->
+<h1 id="sdk-中的对齐实现">SDK 中的对齐实现</h1>
+<p><a href="https://github.com/IntelRealSense/librealsense/blob/master/src/proc/align.cpp" target="_blank" rel="noopener noreffer ">源码位置</a></p>
+<p><strong>align_z_to_other</strong></p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-1"> 1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-2"> 2</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-3"> 3</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-4"> 4</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-5"> 5</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-6"> 6</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-7"> 7</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-8"> 8</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-9"> 9</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-10"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-10">10</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-11"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-11">11</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-12"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-12">12</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-13"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-13">13</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-14"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-14">14</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-15"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-15">15</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-16"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-16">16</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-17"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-17">17</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-18"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-18">18</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-19"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-19">19</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-20"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-20">20</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-21"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-21">21</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-22"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-22">22</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-23"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-23">23</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-24"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-24">24</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-25"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-25">25</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#078;font-weight:bold">void</span> align<span style="color:#555">::</span>align_z_to_other(rs2<span style="color:#555">::</span>video_frame<span style="color:#555">&amp;</span> aligned, 
+</span></span><span style="display:flex;"><span>                             <span style="color:#069;font-weight:bold">const</span> rs2<span style="color:#555">::</span>video_frame<span style="color:#555">&amp;</span> depth, <span style="color:#069;font-weight:bold">const</span> rs2<span style="color:#555">::</span>video_stream_profile<span style="color:#555">&amp;</span> other_profile, <span style="color:#078;font-weight:bold">float</span> z_scale)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    byte<span style="color:#555">*</span> aligned_data <span style="color:#555">=</span> <span style="color:#069;font-weight:bold">reinterpret_cast</span><span style="color:#555">&lt;</span>byte<span style="color:#555">*&gt;</span>(<span style="color:#069;font-weight:bold">const_cast</span><span style="color:#555">&lt;</span><span style="color:#078;font-weight:bold">void</span><span style="color:#555">*&gt;</span>(aligned.get_data()));
+</span></span><span style="display:flex;"><span>    <span style="color:#069;font-weight:bold">auto</span> aligned_profile <span style="color:#555">=</span> aligned.get_profile().as<span style="color:#555">&lt;</span>rs2<span style="color:#555">::</span>video_stream_profile<span style="color:#555">&gt;</span>();
+</span></span><span style="display:flex;"><span>    memset(aligned_data, <span style="color:#f60">0</span>, aligned_profile.height() <span style="color:#555">*</span> aligned_profile.width() <span style="color:#555">*</span> aligned.get_bytes_per_pixel());
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#069;font-weight:bold">auto</span> depth_profile <span style="color:#555">=</span> depth.get_profile().as<span style="color:#555">&lt;</span>rs2<span style="color:#555">::</span>video_stream_profile<span style="color:#555">&gt;</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#069;font-weight:bold">auto</span> z_intrin <span style="color:#555">=</span> depth_profile.get_intrinsics();
+</span></span><span style="display:flex;"><span>    <span style="color:#069;font-weight:bold">auto</span> other_intrin <span style="color:#555">=</span> other_profile.get_intrinsics();
+</span></span><span style="display:flex;"><span>    <span style="color:#069;font-weight:bold">auto</span> z_to_other <span style="color:#555">=</span> depth_profile.get_extrinsics_to(other_profile);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#069;font-weight:bold">auto</span> z_pixels <span style="color:#555">=</span> <span style="color:#069;font-weight:bold">reinterpret_cast</span><span style="color:#555">&lt;</span><span style="color:#069;font-weight:bold">const</span> <span style="color:#078;font-weight:bold">uint16_t</span><span style="color:#555">*&gt;</span>(depth.get_data());
+</span></span><span style="display:flex;"><span>    <span style="color:#069;font-weight:bold">auto</span> out_z <span style="color:#555">=</span> (<span style="color:#078;font-weight:bold">uint16_t</span> <span style="color:#555">*</span>)(aligned_data);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    align_images(z_intrin, z_to_other, other_intrin,
+</span></span><span style="display:flex;"><span>                 [z_pixels, z_scale](<span style="color:#078;font-weight:bold">int</span> z_pixel_index) { <span style="color:#069;font-weight:bold">return</span> z_scale <span style="color:#555">*</span> z_pixels[z_pixel_index]; },
+</span></span><span style="display:flex;"><span>                 [out_z, z_pixels](<span style="color:#078;font-weight:bold">int</span> z_pixel_index, <span style="color:#078;font-weight:bold">int</span> other_pixel_index)
+</span></span><span style="display:flex;"><span>                 {
+</span></span><span style="display:flex;"><span>                     out_z[other_pixel_index] <span style="color:#555">=</span> out_z[other_pixel_index] <span style="color:#555">?</span>
+</span></span><span style="display:flex;"><span>                         std<span style="color:#555">::</span>min((<span style="color:#078;font-weight:bold">int</span>)out_z[other_pixel_index], (<span style="color:#078;font-weight:bold">int</span>)z_pixels[z_pixel_index]) <span style="color:#555">:</span>
+</span></span><span style="display:flex;"><span>                     z_pixels[z_pixel_index];
+</span></span><span style="display:flex;"><span>                 });
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>align_images</strong></p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-1"> 1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-2"> 2</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-3"> 3</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-4"> 4</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-5"> 5</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-6"> 6</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-7"> 7</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-8"> 8</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-9"> 9</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-10"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-10">10</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-11"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-11">11</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-12"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-12">12</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-13"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-13">13</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-14"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-14">14</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-15"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-15">15</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-16"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-16">16</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-17"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-17">17</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-18"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-18">18</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-19"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-19">19</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-20"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-20">20</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-21"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-21">21</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-22"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-22">22</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-23"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-23">23</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-24"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-24">24</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-25"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-25">25</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-26"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-26">26</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-27"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-27">27</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-28"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-28">28</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-29"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-29">29</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-30"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-30">30</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-31"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-31">31</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-32"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-32">32</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-33"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-33">33</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-34"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-34">34</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-35"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-35">35</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-36"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-36">36</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-37"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-37">37</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-38"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-38">38</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-39"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-39">39</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-40"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-40">40</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-41"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-41">41</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-42"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-42">42</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-43"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-43">43</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-44"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-44">44</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-45"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-45">45</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span>    <span style="color:#069;font-weight:bold">template</span><span style="color:#555">&lt;</span><span style="color:#069;font-weight:bold">class</span> <span style="color:#0a8;font-weight:bold">GET_DEPTH</span>, <span style="color:#069;font-weight:bold">class</span> <span style="color:#0a8;font-weight:bold">TRANSFER_PIXEL</span><span style="color:#555">&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#078;font-weight:bold">void</span> align_images(<span style="color:#069;font-weight:bold">const</span> rs2_intrinsics<span style="color:#555">&amp;</span> depth_intrin, <span style="color:#069;font-weight:bold">const</span> rs2_extrinsics<span style="color:#555">&amp;</span> depth_to_other,
+</span></span><span style="display:flex;"><span>        <span style="color:#069;font-weight:bold">const</span> rs2_intrinsics<span style="color:#555">&amp;</span> other_intrin, GET_DEPTH get_depth, TRANSFER_PIXEL transfer_pixel)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#09f;font-style:italic">// Iterate over the pixels of the depth image
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span><span style="color:#099">#pragma omp parallel for schedule(dynamic)
+</span></span></span><span style="display:flex;"><span><span style="color:#099"></span>        <span style="color:#069;font-weight:bold">for</span> (<span style="color:#078;font-weight:bold">int</span> depth_y <span style="color:#555">=</span> <span style="color:#f60">0</span>; depth_y <span style="color:#555">&lt;</span> depth_intrin.height; <span style="color:#555">++</span>depth_y)
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#078;font-weight:bold">int</span> depth_pixel_index <span style="color:#555">=</span> depth_y <span style="color:#555">*</span> depth_intrin.width;
+</span></span><span style="display:flex;"><span>            <span style="color:#069;font-weight:bold">for</span> (<span style="color:#078;font-weight:bold">int</span> depth_x <span style="color:#555">=</span> <span style="color:#f60">0</span>; depth_x <span style="color:#555">&lt;</span> depth_intrin.width; <span style="color:#555">++</span>depth_x, <span style="color:#555">++</span>depth_pixel_index)
+</span></span><span style="display:flex;"><span>            {
+</span></span><span style="display:flex;"><span>                <span style="color:#09f;font-style:italic">// Skip over depth pixels with the value of zero, we have no depth data so we will not write anything into our aligned images
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>                <span style="color:#069;font-weight:bold">if</span> (<span style="color:#078;font-weight:bold">float</span> depth <span style="color:#555">=</span> get_depth(depth_pixel_index))
+</span></span><span style="display:flex;"><span>                {
+</span></span><span style="display:flex;"><span>                    <span style="color:#09f;font-style:italic">// Map the top-left corner of the depth pixel onto the other image
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>                    <span style="color:#078;font-weight:bold">float</span> depth_pixel[<span style="color:#f60">2</span>] <span style="color:#555">=</span> { depth_x <span style="color:#555">-</span> <span style="color:#f60">0.5f</span>, depth_y <span style="color:#555">-</span> <span style="color:#f60">0.5f</span> }, depth_point[<span style="color:#f60">3</span>], other_point[<span style="color:#f60">3</span>], other_pixel[<span style="color:#f60">2</span>];
+</span></span><span style="display:flex;"><span>                    rs2_deproject_pixel_to_point(depth_point, <span style="color:#555">&amp;</span>depth_intrin, depth_pixel, depth);
+</span></span><span style="display:flex;"><span>                    rs2_transform_point_to_point(other_point, <span style="color:#555">&amp;</span>depth_to_other, depth_point);
+</span></span><span style="display:flex;"><span>                    rs2_project_point_to_pixel(other_pixel, <span style="color:#555">&amp;</span>other_intrin, other_point);
+</span></span><span style="display:flex;"><span>                    <span style="color:#069;font-weight:bold">const</span> <span style="color:#078;font-weight:bold">int</span> other_x0 <span style="color:#555">=</span> <span style="color:#069;font-weight:bold">static_cast</span><span style="color:#555">&lt;</span><span style="color:#078;font-weight:bold">int</span><span style="color:#555">&gt;</span>(other_pixel[<span style="color:#f60">0</span>] <span style="color:#555">+</span> <span style="color:#f60">0.5f</span>);
+</span></span><span style="display:flex;"><span>                    <span style="color:#069;font-weight:bold">const</span> <span style="color:#078;font-weight:bold">int</span> other_y0 <span style="color:#555">=</span> <span style="color:#069;font-weight:bold">static_cast</span><span style="color:#555">&lt;</span><span style="color:#078;font-weight:bold">int</span><span style="color:#555">&gt;</span>(other_pixel[<span style="color:#f60">1</span>] <span style="color:#555">+</span> <span style="color:#f60">0.5f</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#09f;font-style:italic">// Map the bottom-right corner of the depth pixel onto the other image
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>                    depth_pixel[<span style="color:#f60">0</span>] <span style="color:#555">=</span> depth_x <span style="color:#555">+</span> <span style="color:#f60">0.5f</span>; depth_pixel[<span style="color:#f60">1</span>] <span style="color:#555">=</span> depth_y <span style="color:#555">+</span> <span style="color:#f60">0.5f</span>;
+</span></span><span style="display:flex;"><span>                    rs2_deproject_pixel_to_point(depth_point, <span style="color:#555">&amp;</span>depth_intrin, depth_pixel, depth);
+</span></span><span style="display:flex;"><span>                    rs2_transform_point_to_point(other_point, <span style="color:#555">&amp;</span>depth_to_other, depth_point);
+</span></span><span style="display:flex;"><span>                    rs2_project_point_to_pixel(other_pixel, <span style="color:#555">&amp;</span>other_intrin, other_point);
+</span></span><span style="display:flex;"><span>                    <span style="color:#069;font-weight:bold">const</span> <span style="color:#078;font-weight:bold">int</span> other_x1 <span style="color:#555">=</span> <span style="color:#069;font-weight:bold">static_cast</span><span style="color:#555">&lt;</span><span style="color:#078;font-weight:bold">int</span><span style="color:#555">&gt;</span>(other_pixel[<span style="color:#f60">0</span>] <span style="color:#555">+</span> <span style="color:#f60">0.5f</span>);
+</span></span><span style="display:flex;"><span>                    <span style="color:#069;font-weight:bold">const</span> <span style="color:#078;font-weight:bold">int</span> other_y1 <span style="color:#555">=</span> <span style="color:#069;font-weight:bold">static_cast</span><span style="color:#555">&lt;</span><span style="color:#078;font-weight:bold">int</span><span style="color:#555">&gt;</span>(other_pixel[<span style="color:#f60">1</span>] <span style="color:#555">+</span> <span style="color:#f60">0.5f</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#069;font-weight:bold">if</span> (other_x0 <span style="color:#555">&lt;</span> <span style="color:#f60">0</span> <span style="color:#555">||</span> other_y0 <span style="color:#555">&lt;</span> <span style="color:#f60">0</span> <span style="color:#555">||</span> other_x1 <span style="color:#555">&gt;=</span> other_intrin.width <span style="color:#555">||</span> other_y1 <span style="color:#555">&gt;=</span> other_intrin.height)
+</span></span><span style="display:flex;"><span>                        <span style="color:#069;font-weight:bold">continue</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#09f;font-style:italic">// Transfer between the depth pixels and the pixels inside the rectangle on the other image
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>                    <span style="color:#069;font-weight:bold">for</span> (<span style="color:#078;font-weight:bold">int</span> y <span style="color:#555">=</span> other_y0; y <span style="color:#555">&lt;=</span> other_y1; <span style="color:#555">++</span>y)
+</span></span><span style="display:flex;"><span>                    {
+</span></span><span style="display:flex;"><span>                        <span style="color:#069;font-weight:bold">for</span> (<span style="color:#078;font-weight:bold">int</span> x <span style="color:#555">=</span> other_x0; x <span style="color:#555">&lt;=</span> other_x1; <span style="color:#555">++</span>x)
+</span></span><span style="display:flex;"><span>                        {
+</span></span><span style="display:flex;"><span>                            transfer_pixel(depth_pixel_index, y <span style="color:#555">*</span> other_intrin.width <span style="color:#555">+</span> x);
+</span></span><span style="display:flex;"><span>                        }
+</span></span><span style="display:flex;"><span>                    }
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>目的：将深度坐标系下的点转换到彩色坐标系下</p>
+<p>基本步骤：</p>
+<p>（1）将深度图的像素点还原到深度坐标系下</p>
+<p>（2）深度坐标系下的深度点还原到世界坐标系</p>
+<p>（3）世界坐标系的深度点转换到彩色坐标系下</p>
+<p>（4）彩色坐标系的深度点映射到Z=1的平面上，即与彩色图像的像素点对应起来</p>
+<p>由目标像素坐标和深度值（使用内参INTRINSICS）获取目标点的真实坐标原理：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202301301855957.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202301301855957.png, https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202301301855957.png 1.5x, https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202301301855957.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/zhangyuhu/share_images/images/202301301855957.png"
+        title="image-20210416152003410" /></p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-1"> 1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-2"> 2</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-3"> 3</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-4"> 4</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-5"> 5</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-6"> 6</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-7"> 7</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-8"> 8</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-9"> 9</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-10"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-10">10</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-11"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-11">11</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-12"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-12">12</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-13"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-13">13</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-14"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-14">14</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-15"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-15">15</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-16"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-16">16</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-17"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-17">17</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-18"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-18">18</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-19"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-19">19</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-20"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-20">20</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-21"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-21">21</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-22"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-22">22</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-23"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-23">23</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-24"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-24">24</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-25"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-25">25</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-26"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-26">26</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-27"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-27">27</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-28"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-28">28</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-29"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-29">29</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-30"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-30">30</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-31"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-31">31</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-32"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-32">32</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-33"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-33">33</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-34"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-34">34</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-35"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-35">35</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-36"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-36">36</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-37"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-37">37</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-38"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-38">38</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-39"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-39">39</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-40"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-40">40</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-41"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-41">41</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-42"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-42">42</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-43"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-43">43</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-44"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-44">44</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-45"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-45">45</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-46"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-46">46</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-47"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-47">47</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-48"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-48">48</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-49"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-49">49</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-50"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-50">50</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-51"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-51">51</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-52"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-52">52</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-53"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-53">53</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-54"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-54">54</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-55"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-55">55</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-56"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-56">56</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-57"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-57">57</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-58"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-58">58</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-59"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-59">59</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-60"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-60">60</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-61"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-61">61</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-62"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-62">62</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-63"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-63">63</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-64"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-64">64</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-65"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-65">65</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-66"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-66">66</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-67"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-67">67</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-68"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-68">68</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-69"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-69">69</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-70"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-70">70</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-71"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-71">71</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-72"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-72">72</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-73"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-73">73</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-74"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-74">74</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#09f;font-style:italic">//深度图对齐到彩色图函数
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>Mat <span style="color:#c0f">align_Depth2Color</span>(Mat depth,Mat color,rs2<span style="color:#555">::</span>pipeline_profile profile){
+</span></span><span style="display:flex;"><span>    <span style="color:#09f;font-style:italic">//声明数据流
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>    <span style="color:#069;font-weight:bold">auto</span> depth_stream<span style="color:#555">=</span>profile.get_stream(RS2_STREAM_DEPTH).as<span style="color:#555">&lt;</span>rs2<span style="color:#555">::</span>video_stream_profile<span style="color:#555">&gt;</span>();
+</span></span><span style="display:flex;"><span>    <span style="color:#069;font-weight:bold">auto</span> color_stream<span style="color:#555">=</span>profile.get_stream(RS2_STREAM_COLOR).as<span style="color:#555">&lt;</span>rs2<span style="color:#555">::</span>video_stream_profile<span style="color:#555">&gt;</span>();
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>    <span style="color:#09f;font-style:italic">//获取内参
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>    <span style="color:#069;font-weight:bold">const</span> <span style="color:#069;font-weight:bold">auto</span> intrinDepth<span style="color:#555">=</span>depth_stream.get_intrinsics();
+</span></span><span style="display:flex;"><span>    <span style="color:#069;font-weight:bold">const</span> <span style="color:#069;font-weight:bold">auto</span> intrinColor<span style="color:#555">=</span>color_stream.get_intrinsics();
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>    <span style="color:#09f;font-style:italic">//直接获取从深度摄像头坐标系到彩色摄像头坐标系的欧式变换矩阵
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>    <span style="color:#09f;font-style:italic">//auto  extrinDepth2Color=depth_stream.get_extrinsics_to(color_stream);
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>    rs2_extrinsics  extrinDepth2Color;
+</span></span><span style="display:flex;"><span>    rs2_error <span style="color:#555">*</span>error;
+</span></span><span style="display:flex;"><span>    rs2_get_extrinsics(depth_stream,color_stream,<span style="color:#555">&amp;</span>extrinDepth2Color,<span style="color:#555">&amp;</span>error);
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>    <span style="color:#09f;font-style:italic">//平面点定义
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>    <span style="color:#078;font-weight:bold">float</span> pd_uv[<span style="color:#f60">2</span>],pc_uv[<span style="color:#f60">2</span>];
+</span></span><span style="display:flex;"><span>    <span style="color:#09f;font-style:italic">//空间点定义
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>    <span style="color:#078;font-weight:bold">float</span> Pdc3[<span style="color:#f60">3</span>],Pcc3[<span style="color:#f60">3</span>];
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>    <span style="color:#09f;font-style:italic">//获取深度像素与现实单位比例（D435默认1毫米）
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>    <span style="color:#078;font-weight:bold">float</span> depth_scale <span style="color:#555">=</span> get_depth_scale(profile.get_device());
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic">//    uint16_t depth_max=0;
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic">//    for(int row=0;row&lt;depth.rows;row++){
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic">//        for(int col=0;col&lt;depth.cols;col++){
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic">//            if(depth_max&lt;depth.at&lt;uint16_t&gt;(row,col))
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic">//                depth_max=depth.at&lt;uint16_t&gt;(row,col);
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic">//        }
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic">//    }
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>    <span style="color:#078;font-weight:bold">int</span> y<span style="color:#555">=</span><span style="color:#f60">0</span>,x<span style="color:#555">=</span><span style="color:#f60">0</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#09f;font-style:italic">//初始化结果
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>    Mat result<span style="color:#555">=</span>Mat<span style="color:#555">::</span>zeros(color.rows,color.cols,CV_8UC3);
+</span></span><span style="display:flex;"><span>    <span style="color:#09f;font-style:italic">//对深度图像遍历
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>    <span style="color:#069;font-weight:bold">for</span>(<span style="color:#078;font-weight:bold">int</span> row<span style="color:#555">=</span><span style="color:#f60">0</span>;row<span style="color:#555">&lt;</span>depth.rows;row<span style="color:#555">++</span>){
+</span></span><span style="display:flex;"><span>        <span style="color:#069;font-weight:bold">for</span>(<span style="color:#078;font-weight:bold">int</span> col<span style="color:#555">=</span><span style="color:#f60">0</span>;col<span style="color:#555">&lt;</span>depth.cols;col<span style="color:#555">++</span>){
+</span></span><span style="display:flex;"><span>            <span style="color:#09f;font-style:italic">//将当前的(x,y)放入数组pd_uv，表示当前深度图的点
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>            pd_uv[<span style="color:#f60">0</span>]<span style="color:#555">=</span>col;
+</span></span><span style="display:flex;"><span>            pd_uv[<span style="color:#f60">1</span>]<span style="color:#555">=</span>row;
+</span></span><span style="display:flex;"><span>            <span style="color:#09f;font-style:italic">//取当前点对应的深度值
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>            <span style="color:#078;font-weight:bold">uint16_t</span> depth_value<span style="color:#555">=</span>depth.at<span style="color:#555">&lt;</span><span style="color:#078;font-weight:bold">uint16_t</span><span style="color:#555">&gt;</span>(row,col);
+</span></span><span style="display:flex;"><span>            <span style="color:#09f;font-style:italic">//换算到米
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>            <span style="color:#078;font-weight:bold">float</span> depth_m<span style="color:#555">=</span>depth_value<span style="color:#555">*</span>depth_scale;
+</span></span><span style="display:flex;"><span>            <span style="color:#09f;font-style:italic">//将深度图的像素点根据内参转换到深度摄像头坐标系下的三维点
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>            rs2_deproject_pixel_to_point(Pdc3,<span style="color:#555">&amp;</span>intrinDepth,pd_uv,depth_m);
+</span></span><span style="display:flex;"><span>            <span style="color:#09f;font-style:italic">//将深度摄像头坐标系的三维点转化到彩色摄像头坐标系下
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>            rs2_transform_point_to_point(Pcc3,<span style="color:#555">&amp;</span>extrinDepth2Color,Pdc3);
+</span></span><span style="display:flex;"><span>            <span style="color:#09f;font-style:italic">//将彩色摄像头坐标系下的深度三维点映射到二维平面上
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>            rs2_project_point_to_pixel(pc_uv,<span style="color:#555">&amp;</span>intrinColor,Pcc3);
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>            <span style="color:#09f;font-style:italic">//取得映射后的（u,v)
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>            x<span style="color:#555">=</span>(<span style="color:#078;font-weight:bold">int</span>)pc_uv[<span style="color:#f60">0</span>];
+</span></span><span style="display:flex;"><span>            y<span style="color:#555">=</span>(<span style="color:#078;font-weight:bold">int</span>)pc_uv[<span style="color:#f60">1</span>];
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic">//            if(x&lt;0||x&gt;color.cols)
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic">//                continue;
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic">//            if(y&lt;0||y&gt;color.rows)
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic">//                continue;
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>            <span style="color:#09f;font-style:italic">//最值限定
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>            x<span style="color:#555">=</span>x<span style="color:#555">&lt;</span><span style="color:#f60">0</span><span style="color:#555">?</span> <span style="color:#f60">0</span><span style="color:#555">:</span>x;
+</span></span><span style="display:flex;"><span>            x<span style="color:#555">=</span>x<span style="color:#555">&gt;</span>depth.cols<span style="color:#555">-</span><span style="color:#f60">1</span> <span style="color:#555">?</span> depth.cols<span style="color:#555">-</span><span style="color:#f60">1</span><span style="color:#555">:</span>x;
+</span></span><span style="display:flex;"><span>            y<span style="color:#555">=</span>y<span style="color:#555">&lt;</span><span style="color:#f60">0</span><span style="color:#555">?</span> <span style="color:#f60">0</span><span style="color:#555">:</span>y;
+</span></span><span style="display:flex;"><span>            y<span style="color:#555">=</span>y<span style="color:#555">&gt;</span>depth.rows<span style="color:#555">-</span><span style="color:#f60">1</span> <span style="color:#555">?</span> depth.rows<span style="color:#555">-</span><span style="color:#f60">1</span><span style="color:#555">:</span>y;
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>            <span style="color:#09f;font-style:italic">//将成功映射的点用彩色图对应点的RGB数据覆盖
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>            <span style="color:#069;font-weight:bold">for</span>(<span style="color:#078;font-weight:bold">int</span> k<span style="color:#555">=</span><span style="color:#f60">0</span>;k<span style="color:#555">&lt;</span><span style="color:#f60">3</span>;k<span style="color:#555">++</span>){
+</span></span><span style="display:flex;"><span>                <span style="color:#09f;font-style:italic">//这里设置了只显示1米距离内的东西
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>                <span style="color:#069;font-weight:bold">if</span>(depth_m<span style="color:#555">&lt;</span><span style="color:#f60">1</span>)
+</span></span><span style="display:flex;"><span>                result.at<span style="color:#555">&lt;</span>cv<span style="color:#555">::</span>Vec3b<span style="color:#555">&gt;</span>(y,x)[k]<span style="color:#555">=</span>
+</span></span><span style="display:flex;"><span>                        color.at<span style="color:#555">&lt;</span>cv<span style="color:#555">::</span>Vec3b<span style="color:#555">&gt;</span>(y,x)[k];
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#069;font-weight:bold">return</span> result;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><a href="https://blog.csdn.net/dieju8330/article/details/85300976" target="_blank" rel="noopener noreffer ">D435深度图片对齐到彩色图片</a></p>
+<p><a href="https://github.com/IntelRealSense/librealsense/issues/1189" target="_blank" rel="noopener noreffer ">More efficient way of aligning images</a></p>
+<p><a href="https://github.com/IntelRealSense/librealsense/issues/5030" target="_blank" rel="noopener noreffer ">Align to Depth produces lossy color image</a></p>
+<h1 id="转化为opencv-mat格式">转化为opencv Mat格式</h1>
+<p><strong>转化为opencv 格式的相机内参矩阵和畸变矩阵</strong></p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-1">1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-2">2</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-3">3</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-4">4</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-5">5</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span>cv<span style="color:#555">::</span>Mat intrinsicsd_D <span style="color:#555">=</span> (cv<span style="color:#555">::</span>Mat_<span style="color:#555">&lt;</span><span style="color:#078;font-weight:bold">double</span><span style="color:#555">&gt;</span>(<span style="color:#f60">3</span>, <span style="color:#f60">3</span>) <span style="color:#555">&lt;&lt;</span> depth_intrin.fx, <span style="color:#f60">0</span>, depth_intrin.ppx, <span style="color:#f60">0</span>, depth_intrin.fy,depth_intrin.ppy, <span style="color:#f60">0</span>, <span style="color:#f60">0</span>, <span style="color:#f60">1</span>);
+</span></span><span style="display:flex;"><span>cv<span style="color:#555">::</span>Mat distCoeffs_D <span style="color:#555">=</span> cv<span style="color:#555">::</span>Mat(<span style="color:#f60">1</span>, <span style="color:#f60">5</span>, CV_64FC1, depth_intrin.coeffs).clone();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>cv<span style="color:#555">::</span>Mat intrinsicsd_C <span style="color:#555">=</span> (cv<span style="color:#555">::</span>Mat_<span style="color:#555">&lt;</span><span style="color:#078;font-weight:bold">double</span><span style="color:#555">&gt;</span>(<span style="color:#f60">3</span>, <span style="color:#f60">3</span>) <span style="color:#555">&lt;&lt;</span> color_intrin.fx, <span style="color:#f60">0</span>, color_intrin.ppx, <span style="color:#f60">0</span>, color_intrin.fy,color_intrin.ppy, <span style="color:#f60">0</span>, <span style="color:#f60">0</span>, <span style="color:#f60">1</span>);
+</span></span><span style="display:flex;"><span>cv<span style="color:#555">::</span>Mat distCoeffs_C <span style="color:#555">=</span> cv<span style="color:#555">::</span>Mat(<span style="color:#f60">1</span>, <span style="color:#f60">5</span>, CV_64FC1, color_intrin.coeffs).clone();
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>相机的旋转向量和平移向量</strong></p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-1">1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-2">2</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-3">3</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-4">4</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-5">5</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span>cv<span style="color:#555">::</span>Mat R_D2C <span style="color:#555">=</span>  Mat(<span style="color:#f60">3</span>,<span style="color:#f60">3</span>,CV_64FC1,depth_extrin_to_color.rotation).clone();
+</span></span><span style="display:flex;"><span>cv<span style="color:#555">::</span>Mat T_D2C <span style="color:#555">=</span>  Mat(<span style="color:#f60">4</span>,<span style="color:#f60">1</span>,CV_64FC1,depth_extrin_to_color.translation).clone();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>cv<span style="color:#555">::</span>Mat R_C2D <span style="color:#555">=</span>  Mat(<span style="color:#f60">3</span>,<span style="color:#f60">3</span>,CV_64FC1,color_extrin_to_depth.rotation).clone();
+</span></span><span style="display:flex;"><span>cv<span style="color:#555">::</span>Mat T_C2D <span style="color:#555">=</span>  Mat(<span style="color:#f60">4</span>,<span style="color:#f60">1</span>,CV_64FC1,color_extrin_to_depth.translation).clone();
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-1"> 1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-2"> 2</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-3"> 3</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-4"> 4</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-5"> 5</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-6"> 6</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-7"> 7</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-8"> 8</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-9"> 9</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-10"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-10">10</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-11"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-11">11</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-12"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-12">12</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-13"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-13">13</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-14"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-14">14</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-15"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-15">15</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-16"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-16">16</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-17"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-17">17</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-18"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-18">18</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-19"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-19">19</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-20"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-20">20</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-21"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-21">21</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-22"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-22">22</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-23"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-23">23</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-24"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-24">24</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-25"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-25">25</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-26"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-26">26</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-27"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-27">27</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-28"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-28">28</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-29"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-29">29</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-30"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-30">30</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-31"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-31">31</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-32"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-32">32</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-33"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-33">33</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-34"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-34">34</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-35"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-35">35</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-36"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-36">36</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-37"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-37">37</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-38"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-38">38</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#99f">intrinsicsdD</span> : 
+</span></span><span style="display:flex;"><span> [<span style="color:#f60">641.8226318359375</span>, <span style="color:#f60">0</span>, <span style="color:#f60">637.7587890625</span>;
+</span></span><span style="display:flex;"><span> <span style="color:#f60">0</span>, <span style="color:#f60">641.8226318359375</span>, <span style="color:#f60">353.4434814453125</span>;
+</span></span><span style="display:flex;"><span> <span style="color:#f60">0</span>, <span style="color:#f60">0</span>, <span style="color:#f60">1</span>]
+</span></span><span style="display:flex;"><span><span style="color:#99f">distCoeffsD</span> : 
+</span></span><span style="display:flex;"><span> [<span style="color:#f60">0</span>, <span style="color:#f60">0</span>, <span style="color:#555">-</span><span style="color:#f60">2.889534818121034e+76</span>, <span style="color:#555">-</span><span style="color:#f60">2.889788802386637e+76</span>, <span style="color:#555">-</span><span style="color:#f60">1.833730888558527e-270</span>]
+</span></span><span style="display:flex;"><span><span style="color:#99f">intrinsicsdD</span> : 
+</span></span><span style="display:flex;"><span> [<span style="color:#f60">641.8226318359375</span>, <span style="color:#f60">0</span>, <span style="color:#f60">637.7587890625</span>;
+</span></span><span style="display:flex;"><span> <span style="color:#f60">0</span>, <span style="color:#f60">641.8226318359375</span>, <span style="color:#f60">353.4434814453125</span>;
+</span></span><span style="display:flex;"><span> <span style="color:#f60">0</span>, <span style="color:#f60">0</span>, <span style="color:#f60">1</span>]
+</span></span><span style="display:flex;"><span><span style="color:#99f">distCoeffsD</span> : 
+</span></span><span style="display:flex;"><span> [<span style="color:#f60">0</span>, <span style="color:#f60">0</span>, <span style="color:#555">-</span><span style="color:#f60">2.889534818121034e+76</span>, <span style="color:#555">-</span><span style="color:#f60">2.889788802386637e+76</span>, <span style="color:#555">-</span><span style="color:#f60">1.833730888558527e-270</span>]
+</span></span><span style="display:flex;"><span><span style="color:#99f">R</span> : 
+</span></span><span style="display:flex;"><span> [<span style="color:#555">-</span><span style="color:#f60">1.007959509014731e-27</span>, <span style="color:#f60">9.788559947358751e-28</span>, <span style="color:#555">-</span><span style="color:#f60">8.427343739731148e-22</span>;
+</span></span><span style="display:flex;"><span> <span style="color:#f60">8.42383379014226e-22</span>, <span style="color:#555">-</span><span style="color:#f60">1.027880253175563e-12</span>, <span style="color:#f60">1.666459052330406e-31</span>;
+</span></span><span style="display:flex;"><span> <span style="color:#f60">1.5278369701274e-311</span>, <span style="color:#f60">1.398529605097543e+18</span>, <span style="color:#f60">1.415899540474143e+20</span>]
+</span></span><span style="display:flex;"><span><span style="color:#99f">T</span> : 
+</span></span><span style="display:flex;"><span> [<span style="color:#f60">3.035833948987033e-36</span>;
+</span></span><span style="display:flex;"><span> <span style="color:#f60">2.716631590043863e-311</span>;
+</span></span><span style="display:flex;"><span> <span style="color:#f60">1.462199172142216e+20</span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#99f">Rl</span> : 
+</span></span><span style="display:flex;"><span> [<span style="color:#555">-</span><span style="color:#f60">2.076210961424182e-56</span>, <span style="color:#f60">0</span>, <span style="color:#555">-</span><span style="color:#f60">1</span>;
+</span></span><span style="display:flex;"><span> <span style="color:#f60">0</span>, <span style="color:#555">-</span><span style="color:#f60">1</span>, <span style="color:#f60">0</span>;
+</span></span><span style="display:flex;"><span> <span style="color:#555">-</span><span style="color:#f60">1</span>, <span style="color:#f60">0</span>, <span style="color:#f60">2.076210961424182e-56</span>]
+</span></span><span style="display:flex;"><span><span style="color:#99f">Pl</span> : 
+</span></span><span style="display:flex;"><span> [<span style="color:#f60">638.316162109375</span>, <span style="color:#f60">0</span>, <span style="color:#555">-</span>nan, <span style="color:#f60">0</span>;
+</span></span><span style="display:flex;"><span> <span style="color:#f60">0</span>, <span style="color:#f60">638.316162109375</span>, <span style="color:#555">-</span>nan, <span style="color:#f60">0</span>;
+</span></span><span style="display:flex;"><span> <span style="color:#f60">0</span>, <span style="color:#f60">0</span>, <span style="color:#f60">1</span>, <span style="color:#f60">0</span>]
+</span></span><span style="display:flex;"><span><span style="color:#99f">Rr</span> : 
+</span></span><span style="display:flex;"><span> [<span style="color:#555">-</span><span style="color:#f60">2.076210961424182e-56</span>, <span style="color:#f60">0</span>, <span style="color:#555">-</span><span style="color:#f60">1</span>;
+</span></span><span style="display:flex;"><span> <span style="color:#f60">0</span>, <span style="color:#555">-</span><span style="color:#f60">1</span>, <span style="color:#f60">0</span>;
+</span></span><span style="display:flex;"><span> <span style="color:#555">-</span><span style="color:#f60">1</span>, <span style="color:#f60">0</span>, <span style="color:#f60">2.076210961424182e-56</span>]
+</span></span><span style="display:flex;"><span><span style="color:#99f">Pr</span> : 
+</span></span><span style="display:flex;"><span> [<span style="color:#f60">638.316162109375</span>, <span style="color:#f60">0</span>, <span style="color:#555">-</span>nan, <span style="color:#555">-</span><span style="color:#f60">9.333453638013247e+22</span>;
+</span></span><span style="display:flex;"><span> <span style="color:#f60">0</span>, <span style="color:#f60">638.316162109375</span>, <span style="color:#555">-</span>nan, <span style="color:#f60">0</span>;
+</span></span><span style="display:flex;"><span> <span style="color:#f60">0</span>, <span style="color:#f60">0</span>, <span style="color:#f60">1</span>, <span style="color:#f60">0</span>]
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-1"> 1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-2"> 2</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-3"> 3</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-4"> 4</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-5"> 5</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-6"> 6</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-7"> 7</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-8"> 8</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-9"> 9</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-10"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-10">10</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-11"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-11">11</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-12"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-12">12</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-13"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-13">13</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-14"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-14">14</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-15"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-15">15</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-16"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-16">16</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-17"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-17">17</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-18"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-18">18</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-19"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-19">19</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span>rs2_intrinsics depth_intrin <span style="color:#555">=</span> m_depth_profile.as<span style="color:#555">&lt;</span>rs2<span style="color:#555">::</span>video_stream_profile<span style="color:#555">&gt;</span>().get_intrinsics();
+</span></span><span style="display:flex;"><span>cv<span style="color:#555">::</span>Mat intrinsicsdD <span style="color:#555">=</span> (cv<span style="color:#555">::</span>Mat_<span style="color:#555">&lt;</span><span style="color:#078;font-weight:bold">double</span><span style="color:#555">&gt;</span>(<span style="color:#f60">3</span>, <span style="color:#f60">3</span>) <span style="color:#555">&lt;&lt;</span> depth_intrin.fx, <span style="color:#f60">0</span>, depth_intrin.ppx, <span style="color:#f60">0</span>, depth_intrin.fy,depth_intrin.ppy, <span style="color:#f60">0</span>, <span style="color:#f60">0</span>, <span style="color:#f60">1</span>);
+</span></span><span style="display:flex;"><span>cv<span style="color:#555">::</span>Mat distCoeffsD <span style="color:#555">=</span> cv<span style="color:#555">::</span>Mat(<span style="color:#f60">1</span>, <span style="color:#f60">5</span>, CV_64FC1, depth_intrin.coeffs).clone();
+</span></span><span style="display:flex;"><span>rs2_extrinsics depth_extrin_to_color <span style="color:#555">=</span> m_depth_profile.as<span style="color:#555">&lt;</span>rs2<span style="color:#555">::</span>video_stream_profile<span style="color:#555">&gt;</span>().get_extrinsics_to(m_color_profile);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>rs2_intrinsics color_intrin <span style="color:#555">=</span> m_color_profile.as<span style="color:#555">&lt;</span>rs2<span style="color:#555">::</span>video_stream_profile<span style="color:#555">&gt;</span>().get_intrinsics();
+</span></span><span style="display:flex;"><span>cv<span style="color:#555">::</span>Mat intrinsicsdC <span style="color:#555">=</span> (cv<span style="color:#555">::</span>Mat_<span style="color:#555">&lt;</span><span style="color:#078;font-weight:bold">double</span><span style="color:#555">&gt;</span>(<span style="color:#f60">3</span>, <span style="color:#f60">3</span>) <span style="color:#555">&lt;&lt;</span> color_intrin.fx, <span style="color:#f60">0</span>, color_intrin.ppx, <span style="color:#f60">0</span>, color_intrin.fy,color_intrin.ppy, <span style="color:#f60">0</span>, <span style="color:#f60">0</span>, <span style="color:#f60">1</span>);
+</span></span><span style="display:flex;"><span>cv<span style="color:#555">::</span>Mat distCoeffsC <span style="color:#555">=</span> cv<span style="color:#555">::</span>Mat(<span style="color:#f60">1</span>, <span style="color:#f60">5</span>, CV_64FC1, color_intrin.coeffs).clone();
+</span></span><span style="display:flex;"><span>rs2_extrinsics color_extrin_to_depth <span style="color:#555">=</span> m_color_profile.as<span style="color:#555">&lt;</span>rs2<span style="color:#555">::</span>video_stream_profile<span style="color:#555">&gt;</span>().get_extrinsics_to(m_depth_profile);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>cv<span style="color:#555">::</span>Mat R <span style="color:#555">=</span>  Mat(<span style="color:#f60">3</span>,<span style="color:#f60">3</span>,CV_64FC1,depth_extrin_to_color.rotation).clone();
+</span></span><span style="display:flex;"><span>cv<span style="color:#555">::</span>Mat T <span style="color:#555">=</span>  Mat(<span style="color:#f60">3</span>,<span style="color:#f60">1</span>,CV_64FC1,depth_extrin_to_color.translation).clone();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Mat Rl, Rr, Pl, Pr, Q;  
+</span></span><span style="display:flex;"><span>cv<span style="color:#555">::</span>stereoRectify(intrinsicsdD, distCoeffsD, intrinsicsdC, distCoeffsC, cv<span style="color:#555">::</span>Size(width_org, hight_org), R, T, Rl, Rr, Pl, Pr, Q);
+</span></span><span style="display:flex;"><span>cv<span style="color:#555">::</span>initUndistortRectifyMap(intrinsicsdD, distCoeffsD, Rl, Pl, cv<span style="color:#555">::</span>Size(width_org, hight_org), CV_32FC1, map1_, map2_);  
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>cv<span style="color:#555">::</span>remap(curr_depth_org,curr_depth_org_temp,xMapArray,yMapArray,cv<span style="color:#555">::</span>INTER_NEAREST);
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-1"> 1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-2"> 2</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-3"> 3</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-4"> 4</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-5"> 5</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-6"> 6</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-7"> 7</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-8"> 8</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-9"> 9</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-10"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-10">10</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-11"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-11">11</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-12"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-12">12</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-13"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-13">13</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-14"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-14">14</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-15"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-15">15</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-16"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-16">16</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-17"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-17">17</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-18"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-18">18</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-19"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-19">19</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-20"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-20">20</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-21"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-21">21</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-22"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-22">22</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-23"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-23">23</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-24"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-24">24</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>void RealsenseCamera::align_depth_to_color(const rs2::stream_profile&amp; depth_profile , const rs2::stream_profile&amp; color_profile,uint16_t *indepth,uint16_t *outdepth)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    auto d_pixels = indepth;
+</span></span><span style="display:flex;"><span>    auto out_d_pixels = outdepth;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    auto d_intrin = depth_profile.as&lt;rs2::video_stream_profile&gt;().get_intrinsics();
+</span></span><span style="display:flex;"><span>    auto color_intrin = color_profile.as&lt;rs2::video_stream_profile&gt;().get_intrinsics();
+</span></span><span style="display:flex;"><span>    auto d_to_color = depth_profile.as&lt;rs2::video_stream_profile&gt;().get_extrinsics_to(color_profile);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    // align_images(d_intrin, d_to_color, color_intrin,                            \
+</span></span><span style="display:flex;"><span>    //     [d_pixels](int z_pixel_index) { return d_pixels[z_pixel_index]; },      \
+</span></span><span style="display:flex;"><span>    //     [out_d_pixels, d_pixels](int z_pixel_index, int other_pixel_index){out_d_pixels[other_pixel_index] = out_d_pixels[other_pixel_index] ? ( std::min((int)out_d_pixels[other_pixel_index], (int)d_pixels[z_pixel_index])) : (d_pixels[z_pixel_index]);},\
+</span></span><span style="display:flex;"><span>    //     m_cols_,m_rows_);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    // align_images(d_intrin, d_to_color, color_intrin,                            \
+</span></span><span style="display:flex;"><span>    //     [d_pixels](int z_pixel_index) { return d_pixels[z_pixel_index]; },      \
+</span></span><span style="display:flex;"><span>    //     [out_d_pixels, d_pixels](int z_pixel_index, int other_pixel_index){out_d_pixels[other_pixel_index] = out_d_pixels[other_pixel_index] ? ( std::min((int)out_d_pixels[other_pixel_index], (int)d_pixels[z_pixel_index])) : (d_pixels[z_pixel_index]);});
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    float z_scale = 0.001;
+</span></span><span style="display:flex;"><span>    align_images(d_intrin, d_to_color, color_intrin,                            \
+</span></span><span style="display:flex;"><span>    [d_pixels, z_scale](int z_pixel_index) { return z_scale * d_pixels[z_pixel_index]; },      \
+</span></span><span style="display:flex;"><span>    [out_d_pixels, d_pixels](int z_pixel_index, int other_pixel_index){out_d_pixels[other_pixel_index] = out_d_pixels[other_pixel_index] ? ( std::min((int)out_d_pixels[other_pixel_index], (int)d_pixels[z_pixel_index])) : (d_pixels[z_pixel_index]);});
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-1"> 1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-2"> 2</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-3"> 3</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-4"> 4</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-5"> 5</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-6"> 6</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-7"> 7</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-8"> 8</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-9"> 9</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-10"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-10">10</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-11"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-11">11</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>    // if (once){
+</span></span><span style="display:flex;"><span>    //     cv::imwrite(&#34;/home/deepglint/zyh/zyh_libra/release/aarch64-rk3399pro-linux/curr_depth_org.jpg&#34;,curr_depth_org);
+</span></span><span style="display:flex;"><span>    //     // cv::imwrite(&#34;/home/deepglint/zyh/zyh_libra/release/aarch64-rk3399pro-linux/curr_depth_org_temp.jpg&#34;,curr_depth_org_temp);
+</span></span><span style="display:flex;"><span>    //     cv::imwrite(&#34;/home/deepglint/zyh/zyh_libra/release/aarch64-rk3399pro-linux/curr_color_.jpg&#34;,curr_color_lores);
+</span></span><span style="display:flex;"><span>    //     cv::imwrite(&#34;/home/deepglint/zyh/zyh_libra/release/aarch64-rk3399pro-linux/curr_depth_.jpg&#34;,curr_depth_lores);
+</span></span><span style="display:flex;"><span>    //     cv::imwrite(&#34;/home/deepglint/zyh/zyh_libra/release/aarch64-rk3399pro-linux/curr_depth_lores_temp.jpg&#34;,curr_depth_lores_temp);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>    //     // cv::imwrite(&#34;/home/deepglint/zyh/zyh_libra/release/aarch64-rk3399pro-linux/curr_color_old.jpg&#34;,curr_color_lores);
+</span></span><span style="display:flex;"><span>    //     // cv::imwrite(&#34;/home/deepglint/zyh/zyh_libra/release/aarch64-rk3399pro-linux/curr_depth_old.jpg&#34;,curr_depth_lores);
+</span></span><span style="display:flex;"><span>    // }
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-9-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-9-1">1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-9-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-9-2">2</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-9-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-9-3">3</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-9-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-9-4">4</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-9-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-9-5">5</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>    tbb::tick_count t0 = tbb::tick_count::now();
+</span></span><span style="display:flex;"><span>    // Use homography to warp image
+</span></span><span style="display:flex;"><span>    cv::warpPerspective(curr_depth_lores, curr_depth_lores_align, homography, curr_depth_lores.size(),INTER_NEAREST);
+</span></span><span style="display:flex;"><span>    float interval = 1000 * (tbb::tick_count::now() - t0).seconds();
+</span></span><span style="display:flex;"><span>    printf(&#34; --------  %.4f \n&#34;, interval);
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="realsense-对齐流程">realsense 对齐流程</h1>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-1">1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-2">2</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-3">3</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-4">4</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-5">5</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-6">6</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span>std<span style="color:#555">::</span>shared_ptr<span style="color:#555">&lt;</span>rs2<span style="color:#555">::</span>align<span style="color:#555">&gt;</span> align_to_color;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>rs2<span style="color:#555">::</span>frameset frameset;
+</span></span><span style="display:flex;"><span>frameset <span style="color:#555">=</span> pipe.wait_for_frames();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>frameset <span style="color:#555">=</span> align_to_color<span style="color:#555">-&gt;</span>process(frameset);    
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-11-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-11-1">1</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>filter::process(frames);
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-1">1</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>rs2_process_frame(get(), ptr, &amp;e);
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-13-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-13-1">1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-13-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-13-2">2</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#069;font-weight:bold">auto</span> depth <span style="color:#555">=</span> frames.first_or_default(RS2_STREAM_DEPTH, RS2_FORMAT_Z16).as<span style="color:#555">&lt;</span>rs2<span style="color:#555">::</span>depth_frame<span style="color:#555">&gt;</span>();
+</span></span><span style="display:flex;"><span>_depth_scale <span style="color:#555">=</span> ((librealsense<span style="color:#555">::</span>depth_frame<span style="color:#555">*</span>)depth.get())<span style="color:#555">-&gt;</span>get_units();
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-14-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-14-1">1</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span>align_z_to_other(aligned, from, to_profile, _depth_scale);
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-15-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-15-1"> 1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-15-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-15-2"> 2</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-15-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-15-3"> 3</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-15-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-15-4"> 4</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-15-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-15-5"> 5</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-15-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-15-6"> 6</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-15-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-15-7"> 7</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-15-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-15-8"> 8</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-15-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-15-9"> 9</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-15-10"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-15-10">10</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-15-11"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-15-11">11</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-15-12"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-15-12">12</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-15-13"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-15-13">13</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-15-14"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-15-14">14</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-15-15"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-15-15">15</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-15-16"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-15-16">16</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-15-17"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-15-17">17</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-15-18"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-15-18">18</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-15-19"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-15-19">19</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-15-20"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-15-20">20</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-15-21"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-15-21">21</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-15-22"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-15-22">22</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-15-23"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-15-23">23</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-15-24"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-15-24">24</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-15-25"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-15-25">25</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#078;font-weight:bold">void</span> align<span style="color:#555">::</span>align_z_to_other(rs2<span style="color:#555">::</span>video_frame<span style="color:#555">&amp;</span> aligned, 
+</span></span><span style="display:flex;"><span>                             <span style="color:#069;font-weight:bold">const</span> rs2<span style="color:#555">::</span>video_frame<span style="color:#555">&amp;</span> depth, <span style="color:#069;font-weight:bold">const</span> rs2<span style="color:#555">::</span>video_stream_profile<span style="color:#555">&amp;</span> other_profile, <span style="color:#078;font-weight:bold">float</span> z_scale)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    byte<span style="color:#555">*</span> aligned_data <span style="color:#555">=</span> <span style="color:#069;font-weight:bold">reinterpret_cast</span><span style="color:#555">&lt;</span>byte<span style="color:#555">*&gt;</span>(<span style="color:#069;font-weight:bold">const_cast</span><span style="color:#555">&lt;</span><span style="color:#078;font-weight:bold">void</span><span style="color:#555">*&gt;</span>(aligned.get_data()));
+</span></span><span style="display:flex;"><span>    <span style="color:#069;font-weight:bold">auto</span> aligned_profile <span style="color:#555">=</span> aligned.get_profile().as<span style="color:#555">&lt;</span>rs2<span style="color:#555">::</span>video_stream_profile<span style="color:#555">&gt;</span>();
+</span></span><span style="display:flex;"><span>    memset(aligned_data, <span style="color:#f60">0</span>, aligned_profile.height() <span style="color:#555">*</span> aligned_profile.width() <span style="color:#555">*</span> aligned.get_bytes_per_pixel());
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#069;font-weight:bold">auto</span> depth_profile <span style="color:#555">=</span> depth.get_profile().as<span style="color:#555">&lt;</span>rs2<span style="color:#555">::</span>video_stream_profile<span style="color:#555">&gt;</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#069;font-weight:bold">auto</span> z_intrin <span style="color:#555">=</span> depth_profile.get_intrinsics();
+</span></span><span style="display:flex;"><span>    <span style="color:#069;font-weight:bold">auto</span> other_intrin <span style="color:#555">=</span> other_profile.get_intrinsics();
+</span></span><span style="display:flex;"><span>    <span style="color:#069;font-weight:bold">auto</span> z_to_other <span style="color:#555">=</span> depth_profile.get_extrinsics_to(other_profile);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#069;font-weight:bold">auto</span> z_pixels <span style="color:#555">=</span> <span style="color:#069;font-weight:bold">reinterpret_cast</span><span style="color:#555">&lt;</span><span style="color:#069;font-weight:bold">const</span> <span style="color:#078;font-weight:bold">uint16_t</span><span style="color:#555">*&gt;</span>(depth.get_data());
+</span></span><span style="display:flex;"><span>    <span style="color:#069;font-weight:bold">auto</span> out_z <span style="color:#555">=</span> (<span style="color:#078;font-weight:bold">uint16_t</span> <span style="color:#555">*</span>)(aligned_data);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    align_images(z_intrin, z_to_other, other_intrin,
+</span></span><span style="display:flex;"><span>                 [z_pixels, z_scale](<span style="color:#078;font-weight:bold">int</span> z_pixel_index) { <span style="color:#069;font-weight:bold">return</span> z_scale <span style="color:#555">*</span> z_pixels[z_pixel_index]; },
+</span></span><span style="display:flex;"><span>                 [out_z, z_pixels](<span style="color:#078;font-weight:bold">int</span> z_pixel_index, <span style="color:#078;font-weight:bold">int</span> other_pixel_index)
+</span></span><span style="display:flex;"><span>                 {
+</span></span><span style="display:flex;"><span>                     out_z[other_pixel_index] <span style="color:#555">=</span> out_z[other_pixel_index] <span style="color:#555">?</span>
+</span></span><span style="display:flex;"><span>                         std<span style="color:#555">::</span>min((<span style="color:#078;font-weight:bold">int</span>)out_z[other_pixel_index], (<span style="color:#078;font-weight:bold">int</span>)z_pixels[z_pixel_index]) <span style="color:#555">:</span>
+</span></span><span style="display:flex;"><span>                     z_pixels[z_pixel_index];
+</span></span><span style="display:flex;"><span>                 });
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-16-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-16-1"> 1</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-16-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-16-2"> 2</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-16-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-16-3"> 3</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-16-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-16-4"> 4</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-16-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-16-5"> 5</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-16-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-16-6"> 6</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-16-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-16-7"> 7</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-16-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-16-8"> 8</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-16-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-16-9"> 9</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-16-10"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-16-10">10</a>
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-16-11"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-16-11">11</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span>    <span style="color:#069;font-weight:bold">static</span> <span style="color:#078;font-weight:bold">bool</span> writeimg <span style="color:#555">=</span> <span style="color:#366">true</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#069;font-weight:bold">if</span> (writeimg){
+</span></span><span style="display:flex;"><span><span style="color:#099"># if REALSENCE_ALIGN
+</span></span></span><span style="display:flex;"><span><span style="color:#099"></span>        cv<span style="color:#555">::</span>imwrite(<span style="color:#c30">&#34;/home/deepglint/zyh/zyh_libra/release/aarch64-rk3399pro-linux/color_realsence.jpg&#34;</span>,curr_color_lores);
+</span></span><span style="display:flex;"><span>        cv<span style="color:#555">::</span>imwrite(<span style="color:#c30">&#34;/home/deepglint/zyh/zyh_libra/release/aarch64-rk3399pro-linux/depth_align_realsence.jpg&#34;</span>,curr_depth_lores_align);
+</span></span><span style="display:flex;"><span><span style="color:#099">#else
+</span></span></span><span style="display:flex;"><span><span style="color:#099"></span>        cv<span style="color:#555">::</span>imwrite(<span style="color:#c30">&#34;/home/deepglint/zyh/zyh_libra/release/aarch64-rk3399pro-linux/color_opencv.jpg&#34;</span>,curr_color_lores);
+</span></span><span style="display:flex;"><span>        cv<span style="color:#555">::</span>imwrite(<span style="color:#c30">&#34;/home/deepglint/zyh/zyh_libra/release/aarch64-rk3399pro-linux/depth_align_opencv.jpg&#34;</span>,curr_depth_lores_align);
+</span></span><span style="display:flex;"><span><span style="color:#099">#endif
+</span></span></span><span style="display:flex;"><span><span style="color:#099"></span>    }
+</span></span><span style="display:flex;"><span>    once <span style="color:#555">=</span> <span style="color:#366">false</span>;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>points1 ,points2:</p>
+<p>homography :
+[0.9783506973455497, -0.003518269926918195, 14.96135699407099;
+-0.0004602924762779034, 0.9741223762143064, 16.69589351807111;
+6.57807138529927e-07, -7.03827767458266e-06, 1]</p>
+<p>points2 , points1 :</p>
+<p>homography :
+[1.021281290759013, 0.002739759630768195, -14.96440533526881;
+0.0004858818482422798, 1.025665029417736, -17.1042255312311;
+-1.068779611668291e-06, 5.619754840876425e-06, 1]</p>
+<p><a href="https://github.com/mickeyouyou/realsenseOnCyber/blob/master/realsense_component.cc" target="_blank" rel="noopener noreffer ">https://github.com/mickeyouyou/realsenseOnCyber/blob/master/realsense_component.cc</a></p>
+<p><a href="https://blog.csdn.net/dieju8330/article/details/85346454" target="_blank" rel="noopener noreffer ">https://blog.csdn.net/dieju8330/article/details/85346454</a></p>
+<p><a href="https://docs.opencv.org/3.4/d9/d0c/group__calib3d.html#ga617b1685d4059c6040827800e72ad2b6" target="_blank" rel="noopener noreffer ">https://docs.opencv.org/3.4/d9/d0c/group__calib3d.html#ga617b1685d4059c6040827800e72ad2b6</a></p>
+<p><a href="https://github.com/IntelRealSense/librealsense/issues/1189" target="_blank" rel="noopener noreffer ">https://github.com/IntelRealSense/librealsense/issues/1189</a></p>
+<p>rs2_deproject_pixel_to_point
+rs2_transform_point_to_point
+rs2_project_point_to_pixel</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2023-01-30</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://zhangyuhu.github.io/posts/computer_vision/camera/stereocamera/realsense/realsensed450%E6%B7%B1%E5%BA%A6%E5%AF%B9%E9%BD%90/" data-title="camera:realsense(D450)深度对齐优化" data-hashtags="camera"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://zhangyuhu.github.io/posts/computer_vision/camera/stereocamera/realsense/realsensed450%E6%B7%B1%E5%BA%A6%E5%AF%B9%E9%BD%90/" data-hashtag="camera"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://zhangyuhu.github.io/posts/computer_vision/camera/stereocamera/realsense/realsensed450%E6%B7%B1%E5%BA%A6%E5%AF%B9%E9%BD%90/" data-title="camera:realsense(D450)深度对齐优化"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://zhangyuhu.github.io/posts/computer_vision/camera/stereocamera/realsense/realsensed450%E6%B7%B1%E5%BA%A6%E5%AF%B9%E9%BD%90/" data-title="camera:realsense(D450)深度对齐优化"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://zhangyuhu.github.io/posts/computer_vision/camera/stereocamera/realsense/realsensed450%E6%B7%B1%E5%BA%A6%E5%AF%B9%E9%BD%90/" data-title="camera:realsense(D450)深度对齐优化" data-ralateuid="ji"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/camera/">camera</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/computer_vision/camera/cameracalibration/%E5%8D%95%E7%9B%AE%E7%9B%B8%E6%9C%BA%E6%A0%87%E5%AE%9A/" class="prev" rel="prev" title="camera:单目相机标定"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>camera:单目相机标定</a>
+            <a href="/posts/computer_vision/deeplearning/01-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BAdocker/" class="next" rel="next" title="DL:深度学习开发环境搭建(docker)">DL:深度学习开发环境搭建(docker)<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="giscus" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://giscus.app">Giscus</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">为天地立心,为生民立命,为往圣继绝学,为万世开太平</div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://zhangyuhu.github.io/" target="_blank">zhangyuhu</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="http://creativecommons.org/licenses/by/4.0/" target="_blank">知识共享署名 4.0 国际许可协议</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/css/lightgallery-bundle.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/twemoji@14.0.2/dist/twemoji.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/lightgallery.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/thumbnail/lg-thumbnail.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/zoom/lg-zoom.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@8.6.0/dist/index.umd.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":100},"comment":{"giscus":{"category":"Comments","categoryId":"DIC_kwDOIx2Cjs4CTnUX","darkTheme":"dark","emitMetadata":"0","inputPosition":"bottom","lang":"en","lazyLoading":false,"lightTheme":"light","mapping":"pathname","reactionsEnabled":"1","repo":"zhangyuhu/zhangyuhu.github.io","repoId":"R_kgDOIx2Cjg"}},"data":{"id-1":"HOME","id-2":"HOME"},"lightgallery":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"},"twemoji":true,"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.2970a33d719df7cd89cebf586152b32a8ed30012227fa81b44282950146e0f595d1c733779e4d423dda1004bdcf707ee64d0fadc3d21229cd66b960788f84bdb.js" integrity="sha512-KXCjPXGd982Jzr9YYVKzKo7TABIif6gbRCgpUBRuD1ldHHM3eeTUI92hAEvc9wfuZND63D0hIpzWa5YHiPhL2w=="></script></body>
+</html>
