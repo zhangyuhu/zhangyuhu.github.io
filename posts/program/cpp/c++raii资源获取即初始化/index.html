@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
         <title>C&#43;&#43;:RAII(资源获取即初始化) - 这是我的网站</title><meta name="Description" content="这是[zhangyuhu]的网站"><meta property="og:title" content="C&#43;&#43;:RAII(资源获取即初始化)" />
-<meta property="og:description" content="本文采用知识共享署名 4.0 国际许可协议进行许可，转载时请注明原文链接，图片在使用时请保留全部内容，可适当缩放并在引用处附上图片所在的文章链接。 简" />
+<meta property="og:description" content="" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://zhangyuhu.github.io/posts/program/cpp/c&#43;&#43;raii%E8%B5%84%E6%BA%90%E8%8E%B7%E5%8F%96%E5%8D%B3%E5%88%9D%E5%A7%8B%E5%8C%96/" /><meta property="og:image" content="https://zhangyuhu.github.io/logo.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2023-01-18T17:10:42+08:00" />
@@ -14,7 +14,7 @@
 <meta name="twitter:image" content="https://zhangyuhu.github.io/logo.png"/>
 
 <meta name="twitter:title" content="C&#43;&#43;:RAII(资源获取即初始化)"/>
-<meta name="twitter:description" content="本文采用知识共享署名 4.0 国际许可协议进行许可，转载时请注明原文链接，图片在使用时请保留全部内容，可适当缩放并在引用处附上图片所在的文章链接。 简"/>
+<meta name="twitter:description" content=""/>
 <meta name="application-name" content="我的网站">
 <meta name="apple-mobile-web-app-title" content="我的网站"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -297,8 +297,7 @@ C++的语言机制保证了，当一个对象创建的时候，自动调用构�
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>在创建std::lock_guard对象的时候，会对std::mutex对象进行lock，当std::lock_guard对象在超出作用域时，会自动std::mutex对象进行解锁，这样的话，就不用担心代码异常造成的线程死锁。</p>
-</div><div class="post-footer" id="post-footer">
+</div><p>在创建std::lock_guard对象的时候，会对std::mutex对象进行lock，当std::lock_guard对象在超出作用域时，会自动std::mutex对象进行解锁，这样的话，就不用担心代码异常造成的线程死锁。</p></div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">

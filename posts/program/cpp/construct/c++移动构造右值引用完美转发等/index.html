@@ -872,8 +872,7 @@
 </div><p>也就是说返回值会被直接构造在调用者的栈上，少了一次拷贝操作，这种优化被称为 Named Return Value Optimization（NRVO）。</p>
 <h2 id="移动和-nrvo">移动和 NRVO</h2>
 <p>C++11 开始，NRVO 仍可以发生，但在没有 NRVO 的情况下，编译器将试图把本地对象移动出去，而不是拷贝出去。</p>
-<p>这一移动行为不需要程序员手工用 std::move 进行干预，使用 std::move 对于移动行为没有帮助，反而会影响返回值优化，因为这种情况下，你返回的并不是局部对象，而是局部对象的引用。</p>
-</div><div class="post-footer" id="post-footer">
+<p>这一移动行为不需要程序员手工用 std::move 进行干预，使用 std::move 对于移动行为没有帮助，反而会影响返回值优化，因为这种情况下，你返回的并不是局部对象，而是局部对象的引用。</p></div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
