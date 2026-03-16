@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>LinuxSys:动态链接 - 这是我的网站</title><meta name="Description" content="动态链接介绍"><meta property="og:title" content="LinuxSys:动态链接" />
+<meta property="og:description" content="动态链接介绍" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zhangyuhu.github.io/posts/basic_knowledge/linuxsys/%E5%8A%A8%E6%80%81%E9%93%BE%E6%8E%A5/" /><meta property="og:image" content="https://zhangyuhu.github.io/logo.png" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2026-03-16T13:52:52+08:00" />
+<meta property="article:modified_time" content="2026-03-16T13:11:52+08:00" /><meta property="og:site_name" content="我的网站" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://zhangyuhu.github.io/logo.png" /><meta name="twitter:title" content="LinuxSys:动态链接"/>
+<meta name="twitter:description" content="动态链接介绍"/>
+<meta name="application-name" content="我的网站">
+<meta name="apple-mobile-web-app-title" content="我的网站"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://zhangyuhu.github.io/posts/basic_knowledge/linuxsys/%E5%8A%A8%E6%80%81%E9%93%BE%E6%8E%A5/" /><link rel="prev" href="https://zhangyuhu.github.io/posts/computer_vision/slam/2026_slam_%E8%B0%83%E7%A0%94%E6%8A%A5%E5%91%8A/" /><link rel="next" href="https://zhangyuhu.github.io/posts/basic_knowledge/linuxsys/usb/" /><link rel="stylesheet" href="/css/style.min.d09a08388620d07592fcb288b74e9f4434a352d4869011bd6c06619079103da00fcccceb4fa6fce14315bef50c9be97c6bc29582e3968d9521c60ef89c6de806.css" integrity="sha512-0JoIOIYg0HWS/LKIt06fRDSjUtSGkBG9bAZhkHkQPaAPzMzrT6b84UMVvvUMm+l8a8KVguOWjZUhxg74nG3oBg=="><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "LinuxSys:动态链接",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/zhangyuhu.github.io\/posts\/basic_knowledge\/linuxsys\/%E5%8A%A8%E6%80%81%E9%93%BE%E6%8E%A5\/"
+        },"image": [{
+                            "@type": "ImageObject",
+                            "url": "https:\/\/zhangyuhu.github.io\/images\/Apple-Devices-Preview.png",
+                            "width":  3200 ,
+                            "height":  2048 
+                        }],"genre": "posts","keywords": "Linux, 动态链接, GOT, PLT","wordcount":  1314 ,
+        "url": "https:\/\/zhangyuhu.github.io\/posts\/basic_knowledge\/linuxsys\/%E5%8A%A8%E6%80%81%E9%93%BE%E6%8E%A5\/","datePublished": "2026-03-16T13:52:52+08:00","dateModified": "2026-03-16T13:11:52+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "zhangyuhu"
+            },"description": "动态链接介绍"
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="这是我的网站"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/" title="文章"><i class='fas fa-archive fa-fw fa-sm'></i> 文章 </a><a class="menu-item" href="/tags/"><i class='fas fa-tags fa-fw fa-sm'></i> 标签 </a><a class="menu-item" href="/categories/"><i class='fas fa-th fa-fw fa-sm'></i> 分类 </a><a class="menu-item" href="/about/"><i class='fas fa-user-tie fa-fw fa-sm'></i> 关于 </a><a class="menu-item" href="/tool/"><i class='fas fa-cube fa-fw fa-sm'></i> 工具箱 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="这是我的网站"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="文章"><i class='fas fa-archive fa-fw fa-sm'></i>文章</a><a class="menu-item" href="/tags/" title=""><i class='fas fa-tags fa-fw fa-sm'></i>标签</a><a class="menu-item" href="/categories/" title=""><i class='fas fa-th fa-fw fa-sm'></i>分类</a><a class="menu-item" href="/about/" title=""><i class='fas fa-user-tie fa-fw fa-sm'></i>关于</a><a class="menu-item" href="/tool/" title=""><i class='fas fa-cube fa-fw fa-sm'></i>工具箱</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">LinuxSys:动态链接</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://zhangyuhu.github.io/" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>zhangyuhu</a></span>&nbsp;<span class="post-category">included in <a href="/categories/linuxsys/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>LinuxSys</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2026-03-16">2026-03-16</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1314 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;3 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#gotglobal-offset-table">GOT（Global Offset Table）</a>
+          <ul>
+            <li><a href="#功能">功能：</a></li>
+            <li><a href="#特点">特点：</a></li>
+          </ul>
+        </li>
+        <li><a href="#pltprocedure-linkage-table">PLT（Procedure Linkage Table）</a>
+          <ul>
+            <li><a href="#功能-1">功能：</a></li>
+            <li><a href="#工作流程以调用-printfplt-为例">工作流程（以调用 <code>printf@plt</code> 为例）：</a></li>
+          </ul>
+        </li>
+        <li><a href="#关键cp-覆盖写-vs-rm--cp">关键：<code>cp</code> 覆盖写 vs <code>rm + cp</code></a>
+          <ul>
+            <li><a href="#情况1直接-cp-newso-oldso危险">情况1：直接 <code>cp new.so old.so</code>（危险！）</a></li>
+            <li><a href="#情况2先-rm-oldso再-cp-newso-oldso安全">情况2：先 <code>rm old.so</code>，再 <code>cp new.so old.so</code>（安全！）</a></li>
+          </ul>
+        </li>
+        <li><a href="#为什么-got-表会被破坏">为什么 GOT 表会被破坏？</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><blockquote>
+<p>本文采用<a href="http://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreffer ">知识共享署名 4.0 国际许可协议</a>进行许可，转载时请注明原文链接，图片在使用时请保留全部内容，可适当缩放并在引用处附上图片所在的文章链接。</p>
+</blockquote>
+<p>[TOC]</p>
+<p>PLT(Procedure Linkage Table 过程链接表)及GOT(Global Offset Table 全局偏移表)</p>
+<h2 id="gotglobal-offset-table">GOT（Global Offset Table）</h2>
+<h3 id="功能">功能：</h3>
+<p>GOT 是一个<strong>数据表</strong>，存储了所有<strong>外部符号</strong>（包括函数和全局变量）在运行时的实际地址。</p>
+<h3 id="特点">特点：</h3>
+<ul>
+<li>每个动态链接的 ELF 可执行文件或共享库都有自己的 GOT；</li>
+<li>GOT 在程序加载时由动态链接器（如 ld-linux.so）填充；</li>
+<li>GOT 的内容在运行时可写（早期版本），现代系统通常将其分为 <code>.got</code>（只读，如 TLS 相关）和 <code>.got.plt</code>（可写，用于函数地址）；</li>
+<li>对于函数调用，GOT 中保存的是该函数的<strong>跳转目标地址</strong>。</li>
+</ul>
+<h2 id="pltprocedure-linkage-table">PLT（Procedure Linkage Table）</h2>
+<h3 id="功能-1">功能：</h3>
+<p>PLT 是一段<strong>代码片段</strong>，用于实现对外部函数的<strong>间接跳转</strong>。它充当“跳板”，首次调用时触发动态链接器解析函数地址，后续调用直接跳转。</p>
+<h3 id="工作流程以调用-printfplt-为例">工作流程（以调用 <code>printf@plt</code> 为例）：</h3>
+<ol>
+<li><strong>第一次调用</strong> <code>printf</code>：
+<ul>
+<li>程序跳转到 <code>printf@plt</code>（PLT 中的一小段代码）；</li>
+<li>PLT 条目跳转到 GOT 中对应 <code>printf</code> 的条目（初始时指向 PLT 的下一条指令）；</li>
+<li>触发一个“桩代码”（stub），压入重定位标识，跳转到 <code>PLT[0]</code>；</li>
+<li><code>PLT[0]</code> 调用动态链接器（通过 <code>_dl_runtime_resolve</code>）；</li>
+<li>动态链接器解析 <code>printf</code> 的真实地址，并写入 GOT 表；</li>
+<li>跳转到 <code>printf</code> 执行。</li>
+</ul>
+</li>
+<li><strong>后续调用</strong>：
+<ul>
+<li>PLT 再次跳转到 GOT；</li>
+<li>此时 GOT 中已存有 <code>printf</code> 的真实地址；</li>
+<li>直接跳转执行，无需再次解析。</li>
+</ul>
+</li>
+</ol>
+<blockquote>
+<p>这种机制称为 <strong>Lazy Binding（延迟绑定）</strong>，即“首次使用时才解析”，可加快程序启动速度。</p>
+</blockquote>
+<h2 id="关键cp-覆盖写-vs-rm--cp">关键：<code>cp</code> 覆盖写 vs <code>rm + cp</code></h2>
+<h3 id="情况1直接-cp-newso-oldso危险">情况1：直接 <code>cp new.so old.so</code>（危险！）</h3>
+<ul>
+<li><code>cp</code> 的行为是：<strong>打开目标文件（O_WRONLY | O_TRUNC），然后写入新内容</strong>。</li>
+<li>如果 <code>old.so</code> 正被某个进程 mmap（即使只是只读映射），<strong>文件 inode 不变</strong>，但其数据块内容被覆盖。</li>
+<li>由于 mmap 是基于 inode 和 block 的，<strong>内核会认为“文件内容已变”</strong>。</li>
+<li>对于<strong>共享只读映射</strong>（如代码段），Linux 会：
+<ul>
+<li>在下次访问该内存页时，<strong>触发 page fault</strong>；</li>
+<li>内核发现底层文件 block 已更新，于是<strong>从磁盘重新加载新内容到该物理页</strong>；</li>
+<li>所有映射该页的进程（包括正在运行的程序）都会看到新内容！</li>
+</ul>
+</li>
+</ul>
+<p>✅ 这就是“<strong>磁盘内容改变 → 进程内存同步更新</strong>”的根本原因。</p>
+<blockquote>
+<p>⚠️ 注意：这不是“实时推送”，而是“按需更新”（lazy update on page fault），但效果等价于内存被修改。</p>
+</blockquote>
+<h3 id="情况2先-rm-oldso再-cp-newso-oldso安全">情况2：先 <code>rm old.so</code>，再 <code>cp new.so old.so</code>（安全！）</h3>
+<ul>
+<li><code>rm old.so</code>：只是删除目录项（dentry）和减少 inode 引用计数。</li>
+<li>只要还有进程 mmap 或 open 该文件，<strong>inode 和数据块不会被释放</strong>，原进程仍可正常访问。</li>
+<li><code>cp new.so old.so</code>：创建一个<strong>全新的 inode</strong>，与原文件无关。</li>
+<li>原进程继续使用旧 inode 对应的内存映射，完全不受影响。</li>
+<li>新启动的进程才会加载新 inode 的 .so 文件。</li>
+</ul>
+<hr>
+<h2 id="为什么-got-表会被破坏">为什么 GOT 表会被破坏？</h2>
+<p>动态库刚加载时，其 GOT（Global Offset Table）中的函数指针是<strong>占位符</strong>（如指向 PLT stub）。动态链接器会在加载后<strong>修改这些内存位置</strong>，填入真实函数地址（如 <code>printf</code> 的实际地址）。</p>
+<p>此时：</p>
+<ul>
+<li><strong>内存中的 .so 内容 ≠ 磁盘上的 .so 文件</strong>（GOT 已被重写）。</li>
+<li>当你用 <code>cp</code> 覆盖磁盘文件，后续 page fault 会把<strong>原始未重定位的 GOT 数据</strong>重新载入内存。</li>
+<li>导致 GOT 中存的是无效地址（如 0x516），程序跳转时 crash。</li>
+</ul></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2026-03-16</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://zhangyuhu.github.io/posts/basic_knowledge/linuxsys/%E5%8A%A8%E6%80%81%E9%93%BE%E6%8E%A5/" data-title="LinuxSys:动态链接" data-hashtags="Linux,动态链接,GOT,PLT"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://zhangyuhu.github.io/posts/basic_knowledge/linuxsys/%E5%8A%A8%E6%80%81%E9%93%BE%E6%8E%A5/" data-hashtag="Linux"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://zhangyuhu.github.io/posts/basic_knowledge/linuxsys/%E5%8A%A8%E6%80%81%E9%93%BE%E6%8E%A5/" data-title="LinuxSys:动态链接"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://zhangyuhu.github.io/posts/basic_knowledge/linuxsys/%E5%8A%A8%E6%80%81%E9%93%BE%E6%8E%A5/" data-title="LinuxSys:动态链接"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://zhangyuhu.github.io/posts/basic_knowledge/linuxsys/%E5%8A%A8%E6%80%81%E9%93%BE%E6%8E%A5/" data-title="LinuxSys:动态链接" data-ralateuid="ji"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/linux/">Linux</a>,&nbsp;<a href="/tags/%E5%8A%A8%E6%80%81%E9%93%BE%E6%8E%A5/">动态链接</a>,&nbsp;<a href="/tags/got/">GOT</a>,&nbsp;<a href="/tags/plt/">PLT</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/computer_vision/slam/2026_slam_%E8%B0%83%E7%A0%94%E6%8A%A5%E5%91%8A/" class="prev" rel="prev" title="2026 年 SLAM 技术发展调研报告"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>2026 年 SLAM 技术发展调研报告</a>
+            <a href="/posts/basic_knowledge/linuxsys/usb/" class="next" rel="next" title="LinuxSys:USB">LinuxSys:USB<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="giscus" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://giscus.app">Giscus</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">为天地立心,为生民立命,为往圣继绝学,为万世开太平</div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2023 - 2026</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://zhangyuhu.github.io/" target="_blank">zhangyuhu</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="http://creativecommons.org/licenses/by/4.0/" target="_blank">知识共享署名 4.0 国际许可协议</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/css/lightgallery-bundle.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/twemoji@14.0.2/dist/twemoji.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/lightgallery.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/thumbnail/lg-thumbnail.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/zoom/lg-zoom.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@8.6.0/dist/index.umd.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":100},"comment":{"giscus":{"category":"Comments","categoryId":"DIC_kwDOIx2Cjs4CTnUX","darkTheme":"dark","emitMetadata":"0","inputPosition":"bottom","lang":"en","lazyLoading":false,"lightTheme":"light","mapping":"pathname","reactionsEnabled":"1","repo":"zhangyuhu/zhangyuhu.github.io","repoId":"R_kgDOIx2Cjg"}},"data":{"id-1":"HOME","id-2":"HOME"},"lightgallery":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"},"twemoji":true,"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.f1b10c54ef8e7ea0c938baba89a68e47962cb91f87edfcf0ae7abf0ec7bbb510e5d980a2b5a69686d7a44eae747183e3ed5cd960ed6fe66552c947e6fca4ff67.js" integrity="sha512-8bEMVO+OfqDJOLq6iaaOR5YsuR+H7fzwrnq/Dse7tRDl2YCitaaWhtekTq50cYPj7VzZYO1v5mVSyUfm/KT/Zw=="></script></body>
+</html>

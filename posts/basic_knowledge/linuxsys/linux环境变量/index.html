@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>LinuxSys:Linux环境变量 - 这是我的网站</title><meta name="Description" content="Linux环境变量介绍"><meta property="og:title" content="LinuxSys:Linux环境变量" />
+<meta property="og:description" content="Linux环境变量介绍" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zhangyuhu.github.io/posts/basic_knowledge/linuxsys/linux%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F/" /><meta property="og:image" content="https://zhangyuhu.github.io/logo.png" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2026-03-16T13:52:52+08:00" />
+<meta property="article:modified_time" content="2026-03-16T13:11:52+08:00" /><meta property="og:site_name" content="我的网站" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://zhangyuhu.github.io/logo.png" /><meta name="twitter:title" content="LinuxSys:Linux环境变量"/>
+<meta name="twitter:description" content="Linux环境变量介绍"/>
+<meta name="application-name" content="我的网站">
+<meta name="apple-mobile-web-app-title" content="我的网站"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://zhangyuhu.github.io/posts/basic_knowledge/linuxsys/linux%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F/" /><link rel="prev" href="https://zhangyuhu.github.io/posts/basic_knowledge/linuxsys/linuxknowledge/" /><link rel="next" href="https://zhangyuhu.github.io/posts/basic_knowledge/linuxsys/linux_df/df/" /><link rel="stylesheet" href="/css/style.min.d09a08388620d07592fcb288b74e9f4434a352d4869011bd6c06619079103da00fcccceb4fa6fce14315bef50c9be97c6bc29582e3968d9521c60ef89c6de806.css" integrity="sha512-0JoIOIYg0HWS/LKIt06fRDSjUtSGkBG9bAZhkHkQPaAPzMzrT6b84UMVvvUMm+l8a8KVguOWjZUhxg74nG3oBg=="><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "LinuxSys:Linux环境变量",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/zhangyuhu.github.io\/posts\/basic_knowledge\/linuxsys\/linux%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F\/"
+        },"image": [{
+                            "@type": "ImageObject",
+                            "url": "https:\/\/zhangyuhu.github.io\/images\/Apple-Devices-Preview.png",
+                            "width":  3200 ,
+                            "height":  2048 
+                        }],"genre": "posts","keywords": "Linux, 环境变量","wordcount":  2933 ,
+        "url": "https:\/\/zhangyuhu.github.io\/posts\/basic_knowledge\/linuxsys\/linux%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F\/","datePublished": "2026-03-16T13:52:52+08:00","dateModified": "2026-03-16T13:11:52+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "zhangyuhu"
+            },"description": "Linux环境变量介绍"
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="这是我的网站"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/" title="文章"><i class='fas fa-archive fa-fw fa-sm'></i> 文章 </a><a class="menu-item" href="/tags/"><i class='fas fa-tags fa-fw fa-sm'></i> 标签 </a><a class="menu-item" href="/categories/"><i class='fas fa-th fa-fw fa-sm'></i> 分类 </a><a class="menu-item" href="/about/"><i class='fas fa-user-tie fa-fw fa-sm'></i> 关于 </a><a class="menu-item" href="/tool/"><i class='fas fa-cube fa-fw fa-sm'></i> 工具箱 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="这是我的网站"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="文章"><i class='fas fa-archive fa-fw fa-sm'></i>文章</a><a class="menu-item" href="/tags/" title=""><i class='fas fa-tags fa-fw fa-sm'></i>标签</a><a class="menu-item" href="/categories/" title=""><i class='fas fa-th fa-fw fa-sm'></i>分类</a><a class="menu-item" href="/about/" title=""><i class='fas fa-user-tie fa-fw fa-sm'></i>关于</a><a class="menu-item" href="/tool/" title=""><i class='fas fa-cube fa-fw fa-sm'></i>工具箱</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">LinuxSys:Linux环境变量</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://zhangyuhu.github.io/" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>zhangyuhu</a></span>&nbsp;<span class="post-category">included in <a href="/categories/linuxsys/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>LinuxSys</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2026-03-16">2026-03-16</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2933 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;6 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#linux环境变量加载原理解析">Linux环境变量加载原理解析</a>
+          <ul>
+            <li><a href="#环境变量的分类">环境变量的分类</a></li>
+            <li><a href="#测试linux环境变量加载顺序的方法">测试Linux环境变量加载顺序的方法</a></li>
+            <li><a href="#linux环境变量文件加载详解">Linux环境变量文件加载详解</a></li>
+            <li><a href="#一些小技巧">一些小技巧</a></li>
+          </ul>
+        </li>
+        <li><a href="#linux环境变量配置">Linux环境变量配置</a>
+          <ul>
+            <li><a href="#linux读取环境变量">Linux读取环境变量</a></li>
+            <li><a href="#linux环境变量配置方法一-export--path">Linux环境变量配置方法一： export  PATH</a></li>
+            <li><a href="#linux环境变量配置方法二---vim-bashrc">Linux环境变量配置方法二：   vim ~/.bashrc</a></li>
+            <li><a href="#linux环境变量配置方法三-vim-bash_profile">Linux环境变量配置方法三： vim ~/.bash_profile</a></li>
+            <li><a href="#linux环境变量配置方法四vim-etcbashrc">Linux环境变量配置方法四：vim /etc/bashrc</a></li>
+            <li><a href="#linux环境变量配置方法五--vim-etcprofile">Linux环境变量配置方法五：  vim /etc/profile</a></li>
+            <li><a href="#linux环境变量配置方法六vim-etcenvironment">Linux环境变量配置方法六：vim /etc/environment``</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><blockquote>
+<p>本文采用<a href="http://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreffer ">知识共享署名 4.0 国际许可协议</a>进行许可，转载时请注明原文链接，图片在使用时请保留全部内容，可适当缩放并在引用处附上图片所在的文章链接。</p>
+</blockquote>
+<div align='center' ><font size='70'>linux环境变量</font></div>
+<!-- TOC -->
+<ul>
+<li><a href="#linux%e7%8e%af%e5%a2%83%e5%8f%98%e9%87%8f%e5%8a%a0%e8%bd%bd%e5%8e%9f%e7%90%86%e8%a7%a3%e6%9e%90" rel="">Linux环境变量加载原理解析</a>
+<ul>
+<li><a href="#%e7%8e%af%e5%a2%83%e5%8f%98%e9%87%8f%e7%9a%84%e5%88%86%e7%b1%bb" rel="">环境变量的分类</a></li>
+<li><a href="#%e6%b5%8b%e8%af%95linux%e7%8e%af%e5%a2%83%e5%8f%98%e9%87%8f%e5%8a%a0%e8%bd%bd%e9%a1%ba%e5%ba%8f%e7%9a%84%e6%96%b9%e6%b3%95" rel="">测试Linux环境变量加载顺序的方法</a></li>
+<li><a href="#linux%e7%8e%af%e5%a2%83%e5%8f%98%e9%87%8f%e6%96%87%e4%bb%b6%e5%8a%a0%e8%bd%bd%e8%af%a6%e8%a7%a3" rel="">Linux环境变量文件加载详解</a></li>
+<li><a href="#%e4%b8%80%e4%ba%9b%e5%b0%8f%e6%8a%80%e5%b7%a7" rel="">一些小技巧</a></li>
+</ul>
+</li>
+<li><a href="#linux%e7%8e%af%e5%a2%83%e5%8f%98%e9%87%8f%e9%85%8d%e7%bd%ae" rel="">Linux环境变量配置</a>
+<ul>
+<li><a href="#linux%e8%af%bb%e5%8f%96%e7%8e%af%e5%a2%83%e5%8f%98%e9%87%8f" rel="">Linux读取环境变量</a></li>
+<li><a href="#linux%e7%8e%af%e5%a2%83%e5%8f%98%e9%87%8f%e9%85%8d%e7%bd%ae%e6%96%b9%e6%b3%95%e4%b8%80-export--path" rel="">Linux环境变量配置方法一： export  PATH</a></li>
+<li><a href="#linux%e7%8e%af%e5%a2%83%e5%8f%98%e9%87%8f%e9%85%8d%e7%bd%ae%e6%96%b9%e6%b3%95%e4%ba%8c---vim-bashrc" rel="">Linux环境变量配置方法二：   vim ~/.bashrc</a></li>
+<li><a href="#linux%e7%8e%af%e5%a2%83%e5%8f%98%e9%87%8f%e9%85%8d%e7%bd%ae%e6%96%b9%e6%b3%95%e4%b8%89-vim-bash_profile" rel="">Linux环境变量配置方法三： vim ~/.bash_profile</a></li>
+<li><a href="#linux%e7%8e%af%e5%a2%83%e5%8f%98%e9%87%8f%e9%85%8d%e7%bd%ae%e6%96%b9%e6%b3%95%e5%9b%9bvim-etcbashrc" rel="">Linux环境变量配置方法四：vim /etc/bashrc</a></li>
+<li><a href="#linux%e7%8e%af%e5%a2%83%e5%8f%98%e9%87%8f%e9%85%8d%e7%bd%ae%e6%96%b9%e6%b3%95%e4%ba%94--vim-etcprofile" rel="">Linux环境变量配置方法五：  vim /etc/profile</a></li>
+<li><a href="#linux%e7%8e%af%e5%a2%83%e5%8f%98%e9%87%8f%e9%85%8d%e7%bd%ae%e6%96%b9%e6%b3%95%e5%85%advim-etcenvironment" rel="">Linux环境变量配置方法六：vim /etc/environment``</a></li>
+</ul>
+</li>
+</ul>
+<!-- /TOC -->
+<h2 id="linux环境变量加载原理解析">Linux环境变量加载原理解析</h2>
+<h3 id="环境变量的分类">环境变量的分类</h3>
+<p>环境变量可以简单的分成用户自定义的环境变量以及系统级别的环境变量。</p>
+<ul>
+<li>用户级别环境变量定义文件：<code>~/.bashrc</code>、<code>~/.profile</code>（部分系统为：<code>~/.bash_profile</code>）</li>
+<li>系统级别环境变量定义文件：<code>/etc/bashrc</code>、<code>/etc/profile</code>(部分系统为：<code>/etc/bash_profile</code>）、<code>/etc/environment</code></li>
+</ul>
+<p>另外在用户环境变量中，系统会首先读取<code>~/.bash_profile</code>（或者<code>~/.profile</code>）文件，如果没有该文件则读取<code>~/.bash_login</code>，根据这些文件中内容再去读取<code>~/.bashrc</code>。</p>
+<h3 id="测试linux环境变量加载顺序的方法">测试Linux环境变量加载顺序的方法</h3>
+<p>为了测试各个不同文件的环境变量加载顺序，我们在每个环境变量定义文件中的第一行都定义相同的环境变量<code>UU_ORDER</code>，该变量的值为本身的值连接上当前文件名称。</p>
+<p>需要修改的文件如下：</p>
+<ul>
+<li>/etc/environment</li>
+<li>/etc/profile</li>
+<li>/etc/profile.d/test.sh，新建文件，没有文件夹可略过</li>
+<li>/etc/bashrc，或者/etc/bash.bashrc</li>
+<li>~/.bash_profile，或者~/.profile</li>
+<li>~/.bashrc</li>
+</ul>
+<p>在每个文件中的第一行都加上下面这句代码，并相应的把冒号后的内容修改为当前文件的绝对文件名。</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-1">1</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-gdscript3" data-lang="gdscript3"><span style="display:flex;"><span><span style="color:#069;font-weight:bold">export</span> UU_ORDER<span style="color:#555">=</span><span style="color:#c30">&#34;$UU_ORDER:~/.bash_profile&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>修改完之后保存，新开一个窗口，然后<code>echo $UU_ORDER</code>观察变量的值：</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-1">1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-2">2</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>uusama@ubuntu:~$ echo $UU_ORDER
+</span></span><span style="display:flex;"><span>$UU_ORDER:/etc/environment:/etc/profile:/etc/bash.bashrc:/etc/profile.d/test.sh:~/.profile:~/.bashrc
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>可以推测出Linux加载环境变量的顺序如下：</p>
+<ol>
+<li>/etc/environment</li>
+<li>/etc/profile</li>
+<li>/etc/bash.bashrc</li>
+<li>/etc/profile.d/test.sh</li>
+<li>~/.profile</li>
+<li>~/.bashrc</li>
+</ol>
+<h3 id="linux环境变量文件加载详解">Linux环境变量文件加载详解</h3>
+<p>由上面的测试可容易得出Linux加载环境变量的顺序如下，：</p>
+<p>系统环境变量 -&gt; 用户自定义环境变量
+/etc/environment -&gt; /etc/profile -&gt; ~/.profile</p>
+<p>打开<code>/etc/profile</code>文件你会发现，该文件的代码中会加载<code>/etc/bash.bashrc</code>文件，然后检查<code>/etc/profile.d/</code>目录下的<code>.sh</code>文件并加载。</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-1"> 1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-2"> 2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-3"> 3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-4"> 4</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-5"> 5</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-6"> 6</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-7"> 7</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-8"> 8</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-9"> 9</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-10"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-10">10</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-11"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-11">11</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-12"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-12">12</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-13"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-13">13</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-14"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-14">14</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-15"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-15">15</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-16"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-16">16</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-17"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-17">17</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-18"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-18">18</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-19"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-19">19</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-20"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-20">20</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-21"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-21">21</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-22"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-22">22</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-23"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-23">23</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-24"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-24">24</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-25"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-25">25</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-26"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-26">26</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-27"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-27">27</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># /etc/profile: system-wide .profile file for the Bourne shell (sh(1))</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># and Bourne compatible shells (bash(1), ksh(1), ash(1), ...).</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">if</span> <span style="color:#555">[</span> <span style="color:#c30">&#34;</span><span style="color:#033">$PS1</span><span style="color:#c30">&#34;</span> <span style="color:#555">]</span>; <span style="color:#069;font-weight:bold">then</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#069;font-weight:bold">if</span> <span style="color:#555">[</span> <span style="color:#c30">&#34;</span><span style="color:#033">$BASH</span><span style="color:#c30">&#34;</span> <span style="color:#555">]</span> <span style="color:#555">&amp;&amp;</span> <span style="color:#555">[</span> <span style="color:#c30">&#34;</span><span style="color:#033">$BASH</span><span style="color:#c30">&#34;</span> !<span style="color:#555">=</span> <span style="color:#c30">&#34;/bin/sh&#34;</span> <span style="color:#555">]</span>; <span style="color:#069;font-weight:bold">then</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#09f;font-style:italic"># The file bash.bashrc already sets the default PS1.</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#09f;font-style:italic"># PS1=&#39;\h:\w\$ &#39;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#069;font-weight:bold">if</span> <span style="color:#555">[</span> -f /etc/bash.bashrc <span style="color:#555">]</span>; <span style="color:#069;font-weight:bold">then</span>
+</span></span><span style="display:flex;"><span>      . /etc/bash.bashrc
+</span></span><span style="display:flex;"><span>    <span style="color:#069;font-weight:bold">fi</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#069;font-weight:bold">else</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#069;font-weight:bold">if</span> <span style="color:#555">[</span> <span style="color:#c30">&#34;`id -u`&#34;</span> -eq <span style="color:#f60">0</span> <span style="color:#555">]</span>; <span style="color:#069;font-weight:bold">then</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#033">PS1</span><span style="color:#555">=</span><span style="color:#c30">&#39;# &#39;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#069;font-weight:bold">else</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#033">PS1</span><span style="color:#555">=</span><span style="color:#c30">&#39;$ &#39;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#069;font-weight:bold">fi</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#069;font-weight:bold">fi</span>
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">fi</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">if</span> <span style="color:#555">[</span> -d /etc/profile.d <span style="color:#555">]</span>; <span style="color:#069;font-weight:bold">then</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#069;font-weight:bold">for</span> i in /etc/profile.d/*.sh; <span style="color:#069;font-weight:bold">do</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#069;font-weight:bold">if</span> <span style="color:#555">[</span> -r <span style="color:#033">$i</span> <span style="color:#555">]</span>; <span style="color:#069;font-weight:bold">then</span>
+</span></span><span style="display:flex;"><span>      . <span style="color:#033">$i</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#069;font-weight:bold">fi</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#069;font-weight:bold">done</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#366">unset</span> i
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">fi</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>其次再打开<code>~/.profile</code>文件，会发现该文件中加载了<code>~/.bashrc</code>文件。</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-1"> 1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-2"> 2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-3"> 3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-4"> 4</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-5"> 5</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-6"> 6</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-7"> 7</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-8"> 8</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-9"> 9</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-10"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-10">10</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># if running bash</span>
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">if</span> <span style="color:#555">[</span> -n <span style="color:#c30">&#34;</span><span style="color:#033">$BASH_VERSION</span><span style="color:#c30">&#34;</span> <span style="color:#555">]</span>; <span style="color:#069;font-weight:bold">then</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#09f;font-style:italic"># include .bashrc if it exists</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#069;font-weight:bold">if</span> <span style="color:#555">[</span> -f <span style="color:#c30">&#34;</span><span style="color:#033">$HOME</span><span style="color:#c30">/.bashrc&#34;</span> <span style="color:#555">]</span>; <span style="color:#069;font-weight:bold">then</span>
+</span></span><span style="display:flex;"><span>  . <span style="color:#c30">&#34;</span><span style="color:#033">$HOME</span><span style="color:#c30">/.bashrc&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#069;font-weight:bold">fi</span>
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">fi</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># set PATH so it includes user&#39;s private bin directories</span>
+</span></span><span style="display:flex;"><span><span style="color:#033">PATH</span><span style="color:#555">=</span><span style="color:#c30">&#34;</span><span style="color:#033">$HOME</span><span style="color:#c30">/bin:</span><span style="color:#033">$HOME</span><span style="color:#c30">/.local/bin:</span><span style="color:#033">$PATH</span><span style="color:#c30">&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>从<code>~/.profile</code>文件中代码不难发现，<code>/.profile</code>文件<strong>只在用户登录的时候读取一次</strong>，而<code>/.bashrc</code>会在每次运行<code>Shell</code>脚本的时候读取一次。</p>
+<h3 id="一些小技巧">一些小技巧</h3>
+<p>可以自定义一个环境变量文件，比如在某个项目下定义<code>uusama.profile</code>，在这个文件中使用<code>export</code>定义一系列变量，然后在<code>~/.profile</code>文件后面加上：<code>sourc uusama.profile</code>，这样你每次登陆都可以在Shell脚本中使用自己定义的一系列变量。</p>
+<p>也可以使用<code>alias</code>命令定义一些命令的别名，比如<code>alias rm=&quot;rm -i&quot;</code>（双引号必须），并把这个代码加入到<code>~/.profile</code>中，这样你每次使用<code>rm</code>命令的时候，都相当于使用<code>rm -i</code>命令，非常方便。</p>
+<h2 id="linux环境变量配置">Linux环境变量配置</h2>
+<h3 id="linux读取环境变量">Linux读取环境变量</h3>
+<p>读取环境变量的方法：</p>
+<ul>
+<li><code>export</code>命令显示当前系统定义的所有环境变量</li>
+<li><code>echo $PATH</code>命令输出当前的<code>PATH</code>环境变量的值</li>
+</ul>
+<p>这两个命令执行的效果如下</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-1"> 1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-2"> 2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-3"> 3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-4"> 4</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-5"> 5</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-6"> 6</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-7"> 7</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-8"> 8</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-9"> 9</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-10"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-10">10</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-11"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-11">11</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-12"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-12">12</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-13"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-13">13</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-14"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-14">14</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-15"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-15">15</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-16"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-16">16</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-17"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-17">17</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-18"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-18">18</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-19"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-19">19</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-20"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-20">20</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-21"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-21">21</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-22"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-22">22</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-23"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-23">23</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-24"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-24">24</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-25"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-25">25</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-26"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-26">26</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-27"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-27">27</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-28"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-28">28</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-29"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-29">29</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-30"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-30">30</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-31"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-31">31</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-32"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-32">32</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-33"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-33">33</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-34"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-34">34</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-35"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-35">35</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-36"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-36">36</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-37"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-37">37</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-38"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-38">38</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-39"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-39">39</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-40"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-40">40</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-41"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-41">41</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-42"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-42">42</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-43"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-43">43</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-44"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-44">44</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-45"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-45">45</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-46"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-46">46</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-47"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-47">47</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-48"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-48">48</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-49"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-49">49</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-50"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-50">50</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-51"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-51">51</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-52"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-52">52</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#366">declare</span> -x <span style="color:#033">CLUTTER_IM_MODULE</span><span style="color:#555">=</span><span style="color:#c30">&#34;xim&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#366">declare</span> -x <span style="color:#033">COLORTERM</span><span style="color:#555">=</span><span style="color:#c30">&#34;truecolor&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#366">declare</span> -x <span style="color:#033">DBUS_SESSION_BUS_ADDRESS</span><span style="color:#555">=</span><span style="color:#c30">&#34;unix:path=/run/user/1000/bus&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#366">declare</span> -x <span style="color:#033">DESKTOP_SESSION</span><span style="color:#555">=</span><span style="color:#c30">&#34;ubuntu&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#366">declare</span> -x <span style="color:#033">DISPLAY</span><span style="color:#555">=</span><span style="color:#c30">&#34;:1&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#366">declare</span> -x <span style="color:#033">GDMSESSION</span><span style="color:#555">=</span><span style="color:#c30">&#34;ubuntu&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#366">declare</span> -x <span style="color:#033">GNOME_DESKTOP_SESSION_ID</span><span style="color:#555">=</span><span style="color:#c30">&#34;this-is-deprecated&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#366">declare</span> -x <span style="color:#033">GNOME_SHELL_SESSION_MODE</span><span style="color:#555">=</span><span style="color:#c30">&#34;ubuntu&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#366">declare</span> -x <span style="color:#033">GNOME_TERMINAL_SCREEN</span><span style="color:#555">=</span><span style="color:#c30">&#34;/org/gnome/Terminal/screen/4b1d3d4e_3448_4f5d_8be4_6904cca30cbc&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#366">declare</span> -x <span style="color:#033">GNOME_TERMINAL_SERVICE</span><span style="color:#555">=</span><span style="color:#c30">&#34;:1.120&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#366">declare</span> -x <span style="color:#033">GPG_AGENT_INFO</span><span style="color:#555">=</span><span style="color:#c30">&#34;/run/user/1000/gnupg/S.gpg-agent:0:1&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#366">declare</span> -x <span style="color:#033">GTK_IM_MODULE</span><span style="color:#555">=</span><span style="color:#c30">&#34;ibus&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#366">declare</span> -x <span style="color:#033">GTK_MODULES</span><span style="color:#555">=</span><span style="color:#c30">&#34;gail:atk-bridge&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#366">declare</span> -x <span style="color:#033">HOME</span><span style="color:#555">=</span><span style="color:#c30">&#34;/home/zyh&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#366">declare</span> -x <span style="color:#033">IM_CONFIG_PHASE</span><span style="color:#555">=</span><span style="color:#c30">&#34;2&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#366">declare</span> -x <span style="color:#033">LANG</span><span style="color:#555">=</span><span style="color:#c30">&#34;zh_CN.UTF-8&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#366">declare</span> -x <span style="color:#033">LANGUAGE</span><span style="color:#555">=</span><span style="color:#c30">&#34;zh_CN:zh&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#366">declare</span> -x <span style="color:#033">LESSCLOSE</span><span style="color:#555">=</span><span style="color:#c30">&#34;/usr/bin/lesspipe %s %s&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#366">declare</span> -x <span style="color:#033">LESSOPEN</span><span style="color:#555">=</span><span style="color:#c30">&#34;| /usr/bin/lesspipe %s&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#366">declare</span> -x <span style="color:#033">LOGNAME</span><span style="color:#555">=</span><span style="color:#c30">&#34;zyh&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#366">declare</span> -x <span style="color:#033">LS_COLORS</span><span style="color:#555">=</span><span style="color:#c30">&#34;rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#366">declare</span> -x OLDPWD
+</span></span><span style="display:flex;"><span><span style="color:#366">declare</span> -x <span style="color:#033">PATH</span><span style="color:#555">=</span><span style="color:#c30">&#34;/home/zyh/.local/bin:/opt/tegra-linux/x86-arm/arm-linux-gnueabihf/bin:/opt/hisi-linux/x86-arm/aarch64-himix100-linux/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#366">declare</span> -x <span style="color:#033">PS1</span><span style="color:#555">=</span><span style="color:#c30">&#34;\\u@\\h \\[\\033[01;36m\\]\\W\\[\\033[01;32m\\]\$(git_branch)\\[\\033[00m\\] \\\$ &#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#366">declare</span> -x <span style="color:#033">PWD</span><span style="color:#555">=</span><span style="color:#c30">&#34;/home/zyh&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#366">declare</span> -x <span style="color:#033">QT4_IM_MODULE</span><span style="color:#555">=</span><span style="color:#c30">&#34;xim&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#366">declare</span> -x <span style="color:#033">QT_ACCESSIBILITY</span><span style="color:#555">=</span><span style="color:#c30">&#34;1&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#366">declare</span> -x <span style="color:#033">QT_IM_MODULE</span><span style="color:#555">=</span><span style="color:#c30">&#34;ibus&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#366">declare</span> -x <span style="color:#033">SESSION_MANAGER</span><span style="color:#555">=</span><span style="color:#c30">&#34;local/zyh:@/tmp/.ICE-unix/1633,unix/zyh:/tmp/.ICE-unix/1633&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#366">declare</span> -x <span style="color:#033">SHELL</span><span style="color:#555">=</span><span style="color:#c30">&#34;/bin/bash&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#366">declare</span> -x <span style="color:#033">SHLVL</span><span style="color:#555">=</span><span style="color:#c30">&#34;1&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#366">declare</span> -x <span style="color:#033">SSH_AGENT_PID</span><span style="color:#555">=</span><span style="color:#c30">&#34;1728&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#366">declare</span> -x <span style="color:#033">SSH_AUTH_SOCK</span><span style="color:#555">=</span><span style="color:#c30">&#34;/run/user/1000/keyring/ssh&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#366">declare</span> -x <span style="color:#033">TERM</span><span style="color:#555">=</span><span style="color:#c30">&#34;xterm-256color&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#366">declare</span> -x <span style="color:#033">TEXTDOMAIN</span><span style="color:#555">=</span><span style="color:#c30">&#34;im-config&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#366">declare</span> -x <span style="color:#033">TEXTDOMAINDIR</span><span style="color:#555">=</span><span style="color:#c30">&#34;/usr/share/locale/&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#366">declare</span> -x <span style="color:#033">USER</span><span style="color:#555">=</span><span style="color:#c30">&#34;zyh&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#366">declare</span> -x <span style="color:#033">USERNAME</span><span style="color:#555">=</span><span style="color:#c30">&#34;zyh&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#366">declare</span> -x <span style="color:#033">VTE_VERSION</span><span style="color:#555">=</span><span style="color:#c30">&#34;5202&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#366">declare</span> -x <span style="color:#033">WINDOWPATH</span><span style="color:#555">=</span><span style="color:#c30">&#34;2&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#366">declare</span> -x <span style="color:#033">XAUTHORITY</span><span style="color:#555">=</span><span style="color:#c30">&#34;/run/user/1000/gdm/Xauthority&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#366">declare</span> -x <span style="color:#033">XDG_CONFIG_DIRS</span><span style="color:#555">=</span><span style="color:#c30">&#34;/etc/xdg/xdg-ubuntu:/etc/xdg&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#366">declare</span> -x <span style="color:#033">XDG_CURRENT_DESKTOP</span><span style="color:#555">=</span><span style="color:#c30">&#34;ubuntu:GNOME&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#366">declare</span> -x <span style="color:#033">XDG_DATA_DIRS</span><span style="color:#555">=</span><span style="color:#c30">&#34;/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#366">declare</span> -x <span style="color:#033">XDG_MENU_PREFIX</span><span style="color:#555">=</span><span style="color:#c30">&#34;gnome-&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#366">declare</span> -x <span style="color:#033">XDG_RUNTIME_DIR</span><span style="color:#555">=</span><span style="color:#c30">&#34;/run/user/1000&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#366">declare</span> -x <span style="color:#033">XDG_SEAT</span><span style="color:#555">=</span><span style="color:#c30">&#34;seat0&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#366">declare</span> -x <span style="color:#033">XDG_SESSION_DESKTOP</span><span style="color:#555">=</span><span style="color:#c30">&#34;ubuntu&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#366">declare</span> -x <span style="color:#033">XDG_SESSION_ID</span><span style="color:#555">=</span><span style="color:#c30">&#34;2&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#366">declare</span> -x <span style="color:#033">XDG_SESSION_TYPE</span><span style="color:#555">=</span><span style="color:#c30">&#34;x11&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#366">declare</span> -x <span style="color:#033">XDG_VTNR</span><span style="color:#555">=</span><span style="color:#c30">&#34;2&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#366">declare</span> -x <span style="color:#033">XMODIFIERS</span><span style="color:#555">=</span><span style="color:#c30">&#34;@im=ibus&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-1">1</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>/home/zyh/.local/bin:/opt/tegra-linux/x86-arm/arm-linux-gnueabihf/bin:/opt/hisi-linux/x86-arm/aarch64-himix100-linux/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>其中<code>PATH</code>变量定义了运行命令的查找路径，以冒号<code>:</code>分割不同的路径，使用<code>export</code>定义的时候可加双引号也可不加。</p>
+<h3 id="linux环境变量配置方法一-export--path">Linux环境变量配置方法一： export  PATH</h3>
+<p>使用<code>export</code>命令直接修改<code>PATH</code>的值，配置MySQL进入环境变量的方法:</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-1">1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-2">2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-3">3</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#366">export</span> <span style="color:#033">PATH</span><span style="color:#555">=</span>/home/uusama/mysql/bin:<span style="color:#033">$PATH</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># 或者把PATH放在前面</span>
+</span></span><span style="display:flex;"><span><span style="color:#366">export</span> <span style="color:#033">PATH</span><span style="color:#555">=</span><span style="color:#033">$PATH</span>:/home/uusama/mysql/bin
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>注意事项：</p>
+<ul>
+<li>生效时间：立即生效</li>
+<li>生效期限：当前终端有效，窗口关闭后无效</li>
+<li>生效范围：仅对当前用户有效</li>
+<li>配置的环境变量中不要忘了加上原来的配置，即<code>$PATH</code>部分，避免覆盖原来配置</li>
+</ul>
+<h3 id="linux环境变量配置方法二---vim-bashrc">Linux环境变量配置方法二：   vim ~/.bashrc</h3>
+<p>通过修改用户目录下的<code>~/.bashrc</code>文件进行配置：</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-1">1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-2">2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-3">3</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>vim ~/.bashrc
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># 在最后一行加上</span>
+</span></span><span style="display:flex;"><span><span style="color:#366">export</span> <span style="color:#033">PATH</span><span style="color:#555">=</span><span style="color:#033">$PATH</span>:/home/uusama/mysql/bin
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>注意事项：</p>
+<ul>
+<li>生效时间：使用相同的用户打开新的终端时生效，或者手动<code>source ~/.bashrc</code>生效</li>
+<li>生效期限：永久有效</li>
+<li>生效范围：仅对当前用户有效</li>
+<li>如果有后续的环境变量加载文件覆盖了<code>PATH</code>定义，则可能不生效</li>
+</ul>
+<h3 id="linux环境变量配置方法三-vim-bash_profile">Linux环境变量配置方法三： vim ~/.bash_profile</h3>
+<p>和修改<code>~/.bashrc</code>文件类似，也是要在文件最后加上新的路径即可：</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-1">1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-2">2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-3">3</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>vim ~/.bash_profile
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># 在最后一行加上</span>
+</span></span><span style="display:flex;"><span><span style="color:#366">export</span> <span style="color:#033">PATH</span><span style="color:#555">=</span><span style="color:#033">$PATH</span>:/home/uusama/mysql/bin
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>注意事项：</p>
+<ul>
+<li>生效时间：使用相同的用户打开新的终端时生效，或者手动<code>source ~/.bash_profile</code>生效</li>
+<li>生效期限：永久有效</li>
+<li>生效范围：仅对当前用户有效</li>
+<li>如果没有<code>~/.bash_profile</code>文件，则可以编辑<code>~/.profile</code>文件或者新建一个</li>
+</ul>
+<h3 id="linux环境变量配置方法四vim-etcbashrc">Linux环境变量配置方法四：vim /etc/bashrc</h3>
+<p>该方法是修改系统配置，需要管理员权限（如root）或者对该文件的写入权限：</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-9-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-9-1">1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-9-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-9-2">2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-9-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-9-3">3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-9-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-9-4">4</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># 如果/etc/bashrc文件不可编辑，需要修改为可编辑chmod -v u+w /etc/bashrc</span>
+</span></span><span style="display:flex;"><span>vim /etc/bashrc
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># 在最后一行加上</span>
+</span></span><span style="display:flex;"><span><span style="color:#366">export</span> <span style="color:#033">PATH</span><span style="color:#555">=</span><span style="color:#033">$PATH</span>:/home/uusama/mysql/bin
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>注意事项：</p>
+<ul>
+<li>生效时间：新开终端生效，或者手动<code>source /etc/bashrc</code>生效</li>
+<li>生效期限：永久有效</li>
+<li>生效范围：对所有用户有效</li>
+</ul>
+<h3 id="linux环境变量配置方法五--vim-etcprofile">Linux环境变量配置方法五：  vim /etc/profile</h3>
+<p>该方法修改系统配置，需要管理员权限或者对该文件的写入权限，和<code>vim /etc/bashrc</code>类似：</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-1">1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-2">2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-3">3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-4">4</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># 如果/etc/profile文件不可编辑，需要修改为可编辑chmod -v u+w /etc/profile</span>
+</span></span><span style="display:flex;"><span>vim /etc/profile
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># 在最后一行加上</span>
+</span></span><span style="display:flex;"><span><span style="color:#366">export</span> <span style="color:#033">PATH</span><span style="color:#555">=</span><span style="color:#033">$PATH</span>:/home/uusama/mysql/bin
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>注意事项：</p>
+<ul>
+<li>生效时间：新开终端生效，或者手动<code>source /etc/profile</code>生效</li>
+<li>生效期限：永久有效</li>
+<li>生效范围：对所有用户有效</li>
+</ul>
+<h3 id="linux环境变量配置方法六vim-etcenvironment">Linux环境变量配置方法六：vim /etc/environment``</h3>
+<p>该方法是修改系统环境配置文件，需要管理员权限或者对该文件的写入权限：</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-11-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-11-1">1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-11-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-11-2">2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-11-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-11-3">3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-11-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-11-4">4</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># 如果/etc/bashrc文件不可编辑，需要修改为可编辑chmod -v u+w /etc/environment</span>
+</span></span><span style="display:flex;"><span>vim /etc/profile
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># 在最后一行加上</span>
+</span></span><span style="display:flex;"><span><span style="color:#366">export</span> <span style="color:#033">PATH</span><span style="color:#555">=</span><span style="color:#033">$PATH</span>:/home/uusama/mysql/bin
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>注意事项：</p>
+<ul>
+<li>生效时间：新开终端生效，或者手动<code>source /etc/environment</code>生效</li>
+<li>生效期限：永久有效</li>
+<li>生效范围：对所有用户有效</li>
+</ul></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2026-03-16</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://zhangyuhu.github.io/posts/basic_knowledge/linuxsys/linux%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F/" data-title="LinuxSys:Linux环境变量" data-hashtags="Linux,环境变量"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://zhangyuhu.github.io/posts/basic_knowledge/linuxsys/linux%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F/" data-hashtag="Linux"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://zhangyuhu.github.io/posts/basic_knowledge/linuxsys/linux%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F/" data-title="LinuxSys:Linux环境变量"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://zhangyuhu.github.io/posts/basic_knowledge/linuxsys/linux%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F/" data-title="LinuxSys:Linux环境变量"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://zhangyuhu.github.io/posts/basic_knowledge/linuxsys/linux%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F/" data-title="LinuxSys:Linux环境变量" data-ralateuid="ji"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/linux/">Linux</a>,&nbsp;<a href="/tags/%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F/">环境变量</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/basic_knowledge/linuxsys/linuxknowledge/" class="prev" rel="prev" title="LinuxSys:Linux知识"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>LinuxSys:Linux知识</a>
+            <a href="/posts/basic_knowledge/linuxsys/linux_df/df/" class="next" rel="next" title="LinuxSys:linux查看文件系统硬盘使用情况">LinuxSys:linux查看文件系统硬盘使用情况<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="giscus" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://giscus.app">Giscus</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">为天地立心,为生民立命,为往圣继绝学,为万世开太平</div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2023 - 2026</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://zhangyuhu.github.io/" target="_blank">zhangyuhu</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="http://creativecommons.org/licenses/by/4.0/" target="_blank">知识共享署名 4.0 国际许可协议</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/css/lightgallery-bundle.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/twemoji@14.0.2/dist/twemoji.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/lightgallery.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/thumbnail/lg-thumbnail.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/zoom/lg-zoom.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@8.6.0/dist/index.umd.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":100},"comment":{"giscus":{"category":"Comments","categoryId":"DIC_kwDOIx2Cjs4CTnUX","darkTheme":"dark","emitMetadata":"0","inputPosition":"bottom","lang":"en","lazyLoading":false,"lightTheme":"light","mapping":"pathname","reactionsEnabled":"1","repo":"zhangyuhu/zhangyuhu.github.io","repoId":"R_kgDOIx2Cjg"}},"data":{"id-1":"HOME","id-2":"HOME"},"lightgallery":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"},"twemoji":true,"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.f1b10c54ef8e7ea0c938baba89a68e47962cb91f87edfcf0ae7abf0ec7bbb510e5d980a2b5a69686d7a44eae747183e3ed5cd960ed6fe66552c947e6fca4ff67.js" integrity="sha512-8bEMVO+OfqDJOLq6iaaOR5YsuR+H7fzwrnq/Dse7tRDl2YCitaaWhtekTq50cYPj7VzZYO1v5mVSyUfm/KT/Zw=="></script></body>
+</html>

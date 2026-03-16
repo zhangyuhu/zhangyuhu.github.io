@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title> - 这是我的网站</title><meta name="Description" content="这是[zhangyuhu]的网站"><meta property="og:title" content="" />
+<meta property="og:description" content="顶层const和底层const 区分 作用 内联函数 内存四区 new/delete 表达式 求值的顺序 逻辑运算符 左值右值 显示转换 函数参数传递 传值参数 传引用参数 const形" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zhangyuhu.github.io/posts/program/cpp/cplusxxnote01/" /><meta property="og:image" content="https://zhangyuhu.github.io/logo.png" /><meta property="article:section" content="posts" />
+
+<meta property="article:modified_time" content="2026-03-16T23:01:36+08:00" /><meta property="og:site_name" content="我的网站" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://zhangyuhu.github.io/logo.png" /><meta name="twitter:title" content=""/>
+<meta name="twitter:description" content="顶层const和底层const 区分 作用 内联函数 内存四区 new/delete 表达式 求值的顺序 逻辑运算符 左值右值 显示转换 函数参数传递 传值参数 传引用参数 const形"/>
+<meta name="application-name" content="我的网站">
+<meta name="apple-mobile-web-app-title" content="我的网站"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://zhangyuhu.github.io/posts/program/cpp/cplusxxnote01/" /><link rel="prev" href="https://zhangyuhu.github.io/posts/program/cpp/cplusxxnote02/" /><link rel="next" href="https://zhangyuhu.github.io/posts/program/cpp/c&#43;&#43;%E5%87%BD%E6%95%B0%E5%90%8E%E7%9A%84%E5%85%B3%E9%94%AE%E5%AD%97/" /><link rel="stylesheet" href="/css/style.min.d09a08388620d07592fcb288b74e9f4434a352d4869011bd6c06619079103da00fcccceb4fa6fce14315bef50c9be97c6bc29582e3968d9521c60ef89c6de806.css" integrity="sha512-0JoIOIYg0HWS/LKIt06fRDSjUtSGkBG9bAZhkHkQPaAPzMzrT6b84UMVvvUMm+l8a8KVguOWjZUhxg74nG3oBg=="><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/zhangyuhu.github.io\/posts\/program\/cpp\/cplusxxnote01\/"
+        },"image": [{
+                            "@type": "ImageObject",
+                            "url": "https:\/\/zhangyuhu.github.io\/images\/Apple-Devices-Preview.png",
+                            "width":  3200 ,
+                            "height":  2048 
+                        }],"genre": "posts","wordcount":  977 ,
+        "url": "https:\/\/zhangyuhu.github.io\/posts\/program\/cpp\/cplusxxnote01\/","dateModified": "2026-03-16T23:01:36+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "zhangyuhu"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="这是我的网站"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/" title="文章"><i class='fas fa-archive fa-fw fa-sm'></i> 文章 </a><a class="menu-item" href="/tags/"><i class='fas fa-tags fa-fw fa-sm'></i> 标签 </a><a class="menu-item" href="/categories/"><i class='fas fa-th fa-fw fa-sm'></i> 分类 </a><a class="menu-item" href="/about/"><i class='fas fa-user-tie fa-fw fa-sm'></i> 关于 </a><a class="menu-item" href="/tool/"><i class='fas fa-cube fa-fw fa-sm'></i> 工具箱 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="这是我的网站"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="文章"><i class='fas fa-archive fa-fw fa-sm'></i>文章</a><a class="menu-item" href="/tags/" title=""><i class='fas fa-tags fa-fw fa-sm'></i>标签</a><a class="menu-item" href="/categories/" title=""><i class='fas fa-th fa-fw fa-sm'></i>分类</a><a class="menu-item" href="/about/" title=""><i class='fas fa-user-tie fa-fw fa-sm'></i>关于</a><a class="menu-item" href="/tool/" title=""><i class='fas fa-cube fa-fw fa-sm'></i>工具箱</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX"></h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://zhangyuhu.github.io/" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>zhangyuhu</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;977 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;2 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#顶层const和底层const">顶层const和底层const</a>
+      <ul>
+        <li><a href="#区分">区分</a></li>
+        <li><a href="#作用">作用</a></li>
+      </ul>
+    </li>
+    <li><a href="#内联函数">内联函数</a></li>
+    <li><a href="#内存四区">内存四区</a></li>
+    <li><a href="#newdelete">new/delete</a></li>
+    <li><a href="#表达式">表达式</a>
+      <ul>
+        <li><a href="#求值的顺序">求值的顺序</a></li>
+        <li><a href="#逻辑运算符">逻辑运算符</a></li>
+      </ul>
+    </li>
+    <li><a href="#左值右值">左值右值</a></li>
+    <li><a href="#显示转换">显示转换</a></li>
+    <li><a href="#函数参数传递">函数参数传递</a>
+      <ul>
+        <li><a href="#传值参数">传值参数</a></li>
+        <li><a href="#传引用参数">传引用参数</a></li>
+      </ul>
+    </li>
+    <li><a href="#const形参和实参">const形参和实参</a></li>
+    <li><a href="#函数返回类型">函数返回类型</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><!-- TOC -->
+<ul>
+<li><a href="#%e9%a1%b6%e5%b1%82const%e5%92%8c%e5%ba%95%e5%b1%82const" rel="">顶层const和底层const</a>
+<ul>
+<li><a href="#%e5%8c%ba%e5%88%86" rel="">区分</a></li>
+<li><a href="#%e4%bd%9c%e7%94%a8" rel="">作用</a></li>
+</ul>
+</li>
+<li><a href="#%e5%86%85%e8%81%94%e5%87%bd%e6%95%b0" rel="">内联函数</a></li>
+<li><a href="#%e5%86%85%e5%ad%98%e5%9b%9b%e5%8c%ba" rel="">内存四区</a></li>
+<li><a href="#newdelete" rel="">new/delete</a></li>
+<li><a href="#%e8%a1%a8%e8%be%be%e5%bc%8f" rel="">表达式</a>
+<ul>
+<li><a href="#%e6%b1%82%e5%80%bc%e7%9a%84%e9%a1%ba%e5%ba%8f" rel="">求值的顺序</a></li>
+<li><a href="#%e9%80%bb%e8%be%91%e8%bf%90%e7%ae%97%e7%ac%a6" rel="">逻辑运算符</a></li>
+</ul>
+</li>
+<li><a href="#%e5%b7%a6%e5%80%bc%e5%8f%b3%e5%80%bc" rel="">左值右值</a></li>
+<li><a href="#%e6%98%be%e7%a4%ba%e8%bd%ac%e6%8d%a2" rel="">显示转换</a></li>
+<li><a href="#%e5%87%bd%e6%95%b0%e5%8f%82%e6%95%b0%e4%bc%a0%e9%80%92" rel="">函数参数传递</a>
+<ul>
+<li><a href="#%e4%bc%a0%e5%80%bc%e5%8f%82%e6%95%b0" rel="">传值参数</a></li>
+<li><a href="#%e4%bc%a0%e5%bc%95%e7%94%a8%e5%8f%82%e6%95%b0" rel="">传引用参数</a></li>
+</ul>
+</li>
+<li><a href="#const%e5%bd%a2%e5%8f%82%e5%92%8c%e5%ae%9e%e5%8f%82" rel="">const形参和实参</a></li>
+<li><a href="#%e5%87%bd%e6%95%b0%e8%bf%94%e5%9b%9e%e7%b1%bb%e5%9e%8b" rel="">函数返回类型</a></li>
+</ul>
+<!-- /TOC -->
+<h1 id="顶层const和底层const">顶层const和底层const</h1>
+<p><a href="https://blog.csdn.net/qq_37059483/article/details/78811231" target="_blank" rel="noopener noreffer ">顶层const和底层const</a>
+<a href="https://blog.csdn.net/hackbuteer1/article/details/6550736" target="_blank" rel="noopener noreffer ">const_cast</a></p>
+<h2 id="区分">区分</h2>
+<p>一个指针本身添加const限定符就是顶层const，而指针所指的对象添加const限定符就是底层const。</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-1">1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-2">2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-3">3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-4">4</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-5">5</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-6">6</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-7">7</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-gdscript3" data-lang="gdscript3"><span style="display:flex;"><span><span style="color:#c00;font-weight:bold">int</span> num_a <span style="color:#555">=</span> <span style="color:#f60">1</span>;
+</span></span><span style="display:flex;"><span><span style="color:#c00;font-weight:bold">int</span> <span style="color:#069;font-weight:bold">const</span>  <span style="color:#555">*</span>p_a <span style="color:#555">=</span> <span style="color:#555">&amp;</span>num_a; <span style="color:#555">//</span><span style="color:#a00;background-color:#faa">底层</span><span style="color:#069;font-weight:bold">const</span>
+</span></span><span style="display:flex;"><span><span style="color:#555">//*</span>p_a <span style="color:#555">=</span> <span style="color:#f60">2</span>;  <span style="color:#555">//</span><span style="color:#a00;background-color:#faa">错误，指向“常量”的指针不能改变所指的对象</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#c00;font-weight:bold">int</span> num_b <span style="color:#555">=</span> <span style="color:#f60">2</span>;
+</span></span><span style="display:flex;"><span><span style="color:#c00;font-weight:bold">int</span> <span style="color:#555">*</span><span style="color:#069;font-weight:bold">const</span> p_b <span style="color:#555">=</span> <span style="color:#555">&amp;</span>num_b; <span style="color:#555">//</span><span style="color:#a00;background-color:#faa">顶层</span><span style="color:#069;font-weight:bold">const</span>
+</span></span><span style="display:flex;"><span><span style="color:#555">//</span>p_b <span style="color:#555">=</span> <span style="color:#555">&amp;</span>num_a;  <span style="color:#555">//</span><span style="color:#a00;background-color:#faa">错误，常量指针不能改变存储的地址值</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="作用">作用</h2>
+<ul>
+<li>执行对象拷贝时有限制，常量的底层const不能赋值给非常量的底层const</li>
+</ul>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-1">1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-2">2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-3">3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-4">4</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-gdscript3" data-lang="gdscript3"><span style="display:flex;"><span><span style="color:#c00;font-weight:bold">int</span> num_c <span style="color:#555">=</span> <span style="color:#f60">3</span>;
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">const</span> <span style="color:#c00;font-weight:bold">int</span> <span style="color:#555">*</span>p_c <span style="color:#555">=</span> <span style="color:#555">&amp;</span>num_c;  <span style="color:#555">//</span>p_c为底层const的指针
+</span></span><span style="display:flex;"><span><span style="color:#555">//</span><span style="color:#c00;font-weight:bold">int</span> <span style="color:#555">*</span>p_d <span style="color:#555">=</span> p_c;  <span style="color:#555">//</span><span style="color:#a00;background-color:#faa">错误，不能将底层</span>const指针赋值给非底层const指针
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">const</span> <span style="color:#c00;font-weight:bold">int</span> <span style="color:#555">*</span>p_d <span style="color:#555">=</span> p_c; <span style="color:#555">//</span><span style="color:#a00;background-color:#faa">正确，可以将底层</span>const指针复制给底层const指针
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>使用命名的强制类型转换函数const_cast时，需要能够分辨底层const和顶层const，因为const_cast只能改变运算对象的底层const。</li>
+</ul>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-1">1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-2">2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-3">3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-4">4</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-5">5</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-6">6</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-gdscript3" data-lang="gdscript3"><span style="display:flex;"><span>nt num_e <span style="color:#555">=</span> <span style="color:#f60">4</span>;
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">const</span> <span style="color:#c00;font-weight:bold">int</span> <span style="color:#555">*</span>p_e <span style="color:#555">=</span> <span style="color:#555">&amp;</span>num_e;
+</span></span><span style="display:flex;"><span><span style="color:#555">//*</span>p_e <span style="color:#555">=</span> <span style="color:#f60">5</span>;  <span style="color:#555">//</span><span style="color:#a00;background-color:#faa">错误，不能改变底层</span>const指针指向的内容
+</span></span><span style="display:flex;"><span><span style="color:#c00;font-weight:bold">int</span> <span style="color:#555">*</span>p_f <span style="color:#555">=</span> const_cast<span style="color:#555">&lt;</span><span style="color:#c00;font-weight:bold">int</span> <span style="color:#555">*&gt;</span>(p_e);  <span style="color:#555">//</span><span style="color:#a00;background-color:#faa">正确，</span>const_cast可以改变运算对象的底层const<span style="color:#a00;background-color:#faa">。但是使用时一定要知道</span>num_e不是const的类型<span style="color:#a00;background-color:#faa">。</span>
+</span></span><span style="display:flex;"><span><span style="color:#555">*</span>p_f <span style="color:#555">=</span> <span style="color:#f60">5</span>;  <span style="color:#555">//</span><span style="color:#a00;background-color:#faa">正确，非顶层</span>const指针可以改变指向的内容
+</span></span><span style="display:flex;"><span>cout <span style="color:#555">&lt;&lt;</span> num_e;  <span style="color:#555">//</span><span style="color:#a00;background-color:#faa">输出</span><span style="color:#f60">5</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>底层const可形成重载
+顶层const不形成重载。
+底层const和非const都可匹配底层const</li>
+</ul>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"></code></pre></td></tr></table>
+</div>
+</div><h1 id="内联函数">内联函数</h1>
+<h1 id="内存四区">内存四区</h1>
+<h1 id="newdelete">new/delete</h1>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-1"> 1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-2"> 2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-3"> 3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-4"> 4</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-5"> 5</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-6"> 6</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-7"> 7</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-8"> 8</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-9"> 9</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-10"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-10">10</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-11"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-11">11</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-12"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-12">12</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-13"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-13">13</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#078;font-weight:bold">int</span> <span style="color:#555">*</span>p <span style="color:#555">=</span> <span style="color:#069;font-weight:bold">new</span> init ;
+</span></span><span style="display:flex;"><span>p <span style="color:#555">=</span> <span style="color:#069;font-weight:bold">new</span> <span style="color:#078;font-weight:bold">int</span> (<span style="color:#f60">10</span>);
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">delete</span> p;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#078;font-weight:bold">int</span>  <span style="color:#555">**</span>pp <span style="color:#555">=</span> <span style="color:#069;font-weight:bold">new</span> <span style="color:#078;font-weight:bold">int</span> <span style="color:#555">*</span> [<span style="color:#f60">10</span>]{<span style="color:#366">NULL</span>};
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">delete</span> []pp;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span> <span style="color:#099">#include</span> <span style="color:#099">&lt;iostream&gt;</span><span style="color:#099">
+</span></span></span><span style="display:flex;"><span><span style="color:#099"></span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#078;font-weight:bold">int</span> <span style="color:#555">*</span> p <span style="color:#555">=</span> <span style="color:#069;font-weight:bold">new</span> <span style="color:#a00;background-color:#faa">（</span>std <span style="color:#555">::</span> nothrow<span style="color:#a00;background-color:#faa">）</span><span style="color:#078;font-weight:bold">int</span>[<span style="color:#f60">8748315031785743515</span>];
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic">//不抛出异常返回NULL
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>set_new_handler
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="表达式">表达式</h1>
+<h2 id="求值的顺序">求值的顺序</h2>
+<h2 id="逻辑运算符">逻辑运算符</h2>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-1">1</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>(a = 0)&amp;&amp;(b = 100)  //a= 0 赋值返回 a 为 0 ，为假
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="左值右值">左值右值</h1>
+<h1 id="显示转换">显示转换</h1>
+<p><strong>static_cast</strong> :
+具有明确定义的类型转换（不能转换底层const）
+<strong>const_cast</strong>:
+改变运算对象的底层const
+<strong>reinterpret_cast</strong>:
+通常为运算对象的位模式提供较低层次上的重新
+解释。
+<strong>dynamic_cast</strong>:
+支持运行时类型识别，常用于基类指针转向派生
+类指针。</p>
+<h1 id="函数参数传递">函数参数传递</h1>
+<h2 id="传值参数">传值参数</h2>
+<h2 id="传引用参数">传引用参数</h2>
+<h1 id="const形参和实参">const形参和实参</h1>
+<h1 id="函数返回类型">函数返回类型</h1>
+<p>函数返回的值：返回的值用于初始化调用点的一个临时量，该临时量就是函数的返回值。不要返回局部对象的引用或指针</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2026-03-16</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://zhangyuhu.github.io/posts/program/cpp/cplusxxnote01/" data-title=""><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://zhangyuhu.github.io/posts/program/cpp/cplusxxnote01/"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://zhangyuhu.github.io/posts/program/cpp/cplusxxnote01/" data-title=""><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://zhangyuhu.github.io/posts/program/cpp/cplusxxnote01/" data-title=""><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://zhangyuhu.github.io/posts/program/cpp/cplusxxnote01/" data-title="" data-ralateuid="ji"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/program/cpp/cplusxxnote02/" class="prev" rel="prev" title=""><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i></a>
+            <a href="/posts/program/cpp/c&#43;&#43;%E5%87%BD%E6%95%B0%E5%90%8E%E7%9A%84%E5%85%B3%E9%94%AE%E5%AD%97/" class="next" rel="next" title=""><i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="giscus" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://giscus.app">Giscus</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">为天地立心,为生民立命,为往圣继绝学,为万世开太平</div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2023 - 2026</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://zhangyuhu.github.io/" target="_blank">zhangyuhu</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="http://creativecommons.org/licenses/by/4.0/" target="_blank">知识共享署名 4.0 国际许可协议</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/twemoji@14.0.2/dist/twemoji.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@8.6.0/dist/index.umd.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":100},"comment":{"giscus":{"category":"Comments","categoryId":"DIC_kwDOIx2Cjs4CTnUX","darkTheme":"dark","emitMetadata":"0","inputPosition":"bottom","lang":"en","lazyLoading":false,"lightTheme":"light","mapping":"pathname","reactionsEnabled":"1","repo":"zhangyuhu/zhangyuhu.github.io","repoId":"R_kgDOIx2Cjg"}},"data":{"id-1":"HOME","id-2":"HOME"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"},"twemoji":true,"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.f1b10c54ef8e7ea0c938baba89a68e47962cb91f87edfcf0ae7abf0ec7bbb510e5d980a2b5a69686d7a44eae747183e3ed5cd960ed6fe66552c947e6fca4ff67.js" integrity="sha512-8bEMVO+OfqDJOLq6iaaOR5YsuR+H7fzwrnq/Dse7tRDl2YCitaaWhtekTq50cYPj7VzZYO1v5mVSyUfm/KT/Zw=="></script></body>
+</html>

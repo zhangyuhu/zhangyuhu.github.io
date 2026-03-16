@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title> - 这是我的网站</title><meta name="Description" content="这是[zhangyuhu]的网站"><meta property="og:title" content="" />
+<meta property="og:description" content="PyQt5 &#43; GStreamer 的 RTP/H264 播放器 [TOC] 创建 Conda 环境 1 2 conda create -n rtp_player python=3.9 pyqt=5.15 gst-plugins-base gst-plugins-good gst-plugins-bad gst-plugins-ugly -c conda-forge conda activate rtp_player 安装额外依赖 1 2 3 4 5 6 7 # 安装 OpenCV（用于视频帧处理） conda install opencv -c conda-forge # 安装" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zhangyuhu.github.io/posts/computer_vision/multimedia/rtp/qt-rtp/" /><meta property="og:image" content="https://zhangyuhu.github.io/logo.png" /><meta property="article:section" content="posts" />
+
+<meta property="article:modified_time" content="2026-03-12T22:29:16+08:00" /><meta property="og:site_name" content="我的网站" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://zhangyuhu.github.io/logo.png" /><meta name="twitter:title" content=""/>
+<meta name="twitter:description" content="PyQt5 &#43; GStreamer 的 RTP/H264 播放器 [TOC] 创建 Conda 环境 1 2 conda create -n rtp_player python=3.9 pyqt=5.15 gst-plugins-base gst-plugins-good gst-plugins-bad gst-plugins-ugly -c conda-forge conda activate rtp_player 安装额外依赖 1 2 3 4 5 6 7 # 安装 OpenCV（用于视频帧处理） conda install opencv -c conda-forge # 安装"/>
+<meta name="application-name" content="我的网站">
+<meta name="apple-mobile-web-app-title" content="我的网站"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://zhangyuhu.github.io/posts/computer_vision/multimedia/rtp/qt-rtp/" /><link rel="prev" href="https://zhangyuhu.github.io/posts/computer_vision/multimedia/v4l2loopback/" /><link rel="next" href="https://zhangyuhu.github.io/posts/computer_vision/multimedia/gstreamer/%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E7%AE%A1%E7%90%86/" /><link rel="stylesheet" href="/css/style.min.d09a08388620d07592fcb288b74e9f4434a352d4869011bd6c06619079103da00fcccceb4fa6fce14315bef50c9be97c6bc29582e3968d9521c60ef89c6de806.css" integrity="sha512-0JoIOIYg0HWS/LKIt06fRDSjUtSGkBG9bAZhkHkQPaAPzMzrT6b84UMVvvUMm+l8a8KVguOWjZUhxg74nG3oBg=="><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/zhangyuhu.github.io\/posts\/computer_vision\/multimedia\/rtp\/qt-rtp\/"
+        },"image": [{
+                            "@type": "ImageObject",
+                            "url": "https:\/\/zhangyuhu.github.io\/images\/Apple-Devices-Preview.png",
+                            "width":  3200 ,
+                            "height":  2048 
+                        }],"genre": "posts","wordcount":  530 ,
+        "url": "https:\/\/zhangyuhu.github.io\/posts\/computer_vision\/multimedia\/rtp\/qt-rtp\/","dateModified": "2026-03-12T22:29:16+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "zhangyuhu"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="这是我的网站"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/" title="文章"><i class='fas fa-archive fa-fw fa-sm'></i> 文章 </a><a class="menu-item" href="/tags/"><i class='fas fa-tags fa-fw fa-sm'></i> 标签 </a><a class="menu-item" href="/categories/"><i class='fas fa-th fa-fw fa-sm'></i> 分类 </a><a class="menu-item" href="/about/"><i class='fas fa-user-tie fa-fw fa-sm'></i> 关于 </a><a class="menu-item" href="/tool/"><i class='fas fa-cube fa-fw fa-sm'></i> 工具箱 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="这是我的网站"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="文章"><i class='fas fa-archive fa-fw fa-sm'></i>文章</a><a class="menu-item" href="/tags/" title=""><i class='fas fa-tags fa-fw fa-sm'></i>标签</a><a class="menu-item" href="/categories/" title=""><i class='fas fa-th fa-fw fa-sm'></i>分类</a><a class="menu-item" href="/about/" title=""><i class='fas fa-user-tie fa-fw fa-sm'></i>关于</a><a class="menu-item" href="/tool/" title=""><i class='fas fa-cube fa-fw fa-sm'></i>工具箱</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX"></h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://zhangyuhu.github.io/" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>zhangyuhu</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;530 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;2 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#创建-conda-环境"><strong>创建 Conda 环境</strong></a></li>
+    <li><a href="#安装额外依赖"><strong>安装额外依赖</strong></a></li>
+    <li><a href="#开发-pyqt5-界面"><strong>开发 PyQt5 界面</strong></a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><div align='center' ><font size='70'>PyQt5 + GStreamer 的 RTP/H264 播放器</font></div>
+<p>[TOC]</p>
+<h1 id="创建-conda-环境"><strong>创建 Conda 环境</strong></h1>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-1">1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-2">2</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>conda create -n rtp_player <span style="color:#033">python</span><span style="color:#555">=</span>3.9 <span style="color:#033">pyqt</span><span style="color:#555">=</span>5.15 gst-plugins-base gst-plugins-good gst-plugins-bad gst-plugins-ugly -c conda-forge
+</span></span><span style="display:flex;"><span>conda activate rtp_player
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="安装额外依赖"><strong>安装额外依赖</strong></h1>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-1">1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-2">2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-3">3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-4">4</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-5">5</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-6">6</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-7">7</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># 安装 OpenCV（用于视频帧处理）</span>
+</span></span><span style="display:flex;"><span>conda install opencv -c conda-forge
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># 安装 GStreamer 完整插件（确保支持 RTP/H264）</span>
+</span></span><span style="display:flex;"><span>sudo apt-get install gstreamer1.0-plugins-good gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly  <span style="color:#09f;font-style:italic"># Ubuntu/Debian</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># 或通过 Conda：</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># conda install -c conda-forge gstreamer gst-plugins-base gst-plugins-good gst-plugins-bad gst-plugins-ugly</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="开发-pyqt5-界面"><strong>开发 PyQt5 界面</strong></h1>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-1">  1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-2">  2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-3">  3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-4">  4</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-5">  5</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-6">  6</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-7">  7</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-8">  8</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-9">  9</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-10"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-10"> 10</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-11"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-11"> 11</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-12"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-12"> 12</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-13"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-13"> 13</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-14"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-14"> 14</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-15"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-15"> 15</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-16"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-16"> 16</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-17"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-17"> 17</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-18"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-18"> 18</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-19"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-19"> 19</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-20"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-20"> 20</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-21"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-21"> 21</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-22"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-22"> 22</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-23"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-23"> 23</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-24"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-24"> 24</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-25"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-25"> 25</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-26"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-26"> 26</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-27"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-27"> 27</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-28"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-28"> 28</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-29"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-29"> 29</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-30"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-30"> 30</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-31"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-31"> 31</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-32"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-32"> 32</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-33"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-33"> 33</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-34"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-34"> 34</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-35"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-35"> 35</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-36"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-36"> 36</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-37"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-37"> 37</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-38"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-38"> 38</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-39"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-39"> 39</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-40"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-40"> 40</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-41"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-41"> 41</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-42"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-42"> 42</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-43"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-43"> 43</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-44"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-44"> 44</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-45"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-45"> 45</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-46"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-46"> 46</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-47"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-47"> 47</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-48"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-48"> 48</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-49"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-49"> 49</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-50"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-50"> 50</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-51"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-51"> 51</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-52"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-52"> 52</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-53"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-53"> 53</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-54"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-54"> 54</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-55"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-55"> 55</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-56"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-56"> 56</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-57"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-57"> 57</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-58"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-58"> 58</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-59"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-59"> 59</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-60"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-60"> 60</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-61"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-61"> 61</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-62"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-62"> 62</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-63"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-63"> 63</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-64"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-64"> 64</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-65"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-65"> 65</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-66"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-66"> 66</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-67"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-67"> 67</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-68"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-68"> 68</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-69"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-69"> 69</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-70"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-70"> 70</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-71"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-71"> 71</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-72"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-72"> 72</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-73"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-73"> 73</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-74"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-74"> 74</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-75"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-75"> 75</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-76"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-76"> 76</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-77"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-77"> 77</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-78"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-78"> 78</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-79"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-79"> 79</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-80"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-80"> 80</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-81"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-81"> 81</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-82"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-82"> 82</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-83"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-83"> 83</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-84"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-84"> 84</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-85"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-85"> 85</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-86"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-86"> 86</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-87"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-87"> 87</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-88"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-88"> 88</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-89"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-89"> 89</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-90"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-90"> 90</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-91"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-91"> 91</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-92"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-92"> 92</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-93"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-93"> 93</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-94"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-94"> 94</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-95"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-95"> 95</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-96"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-96"> 96</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-97"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-97"> 97</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-98"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-98"> 98</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-99"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-99"> 99</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-100"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-100">100</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-101"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-101">101</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-102"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-102">102</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-103"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-103">103</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-104"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-104">104</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-105"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-105">105</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-106"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-106">106</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-107"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-107">107</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-108"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-108">108</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-109"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-109">109</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">sys</span>
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">cv2</span>
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">numpy</span> <span style="color:#069;font-weight:bold">as</span> <span style="color:#0cf;font-weight:bold">np</span>
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">from</span> <span style="color:#0cf;font-weight:bold">PyQt5.QtWidgets</span> <span style="color:#069;font-weight:bold">import</span> QApplication, QMainWindow, QLabel, QPushButton, QVBoxLayout, QWidget
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">from</span> <span style="color:#0cf;font-weight:bold">PyQt5.QtCore</span> <span style="color:#069;font-weight:bold">import</span> Qt, QTimer
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">from</span> <span style="color:#0cf;font-weight:bold">PyQt5.QtGui</span> <span style="color:#069;font-weight:bold">import</span> QImage, QPixmap
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">class</span> <span style="color:#0a8;font-weight:bold">RTPPlayer</span>(QMainWindow):
+</span></span><span style="display:flex;"><span>    <span style="color:#069;font-weight:bold">def</span> __init__(self):
+</span></span><span style="display:flex;"><span>        <span style="color:#366">super</span>()<span style="color:#555">.</span>__init__()
+</span></span><span style="display:flex;"><span>        self<span style="color:#555">.</span>initUI()
+</span></span><span style="display:flex;"><span>        self<span style="color:#555">.</span>initGStreamer()
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#09f;font-style:italic"># 定时器用于刷新视频帧</span>
+</span></span><span style="display:flex;"><span>        self<span style="color:#555">.</span>timer <span style="color:#555">=</span> QTimer()
+</span></span><span style="display:flex;"><span>        self<span style="color:#555">.</span>timer<span style="color:#555">.</span>timeout<span style="color:#555">.</span>connect(self<span style="color:#555">.</span>update_frame)
+</span></span><span style="display:flex;"><span>        self<span style="color:#555">.</span>timer<span style="color:#555">.</span>start(<span style="color:#f60">30</span>)  <span style="color:#09f;font-style:italic"># 30ms 刷新间隔</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#069;font-weight:bold">def</span> <span style="color:#c0f">initUI</span>(self):
+</span></span><span style="display:flex;"><span>        self<span style="color:#555">.</span>setWindowTitle(<span style="color:#c30">&#39;RTP H.264 Player&#39;</span>)
+</span></span><span style="display:flex;"><span>        self<span style="color:#555">.</span>setGeometry(<span style="color:#f60">100</span>, <span style="color:#f60">100</span>, <span style="color:#f60">800</span>, <span style="color:#f60">600</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#09f;font-style:italic"># 视频显示区域</span>
+</span></span><span style="display:flex;"><span>        self<span style="color:#555">.</span>video_label <span style="color:#555">=</span> QLabel(self)
+</span></span><span style="display:flex;"><span>        self<span style="color:#555">.</span>video_label<span style="color:#555">.</span>setFixedSize(<span style="color:#f60">800</span>, <span style="color:#f60">600</span>)
+</span></span><span style="display:flex;"><span>        self<span style="color:#555">.</span>video_label<span style="color:#555">.</span>setAlignment(Qt<span style="color:#555">.</span>AlignCenter)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#09f;font-style:italic"># 控制按钮</span>
+</span></span><span style="display:flex;"><span>        self<span style="color:#555">.</span>play_btn <span style="color:#555">=</span> QPushButton(<span style="color:#c30">&#39;Play&#39;</span>, self)
+</span></span><span style="display:flex;"><span>        self<span style="color:#555">.</span>play_btn<span style="color:#555">.</span>clicked<span style="color:#555">.</span>connect(self<span style="color:#555">.</span>toggle_play)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#09f;font-style:italic"># 布局</span>
+</span></span><span style="display:flex;"><span>        layout <span style="color:#555">=</span> QVBoxLayout()
+</span></span><span style="display:flex;"><span>        layout<span style="color:#555">.</span>addWidget(self<span style="color:#555">.</span>video_label)
+</span></span><span style="display:flex;"><span>        layout<span style="color:#555">.</span>addWidget(self<span style="color:#555">.</span>play_btn)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        container <span style="color:#555">=</span> QWidget()
+</span></span><span style="display:flex;"><span>        container<span style="color:#555">.</span>setLayout(layout)
+</span></span><span style="display:flex;"><span>        self<span style="color:#555">.</span>setCentralWidget(container)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#069;font-weight:bold">def</span> <span style="color:#c0f">initGStreamer</span>(self):
+</span></span><span style="display:flex;"><span>        <span style="color:#09f;font-style:italic"># GStreamer 管道配置（根据实际 RTP 地址修改）</span>
+</span></span><span style="display:flex;"><span>        self<span style="color:#555">.</span>pipeline_str <span style="color:#555">=</span> <span style="color:#c30">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#c30">            rtpbin name=rtpbin latency=0 
+</span></span></span><span style="display:flex;"><span><span style="color:#c30">            udpsrc address=127.0.0.1 port=5000 ! 
+</span></span></span><span style="display:flex;"><span><span style="color:#c30">            application/x-rtp,encoding-name=H264,payload=96 ! 
+</span></span></span><span style="display:flex;"><span><span style="color:#c30">            rtpbin.recv_rtp_sink_0 
+</span></span></span><span style="display:flex;"><span><span style="color:#c30">            rtpbin. ! rtph264depay ! avdec_h264 ! videoconvert ! appsink name=sink
+</span></span></span><span style="display:flex;"><span><span style="color:#c30">        &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#069;font-weight:bold">import</span> <span style="color:#0cf;font-weight:bold">gi</span>
+</span></span><span style="display:flex;"><span>        gi<span style="color:#555">.</span>require_version(<span style="color:#c30">&#39;Gst&#39;</span>, <span style="color:#c30">&#39;1.0&#39;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#069;font-weight:bold">from</span> <span style="color:#0cf;font-weight:bold">gi.repository</span> <span style="color:#069;font-weight:bold">import</span> Gst
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        Gst<span style="color:#555">.</span>init(<span style="color:#069;font-weight:bold">None</span>)
+</span></span><span style="display:flex;"><span>        self<span style="color:#555">.</span>pipeline <span style="color:#555">=</span> Gst<span style="color:#555">.</span>parse_launch(self<span style="color:#555">.</span>pipeline_str)
+</span></span><span style="display:flex;"><span>        self<span style="color:#555">.</span>appsink <span style="color:#555">=</span> self<span style="color:#555">.</span>pipeline<span style="color:#555">.</span>get_by_name(<span style="color:#c30">&#39;sink&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#09f;font-style:italic"># 连接 Appsink 信号</span>
+</span></span><span style="display:flex;"><span>        self<span style="color:#555">.</span>appsink<span style="color:#555">.</span>connect(<span style="color:#c30">&#39;new-sample&#39;</span>, self<span style="color:#555">.</span>on_new_sample)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#069;font-weight:bold">def</span> <span style="color:#c0f">toggle_play</span>(self):
+</span></span><span style="display:flex;"><span>        <span style="color:#069;font-weight:bold">if</span> self<span style="color:#555">.</span>play_btn<span style="color:#555">.</span>text() <span style="color:#555">==</span> <span style="color:#c30">&#39;Play&#39;</span>:
+</span></span><span style="display:flex;"><span>            self<span style="color:#555">.</span>pipeline<span style="color:#555">.</span>set_state(Gst<span style="color:#555">.</span>State<span style="color:#555">.</span>PLAYING)
+</span></span><span style="display:flex;"><span>            self<span style="color:#555">.</span>play_btn<span style="color:#555">.</span>setText(<span style="color:#c30">&#39;Stop&#39;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#069;font-weight:bold">else</span>:
+</span></span><span style="display:flex;"><span>            self<span style="color:#555">.</span>pipeline<span style="color:#555">.</span>set_state(Gst<span style="color:#555">.</span>State<span style="color:#555">.</span>NULL)
+</span></span><span style="display:flex;"><span>            self<span style="color:#555">.</span>play_btn<span style="color:#555">.</span>setText(<span style="color:#c30">&#39;Play&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#069;font-weight:bold">def</span> <span style="color:#c0f">on_new_sample</span>(self, sink):
+</span></span><span style="display:flex;"><span>        sample <span style="color:#555">=</span> sink<span style="color:#555">.</span>emit(<span style="color:#c30">&#39;pull-sample&#39;</span>)
+</span></span><span style="display:flex;"><span>        buf <span style="color:#555">=</span> sample<span style="color:#555">.</span>get_buffer()
+</span></span><span style="display:flex;"><span>        caps <span style="color:#555">=</span> sample<span style="color:#555">.</span>get_caps()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#09f;font-style:italic"># 获取视频数据</span>
+</span></span><span style="display:flex;"><span>        data <span style="color:#555">=</span> buf<span style="color:#555">.</span>extract_dup(<span style="color:#f60">0</span>, buf<span style="color:#555">.</span>get_size())
+</span></span><span style="display:flex;"><span>        height <span style="color:#555">=</span> caps<span style="color:#555">.</span>get_structure(<span style="color:#f60">0</span>)<span style="color:#555">.</span>get_value(<span style="color:#c30">&#39;height&#39;</span>)
+</span></span><span style="display:flex;"><span>        width <span style="color:#555">=</span> caps<span style="color:#555">.</span>get_structure(<span style="color:#f60">0</span>)<span style="color:#555">.</span>get_value(<span style="color:#c30">&#39;width&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#09f;font-style:italic"># 转换为 OpenCV 格式</span>
+</span></span><span style="display:flex;"><span>        frame <span style="color:#555">=</span> np<span style="color:#555">.</span>ndarray((height, width, <span style="color:#f60">3</span>), dtype<span style="color:#555">=</span>np<span style="color:#555">.</span>uint8, buffer<span style="color:#555">=</span>data)
+</span></span><span style="display:flex;"><span>        frame <span style="color:#555">=</span> cv2<span style="color:#555">.</span>cvtColor(frame, cv2<span style="color:#555">.</span>COLOR_RGB2BGR)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#09f;font-style:italic"># 保存最后一帧（可选）</span>
+</span></span><span style="display:flex;"><span>        self<span style="color:#555">.</span>latest_frame <span style="color:#555">=</span> frame
+</span></span><span style="display:flex;"><span>        <span style="color:#069;font-weight:bold">return</span> Gst<span style="color:#555">.</span>FlowReturn<span style="color:#555">.</span>OK
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#069;font-weight:bold">def</span> <span style="color:#c0f">update_frame</span>(self):
+</span></span><span style="display:flex;"><span>        <span style="color:#069;font-weight:bold">if</span> <span style="color:#366">hasattr</span>(self, <span style="color:#c30">&#39;latest_frame&#39;</span>):
+</span></span><span style="display:flex;"><span>            <span style="color:#09f;font-style:italic"># 转换为 QImage</span>
+</span></span><span style="display:flex;"><span>            h, w, ch <span style="color:#555">=</span> self<span style="color:#555">.</span>latest_frame<span style="color:#555">.</span>shape
+</span></span><span style="display:flex;"><span>            bytes_per_line <span style="color:#555">=</span> ch <span style="color:#555">*</span> w
+</span></span><span style="display:flex;"><span>            qt_image <span style="color:#555">=</span> QImage(self<span style="color:#555">.</span>latest_frame<span style="color:#555">.</span>data, w, h, bytes_per_line, QImage<span style="color:#555">.</span>Format_BGR888)
+</span></span><span style="display:flex;"><span>            
+</span></span><span style="display:flex;"><span>            <span style="color:#09f;font-style:italic"># 缩放并显示</span>
+</span></span><span style="display:flex;"><span>            pixmap <span style="color:#555">=</span> QPixmap<span style="color:#555">.</span>fromImage(qt_image)<span style="color:#555">.</span>scaled(
+</span></span><span style="display:flex;"><span>                self<span style="color:#555">.</span>video_label<span style="color:#555">.</span>size(), Qt<span style="color:#555">.</span>KeepAspectRatio, Qt<span style="color:#555">.</span>SmoothTransformation
+</span></span><span style="display:flex;"><span>            )
+</span></span><span style="display:flex;"><span>            self<span style="color:#555">.</span>video_label<span style="color:#555">.</span>setPixmap(pixmap)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#069;font-weight:bold">def</span> <span style="color:#c0f">closeEvent</span>(self, event):
+</span></span><span style="display:flex;"><span>        self<span style="color:#555">.</span>pipeline<span style="color:#555">.</span>set_state(Gst<span style="color:#555">.</span>State<span style="color:#555">.</span>NULL)
+</span></span><span style="display:flex;"><span>        event<span style="color:#555">.</span>accept()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">if</span> __name__ <span style="color:#555">==</span> <span style="color:#c30">&#39;__main__&#39;</span>:
+</span></span><span style="display:flex;"><span>    app <span style="color:#555">=</span> QApplication(sys<span style="color:#555">.</span>argv)
+</span></span><span style="display:flex;"><span>    player <span style="color:#555">=</span> RTPPlayer()
+</span></span><span style="display:flex;"><span>    player<span style="color:#555">.</span>show()
+</span></span><span style="display:flex;"><span>    sys<span style="color:#555">.</span>exit(app<span style="color:#555">.</span>exec_())
+</span></span></code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2026-03-12</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://zhangyuhu.github.io/posts/computer_vision/multimedia/rtp/qt-rtp/" data-title=""><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://zhangyuhu.github.io/posts/computer_vision/multimedia/rtp/qt-rtp/"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://zhangyuhu.github.io/posts/computer_vision/multimedia/rtp/qt-rtp/" data-title=""><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://zhangyuhu.github.io/posts/computer_vision/multimedia/rtp/qt-rtp/" data-title=""><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://zhangyuhu.github.io/posts/computer_vision/multimedia/rtp/qt-rtp/" data-title="" data-ralateuid="ji"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/computer_vision/multimedia/v4l2loopback/" class="prev" rel="prev" title=""><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i></a>
+            <a href="/posts/computer_vision/multimedia/gstreamer/%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E7%AE%A1%E7%90%86/" class="next" rel="next" title=""><i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="giscus" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://giscus.app">Giscus</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">为天地立心,为生民立命,为往圣继绝学,为万世开太平</div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2023 - 2026</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://zhangyuhu.github.io/" target="_blank">zhangyuhu</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="http://creativecommons.org/licenses/by/4.0/" target="_blank">知识共享署名 4.0 国际许可协议</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/twemoji@14.0.2/dist/twemoji.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@8.6.0/dist/index.umd.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":100},"comment":{"giscus":{"category":"Comments","categoryId":"DIC_kwDOIx2Cjs4CTnUX","darkTheme":"dark","emitMetadata":"0","inputPosition":"bottom","lang":"en","lazyLoading":false,"lightTheme":"light","mapping":"pathname","reactionsEnabled":"1","repo":"zhangyuhu/zhangyuhu.github.io","repoId":"R_kgDOIx2Cjg"}},"data":{"id-1":"HOME","id-2":"HOME"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"},"twemoji":true,"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.f1b10c54ef8e7ea0c938baba89a68e47962cb91f87edfcf0ae7abf0ec7bbb510e5d980a2b5a69686d7a44eae747183e3ed5cd960ed6fe66552c947e6fca4ff67.js" integrity="sha512-8bEMVO+OfqDJOLq6iaaOR5YsuR+H7fzwrnq/Dse7tRDl2YCitaaWhtekTq50cYPj7VzZYO1v5mVSyUfm/KT/Zw=="></script></body>
+</html>

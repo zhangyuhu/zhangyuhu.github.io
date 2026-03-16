@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title> - 这是我的网站</title><meta name="Description" content="这是[zhangyuhu]的网站"><meta property="og:title" content="" />
+<meta property="og:description" content="STL 容器对比 STL容器分类 STL容器对比 容器成员对比 迭代器失效的问题 其他 STL容器分类 顺序（序列）容器：vector, list, deque, string,stack( 适配器类), queue( 适配" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zhangyuhu.github.io/posts/program/cpp/stl/stl%E5%AE%B9%E5%99%A8%E5%AF%B9%E6%AF%94/" /><meta property="og:image" content="https://zhangyuhu.github.io/logo.png" /><meta property="article:section" content="posts" />
+
+<meta property="article:modified_time" content="2026-03-16T23:01:36+08:00" /><meta property="og:site_name" content="我的网站" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://zhangyuhu.github.io/logo.png" /><meta name="twitter:title" content=""/>
+<meta name="twitter:description" content="STL 容器对比 STL容器分类 STL容器对比 容器成员对比 迭代器失效的问题 其他 STL容器分类 顺序（序列）容器：vector, list, deque, string,stack( 适配器类), queue( 适配"/>
+<meta name="application-name" content="我的网站">
+<meta name="apple-mobile-web-app-title" content="我的网站"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://zhangyuhu.github.io/posts/program/cpp/stl/stl%E5%AE%B9%E5%99%A8%E5%AF%B9%E6%AF%94/" /><link rel="prev" href="https://zhangyuhu.github.io/posts/program/cpp/templates/templatesnote01/" /><link rel="next" href="https://zhangyuhu.github.io/posts/program/cpp/staticmember/staticmember/" /><link rel="stylesheet" href="/css/style.min.d09a08388620d07592fcb288b74e9f4434a352d4869011bd6c06619079103da00fcccceb4fa6fce14315bef50c9be97c6bc29582e3968d9521c60ef89c6de806.css" integrity="sha512-0JoIOIYg0HWS/LKIt06fRDSjUtSGkBG9bAZhkHkQPaAPzMzrT6b84UMVvvUMm+l8a8KVguOWjZUhxg74nG3oBg=="><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/zhangyuhu.github.io\/posts\/program\/cpp\/stl\/stl%E5%AE%B9%E5%99%A8%E5%AF%B9%E6%AF%94\/"
+        },"image": [{
+                            "@type": "ImageObject",
+                            "url": "https:\/\/zhangyuhu.github.io\/images\/Apple-Devices-Preview.png",
+                            "width":  3200 ,
+                            "height":  2048 
+                        }],"genre": "posts","wordcount":  1944 ,
+        "url": "https:\/\/zhangyuhu.github.io\/posts\/program\/cpp\/stl\/stl%E5%AE%B9%E5%99%A8%E5%AF%B9%E6%AF%94\/","dateModified": "2026-03-16T23:01:36+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "zhangyuhu"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="这是我的网站"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/" title="文章"><i class='fas fa-archive fa-fw fa-sm'></i> 文章 </a><a class="menu-item" href="/tags/"><i class='fas fa-tags fa-fw fa-sm'></i> 标签 </a><a class="menu-item" href="/categories/"><i class='fas fa-th fa-fw fa-sm'></i> 分类 </a><a class="menu-item" href="/about/"><i class='fas fa-user-tie fa-fw fa-sm'></i> 关于 </a><a class="menu-item" href="/tool/"><i class='fas fa-cube fa-fw fa-sm'></i> 工具箱 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="这是我的网站"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="文章"><i class='fas fa-archive fa-fw fa-sm'></i>文章</a><a class="menu-item" href="/tags/" title=""><i class='fas fa-tags fa-fw fa-sm'></i>标签</a><a class="menu-item" href="/categories/" title=""><i class='fas fa-th fa-fw fa-sm'></i>分类</a><a class="menu-item" href="/about/" title=""><i class='fas fa-user-tie fa-fw fa-sm'></i>关于</a><a class="menu-item" href="/tool/" title=""><i class='fas fa-cube fa-fw fa-sm'></i>工具箱</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX"></h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://zhangyuhu.github.io/" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>zhangyuhu</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1944 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;4 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#stl容器分类">STL容器分类</a></li>
+    <li><a href="#stl容器对比">STL容器对比</a></li>
+    <li><a href="#容器成员对比">容器成员对比</a></li>
+    <li><a href="#迭代器失效的问题">迭代器失效的问题</a></li>
+    <li><a href="#其他">其他</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><div align='center' ><font size='70'>STL 容器对比</font></div>
+<!-- TOC -->
+<ul>
+<li><a href="#stl%e5%ae%b9%e5%99%a8%e5%88%86%e7%b1%bb" rel="">STL容器分类</a></li>
+<li><a href="#stl%e5%ae%b9%e5%99%a8%e5%af%b9%e6%af%94" rel="">STL容器对比</a></li>
+<li><a href="#%e5%ae%b9%e5%99%a8%e6%88%90%e5%91%98%e5%af%b9%e6%af%94" rel="">容器成员对比</a></li>
+<li><a href="#%e8%bf%ad%e4%bb%a3%e5%99%a8%e5%a4%b1%e6%95%88%e7%9a%84%e9%97%ae%e9%a2%98" rel="">迭代器失效的问题</a></li>
+<li><a href="#%e5%85%b6%e4%bb%96" rel="">其他</a></li>
+</ul>
+<!-- /TOC -->
+<h1 id="stl容器分类">STL容器分类</h1>
+<ul>
+<li>顺序（序列）容器：vector, list, deque, string,stack( 适配器类), queue( 适配器类), priority queues( 适配器类)</li>
+<li>关联容器：set, multiset, map, multimap, bitset,hash_set, hash_map, hash_multiset, hash_multimap</li>
+</ul>
+<h1 id="stl容器对比">STL容器对比</h1>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>vector</th>
+<th style="text-align:left">deque</th>
+<th>list</th>
+<th>set</th>
+<th>multiset</th>
+<th>map</th>
+<th>multimap</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>名称</td>
+<td>向量容器</td>
+<td style="text-align:left">双向队列容器</td>
+<td>列表容器</td>
+<td>集合</td>
+<td>多重集合</td>
+<td>映射</td>
+<td>多重映射</td>
+</tr>
+<tr>
+<td>内部数据结构</td>
+<td>连续存储的数组形式（一端开口的组）</td>
+<td style="text-align:left">连续或分段连续存储数组（两端开口的数组）</td>
+<td>双向环状链表</td>
+<td>红黑树（平衡检索二叉树）</td>
+<td>红黑树</td>
+<td>红黑树</td>
+<td>红黑树</td>
+</tr>
+<tr>
+<td>特 点</td>
+<td>获取元素效率很高，插入和删除的效率很低</td>
+<td style="text-align:left">获取元素效率较高，插入和删除的效率较高</td>
+<td>获取元素效率很低，插入和删除的效率很高</td>
+<td>1.键（关键字）和值（数据）相等（就是模版只有一个参数，键和值合起来）2.键唯一3.元素默认按升序排列</td>
+<td>1.键和值相等2.键可以不唯一3.元素默认按升序排列</td>
+<td>1.键和值分开（模版有两个参数，前面是键后面是值）2.键唯一3.元素默认按键的升序排列</td>
+<td>1.键和值分开2.键可以不唯一3.元素默认按键的升序排列</td>
+</tr>
+<tr>
+<td>头文件</td>
+<td>#include <vector></td>
+<td style="text-align:left">#include <deque></td>
+<td>#include <list></td>
+<td>#include <set></td>
+<td>#include <set></td>
+<td>#include <map></td>
+<td>#include <map></td>
+</tr>
+<tr>
+<td>操作元素的方式</td>
+<td>下标运算符：[0]（可以用迭代器，但插入删除操作时会失效）</td>
+<td style="text-align:left">下标运算符或迭代器</td>
+<td>只能用迭代器(不断用变量值来递推新值，相当于指针)，不支持使用下标运算符</td>
+<td>迭代器</td>
+<td>迭代器</td>
+<td>迭代器</td>
+<td>迭代器</td>
+</tr>
+<tr>
+<td>插入删除操作迭代器是否失效</td>
+<td>插入和删除元素都会使迭代器失效</td>
+<td style="text-align:left">插入任何元素都会使迭代器失效。删除头和尾元素，指向被删除节点迭代器失效，而删除中间元素会使所有迭代器失效</td>
+<td>插入，迭代器不会失效。删除，指向被删除节点迭代器失效</td>
+<td>插入，迭代器不会失效。删除，指向被删除节点迭代器失效</td>
+<td>插入，迭代器不会失效。删除，指向被删除节点迭代器失效</td>
+<td>插入，迭代器不会失效。删除，指向被删除节点迭代器失效</td>
+<td>插入，迭代器不会失效。删除，指向被删除节点迭代器失效</td>
+</tr>
+</tbody>
+</table>
+<h1 id="容器成员对比">容器成员对比</h1>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="image/%e5%ae%b9%e5%99%a8%e5%87%bd%e6%95%b0.png"
+        data-srcset="image/%e5%ae%b9%e5%99%a8%e5%87%bd%e6%95%b0.png, image/%e5%ae%b9%e5%99%a8%e5%87%bd%e6%95%b0.png 1.5x, image/%e5%ae%b9%e5%99%a8%e5%87%bd%e6%95%b0.png 2x"
+        data-sizes="auto"
+        alt="image/容器函数.png"
+        title="xxx" /></p>
+<h1 id="迭代器失效的问题">迭代器失效的问题</h1>
+<p>顺序容器，在内存中是一块连续的内存，当删除一个元素后，内存中的数据会发生移动，以保证数据的紧凑。所以删除一个数据后，其他数据的地址发生了变化，之前获取的迭代器根据原有的信息就访问不到正确的数据。</p>
+<p>​	1、对于节点式容器(map, list, set)元素的删除，插入操作会导致指向该元素的迭代器失效，其他元素迭代器不受影响。</p>
+<p>​	2、对于顺序式容器(vector)元素的删除、插入操作会导致指向该元素以及后面的元素的迭代器失效。</p>
+<p>vector迭代器的几种失效的情况：</p>
+<p>​	1、当插入（push_back）一个元素后，end操作返回的迭代器肯定失效。</p>
+<p>​	2、当插入(push_back)一个元素后，capacity返回值与没有插入元素之前相比有改变，则需要重新加载整个容器，此时first和end操作返回的迭代器都会失效。</p>
+<p>​	3、当进行删除操作（erase，pop_back）后，指向删除点的迭代器全部失效；指向删除点后面的元素的迭代器也将全部失效。</p>
+<p>deque迭代器的失效情况： 在C++Primer一书中是这样限定的：</p>
+<p>​	1、在deque容器首部或者尾部插入元素不会使得任何迭代器失效。</p>
+<p>​	2、在其首部或尾部删除元素则只会使指向被删除元素的迭代器失效。</p>
+<p>​	3、在deque容器的任何其他位置的插入和删除操作将使指向该容器元素的所有迭代器失效。</p>
+<h1 id="其他">其他</h1>
+<ol>
+<li>
+<p>当对象很大时，建立指针的容器而不是对象的容器</p>
+<p>STL基于拷贝的方式的来工作，任何需要放入STL中的元素，都会被复制。这也好理解，STL工作的容器是在堆内开辟的一块新空间，而我们自己的变量一般存放在函数栈或另一块堆空间中。为了能够完全控制STL自己的元素，为了能在自己的地盘随心干活，这就涉及到复制。而如果复制的对象很大，由复制带来的性能代价也不小，对于大对象的操作，使用指针来代替对象能消除这方面的代价</p>
+</li>
+<li>
+<p>只涉及到指针拷贝操作， 没有额外类的构造函数和赋值构造函数的调用</p>
+</li>
+</ol>
+<p>不可取：</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-1">1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-2">2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-3">3</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span>vecttor vt1;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>vt1.push_bach(myBigObj);
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>可取：</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-1">1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-2">2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-3">3</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span>vecttor vt2;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>vt2.push_bach(<span style="color:#069;font-weight:bold">new</span> BigObj());
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="3">
+<li>
+<p>容器销毁前需要自行销毁指针所指向的对象 , 否则就造成了内存泄漏；</p>
+</li>
+<li>
+<p>使用排序等算法时，需要构造基于对象的比较函数，如果使用默认的比较函数，其结果是基于指针大小的比较，而不是对象的比较；</p>
+</li>
+<li>
+<p>在使用vector的时候，需要有一点注意：尽量少使用erase，因为在发生erase的时候，会发生一次拷贝，vector要保持结构的完整性，会把从操作对象后的每一个成员都进行一次拷贝，并前移一位，但是在最后一个成员发生移动的时候，如果成员是一个非常规类型，会发生析构，那该成员以及该成员的拷贝都将被删除</p>
+</li>
+<li>
+<p>C++ STL 的 vector 容器在 clear() 之后不会释放内存，需要 swap(empty vector)，这是有意为之（C++11 里增加了 shrink_to_fit() 函数）。不要记成了所有 STL 容器都需要swap(empty one) 来释放内存。</p>
+</li>
+</ol>
+<p>事实上其他容器（map/set/list/deque）都只需要 clear() 就能释放内存。</p>
+<p>只有含 reserve()/capacity() 成员函数的容器才需要用 swap 来释放空间，而 C++ 里只有 vector 和 string 这两个符合条件。</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2026-03-16</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://zhangyuhu.github.io/posts/program/cpp/stl/stl%E5%AE%B9%E5%99%A8%E5%AF%B9%E6%AF%94/" data-title=""><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://zhangyuhu.github.io/posts/program/cpp/stl/stl%E5%AE%B9%E5%99%A8%E5%AF%B9%E6%AF%94/"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://zhangyuhu.github.io/posts/program/cpp/stl/stl%E5%AE%B9%E5%99%A8%E5%AF%B9%E6%AF%94/" data-title=""><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://zhangyuhu.github.io/posts/program/cpp/stl/stl%E5%AE%B9%E5%99%A8%E5%AF%B9%E6%AF%94/" data-title=""><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://zhangyuhu.github.io/posts/program/cpp/stl/stl%E5%AE%B9%E5%99%A8%E5%AF%B9%E6%AF%94/" data-title="" data-ralateuid="ji"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/program/cpp/templates/templatesnote01/" class="prev" rel="prev" title=""><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i></a>
+            <a href="/posts/program/cpp/staticmember/staticmember/" class="next" rel="next" title=""><i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="giscus" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://giscus.app">Giscus</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">为天地立心,为生民立命,为往圣继绝学,为万世开太平</div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2023 - 2026</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://zhangyuhu.github.io/" target="_blank">zhangyuhu</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="http://creativecommons.org/licenses/by/4.0/" target="_blank">知识共享署名 4.0 国际许可协议</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/twemoji@14.0.2/dist/twemoji.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@8.6.0/dist/index.umd.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":100},"comment":{"giscus":{"category":"Comments","categoryId":"DIC_kwDOIx2Cjs4CTnUX","darkTheme":"dark","emitMetadata":"0","inputPosition":"bottom","lang":"en","lazyLoading":false,"lightTheme":"light","mapping":"pathname","reactionsEnabled":"1","repo":"zhangyuhu/zhangyuhu.github.io","repoId":"R_kgDOIx2Cjg"}},"data":{"id-1":"HOME","id-2":"HOME"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"},"twemoji":true,"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.f1b10c54ef8e7ea0c938baba89a68e47962cb91f87edfcf0ae7abf0ec7bbb510e5d980a2b5a69686d7a44eae747183e3ed5cd960ed6fe66552c947e6fca4ff67.js" integrity="sha512-8bEMVO+OfqDJOLq6iaaOR5YsuR+H7fzwrnq/Dse7tRDl2YCitaaWhtekTq50cYPj7VzZYO1v5mVSyUfm/KT/Zw=="></script></body>
+</html>

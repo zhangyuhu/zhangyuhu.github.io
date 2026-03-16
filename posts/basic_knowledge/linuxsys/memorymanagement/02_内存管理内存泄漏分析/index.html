@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>LinuxSys:内存管理-内存泄漏分析 - 这是我的网站</title><meta name="Description" content="内存管理-内存泄漏分析"><meta property="og:title" content="LinuxSys:内存管理-内存泄漏分析" />
+<meta property="og:description" content="内存管理-内存泄漏分析" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zhangyuhu.github.io/posts/basic_knowledge/linuxsys/memorymanagement/02_%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%E5%88%86%E6%9E%90/" /><meta property="og:image" content="https://zhangyuhu.github.io/logo.png" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2026-03-16T16:00:00+08:00" />
+<meta property="article:modified_time" content="2026-03-16T16:00:00+08:00" /><meta property="og:site_name" content="我的网站" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://zhangyuhu.github.io/logo.png" /><meta name="twitter:title" content="LinuxSys:内存管理-内存泄漏分析"/>
+<meta name="twitter:description" content="内存管理-内存泄漏分析"/>
+<meta name="application-name" content="我的网站">
+<meta name="apple-mobile-web-app-title" content="我的网站"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://zhangyuhu.github.io/posts/basic_knowledge/linuxsys/memorymanagement/02_%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%E5%88%86%E6%9E%90/" /><link rel="prev" href="https://zhangyuhu.github.io/posts/basic_knowledge/computer/config/" /><link rel="next" href="https://zhangyuhu.github.io/posts/basic_knowledge/linuxsys/memorymanagement/01_%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86%E5%86%85%E5%AD%98%E5%8D%A0%E7%94%A8%E6%9F%A5%E7%9C%8B/" /><link rel="stylesheet" href="/css/style.min.d09a08388620d07592fcb288b74e9f4434a352d4869011bd6c06619079103da00fcccceb4fa6fce14315bef50c9be97c6bc29582e3968d9521c60ef89c6de806.css" integrity="sha512-0JoIOIYg0HWS/LKIt06fRDSjUtSGkBG9bAZhkHkQPaAPzMzrT6b84UMVvvUMm+l8a8KVguOWjZUhxg74nG3oBg=="><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "LinuxSys:内存管理-内存泄漏分析",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/zhangyuhu.github.io\/posts\/basic_knowledge\/linuxsys\/memorymanagement\/02_%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%E5%88%86%E6%9E%90\/"
+        },"image": [{
+                            "@type": "ImageObject",
+                            "url": "https:\/\/zhangyuhu.github.io\/images\/Apple-Devices-Preview.png",
+                            "width":  3200 ,
+                            "height":  2048 
+                        }],"genre": "posts","keywords": "Linux, 内存管理, 内存泄漏","wordcount":  2069 ,
+        "url": "https:\/\/zhangyuhu.github.io\/posts\/basic_knowledge\/linuxsys\/memorymanagement\/02_%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%E5%88%86%E6%9E%90\/","datePublished": "2026-03-16T16:00:00+08:00","dateModified": "2026-03-16T16:00:00+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "zhangyuhu"
+            },"description": "内存管理-内存泄漏分析"
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="这是我的网站"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/" title="文章"><i class='fas fa-archive fa-fw fa-sm'></i> 文章 </a><a class="menu-item" href="/tags/"><i class='fas fa-tags fa-fw fa-sm'></i> 标签 </a><a class="menu-item" href="/categories/"><i class='fas fa-th fa-fw fa-sm'></i> 分类 </a><a class="menu-item" href="/about/"><i class='fas fa-user-tie fa-fw fa-sm'></i> 关于 </a><a class="menu-item" href="/tool/"><i class='fas fa-cube fa-fw fa-sm'></i> 工具箱 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="这是我的网站"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="文章"><i class='fas fa-archive fa-fw fa-sm'></i>文章</a><a class="menu-item" href="/tags/" title=""><i class='fas fa-tags fa-fw fa-sm'></i>标签</a><a class="menu-item" href="/categories/" title=""><i class='fas fa-th fa-fw fa-sm'></i>分类</a><a class="menu-item" href="/about/" title=""><i class='fas fa-user-tie fa-fw fa-sm'></i>关于</a><a class="menu-item" href="/tool/" title=""><i class='fas fa-cube fa-fw fa-sm'></i>工具箱</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">LinuxSys:内存管理-内存泄漏分析</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://zhangyuhu.github.io/" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>zhangyuhu</a></span>&nbsp;<span class="post-category">included in <a href="/categories/linuxsys/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>LinuxSys</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2026-03-16">2026-03-16</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2069 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;5 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#内存泄漏">内存泄漏</a></li>
+    <li><a href="#valgrind">Valgrind</a>
+      <ul>
+        <li><a href="#编译valgrind">编译valgrind</a></li>
+        <li><a href="#使用valgrind">使用valgrind</a></li>
+        <li><a href="#valgrind-输出分析">valgrind 输出分析</a></li>
+      </ul>
+    </li>
+    <li><a href="#参考">参考</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><blockquote>
+<p>本文采用<a href="http://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreffer ">知识共享署名 4.0 国际许可协议</a>进行许可，转载时请注明原文链接，图片在使用时请保留全部内容，可适当缩放并在引用处附上图片所在的文章链接。</p>
+</blockquote>
+<div align='center' ><font size='70'>内存管理:内存泄漏分析</font></div>
+<blockquote>
+<p>本文采用<a href="http://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreffer ">知识共享署名 4.0 国际许可协议</a>进行许可，转载时请注明原文链接，图片在使用时请保留全部内容，可适当缩放并在引用处附上图片所在的文章链接。</p>
+</blockquote>
+<ul>
+<li><a href="#%e5%86%85%e5%ad%98%e6%b3%84%e6%bc%8f" rel="">内存泄漏</a></li>
+<li><a href="#valgrind" rel="">Valgrind</a>
+<ul>
+<li><a href="#%e7%bc%96%e8%af%91valgrind" rel="">编译valgrind</a></li>
+<li><a href="#%e4%bd%bf%e7%94%a8valgrind" rel="">使用valgrind</a></li>
+<li><a href="#valgrind-%e8%be%93%e5%87%ba%e5%88%86%e6%9e%90" rel="">valgrind 输出分析</a></li>
+</ul>
+</li>
+<li><a href="#%e5%8f%82%e8%80%83" rel="">参考</a></li>
+</ul>
+<h1 id="内存泄漏">内存泄漏</h1>
+<p>在计算机科学中，内存泄漏指由于疏忽或错误造成程序未能释放已经不再使用的内存的情况。内存泄漏并非指内存在物理上的消失，而是应用程序分配某段内存后，由于设计错误，导致在释放该段内存之前就失去了对该段内存的控制，从而造成了内存的浪费。</p>
+<h1 id="valgrind">Valgrind</h1>
+<h2 id="编译valgrind">编译valgrind</h2>
+<p><strong>下载 valgrind</strong></p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-1">1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-2">2</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>wget http://www.valgrind.org/downloads/valgrind-3.14.0.tar.bz2
+</span></span><span style="display:flex;"><span>tar -jxvf valgrind-3.14.0.tar.bz2 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>配置工具链</strong></p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-1">1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-2">2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-3">3</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#366">export</span> <span style="color:#033">CC</span><span style="color:#555">=</span>/usr/local/aarch64-himix100-linux-toolchain-libra-v3/bin/aarch64-himix100-linux-gcc
+</span></span><span style="display:flex;"><span><span style="color:#366">export</span> <span style="color:#033">AR</span><span style="color:#555">=</span>/usr/local/aarch64-himix100-linux-toolchain-libra-v3/bin/aarch64-himix100-linux-ar
+</span></span><span style="display:flex;"><span><span style="color:#366">export</span> <span style="color:#033">LD</span><span style="color:#555">=</span>/usr/local/aarch64-himix100-linux-toolchain-libra-v3/bin/aarch64-himix100-linux-ld
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>编译</strong></p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-1">1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-2">2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-3">3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-4">4</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#366">cd</span> valgrind-3.14.0
+</span></span><span style="display:flex;"><span>./config --host<span style="color:#555">=</span>aarch64-himix100-linux    --prefix<span style="color:#555">=</span>/mnt/DG/DATA/software/valgrind/   --enable-only64bit 
+</span></span><span style="display:flex;"><span>make
+</span></span><span style="display:flex;"><span>make install
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="使用valgrind">使用valgrind</h2>
+<p>Valgrind的手册 : <a href="http://valgrind.org/docs/manual/manual.html" target="_blank" rel="noopener noreffer ">http://valgrind.org/docs/manual/manual.html</a></p>
+<p><strong>工具选项</strong></p>
+<p>&ndash;tool=<name> 运行 valgrind中名为toolname的工具。默认memcheck。</p>
+<blockquote>
+<ul>
+<li>
+<p>​    memcheck &mdash;&mdash;&gt; 这是valgrind应用最广泛的工具，一个重量级的内存检查器，能够发现开发中绝大多数内存错误使用情况，比如：使用未初始化的内存，使用已经释放了的内存，内存访问越界等。</p>
+</li>
+<li>
+<p>​    callgrind &mdash;&mdash;&gt; 它主要用来检查程序中函数调用过程中出现的问题。</p>
+</li>
+<li>
+<p>​    cachegrind &mdash;&mdash;&gt; 它主要用来检查程序中缓存使用出现的问题。</p>
+</li>
+<li>
+<p>​    helgrind &mdash;&mdash;&gt; 它主要用来检查多线程程序中出现的竞争问题。</p>
+</li>
+<li>
+<p>​    massif &mdash;&mdash;&gt; 它主要用来检查程序中堆栈使用中出现的问题。</p>
+</li>
+<li>
+<p>​    extension &mdash;&mdash;&gt; 可以利用core提供的功能，自己编写特定的内存调试工具</p>
+</li>
+</ul>
+</blockquote>
+<p><strong>适用于Memcheck工具的相关选项</strong></p>
+<blockquote>
+<p>&ndash;leak-check=no|summary|full 	   要求对leak给出详细信息? [summary]</p>
+<p>&ndash;leak-resolution=low|med|high       how much bt merging in leak check [low]</p>
+<p>&ndash;show-reachable=no|yes                 show reachable blocks in leak check? [no]</p>
+</blockquote>
+<p><strong>LOG信息输出</strong></p>
+<blockquote>
+<p>-xml=yes 将信息以xml格式输出，只有memcheck可用
+-num-callers=<number> show <number> callers in stack traces [12]
+-error-limit=no|yes 如果太多错误，则停止显示新错误? [yes]
+-error-exitcode=<number> 如果发现错误则返回错误代码 [0=disable]
+-db-attach=no|yes 当出现错误，valgrind会自动启动调试器gdb。[no]
+-db-command=<command> 启动调试器的命令行选项[gdb -nw %f %p]</p>
+</blockquote>
+<p><strong>其他</strong></p>
+<blockquote>
+<p>-h –help 显示帮助信息。
+-version 显示valgrind内核的版本，每个工具都有各自的版本。
+-q –quiet 安静地运行，只打印错误信息。
+-v –verbose 更详细的信息, 增加错误数统计。
+-trace-children=no|yes 跟踪子线程? [no]
+-track-fds=no|yes 跟踪打开的文件描述？[no]
+-time-stamp=no|yes 增加时间戳到LOG信息? [no]
+-log-fd=<number> 输出LOG到描述符文件 [2=stderr]
+-log-file=<file> 将输出的信息写入到filename.PID的文件里，PID是运行程序的进行ID
+-log-file-exactly=<file> 输出LOG信息到 file
+-log-file-qualifier=<VAR> 取得环境变量的值来做为输出信息的文件名。 [none]
+-log-socket=ipaddr:port 输出LOG到socket ，ipaddr:port</p>
+</blockquote>
+<p><strong>最常用的命令格式</strong></p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-1">1</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span> valgrind --log-file<span style="color:#555">=</span>valgrind_log --tool<span style="color:#555">=</span>memcheck --leak-check<span style="color:#555">=</span>full --show-leak-kinds<span style="color:#555">=</span>all ./T3RMultimediaTest
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="valgrind-输出分析">valgrind 输出分析</h2>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-1">  1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-2">  2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-3">  3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-4">  4</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-5">  5</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-6">  6</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-7">  7</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-8">  8</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-9">  9</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-10"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-10"> 10</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-11"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-11"> 11</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-12"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-12"> 12</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-13"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-13"> 13</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-14"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-14"> 14</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-15"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-15"> 15</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-16"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-16"> 16</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-17"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-17"> 17</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-18"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-18"> 18</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-19"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-19"> 19</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-20"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-20"> 20</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-21"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-21"> 21</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-22"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-22"> 22</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-23"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-23"> 23</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-24"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-24"> 24</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-25"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-25"> 25</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-26"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-26"> 26</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-27"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-27"> 27</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-28"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-28"> 28</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-29"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-29"> 29</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-30"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-30"> 30</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-31"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-31"> 31</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-32"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-32"> 32</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-33"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-33"> 33</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-34"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-34"> 34</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-35"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-35"> 35</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-36"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-36"> 36</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-37"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-37"> 37</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-38"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-38"> 38</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-39"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-39"> 39</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-40"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-40"> 40</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-41"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-41"> 41</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-42"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-42"> 42</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-43"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-43"> 43</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-44"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-44"> 44</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-45"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-45"> 45</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-46"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-46"> 46</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-47"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-47"> 47</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-48"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-48"> 48</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-49"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-49"> 49</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-50"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-50"> 50</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-51"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-51"> 51</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-52"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-52"> 52</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-53"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-53"> 53</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-54"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-54"> 54</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-55"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-55"> 55</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-56"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-56"> 56</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-57"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-57"> 57</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-58"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-58"> 58</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-59"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-59"> 59</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-60"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-60"> 60</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-61"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-61"> 61</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-62"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-62"> 62</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-63"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-63"> 63</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-64"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-64"> 64</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-65"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-65"> 65</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-66"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-66"> 66</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-67"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-67"> 67</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-68"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-68"> 68</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-69"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-69"> 69</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-70"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-70"> 70</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-71"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-71"> 71</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-72"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-72"> 72</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-73"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-73"> 73</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-74"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-74"> 74</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-75"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-75"> 75</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-76"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-76"> 76</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-77"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-77"> 77</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-78"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-78"> 78</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-79"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-79"> 79</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-80"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-80"> 80</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-81"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-81"> 81</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-82"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-82"> 82</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-83"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-83"> 83</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-84"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-84"> 84</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-85"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-85"> 85</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-86"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-86"> 86</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-87"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-87"> 87</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-88"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-88"> 88</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-89"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-89"> 89</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-90"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-90"> 90</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-91"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-91"> 91</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-92"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-92"> 92</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-93"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-93"> 93</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-94"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-94"> 94</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-95"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-95"> 95</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-96"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-96"> 96</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-97"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-97"> 97</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-98"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-98"> 98</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-99"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-99"> 99</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-100"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-100">100</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-101"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-101">101</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-102"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-102">102</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-103"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-103">103</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-104"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-104">104</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-105"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-105">105</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-tex" data-lang="tex"><span style="display:flex;"><span>==1797== Memcheck, a memory error detector
+</span></span><span style="display:flex;"><span>==1797== Copyright (C) 2002-2017, and GNU GPL&#39;d, by Julian Seward et al.
+</span></span><span style="display:flex;"><span>==1797== Using Valgrind-3.14.0 and LibVEX; rerun with -h for copyright info
+</span></span><span style="display:flex;"><span>==1797== Command: ./T3RMultimediaTest
+</span></span><span style="display:flex;"><span>==1797== Parent PID: 1794
+</span></span><span style="display:flex;"><span>==1797== 
+</span></span><span style="display:flex;"><span>==1797== Warning: noted but unhandled ioctl 0x501b with no size/direction hints.
+</span></span><span style="display:flex;"><span>==1797==    This could cause spurious value errors to appear.
+</span></span><span style="display:flex;"><span>==1797==    See README<span style="color:#366">_</span>MISSING<span style="color:#366">_</span>SYSCALL<span style="color:#366">_</span>OR<span style="color:#366">_</span>IOCTL for guidance on writing a proper wrapper.
+</span></span><span style="display:flex;"><span>==1797== Thread 18:
+</span></span><span style="display:flex;"><span>==1797== Syscall param ioctl(generic) points to unaddressable byte(s)
+</span></span><span style="display:flex;"><span>==1797==    at 0x7F9E0FC: ioctl (ioctl.S:26)
+</span></span><span style="display:flex;"><span>==1797==    by 0x5617C2F: vcodec<span style="color:#366">_</span>service<span style="color:#366">_</span>init (vcodec<span style="color:#366">_</span>service.c:214)
+</span></span><span style="display:flex;"><span>==1797==    by 0x5616527: mpp<span style="color:#366">_</span>dev<span style="color:#366">_</span>init (mpp<span style="color:#366">_</span>device.c:86)
+</span></span><span style="display:flex;"><span>==1797==    by 0x55CA5EB: hal<span style="color:#366">_</span>h264e<span style="color:#366">_</span>vepu2<span style="color:#366">_</span>init<span style="color:#366">_</span>v2 (hal<span style="color:#366">_</span>h264e<span style="color:#366">_</span>vepu2<span style="color:#366">_</span>v2.c:115)
+</span></span><span style="display:flex;"><span>==1797==    by 0x55C522F: hal<span style="color:#366">_</span>h264e<span style="color:#366">_</span>init (hal<span style="color:#366">_</span>h264e<span style="color:#366">_</span>api<span style="color:#366">_</span>v2.c:76)
+</span></span><span style="display:flex;"><span>==1797==    by 0x54F815B: mpp<span style="color:#366">_</span>enc<span style="color:#366">_</span>hal<span style="color:#366">_</span>init (mpp<span style="color:#366">_</span>enc<span style="color:#366">_</span>hal.cpp:78)
+</span></span><span style="display:flex;"><span>==1797==    by 0x54F0EC7: mpp<span style="color:#366">_</span>enc<span style="color:#366">_</span>init<span style="color:#366">_</span>v2 (mpp<span style="color:#366">_</span>enc<span style="color:#366">_</span>v2.cpp:1505)
+</span></span><span style="display:flex;"><span>==1797==    by 0x54E7ADB: Mpp::init(MppCtxType, MppCodingType) (mpp.cpp:182)
+</span></span><span style="display:flex;"><span>==1797==    by 0x54EB453: mpp<span style="color:#366">_</span>init (mpi.cpp:489)
+</span></span><span style="display:flex;"><span>==1797==    by 0x59E20E3: vega::rknn::Venc::creatVenc(int, int, int, int, int) (in /home/toybrick/Rockchip/zyh/t3r<span style="color:#366">_</span>pressure<span style="color:#366">_</span>test/T3RHeadDetectTest/release/aarch64-rk3399pro-linux/lib/libvega.so)
+</span></span><span style="display:flex;"><span>==1797==    by 0x59E2DDB: vega::rknn::Venc::creatVideoVenc(unsigned long long, int, int, int, int, float, int, int, std::function&lt;void (unsigned long long, std::shared<span style="color:#366">_</span>ptr&lt;vega::Matrix&gt;, DgError)&gt;) (in /home/toybrick/Rockchip/zyh/t3r<span style="color:#366">_</span>pressure<span style="color:#366">_</span>test/T3RHeadDetectTest/release/aarch64-rk3399pro-linux/lib/libvega.so)
+</span></span><span style="display:flex;"><span>==1797==    by 0x59DF007: vega::rknn::RknnMM::createVenc(unsigned long long, vega::MatrixType, vega::MatrixType, cv::Size<span style="color:#366">_</span>&lt;int&gt; const<span style="color:#366">&amp;</span>, int, int, float, int, int, std::function&lt;void (unsigned long long, std::shared<span style="color:#366">_</span>ptr&lt;vega::Matrix&gt;, DgError)&gt;) (in /home/toybrick/Rockchip/zyh/t3r<span style="color:#366">_</span>pressure<span style="color:#366">_</span>test/T3RHeadDetectTest/release/aarch64-rk3399pro-linux/lib/libvega.so)
+</span></span><span style="display:flex;"><span>==1797==  Address 0x0 is not stack&#39;d, malloc&#39;d or (recently) free&#39;d
+</span></span><span style="display:flex;"><span>==1797== 
+</span></span><span style="display:flex;"><span>==1797== Syscall param ioctl(generic) points to unaddressable byte(s)
+</span></span><span style="display:flex;"><span>==1797==    at 0x7F9E0FC: ioctl (ioctl.S:26)
+</span></span><span style="display:flex;"><span>==1797==    by 0x5617C67: vcodec<span style="color:#366">_</span>service<span style="color:#366">_</span>init (vcodec<span style="color:#366">_</span>service.c:218)
+</span></span><span style="display:flex;"><span>==1797==    by 0x5616527: mpp<span style="color:#366">_</span>dev<span style="color:#366">_</span>init (mpp<span style="color:#366">_</span>device.c:86)
+</span></span><span style="display:flex;"><span>==1797==    by 0x55CA5EB: hal<span style="color:#366">_</span>h264e<span style="color:#366">_</span>vepu2<span style="color:#366">_</span>init<span style="color:#366">_</span>v2 (hal<span style="color:#366">_</span>h264e<span style="color:#366">_</span>vepu2<span style="color:#366">_</span>v2.c:115)
+</span></span><span style="display:flex;"><span>==1797==    by 0x55C522F: hal<span style="color:#366">_</span>h264e<span style="color:#366">_</span>init (hal<span style="color:#366">_</span>h264e<span style="color:#366">_</span>api<span style="color:#366">_</span>v2.c:76)
+</span></span><span style="display:flex;"><span>==1797==    by 0x54F815B: mpp<span style="color:#366">_</span>enc<span style="color:#366">_</span>hal<span style="color:#366">_</span>init (mpp<span style="color:#366">_</span>enc<span style="color:#366">_</span>hal.cpp:78)
+</span></span><span style="display:flex;"><span>==1797==    by 0x54F0EC7: mpp<span style="color:#366">_</span>enc<span style="color:#366">_</span>init<span style="color:#366">_</span>v2 (mpp<span style="color:#366">_</span>enc<span style="color:#366">_</span>v2.cpp:1505)
+</span></span><span style="display:flex;"><span>==1797==    by 0x54E7ADB: Mpp::init(MppCtxType, MppCodingType) (mpp.cpp:182)
+</span></span><span style="display:flex;"><span>==1797==    by 0x54EB453: mpp<span style="color:#366">_</span>init (mpi.cpp:489)
+</span></span><span style="display:flex;"><span>==1797==    by 0x59E20E3: vega::rknn::Venc::creatVenc(int, int, int, int, int) (in /home/toybrick/Rockchip/zyh/t3r<span style="color:#366">_</span>pressure<span style="color:#366">_</span>test/T3RHeadDetectTest/release/aarch64-rk3399pro-linux/lib/libvega.so)
+</span></span><span style="display:flex;"><span>==1797==    by 0x59E2DDB: vega::rknn::Venc::creatVideoVenc(unsigned long long, int, int, int, int, float, int, int, std::function&lt;void (unsigned long long, std::shared<span style="color:#366">_</span>ptr&lt;vega::Matrix&gt;, DgError)&gt;) (in /home/toybrick/Rockchip/zyh/t3r<span style="color:#366">_</span>pressure<span style="color:#366">_</span>test/T3RHeadDetectTest/release/aarch64-rk3399pro-linux/lib/libvega.so)
+</span></span><span style="display:flex;"><span>==1797==    by 0x59DF007: vega::rknn::RknnMM::createVenc(unsigned long long, vega::MatrixType, vega::MatrixType, cv::Size<span style="color:#366">_</span>&lt;int&gt; const<span style="color:#366">&amp;</span>, int, int, float, int, int, std::function&lt;void (unsigned long long, std::shared<span style="color:#366">_</span>ptr&lt;vega::Matrix&gt;, DgError)&gt;) (in /home/toybrick/Rockchip/zyh/t3r<span style="color:#366">_</span>pressure<span style="color:#366">_</span>test/T3RHeadDetectTest/release/aarch64-rk3399pro-linux/lib/libvega.so)
+</span></span><span style="display:flex;"><span>==1797==  Address 0x0 is not stack&#39;d, malloc&#39;d or (recently) free&#39;d
+</span></span><span style="display:flex;"><span>==1797== 
+</span></span><span style="display:flex;"><span>==1797== Thread 5:
+</span></span><span style="display:flex;"><span>==1797== Mismatched free() / delete / delete []
+</span></span><span style="display:flex;"><span>==1797==    at 0x48494A0: operator delete(void*) (vg<span style="color:#366">_</span>replace<span style="color:#366">_</span>malloc.c:576)
+</span></span><span style="display:flex;"><span>==1797==    by 0x59F5AEB: std::<span style="color:#366">_</span>Sp<span style="color:#366">_</span>counted<span style="color:#366">_</span>ptr<span style="color:#366">_</span>inplace&lt;vega::RpcData, std::allocator&lt;vega::RpcData&gt;, (<span style="color:#366">__</span>gnu<span style="color:#366">_</span>cxx::<span style="color:#366">_</span>Lock<span style="color:#366">_</span>policy)2&gt;::<span style="color:#366">_</span>M<span style="color:#366">_</span>dispose() (in /home/toybrick/Rockchip/zyh/t3r<span style="color:#366">_</span>pressure<span style="color:#366">_</span>test/T3RHeadDetectTest/release/aarch64-rk3399pro-linux/lib/libvega.so)
+</span></span><span style="display:flex;"><span>==1797==    by 0x59F5C07: vega::StationInputPort::RpcNode::~RpcNode() (in /home/toybrick/Rockchip/zyh/t3r<span style="color:#366">_</span>pressure<span style="color:#366">_</span>test/T3RHeadDetectTest/release/aarch64-rk3399pro-linux/lib/libvega.so)
+</span></span><span style="display:flex;"><span>==1797==    by 0x59F839F: vega::DoableStation::work() (in /home/toybrick/Rockchip/zyh/t3r<span style="color:#366">_</span>pressure<span style="color:#366">_</span>test/T3RHeadDetectTest/release/aarch64-rk3399pro-linux/lib/libvega.so)
+</span></span><span style="display:flex;"><span>==1797==    by 0x7CE81F3: ??? (in /usr/lib/aarch64-linux-gnu/libstdc++.so.6.0.25)
+</span></span><span style="display:flex;"><span>==1797==    by 0x48A67E3: start<span style="color:#366">_</span>thread (pthread<span style="color:#366">_</span>create.c:486)
+</span></span><span style="display:flex;"><span>==1797==    by 0x7FA5ADB: thread<span style="color:#366">_</span>start (clone.S:78)
+</span></span><span style="display:flex;"><span>==1797==  Address 0x121c2b20 is 0 bytes inside a block of size 36,852 alloc&#39;d
+</span></span><span style="display:flex;"><span>==1797==    at 0x484A6DC: memalign (vg<span style="color:#366">_</span>replace<span style="color:#366">_</span>malloc.c:899)
+</span></span><span style="display:flex;"><span>==1797==    by 0x58FAF27: vega::Matrix::createMemory(unsigned int, unsigned int) (in /home/toybrick/Rockchip/zyh/t3r<span style="color:#366">_</span>pressure<span style="color:#366">_</span>test/T3RHeadDetectTest/release/aarch64-rk3399pro-linux/lib/libvega.so)
+</span></span><span style="display:flex;"><span>==1797==    by 0x58F5227: vega::Matrix::create(vega::MatrixProperty const<span style="color:#366">&amp;</span>, int) (in /home/toybrick/Rockchip/zyh/t3r<span style="color:#366">_</span>pressure<span style="color:#366">_</span>test/T3RHeadDetectTest/release/aarch64-rk3399pro-linux/lib/libvega.so)
+</span></span><span style="display:flex;"><span>==1797==    by 0x59E487F: vega::rknn::Venc::procPacketData(void*) (in /home/toybrick/Rockchip/zyh/t3r<span style="color:#366">_</span>pressure<span style="color:#366">_</span>test/T3RHeadDetectTest/release/aarch64-rk3399pro-linux/lib/libvega.so)
+</span></span><span style="display:flex;"><span>==1797==    by 0x59E59F3: vega::rknn::Venc::getVencData() (in /home/toybrick/Rockchip/zyh/t3r<span style="color:#366">_</span>pressure<span style="color:#366">_</span>test/T3RHeadDetectTest/release/aarch64-rk3399pro-linux/lib/libvega.so)
+</span></span><span style="display:flex;"><span>==1797==    by 0x59E5B5B: vega::rknn::Venc::getVencStreamThread(void*) (in /home/toybrick/Rockchip/zyh/t3r<span style="color:#366">_</span>pressure<span style="color:#366">_</span>test/T3RHeadDetectTest/release/aarch64-rk3399pro-linux/lib/libvega.so)
+</span></span><span style="display:flex;"><span>==1797==    by 0x48A67E3: start<span style="color:#366">_</span>thread (pthread<span style="color:#366">_</span>create.c:486)
+</span></span><span style="display:flex;"><span>==1797==    by 0x7FA5ADB: thread<span style="color:#366">_</span>start (clone.S:78)
+</span></span><span style="display:flex;"><span>==1797== 
+</span></span><span style="display:flex;"><span>==1797== 
+</span></span><span style="display:flex;"><span>==1797== HEAP SUMMARY:
+</span></span><span style="display:flex;"><span>==1797==     in use at exit: 26,728 bytes in 354 blocks
+</span></span><span style="display:flex;"><span>==1797==   total heap usage: 4,452 allocs, 4,098 frees, 23,635,141 bytes allocated
+</span></span><span style="display:flex;"><span>==1797== 
+</span></span><span style="display:flex;"><span>==1797== Thread 1:
+</span></span><span style="display:flex;"><span>==1797== 1,760 bytes in 5 blocks are possibly lost in loss record 180 of 182
+</span></span><span style="display:flex;"><span>==1797==    at 0x484A124: calloc (vg<span style="color:#366">_</span>replace<span style="color:#366">_</span>malloc.c:752)
+</span></span><span style="display:flex;"><span>==1797==    by 0x400FBD7: allocate<span style="color:#366">_</span>dtv (dl-tls.c:286)
+</span></span><span style="display:flex;"><span>==1797==    by 0x401047F: <span style="color:#366">_</span>dl<span style="color:#366">_</span>allocate<span style="color:#366">_</span>tls (dl-tls.c:532)
+</span></span><span style="display:flex;"><span>==1797==    by 0x48A7223: allocate<span style="color:#366">_</span>stack (allocatestack.c:621)
+</span></span><span style="display:flex;"><span>==1797==    by 0x48A7223: pthread<span style="color:#366">_</span>create@@GLIBC<span style="color:#366">_</span>2.17 (pthread<span style="color:#366">_</span>create.c:669)
+</span></span><span style="display:flex;"><span>==1797==    by 0x5CF4867: cv::WorkerThread::WorkerThread(cv::ThreadPool<span style="color:#366">&amp;</span>, unsigned int) (in /home/toybrick/Rockchip/zyh/t3r<span style="color:#366">_</span>pressure<span style="color:#366">_</span>test/T3RHeadDetectTest/release/aarch64-rk3399pro-linux/lib/libvega.so)
+</span></span><span style="display:flex;"><span>==1797==    by 0x5CF5C53: cv::ThreadPool::reconfigure<span style="color:#366">_</span>(unsigned int) (in /home/toybrick/Rockchip/zyh/t3r<span style="color:#366">_</span>pressure<span style="color:#366">_</span>test/T3RHeadDetectTest/release/aarch64-rk3399pro-linux/lib/libvega.so)
+</span></span><span style="display:flex;"><span>==1797==    by 0x5CF64B3: cv::ThreadPool::run(cv::Range const<span style="color:#366">&amp;</span>, cv::ParallelLoopBody const<span style="color:#366">&amp;</span>, double) (in /home/toybrick/Rockchip/zyh/t3r<span style="color:#366">_</span>pressure<span style="color:#366">_</span>test/T3RHeadDetectTest/release/aarch64-rk3399pro-linux/lib/libvega.so)
+</span></span><span style="display:flex;"><span>==1797==    by 0x5CF32E3: cv::parallel<span style="color:#366">_</span>for<span style="color:#366">_</span>(cv::Range const<span style="color:#366">&amp;</span>, cv::ParallelLoopBody const<span style="color:#366">&amp;</span>, double) (in /home/toybrick/Rockchip/zyh/t3r<span style="color:#366">_</span>pressure<span style="color:#366">_</span>test/T3RHeadDetectTest/release/aarch64-rk3399pro-linux/lib/libvega.so)
+</span></span><span style="display:flex;"><span>==1797==    by 0x5ADBFEF: cv::hal::cpu<span style="color:#366">_</span>baseline::cvtBGRtoThreePlaneYUV(unsigned char const*, unsigned long, unsigned char*, unsigned long, int, int, int, bool, int) (in /home/toybrick/Rockchip/zyh/t3r<span style="color:#366">_</span>pressure<span style="color:#366">_</span>test/T3RHeadDetectTest/release/aarch64-rk3399pro-linux/lib/libvega.so)
+</span></span><span style="display:flex;"><span>==1797==    by 0x5ADD5DB: cv::cvtColorBGR2ThreePlaneYUV(cv::<span style="color:#366">_</span>InputArray const<span style="color:#366">&amp;</span>, cv::<span style="color:#366">_</span>OutputArray const<span style="color:#366">&amp;</span>, bool, int) (in /home/toybrick/Rockchip/zyh/t3r<span style="color:#366">_</span>pressure<span style="color:#366">_</span>test/T3RHeadDetectTest/release/aarch64-rk3399pro-linux/lib/libvega.so)
+</span></span><span style="display:flex;"><span>==1797==    by 0x5AA82B3: cv::cvtColor(cv::<span style="color:#366">_</span>InputArray const<span style="color:#366">&amp;</span>, cv::<span style="color:#366">_</span>OutputArray const<span style="color:#366">&amp;</span>, int, int) (in /home/toybrick/Rockchip/zyh/t3r<span style="color:#366">_</span>pressure<span style="color:#366">_</span>test/T3RHeadDetectTest/release/aarch64-rk3399pro-linux/lib/libvega.so)
+</span></span><span style="display:flex;"><span>==1797==    by 0x59E6C17: vega::rknn::Venc::videoEnc(std::shared<span style="color:#366">_</span>ptr&lt;vega::Matrix&gt;, float, bool) (in /home/toybrick/Rockchip/zyh/t3r<span style="color:#366">_</span>pressure<span style="color:#366">_</span>test/T3RHeadDetectTest/release/aarch64-rk3399pro-linux/lib/libvega.so)
+</span></span><span style="display:flex;"><span>==1797== 
+</span></span><span style="display:flex;"><span>==1797== 4,160 bytes in 1 blocks are definitely lost in loss record 182 of 182
+</span></span><span style="display:flex;"><span>==1797==    at 0x484A474: memalign (vg<span style="color:#366">_</span>replace<span style="color:#366">_</span>malloc.c:898)
+</span></span><span style="display:flex;"><span>==1797==    by 0x484A5AB: posix<span style="color:#366">_</span>memalign (vg<span style="color:#366">_</span>replace<span style="color:#366">_</span>malloc.c:1062)
+</span></span><span style="display:flex;"><span>==1797==    by 0x56132F3: os<span style="color:#366">_</span>malloc (os<span style="color:#366">_</span>mem.c:23)
+</span></span><span style="display:flex;"><span>==1797==    by 0x56127D3: mpp<span style="color:#366">_</span>osal<span style="color:#366">_</span>malloc (mpp<span style="color:#366">_</span>mem.cpp:646)
+</span></span><span style="display:flex;"><span>==1797==    by 0x561288F: mpp<span style="color:#366">_</span>osal<span style="color:#366">_</span>calloc (mpp<span style="color:#366">_</span>mem.cpp:666)
+</span></span><span style="display:flex;"><span>==1797==    by 0x55058DB: mpp<span style="color:#366">_</span>enc<span style="color:#366">_</span>cfg<span style="color:#366">_</span>init (mpp<span style="color:#366">_</span>enc<span style="color:#366">_</span>cfg.cpp:334)
+</span></span><span style="display:flex;"><span>==1797==    by 0x59E20BB: vega::rknn::Venc::creatVenc(int, int, int, int, int) (in /home/toybrick/Rockchip/zyh/t3r<span style="color:#366">_</span>pressure<span style="color:#366">_</span>test/T3RHeadDetectTest/release/aarch64-rk3399pro-linux/lib/libvega.so)
+</span></span><span style="display:flex;"><span>==1797==    by 0x59E2DDB: vega::rknn::Venc::creatVideoVenc(unsigned long long, int, int, int, int, float, int, int, std::function&lt;void (unsigned long long, std::shared<span style="color:#366">_</span>ptr&lt;vega::Matrix&gt;, DgError)&gt;) (in /home/toybrick/Rockchip/zyh/t3r<span style="color:#366">_</span>pressure<span style="color:#366">_</span>test/T3RHeadDetectTest/release/aarch64-rk3399pro-linux/lib/libvega.so)
+</span></span><span style="display:flex;"><span>==1797==    by 0x59DF007: vega::rknn::RknnMM::createVenc(unsigned long long, vega::MatrixType, vega::MatrixType, cv::Size<span style="color:#366">_</span>&lt;int&gt; const<span style="color:#366">&amp;</span>, int, int, float, int, int, std::function&lt;void (unsigned long long, std::shared<span style="color:#366">_</span>ptr&lt;vega::Matrix&gt;, DgError)&gt;) (in /home/toybrick/Rockchip/zyh/t3r<span style="color:#366">_</span>pressure<span style="color:#366">_</span>test/T3RHeadDetectTest/release/aarch64-rk3399pro-linux/lib/libvega.so)
+</span></span><span style="display:flex;"><span>==1797==    by 0x5A66D0F: vega::rknn::VideoEncoder::procRpc(std::shared<span style="color:#366">_</span>ptr&lt;vega::RpcContext&gt;<span style="color:#366">&amp;</span>) (in /home/toybrick/Rockchip/zyh/t3r<span style="color:#366">_</span>pressure<span style="color:#366">_</span>test/T3RHeadDetectTest/release/aarch64-rk3399pro-linux/lib/libvega.so)
+</span></span><span style="display:flex;"><span>==1797==    by 0x5A564DB: vega::RpcProcessor::processInternal(std::shared<span style="color:#366">_</span>ptr&lt;vega::RpcData&gt;) (in /home/toybrick/Rockchip/zyh/t3r<span style="color:#366">_</span>pressure<span style="color:#366">_</span>test/T3RHeadDetectTest/release/aarch64-rk3399pro-linux/lib/libvega.so)
+</span></span><span style="display:flex;"><span>==1797==    by 0x5A574F3: std::<span style="color:#366">_</span>Function<span style="color:#366">_</span>handler&lt;void (), vega::RpcProcessor::process(std::shared<span style="color:#366">_</span>ptr&lt;vega::RpcData&gt;)::<span style="color:#366">{</span>lambda()#3<span style="color:#366">}</span>&gt;::<span style="color:#366">_</span>M<span style="color:#366">_</span>invoke(std::<span style="color:#366">_</span>Any<span style="color:#366">_</span>data const<span style="color:#366">&amp;</span>) (in /home/toybrick/Rockchip/zyh/t3r<span style="color:#366">_</span>pressure<span style="color:#366">_</span>test/T3RHeadDetectTest/release/aarch64-rk3399pro-linux/lib/libvega.so)
+</span></span><span style="display:flex;"><span>==1797== 
+</span></span><span style="display:flex;"><span>==1797== LEAK SUMMARY:
+</span></span><span style="display:flex;"><span>==1797==    definitely lost: 4,160 bytes in 1 blocks
+</span></span><span style="display:flex;"><span>==1797==    indirectly lost: 0 bytes in 0 blocks
+</span></span><span style="display:flex;"><span>==1797==      possibly lost: 1,760 bytes in 5 blocks
+</span></span><span style="display:flex;"><span>==1797==    still reachable: 20,808 bytes in 348 blocks
+</span></span><span style="display:flex;"><span>==1797==         suppressed: 0 bytes in 0 blocks
+</span></span><span style="display:flex;"><span>==1797== Reachable blocks (those to which a pointer was found) are not shown.
+</span></span><span style="display:flex;"><span>==1797== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+</span></span><span style="display:flex;"><span>==1797== 
+</span></span><span style="display:flex;"><span>==1797== For counts of detected and suppressed errors, rerun with: -v
+</span></span><span style="display:flex;"><span>==1797== ERROR SUMMARY: 5 errors from 5 contexts (suppressed: 0 from 0)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>内存管理系统模块</strong></p>
+<ul>
+<li>
+<p>用户程序（Mutator）- 可以通过分配器创建对象或者更新对象持有的指针；</p>
+</li>
+<li>
+<p>内存分配器（Allocator）— 处理用户程序的的内存分配请求；</p>
+</li>
+<li>
+<p>垃圾收集器（Collector）- 标记内存中的对象并回收不需要的内存；</p>
+</li>
+</ul>
+<h1 id="参考">参考</h1>
+<p><a href="https://draveness.me/system-design-memory-management/?utm_source=webpushr&amp;utm_medium=push&amp;utm_campaign=%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86%E8%AE%BE%E8%AE%A1%E7%B2%BE%E8%A6%819cIwdv9d1o" target="_blank" rel="noopener noreffer ">内存管理设计精要</a></p></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2026-03-16</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://zhangyuhu.github.io/posts/basic_knowledge/linuxsys/memorymanagement/02_%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%E5%88%86%E6%9E%90/" data-title="LinuxSys:内存管理-内存泄漏分析" data-hashtags="Linux,内存管理,内存泄漏"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://zhangyuhu.github.io/posts/basic_knowledge/linuxsys/memorymanagement/02_%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%E5%88%86%E6%9E%90/" data-hashtag="Linux"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://zhangyuhu.github.io/posts/basic_knowledge/linuxsys/memorymanagement/02_%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%E5%88%86%E6%9E%90/" data-title="LinuxSys:内存管理-内存泄漏分析"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://zhangyuhu.github.io/posts/basic_knowledge/linuxsys/memorymanagement/02_%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%E5%88%86%E6%9E%90/" data-title="LinuxSys:内存管理-内存泄漏分析"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://zhangyuhu.github.io/posts/basic_knowledge/linuxsys/memorymanagement/02_%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%E5%88%86%E6%9E%90/" data-title="LinuxSys:内存管理-内存泄漏分析" data-ralateuid="ji"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/linux/">Linux</a>,&nbsp;<a href="/tags/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/">内存管理</a>,&nbsp;<a href="/tags/%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F/">内存泄漏</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/basic_knowledge/computer/config/" class="prev" rel="prev" title="Computer:电脑配置"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Computer:电脑配置</a>
+            <a href="/posts/basic_knowledge/linuxsys/memorymanagement/01_%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86%E5%86%85%E5%AD%98%E5%8D%A0%E7%94%A8%E6%9F%A5%E7%9C%8B/" class="next" rel="next" title="LinuxSys:内存管理-内存占用查看">LinuxSys:内存管理-内存占用查看<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="giscus" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://giscus.app">Giscus</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">为天地立心,为生民立命,为往圣继绝学,为万世开太平</div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2023 - 2026</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://zhangyuhu.github.io/" target="_blank">zhangyuhu</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="http://creativecommons.org/licenses/by/4.0/" target="_blank">知识共享署名 4.0 国际许可协议</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/css/lightgallery-bundle.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/twemoji@14.0.2/dist/twemoji.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/lightgallery.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/thumbnail/lg-thumbnail.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/zoom/lg-zoom.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@8.6.0/dist/index.umd.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":100},"comment":{"giscus":{"category":"Comments","categoryId":"DIC_kwDOIx2Cjs4CTnUX","darkTheme":"dark","emitMetadata":"0","inputPosition":"bottom","lang":"en","lazyLoading":false,"lightTheme":"light","mapping":"pathname","reactionsEnabled":"1","repo":"zhangyuhu/zhangyuhu.github.io","repoId":"R_kgDOIx2Cjg"}},"data":{"id-1":"HOME","id-2":"HOME"},"lightgallery":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"},"twemoji":true,"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.f1b10c54ef8e7ea0c938baba89a68e47962cb91f87edfcf0ae7abf0ec7bbb510e5d980a2b5a69686d7a44eae747183e3ed5cd960ed6fe66552c947e6fca4ff67.js" integrity="sha512-8bEMVO+OfqDJOLq6iaaOR5YsuR+H7fzwrnq/Dse7tRDl2YCitaaWhtekTq50cYPj7VzZYO1v5mVSyUfm/KT/Zw=="></script></body>
+</html>

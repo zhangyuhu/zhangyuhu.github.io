@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title> - 这是我的网站</title><meta name="Description" content="这是[zhangyuhu]的网站"><meta property="og:title" content="" />
+<meta property="og:description" content="C&#43;&#43;程序设计 第一课 C语法回顾 C&#43;&#43;对C的扩展 命名空间 输入输出 数据类型 指针和引用 const限定符 struct和class 字符串 vector auto类型" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zhangyuhu.github.io/posts/program/cpp/xiaoxiang/" /><meta property="og:image" content="https://zhangyuhu.github.io/logo.png" /><meta property="article:section" content="posts" />
+
+<meta property="article:modified_time" content="2026-03-16T23:01:36+08:00" /><meta property="og:site_name" content="我的网站" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://zhangyuhu.github.io/logo.png" /><meta name="twitter:title" content=""/>
+<meta name="twitter:description" content="C&#43;&#43;程序设计 第一课 C语法回顾 C&#43;&#43;对C的扩展 命名空间 输入输出 数据类型 指针和引用 const限定符 struct和class 字符串 vector auto类型"/>
+<meta name="application-name" content="我的网站">
+<meta name="apple-mobile-web-app-title" content="我的网站"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://zhangyuhu.github.io/posts/program/cpp/xiaoxiang/" /><link rel="prev" href="https://zhangyuhu.github.io/posts/program/cpp/%E6%B7%B1%E5%BA%A6%E6%8E%A2%E7%B4%A2c&#43;&#43;%E5%AF%B9%E8%B1%A1%E6%A8%A1%E5%9E%8B/" /><link rel="next" href="https://zhangyuhu.github.io/posts/program/cpp/templates/templatesnote02/" /><link rel="stylesheet" href="/css/style.min.d09a08388620d07592fcb288b74e9f4434a352d4869011bd6c06619079103da00fcccceb4fa6fce14315bef50c9be97c6bc29582e3968d9521c60ef89c6de806.css" integrity="sha512-0JoIOIYg0HWS/LKIt06fRDSjUtSGkBG9bAZhkHkQPaAPzMzrT6b84UMVvvUMm+l8a8KVguOWjZUhxg74nG3oBg=="><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/zhangyuhu.github.io\/posts\/program\/cpp\/xiaoxiang\/"
+        },"image": [{
+                            "@type": "ImageObject",
+                            "url": "https:\/\/zhangyuhu.github.io\/images\/Apple-Devices-Preview.png",
+                            "width":  3200 ,
+                            "height":  2048 
+                        }],"genre": "posts","wordcount":  3298 ,
+        "url": "https:\/\/zhangyuhu.github.io\/posts\/program\/cpp\/xiaoxiang\/","dateModified": "2026-03-16T23:01:36+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "zhangyuhu"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="这是我的网站"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/" title="文章"><i class='fas fa-archive fa-fw fa-sm'></i> 文章 </a><a class="menu-item" href="/tags/"><i class='fas fa-tags fa-fw fa-sm'></i> 标签 </a><a class="menu-item" href="/categories/"><i class='fas fa-th fa-fw fa-sm'></i> 分类 </a><a class="menu-item" href="/about/"><i class='fas fa-user-tie fa-fw fa-sm'></i> 关于 </a><a class="menu-item" href="/tool/"><i class='fas fa-cube fa-fw fa-sm'></i> 工具箱 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="这是我的网站"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="文章"><i class='fas fa-archive fa-fw fa-sm'></i>文章</a><a class="menu-item" href="/tags/" title=""><i class='fas fa-tags fa-fw fa-sm'></i>标签</a><a class="menu-item" href="/categories/" title=""><i class='fas fa-th fa-fw fa-sm'></i>分类</a><a class="menu-item" href="/about/" title=""><i class='fas fa-user-tie fa-fw fa-sm'></i>关于</a><a class="menu-item" href="/tool/" title=""><i class='fas fa-cube fa-fw fa-sm'></i>工具箱</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX"></h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://zhangyuhu.github.io/" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>zhangyuhu</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;3298 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;7 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#第一课">第一课</a>
+      <ul>
+        <li><a href="#c语法回顾">C语法回顾</a></li>
+        <li><a href="#c对c的扩展">C++对C的扩展</a>
+          <ul>
+            <li><a href="#命名空间">命名空间</a></li>
+            <li><a href="#输入输出">输入输出</a></li>
+            <li><a href="#数据类型">数据类型</a></li>
+            <li><a href="#指针和引用">指针和引用</a></li>
+            <li><a href="#const限定符">const限定符</a></li>
+            <li><a href="#struct和class">struct和class</a></li>
+            <li><a href="#字符串">字符串</a></li>
+            <li><a href="#vector">vector</a></li>
+            <li><a href="#auto类型说明符">auto类型说明符</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#第二课">第二课</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><div align='center' ><font size='70'>C++程序设计</font></div>
+<!-- TOC -->
+<ul>
+<li><a href="#%e7%ac%ac%e4%b8%80%e8%af%be" rel="">第一课</a>
+<ul>
+<li><a href="#c%e8%af%ad%e6%b3%95%e5%9b%9e%e9%a1%be" rel="">C语法回顾</a></li>
+<li><a href="#c%e5%af%b9c%e7%9a%84%e6%89%a9%e5%b1%95" rel="">C++对C的扩展</a>
+<ul>
+<li><a href="#%e5%91%bd%e5%90%8d%e7%a9%ba%e9%97%b4" rel="">命名空间</a></li>
+<li><a href="#%e8%be%93%e5%85%a5%e8%be%93%e5%87%ba" rel="">输入输出</a></li>
+<li><a href="#%e6%95%b0%e6%8d%ae%e7%b1%bb%e5%9e%8b" rel="">数据类型</a></li>
+<li><a href="#%e6%8c%87%e9%92%88%e5%92%8c%e5%bc%95%e7%94%a8" rel="">指针和引用</a></li>
+<li><a href="#const%e9%99%90%e5%ae%9a%e7%ac%a6" rel="">const限定符</a></li>
+<li><a href="#struct%e5%92%8cclass" rel="">struct和class</a></li>
+<li><a href="#%e5%ad%97%e7%ac%a6%e4%b8%b2" rel="">字符串</a></li>
+<li><a href="#vector" rel="">vector</a></li>
+<li><a href="#auto%e7%b1%bb%e5%9e%8b%e8%af%b4%e6%98%8e%e7%ac%a6" rel="">auto类型说明符</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#%e7%ac%ac%e4%ba%8c%e8%af%be" rel="">第二课</a></li>
+</ul>
+<!-- /TOC -->
+<h1 id="第一课">第一课</h1>
+<h2 id="c语法回顾">C语法回顾</h2>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-1"> 1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-2"> 2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-3"> 3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-4"> 4</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-5"> 5</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-6"> 6</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-7"> 7</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-8"> 8</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-9"> 9</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-10"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-10">10</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>基本类型:int char float double
+</span></span><span style="display:flex;"><span>输入输出:scanf printf
+</span></span><span style="display:flex;"><span>基本语句:for,while,switch case,if else ...
+</span></span><span style="display:flex;"><span>数组:int arr[ ]
+</span></span><span style="display:flex;"><span>字符串:char str[ ]
+</span></span><span style="display:flex;"><span>指针:int *p
+</span></span><span style="display:flex;"><span>内存分配:malloc和free
+</span></span><span style="display:flex;"><span>函数:function
+</span></span><span style="display:flex;"><span>结构体:struct
+</span></span><span style="display:flex;"><span>文件操作:FILE
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="c对c的扩展">C++对C的扩展</h2>
+<h3 id="命名空间">命名空间</h3>
+<p>作用域:</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-1"> 1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-2"> 2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-3"> 3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-4"> 4</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-5"> 5</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-6"> 6</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-7"> 7</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-8"> 8</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-9"> 9</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-10"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-10">10</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>变量都有其作用域
+</span></span><span style="display:flex;"><span>全局变量:(全局)
+</span></span><span style="display:flex;"><span>局部变量:(函数内部或{ }内)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>相同作用域中,同名变量只可定义一次
+</span></span><span style="display:flex;"><span>不同作用域中,同名变量可重复定义,
+</span></span><span style="display:flex;"><span>只有新定义的起作用。
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>实际上,不同作用域的同名变量所占有
+</span></span><span style="display:flex;"><span>的内存空间是不同的。
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>引入原因:</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-1">1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-2">2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-3">3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-4">4</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-5">5</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>在大中型项目开发过程中,经常会用到多家公司提供的类库,或者协作开发的多个小组之间,可能会使用同名的函数或者全局变量,从而造成冲突。
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>命名空间,是为了解决这种命名冲突而引入的一种机制。
+</span></span><span style="display:flex;"><span>C语言中没有该机制
+</span></span><span style="display:flex;"><span>C++语言中引入了该机制
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>基本语法:</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-1">1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-2">2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-3">3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-4">4</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-5">5</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-6">6</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-7">7</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-8">8</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>namespace 空间名字 {
+</span></span><span style="display:flex;"><span>变量;
+</span></span><span style="display:flex;"><span>函数; ......
+</span></span><span style="display:flex;"><span>} (注意,此处没有分号)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>基本用法:空间名字::变量名/函数名
+</span></span><span style="display:flex;"><span>命名空间分割了全局命名空间(::)
+</span></span><span style="display:flex;"><span>每个命名空间都是一个作用域
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>使用用法:</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-1">1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-2">2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-3">3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-4">4</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-5">5</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#f60">1.</span> <span style="color:#a00;background-color:#faa">空间名字</span><span style="color:#555">::</span><span style="color:#a00;background-color:#faa">变量名</span><span style="color:#555">/</span><span style="color:#a00;background-color:#faa">函数名</span>
+</span></span><span style="display:flex;"><span><span style="color:#f60">2.</span> <span style="color:#069;font-weight:bold">using</span> <span style="color:#a00;background-color:#faa">空间名字</span><span style="color:#555">::</span><span style="color:#a00;background-color:#faa">变量名</span><span style="color:#555">/</span><span style="color:#a00;background-color:#faa">函数名</span>;
+</span></span><span style="display:flex;"><span><span style="color:#f60">3.</span> <span style="color:#069;font-weight:bold">using</span> <span style="color:#069;font-weight:bold">namespace</span> <span style="color:#a00;background-color:#faa">空间名字</span>;
+</span></span><span style="display:flex;"><span><span style="color:#a00;background-color:#faa">第</span><span style="color:#f60">2</span><span style="color:#a00;background-color:#faa">种用法每次只能引入一个成员</span>;
+</span></span><span style="display:flex;"><span><span style="color:#a00;background-color:#faa">第</span><span style="color:#f60">3</span><span style="color:#a00;background-color:#faa">种用法会打开该空间中所有的成员</span>(<span style="color:#a00;background-color:#faa">变量</span><span style="color:#555">/</span><span style="color:#a00;background-color:#faa">函数等</span>),<span style="color:#a00;background-color:#faa">谨慎使用</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>嵌套、不连续:</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-1">1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-2">2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-3">3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-4">4</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-5">5</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-6">6</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>命名空间支持嵌套
+</span></span><span style="display:flex;"><span>命名空间可以是不连
+</span></span><span style="display:flex;"><span>续的,同名空间自动合并。
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>不要把 #include 放在
+</span></span><span style="display:flex;"><span>命名空间内部
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>实际应用:</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-1">1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-2">2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-3">3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-4">4</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>起别名(方便书写)
+</span></span><span style="display:flex;"><span>namespace TV=myTelev....;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>平时常用的命名空间成员的using声明写在一个头文件中,方便使用。(如:usingstd::cout;)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="输入输出">输入输出</h3>
+<p>cin和cout :</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-1"> 1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-2"> 2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-3"> 3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-4"> 4</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-5"> 5</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-6"> 6</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-7"> 7</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-8"> 8</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-9"> 9</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-10"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-10">10</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-11"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-11">11</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-12"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-12">12</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-13"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-13">13</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-14"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-14">14</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-15"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-15">15</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span>C<span style="color:#555">++</span>(<span style="color:#a00;background-color:#faa">头文件</span> <span style="color:#a00;background-color:#faa">#</span>include <span style="color:#555">&lt;</span>iostream<span style="color:#555">&gt;</span>)
+</span></span><span style="display:flex;"><span>cin <span style="color:#a00;background-color:#faa">标准输入</span>
+</span></span><span style="display:flex;"><span>cout <span style="color:#a00;background-color:#faa">标准输出</span>
+</span></span><span style="display:flex;"><span>cerr <span style="color:#a00;background-color:#faa">标准错误输出</span>
+</span></span><span style="display:flex;"><span>C(<span style="color:#a00;background-color:#faa">头文件#</span>include<span style="color:#555">&lt;</span>stdio.h<span style="color:#555">&gt;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#a00;background-color:#faa">键盘</span> scanf
+</span></span><span style="display:flex;"><span><span style="color:#a00;background-color:#faa">屏幕</span> printf
+</span></span><span style="display:flex;"><span><span style="color:#a00;background-color:#faa">屏幕</span> fprintf(stderr,...)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>cin和cout是C<span style="color:#555">++</span><span style="color:#a00;background-color:#faa">的标准输入流和标准输出流。</span>
+</span></span><span style="display:flex;"><span><span style="color:#a00;background-color:#faa">在头文件</span><span style="color:#555">&lt;</span>iostream<span style="color:#555">&gt;</span><span style="color:#a00;background-color:#faa">中定义。</span>
+</span></span><span style="display:flex;"><span><span style="color:#a00;background-color:#faa">需要使用命名空间</span>std
+</span></span><span style="display:flex;"><span>std<span style="color:#555">::</span>cin std<span style="color:#555">::</span>cout std<span style="color:#555">::</span>endl (<span style="color:#a00;background-color:#faa">推荐用法</span>)
+</span></span><span style="display:flex;"><span><span style="color:#a00;background-color:#faa">或者</span> <span style="color:#069;font-weight:bold">using</span> std<span style="color:#555">::</span>cin; <span style="color:#069;font-weight:bold">using</span> std<span style="color:#555">::</span>cout; <span style="color:#069;font-weight:bold">using</span> std<span style="color:#555">::</span>endl;
+</span></span><span style="display:flex;"><span><span style="color:#a00;background-color:#faa">或者</span> <span style="color:#069;font-weight:bold">using</span> <span style="color:#069;font-weight:bold">namespace</span> std; (<span style="color:#a00;background-color:#faa">为了演示方便</span>,<span style="color:#a00;background-color:#faa">使用该方法</span>)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>格式化：</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-1"> 1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-2"> 2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-3"> 3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-4"> 4</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-5"> 5</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-6"> 6</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-7"> 7</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-8"> 8</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-9"> 9</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-10"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-10">10</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-11"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-11">11</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-12"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-12">12</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-13"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-13">13</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-14"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-14">14</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-15"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-15">15</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-16"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-16">16</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-17"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-17">17</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-18"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-18">18</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-19"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-19">19</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-20"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-20">20</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#099">#include</span> <span style="color:#099">&lt;stdio.h&gt;</span><span style="color:#099">
+</span></span></span><span style="display:flex;"><span><span style="color:#099"></span>
+</span></span><span style="display:flex;"><span><span style="color:#078;font-weight:bold">int</span> <span style="color:#c0f">main</span>() {
+</span></span><span style="display:flex;"><span>	<span style="color:#078;font-weight:bold">int</span> a <span style="color:#555">=</span> <span style="color:#f60">12345</span>;
+</span></span><span style="display:flex;"><span>	<span style="color:#078;font-weight:bold">double</span> f <span style="color:#555">=</span> <span style="color:#f60">123.4567</span>;
+</span></span><span style="display:flex;"><span>	<span style="color:#09f;font-style:italic">//默认输出整数
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>	<span style="color:#c0f">printf</span>(<span style="color:#c30">&#34;a=%d===</span><span style="color:#c30;font-weight:bold">\n</span><span style="color:#c30">&#34;</span>, a);
+</span></span><span style="display:flex;"><span>	<span style="color:#09f;font-style:italic">//占8格，右对齐
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>	<span style="color:#c0f">printf</span>(<span style="color:#c30">&#34;a=%8d===</span><span style="color:#c30;font-weight:bold">\n</span><span style="color:#c30">&#34;</span>, a);
+</span></span><span style="display:flex;"><span>	<span style="color:#09f;font-style:italic">//占8格，左对齐
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>	<span style="color:#c0f">printf</span>(<span style="color:#c30">&#34;a=%-8d===</span><span style="color:#c30;font-weight:bold">\n</span><span style="color:#c30">&#34;</span>, a);
+</span></span><span style="display:flex;"><span>	<span style="color:#09f;font-style:italic">//默认输出浮点数，小数显示6位
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>	<span style="color:#c0f">printf</span>(<span style="color:#c30">&#34;f=%f===</span><span style="color:#c30;font-weight:bold">\n</span><span style="color:#c30">&#34;</span>, f);
+</span></span><span style="display:flex;"><span>	<span style="color:#09f;font-style:italic">//占10格，小数显示2位，右对齐
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>	<span style="color:#c0f">printf</span>(<span style="color:#c30">&#34;f=%10.2f===</span><span style="color:#c30;font-weight:bold">\n</span><span style="color:#c30">&#34;</span>, f);
+</span></span><span style="display:flex;"><span>	<span style="color:#09f;font-style:italic">//占10格，小数显示2位，左对齐
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>	<span style="color:#c0f">printf</span>(<span style="color:#c30">&#34;f=%-10.2f===</span><span style="color:#c30;font-weight:bold">\n</span><span style="color:#c30">&#34;</span>, f);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#069;font-weight:bold">return</span> <span style="color:#f60">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-9-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-9-1"> 1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-9-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-9-2"> 2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-9-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-9-3"> 3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-9-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-9-4"> 4</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-9-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-9-5"> 5</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-9-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-9-6"> 6</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-9-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-9-7"> 7</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-9-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-9-8"> 8</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-9-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-9-9"> 9</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-9-10"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-9-10">10</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-9-11"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-9-11">11</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-9-12"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-9-12">12</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-9-13"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-9-13">13</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-9-14"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-9-14">14</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-9-15"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-9-15">15</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-9-16"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-9-16">16</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-9-17"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-9-17">17</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-9-18"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-9-18">18</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-9-19"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-9-19">19</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-9-20"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-9-20">20</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-9-21"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-9-21">21</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-9-22"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-9-22">22</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#099">#include</span> <span style="color:#099">&lt;iostream&gt;</span><span style="color:#099">
+</span></span></span><span style="display:flex;"><span><span style="color:#099">#include</span> <span style="color:#099">&lt;iomanip&gt;</span><span style="color:#099">
+</span></span></span><span style="display:flex;"><span><span style="color:#099"></span><span style="color:#069;font-weight:bold">using</span> <span style="color:#069;font-weight:bold">namespace</span> std;
+</span></span><span style="display:flex;"><span><span style="color:#078;font-weight:bold">int</span> <span style="color:#c0f">main</span>() {
+</span></span><span style="display:flex;"><span>	<span style="color:#078;font-weight:bold">int</span> a <span style="color:#555">=</span> <span style="color:#f60">12345</span>;
+</span></span><span style="display:flex;"><span>	<span style="color:#078;font-weight:bold">double</span> f <span style="color:#555">=</span> <span style="color:#f60">123.4567</span>;
+</span></span><span style="display:flex;"><span>	<span style="color:#09f;font-style:italic">//默认输出整数
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>	cout <span style="color:#555">&lt;&lt;</span> <span style="color:#c30">&#34;a=&#34;</span> <span style="color:#555">&lt;&lt;</span> a <span style="color:#555">&lt;&lt;</span> <span style="color:#c30">&#34;===&#34;</span> <span style="color:#555">&lt;&lt;</span> endl;
+</span></span><span style="display:flex;"><span>	<span style="color:#09f;font-style:italic">//占8格，右对齐
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>	cout <span style="color:#555">&lt;&lt;</span> <span style="color:#c30">&#34;a=&#34;</span> <span style="color:#555">&lt;&lt;</span> setw(<span style="color:#f60">8</span>) <span style="color:#555">&lt;&lt;</span> a <span style="color:#555">&lt;&lt;</span> <span style="color:#c30">&#34;===&#34;</span> <span style="color:#555">&lt;&lt;</span> endl;
+</span></span><span style="display:flex;"><span>	<span style="color:#09f;font-style:italic">//占8格，左对齐
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>	cout <span style="color:#555">&lt;&lt;</span> <span style="color:#c30">&#34;a=&#34;</span> <span style="color:#555">&lt;&lt;</span> setw(<span style="color:#f60">8</span>) <span style="color:#555">&lt;&lt;</span> setiosflags(ios<span style="color:#555">::</span>left)
+</span></span><span style="display:flex;"><span>		<span style="color:#555">&lt;&lt;</span> a <span style="color:#555">&lt;&lt;</span> <span style="color:#c30">&#34;===&#34;</span> <span style="color:#555">&lt;&lt;</span> endl;
+</span></span><span style="display:flex;"><span>	<span style="color:#09f;font-style:italic">//默认输出浮点数，有效位数显示6位
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>	cout <span style="color:#555">&lt;&lt;</span> <span style="color:#c30">&#34;f=&#34;</span> <span style="color:#555">&lt;&lt;</span> f <span style="color:#555">&lt;&lt;</span> <span style="color:#c30">&#34;===&#34;</span> <span style="color:#555">&lt;&lt;</span> endl;
+</span></span><span style="display:flex;"><span>	<span style="color:#09f;font-style:italic">//占10格，小数显示2位，右对齐
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>	cout <span style="color:#555">&lt;&lt;</span> <span style="color:#c30">&#34;f=&#34;</span> <span style="color:#555">&lt;&lt;</span> setw(<span style="color:#f60">10</span>) <span style="color:#555">&lt;&lt;</span> setprecision(<span style="color:#f60">2</span>)
+</span></span><span style="display:flex;"><span>		<span style="color:#555">&lt;&lt;</span> setiosflags(ios<span style="color:#555">::</span>fixed) <span style="color:#555">&lt;&lt;</span> setiosflags(ios<span style="color:#555">::</span>right)
+</span></span><span style="display:flex;"><span>		<span style="color:#555">&lt;&lt;</span> f <span style="color:#555">&lt;&lt;</span> <span style="color:#c30">&#34;===&#34;</span> <span style="color:#555">&lt;&lt;</span> endl;
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span>	<span style="color:#069;font-weight:bold">return</span> <span style="color:#f60">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-1"> 1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-2"> 2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-3"> 3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-4"> 4</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-5"> 5</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-6"> 6</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-7"> 7</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-8"> 8</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-9"> 9</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-10"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-10">10</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-11"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-11">11</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-12"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-12">12</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-13"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-13">13</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-14"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-14">14</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-15"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-15">15</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-16"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-16">16</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-17"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-17">17</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-18"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-18">18</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-19"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-19">19</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-20"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-20">20</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#099">#include</span> <span style="color:#099">&lt;iostream&gt;</span><span style="color:#099">
+</span></span></span><span style="display:flex;"><span><span style="color:#099">#include</span> <span style="color:#099">&lt;iomanip&gt;</span><span style="color:#099">
+</span></span></span><span style="display:flex;"><span><span style="color:#099"></span><span style="color:#069;font-weight:bold">using</span> <span style="color:#069;font-weight:bold">namespace</span> std;
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">struct</span> <span style="color:#0a8;font-weight:bold">mytime</span> {
+</span></span><span style="display:flex;"><span>	<span style="color:#078;font-weight:bold">int</span> h;
+</span></span><span style="display:flex;"><span>	<span style="color:#078;font-weight:bold">int</span> m;
+</span></span><span style="display:flex;"><span>	<span style="color:#078;font-weight:bold">int</span> s;
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span><span style="color:#078;font-weight:bold">int</span> <span style="color:#c0f">main</span>() {
+</span></span><span style="display:flex;"><span>	mytime t1 <span style="color:#555">=</span> { <span style="color:#f60">7</span>,<span style="color:#f60">9</span>,<span style="color:#f60">8</span> };
+</span></span><span style="display:flex;"><span>	cout <span style="color:#555">&lt;&lt;</span> <span style="color:#c30">&#34;time: &#34;</span> <span style="color:#555">&lt;&lt;</span> t1.h
+</span></span><span style="display:flex;"><span>		<span style="color:#555">&lt;&lt;</span> <span style="color:#c30">&#34;:&#34;</span> <span style="color:#555">&lt;&lt;</span> t1.m
+</span></span><span style="display:flex;"><span>		<span style="color:#555">&lt;&lt;</span> <span style="color:#c30">&#34;:&#34;</span> <span style="color:#555">&lt;&lt;</span> t1.s
+</span></span><span style="display:flex;"><span>		<span style="color:#555">&lt;&lt;</span> endl;
+</span></span><span style="display:flex;"><span>	cout <span style="color:#555">&lt;&lt;</span> <span style="color:#c30">&#34;time: &#34;</span> <span style="color:#555">&lt;&lt;</span> setfill(<span style="color:#c30">&#39;0&#39;</span>)
+</span></span><span style="display:flex;"><span>		<span style="color:#555">&lt;&lt;</span> setw(<span style="color:#f60">2</span>) <span style="color:#555">&lt;&lt;</span> t1.h <span style="color:#555">&lt;&lt;</span> <span style="color:#c30">&#34;:&#34;</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#555">&lt;&lt;</span> setw(<span style="color:#f60">2</span>) <span style="color:#555">&lt;&lt;</span> t1.m <span style="color:#555">&lt;&lt;</span> <span style="color:#c30">&#34;:&#34;</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#555">&lt;&lt;</span> setw(<span style="color:#f60">2</span>) <span style="color:#555">&lt;&lt;</span> t1.s <span style="color:#555">&lt;&lt;</span> endl;
+</span></span><span style="display:flex;"><span>	<span style="color:#069;font-weight:bold">return</span> <span style="color:#f60">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>字符串:</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-11-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-11-1"> 1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-11-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-11-2"> 2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-11-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-11-3"> 3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-11-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-11-4"> 4</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-11-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-11-5"> 5</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-11-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-11-6"> 6</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-11-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-11-7"> 7</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-11-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-11-8"> 8</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-11-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-11-9"> 9</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-11-10"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-11-10">10</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#099">#include</span> <span style="color:#099">&lt;stdio.h&gt;</span><span style="color:#099">
+</span></span></span><span style="display:flex;"><span><span style="color:#099">#include</span> <span style="color:#099">&lt;string.h&gt;</span><span style="color:#099">
+</span></span></span><span style="display:flex;"><span><span style="color:#099"></span><span style="color:#078;font-weight:bold">int</span> <span style="color:#c0f">main</span>() {
+</span></span><span style="display:flex;"><span>	<span style="color:#078;font-weight:bold">char</span> str[<span style="color:#f60">10</span>] <span style="color:#555">=</span> { <span style="color:#f60">0</span> };
+</span></span><span style="display:flex;"><span>	<span style="color:#c0f">fgets</span>(str, <span style="color:#069;font-weight:bold">sizeof</span>(str), stdin);
+</span></span><span style="display:flex;"><span>	<span style="color:#069;font-weight:bold">if</span> (str[<span style="color:#c0f">strlen</span>(str) <span style="color:#555">-</span> <span style="color:#f60">1</span>] <span style="color:#555">==</span> <span style="color:#c30">&#39;\n&#39;</span>)
+</span></span><span style="display:flex;"><span>		str[<span style="color:#c0f">strlen</span>(str) <span style="color:#555">-</span> <span style="color:#f60">1</span>] <span style="color:#555">=</span> <span style="color:#c30">&#39;\0&#39;</span>;
+</span></span><span style="display:flex;"><span>	<span style="color:#c0f">printf</span>(<span style="color:#c30">&#34;%s</span><span style="color:#c30;font-weight:bold">\n</span><span style="color:#c30">&#34;</span>, str);
+</span></span><span style="display:flex;"><span>	<span style="color:#069;font-weight:bold">return</span> <span style="color:#f60">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-1">1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-2">2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-3">3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-4">4</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-5">5</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-6">6</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-7">7</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-8">8</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#099">#include</span> <span style="color:#099">&lt;iostream&gt;</span><span style="color:#099">
+</span></span></span><span style="display:flex;"><span><span style="color:#099"></span><span style="color:#069;font-weight:bold">using</span> <span style="color:#069;font-weight:bold">namespace</span> std;
+</span></span><span style="display:flex;"><span><span style="color:#078;font-weight:bold">int</span> <span style="color:#c0f">main</span>() {
+</span></span><span style="display:flex;"><span>	<span style="color:#078;font-weight:bold">char</span> str[<span style="color:#f60">10</span>] <span style="color:#555">=</span> { <span style="color:#f60">0</span> };
+</span></span><span style="display:flex;"><span>	cin.getline(str, <span style="color:#069;font-weight:bold">sizeof</span>(str));
+</span></span><span style="display:flex;"><span>	cout <span style="color:#555">&lt;&lt;</span> str <span style="color:#555">&lt;&lt;</span> endl;
+</span></span><span style="display:flex;"><span>	<span style="color:#069;font-weight:bold">return</span> <span style="color:#f60">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="数据类型">数据类型</h3>
+<p>基本内置类型:</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-13-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-13-1">1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-13-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-13-2">2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-13-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-13-3">3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-13-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-13-4">4</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-13-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-13-5">5</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-13-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-13-6">6</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-13-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-13-7">7</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>bool类型是C++新增的。
+</span></span><span style="display:flex;"><span>bool类型的取值是true(真),false(假)
+</span></span><span style="display:flex;"><span>常用的数据类型:
+</span></span><span style="display:flex;"><span>unsigned int
+</span></span><span style="display:flex;"><span>short, unsigned short
+</span></span><span style="display:flex;"><span>long, unsigned long
+</span></span><span style="display:flex;"><span>long long, unsigned long long
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>基本类型转换</p>
+<p>unsigned注意</p>
+<p>声明、列表初始化</p>
+<h3 id="指针和引用">指针和引用</h3>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-14-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-14-1">1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-14-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-14-2">2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-14-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-14-3">3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-14-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-14-4">4</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-14-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-14-5">5</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-14-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-14-6">6</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-14-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-14-7">7</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>指针实际上是地址,指针变量用来存放指针(地址)。
+</span></span><span style="display:flex;"><span>指针变量也是一种变量,同样要占用一定的存储空间。
+</span></span><span style="display:flex;"><span>指针的存储空间存放的是一个地址。
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>引用是给变量或对象起一个别名。
+</span></span><span style="display:flex;"><span>定义时必须初始化,一旦绑定,终身不变。
+</span></span><span style="display:flex;"><span>引用并不占用存储空间。
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-15-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-15-1"> 1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-15-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-15-2"> 2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-15-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-15-3"> 3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-15-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-15-4"> 4</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-15-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-15-5"> 5</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-15-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-15-6"> 6</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-15-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-15-7"> 7</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-15-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-15-8"> 8</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-15-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-15-9"> 9</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-15-10"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-15-10">10</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-15-11"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-15-11">11</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-15-12"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-15-12">12</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-15-13"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-15-13">13</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-15-14"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-15-14">14</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-15-15"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-15-15">15</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-15-16"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-15-16">16</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-15-17"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-15-17">17</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-15-18"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-15-18">18</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-15-19"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-15-19">19</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-15-20"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-15-20">20</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-15-21"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-15-21">21</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-15-22"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-15-22">22</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#099">#include</span> <span style="color:#099">&lt;iostream&gt;</span><span style="color:#099">
+</span></span></span><span style="display:flex;"><span><span style="color:#099"></span><span style="color:#069;font-weight:bold">using</span> <span style="color:#069;font-weight:bold">namespace</span> std;
+</span></span><span style="display:flex;"><span><span style="color:#078;font-weight:bold">int</span> <span style="color:#c0f">main</span>() {
+</span></span><span style="display:flex;"><span>	<span style="color:#078;font-weight:bold">int</span> i <span style="color:#555">=</span> <span style="color:#f60">10</span>, j <span style="color:#555">=</span> <span style="color:#f60">20</span>;
+</span></span><span style="display:flex;"><span>	<span style="color:#078;font-weight:bold">int</span> <span style="color:#555">*</span>pi <span style="color:#555">=</span> <span style="color:#555">&amp;</span>i; <span style="color:#09f;font-style:italic">//pi是指向i的指针
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>	cout <span style="color:#555">&lt;&lt;</span> <span style="color:#555">*</span>pi <span style="color:#555">&lt;&lt;</span> <span style="color:#c30">&#34; &#34;</span> <span style="color:#555">&lt;&lt;</span> i <span style="color:#555">&lt;&lt;</span> endl; <span style="color:#09f;font-style:italic">//*pi 相当于 i
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>	<span style="color:#555">*</span>pi <span style="color:#555">=</span> <span style="color:#f60">100</span>;
+</span></span><span style="display:flex;"><span>	cout <span style="color:#555">&lt;&lt;</span> <span style="color:#555">*</span>pi <span style="color:#555">&lt;&lt;</span> <span style="color:#c30">&#34; &#34;</span> <span style="color:#555">&lt;&lt;</span> i <span style="color:#555">&lt;&lt;</span> endl; <span style="color:#09f;font-style:italic">//通过指针改变值
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>	pi <span style="color:#555">=</span> <span style="color:#555">&amp;</span>j; <span style="color:#09f;font-style:italic">//pi指针指向其他对象了
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>	cout <span style="color:#555">&lt;&lt;</span> <span style="color:#555">*</span>pi <span style="color:#555">&lt;&lt;</span> <span style="color:#c30">&#34; &#34;</span> <span style="color:#555">&lt;&lt;</span> j <span style="color:#555">&lt;&lt;</span> endl;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#09f;font-style:italic">//空指针：
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>	<span style="color:#09f;font-style:italic">//NULL 在c中的定义是 ((void*)0)
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>	<span style="color:#09f;font-style:italic">//NULL 在c++中定义是 0
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>	<span style="color:#09f;font-style:italic">//nullptr 在c++中用来表示空指针
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>	<span style="color:#078;font-weight:bold">int</span> <span style="color:#555">*</span>p <span style="color:#555">=</span> <span style="color:#069;font-weight:bold">nullptr</span>;
+</span></span><span style="display:flex;"><span>	<span style="color:#069;font-weight:bold">if</span> (p)
+</span></span><span style="display:flex;"><span>		cout <span style="color:#555">&lt;&lt;</span> <span style="color:#c30">&#34;p is true&#34;</span> <span style="color:#555">&lt;&lt;</span> endl;
+</span></span><span style="display:flex;"><span>	<span style="color:#069;font-weight:bold">else</span>
+</span></span><span style="display:flex;"><span>		cout <span style="color:#555">&lt;&lt;</span> <span style="color:#c30">&#34;p is false&#34;</span> <span style="color:#555">&lt;&lt;</span> endl;
+</span></span><span style="display:flex;"><span>	<span style="color:#069;font-weight:bold">return</span> <span style="color:#f60">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-16-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-16-1"> 1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-16-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-16-2"> 2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-16-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-16-3"> 3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-16-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-16-4"> 4</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-16-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-16-5"> 5</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-16-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-16-6"> 6</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-16-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-16-7"> 7</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-16-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-16-8"> 8</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-16-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-16-9"> 9</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-16-10"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-16-10">10</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-16-11"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-16-11">11</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-16-12"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-16-12">12</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-16-13"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-16-13">13</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-16-14"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-16-14">14</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#099">#include</span> <span style="color:#099">&lt;iostream&gt;</span><span style="color:#099">
+</span></span></span><span style="display:flex;"><span><span style="color:#099"></span><span style="color:#069;font-weight:bold">using</span> <span style="color:#069;font-weight:bold">namespace</span> std;
+</span></span><span style="display:flex;"><span><span style="color:#078;font-weight:bold">int</span> <span style="color:#c0f">main</span>() {
+</span></span><span style="display:flex;"><span>	<span style="color:#078;font-weight:bold">int</span> i <span style="color:#555">=</span> <span style="color:#f60">100</span>;
+</span></span><span style="display:flex;"><span>	<span style="color:#078;font-weight:bold">int</span> <span style="color:#555">&amp;</span>ref_i <span style="color:#555">=</span> i;	<span style="color:#09f;font-style:italic">//ok
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>	<span style="color:#09f;font-style:italic">//int &amp;ref_i2;	//错误(引用必须被初始化)
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>
+</span></span><span style="display:flex;"><span>	<span style="color:#09f;font-style:italic">//注意书写方式：
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>	<span style="color:#078;font-weight:bold">int</span> <span style="color:#555">*</span>a1 <span style="color:#555">=</span> <span style="color:#069;font-weight:bold">nullptr</span>, a2 <span style="color:#555">=</span> <span style="color:#f60">0</span>;
+</span></span><span style="display:flex;"><span>	<span style="color:#09f;font-style:italic">//上面一行：a1是指针,a2是int变量
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>	<span style="color:#078;font-weight:bold">int</span> <span style="color:#555">&amp;</span>r1 <span style="color:#555">=</span> a2, r2 <span style="color:#555">=</span> a2;
+</span></span><span style="display:flex;"><span>	<span style="color:#09f;font-style:italic">//上面一行：r1是a2的引用，r2是int变量
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>	<span style="color:#069;font-weight:bold">return</span> <span style="color:#f60">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>引用的本质:</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-17-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-17-1">1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-17-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-17-2">2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-17-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-17-3">3</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-gdscript3" data-lang="gdscript3"><span style="display:flex;"><span><span style="color:#a00;background-color:#faa">从下面的代码</span>,<span style="color:#a00;background-color:#faa">可以猜测</span>,<span style="color:#a00;background-color:#faa">引用好像就是个指针。</span>
+</span></span><span style="display:flex;"><span><span style="color:#a00;background-color:#faa">通过汇编代码的分析</span>,<span style="color:#a00;background-color:#faa">可以推测引用实际上是通过指针来实现的。</span>
+</span></span><span style="display:flex;"><span><span style="color:#a00;background-color:#faa">引用是指针的一种包装</span>:<span style="color:#a00;background-color:#faa">类似</span> <span style="color:#c00;font-weight:bold">int</span> <span style="color:#555">*</span> <span style="color:#069;font-weight:bold">const</span> p <span style="color:#a00;background-color:#faa">这样的格式的一种包装。</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-18-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-18-1"> 1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-18-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-18-2"> 2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-18-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-18-3"> 3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-18-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-18-4"> 4</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-18-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-18-5"> 5</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-18-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-18-6"> 6</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-18-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-18-7"> 7</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-18-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-18-8"> 8</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-18-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-18-9"> 9</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-18-10"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-18-10">10</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-18-11"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-18-11">11</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-18-12"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-18-12">12</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-18-13"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-18-13">13</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-18-14"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-18-14">14</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-18-15"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-18-15">15</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-18-16"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-18-16">16</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-18-17"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-18-17">17</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-18-18"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-18-18">18</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-18-19"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-18-19">19</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-18-20"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-18-20">20</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-18-21"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-18-21">21</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-18-22"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-18-22">22</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-18-23"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-18-23">23</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-18-24"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-18-24">24</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#099">#include</span> <span style="color:#099">&lt;iostream&gt;</span><span style="color:#099">
+</span></span></span><span style="display:flex;"><span><span style="color:#099"></span><span style="color:#069;font-weight:bold">using</span> <span style="color:#069;font-weight:bold">namespace</span> std;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">struct</span> <span style="color:#0a8;font-weight:bold">Stu</span> {
+</span></span><span style="display:flex;"><span>	<span style="color:#078;font-weight:bold">int</span> age;
+</span></span><span style="display:flex;"><span>	<span style="color:#078;font-weight:bold">char</span> sex;
+</span></span><span style="display:flex;"><span>	<span style="color:#078;font-weight:bold">char</span> name[<span style="color:#f60">20</span>];
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">struct</span> <span style="color:#0a8;font-weight:bold">A</span> {
+</span></span><span style="display:flex;"><span>	<span style="color:#078;font-weight:bold">int</span> <span style="color:#555">&amp;</span>data;
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">struct</span> <span style="color:#0a8;font-weight:bold">B</span> {
+</span></span><span style="display:flex;"><span>	<span style="color:#078;font-weight:bold">char</span> <span style="color:#555">&amp;</span>data;
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">struct</span> <span style="color:#0a8;font-weight:bold">C</span> {
+</span></span><span style="display:flex;"><span>	Stu <span style="color:#555">&amp;</span>data;
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#078;font-weight:bold">int</span> <span style="color:#c0f">main</span>() {
+</span></span><span style="display:flex;"><span>	cout <span style="color:#555">&lt;&lt;</span> <span style="color:#069;font-weight:bold">sizeof</span>(A) <span style="color:#555">&lt;&lt;</span> endl; <span style="color:#09f;font-style:italic">//4
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>	cout <span style="color:#555">&lt;&lt;</span> <span style="color:#069;font-weight:bold">sizeof</span>(B) <span style="color:#555">&lt;&lt;</span> endl; <span style="color:#09f;font-style:italic">//4
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>	cout <span style="color:#555">&lt;&lt;</span> <span style="color:#069;font-weight:bold">sizeof</span>(C) <span style="color:#555">&lt;&lt;</span> endl; <span style="color:#09f;font-style:italic">//4
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>	<span style="color:#069;font-weight:bold">return</span> <span style="color:#f60">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="const限定符">const限定符</h3>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-19-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-19-1">1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-19-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-19-2">2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-19-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-19-3">3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-19-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-19-4">4</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-19-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-19-5">5</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-19-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-19-6">6</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-19-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-19-7">7</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-19-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-19-8">8</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-19-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-19-9">9</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-gdscript3" data-lang="gdscript3"><span style="display:flex;"><span>C<span style="color:#555">++</span><span style="color:#a00;background-color:#faa">增强了对类型的限制。</span>
+</span></span><span style="display:flex;"><span>const限定符在C<span style="color:#555">++</span><span style="color:#a00;background-color:#faa">编程中会经常用到。</span>
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">const</span> <span style="color:#c00;font-weight:bold">int</span> i <span style="color:#555">=</span> <span style="color:#f60">10</span>;
+</span></span><span style="display:flex;"><span><span style="color:#555">//</span><span style="color:#a00;background-color:#faa">编译时初始化</span>
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">const</span> <span style="color:#c00;font-weight:bold">int</span> i <span style="color:#555">=</span> get_size(); <span style="color:#555">//</span><span style="color:#a00;background-color:#faa">运行时初始化</span>
+</span></span><span style="display:flex;"><span><span style="color:#c00;font-weight:bold">int</span> j <span style="color:#555">=</span> <span style="color:#f60">20</span>; <span style="color:#069;font-weight:bold">const</span> <span style="color:#c00;font-weight:bold">int</span> i <span style="color:#555">=</span> j; <span style="color:#555">//</span><span style="color:#a00;background-color:#faa">用来初始化的值是否常量无关紧要</span>
+</span></span><span style="display:flex;"><span><span style="color:#a00;background-color:#faa">默认情况下</span>:const对象仅在文件内有效<span style="color:#a00;background-color:#faa">。</span>
+</span></span><span style="display:flex;"><span><span style="color:#a00;background-color:#faa">假如要在多个文件中生效</span>,<span style="color:#a00;background-color:#faa">则</span>const变量不管是声明还是定义,<span style="color:#a00;background-color:#faa">都加上</span>
+</span></span><span style="display:flex;"><span>extern关键字<span style="color:#a00;background-color:#faa">。</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="struct和class">struct和class</h3>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-20-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-20-1">1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-20-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-20-2">2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-20-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-20-3">3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-20-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-20-4">4</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>结构体是一种自定义数据类型。
+</span></span><span style="display:flex;"><span>标准C中的结构体是不允许包含成员函数
+</span></span><span style="display:flex;"><span>C语言结构体中可通过函数指针的方式加函数
+</span></span><span style="display:flex;"><span>C++中的结构体对此进行了扩展
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="字符串">字符串</h3>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-21-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-21-1"> 1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-21-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-21-2"> 2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-21-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-21-3"> 3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-21-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-21-4"> 4</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-21-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-21-5"> 5</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-21-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-21-6"> 6</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-21-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-21-7"> 7</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-21-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-21-8"> 8</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-21-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-21-9"> 9</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-21-10"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-21-10">10</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-21-11"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-21-11">11</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-21-12"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-21-12">12</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-21-13"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-21-13">13</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-21-14"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-21-14">14</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-21-15"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-21-15">15</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-21-16"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-21-16">16</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-21-17"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-21-17">17</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-21-18"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-21-18">18</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-21-19"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-21-19">19</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-21-20"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-21-20">20</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-21-21"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-21-21">21</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-21-22"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-21-22">22</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-21-23"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-21-23">23</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-21-24"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-21-24">24</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-21-25"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-21-25">25</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-21-26"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-21-26">26</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-21-27"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-21-27">27</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-21-28"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-21-28">28</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-21-29"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-21-29">29</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-21-30"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-21-30">30</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-21-31"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-21-31">31</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-21-32"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-21-32">32</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-21-33"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-21-33">33</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-21-34"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-21-34">34</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-21-35"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-21-35">35</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#099">#include</span> <span style="color:#099">&lt;iostream&gt;</span><span style="color:#099">
+</span></span></span><span style="display:flex;"><span><span style="color:#099">#include</span> <span style="color:#099">&lt;string&gt;</span><span style="color:#099">
+</span></span></span><span style="display:flex;"><span><span style="color:#099"></span>
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">using</span> <span style="color:#069;font-weight:bold">namespace</span> std;
+</span></span><span style="display:flex;"><span><span style="color:#078;font-weight:bold">int</span> <span style="color:#c0f">main</span>() {
+</span></span><span style="display:flex;"><span>	<span style="color:#09f;font-style:italic">//std::string
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>	std<span style="color:#555">::</span>string str1(<span style="color:#c30">&#34;abc&#34;</span>); <span style="color:#09f;font-style:italic">//初始化
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>	string str2 <span style="color:#555">=</span> <span style="color:#c30">&#34;bcd&#34;</span>;	 <span style="color:#09f;font-style:italic">//初始化
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>	str2 <span style="color:#555">=</span> <span style="color:#c30">&#34;defg&#34;</span>;			 <span style="color:#09f;font-style:italic">//可以直接赋值
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>	str2 <span style="color:#555">=</span> str1;			 <span style="color:#09f;font-style:italic">//可以直接赋值
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>
+</span></span><span style="display:flex;"><span>	<span style="color:#069;font-weight:bold">const</span> <span style="color:#078;font-weight:bold">char</span> <span style="color:#555">*</span>pstr <span style="color:#555">=</span> str2.c_str(); <span style="color:#09f;font-style:italic">//转c风格字符串
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>	str2[<span style="color:#f60">0</span>] <span style="color:#555">=</span> <span style="color:#c30">&#39;X&#39;</span>;		<span style="color:#09f;font-style:italic">//可以直接下标访问操作
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>	str2.at(<span style="color:#f60">1</span>) <span style="color:#555">=</span> <span style="color:#c30">&#39;Y&#39;</span>;	<span style="color:#09f;font-style:italic">//可以 at 访问操作
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>	cout <span style="color:#555">&lt;&lt;</span><span style="color:#c30">&#34;str2=&#34;</span> <span style="color:#555">&lt;&lt;</span> str2 <span style="color:#555">&lt;&lt;</span> endl; <span style="color:#09f;font-style:italic">//XYc
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>
+</span></span><span style="display:flex;"><span>	<span style="color:#09f;font-style:italic">//求字符串长度
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>	cout <span style="color:#555">&lt;&lt;</span> str2.size() <span style="color:#555">&lt;&lt;</span> endl;
+</span></span><span style="display:flex;"><span>	cout <span style="color:#555">&lt;&lt;</span> str2.length() <span style="color:#555">&lt;&lt;</span> endl;
+</span></span><span style="display:flex;"><span>	<span style="color:#09f;font-style:italic">//strlen(str1); 错误
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>	cout <span style="color:#555">&lt;&lt;</span> strlen(str2.c_str()) <span style="color:#555">&lt;&lt;</span> endl; <span style="color:#09f;font-style:italic">//正确
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>	<span style="color:#09f;font-style:italic">//字符串连接
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>	str2 <span style="color:#555">=</span> str2 <span style="color:#555">+</span> str1 <span style="color:#555">+</span> <span style="color:#c30">&#34;!!&#34;</span>;
+</span></span><span style="display:flex;"><span>	cout <span style="color:#555">&lt;&lt;</span> <span style="color:#c30">&#34;str2=&#34;</span> <span style="color:#555">&lt;&lt;</span> str2 <span style="color:#555">&lt;&lt;</span> endl; <span style="color:#09f;font-style:italic">//XYcabc!!
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>	<span style="color:#09f;font-style:italic">//字符串比较 (str1: abc)
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>	cout <span style="color:#555">&lt;&lt;</span> str2.compare(str1) <span style="color:#555">&lt;&lt;</span> endl; <span style="color:#09f;font-style:italic">//-1
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>	cout <span style="color:#555">&lt;&lt;</span> (str2 <span style="color:#555">&lt;</span> str1) <span style="color:#555">&lt;&lt;</span> endl;	    <span style="color:#09f;font-style:italic">//1
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>	<span style="color:#09f;font-style:italic">//字符串查找
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>	cout <span style="color:#555">&lt;&lt;</span> str2.find(str1) <span style="color:#555">&lt;&lt;</span> endl;	<span style="color:#09f;font-style:italic">//3
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>	<span style="color:#09f;font-style:italic">//字符串提取
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>	string str3 <span style="color:#555">=</span> str2.substr(<span style="color:#f60">3</span>, <span style="color:#f60">3</span>);
+</span></span><span style="display:flex;"><span>	cout <span style="color:#555">&lt;&lt;</span> str3 <span style="color:#555">&lt;&lt;</span> endl;				<span style="color:#09f;font-style:italic">//abc
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>
+</span></span><span style="display:flex;"><span>	<span style="color:#069;font-weight:bold">return</span> <span style="color:#f60">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="vector">vector</h3>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-22-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-22-1"> 1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-22-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-22-2"> 2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-22-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-22-3"> 3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-22-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-22-4"> 4</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-22-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-22-5"> 5</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-22-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-22-6"> 6</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-22-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-22-7"> 7</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-22-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-22-8"> 8</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-22-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-22-9"> 9</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-22-10"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-22-10">10</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-22-11"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-22-11">11</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-22-12"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-22-12">12</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-22-13"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-22-13">13</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-22-14"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-22-14">14</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-22-15"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-22-15">15</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-22-16"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-22-16">16</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-22-17"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-22-17">17</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-22-18"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-22-18">18</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-22-19"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-22-19">19</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-22-20"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-22-20">20</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-22-21"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-22-21">21</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-22-22"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-22-22">22</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-22-23"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-22-23">23</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-22-24"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-22-24">24</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-22-25"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-22-25">25</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-22-26"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-22-26">26</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-22-27"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-22-27">27</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-22-28"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-22-28">28</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-22-29"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-22-29">29</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-22-30"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-22-30">30</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-22-31"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-22-31">31</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-22-32"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-22-32">32</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-22-33"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-22-33">33</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-22-34"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-22-34">34</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-22-35"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-22-35">35</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-22-36"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-22-36">36</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-22-37"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-22-37">37</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-22-38"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-22-38">38</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-22-39"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-22-39">39</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-22-40"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-22-40">40</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-22-41"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-22-41">41</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-22-42"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-22-42">42</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-22-43"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-22-43">43</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-22-44"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-22-44">44</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#099">#include</span> <span style="color:#099">&lt;iostream&gt;</span><span style="color:#099">
+</span></span></span><span style="display:flex;"><span><span style="color:#099">#include</span> <span style="color:#099">&lt;vector&gt;</span><span style="color:#099">
+</span></span></span><span style="display:flex;"><span><span style="color:#099">#include</span> <span style="color:#099">&lt;string&gt;</span><span style="color:#099">
+</span></span></span><span style="display:flex;"><span><span style="color:#099"></span><span style="color:#069;font-weight:bold">using</span> <span style="color:#069;font-weight:bold">namespace</span> std;
+</span></span><span style="display:flex;"><span><span style="color:#078;font-weight:bold">int</span> <span style="color:#c0f">main</span>() {
+</span></span><span style="display:flex;"><span>	<span style="color:#09f;font-style:italic">//std::vector的结构
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>	std<span style="color:#555">::</span>vector<span style="color:#555">&lt;</span><span style="color:#078;font-weight:bold">int</span><span style="color:#555">&gt;</span> vec11; <span style="color:#09f;font-style:italic">// [ 1, 3, 9 ...]
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>	vector<span style="color:#555">&lt;</span>string<span style="color:#555">&gt;</span> vec22;   <span style="color:#09f;font-style:italic">// [ &#34;abc&#34;, &#34;play&#34;, &#34;C++&#34; ]
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>	vector<span style="color:#555">&lt;</span>vector<span style="color:#555">&lt;</span><span style="color:#078;font-weight:bold">int</span><span style="color:#555">&gt;&gt;</span> vec33; <span style="color:#09f;font-style:italic">// [ [1,3,9..],[2,3,4..], ... ]
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>	vector<span style="color:#555">&lt;</span>vector<span style="color:#555">&lt;</span>string<span style="color:#555">&gt;&gt;</span> vec44; <span style="color:#09f;font-style:italic">// [ [&#34;hello&#34;,&#34;C&#34;,..],[&#34;C++&#34;,&#34;abc&#34;,..],... ]
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>
+</span></span><span style="display:flex;"><span>	<span style="color:#09f;font-style:italic">//vector的初始化
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>	vector<span style="color:#555">&lt;</span><span style="color:#078;font-weight:bold">int</span><span style="color:#555">&gt;</span> vec1 <span style="color:#555">=</span> { <span style="color:#f60">1</span>,<span style="color:#f60">2</span>,<span style="color:#f60">3</span> };
+</span></span><span style="display:flex;"><span>	vector<span style="color:#555">&lt;</span><span style="color:#078;font-weight:bold">int</span><span style="color:#555">&gt;</span> vec2{ <span style="color:#f60">1</span>,<span style="color:#f60">2</span>,<span style="color:#f60">3</span> };  <span style="color:#09f;font-style:italic">//列表初始化
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>	vector<span style="color:#555">&lt;</span><span style="color:#078;font-weight:bold">int</span><span style="color:#555">&gt;</span> vec3 <span style="color:#555">=</span> vec1;    <span style="color:#09f;font-style:italic">//vec1拷贝给 vec3
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>	vector<span style="color:#555">&lt;</span><span style="color:#078;font-weight:bold">int</span><span style="color:#555">&gt;</span> vec4(<span style="color:#f60">10</span>);		<span style="color:#09f;font-style:italic">//初始化10个元素，每个元素都是0
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>	vector<span style="color:#555">&lt;</span><span style="color:#078;font-weight:bold">int</span><span style="color:#555">&gt;</span> vec5(<span style="color:#f60">10</span>, <span style="color:#555">-</span><span style="color:#f60">1</span>);	<span style="color:#09f;font-style:italic">//初始化10个元素，每个元素都是-1
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>	vector<span style="color:#555">&lt;</span>string<span style="color:#555">&gt;</span> vec6(<span style="color:#f60">10</span>, <span style="color:#c30">&#34;hi&#34;</span>); <span style="color:#09f;font-style:italic">//初始化10个元素，每个元素都是 &#34;hi&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>
+</span></span><span style="display:flex;"><span>	<span style="color:#09f;font-style:italic">//判断是否为空
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>	cout <span style="color:#555">&lt;&lt;</span> vec1.empty() <span style="color:#555">&lt;&lt;</span> endl; <span style="color:#09f;font-style:italic">//0
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>	<span style="color:#09f;font-style:italic">//元素个数
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>	cout <span style="color:#555">&lt;&lt;</span> vec1.size() <span style="color:#555">&lt;&lt;</span> endl;  <span style="color:#09f;font-style:italic">//3
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>	<span style="color:#09f;font-style:italic">//添加元素在最后面
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>	vec1.push_back(<span style="color:#f60">100</span>);
+</span></span><span style="display:flex;"><span>	cout <span style="color:#555">&lt;&lt;</span> vec1[vec1.size() <span style="color:#555">-</span> <span style="color:#f60">1</span>] <span style="color:#555">&lt;&lt;</span> endl; <span style="color:#09f;font-style:italic">//100
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>	<span style="color:#09f;font-style:italic">//弹出元素在最后面
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>	vec1.pop_back();
+</span></span><span style="display:flex;"><span>	cout <span style="color:#555">&lt;&lt;</span> vec1[vec1.size() <span style="color:#555">-</span> <span style="color:#f60">1</span>] <span style="color:#555">&lt;&lt;</span> endl; <span style="color:#09f;font-style:italic">//3
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>	<span style="color:#09f;font-style:italic">//直接下标访问元素
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>	cout <span style="color:#555">&lt;&lt;</span> vec1[<span style="color:#f60">1</span>] <span style="color:#555">&lt;&lt;</span> endl; <span style="color:#09f;font-style:italic">//2
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>	vec1[<span style="color:#f60">1</span>] <span style="color:#555">=</span> <span style="color:#f60">10</span>;
+</span></span><span style="display:flex;"><span>	cout <span style="color:#555">&lt;&lt;</span> vec1[<span style="color:#f60">1</span>] <span style="color:#555">&lt;&lt;</span> endl; <span style="color:#09f;font-style:italic">//10
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>	<span style="color:#09f;font-style:italic">// vector&lt;string&gt; vec6(10, &#34;hi&#34;)
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>	vec6[<span style="color:#f60">0</span>][<span style="color:#f60">1</span>] <span style="color:#555">=</span> <span style="color:#c30">&#39;X&#39;</span>;
+</span></span><span style="display:flex;"><span>	cout <span style="color:#555">&lt;&lt;</span> vec6[<span style="color:#f60">0</span>] <span style="color:#555">&lt;&lt;</span> endl; <span style="color:#09f;font-style:italic">//hX
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>
+</span></span><span style="display:flex;"><span>	<span style="color:#09f;font-style:italic">//遍历（类似遍历数组）
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>	<span style="color:#069;font-weight:bold">for</span> (<span style="color:#078;font-weight:bold">int</span> i <span style="color:#555">=</span> <span style="color:#f60">0</span>; i <span style="color:#555">&lt;</span> vec1.size(); i<span style="color:#555">++</span>) 
+</span></span><span style="display:flex;"><span>		cout <span style="color:#555">&lt;&lt;</span> vec1[i] <span style="color:#555">&lt;&lt;</span> <span style="color:#c30">&#34; &#34;</span>; <span style="color:#09f;font-style:italic">// 1 10 3
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>	cout <span style="color:#555">&lt;&lt;</span> endl;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#069;font-weight:bold">return</span> <span style="color:#f60">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="auto类型说明符">auto类型说明符</h3>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-23-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-23-1"> 1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-23-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-23-2"> 2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-23-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-23-3"> 3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-23-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-23-4"> 4</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-23-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-23-5"> 5</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-23-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-23-6"> 6</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-23-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-23-7"> 7</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-23-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-23-8"> 8</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-23-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-23-9"> 9</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-23-10"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-23-10">10</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-23-11"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-23-11">11</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-23-12"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-23-12">12</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-23-13"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-23-13">13</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-23-14"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-23-14">14</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-23-15"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-23-15">15</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-23-16"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-23-16">16</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-23-17"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-23-17">17</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-23-18"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-23-18">18</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-23-19"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-23-19">19</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-23-20"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-23-20">20</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-23-21"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-23-21">21</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-23-22"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-23-22">22</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-23-23"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-23-23">23</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-23-24"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-23-24">24</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-23-25"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-23-25">25</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-23-26"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-23-26">26</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-23-27"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-23-27">27</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-23-28"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-23-28">28</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-23-29"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-23-29">29</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-23-30"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-23-30">30</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-23-31"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-23-31">31</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#099">#include</span> <span style="color:#099">&lt;iostream&gt;</span><span style="color:#099">
+</span></span></span><span style="display:flex;"><span><span style="color:#099"></span><span style="color:#069;font-weight:bold">using</span> <span style="color:#069;font-weight:bold">namespace</span> std;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#078;font-weight:bold">int</span> <span style="color:#c0f">main</span>() {
+</span></span><span style="display:flex;"><span>	<span style="color:#09f;font-style:italic">//1.auto 变量必须在定义时初始化，类似于const
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>	<span style="color:#069;font-weight:bold">auto</span> i1 <span style="color:#555">=</span> <span style="color:#f60">0</span>; <span style="color:#069;font-weight:bold">auto</span> i2 <span style="color:#555">=</span> i1;
+</span></span><span style="display:flex;"><span>	<span style="color:#09f;font-style:italic">//auto i3; //错误，必须初始化
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>	<span style="color:#09f;font-style:italic">//2.如果初始化表达式是引用，则去除引用语义
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>	<span style="color:#078;font-weight:bold">int</span> a1 <span style="color:#555">=</span> <span style="color:#f60">10</span>;
+</span></span><span style="display:flex;"><span>	<span style="color:#078;font-weight:bold">int</span> <span style="color:#555">&amp;</span>a2 <span style="color:#555">=</span> a1; <span style="color:#09f;font-style:italic">// a2是引用
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>	<span style="color:#069;font-weight:bold">auto</span> a3 <span style="color:#555">=</span> a2; <span style="color:#09f;font-style:italic">// a3是int类型，而不是引用
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>	<span style="color:#069;font-weight:bold">auto</span> <span style="color:#555">&amp;</span>a4 <span style="color:#555">=</span> a1; <span style="color:#09f;font-style:italic">// a4是 引用
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>	<span style="color:#09f;font-style:italic">//3.去除顶层const
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>	<span style="color:#069;font-weight:bold">const</span> <span style="color:#078;font-weight:bold">int</span> b1 <span style="color:#555">=</span> <span style="color:#f60">100</span>;
+</span></span><span style="display:flex;"><span>	<span style="color:#069;font-weight:bold">auto</span> b2 <span style="color:#555">=</span> b1; <span style="color:#09f;font-style:italic">// b2 是 int
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>	<span style="color:#069;font-weight:bold">const</span> <span style="color:#069;font-weight:bold">auto</span> b3 <span style="color:#555">=</span> b1; <span style="color:#09f;font-style:italic">// b3是 const int
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>	<span style="color:#09f;font-style:italic">//4.带上底层const
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>	<span style="color:#069;font-weight:bold">auto</span> <span style="color:#555">&amp;</span>b4 <span style="color:#555">=</span> b1; <span style="color:#09f;font-style:italic">// b4 是 const int 的引用
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>	<span style="color:#09f;font-style:italic">//5.初始化表达式为数组时，推导类型为指针
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>	<span style="color:#078;font-weight:bold">int</span> arr[<span style="color:#f60">3</span>] <span style="color:#555">=</span> { <span style="color:#f60">1</span>,<span style="color:#f60">2</span>,<span style="color:#f60">3</span> };
+</span></span><span style="display:flex;"><span>	<span style="color:#069;font-weight:bold">auto</span> parr <span style="color:#555">=</span> arr; <span style="color:#09f;font-style:italic">//parr 是 int * 类型
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>	cout <span style="color:#555">&lt;&lt;</span> <span style="color:#069;font-weight:bold">typeid</span>(parr).name() <span style="color:#555">&lt;&lt;</span> endl;
+</span></span><span style="display:flex;"><span>	<span style="color:#09f;font-style:italic">//6.表达式为数组且auto带上&amp;，推导类型为数组
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>	<span style="color:#069;font-weight:bold">auto</span> <span style="color:#555">&amp;</span>rarr <span style="color:#555">=</span> arr; <span style="color:#09f;font-style:italic">//rarr 是 int [3]
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>	cout <span style="color:#555">&lt;&lt;</span> <span style="color:#069;font-weight:bold">typeid</span>(rarr).name() <span style="color:#555">&lt;&lt;</span> endl;
+</span></span><span style="display:flex;"><span>	<span style="color:#09f;font-style:italic">//7.函数参数类型不能是 auto
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>	<span style="color:#09f;font-style:italic">//func(auto arg); //错误
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>	<span style="color:#09f;font-style:italic">//8.auto并不是一个真正的类型,编译时确定
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>	<span style="color:#09f;font-style:italic">//sizeof(auto); 错误
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>	<span style="color:#069;font-weight:bold">return</span> <span style="color:#f60">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="第二课">第二课</h1>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2026-03-16</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://zhangyuhu.github.io/posts/program/cpp/xiaoxiang/" data-title=""><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://zhangyuhu.github.io/posts/program/cpp/xiaoxiang/"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://zhangyuhu.github.io/posts/program/cpp/xiaoxiang/" data-title=""><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://zhangyuhu.github.io/posts/program/cpp/xiaoxiang/" data-title=""><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://zhangyuhu.github.io/posts/program/cpp/xiaoxiang/" data-title="" data-ralateuid="ji"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/program/cpp/%E6%B7%B1%E5%BA%A6%E6%8E%A2%E7%B4%A2c&#43;&#43;%E5%AF%B9%E8%B1%A1%E6%A8%A1%E5%9E%8B/" class="prev" rel="prev" title=""><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i></a>
+            <a href="/posts/program/cpp/templates/templatesnote02/" class="next" rel="next" title=""><i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="giscus" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://giscus.app">Giscus</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">为天地立心,为生民立命,为往圣继绝学,为万世开太平</div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2023 - 2026</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://zhangyuhu.github.io/" target="_blank">zhangyuhu</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="http://creativecommons.org/licenses/by/4.0/" target="_blank">知识共享署名 4.0 国际许可协议</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/twemoji@14.0.2/dist/twemoji.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@8.6.0/dist/index.umd.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":100},"comment":{"giscus":{"category":"Comments","categoryId":"DIC_kwDOIx2Cjs4CTnUX","darkTheme":"dark","emitMetadata":"0","inputPosition":"bottom","lang":"en","lazyLoading":false,"lightTheme":"light","mapping":"pathname","reactionsEnabled":"1","repo":"zhangyuhu/zhangyuhu.github.io","repoId":"R_kgDOIx2Cjg"}},"data":{"id-1":"HOME","id-2":"HOME"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"},"twemoji":true,"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.f1b10c54ef8e7ea0c938baba89a68e47962cb91f87edfcf0ae7abf0ec7bbb510e5d980a2b5a69686d7a44eae747183e3ed5cd960ed6fe66552c947e6fca4ff67.js" integrity="sha512-8bEMVO+OfqDJOLq6iaaOR5YsuR+H7fzwrnq/Dse7tRDl2YCitaaWhtekTq50cYPj7VzZYO1v5mVSyUfm/KT/Zw=="></script></body>
+</html>

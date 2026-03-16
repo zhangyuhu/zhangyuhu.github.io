@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>2026 年 SLAM 技术发展调研报告 - 这是我的网站</title><meta name="Description" content="面向工程实践的 2026 年 SLAM 技术发展综述与选型建议"><meta property="og:title" content="2026 年 SLAM 技术发展调研报告" />
+<meta property="og:description" content="面向工程实践的 2026 年 SLAM 技术发展综述与选型建议" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zhangyuhu.github.io/posts/computer_vision/slam/2026_slam_%E8%B0%83%E7%A0%94%E6%8A%A5%E5%91%8A/" /><meta property="og:image" content="https://zhangyuhu.github.io/logo.png" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2026-03-13T10:00:00+08:00" />
+<meta property="article:modified_time" content="2026-03-13T10:00:00+08:00" /><meta property="og:site_name" content="我的网站" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://zhangyuhu.github.io/logo.png" /><meta name="twitter:title" content="2026 年 SLAM 技术发展调研报告"/>
+<meta name="twitter:description" content="面向工程实践的 2026 年 SLAM 技术发展综述与选型建议"/>
+<meta name="application-name" content="我的网站">
+<meta name="apple-mobile-web-app-title" content="我的网站"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://zhangyuhu.github.io/posts/computer_vision/slam/2026_slam_%E8%B0%83%E7%A0%94%E6%8A%A5%E5%91%8A/" /><link rel="prev" href="https://zhangyuhu.github.io/posts/program/cpp/libracplus/" /><link rel="next" href="https://zhangyuhu.github.io/posts/basic_knowledge/linuxsys/%E5%8A%A8%E6%80%81%E9%93%BE%E6%8E%A5/" /><link rel="stylesheet" href="/css/style.min.d09a08388620d07592fcb288b74e9f4434a352d4869011bd6c06619079103da00fcccceb4fa6fce14315bef50c9be97c6bc29582e3968d9521c60ef89c6de806.css" integrity="sha512-0JoIOIYg0HWS/LKIt06fRDSjUtSGkBG9bAZhkHkQPaAPzMzrT6b84UMVvvUMm+l8a8KVguOWjZUhxg74nG3oBg=="><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "2026 年 SLAM 技术发展调研报告",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/zhangyuhu.github.io\/posts\/computer_vision\/slam\/2026_slam_%E8%B0%83%E7%A0%94%E6%8A%A5%E5%91%8A\/"
+        },"image": [{
+                            "@type": "ImageObject",
+                            "url": "https:\/\/zhangyuhu.github.io\/images\/Apple-Devices-Preview.png",
+                            "width":  3200 ,
+                            "height":  2048 
+                        }],"genre": "posts","keywords": "SLAM, VIO, NeRF, 高斯溅射, 多传感器融合","wordcount":  5650 ,
+        "url": "https:\/\/zhangyuhu.github.io\/posts\/computer_vision\/slam\/2026_slam_%E8%B0%83%E7%A0%94%E6%8A%A5%E5%91%8A\/","datePublished": "2026-03-13T10:00:00+08:00","dateModified": "2026-03-13T10:00:00+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "zhangyuhu"
+            },"description": "面向工程实践的 2026 年 SLAM 技术发展综述与选型建议"
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="这是我的网站"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/" title="文章"><i class='fas fa-archive fa-fw fa-sm'></i> 文章 </a><a class="menu-item" href="/tags/"><i class='fas fa-tags fa-fw fa-sm'></i> 标签 </a><a class="menu-item" href="/categories/"><i class='fas fa-th fa-fw fa-sm'></i> 分类 </a><a class="menu-item" href="/about/"><i class='fas fa-user-tie fa-fw fa-sm'></i> 关于 </a><a class="menu-item" href="/tool/"><i class='fas fa-cube fa-fw fa-sm'></i> 工具箱 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="这是我的网站"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="文章"><i class='fas fa-archive fa-fw fa-sm'></i>文章</a><a class="menu-item" href="/tags/" title=""><i class='fas fa-tags fa-fw fa-sm'></i>标签</a><a class="menu-item" href="/categories/" title=""><i class='fas fa-th fa-fw fa-sm'></i>分类</a><a class="menu-item" href="/about/" title=""><i class='fas fa-user-tie fa-fw fa-sm'></i>关于</a><a class="menu-item" href="/tool/" title=""><i class='fas fa-cube fa-fw fa-sm'></i>工具箱</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">2026 年 SLAM 技术发展调研报告</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://zhangyuhu.github.io/" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>zhangyuhu</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>计算机视觉</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2026-03-13">2026-03-13</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;5650 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;12 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#一概览从几何-slam-到神经-slam">一、概览：从几何 SLAM 到神经 SLAM</a></li>
+        <li><a href="#二经典几何-slam-的现状2026-视角">二、经典几何 SLAM 的现状（2026 视角）</a>
+          <ul>
+            <li><a href="#21-视觉-slammonostereorgb-d">2.1 视觉 SLAM（Mono/Stereo/RGB-D）</a></li>
+            <li><a href="#22-视觉惯性里程计viovins">2.2 视觉惯性里程计（VIO/VINS）</a></li>
+            <li><a href="#23-lidar-slam">2.3 LiDAR SLAM</a></li>
+          </ul>
+        </li>
+        <li><a href="#三多传感器融合-slam">三、多传感器融合 SLAM</a>
+          <ul>
+            <li><a href="#31-融合模式分类">3.1 融合模式分类</a></li>
+            <li><a href="#32-工程中的典型组合与取舍">3.2 工程中的典型组合与取舍</a></li>
+          </ul>
+        </li>
+        <li><a href="#四语义-slam-与场景理解">四、语义 SLAM 与场景理解</a>
+          <ul>
+            <li><a href="#41-语义信息引入的方式">4.1 语义信息引入的方式</a></li>
+            <li><a href="#42-语义-slam-的挑战">4.2 语义 SLAM 的挑战</a></li>
+          </ul>
+        </li>
+        <li><a href="#五神经表示重构nerf-与-3d-gaussian-splatting-驱动的新一代-slam">五、神经表示重构：NeRF 与 3D Gaussian Splatting 驱动的新一代 SLAM</a>
+          <ul>
+            <li><a href="#51-nerf-slam-系列工作">5.1 NeRF-SLAM 系列工作</a></li>
+            <li><a href="#52-3d-gaussian-splatting--slam">5.2 3D Gaussian Splatting + SLAM</a></li>
+            <li><a href="#53-神经-slam-的优势与短板">5.3 神经 SLAM 的优势与短板</a></li>
+          </ul>
+        </li>
+        <li><a href="#六评测数据集与指标">六、评测、数据集与指标</a></li>
+        <li><a href="#七典型开源-slam-工程概览">七、典型开源 SLAM 工程概览</a>
+          <ul>
+            <li><a href="#71-经典几何-slam">7.1 经典几何 SLAM</a></li>
+            <li><a href="#72-多传感器与-lidar-slam">7.2 多传感器与 LiDAR SLAM</a></li>
+            <li><a href="#73-神经表示与新型-slam-工程">7.3 神经表示与新型 SLAM 工程</a></li>
+          </ul>
+        </li>
+        <li><a href="#八面向项目落地的选型建议">八、面向项目落地的选型建议</a>
+          <ul>
+            <li><a href="#81-典型应用场景与推荐方案">8.1 典型应用场景与推荐方案</a></li>
+            <li><a href="#82-工程实践注意事项">8.2 工程实践注意事项</a></li>
+          </ul>
+        </li>
+        <li><a href="#九未来趋势个人观点">九、未来趋势（个人观点）</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><blockquote>
+<p>本文采用<a href="http://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreffer ">知识共享署名 4.0 国际许可协议</a>进行许可，转载时请注明原文链接。</p>
+</blockquote>
+<!-- TOC -->
+<ul>
+<li><a href="#%e4%b8%80%e6%a6%82%e8%a7%88%e4%bb%8e%e5%87%a0%e4%bd%95-slam-%e5%88%b0%e7%a5%9e%e7%bb%8f-slam" rel="">一、概览：从几何 SLAM 到神经 SLAM</a></li>
+<li><a href="#%e4%ba%8c%e7%bb%8f%e5%85%b8%e5%87%a0%e4%bd%95-slam-%e7%9a%84%e7%8e%b0%e7%8a%b62026-%e8%a7%86%e8%a7%92" rel="">二、经典几何 SLAM 的现状（2026 视角）</a>
+<ul>
+<li><a href="#21-%e8%a7%86%e8%a7%89-slammonostereorgb-d" rel="">2.1 视觉 SLAM（Mono/Stereo/RGB-D）</a></li>
+<li><a href="#22-%e8%a7%86%e8%a7%89%e6%83%af%e6%80%a7%e9%87%8c%e7%a8%8b%e8%ae%a1viovins" rel="">2.2 视觉惯性里程计（VIO/VINS）</a></li>
+<li><a href="#23-lidar-slam" rel="">2.3 LiDAR SLAM</a></li>
+</ul>
+</li>
+<li><a href="#%e4%b8%89%e5%a4%9a%e4%bc%a0%e6%84%9f%e5%99%a8%e8%9e%8d%e5%90%88-slam" rel="">三、多传感器融合 SLAM</a>
+<ul>
+<li><a href="#31-%e8%9e%8d%e5%90%88%e6%a8%a1%e5%bc%8f%e5%88%86%e7%b1%bb" rel="">3.1 融合模式分类</a></li>
+<li><a href="#32-%e5%b7%a5%e7%a8%8b%e4%b8%ad%e7%9a%84%e5%85%b8%e5%9e%8b%e7%bb%84%e5%90%88%e4%b8%8e%e5%8f%96%e8%88%8d" rel="">3.2 工程中的典型组合与取舍</a></li>
+</ul>
+</li>
+<li><a href="#%e5%9b%9b%e8%af%ad%e4%b9%89-slam-%e4%b8%8e%e5%9c%ba%e6%99%af%e7%90%86%e8%a7%a3" rel="">四、语义 SLAM 与场景理解</a>
+<ul>
+<li><a href="#41-%e8%af%ad%e4%b9%89%e4%bf%a1%e6%81%af%e5%bc%95%e5%85%a5%e7%9a%84%e6%96%b9%e5%bc%8f" rel="">4.1 语义信息引入的方式</a></li>
+<li><a href="#42-%e8%af%ad%e4%b9%89-slam-%e7%9a%84%e6%8c%91%e6%88%98" rel="">4.2 语义 SLAM 的挑战</a></li>
+</ul>
+</li>
+<li><a href="#%e4%ba%94%e7%a5%9e%e7%bb%8f%e8%a1%a8%e7%a4%ba%e9%87%8d%e6%9e%84nerf-%e4%b8%8e-3d-gaussian-splatting-%e9%a9%b1%e5%8a%a8%e7%9a%84%e6%96%b0%e4%b8%80%e4%bb%a3-slam" rel="">五、神经表示重构：NeRF 与 3D Gaussian Splatting 驱动的新一代 SLAM</a>
+<ul>
+<li><a href="#51-nerf-slam-%e7%b3%bb%e5%88%97%e5%b7%a5%e4%bd%9c" rel="">5.1 NeRF-SLAM 系列工作</a></li>
+<li><a href="#52-3d-gaussian-splatting--slam" rel="">5.2 3D Gaussian Splatting + SLAM</a></li>
+<li><a href="#53-%e7%a5%9e%e7%bb%8f-slam-%e7%9a%84%e4%bc%98%e5%8a%bf%e4%b8%8e%e7%9f%ad%e6%9d%bf" rel="">5.3 神经 SLAM 的优势与短板</a></li>
+</ul>
+</li>
+<li><a href="#%e5%85%ad%e8%af%84%e6%b5%8b%e6%95%b0%e6%8d%ae%e9%9b%86%e4%b8%8e%e6%8c%87%e6%a0%87" rel="">六、评测、数据集与指标</a></li>
+<li><a href="#%e4%b8%83%e5%85%b8%e5%9e%8b%e5%bc%80%e6%ba%90-slam-%e5%b7%a5%e7%a8%8b%e6%a6%82%e8%a7%88" rel="">七、典型开源 SLAM 工程概览</a>
+<ul>
+<li><a href="#71-%e7%bb%8f%e5%85%b8%e5%87%a0%e4%bd%95-slam" rel="">7.1 经典几何 SLAM</a></li>
+<li><a href="#72-%e5%a4%9a%e4%bc%a0%e6%84%9f%e5%99%a8%e4%b8%8e-lidar-slam" rel="">7.2 多传感器与 LiDAR SLAM</a></li>
+<li><a href="#73-%e7%a5%9e%e7%bb%8f%e8%a1%a8%e7%a4%ba%e4%b8%8e%e6%96%b0%e5%9e%8b-slam-%e5%b7%a5%e7%a8%8b" rel="">7.3 神经表示与新型 SLAM 工程</a></li>
+</ul>
+</li>
+<li><a href="#%e5%85%ab%e9%9d%a2%e5%90%91%e9%a1%b9%e7%9b%ae%e8%90%bd%e5%9c%b0%e7%9a%84%e9%80%89%e5%9e%8b%e5%bb%ba%e8%ae%ae" rel="">八、面向项目落地的选型建议</a>
+<ul>
+<li><a href="#81-%e5%85%b8%e5%9e%8b%e5%ba%94%e7%94%a8%e5%9c%ba%e6%99%af%e4%b8%8e%e6%8e%a8%e8%8d%90%e6%96%b9%e6%a1%88" rel="">8.1 典型应用场景与推荐方案</a></li>
+<li><a href="#82-%e5%b7%a5%e7%a8%8b%e5%ae%9e%e8%b7%b5%e6%b3%a8%e6%84%8f%e4%ba%8b%e9%a1%b9" rel="">8.2 工程实践注意事项</a></li>
+</ul>
+</li>
+<li><a href="#%e4%b9%9d%e6%9c%aa%e6%9d%a5%e8%b6%8b%e5%8a%bf%e4%b8%aa%e4%ba%ba%e8%a7%82%e7%82%b9" rel="">九、未来趋势（个人观点）</a></li>
+</ul>
+<!-- /TOC -->
+<h2 id="一概览从几何-slam-到神经-slam">一、概览：从几何 SLAM 到神经 SLAM</h2>
+<p>SLAM（Simultaneous Localization and Mapping，即时定位与建图）在 2010 年代后期基本形成「几何 SLAM + 深度学习辅助」的格局：<br>
+前端以特征/直接法完成里程计估计，后端以优化和滤波完成图优化与闭环检测，深度学习主要用于特征提取、语义分割和深度估计等子模块。</p>
+<p>进入 2020 年代中后期（约 2022–2026），SLAM 的主要演化方向可以概括为几条主线：</p>
+<ul>
+<li><strong>多传感器融合</strong>：把相机、IMU、LiDAR、轮速计、GNSS 等按需组合，以提升鲁棒性和适应性；</li>
+<li><strong>语义 SLAM</strong>：在点云/栅格/体素/网格地图上引入「物体、房间、可通行区域」等高层语义；</li>
+<li><strong>神经表示 SLAM</strong>：使用 NeRF 与 3D Gaussian Splatting 等神经隐式/显式表示，把 SLAM 与高质量重建深度融合；</li>
+<li><strong>任务驱动 SLAM</strong>：从「只做定位与建图」走向为导航、操作、AR/VR、数字孪生等上层任务提供服务。</li>
+</ul>
+<p>本文在不追求严格论文罗列的前提下，更偏工程实践视角，梳理 2024–2026 年左右的代表性方向与选型建议。</p>
+<h2 id="二经典几何-slam-的现状2026-视角">二、经典几何 SLAM 的现状（2026 视角）</h2>
+<h3 id="21-视觉-slammonostereorgb-d">2.1 视觉 SLAM（Mono/Stereo/RGB-D）</h3>
+<p>代表系统：ORB-SLAM2/3、DSO、LDSO、OKVIS、VINS-Fusion（视觉部分）、LIO-SAM（视觉增强版本）等。</p>
+<p><strong>特点与现状：</strong></p>
+<ul>
+<li>经典几何 SLAM（特征点法 / 直接法）在 <strong>实时性与资源占用</strong> 上依然有明显优势；</li>
+<li>ORB-SLAM3 等引入了多模态支持（单目/双目/RGB-D）和基于 IMU 的紧耦合；</li>
+<li>在多数移动机器人、AR 眼镜、手持设备中，几何 SLAM 仍然是「主力定位方案」。</li>
+</ul>
+<p><strong>2026 年值得关注的点：</strong></p>
+<ul>
+<li>更加稳健的回环检测与全局优化：
+<ul>
+<li>使用学习特征（如 SuperPoint、R2D2）或描述子匹配网络，提高重复纹理/弱纹理场景的回环检测成功率；</li>
+<li>局部/全局 BA 的增量式实现，对长时间运行的系统保持计算可控。</li>
+</ul>
+</li>
+<li>对动态物体的鲁棒性：
+<ul>
+<li>通过语义/运动分割屏蔽动态物体特征点，仅用静态背景参与优化；</li>
+<li>在人多/车多的室外场景中，结合语义信息做「局部静态」判断。</li>
+</ul>
+</li>
+</ul>
+<h3 id="22-视觉惯性里程计viovins">2.2 视觉惯性里程计（VIO/VINS）</h3>
+<p>VIO 已经是工业界事实上的标准：手机 ARKit/ARCore、无人机、机器人等几乎都在使用 VIO / VINS。</p>
+<p><strong>关键要点：</strong></p>
+<ul>
+<li>紧耦合的 VIO 系统（如 VINS-Mono/VINS-Fusion、OKVIS）通过 IMU 约束减轻纯视觉漂移问题；</li>
+<li>在短时间内失去视觉（快速运动、弱光、遮挡）时，IMU 仍可支撑较稳健的短期姿态推断；</li>
+<li>深度学习主要用于：IMU 偏置建模、外参在线自标定、光流/特征跟踪增强等。</li>
+</ul>
+<p>2024–2026 年的趋势：</p>
+<ul>
+<li><strong>更自动化的标定与鲁棒性提升</strong>：系统支持在线标定相机-IMU 外参、时间偏差等；</li>
+<li><strong>端到端 VIO/VINS 研究</strong>：有部分工作尝试直接用 Transformer 或图神经网络统一建模视觉+IMU 序列，但在工业落地上仍以「几何框架 + 学习增强」为主。</li>
+</ul>
+<h3 id="23-lidar-slam">2.3 LiDAR SLAM</h3>
+<p>代表系统：LOAM、LIO-SAM、FAST-LIO2/3、LeGO-LOAM 等。</p>
+<p><strong>特点：</strong></p>
+<ul>
+<li>对光照和纹理不敏感，在户外大场景、隧道、矿山、林地等环境中表现稳定；</li>
+<li>和 IMU 紧耦合后，可以实现高精度、高鲁棒性的 6DoF 里程计；</li>
+<li>深度学习更多用于点云分割、地物分类、动态物体剔除等。</li>
+</ul>
+<p>2025 年前后，多篇综述指出：LiDAR-IMU、LiDAR-视觉、LiDAR-IMU-视觉的多传感器融合方案，在自动驾驶与高端机器人领域已经成为主流架构之一。</p>
+<h2 id="三多传感器融合-slam">三、多传感器融合 SLAM</h2>
+<h3 id="31-融合模式分类">3.1 融合模式分类</h3>
+<p>根据 2024–2025 年的若干系统性综述，多传感器 SLAM 大致可以分为：</p>
+<ul>
+<li>
+<p><strong>视觉 + IMU（VIO/VINS）</strong>：</p>
+<ul>
+<li>优点：成本低、体积小、功耗低，适用于移动设备和小型机器人；</li>
+<li>缺点：对纹理/光照敏感，在大范围场景中依然可能存在漂移。</li>
+</ul>
+</li>
+<li>
+<p><strong>LiDAR + IMU</strong>：</p>
+<ul>
+<li>优点：定位精度高、对光照不敏感，在结构化/半结构化环境中具有很强鲁棒性；</li>
+<li>缺点：成本较高、体积和功耗大。</li>
+</ul>
+</li>
+<li>
+<p><strong>LiDAR + 视觉</strong>：</p>
+<ul>
+<li>使用相机提供纹理/语义信息，辅助 LiDAR 实现 <strong>语义地图、目标级地图</strong> 等；</li>
+<li>在自动驾驶领域，常见为 BEV 感知 + HD Map/语义地图。</li>
+</ul>
+</li>
+<li>
+<p><strong>LiDAR + 视觉 + IMU</strong>：</p>
+<ul>
+<li>「三大传感器全集成」架构，理论上可实现最稳健的定位；</li>
+<li>工程实现复杂度与标定难度显著上升。</li>
+</ul>
+</li>
+</ul>
+<h3 id="32-工程中的典型组合与取舍">3.2 工程中的典型组合与取舍</h3>
+<p>从落地角度看，不同项目可大致归纳为：</p>
+<ul>
+<li>
+<p><strong>消费级 AR/VR、手机/平板</strong>：</p>
+<ul>
+<li>以 <strong>相机 + IMU</strong> 为主，有条件时可以叠加 ToF/结构光深度；</li>
+<li>强调低功耗、低延迟与良好交互体验。</li>
+</ul>
+</li>
+<li>
+<p><strong>室内服务机器人 / AGV / 仓储机器人</strong>：</p>
+<ul>
+<li>典型组合为「深度相机 or 双目 + IMU + 轮速计」，或者「2D/3D LiDAR + IMU」；</li>
+<li>重点在于成本控制与稳定的全天候运行。</li>
+</ul>
+</li>
+<li>
+<p><strong>自动驾驶/无人矿卡/无人船等</strong>：</p>
+<ul>
+<li>以多线 LiDAR + 多相机阵列 + 高精度 IMU + GNSS 为主，配合高精地图；</li>
+<li>系统设计为多级冗余：单子系统退化时仍能保底定位。</li>
+</ul>
+</li>
+</ul>
+<h2 id="四语义-slam-与场景理解">四、语义 SLAM 与场景理解</h2>
+<h3 id="41-语义信息引入的方式">4.1 语义信息引入的方式</h3>
+<p>近年的语义 SLAM 综述大致将方法分为几类：</p>
+<ul>
+<li>
+<p><strong>后处理语义标注</strong>：</p>
+<ul>
+<li>先做几何 SLAM，得到点云/栅格/网格地图，然后用语义分割/实例分割网络对地图进行标注；</li>
+<li>优点是对原 SLAM 框架侵入性小，便于集成；</li>
+<li>缺点是语义信息在定位过程中利用不足。</li>
+</ul>
+</li>
+<li>
+<p><strong>语义辅助几何优化</strong>：</p>
+<ul>
+<li>在前端将特征点、关键帧附带语义标签（例如「墙、人、车、桌子」），在后端引入语义一致性约束；</li>
+<li>可利用「静态物体优先」的策略，提高动态场景中的鲁棒性；</li>
+<li>可用「同一实体多次观测」的约束强化回环检测。</li>
+</ul>
+</li>
+<li>
+<p><strong>对象级/房间级 SLAM</strong>：</p>
+<ul>
+<li>把世界表示为「对象图」或「房间图」，每个节点是可解释的实体（家具、路灯、门、走廊等）；</li>
+<li>更适合与任务级规划（抓取、导航、人机交互）结合。</li>
+</ul>
+</li>
+</ul>
+<h3 id="42-语义-slam-的挑战">4.2 语义 SLAM 的挑战</h3>
+<ul>
+<li>对实时性的要求高：语义分割/实例分割模型通常计算量大，需要边缘侧优化（模型压缩、蒸馏、FP16/INT8 推理等）；</li>
+<li>标注成本高：高质量的语义地图需要精细数据集支撑；</li>
+<li>度量与拓扑统一：如何在一套框架中同时兼顾「厘米级几何精度」和「语义拓扑结构」仍是开放问题。</li>
+</ul>
+<h2 id="五神经表示重构nerf-与-3d-gaussian-splatting-驱动的新一代-slam">五、神经表示重构：NeRF 与 3D Gaussian Splatting 驱动的新一代 SLAM</h2>
+<h3 id="51-nerf-slam-系列工作">5.1 NeRF-SLAM 系列工作</h3>
+<p>自从 NeRF 出现以后，大量工作尝试把「神经辐射场」与 SLAM 结合，形成所谓 <strong>NeRF-SLAM / Neural SLAM</strong>：</p>
+<ul>
+<li>使用 NeRF 作为全局地图表示，利用相机轨迹对 NeRF 参数做增量优化；</li>
+<li>通过渲染合成视角图像，与真实图像对齐，反向传播优化位姿与场景表示；</li>
+<li>在小场景/室内环境中，可以获得 <strong>高质量几何 + 逼真纹理</strong> 的地图。</li>
+</ul>
+<p>代表性方向包括：</p>
+<ul>
+<li>将 NeRF 作为几何/外观的高保真环境表示，用传统几何前端提供初始位姿和稀疏几何；</li>
+<li>使用轻量化、加速版 NeRF（Instant NGP 等）提升训练与渲染速度。</li>
+</ul>
+<h3 id="52-3d-gaussian-splatting--slam">5.2 3D Gaussian Splatting + SLAM</h3>
+<p>2023 年提出的 <strong>3D Gaussian Splatting</strong> 在渲染速度和质量之间实现了新的平衡，很快被引入 SLAM 领域。2024–2025 年的一篇综述系统地分析了 NeRF 与 3D GS 对 SLAM 的影响：</p>
+<ul>
+<li>3D 高斯可以自然地作为 <strong>可微分点云/体素的替代</strong>，兼具连续性与稀疏性；</li>
+<li>在 GPU 上具有良好的并行性，适合实时/近实时渲染与增量更新；</li>
+<li>易于同传统点云/网格进行互相转换，适合集成到已有 SLAM 框架中。</li>
+</ul>
+<p>结合 SLAM 时的常见做法：</p>
+<ul>
+<li>使用传统 VIO/LiDAR SLAM 提供<strong>粗轨迹</strong>，再用 3D GS 表示局部/全局地图，做 <strong>局部精修与高质量重建</strong>；</li>
+<li>在 AR/VR 中将 3D GS 作为「可编辑的虚实融合场景」，支持光照估计、遮挡关系推断等。</li>
+</ul>
+<h3 id="53-神经-slam-的优势与短板">5.3 神经 SLAM 的优势与短板</h3>
+<p><strong>优势：</strong></p>
+<ul>
+<li>高质量几何与外观统一表达，更适合数字孪生、VR 预览、离线仿真等任务；</li>
+<li>更容易和 <strong>生成式模型</strong> 结合，实现场景编辑、补全、风格化等高阶操作。</li>
+</ul>
+<p><strong>短板：</strong></p>
+<ul>
+<li>计算/显存开销依然明显，尤其是在大规模、长期运行的移动机器人场景中；</li>
+<li>实时性和鲁棒性距离工业级 VIO/LiDAR SLAM 还有差距；</li>
+<li>工程生态尚不稳定，接口、数据格式和部署方案仍在快速演化。</li>
+</ul>
+<h2 id="六评测数据集与指标">六、评测、数据集与指标</h2>
+<p>常见评测指标：</p>
+<ul>
+<li><strong>轨迹误差</strong>：ATE（Absolute Trajectory Error）、RPE（Relative Pose Error）等；</li>
+<li><strong>地图精度</strong>：与激光真值/高精度建图对比的点云误差、表面重建误差；</li>
+<li><strong>鲁棒性指标</strong>：在遮挡、光照变化、动态物体密集场景下的成功率、重定位时间等；</li>
+<li><strong>系统指标</strong>：实时性（FPS）、延迟、CPU/GPU 占用、内存/显存占用。</li>
+</ul>
+<p>常见数据集（2026 年仍广泛使用）：</p>
+<ul>
+<li>视觉/视觉惯性：TUM RGB-D、EuRoC MAV、KITTI Odometry、ETH3D、Replica、ScanNet 等；</li>
+<li>LiDAR：KITTI、nuScenes、Waymo、MulRan 等；</li>
+<li>多模态/语义/神经表示：TartanAir、SemanticKITTI、Semantic3D，以及专门针对 NeRF/3D GS 的新型数据集。</li>
+</ul>
+<h2 id="七典型开源-slam-工程概览">七、典型开源 SLAM 工程概览</h2>
+<p>本节只列出业界常用、生态较成熟的开源工程，方便后续选型和对比。具体使用时建议以官方文档和近期 issue 为准。</p>
+<h3 id="71-经典几何-slam">7.1 经典几何 SLAM</h3>
+<ul>
+<li>
+<p><strong>ORB-SLAM2 / ORB-SLAM3</strong>（约 2015 / 2020 年开源）</p>
+<ul>
+<li>特点：基于 ORB 特征的稀疏特征点 SLAM，支持单目/双目/RGB-D，ORB-SLAM3 增加了多地图、视觉-惯性等能力；</li>
+<li>适用：算法研究、教学、原型验证，是几何视觉 SLAM 的「教科书级」实现；</li>
+<li>注意：原始实现对实时性和工程健壮性要求一般，落地时通常需要裁剪与重构。</li>
+</ul>
+</li>
+<li>
+<p><strong>DSO / LDSO</strong>（约 2016 / 2018 年开源）</p>
+<ul>
+<li>特点：直接法稠密/半稠密 SLAM，直接在像素灰度上优化，提高弱纹理区域精度；</li>
+<li>适用：对图像亮度一致性要求较高的实验环境、科研场景；</li>
+<li>注意：对相机模型、曝光变化较敏感，对工程友好性相对 ORB-SLAM 略差。</li>
+</ul>
+</li>
+<li>
+<p><strong>OKVIS</strong>（约 2015 年开源）</p>
+<ul>
+<li>特点：早期成熟的视觉惯性 SLAM 系统，支持多相机、多 IMU 配置；</li>
+<li>适用：VIO/VINS 原理学习，多传感器前端设计参考；</li>
+<li>注意：代码相对复杂，维护节奏较慢。</li>
+</ul>
+</li>
+<li>
+<p><strong>VINS-Mono / VINS-Fusion</strong>（约 2017 / 2018 年开源）</p>
+<ul>
+<li>特点：紧耦合 VIO / 多传感器融合框架，提供比较完整的 ROS 集成和工具链；</li>
+<li>适用：移动机器人、无人机、教学与工程原型；</li>
+<li>注意：需要较好的相机-IMU 标定与时间同步。</li>
+</ul>
+</li>
+</ul>
+<h3 id="72-多传感器与-lidar-slam">7.2 多传感器与 LiDAR SLAM</h3>
+<ul>
+<li>
+<p><strong>LOAM / A-LOAM / LeGO-LOAM</strong>（LOAM 论文约 2014 年，A-LOAM / LeGO-LOAM 约 2017–2018 年开源）</p>
+<ul>
+<li>特点：经典 LiDAR SLAM 系列，基于特征点提取与 Scan-to-Map 匹配；</li>
+<li>A-LOAM/LeGO-LOAM 等是针对不同场景和易用性的改版；</li>
+<li>适用：室外机器人、自动驾驶原型、多线激光雷达平台。</li>
+</ul>
+</li>
+<li>
+<p><strong>LIO-SAM / FAST-LIO2/3</strong>（LIO-SAM 约 2020 年开源，FAST-LIO 系列约 2020–2023 年开源）</p>
+<ul>
+<li>特点：LiDAR + IMU 紧耦合框架，其中 FAST-LIO 系列以高频率、高精度和工程实用性著称；</li>
+<li>适用：需要高质量 6DoF 里程计与建图的机器人/无人车项目；</li>
+<li>注意：对时间同步、IMU 标定质量敏感。</li>
+</ul>
+</li>
+<li>
+<p><strong>Cartographer</strong>（约 2016 年开源）</p>
+<ul>
+<li>特点：Google 开源的 2D/3D SLAM 框架，支持 LiDAR + IMU + 轮速计，多种前端与后端配置；</li>
+<li>适用：室内/工业环境机器人建图，尤其是 2D 场景；</li>
+<li>注意：项目维护节奏有所放缓，但生态与文档仍具参考价值。</li>
+</ul>
+</li>
+</ul>
+<h3 id="73-神经表示与新型-slam-工程">7.3 神经表示与新型 SLAM 工程</h3>
+<p>考虑到神经 SLAM 领域仍然快速演化，这里只列出几类具有代表性的工程方向：</p>
+<ul>
+<li>
+<p><strong>NeRF 相关工程</strong></p>
+<ul>
+<li>NeRF 论文发表于 2020 年左右；</li>
+<li>Instant-NGP（约 2021 年开源）、Nerfstudio（约 2022 年开源）等项目提供了 NeRF 训练与可视化框架，部分分支/插件已开始支持与轨迹估计、SfM/SLAM 的联动；</li>
+<li>适用：小场景高质量重建、离线数字孪生、研究原型。</li>
+</ul>
+</li>
+<li>
+<p><strong>3D Gaussian Splatting 相关工程</strong></p>
+<ul>
+<li>3DGS 论文发表于 2023 年，官方实现同年开源，此后出现大量改进版本（支持动态场景、流式更新、多视角视频等）；</li>
+<li>社区中已有将 3DGS 与 VIO/LiDAR 轨迹结合的实验性工程，用于局部地图精修与渲染。</li>
+</ul>
+</li>
+<li>
+<p><strong>语义 / 学习增强 SLAM 工程</strong></p>
+<ul>
+<li>如基于 SuperPoint/SuperGlue 等学习特征的 SLAM 原型、基于深度估计网络增强的单目 SLAM 等；</li>
+<li>多数仍处于学术/原型阶段，工程上通常以「在经典框架上替换/增强局部模块」的方式存在。</li>
+</ul>
+</li>
+</ul>
+<h2 id="八面向项目落地的选型建议">八、面向项目落地的选型建议</h2>
+<h3 id="81-典型应用场景与推荐方案">8.1 典型应用场景与推荐方案</h3>
+<ul>
+<li>
+<p><strong>室内移动机器人（成本敏感、环境相对规整）</strong>：</p>
+<ul>
+<li>推荐：RGB-D / 双目 + IMU + 轮速计 + 2D LiDAR（用于冗余与安全）；</li>
+<li>SLAM 方案：视觉惯性 SLAM + 平面/二维 LiDAR 建图，必要时叠加简单语义分割。</li>
+</ul>
+</li>
+<li>
+<p><strong>室外巡检机器人 / 小型无人车</strong>：</p>
+<ul>
+<li>推荐：多线/中端 LiDAR + IMU + 双目前视相机，可以选配 RTK-GNSS；</li>
+<li>SLAM 方案：LiDAR-IMU SLAM 为主，视觉用于语义增强和远距离感知。</li>
+</ul>
+</li>
+<li>
+<p><strong>AR/VR 头显、手持设备</strong>：</p>
+<ul>
+<li>推荐：多相机阵列 + IMU + ToF/结构光；</li>
+<li>SLAM 方案：高帧率 VIO + 局部重建，配合轻量化 NeRF/3D GS 做小范围高质量建模。</li>
+</ul>
+</li>
+<li>
+<p><strong>数字孪生/静态场景扫描</strong>：</p>
+<ul>
+<li>推荐：可移动相机阵列 + IMU 或 LiDAR + 相机；</li>
+<li>SLAM 方案：几何 SLAM 提供轨迹 + NeRF/3D GS 负责高质量重建。</li>
+</ul>
+</li>
+</ul>
+<h3 id="82-工程实践注意事项">8.2 工程实践注意事项</h3>
+<ul>
+<li>
+<p><strong>标定质量优先级极高</strong>：</p>
+<ul>
+<li>相机-IMU、相机-LiDAR、LiDAR-IMU 外参与时间同步问题是多数系统不稳的根源；</li>
+<li>建议优先投入精力和工具在标定与在线标定监控上。</li>
+</ul>
+</li>
+<li>
+<p><strong>数据流与时序管理</strong>：</p>
+<ul>
+<li>多传感器系统中，可靠的时间戳、同步与缓冲机制比算法本身更容易出问题；</li>
+<li>要区分硬件同步、驱动层同步和软件层时间对齐。</li>
+</ul>
+</li>
+<li>
+<p><strong>资源与实时性评估</strong>：</p>
+<ul>
+<li>事先根据目标平台（CPU/GPU/边缘 SoC）做性能预算，避免在嵌入式平台上硬塞 PC 级算法；</li>
+<li>对神经 SLAM/语义模块进行模型压缩与算子融合，必要时只在关键帧上运行。</li>
+</ul>
+</li>
+</ul>
+<h2 id="九未来趋势个人观点">九、未来趋势（个人观点）</h2>
+<ul>
+<li>
+<p><strong>几何框架不会消失</strong>：</p>
+<ul>
+<li>经典几何 SLAM 在可解释性、可控性和资源友好性上的优势很难被完全替代；</li>
+<li>未来更可能是「几何为骨架，学习/神经表示为肌肉和皮肤」的组合。</li>
+</ul>
+</li>
+<li>
+<p><strong>NeRF / 3D Gaussian Splatting 将成为重要组件</strong>：</p>
+<ul>
+<li>在需要高保真重建、数字孪生、编辑能力的场景中，这类表示会逐渐标准化并与 SLAM 深度融合；</li>
+<li>但在强实时/强鲁棒性的移动机器人定位中，短期内仍以几何+轻量学习为主。</li>
+</ul>
+</li>
+<li>
+<p><strong>多传感器与语义一体化</strong>：</p>
+<ul>
+<li>未来的 SLAM 更像「时空感知平台」，在同一套框架中统一处理几何、语义、拓扑与不确定性；</li>
+<li>大规模场景下，需要和云端/边缘计算协同完成长期建图与地图更新。</li>
+</ul>
+</li>
+</ul>
+<p>对我个人而言，2026 年做 SLAM 相关工程时，会优先选择：<br>
+<strong>用成熟的几何/多传感器 SLAM 打底，在有明确收益的局部引入深度学习、语义以及神经表示，而不是一开始就 All in 端到端网络。</strong></p></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2026-03-13</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://zhangyuhu.github.io/posts/computer_vision/slam/2026_slam_%E8%B0%83%E7%A0%94%E6%8A%A5%E5%91%8A/" data-title="2026 年 SLAM 技术发展调研报告" data-hashtags="SLAM,VIO,NeRF,高斯溅射,多传感器融合"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://zhangyuhu.github.io/posts/computer_vision/slam/2026_slam_%E8%B0%83%E7%A0%94%E6%8A%A5%E5%91%8A/" data-hashtag="SLAM"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://zhangyuhu.github.io/posts/computer_vision/slam/2026_slam_%E8%B0%83%E7%A0%94%E6%8A%A5%E5%91%8A/" data-title="2026 年 SLAM 技术发展调研报告"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://zhangyuhu.github.io/posts/computer_vision/slam/2026_slam_%E8%B0%83%E7%A0%94%E6%8A%A5%E5%91%8A/" data-title="2026 年 SLAM 技术发展调研报告"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://zhangyuhu.github.io/posts/computer_vision/slam/2026_slam_%E8%B0%83%E7%A0%94%E6%8A%A5%E5%91%8A/" data-title="2026 年 SLAM 技术发展调研报告" data-ralateuid="ji"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/slam/">SLAM</a>,&nbsp;<a href="/tags/vio/">VIO</a>,&nbsp;<a href="/tags/nerf/">NeRF</a>,&nbsp;<a href="/tags/%E9%AB%98%E6%96%AF%E6%BA%85%E5%B0%84/">高斯溅射</a>,&nbsp;<a href="/tags/%E5%A4%9A%E4%BC%A0%E6%84%9F%E5%99%A8%E8%9E%8D%E5%90%88/">多传感器融合</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/program/cpp/libracplus/" class="prev" rel="prev" title="C&#43;&#43;:LibraT/LibraT.h 相关说明"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>C++:LibraT/LibraT.h 相关说明</a>
+            <a href="/posts/basic_knowledge/linuxsys/%E5%8A%A8%E6%80%81%E9%93%BE%E6%8E%A5/" class="next" rel="next" title="LinuxSys:动态链接">LinuxSys:动态链接<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="giscus" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://giscus.app">Giscus</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">为天地立心,为生民立命,为往圣继绝学,为万世开太平</div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2023 - 2026</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://zhangyuhu.github.io/" target="_blank">zhangyuhu</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="http://creativecommons.org/licenses/by/4.0/" target="_blank">知识共享署名 4.0 国际许可协议</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/css/lightgallery-bundle.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/twemoji@14.0.2/dist/twemoji.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/lightgallery.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/thumbnail/lg-thumbnail.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/zoom/lg-zoom.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@8.6.0/dist/index.umd.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":100},"comment":{"giscus":{"category":"Comments","categoryId":"DIC_kwDOIx2Cjs4CTnUX","darkTheme":"dark","emitMetadata":"0","inputPosition":"bottom","lang":"en","lazyLoading":false,"lightTheme":"light","mapping":"pathname","reactionsEnabled":"1","repo":"zhangyuhu/zhangyuhu.github.io","repoId":"R_kgDOIx2Cjg"}},"data":{"id-1":"HOME","id-2":"HOME"},"lightgallery":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"},"twemoji":true,"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.f1b10c54ef8e7ea0c938baba89a68e47962cb91f87edfcf0ae7abf0ec7bbb510e5d980a2b5a69686d7a44eae747183e3ed5cd960ed6fe66552c947e6fca4ff67.js" integrity="sha512-8bEMVO+OfqDJOLq6iaaOR5YsuR+H7fzwrnq/Dse7tRDl2YCitaaWhtekTq50cYPj7VzZYO1v5mVSyUfm/KT/Zw=="></script></body>
+</html>

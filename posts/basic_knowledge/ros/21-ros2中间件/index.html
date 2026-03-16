@@ -1,0 +1,1375 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>ROS:ROS2中间件 - 这是我的网站</title><meta name="Description" content="ROS2中间件介绍"><meta property="og:title" content="ROS:ROS2中间件" />
+<meta property="og:description" content="ROS2中间件介绍" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zhangyuhu.github.io/posts/basic_knowledge/ros/21-ros2%E4%B8%AD%E9%97%B4%E4%BB%B6/" /><meta property="og:image" content="https://zhangyuhu.github.io/logo.png" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-01-22T13:52:52+08:00" />
+<meta property="article:modified_time" content="2023-01-30T13:11:52+08:00" /><meta property="og:site_name" content="我的网站" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://zhangyuhu.github.io/logo.png" /><meta name="twitter:title" content="ROS:ROS2中间件"/>
+<meta name="twitter:description" content="ROS2中间件介绍"/>
+<meta name="application-name" content="我的网站">
+<meta name="apple-mobile-web-app-title" content="我的网站"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://zhangyuhu.github.io/posts/basic_knowledge/ros/21-ros2%E4%B8%AD%E9%97%B4%E4%BB%B6/" /><link rel="prev" href="https://zhangyuhu.github.io/posts/basic_knowledge/ros/01-%E5%9F%BA%E7%A1%80/" /><link rel="next" href="https://zhangyuhu.github.io/posts/basic_knowledge/ros/10-qos/" /><link rel="stylesheet" href="/css/style.min.d09a08388620d07592fcb288b74e9f4434a352d4869011bd6c06619079103da00fcccceb4fa6fce14315bef50c9be97c6bc29582e3968d9521c60ef89c6de806.css" integrity="sha512-0JoIOIYg0HWS/LKIt06fRDSjUtSGkBG9bAZhkHkQPaAPzMzrT6b84UMVvvUMm+l8a8KVguOWjZUhxg74nG3oBg=="><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "ROS:ROS2中间件",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/zhangyuhu.github.io\/posts\/basic_knowledge\/ros\/21-ros2%E4%B8%AD%E9%97%B4%E4%BB%B6\/"
+        },"image": [{
+                            "@type": "ImageObject",
+                            "url": "https:\/\/zhangyuhu.github.io\/images\/Apple-Devices-Preview.png",
+                            "width":  3200 ,
+                            "height":  2048 
+                        }],"genre": "posts","keywords": "ROS, ROS2, 中间件","wordcount":  11431 ,
+        "url": "https:\/\/zhangyuhu.github.io\/posts\/basic_knowledge\/ros\/21-ros2%E4%B8%AD%E9%97%B4%E4%BB%B6\/","datePublished": "2023-01-22T13:52:52+08:00","dateModified": "2023-01-30T13:11:52+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "zhangyuhu"
+            },"description": "ROS2中间件介绍"
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="这是我的网站"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/" title="文章"><i class='fas fa-archive fa-fw fa-sm'></i> 文章 </a><a class="menu-item" href="/tags/"><i class='fas fa-tags fa-fw fa-sm'></i> 标签 </a><a class="menu-item" href="/categories/"><i class='fas fa-th fa-fw fa-sm'></i> 分类 </a><a class="menu-item" href="/about/"><i class='fas fa-user-tie fa-fw fa-sm'></i> 关于 </a><a class="menu-item" href="/tool/"><i class='fas fa-cube fa-fw fa-sm'></i> 工具箱 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="这是我的网站"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="文章"><i class='fas fa-archive fa-fw fa-sm'></i>文章</a><a class="menu-item" href="/tags/" title=""><i class='fas fa-tags fa-fw fa-sm'></i>标签</a><a class="menu-item" href="/categories/" title=""><i class='fas fa-th fa-fw fa-sm'></i>分类</a><a class="menu-item" href="/about/" title=""><i class='fas fa-user-tie fa-fw fa-sm'></i>关于</a><a class="menu-item" href="/tool/" title=""><i class='fas fa-cube fa-fw fa-sm'></i>工具箱</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">ROS:ROS2中间件</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://zhangyuhu.github.io/" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>zhangyuhu</a></span>&nbsp;<span class="post-category">included in <a href="/categories/ros/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>ROS</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-01-22">2023-01-22</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;11431 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;23 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#内部api架构">内部API架构</a></li>
+    <li><a href="#ros-interface-definition-language">ROS Interface Definition Language</a>
+      <ul>
+        <li><a href="#工作流程">工作流程</a></li>
+        <li><a href="#-rosidl-的设计目标">🎯 <code>rosidl</code> 的设计目标：</a></li>
+      </ul>
+    </li>
+    <li><a href="#ros-2-rcl-层核心功能与能力综述">ROS 2 rcl 层：核心功能与能力综述</a>
+      <ul>
+        <li><a href="#1-上下文和初始化管理-context-and-initialization">1. 上下文和初始化管理 (Context and Initialization)</a></li>
+        <li><a href="#2-节点管理-node-management">2. 节点管理 (Node Management)</a></li>
+        <li><a href="#3-通信原语-communication-primitives">3. 通信原语 (Communication Primitives)</a></li>
+        <li><a href="#4-等待与并发-waiting-and-concurrency">4. 等待与并发 (Waiting and Concurrency)</a></li>
+        <li><a href="#5-rmw-抽象和-dds-解耦">5. RMW 抽象和 DDS 解耦</a></li>
+      </ul>
+    </li>
+    <li><a href="#topic-发送驱动的任务调度过程">Topic 发送驱动的任务调度过程</a>
+      <ul>
+        <li><a href="#阶段-1消息到达-message-arrival">阶段 1：消息到达 (Message Arrival)</a></li>
+        <li><a href="#阶段-2等待集阻塞与唤醒-wait-set-blocking-and-wakeup">阶段 2：等待集阻塞与唤醒 (Wait Set Blocking and Wakeup)</a></li>
+        <li><a href="#阶段-3执行器发现就绪实体-executor-discovers-ready-entity">阶段 3：执行器发现就绪实体 (Executor Discovers Ready Entity)</a></li>
+        <li><a href="#阶段-4执行回调-execute_any_executable">阶段 4：执行回调 (<code>execute_any_executable</code>)</a></li>
+        <li><a href="#阶段-5回调组解锁与清理">阶段 5：回调组解锁与清理</a></li>
+        <li><a href="#阶段-6通知与下一轮循环">阶段 6：通知与下一轮循环</a></li>
+      </ul>
+    </li>
+    <li><a href="#rcl">rcl</a>
+      <ul>
+        <li><a href="#一rcl-在-ros2-架构中的位置与角色">一、rcl 在 ROS2 架构中的位置与角色</a>
+          <ul>
+            <li><a href="#1-为什么要有-rcl">1. 为什么要有 rcl？</a></li>
+            <li><a href="#2-在-rcl-仓库中的组成">2. 在 rcl 仓库中的组成</a></li>
+          </ul>
+        </li>
+        <li><a href="#二rcl-的主要功能--模块">二、rcl 的主要功能 / 模块</a>
+          <ul>
+            <li><a href="#21-初始化--支持结构">2.1 初始化 / 支持结构</a></li>
+            <li><a href="#22-node-管理">2.2 Node 管理</a></li>
+            <li><a href="#23-publisher--subscription">2.3 Publisher / Subscription</a></li>
+            <li><a href="#24-服务--客户端">2.4 服务 / 客户端</a></li>
+            <li><a href="#25-timer--wait-set--回调触发机制">2.5 Timer / Wait Set / 回调触发机制</a></li>
+            <li><a href="#26-graph--introspection-支持">2.6 Graph / Introspection 支持</a></li>
+            <li><a href="#27-参数系统">2.7 参数系统</a></li>
+            <li><a href="#28-生命周期节点">2.8 生命周期节点</a></li>
+            <li><a href="#29-action-支持">2.9 Action 支持</a></li>
+            <li><a href="#210-yaml-参数解析">2.10 YAML 参数解析</a></li>
+          </ul>
+        </li>
+        <li><a href="#三设计原则与特色">三、设计原则与特色</a></li>
+        <li><a href="#四rcl-在-humble-版本中的特点--注意事项">四、rcl 在 Humble 版本中的特点 &amp; 注意事项</a></li>
+        <li><a href="#五举例用-rcl经-rclcpp--rclpy-的流程简化视角">五、举例：用 rcl（经 rclcpp / rclpy ）的流程（简化视角）</a></li>
+        <li><a href="#六rcl-的限制--注意点-挑战">六、rcl 的限制 / 注意点 /挑战</a></li>
+      </ul>
+    </li>
+    <li><a href="#-rcl_action--action-客户端服务支持层">🌟 <code>rcl_action</code> —— Action 客户端/服务支持层</a>
+      <ul>
+        <li><a href="#一背景与作用">一、背景与作用</a></li>
+        <li><a href="#二rcl_action-架构与组成">二、<code>rcl_action</code> 架构与组成</a></li>
+        <li><a href="#三action-通信机制在-rcl-层">三、Action 通信机制（在 rcl 层）</a></li>
+        <li><a href="#四核心结构与-api">四、核心结构与 API</a>
+          <ul>
+            <li><a href="#1-action-client">1. Action Client</a></li>
+            <li><a href="#2-action-server">2. Action Server</a></li>
+            <li><a href="#3-goal-handle">3. Goal Handle</a></li>
+            <li><a href="#4-graph">4. Graph</a></li>
+            <li><a href="#5-options--qos">5. Options / QoS</a></li>
+          </ul>
+        </li>
+        <li><a href="#五调用流程总结">五、调用流程总结</a>
+          <ul>
+            <li><a href="#客户端">客户端：</a></li>
+            <li><a href="#服务端">服务端：</a></li>
+          </ul>
+        </li>
+        <li><a href="#六总结特点">六、总结特点</a></li>
+      </ul>
+    </li>
+    <li><a href="#-rcl_lifecycle--节点生命周期管理层">🌟 <code>rcl_lifecycle</code> —— 节点生命周期管理层</a>
+      <ul>
+        <li><a href="#一背景与作用-1">一、背景与作用</a></li>
+        <li><a href="#二状态机设计">二、状态机设计</a></li>
+        <li><a href="#三组成模块">三、组成模块</a></li>
+        <li><a href="#四核心数据结构">四、核心数据结构</a></li>
+        <li><a href="#五关键-api">五、关键 API</a>
+          <ul>
+            <li><a href="#初始化与状态机创建">初始化与状态机创建</a></li>
+            <li><a href="#状态转换">状态转换</a></li>
+            <li><a href="#查询状态">查询状态</a></li>
+            <li><a href="#发布状态--通知">发布状态 / 通知</a></li>
+          </ul>
+        </li>
+        <li><a href="#六生命周期节点行为">六、生命周期节点行为</a></li>
+        <li><a href="#七特点">七、特点</a></li>
+      </ul>
+    </li>
+    <li><a href="#-总结对比">✅ 总结对比</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><blockquote>
+<p>本文采用<a href="http://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreffer ">知识共享署名 4.0 国际许可协议</a>进行许可，转载时请注明原文链接，图片在使用时请保留全部内容，可适当缩放并在引用处附上图片所在的文章链接。</p>
+</blockquote>
+<p>[TOC]</p>
+<p>RCL = ROS Client</p>
+<p>RMW = ROS Middleware</p>
+<p>rosidl =  ROS Interface Definition Language （接口语言定义）</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-1">1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-2">2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-3">3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-4">4</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-5">5</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-6">6</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-7">7</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-8">8</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-9">9</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>rclcpp / rclpy
+</span></span><span style="display:flex;"><span>      ↓
+</span></span><span style="display:flex;"><span>     rcl
+</span></span><span style="display:flex;"><span>      ↓
+</span></span><span style="display:flex;"><span>     rmw  ← 抽象接口层
+</span></span><span style="display:flex;"><span>      ↓
+</span></span><span style="display:flex;"><span>rmw_fastrtps_cpp / rmw_cyclonedds_cpp / ...
+</span></span><span style="display:flex;"><span>      ↓
+</span></span><span style="display:flex;"><span>   Fast DDS / Cyclone DDS / ...
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-1">1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-2">2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-3">3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-4">4</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-5">5</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-6">6</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-7">7</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>rclcpp::Publisher&lt;T&gt;::publish<span style="color:#555">(</span>msg<span style="color:#555">)</span>
+</span></span><span style="display:flex;"><span>↓
+</span></span><span style="display:flex;"><span>rcl_publish<span style="color:#555">(</span>...<span style="color:#555">)</span>
+</span></span><span style="display:flex;"><span>↓
+</span></span><span style="display:flex;"><span>rmw_publish<span style="color:#555">(</span>...<span style="color:#555">)</span>
+</span></span><span style="display:flex;"><span>↓
+</span></span><span style="display:flex;"><span>fastdds_writer-&gt;write<span style="color:#555">(</span>...<span style="color:#555">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="内部api架构">内部API架构</h1>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./21-ROS2%E4%B8%AD%E9%97%B4%E4%BB%B6.assets/ros_client_library_api_stack.png"
+        data-srcset="./21-ROS2%E4%B8%AD%E9%97%B4%E4%BB%B6.assets/ros_client_library_api_stack.png, ./21-ROS2%E4%B8%AD%E9%97%B4%E4%BB%B6.assets/ros_client_library_api_stack.png 1.5x, ./21-ROS2%E4%B8%AD%E9%97%B4%E4%BB%B6.assets/ros_client_library_api_stack.png 2x"
+        data-sizes="auto"
+        alt="./21-ROS2%E4%B8%AD%E9%97%B4%E4%BB%B6.assets/ros_client_library_api_stack.png"
+        title="ros_client_library_api_stack" /></p>
+<h1 id="ros-interface-definition-language">ROS Interface Definition Language</h1>
+<p><code>rosidl</code> 是 ROS 2 中用来 <strong>定义消息（msg）、服务（srv）、动作（action）接口的标准机制</strong>。它支持生成跨多种编程语言（C/C++/Python/Java等）的接口代码。</p>
+<table>
+<thead>
+<tr>
+<th>包名</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>rosidl_parser</code></td>
+<td>解析 <code>.msg</code>, <code>.srv</code>, <code>.action</code> 文件为中间格式 AST。</td>
+</tr>
+<tr>
+<td><code>rosidl_generator_c</code></td>
+<td>生成 C 语言的消息/服务代码。</td>
+</tr>
+<tr>
+<td><code>rosidl_generator_cpp</code></td>
+<td>生成 C++ 语言的接口代码。</td>
+</tr>
+<tr>
+<td><code>rosidl_generator_py</code></td>
+<td>生成 Python 语言的绑定代码。</td>
+</tr>
+<tr>
+<td><code>rosidl_typesupport_*</code></td>
+<td>提供消息序列化/反序列化（比如 FastRTPS/CycloneDDS）。</td>
+</tr>
+<tr>
+<td><code>rosidl_runtime_*</code></td>
+<td>提供运行时支持，如字符串处理、类型 introspection。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="工作流程">工作流程</h2>
+<ol>
+<li>
+<p><strong>定义接口</strong>
+例如：</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-1">1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-2">2</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>std_msgs/String.msg
+</span></span><span style="display:flex;"><span>string data
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p><strong>用 <code>rosidl</code> 工具解析并生成目标语言的代码</strong>
+CMake 中配置 <code>rosidl_generate_interfaces()</code>，自动生成对应语言的支持文件。</p>
+</li>
+<li>
+<p><code>ament_export_dependencies(rosidl_default_runtime) </code> : <strong>告诉其他依赖这个包的下游包</strong>，它们在构建时也需要依赖 <code>rosidl_default_runtime</code></p>
+<p>rosidl_default_runtime 是一个 <strong>虚拟依赖包</strong>，内部包含了所有目标语言所需的运行时支持，比如：</p>
+<ul>
+<li>
+<p><code>rosidl_runtime_c</code> : C 语言的消息运行时支持 用 <code>rcl</code> 层处理 msg/srv</p>
+</li>
+<li>
+<p><code>rosidl_runtime_cpp</code>: C++ 消息支持结构 <code>rclcpp</code> 节点用自定义消息</p>
+</li>
+<li>
+<p><code>rosidl_runtime_py</code>: Python 动态导入支持 <code>rclpy</code> 使用消息时</p>
+</li>
+<li>
+<p><code>builtin_interfaces</code> ： <strong>ROS 2 标准内建消息类型集合</strong>，类似于 ROS 1 中的 <code>std_msgs</code> 基础支持包。</p>
+<ul>
+<li><code>builtin_interfaces/Time</code>：表示 ROS 时间</li>
+<li><code>builtin_interfaces/Duration</code>：表示时间间隔</li>
+<li><code>builtin_interfaces/String</code>, <code>Bool</code>, <code>Int32</code> 等都在 <code>std_msgs</code>，但 <code>Time/Duration</code> 是内建的，直接由中间件支持。</li>
+</ul>
+</li>
+<li>
+<p><code>unique_identifier_msgs</code> ：<strong>用于表示唯一 ID 的标准消息类型包</strong>，常用于 action、跟踪、标识对象等。</p>
+<ul>
+<li>
+<p><code>unique_identifier_msgs/UUID</code>：标准 UUID 表示（16字节）</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-1">1</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>uint8[16] uuid
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>在应用中引用</strong>
+在 C++ 中使用 <code>std_msgs::msg::String</code>，或 Python 中使用 <code>std_msgs.msg.String</code>。</p>
+</li>
+</ol>
+<hr>
+<h2 id="-rosidl-的设计目标">🎯 <code>rosidl</code> 的设计目标：</h2>
+<ul>
+<li>✅ 支持多种语言（C、C++、Python、Java等）</li>
+<li>✅ 支持多种类型支持库（type support：FastRTPS、Connext、Cyclone DDS 等）</li>
+<li>✅ 模块化生成器架构（便于扩展新语言/类型支持）</li>
+</ul>
+<h1 id="ros-2-rcl-层核心功能与能力综述">ROS 2 rcl 层：核心功能与能力综述</h1>
+<p><strong><code>rcl</code> (ROS Client Library)</strong> 是 ROS 2 客户端库架构中的<strong>核心抽象层</strong>，它提供了一套<strong>C 语言 API</strong>，旨在为所有上层语言客户端库（如 <code>rclcpp</code> 和 <code>rclpy</code>）提供统一、稳定且隔离于底层通信中间件（DDS）的接口。<code>rcl</code> 的存在是实现 ROS 2 跨语言和模块化设计的关键。</p>
+<p><code>rcl</code> 的功能可以归纳为以下五个核心模块：</p>
+<h2 id="1-上下文和初始化管理-context-and-initialization">1. 上下文和初始化管理 (Context and Initialization)</h2>
+<p><code>rcl</code> 是 ROS 2 进程的起点，负责建立和管理整个运行环境的状态。</p>
+<ul>
+<li><strong>环境构建：</strong> <strong><code>rcl_init</code></strong> 是核心的初始化函数。它接收命令行参数，处理 ROS 2 的<strong>特殊参数和重映射规则</strong>，并完成运行环境的设置。</li>
+<li><strong>状态容器：</strong> <strong><code>rcl_context_t</code></strong> 结构体承载着 ROS 2 运行环境的全部状态，包括初始化选项、参数解析结果和当前 ROS 2 实例的状态等。</li>
+<li><strong>资源清理：</strong> <strong><code>rcl_shutdown</code></strong> 负责在进程结束时优雅地清理和终止 <code>rcl</code> 上下文，释放所有相关资源。</li>
+</ul>
+<h2 id="2-节点管理-node-management">2. 节点管理 (Node Management)</h2>
+<p><code>rcl</code> 提供了创建和管理 ROS 2 基本通信单元——<strong>节点</strong>的机制。</p>
+<ul>
+<li><strong>节点实体：</strong> <strong><code>rcl_node_t</code></strong> 是承载一个 ROS 2 节点实体的 C 结构体。它包含节点的名称、命名空间、日志配置等元数据信息。</li>
+<li><strong>节点注册：</strong> <strong><code>rcl_node_init</code></strong> 用于初始化一个节点实例，并将其注册到 <strong>ROS 2 图 (Graph)</strong> 中，使其能够被其他节点发现和通信。</li>
+</ul>
+<h2 id="3-通信原语-communication-primitives">3. 通信原语 (Communication Primitives)</h2>
+<p>这是 <code>rcl</code> 最核心的能力，它抽象并提供了 ROS 2 中所有的基础通信模式。</p>
+<table>
+<thead>
+<tr>
+<th>原语类型</th>
+<th>C 结构体示例</th>
+<th>核心能力</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>话题 (Topic)</strong></td>
+<td><code>rcl_publisher_t</code>, <code>rcl_subscription_t</code></td>
+<td>提供<strong>异步、多对多</strong>的数据流传输。<code>rcl</code> 负责将上层的数据结构与底层的 DDS 消息进行转换和交互。</td>
+</tr>
+<tr>
+<td><strong>服务 (Service)</strong></td>
+<td><code>rcl_service_t</code>, <code>rcl_client_t</code></td>
+<td>实现<strong>同步、请求-响应</strong>机制。<code>rcl</code> 负责服务的注册、请求的发送和响应的接收。</td>
+</tr>
+<tr>
+<td><strong>参数 (Parameter)</strong></td>
+<td>内部参数结构</td>
+<td>提供节点的<strong>运行时配置</strong>。<code>rcl</code> 封装了通过服务实现参数动态<strong>读取和修改</strong>的机制。</td>
+</tr>
+<tr>
+<td><strong>行动 (Action)</strong></td>
+<td><code>rcl_action_server_t</code>, <code>rcl_action_client_t</code></td>
+<td>提供<strong>长期、可取消、带反馈</strong>的任务执行机制。<code>rcl</code> 通过封装话题和服务，实现了行动的复杂通信流程。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="4-等待与并发-waiting-and-concurrency">4. 等待与并发 (Waiting and Concurrency)</h2>
+<p>为了实现高效的事件驱动编程，<code>rcl</code> 提供了等待多个并发事件的机制。</p>
+<ul>
+<li><strong>事件集合：</strong> <strong><code>rcl_wait_set_t</code></strong> 是核心的等待集结构。它允许单个线程<strong>同时监听</strong>多个通信事件（如订阅数据到达、服务请求、定时器到期等）。</li>
+<li><strong>阻塞等待：</strong> <strong><code>rcl_wait</code></strong> 函数是<strong>阻塞式</strong>的。它会暂停执行，直到等待集中至少有一个事件发生。这是上层 <code>rclcpp</code> <strong>执行器 (Executor)</strong> 实现高效并发的基础。</li>
+</ul>
+<h2 id="5-rmw-抽象和-dds-解耦">5. RMW 抽象和 DDS 解耦</h2>
+<p><code>rcl</code> 扮演了 ROS 2 客户端和通信中间件之间的<strong>关键桥梁</strong>，是实现通信<strong>模块化和可插拔性</strong>的基石。</p>
+<ul>
+<li><strong>中间件接口：</strong> <code>rcl</code> 内部调用 <strong>RMW (ROS Middleware Interface)</strong> 层的 API。RMW 负责将 <code>rcl</code> 的通用请求（例如，创建一个话题订阅）转化为<strong>特定 DDS 实现</strong>（如 Fast RTPS, Cyclone DDS）的 API 调用。</li>
+<li><strong>隔离效应：</strong> 这种设计使得 <code>rcl</code> 的用户（以及上层的 <code>rclcpp</code> 开发者）<strong>无需关心</strong>底层使用的是哪种 DDS。开发者只需要编写一次代码，就可以在不同的通信中间件上运行。</li>
+</ul>
+<h1 id="topic-发送驱动的任务调度过程">Topic 发送驱动的任务调度过程</h1>
+<p>整个过程可以被分解为以下六个主要阶段：/</p>
+<h2 id="阶段-1消息到达-message-arrival">阶段 1：消息到达 (Message Arrival)</h2>
+<ol>
+<li><strong>发布 (Publish)</strong>：某个节点使用其发布者 (<code>rclcpp::Publisher</code>) 向特定 Topic 发送一条消息。</li>
+<li><strong>RMW 传输</strong>：消息被 ROS 2 的中间件层 (RMW) 传输到接收节点。</li>
+<li><strong>底层标记就绪</strong>：消息到达接收节点的底层 RMW 订阅句柄（Subscription Handle）。RMW 层将该订阅句柄标记为**“就绪”**（Ready），意味着它有待处理的数据。</li>
+</ol>
+<h2 id="阶段-2等待集阻塞与唤醒-wait-set-blocking-and-wakeup">阶段 2：等待集阻塞与唤醒 (Wait Set Blocking and Wakeup)</h2>
+<p>执行器的大部分时间都阻塞在 <code>rcl_wait()</code> 调用中。</p>
+<ol>
+<li><strong>阻塞 (<code>rcl_wait()</code>)</strong>：执行器线程在 <code>Executor::wait_for_work()</code> 函数内部调用底层 <code>rcl_wait()</code>，等待任何一个可等待实体（包括订阅、定时器、守护条件等）就绪。</li>
+<li><strong>唤醒 (Wakeup)</strong>：当消息到达后，RMW 层标记底层订阅句柄就绪。<code>rcl_wait()</code> 接收到信号（通常通过系统级的 I/O 多路复用机制，如 <code>epoll</code> 或 <code>poll</code>），从而<strong>解除阻塞</strong>并返回。</li>
+</ol>
+<h2 id="阶段-3执行器发现就绪实体-executor-discovers-ready-entity">阶段 3：执行器发现就绪实体 (Executor Discovers Ready Entity)</h2>
+<p><code>rcl_wait()</code> 返回后，执行器开始查找是哪个实体导致了唤醒。</p>
+<ol>
+<li><strong>清除空句柄</strong>：执行器首先调用 <code>memory_strategy_-&gt;remove_null_handles()</code>，检查等待集中哪些句柄真的有事件发生，并清理掉虚假唤醒（spurious wakeup）或已失效的句柄。</li>
+<li><strong>获取下一个可执行实体 (<code>get_next_ready_executable</code>)</strong>：执行器进入 <strong><code>Executor::get_next_ready_executable()</code></strong> 循环，查找可执行实体。对于 Topic 首发的情况，它会：
+<ul>
+<li><strong>跳过定时器</strong>：首先检查定时器（因为定时器有最高的调度优先级），如果定时器没到期则跳过。</li>
+<li><strong>检查订阅者</strong>：调用 <code>memory_strategy_-&gt;get_next_subscription()</code>。内存策略会检查等待集中<strong>就绪</strong>的订阅句柄，并将其封装成一个 <strong><code>AnyExecutable</code></strong> 结构体。</li>
+</ul>
+</li>
+<li><strong>识别回调组和互斥性</strong>：
+<ul>
+<li><strong><code>AnyExecutable</code></strong> 现在包含了就绪的订阅者、其所在的<strong>回调组</strong>以及关联的节点信息。</li>
+<li>执行器检查该回调组的类型：
+<ul>
+<li>如果回调组是 <strong><code>MutuallyExclusive</code>（互斥）</strong>：执行器会通过<strong>原子操作</strong>将其内部的 <code>can_be_taken_from</code> 标志设置为 <strong><code>false</code></strong>。这会阻止任何其他线程从该组中取出任务，直到当前任务完成。</li>
+<li>如果是 <strong><code>Reentrant</code>（可重入）</strong>：不做限制。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="阶段-4执行回调-execute_any_executable">阶段 4：执行回调 (<code>execute_any_executable</code>)</h2>
+<p>找到任务后，执行器进入 <strong><code>Executor::execute_any_executable()</code></strong>。</p>
+<ol>
+<li><strong>分派给线程</strong>：对于 <code>SingleThreadedExecutor</code>，它会在主线程上立即执行。对于 <code>MultiThreadedExecutor</code>，它会将 <code>AnyExecutable</code> 放入一个队列，并由线程池中的<strong>一个空闲工作线程</strong>取出执行。</li>
+<li><strong>消息接收 (<code>execute_subscription</code>)</strong>：执行 <code>Executor::execute_subscription()</code> 函数：
+<ul>
+<li>它调用订阅者的 <code>take_type_erased()</code>（或 <code>take_serialized</code> / <code>take_loaned_message</code>）方法，<strong>从 RMW 层拉取 (Pull) 消息数据</strong>。</li>
+<li>成功拉取消息后，订阅句柄在 RMW 层再次变回“未就绪”状态。</li>
+</ul>
+</li>
+<li><strong>用户回调执行</strong>：一旦获得消息，订阅者句柄就会调用用户的回调函数 (<code>subscription-&gt;handle_message(...)</code>)，传入拉取到的消息数据。</li>
+<li><strong>计算阻塞</strong>：用户回调开始执行。<strong>回调的执行时间</strong>是任务调度的主要瓶颈：如果回调运行时间过长，它会占用执行器线程，并可能阻塞其他事件。</li>
+</ol>
+<h2 id="阶段-5回调组解锁与清理">阶段 5：回调组解锁与清理</h2>
+<p>用户回调函数执行完毕后，执行器完成收尾工作：</p>
+<ol>
+<li><strong>回调组解锁</strong>：
+<ul>
+<li>如果该回调组是互斥的，执行器会通过<strong>原子操作</strong>将回调组的 <code>can_be_taken_from</code> 标志<strong>重置回 <code>true</code></strong>。这使得该组中的其他就绪任务现在可以被其他线程获取。</li>
+</ul>
+</li>
+<li><strong>清理消息</strong>：如果消息是借出 (<code>LoanedMessage</code>) 的，则将其归还。</li>
+</ol>
+<h2 id="阶段-6通知与下一轮循环">阶段 6：通知与下一轮循环</h2>
+<ol>
+<li><strong>触发中断条件</strong>：执行器会调用 <strong><code>interrupt_guard_condition_.trigger()</code></strong>。</li>
+<li><strong>目的</strong>：这个触发操作是为了<strong>唤醒</strong>所有可能阻塞在 <code>rcl_wait()</code> 中的其他执行器线程（特别是在多线程执行器中），通知它们：
+<ul>
+<li>回调组已被释放（有新的工作可用）。</li>
+<li>需要重新计算最短的定时器超时时间（如果回调修改了定时器）。</li>
+</ul>
+</li>
+<li><strong>下一轮</strong>：执行器线程（无论是主线程还是线程池中的工作线程）完成当前任务后，会返回 <strong><code>spin()</code></strong> 循环的起始，重新开始下一轮 <strong>等待-发现-执行</strong> 的调度过程。</li>
+</ol>
+<p><strong>总结</strong>：</p>
+<p>Topic 消息的调度是一个典型的<strong>事件驱动</strong>流程：消息的到达触发了阻塞的等待集，执行器被唤醒并拉取消息，最终在合适的线程（受回调组规则约束）上执行用户回调。<strong>回调组</strong>和 <strong>原子锁</strong> 是实现并发性和线程安全的关键，而 <strong><code>rcl_wait()</code></strong> 则是实现效率的核心。</p>
+<h1 id="rcl">rcl</h1>
+<p>下面我结合 ROS2 官方文档、社区资料，以及你给出的 rcl 仓库（humble 分支）来给你比较系统、深入地介绍一下 <strong>rcl</strong>（ROS Client Library core / ROS 客户端库核心）的功能、定位、模块结构、设计原则以及在 ROS2 架构中的角色。</p>
+<p>如果你后来还想深入源码（某个模块、接口、实现细节）我也可以陪你一起看。</p>
+<hr>
+<h2 id="一rcl-在-ros2-架构中的位置与角色">一、rcl 在 ROS2 架构中的位置与角色</h2>
+<h3 id="1-为什么要有-rcl">1. 为什么要有 rcl？</h3>
+<ul>
+<li>在 ROS1 中，不同语言（C++、Python 等）的客户端库（roscpp、rospy）几乎是各自实现的，很多功能在各个语言库里重复实现，导致行为不一致、维护成本高。</li>
+<li>ROS2 的目标之一是语言无关、功能一致。于是引入一个公共的、语言中立的核心客户端库层，即 <strong>rcl</strong>，用 C 语言（或 C 接口）实现 ROS 的核心功能，让各语言客户端库（如 rclcpp、rclpy、rclc、rclrs 等）去调用它，从而保证行为一致性、减少重复实现。 <a href="https://docs.ros.org/en/foxy/Concepts/About-ROS-2-Client-Libraries.html?utm_source=chatgpt.com" target="_blank" rel="noopener noreffer ">docs.ros.org+2index.ros.org+2</a></li>
+<li>rcl 本身并不直接依赖特定中间件（DDS 实现等），它会通过更下层的 <strong>rmw</strong>（ROS Middleware Interface）来调用具体中间件提供者。换句话说，rcl 是介于 <strong>语言客户端库</strong>（如 rclcpp、rclpy）和 <strong>rmw / DDS 实现</strong> 之间的一层抽象。 <a href="https://docs.ros.org/en/crystal/Concepts/About-Internal-Interfaces.html?utm_source=chatgpt.com" target="_blank" rel="noopener noreffer ">docs.ros.org+2index.ros.org+2</a></li>
+</ul>
+<p>所以在 ROS2 的调用栈里，可以抽象为：</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-1">1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-2">2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-3">3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-4">4</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>用户代码（用 rclcpp, rclpy, rclrs 等）  
+</span></span><span style="display:flex;"><span>→ rcl （核心 C 接口实现公共行为）  
+</span></span><span style="display:flex;"><span>→ rmw 接口（中间件抽象层）  
+</span></span><span style="display:flex;"><span>→ 具体中间件实现（如 rmw_fastrtps, rmw_cyclonedds, etc.）
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>rcl 还负责管理 ROS 图（graph）、节点、主题、服务、生命周期、参数、定时器等基本概念的公共逻辑。</p>
+<h3 id="2-在-rcl-仓库中的组成">2. 在 rcl 仓库中的组成</h3>
+<p>在你给的仓库 <code>https://github.com/ros2/rcl/tree/humble</code> 中，可以看到它包含多个子包 / 子目录：</p>
+<ul>
+<li><code>rcl</code>：核心包，实现主要的 ROS 客户端功能</li>
+<li><code>rcl_action</code>：Action 的支持</li>
+<li><code>rcl_lifecycle</code>：节点生命周期管理</li>
+<li><code>rcl_yaml_param_parser</code>：用 YAML 解析 ROS 参数文件</li>
+<li>以及一些元数据（如 CMakeLists、README 等） <a href="https://github.com/ros2/rcl/tree/humble" target="_blank" rel="noopener noreffer ">GitHub</a></li>
+</ul>
+<p>也就是说，除了基本的 publisher/subscription、服务 / 客户端、节点管理，那些扩展机制（action、生命周期、参数 YAML 解析等）都被划分为子模块，以保持核心的清晰和模块化。</p>
+<hr>
+<h2 id="二rcl-的主要功能--模块">二、rcl 的主要功能 / 模块</h2>
+<p>下面我按功能模块来拆解 rcl 支持的特性，以及核心 API 的作用：</p>
+<table>
+<thead>
+<tr>
+<th>模块</th>
+<th>功能 / 负责</th>
+<th>说明 / 作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>初始化 / 支持结构</td>
+<td><code>rcl_init</code> / <code>rcl_shutdown</code> / <code>rcl_get_zero_initialized_*</code> 等</td>
+<td>初始化 ROS client “上下文”（包含 domain_id、args、allocator 等），清理资源。</td>
+</tr>
+<tr>
+<td>Node 管理</td>
+<td><code>rcl_node_t</code>、<code>rcl_node_init</code> / <code>rcl_node_fini</code>、节点名称 / 命名空间 / remapping</td>
+<td>管理 ROS 节点的生命周期、名称空间、重映射等。</td>
+</tr>
+<tr>
+<td>Publisher / Subscription</td>
+<td><code>rcl_publisher_t</code>、<code>rcl_subscription_t</code>、初始化 / 发布 / 接收 / 销毁、QoS 支持</td>
+<td>封装通过底层 rmw 接口发 / 收消息的逻辑。</td>
+</tr>
+<tr>
+<td>服务 / 客户端（Service / Client）</td>
+<td><code>rcl_service_t</code> / <code>rcl_client_t</code>，初始化 / 请求 / 响应 / 销毁等</td>
+<td>支持同步 / 异步服务调用机制。</td>
+</tr>
+<tr>
+<td>Timer / 回调机制</td>
+<td><code>rcl_timer_t</code>、<code>rcl_wait_set_t</code> / <code>rcl_wait()</code> 等</td>
+<td>管理定时器、轮询等待（wait set）机制，用于触发回调、等待 I/O 事件等。</td>
+</tr>
+<tr>
+<td>Graph / ROS 网络状态</td>
+<td>查询 topic 列表、节点列表、publisher/subscriber 数目、连接变更通知</td>
+<td>用于 introspection（内部视图），在运行时查看 ROS 网络状态。</td>
+</tr>
+<tr>
+<td>参数系统</td>
+<td>set/get 参数、参数回调、参数服务器逻辑</td>
+<td>统一参数接口，支持参数验证、回调触发。</td>
+</tr>
+<tr>
+<td>日志 / 错误处理</td>
+<td>logging 接口，错误码 / 报错机制</td>
+<td>提供一致的日志输出和错误处理。</td>
+</tr>
+<tr>
+<td>生命周期节点支持</td>
+<td>在 <code>rcl_lifecycle</code> 子包里：管理节点的生命周期状态（unconfigured, inactive, active, shuttingdown etc.）</td>
+<td>允许节点有状态机式的生命周期控制，比如在不同阶段初始化资源 / 释放资源。</td>
+</tr>
+<tr>
+<td>Action 支持</td>
+<td>在 <code>rcl_action</code> 子包：action 服务的接口（goal、feedback、result、预emption 等）</td>
+<td>把 action 的复杂逻辑（如目标取消、反馈流、时间限制等）整合到 rcl 层。</td>
+</tr>
+<tr>
+<td>参数 YAML 解析</td>
+<td><code>rcl_yaml_param_parser</code></td>
+<td>解析 YAML 格式的参数配置文件（例如 ros2 launch 或节点启动参数）</td>
+</tr>
+</tbody>
+</table>
+<p>下面我分别稍微展开一些关键模块的细节。</p>
+<hr>
+<h3 id="21-初始化--支持结构">2.1 初始化 / 支持结构</h3>
+<ul>
+<li><code>rcl_init()</code>：在使用 ROS 通信资源之前，必须进行初始化。rcl 会处理启动参数（例如 remapping、ROS_DOMAIN_ID、日志级别等）并设置内部结构。</li>
+<li><code>rcl_init_options_t</code>：初始化时可以指定内存分配器、域 ID（domain_id）、上下文、是否要捕获 SIGINT 等。</li>
+<li><code>rcl_shutdown()</code>：关闭 ROS 通信，清理资源。</li>
+<li>这些结构使得多个节点可以在同一个进程中共存（即可以有多个 node 实例共用一个 rcl 上下文）或者在不同上下文中分开。</li>
+</ul>
+<hr>
+<h3 id="22-node-管理">2.2 Node 管理</h3>
+<p>Node 是 ROS 的基本参与者概念。rcl 在这一层管理节点的生命周期与属性。</p>
+<ul>
+<li><code>rcl_node_init()</code>：初始化节点，需要指定节点名称、命名空间、节点选项（可以包含 remapping 规则、记分 allocators 等）</li>
+<li><code>rcl_node_fini()</code>：析构节点，释放其资源</li>
+<li>节点可以进行重映射（remap rules）以改变 topic / service / 参数名字</li>
+<li>节点名称与命名空间的标准化、检查合法性、命名冲突处理等逻辑都在这里统一进行</li>
+</ul>
+<hr>
+<h3 id="23-publisher--subscription">2.3 Publisher / Subscription</h3>
+<p>这是 ROS 通信的基础。</p>
+<ul>
+<li>在 rcl 层，是通过调用底层的 rmw 接口来创建 publisher / subscription。rcl 层必须把客户端库层（rclcpp / rclpy）传入的 QoS 设置、消息类型信息、topic 名称等翻译成 rmw 层可识别的形式</li>
+<li><code>rcl_publisher_init()</code>、<code>rcl_subscription_init()</code>：初始化对应结构</li>
+<li>发布消息：<code>rcl_publish()</code>、序列化、传递给 rmw 层</li>
+<li>接收消息：rcl 会配合 <code>rcl_wait()</code> / <code>rcl_wait_set_t</code> 等机制，以轮询方式等待新的消息到来，然后从底层拿消息、触发回调</li>
+<li>支持多种 QoS 策略（例如可靠 / 最佳努力、历史深度、延迟 / 丢失策略等），这些在 rcl 层统一处理或检查一致性</li>
+</ul>
+<hr>
+<h3 id="24-服务--客户端">2.4 服务 / 客户端</h3>
+<p>ROS 的请求-响应机制：</p>
+<ul>
+<li>客户端（Client）发起请求，请求被发送到服务端（Service），然后服务端返回响应</li>
+<li>在 rcl 层，<code>rcl_client_init()</code> / <code>rcl_service_init()</code> 用于初始化客户端 / 服务端</li>
+<li>客户端可以通过 <code>rcl_send_request()</code> 发请求；服务端则 <code>rcl_take_request()</code> 提取请求、处理、再 <code>rcl_send_response()</code></li>
+<li>rcl 层还负责管理请求 ID、内存管理、请求超时、并发、队列深度等控制逻辑</li>
+</ul>
+<hr>
+<h3 id="25-timer--wait-set--回调触发机制">2.5 Timer / Wait Set / 回调触发机制</h3>
+<p>ROS 节点不仅仅响应消息，还可能有定时任务、事件触发等。</p>
+<ul>
+<li>rcl 提供 <code>rcl_timer_t</code>：可注册定时器，每当定时器触发时，将对应回调排入待执行队列。</li>
+<li>rcl 引入 <strong>Wait Set</strong> 机制，即 <code>rcl_wait_set_t</code>，它封装了一系列等待条件（subscription 可读、service 请求、客户端响应、定时器触发、guard conditions 等），rcl 会把它们包装在一个统一的等待集合里，然后调用 <code>rcl_wait()</code>（通常底层对应系统调用 / 中间件等待）来等待多个事件中的任意一个发生</li>
+<li>当 <code>rcl_wait()</code> 返回后，rcl 会遍历 wait set 中每一个触发事件（subscription、timer、service 等），对它们分别做 take / invoke 回调 /发送响应等操作</li>
+<li>这个设计使得 ROS 节点内部可以使用统一的等待 / 调度机制，不必为每一种事件类型写不同的等待逻辑</li>
+</ul>
+<hr>
+<h3 id="26-graph--introspection-支持">2.6 Graph / Introspection 支持</h3>
+<p>为了支持运行时监控、节点拓扑查看、主题 / 节点 /连接状态，rcl 提供一些接口：</p>
+<ul>
+<li><code>rcl_get_topic_names_and_types()</code>：返回系统中所有 topic 名字 + 类型</li>
+<li><code>rcl_count_publishers()</code> / <code>rcl_count_subscribers()</code>：查询某个 topic 上的 publisher / subscriber 数量</li>
+<li>Graph changes 事件：当网络拓扑（节点加入 / 退出 / 主题连接变化）发生时，可以触发“graph event”，让客户端库层（如 rclcpp）有机会收到通知或更新其本地缓存</li>
+<li>这些功能使得客户端层可以构建更高级的 introspection、可视化工具（如 <code>ros2 topic list</code>、<code>ros2 node list</code> 等命令）</li>
+</ul>
+<hr>
+<h3 id="27-参数系统">2.7 参数系统</h3>
+<p>参数是 ROS 节点中非常常用的机制，用于节点配置（例如控制频率、阈值等）。</p>
+<ul>
+<li>rcl 支持统一的参数接口：<code>rcl_set_parameter()</code>、<code>rcl_get_parameter()</code>、<code>rcl_set_parameters()</code>（批量设置）、参数回调（当某些参数被更改时触发）</li>
+<li>参数验证、类型约束、参数命名的规则检查等逻辑都在 rcl 层实现</li>
+<li>还支持将参数从 YAML 文件加载（借助 <code>rcl_yaml_param_parser</code>）</li>
+<li>这样，不论在 C++、Python、Rust 等客户端库中操作参数，都能获得一致的行为</li>
+</ul>
+<hr>
+<h3 id="28-生命周期节点">2.8 生命周期节点</h3>
+<p>这是 ROS2 的一种可控节点机制（状态机式管理节点生命周期状态）。</p>
+<ul>
+<li>在 <code>rcl_lifecycle</code> 子包中，rcl 提供对以下状态的支持：如 <code>unconfigured</code>、<code>inactive</code>、<code>active</code>、<code>finalized</code>、<code>shutting_down</code> 等</li>
+<li>提供切换状态的机制（configuration、activation、deactivation、shutdown、cleanup 等）</li>
+<li>允许节点在不同状态阶段初始化/释放资源、对外服务 / topic 发布行为限制等</li>
+<li>客户端库（如 rclcpp 的 <code>rclcpp_lifecycle</code>）会在此基础上给出更友好接口</li>
+</ul>
+<hr>
+<h3 id="29-action-支持">2.9 Action 支持</h3>
+<p>Action 是一种比服务更复杂、可反馈、可取消、可预占的交互机制。rcl 在其子包 <code>rcl_action</code> 中提供支持。</p>
+<ul>
+<li>rcl_action 提供目标 (Goal) 接口、反馈 (Feedback)、结果 (Result) 的抽象</li>
+<li>支持取消目标（preemption）、超时、多个并发目标、状态跟踪（accepted, executing, canceled, succeeded 等）</li>
+<li>将复杂的状态机、消息流、回调逻辑整合在 rcl 层，使得客户端库可以较为简单地封装 action 接口</li>
+</ul>
+<hr>
+<h3 id="210-yaml-参数解析">2.10 YAML 参数解析</h3>
+<ul>
+<li><code>rcl_yaml_param_parser</code> 子模块负责把 YAML 文件（通常是 ROS 的参数配置文件 / launch 文件中指定的参数）解析成内部 rcl 参数结构</li>
+<li>它处理 YAML 中的节点名、命名空间、类型、默认值、参数 validation 规则等</li>
+</ul>
+<hr>
+<h2 id="三设计原则与特色">三、设计原则与特色</h2>
+<p>在理解 rcl 的功能之外，理解其设计思想与特性也很重要：</p>
+<ol>
+<li><strong>语言中立 / 接口统一</strong>
+rcl 使用纯 C 接口，这样各种语言（C++、Python、Rust、C# 等）都可以比较容易地包装绑定。通过统一的核心层，不同语言的客户端库行为更一致。 <a href="https://docs.ros.org/en/foxy/Concepts/About-ROS-2-Client-Libraries.html?utm_source=chatgpt.com" target="_blank" rel="noopener noreffer ">docs.ros.org+2docs.ros.org+2</a></li>
+<li><strong>中间件无关</strong>
+rcl 自己并不直接依赖特定的中间件（如 Fast DDS、Cyclone DDS 等）。它通过 rmw 接口抽象中间件层（ROS Middleware Interface）。这样 ROS2 可以支持多种 DDS 实现，而且用户代码无需修改。 <a href="https://docs.ros.org/en/crystal/Concepts/About-Internal-Interfaces.html?utm_source=chatgpt.com" target="_blank" rel="noopener noreffer ">docs.ros.org+2index.ros.org+2</a></li>
+<li><strong>模块化 / 可扩展</strong>
+将常见但复杂的机制（如生命周期、action、参数 YAML 解析）拆为子模块，不让核心变得过于臃肿。
+这样也使得未来扩展更方便，比如如果要添加新的交互机制，就可以作为插件 / 子模块扩展。</li>
+<li><strong>统一错误管理 / 内存管理</strong>
+所有模块通常都会使用统一的 allocator（内存分配器）、错误码体系、初始化 / 清理规范等，以保证资源安全、避免泄漏、保证一致性。</li>
+<li><strong>等待 / 回调驱动模型</strong>
+rcl 的 event / wait set / 回调触发机制设计，使得节点可以统一地等待多个事件（消息、定时器、服务等），简化客户端库层（语言层）设计。</li>
+<li><strong>高度抽象但不过度封装</strong>
+rcl 一方面提供较高层次的、统一的 ROS 概念（节点、topic、service、action、参数等），另一方面它保留一定的灵活性，不把所有操作都封死，以便高级用户或语言客户端可以对某些行为做优化或扩展。</li>
+</ol>
+<hr>
+<h2 id="四rcl-在-humble-版本中的特点--注意事项">四、rcl 在 Humble 版本中的特点 &amp; 注意事项</h2>
+<p>（基于你提供的 humble 分支仓库）</p>
+<ul>
+<li>rcl 在 Humble 中仍然继承上述核心设计，并继续被用于 ROS2 Humble 发布版本</li>
+<li>一些模块（如 <code>rcl_action</code>、<code>rcl_lifecycle</code>、<code>rcl_yaml_param_parser</code>）在这个分支里是并列子包，清晰分隔</li>
+<li>在 <code>rcl_action</code> 模块中，有质量声明（Quality Declaration）来表明其代码质量、性能测试要求等。 <a href="https://github.com/ros2/rcl/blob/rolling/rcl_action/QUALITY_DECLARATION.md?utm_source=chatgpt.com" target="_blank" rel="noopener noreffer ">GitHub</a></li>
+<li>rcl 包在 ROS2 项目中是 <strong>质量等级 1（Quality Level 1）</strong> 的包（High quality / production-level） <a href="https://index.ros.org/p/rcl/?utm_source=chatgpt.com" target="_blank" rel="noopener noreffer ">index.ros.org+1</a></li>
+<li>代码库中已有很多测试、性能验证、静态分析工具支持，以保证稳定性</li>
+<li>Humble 分支可能针对新的特性、bug 修复有增量改动（包括内存安全、边界条件处理等），而这些改动都是在 rcl 的公共逻辑层进行的</li>
+<li>在 rcl 的仓库里，你可以看到各子模块的实现细节（头文件、C 源代码）——如果你愿意，我们可以一起挑一个模块看它的具体实现。</li>
+</ul>
+<hr>
+<h2 id="五举例用-rcl经-rclcpp--rclpy-的流程简化视角">五、举例：用 rcl（经 rclcpp / rclpy ）的流程（简化视角）</h2>
+<p>为了更好理解 rcl 功能在实际使用时是如何被客户端库调用的，下面给一个典型的流程（以 “发布-订阅” 为例）：</p>
+<ol>
+<li>客户端库（rclcpp）调用 <code>rcl_init()</code> 初始化上下文。</li>
+<li>rclcpp 调用 <code>rcl_node_init()</code> 初始化一个 node。</li>
+<li>rclcpp 构造一个 publisher，内部调用 <code>rcl_publisher_init()</code>，rcl 会根据给定 topic 名称、消息类型、QoS 等初始化 publisher，并注册到底层 rmw。</li>
+<li>rclcpp 构造一个 subscription，内部调用 <code>rcl_subscription_init()</code>，同样设置 topic / QoS / 回调。</li>
+<li>在执行阶段，rclcpp 启动一个 spin loop —— 本质上会调用 <code>rcl_wait()</code>（或封装好的 spin 函数），等待 subscription 可读 / 定时器 / service 等事件。</li>
+<li>当消息到达时，底层 rmw 通知，rcl 的 wait set 触发 subscription，可调用 <code>rcl_take()</code> 拿消息数据，反序列化、封装，然后把它交给 rclcpp 的回调函数。</li>
+<li>如果发布，rclcpp 将消息序列化传入 rcl 的 <code>rcl_publish()</code>，再经由 rmw 传出去。</li>
+<li>最终，节点退出时，rclcpp 会调用 <code>rcl_shutdown()</code> / <code>rcl_node_fini()</code> / <code>rcl_publisher_fini()</code> / <code>rcl_subscription_fini()</code> 等清理资源。</li>
+</ol>
+<p>这样，客户端库层无需关心具体中间件、等待机制、序列化细节、错误管理等，都由 rcl 层统一处理。</p>
+<hr>
+<h2 id="六rcl-的限制--注意点-挑战">六、rcl 的限制 / 注意点 /挑战</h2>
+<p>虽然 rcl 做得很优秀，但在实践中也有一些需要注意或限制的地方：</p>
+<ul>
+<li>rcl 抽象层设计需要兼顾灵活性与封装，有时某些极端或性能敏感需求可能绕过 rcl（但这破坏了跨语言一致性）</li>
+<li>在高性能场景下，序列化 / 反序列化、回调调度、内存分配、等待机制等都可能成为瓶颈。客户端库有时候需要做优化（例如内存池、零拷贝）</li>
+<li>rcl 的错误管理 / 生命周期管理比较严格，使用者需要理解其初始化 / 清理顺序，避免资源泄漏或未定义行为</li>
+<li>客户端库必须严格按照 rcl 的契约（API 约定）来使用，否则可能引起兼容性 / 稳定性问题</li>
+<li>部分中间件特性（如某些 DDS vendor 的特殊扩展）可能超出 rcl 抽象层能力，需要在更底层（rmw 或 vendor 接口层）做扩展</li>
+</ul>
+<h1 id="-rcl_action--action-客户端服务支持层">🌟 <code>rcl_action</code> —— Action 客户端/服务支持层</h1>
+<h2 id="一背景与作用">一、背景与作用</h2>
+<p>ROS 2 的 <strong>Action</strong> 是一种比 Service 更复杂的交互机制：</p>
+<ul>
+<li><strong>Service</strong>：一次请求 + 一次响应，适合短任务。</li>
+<li><strong>Action</strong>：适合执行时间较长、可反馈、可取消的任务（例如“导航到目标点”、“机械臂移动”）。</li>
+</ul>
+<p><code>rcl_action</code> 是 Action 在 <strong>rcl 层</strong> 的实现，封装了 Action 协议的状态管理、通信（goal、feedback、result、cancel）、与底层 rmw 层交互等。</p>
+<p>上层（如 <code>rclcpp_action</code> / <code>rclpy.action</code>）会基于它实现更友好的类接口。</p>
+<hr>
+<h2 id="二rcl_action-架构与组成">二、<code>rcl_action</code> 架构与组成</h2>
+<p>源码路径：</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-1"> 1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-2"> 2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-3"> 3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-4"> 4</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-5"> 5</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-6"> 6</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-7"> 7</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-8"> 8</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-9"> 9</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-10"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-10">10</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-11"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-11">11</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-12"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-12">12</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-13"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-13">13</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-14"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-14">14</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-15"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-15">15</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>rcl/rcl_action/
+</span></span><span style="display:flex;"><span>├── include/rcl_action/
+</span></span><span style="display:flex;"><span>│   ├── action_client.h
+</span></span><span style="display:flex;"><span>│   ├── action_server.h
+</span></span><span style="display:flex;"><span>│   ├── graph.h
+</span></span><span style="display:flex;"><span>│   ├── goal_handle.h
+</span></span><span style="display:flex;"><span>│   ├── types.h
+</span></span><span style="display:flex;"><span>│   ├── visibility_control.h
+</span></span><span style="display:flex;"><span>│   └── ...
+</span></span><span style="display:flex;"><span>├── src/rcl_action/
+</span></span><span style="display:flex;"><span>│   ├── action_client.c
+</span></span><span style="display:flex;"><span>│   ├── action_server.c
+</span></span><span style="display:flex;"><span>│   ├── graph.c
+</span></span><span style="display:flex;"><span>│   ├── goal_handle.c
+</span></span><span style="display:flex;"><span>│   └── ...
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>主要模块：</p>
+<table>
+<thead>
+<tr>
+<th>模块</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>action_client / action_server</strong></td>
+<td>封装 Action 客户端 / 服务端逻辑</td>
+</tr>
+<tr>
+<td><strong>goal_handle</strong></td>
+<td>表示一个具体的 goal 实例及其状态机</td>
+</tr>
+<tr>
+<td><strong>graph</strong></td>
+<td>提供 introspection 能力（查询当前系统中 action 名称、类型等）</td>
+</tr>
+<tr>
+<td><strong>types.h</strong></td>
+<td>定义所有公共结构体，如 goal_info、result_request、status 等</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="三action-通信机制在-rcl-层">三、Action 通信机制（在 rcl 层）</h2>
+<p>Action 通信是通过<strong>多个 topic + service 组合</strong>实现的：</p>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>通信类型</th>
+<th>名称（示例）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>发送 Goal</td>
+<td>Service</td>
+<td><code>/action_name/_action/send_goal</code></td>
+</tr>
+<tr>
+<td>取消 Goal</td>
+<td>Service</td>
+<td><code>/action_name/_action/cancel_goal</code></td>
+</tr>
+<tr>
+<td>获取 Result</td>
+<td>Service</td>
+<td><code>/action_name/_action/get_result</code></td>
+</tr>
+<tr>
+<td>反馈</td>
+<td>Topic (Publisher)</td>
+<td><code>/action_name/_action/feedback</code></td>
+</tr>
+<tr>
+<td>状态（所有 Goal 状态）</td>
+<td>Topic (Publisher)</td>
+<td><code>/action_name/_action/status</code></td>
+</tr>
+</tbody>
+</table>
+<p>rcl_action 负责：</p>
+<ul>
+<li>建立这些通信通道；</li>
+<li>处理消息序列化 / 反序列化；</li>
+<li>维护 goal 状态；</li>
+<li>调度反馈与结果；</li>
+<li>处理 goal 的取消、超时、完成等逻辑。</li>
+</ul>
+<hr>
+<h2 id="四核心结构与-api">四、核心结构与 API</h2>
+<h3 id="1-action-client">1. Action Client</h3>
+<p>文件：<code>rcl_action/action_client.h</code></p>
+<p>主要接口：</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-1"> 1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-2"> 2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-3"> 3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-4"> 4</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-5"> 5</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-6"> 6</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-7"> 7</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-8"> 8</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-9"> 9</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-10"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-10">10</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-11"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-11">11</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-gdscript3" data-lang="gdscript3"><span style="display:flex;"><span>rcl_ret_t rcl_action_client_init(
+</span></span><span style="display:flex;"><span>  rcl_action_client_t <span style="color:#555">*</span> action_client,
+</span></span><span style="display:flex;"><span>  <span style="color:#069;font-weight:bold">const</span> rcl_node_t <span style="color:#555">*</span> node,
+</span></span><span style="display:flex;"><span>  <span style="color:#069;font-weight:bold">const</span> rosidl_action_type_support_t <span style="color:#555">*</span> type_support,
+</span></span><span style="display:flex;"><span>  <span style="color:#069;font-weight:bold">const</span> char <span style="color:#555">*</span> action_name,
+</span></span><span style="display:flex;"><span>  <span style="color:#069;font-weight:bold">const</span> rcl_action_client_options_t <span style="color:#555">*</span> options);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>rcl_ret_t rcl_action_send_goal_request(
+</span></span><span style="display:flex;"><span>  <span style="color:#069;font-weight:bold">const</span> rcl_action_client_t <span style="color:#555">*</span> action_client,
+</span></span><span style="display:flex;"><span>  <span style="color:#069;font-weight:bold">const</span> void <span style="color:#555">*</span> ros_goal_request,
+</span></span><span style="display:flex;"><span>  int64_t <span style="color:#555">*</span> sequence_number);
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li><code>rcl_action_client_init()</code>：初始化客户端，绑定节点与 action 名称。</li>
+<li><code>rcl_action_send_goal_request()</code>：发送一个目标请求（GoalRequest）。</li>
+<li><code>rcl_action_take_goal_response()</code>：接收服务端返回的 goal_id（是否被接受）。</li>
+<li><code>rcl_action_take_feedback()</code>：取 feedback topic 中的新反馈。</li>
+<li><code>rcl_action_send_cancel_request()</code>：发送取消请求。</li>
+<li><code>rcl_action_take_result_response()</code>：获取任务结果。</li>
+</ul>
+<p>客户端通常维护：</p>
+<ul>
+<li>多个待完成 goal；</li>
+<li>每个 goal 的状态；</li>
+<li>对应的 sequence number。</li>
+</ul>
+<hr>
+<h3 id="2-action-server">2. Action Server</h3>
+<p>文件：<code>rcl_action/action_server.h</code></p>
+<p>主要接口：</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-1"> 1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-2"> 2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-3"> 3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-4"> 4</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-5"> 5</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-6"> 6</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-7"> 7</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-8"> 8</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-9"> 9</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-10"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-10">10</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-11"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-11">11</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-12"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-12">12</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-gdscript3" data-lang="gdscript3"><span style="display:flex;"><span>rcl_ret_t rcl_action_server_init(
+</span></span><span style="display:flex;"><span>  rcl_action_server_t <span style="color:#555">*</span> action_server,
+</span></span><span style="display:flex;"><span>  <span style="color:#069;font-weight:bold">const</span> rcl_node_t <span style="color:#555">*</span> node,
+</span></span><span style="display:flex;"><span>  <span style="color:#069;font-weight:bold">const</span> rosidl_action_type_support_t <span style="color:#555">*</span> type_support,
+</span></span><span style="display:flex;"><span>  <span style="color:#069;font-weight:bold">const</span> char <span style="color:#555">*</span> action_name,
+</span></span><span style="display:flex;"><span>  <span style="color:#069;font-weight:bold">const</span> rcl_action_server_options_t <span style="color:#555">*</span> options);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>rcl_ret_t rcl_action_take_goal_request(<span style="color:#555">...</span>);
+</span></span><span style="display:flex;"><span>rcl_ret_t rcl_action_send_goal_response(<span style="color:#555">...</span>);
+</span></span><span style="display:flex;"><span>rcl_ret_t rcl_action_publish_feedback(<span style="color:#555">...</span>);
+</span></span><span style="display:flex;"><span>rcl_ret_t rcl_action_publish_status(<span style="color:#555">...</span>);
+</span></span><span style="display:flex;"><span>rcl_ret_t rcl_action_send_result_response(<span style="color:#555">...</span>);
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>服务器负责：
+<ul>
+<li>接收 goal 请求，决定接受 / 拒绝；</li>
+<li>维护每个 goal 的状态机（通过 <code>rcl_action_goal_handle_t</code>）；</li>
+<li>持续发布 feedback；</li>
+<li>最终发布 result；</li>
+<li>处理 cancel 请求。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="3-goal-handle">3. Goal Handle</h3>
+<p>文件：<code>goal_handle.h</code></p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-1">1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-2">2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-3">3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-4">4</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-5">5</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-6">6</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-7">7</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-gdscript3" data-lang="gdscript3"><span style="display:flex;"><span>rcl_action_goal_handle_t <span style="color:#555">*</span> rcl_action_accept_new_goal(
+</span></span><span style="display:flex;"><span>  rcl_action_server_t <span style="color:#555">*</span> action_server,
+</span></span><span style="display:flex;"><span>  <span style="color:#069;font-weight:bold">const</span> rcl_action_goal_info_t <span style="color:#555">*</span> goal_info);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>rcl_ret_t rcl_action_update_goal_state(
+</span></span><span style="display:flex;"><span>  rcl_action_goal_handle_t <span style="color:#555">*</span> goal_handle,
+</span></span><span style="display:flex;"><span>  rcl_action_goal_state_t goal_state);
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>
+<p><code>goal_handle</code> 封装一个目标的生命周期状态机。</p>
+</li>
+<li>
+<p>状态包括：</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-9-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-9-1">1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-9-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-9-2">2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-9-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-9-3">3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-9-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-9-4">4</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-9-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-9-5">5</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-9-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-9-6">6</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>RCL_ACTION_GOAL_STATE_ACCEPTED
+</span></span><span style="display:flex;"><span>RCL_ACTION_GOAL_STATE_EXECUTING
+</span></span><span style="display:flex;"><span>RCL_ACTION_GOAL_STATE_CANCELING
+</span></span><span style="display:flex;"><span>RCL_ACTION_GOAL_STATE_SUCCEEDED
+</span></span><span style="display:flex;"><span>RCL_ACTION_GOAL_STATE_CANCELED
+</span></span><span style="display:flex;"><span>RCL_ACTION_GOAL_STATE_ABORTED
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>可以更新状态、查询状态、触发状态变更事件。</p>
+</li>
+</ul>
+<hr>
+<h3 id="4-graph">4. Graph</h3>
+<p>提供 introspection 接口：</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-1">1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-2">2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-3">3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-4">4</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-gdscript3" data-lang="gdscript3"><span style="display:flex;"><span>rcl_ret_t rcl_action_get_names_and_types(
+</span></span><span style="display:flex;"><span>  <span style="color:#069;font-weight:bold">const</span> rcl_node_t <span style="color:#555">*</span> node,
+</span></span><span style="display:flex;"><span>  rcl_allocator_t allocator,
+</span></span><span style="display:flex;"><span>  rcl_names_and_types_t <span style="color:#555">*</span> action_names_and_types);
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>用于查询当前系统中有哪些 action 可用。</p>
+<hr>
+<h3 id="5-options--qos">5. Options / QoS</h3>
+<p>客户端和服务端都可以设置：</p>
+<ul>
+<li>QoS（可靠性、历史深度）</li>
+<li>allocator</li>
+<li>timeout</li>
+<li>introspection 选项</li>
+</ul>
+<hr>
+<h2 id="五调用流程总结">五、调用流程总结</h2>
+<h3 id="客户端">客户端：</h3>
+<ol>
+<li><code>rcl_action_client_init()</code></li>
+<li><code>rcl_action_send_goal_request()</code> → 得到 goal_id</li>
+<li><code>rcl_action_take_goal_response()</code> → 接收是否被接受</li>
+<li>循环：
+<ul>
+<li><code>rcl_action_take_feedback()</code> 获取反馈</li>
+</ul>
+</li>
+<li><code>rcl_action_take_result_response()</code> 获取结果</li>
+<li>可随时调用 <code>rcl_action_send_cancel_request()</code></li>
+</ol>
+<h3 id="服务端">服务端：</h3>
+<ol>
+<li><code>rcl_action_server_init()</code></li>
+<li><code>rcl_action_take_goal_request()</code> → 生成 goal_handle</li>
+<li><code>rcl_action_publish_feedback()</code> / <code>rcl_action_publish_status()</code></li>
+<li>完成后 <code>rcl_action_send_result_response()</code></li>
+</ol>
+<hr>
+<h2 id="六总结特点">六、总结特点</h2>
+<p>✅ 完整封装 Action 协议
+✅ 状态机驱动
+✅ 支持多 goal 并发
+✅ 支持 cancel / feedback / result
+✅ 与 rmw 层解耦
+✅ 上层语言库调用方便（如 <code>rclcpp_action</code>）</p>
+<hr>
+<h1 id="-rcl_lifecycle--节点生命周期管理层">🌟 <code>rcl_lifecycle</code> —— 节点生命周期管理层</h1>
+<h2 id="一背景与作用-1">一、背景与作用</h2>
+<p>在 ROS 2 中，<strong>Lifecycle Node</strong> 是一种有状态节点，提供标准的状态机来管理节点的启动、激活、停止、清理过程。</p>
+<p>目的：</p>
+<ul>
+<li>清晰控制资源初始化/释放；</li>
+<li>在不同状态下限定节点行为；</li>
+<li>便于系统管理（如启动/暂停模块、自动重启等）。</li>
+</ul>
+<p><code>rcl_lifecycle</code> 是在 rcl 层实现的生命周期状态机与通信机制。</p>
+<p>上层：<code>rclcpp_lifecycle::LifecycleNode</code> 调用 <code>rcl_lifecycle</code> 接口。</p>
+<hr>
+<h2 id="二状态机设计">二、状态机设计</h2>
+<p>标准状态：</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-11-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-11-1">1</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>Unconfigured → Inactive → Active → Finalized
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>事件与转换：</p>
+<table>
+<thead>
+<tr>
+<th>事件</th>
+<th>源状态</th>
+<th>目标状态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>configure</td>
+<td>Unconfigured</td>
+<td>Inactive</td>
+</tr>
+<tr>
+<td>activate</td>
+<td>Inactive</td>
+<td>Active</td>
+</tr>
+<tr>
+<td>deactivate</td>
+<td>Active</td>
+<td>Inactive</td>
+</tr>
+<tr>
+<td>cleanup</td>
+<td>Inactive</td>
+<td>Unconfigured</td>
+</tr>
+<tr>
+<td>shutdown</td>
+<td>any</td>
+<td>Finalized</td>
+</tr>
+</tbody>
+</table>
+<p>每个转换可触发用户回调（例如 <code>on_configure()</code>, <code>on_activate()</code>）。</p>
+<hr>
+<h2 id="三组成模块">三、组成模块</h2>
+<p>源码路径：</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-1"> 1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-2"> 2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-3"> 3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-4"> 4</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-5"> 5</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-6"> 6</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-7"> 7</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-8"> 8</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-9"> 9</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-10"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-10">10</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-11"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-11">11</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-12"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-12">12</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>rcl/rcl_lifecycle/
+</span></span><span style="display:flex;"><span>├── include/rcl_lifecycle/
+</span></span><span style="display:flex;"><span>│   ├── lifecycle.h
+</span></span><span style="display:flex;"><span>│   ├── state.h
+</span></span><span style="display:flex;"><span>│   ├── transition.h
+</span></span><span style="display:flex;"><span>│   ├── transition_map.h
+</span></span><span style="display:flex;"><span>│   └── ...
+</span></span><span style="display:flex;"><span>├── src/rcl_lifecycle/
+</span></span><span style="display:flex;"><span>│   ├── lifecycle.c
+</span></span><span style="display:flex;"><span>│   ├── state.c
+</span></span><span style="display:flex;"><span>│   ├── transition.c
+</span></span><span style="display:flex;"><span>│   ├── transition_map.c
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>主要模块：</p>
+<table>
+<thead>
+<tr>
+<th>文件</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>state.h</strong></td>
+<td>定义状态结构体</td>
+</tr>
+<tr>
+<td><strong>transition.h</strong></td>
+<td>定义转换结构体</td>
+</tr>
+<tr>
+<td><strong>transition_map.h</strong></td>
+<td>定义状态转换映射表</td>
+</tr>
+<tr>
+<td><strong>lifecycle.h</strong></td>
+<td>生命周期节点接口</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="四核心数据结构">四、核心数据结构</h2>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-13-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-13-1"> 1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-13-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-13-2"> 2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-13-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-13-3"> 3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-13-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-13-4"> 4</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-13-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-13-5"> 5</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-13-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-13-6"> 6</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-13-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-13-7"> 7</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-13-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-13-8"> 8</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-13-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-13-9"> 9</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-13-10"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-13-10">10</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-13-11"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-13-11">11</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-13-12"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-13-12">12</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-13-13"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-13-13">13</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-13-14"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-13-14">14</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-13-15"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-13-15">15</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-13-16"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-13-16">16</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-gdscript3" data-lang="gdscript3"><span style="display:flex;"><span>typedef struct rcl_lifecycle_state_t {
+</span></span><span style="display:flex;"><span>  unsigned <span style="color:#c00;font-weight:bold">int</span> id;
+</span></span><span style="display:flex;"><span>  <span style="color:#069;font-weight:bold">const</span> char <span style="color:#555">*</span> label;
+</span></span><span style="display:flex;"><span>} rcl_lifecycle_state_t;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>typedef struct rcl_lifecycle_transition_t {
+</span></span><span style="display:flex;"><span>  unsigned <span style="color:#c00;font-weight:bold">int</span> id;
+</span></span><span style="display:flex;"><span>  <span style="color:#069;font-weight:bold">const</span> char <span style="color:#555">*</span> label;
+</span></span><span style="display:flex;"><span>  rcl_lifecycle_state_t <span style="color:#555">*</span> start;
+</span></span><span style="display:flex;"><span>  rcl_lifecycle_state_t <span style="color:#555">*</span> goal;
+</span></span><span style="display:flex;"><span>} rcl_lifecycle_transition_t;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>typedef struct rcl_lifecycle_state_machine_t {
+</span></span><span style="display:flex;"><span>  rcl_lifecycle_state_t <span style="color:#555">*</span> current_state;
+</span></span><span style="display:flex;"><span>  rcl_lifecycle_transition_map_t transition_map;
+</span></span><span style="display:flex;"><span>} rcl_lifecycle_state_machine_t;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h2 id="五关键-api">五、关键 API</h2>
+<h3 id="初始化与状态机创建">初始化与状态机创建</h3>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-14-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-14-1">1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-14-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-14-2">2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-14-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-14-3">3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-14-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-14-4">4</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-14-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-14-5">5</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-gdscript3" data-lang="gdscript3"><span style="display:flex;"><span>rcl_ret_t rcl_lifecycle_state_machine_init(
+</span></span><span style="display:flex;"><span>  rcl_lifecycle_state_machine_t <span style="color:#555">*</span> state_machine,
+</span></span><span style="display:flex;"><span>  <span style="color:#069;font-weight:bold">const</span> rcl_node_t <span style="color:#555">*</span> node,
+</span></span><span style="display:flex;"><span>  <span style="color:#069;font-weight:bold">const</span> rcl_clock_t <span style="color:#555">*</span> clock,
+</span></span><span style="display:flex;"><span>  <span style="color:#069;font-weight:bold">const</span> rcl_lifecycle_state_machine_options_t <span style="color:#555">*</span> options);
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="状态转换">状态转换</h3>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-15-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-15-1">1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-15-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-15-2">2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-15-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-15-3">3</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-gdscript3" data-lang="gdscript3"><span style="display:flex;"><span>rcl_ret_t rcl_lifecycle_trigger_transition_by_label(
+</span></span><span style="display:flex;"><span>  rcl_lifecycle_state_machine_t <span style="color:#555">*</span> state_machine,
+</span></span><span style="display:flex;"><span>  <span style="color:#069;font-weight:bold">const</span> char <span style="color:#555">*</span> transition_label);
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="查询状态">查询状态</h3>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-16-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-16-1">1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-16-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-16-2">2</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-gdscript3" data-lang="gdscript3"><span style="display:flex;"><span><span style="color:#069;font-weight:bold">const</span> rcl_lifecycle_state_t <span style="color:#555">*</span> rcl_lifecycle_get_current_state(
+</span></span><span style="display:flex;"><span>  <span style="color:#069;font-weight:bold">const</span> rcl_lifecycle_state_machine_t <span style="color:#555">*</span> state_machine);
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="发布状态--通知">发布状态 / 通知</h3>
+<p>生命周期节点会自动发布当前状态、可用转换等信息（topic 名称如 <code>/node_name/transition_event</code>）。</p>
+<hr>
+<h2 id="六生命周期节点行为">六、生命周期节点行为</h2>
+<p>典型流程：</p>
+<ol>
+<li>节点初始化（Unconfigured）</li>
+<li>调用 <code>configure()</code> → 初始化资源 → Inactive</li>
+<li>调用 <code>activate()</code> → 激活发布者、定时器 → Active</li>
+<li>调用 <code>deactivate()</code> → 暂停行为 → Inactive</li>
+<li>调用 <code>cleanup()</code> → 释放资源 → Unconfigured</li>
+<li>调用 <code>shutdown()</code> → Finalized</li>
+</ol>
+<p><strong>只有 Active 状态下节点会正常执行主逻辑（如发布数据）</strong>。</p>
+<hr>
+<h2 id="七特点">七、特点</h2>
+<p>✅ 明确状态机，规范节点生命周期
+✅ 每个状态有用户回调
+✅ 自动发布状态变化，支持远程控制
+✅ 与 <code>rcl</code>、<code>rmw</code> 解耦
+✅ 方便系统监控和管理</p>
+<hr>
+<h1 id="-总结对比">✅ 总结对比</h1>
+<table>
+<thead>
+<tr>
+<th>模块</th>
+<th>功能</th>
+<th>关键点</th>
+<th>上层封装</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>rcl_action</code></td>
+<td>支持长任务的 action 通信</td>
+<td>多 topic/service 组合、goal 状态机、反馈与取消</td>
+<td><code>rclcpp_action</code>, <code>rclpy.action</code></td>
+</tr>
+<tr>
+<td><code>rcl_lifecycle</code></td>
+<td>管理节点生命周期状态机</td>
+<td>明确状态、转换、回调、状态发布</td>
+<td><code>rclcpp_lifecycle::LifecycleNode</code></td>
+</tr>
+</tbody>
+</table></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2023-01-30</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://zhangyuhu.github.io/posts/basic_knowledge/ros/21-ros2%E4%B8%AD%E9%97%B4%E4%BB%B6/" data-title="ROS:ROS2中间件" data-hashtags="ROS,ROS2,中间件"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://zhangyuhu.github.io/posts/basic_knowledge/ros/21-ros2%E4%B8%AD%E9%97%B4%E4%BB%B6/" data-hashtag="ROS"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://zhangyuhu.github.io/posts/basic_knowledge/ros/21-ros2%E4%B8%AD%E9%97%B4%E4%BB%B6/" data-title="ROS:ROS2中间件"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://zhangyuhu.github.io/posts/basic_knowledge/ros/21-ros2%E4%B8%AD%E9%97%B4%E4%BB%B6/" data-title="ROS:ROS2中间件"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://zhangyuhu.github.io/posts/basic_knowledge/ros/21-ros2%E4%B8%AD%E9%97%B4%E4%BB%B6/" data-title="ROS:ROS2中间件" data-ralateuid="ji"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/ros/">ROS</a>,&nbsp;<a href="/tags/ros2/">ROS2</a>,&nbsp;<a href="/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/">中间件</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/basic_knowledge/ros/01-%E5%9F%BA%E7%A1%80/" class="prev" rel="prev" title="ROS:ROS2基础"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>ROS:ROS2基础</a>
+            <a href="/posts/basic_knowledge/ros/10-qos/" class="next" rel="next" title="ROS:ROS2 QOS">ROS:ROS2 QOS<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="giscus" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://giscus.app">Giscus</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">为天地立心,为生民立命,为往圣继绝学,为万世开太平</div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2023 - 2026</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://zhangyuhu.github.io/" target="_blank">zhangyuhu</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="http://creativecommons.org/licenses/by/4.0/" target="_blank">知识共享署名 4.0 国际许可协议</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/css/lightgallery-bundle.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/twemoji@14.0.2/dist/twemoji.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/lightgallery.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/thumbnail/lg-thumbnail.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/zoom/lg-zoom.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@8.6.0/dist/index.umd.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":100},"comment":{"giscus":{"category":"Comments","categoryId":"DIC_kwDOIx2Cjs4CTnUX","darkTheme":"dark","emitMetadata":"0","inputPosition":"bottom","lang":"en","lazyLoading":false,"lightTheme":"light","mapping":"pathname","reactionsEnabled":"1","repo":"zhangyuhu/zhangyuhu.github.io","repoId":"R_kgDOIx2Cjg"}},"data":{"id-1":"HOME","id-2":"HOME"},"lightgallery":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"},"twemoji":true,"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.f1b10c54ef8e7ea0c938baba89a68e47962cb91f87edfcf0ae7abf0ec7bbb510e5d980a2b5a69686d7a44eae747183e3ed5cd960ed6fe66552c947e6fca4ff67.js" integrity="sha512-8bEMVO+OfqDJOLq6iaaOR5YsuR+H7fzwrnq/Dse7tRDl2YCitaaWhtekTq50cYPj7VzZYO1v5mVSyUfm/KT/Zw=="></script></body>
+</html>

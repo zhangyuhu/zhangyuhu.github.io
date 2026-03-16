@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>LinuxSys:CPU - 这是我的网站</title><meta name="Description" content="CPU介绍"><meta property="og:title" content="LinuxSys:CPU" />
+<meta property="og:description" content="CPU介绍" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zhangyuhu.github.io/posts/basic_knowledge/linuxsys/performanceoptimization/cpu/" /><meta property="og:image" content="https://zhangyuhu.github.io/logo.png" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2026-03-16T15:30:00+08:00" />
+<meta property="article:modified_time" content="2026-03-16T15:30:00+08:00" /><meta property="og:site_name" content="我的网站" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://zhangyuhu.github.io/logo.png" /><meta name="twitter:title" content="LinuxSys:CPU"/>
+<meta name="twitter:description" content="CPU介绍"/>
+<meta name="application-name" content="我的网站">
+<meta name="apple-mobile-web-app-title" content="我的网站"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://zhangyuhu.github.io/posts/basic_knowledge/linuxsys/performanceoptimization/cpu/" /><link rel="prev" href="https://zhangyuhu.github.io/posts/basic_knowledge/linuxsys/memorymanagement/linux%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" /><link rel="next" href="https://zhangyuhu.github.io/posts/basic_knowledge/linuxsys/memorymanagement/processstack/" /><link rel="stylesheet" href="/css/style.min.d09a08388620d07592fcb288b74e9f4434a352d4869011bd6c06619079103da00fcccceb4fa6fce14315bef50c9be97c6bc29582e3968d9521c60ef89c6de806.css" integrity="sha512-0JoIOIYg0HWS/LKIt06fRDSjUtSGkBG9bAZhkHkQPaAPzMzrT6b84UMVvvUMm+l8a8KVguOWjZUhxg74nG3oBg=="><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "LinuxSys:CPU",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/zhangyuhu.github.io\/posts\/basic_knowledge\/linuxsys\/performanceoptimization\/cpu\/"
+        },"image": [{
+                            "@type": "ImageObject",
+                            "url": "https:\/\/zhangyuhu.github.io\/images\/Apple-Devices-Preview.png",
+                            "width":  3200 ,
+                            "height":  2048 
+                        }],"genre": "posts","keywords": "Linux, CPU","wordcount":  2591 ,
+        "url": "https:\/\/zhangyuhu.github.io\/posts\/basic_knowledge\/linuxsys\/performanceoptimization\/cpu\/","datePublished": "2026-03-16T15:30:00+08:00","dateModified": "2026-03-16T15:30:00+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "zhangyuhu"
+            },"description": "CPU介绍"
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="这是我的网站"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/" title="文章"><i class='fas fa-archive fa-fw fa-sm'></i> 文章 </a><a class="menu-item" href="/tags/"><i class='fas fa-tags fa-fw fa-sm'></i> 标签 </a><a class="menu-item" href="/categories/"><i class='fas fa-th fa-fw fa-sm'></i> 分类 </a><a class="menu-item" href="/about/"><i class='fas fa-user-tie fa-fw fa-sm'></i> 关于 </a><a class="menu-item" href="/tool/"><i class='fas fa-cube fa-fw fa-sm'></i> 工具箱 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="这是我的网站"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="文章"><i class='fas fa-archive fa-fw fa-sm'></i>文章</a><a class="menu-item" href="/tags/" title=""><i class='fas fa-tags fa-fw fa-sm'></i>标签</a><a class="menu-item" href="/categories/" title=""><i class='fas fa-th fa-fw fa-sm'></i>分类</a><a class="menu-item" href="/about/" title=""><i class='fas fa-user-tie fa-fw fa-sm'></i>关于</a><a class="menu-item" href="/tool/" title=""><i class='fas fa-cube fa-fw fa-sm'></i>工具箱</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">LinuxSys:CPU</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://zhangyuhu.github.io/" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>zhangyuhu</a></span>&nbsp;<span class="post-category">included in <a href="/categories/linuxsys/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>LinuxSys</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2026-03-16">2026-03-16</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2591 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;6 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#多核cpu">多核CPU</a></li>
+    <li><a href="#uma和numa">uma和numa</a>
+      <ul>
+        <li><a href="#cpu-拓扑">CPU 拓扑</a></li>
+        <li><a href="#调度域和调度组">调度域和调度组</a>
+          <ul>
+            <li><a href="#调度域-sched_domain">调度域 sched_domain</a></li>
+            <li><a href="#调度组-sched_group">调度组 sched_group</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><blockquote>
+<p>本文采用<a href="http://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreffer ">知识共享署名 4.0 国际许可协议</a>进行许可，转载时请注明原文链接，图片在使用时请保留全部内容，可适当缩放并在引用处附上图片所在的文章链接。</p>
+</blockquote>
+<div align='center' ><font size='70'>CPU</font></div>
+<blockquote>
+<p>本文采用<a href="http://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreffer ">知识共享署名 4.0 国际许可协议</a>进行许可，转载时请注明原文链接，图片在使用时请保留全部内容，可适当缩放并在引用处附上图片所在的文章链接。</p>
+</blockquote>
+<h1 id="多核cpu">多核CPU</h1>
+<p>多核心处理器（英语：Multi-core processor），又称多核微处理器，是在单个计算组件中加入两个或以上的独立实体中央处理单元（简称核心，英语：Core）。这些核心可以分别独立地运行程序指令，利用并行计算的能力加快程序的运行速度。</p>
+<p>通常把两个或更多独立处理器封装在一个单一集成电路（IC）中的方案会称为多核心处理器，而封装在不同IC中的独立处理器形成的计算机系统被称为多处理器。在某些情况中（比如广告中），有些人会将在同一个集成电路中多个独立的单核心微处理器（或多核心微处理器）称做“多处理模块”、“多核心”等，其实是指“多处理器”而不是“多核心处理器”。除非特别说明，本文将使用“多核心”指代在同一集成电路中集成多个独立处理器的CPU（即“多核心处理器”）。</p>
+<p>一般情况下，多核心处理器可以在每个核心分别独立物理封装的情况下进行多任务处理（线程级并发处理（Thread-Level Parallelism，TLP），这种形式的TLP通常被认为是芯片级多处理）。</p>
+<p>1.物理cpu数：主板上实际插入的cpu数量，可以数不重复的 physical id 有几个（physical id）</p>
+<p>2.cpu核数：单块CPU上面能处理数据的芯片组的数量，如双核、四核等 （cpu cores）</p>
+<p>3.逻辑cpu数：简单来说，它可使处理器中的1颗内核，如2颗内核那样在操作系统中发挥作用。</p>
+<p>这样一来，操作系统可使用的执行资源扩大了一倍，大幅提高了系统的整体性能，此时逻辑cpu=物理CPU个数×每颗核数x2。</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-1"> 1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-2"> 2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-3"> 3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-4"> 4</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-5"> 5</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-6"> 6</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-7"> 7</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-8"> 8</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-9"> 9</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-10"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-10">10</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-11"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-11">11</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-12"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-12">12</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-13"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-13">13</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-14"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-14">14</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-15"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-15">15</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-16"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-16">16</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-17"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-17">17</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># 总核数 = 物理CPU个数 X 每颗物理CPU的核数</span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># 总逻辑CPU数 = 物理CPU个数 X 每颗物理CPU的核数 X 超线程数</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># 查看物理CPU个数</span>
+</span></span><span style="display:flex;"><span>cat /proc/cpuinfo| grep <span style="color:#c30">&#34;physical id&#34;</span>| sort| uniq| wc -l
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># 查看每个物理CPU中core的个数(即核数)</span>
+</span></span><span style="display:flex;"><span>cat /proc/cpuinfo| grep <span style="color:#c30">&#34;cpu cores&#34;</span>| uniq
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># 查看逻辑CPU的个数</span>
+</span></span><span style="display:flex;"><span>cat /proc/cpuinfo| grep <span style="color:#c30">&#34;processor&#34;</span>| wc -l
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># 查看CPU信息（型号）</span>
+</span></span><span style="display:flex;"><span>cat /proc/cpuinfo | grep name | cut -f2 -d: | uniq -c
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># 查看内 存信息</span>
+</span></span><span style="display:flex;"><span>cat /proc/meminfogit 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="uma和numa">uma和numa</h1>
+<h2 id="cpu-拓扑">CPU 拓扑</h2>
+<p>每一个 CPU 都会维护这么一个结构体实例，用来描述 CPU 拓扑。</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-1">1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-2">2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-3">3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-4">4</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-5">5</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-6">6</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-7">7</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>struct cpu_topology {
+</span></span><span style="display:flex;"><span> int thread_id;
+</span></span><span style="display:flex;"><span> int core_id;
+</span></span><span style="display:flex;"><span> int cluster_id;
+</span></span><span style="display:flex;"><span> cpumask_t thread_sibling;
+</span></span><span style="display:flex;"><span> cpumask_t core_sibling;
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>thread_id: 从 mpidr_el1 寄存器中获取</li>
+<li>core_id：从 mpidr_el1 寄存器中获取</li>
+<li>cluster_id：从mpidr_el1寄存器中获取</li>
+<li>thread_sibling：当前 CPU 的兄弟 thread。</li>
+<li>core_sibling：当前 CPU 的兄弟Core，即在同一个 Cluster 中的 CPU。</li>
+</ul>
+<p>可以通过 /sys/devices/system/cpu/cpuX/topology 查看 cpu topology 的信息。</p>
+<p>cpu_topology 结构体是通过函数 parse_dt_topology() 解析 DTS 中的信息建立的:</p>
+<blockquote>
+<p>kernel_init() -&gt; kernel_init_freeable() -&gt; smp_prepare_cpus() -&gt; init_cpu_topology() -&gt; parse_dt_topology()</p>
+</blockquote>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-1"> 1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-2"> 2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-3"> 3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-4"> 4</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-5"> 5</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-6"> 6</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-7"> 7</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-8"> 8</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-9"> 9</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-10"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-10">10</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-11"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-11">11</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-12"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-12">12</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-13"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-13">13</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-14"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-14">14</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-15"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-15">15</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-16"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-16">16</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-17"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-17">17</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-18"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-18">18</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-19"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-19">19</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-20"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-20">20</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-21"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-21">21</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-22"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-22">22</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-23"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-23">23</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-24"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-24">24</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-25"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-25">25</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-26"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-26">26</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-27"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-27">27</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-28"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-28">28</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-29"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-29">29</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-30"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-30">30</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-31"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-31">31</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-32"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-32">32</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-33"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-33">33</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-34"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-34">34</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-35"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-35">35</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-36"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-36">36</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-37"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-37">37</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-38"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-38">38</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-39"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-39">39</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-40"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-40">40</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#069;font-weight:bold">static</span> <span style="color:#078;font-weight:bold">int</span> __init <span style="color:#c0f">parse_dt_topology</span>(<span style="color:#078;font-weight:bold">void</span>)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span> <span style="color:#069;font-weight:bold">struct</span> device_node <span style="color:#555">*</span>cn, <span style="color:#555">*</span>map;
+</span></span><span style="display:flex;"><span> <span style="color:#078;font-weight:bold">int</span> ret <span style="color:#555">=</span> <span style="color:#f60">0</span>;
+</span></span><span style="display:flex;"><span> <span style="color:#078;font-weight:bold">int</span> cpu;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span> cn <span style="color:#555">=</span> <span style="color:#c0f">of_find_node_by_path</span>(<span style="color:#c30">&#34;/cpus&#34;</span>);          <span style="color:#555">------</span>(<span style="color:#f60">1</span>)
+</span></span><span style="display:flex;"><span> <span style="color:#069;font-weight:bold">if</span> (<span style="color:#555">!</span>cn) {
+</span></span><span style="display:flex;"><span>  <span style="color:#c0f">pr_err</span>(<span style="color:#c30">&#34;No CPU information found in DT</span><span style="color:#c30;font-weight:bold">\n</span><span style="color:#c30">&#34;</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#069;font-weight:bold">return</span> <span style="color:#f60">0</span>;
+</span></span><span style="display:flex;"><span> }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span> <span style="color:#09f;font-style:italic">/*
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic">  * When topology is provided cpu-map is essentially a root
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic">  * cluster with restricted subnodes.
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic">  */</span>
+</span></span><span style="display:flex;"><span> map <span style="color:#555">=</span> <span style="color:#c0f">of_get_child_by_name</span>(cn, <span style="color:#c30">&#34;cpu-map&#34;</span>);   <span style="color:#555">------</span>(<span style="color:#f60">2</span>)
+</span></span><span style="display:flex;"><span> <span style="color:#069;font-weight:bold">if</span> (<span style="color:#555">!</span>map)
+</span></span><span style="display:flex;"><span>  <span style="color:#069;font-weight:bold">goto</span> out;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span> ret <span style="color:#555">=</span> <span style="color:#c0f">parse_cluster</span>(map, <span style="color:#f60">0</span>);                 <span style="color:#555">------</span>(<span style="color:#f60">3</span>)
+</span></span><span style="display:flex;"><span> <span style="color:#069;font-weight:bold">if</span> (ret <span style="color:#555">!=</span> <span style="color:#f60">0</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#069;font-weight:bold">goto</span> out_map;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span> <span style="color:#c0f">topology_normalize_cpu_scale</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span> <span style="color:#09f;font-style:italic">/*
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic">  * Check that all cores are in the topology; the SMP code will
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic">  * only mark cores described in the DT as possible.
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic">  */</span>
+</span></span><span style="display:flex;"><span> <span style="color:#c0f">for_each_possible_cpu</span>(cpu)
+</span></span><span style="display:flex;"><span>  <span style="color:#069;font-weight:bold">if</span> (cpu_topology[cpu].cluster_id <span style="color:#555">==</span> <span style="color:#555">-</span><span style="color:#f60">1</span>)
+</span></span><span style="display:flex;"><span>   ret <span style="color:#555">=</span> <span style="color:#555">-</span>EINVAL;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#99f">out_map</span>:
+</span></span><span style="display:flex;"><span> <span style="color:#c0f">of_node_put</span>(map);
+</span></span><span style="display:flex;"><span><span style="color:#99f">out</span>:
+</span></span><span style="display:flex;"><span> <span style="color:#c0f">of_node_put</span>(cn);
+</span></span><span style="display:flex;"><span> <span style="color:#069;font-weight:bold">return</span> ret;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol>
+<li>找到 dts 中 cpu topology 的根节点 &ldquo;/cpus&rdquo;</li>
+<li>找到 &ldquo;cpu-map&rdquo; 节点</li>
+<li>解析 &ldquo;cpu-map&rdquo; 中的 cluster</li>
+</ol>
+<p>以 rk3399为例，topology 为：”4<em>A53 + 2</em>A72”，dts中定义如下：</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-1"> 1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-2"> 2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-3"> 3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-4"> 4</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-5"> 5</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-6"> 6</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-7"> 7</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-8"> 8</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-9"> 9</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-10"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-10">10</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-11"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-11">11</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-12"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-12">12</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-13"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-13">13</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-14"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-14">14</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-15"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-15">15</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-16"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-16">16</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-17"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-17">17</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-18"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-18">18</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-19"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-19">19</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-20"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-20">20</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-21"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-21">21</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-22"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-22">22</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-23"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-23">23</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-24"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-24">24</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-25"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-25">25</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-26"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-26">26</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-27"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-27">27</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-28"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-28">28</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-29"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-29">29</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-30"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-30">30</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-31"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-31">31</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-32"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-32">32</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-33"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-33">33</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-34"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-34">34</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-35"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-35">35</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-36"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-36">36</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-37"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-37">37</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-38"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-38">38</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-39"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-39">39</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-40"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-40">40</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-41"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-41">41</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-42"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-42">42</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-43"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-43">43</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-44"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-44">44</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-45"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-45">45</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-46"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-46">46</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-47"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-47">47</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-48"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-48">48</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-49"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-49">49</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-50"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-50">50</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-51"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-51">51</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-52"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-52">52</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-53"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-53">53</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-54"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-54">54</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-55"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-55">55</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-56"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-56">56</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-57"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-57">57</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-58"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-58">58</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-59"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-59">59</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-60"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-60">60</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-61"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-61">61</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-62"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-62">62</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-63"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-63">63</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-64"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-64">64</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-65"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-65">65</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-66"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-66">66</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-67"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-67">67</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-68"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-68">68</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-69"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-69">69</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-70"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-70">70</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-71"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-71">71</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-72"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-72">72</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-73"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-73">73</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-74"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-74">74</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-75"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-75">75</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-76"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-76">76</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-77"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-77">77</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-78"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-78">78</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-79"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-79">79</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-80"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-80">80</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>	cpus <span style="color:#555">{</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#09f;font-style:italic">#address-cells = &lt;2&gt;;</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#09f;font-style:italic">#size-cells = &lt;0&gt;;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>		cpu-map <span style="color:#555">{</span>
+</span></span><span style="display:flex;"><span>			cluster0 <span style="color:#555">{</span>
+</span></span><span style="display:flex;"><span>				core0 <span style="color:#555">{</span>
+</span></span><span style="display:flex;"><span>					<span style="color:#033">cpu</span> <span style="color:#555">=</span> &lt;&amp;cpu_l0&gt;;
+</span></span><span style="display:flex;"><span>				<span style="color:#555">}</span>;
+</span></span><span style="display:flex;"><span>				core1 <span style="color:#555">{</span>
+</span></span><span style="display:flex;"><span>					<span style="color:#033">cpu</span> <span style="color:#555">=</span> &lt;&amp;cpu_l1&gt;;
+</span></span><span style="display:flex;"><span>				<span style="color:#555">}</span>;
+</span></span><span style="display:flex;"><span>				core2 <span style="color:#555">{</span>
+</span></span><span style="display:flex;"><span>					<span style="color:#033">cpu</span> <span style="color:#555">=</span> &lt;&amp;cpu_l2&gt;;
+</span></span><span style="display:flex;"><span>				<span style="color:#555">}</span>;
+</span></span><span style="display:flex;"><span>				core3 <span style="color:#555">{</span>
+</span></span><span style="display:flex;"><span>					<span style="color:#033">cpu</span> <span style="color:#555">=</span> &lt;&amp;cpu_l3&gt;;
+</span></span><span style="display:flex;"><span>				<span style="color:#555">}</span>;
+</span></span><span style="display:flex;"><span>			<span style="color:#555">}</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>			cluster1 <span style="color:#555">{</span>
+</span></span><span style="display:flex;"><span>				core0 <span style="color:#555">{</span>
+</span></span><span style="display:flex;"><span>					<span style="color:#033">cpu</span> <span style="color:#555">=</span> &lt;&amp;cpu_b0&gt;;
+</span></span><span style="display:flex;"><span>				<span style="color:#555">}</span>;
+</span></span><span style="display:flex;"><span>				core1 <span style="color:#555">{</span>
+</span></span><span style="display:flex;"><span>					<span style="color:#033">cpu</span> <span style="color:#555">=</span> &lt;&amp;cpu_b1&gt;;
+</span></span><span style="display:flex;"><span>				<span style="color:#555">}</span>;
+</span></span><span style="display:flex;"><span>			<span style="color:#555">}</span>;
+</span></span><span style="display:flex;"><span>		<span style="color:#555">}</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>		cpu_l0: cpu@0 <span style="color:#555">{</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#033">device_type</span> <span style="color:#555">=</span> <span style="color:#c30">&#34;cpu&#34;</span>;
+</span></span><span style="display:flex;"><span>			<span style="color:#033">compatible</span> <span style="color:#555">=</span> <span style="color:#c30">&#34;arm,cortex-a53&#34;</span>, <span style="color:#c30">&#34;arm,armv8&#34;</span>;
+</span></span><span style="display:flex;"><span>			<span style="color:#033">reg</span> <span style="color:#555">=</span> &lt;0x0 0x0&gt;;
+</span></span><span style="display:flex;"><span>			enable-method <span style="color:#555">=</span> <span style="color:#c30">&#34;psci&#34;</span>;
+</span></span><span style="display:flex;"><span>			<span style="color:#09f;font-style:italic">#cooling-cells = &lt;2&gt;; /* min followed by max */</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#033">clocks</span> <span style="color:#555">=</span> &lt;&amp;cru ARMCLKL&gt;;
+</span></span><span style="display:flex;"><span>		<span style="color:#555">}</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>		cpu_l1: cpu@1 <span style="color:#555">{</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#033">device_type</span> <span style="color:#555">=</span> <span style="color:#c30">&#34;cpu&#34;</span>;
+</span></span><span style="display:flex;"><span>			<span style="color:#033">compatible</span> <span style="color:#555">=</span> <span style="color:#c30">&#34;arm,cortex-a53&#34;</span>, <span style="color:#c30">&#34;arm,armv8&#34;</span>;
+</span></span><span style="display:flex;"><span>			<span style="color:#033">reg</span> <span style="color:#555">=</span> &lt;0x0 0x1&gt;;
+</span></span><span style="display:flex;"><span>			enable-method <span style="color:#555">=</span> <span style="color:#c30">&#34;psci&#34;</span>;
+</span></span><span style="display:flex;"><span>			<span style="color:#033">clocks</span> <span style="color:#555">=</span> &lt;&amp;cru ARMCLKL&gt;;
+</span></span><span style="display:flex;"><span>		<span style="color:#555">}</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>		cpu_l2: cpu@2 <span style="color:#555">{</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#033">device_type</span> <span style="color:#555">=</span> <span style="color:#c30">&#34;cpu&#34;</span>;
+</span></span><span style="display:flex;"><span>			<span style="color:#033">compatible</span> <span style="color:#555">=</span> <span style="color:#c30">&#34;arm,cortex-a53&#34;</span>, <span style="color:#c30">&#34;arm,armv8&#34;</span>;
+</span></span><span style="display:flex;"><span>			<span style="color:#033">reg</span> <span style="color:#555">=</span> &lt;0x0 0x2&gt;;
+</span></span><span style="display:flex;"><span>			enable-method <span style="color:#555">=</span> <span style="color:#c30">&#34;psci&#34;</span>;
+</span></span><span style="display:flex;"><span>			<span style="color:#033">clocks</span> <span style="color:#555">=</span> &lt;&amp;cru ARMCLKL&gt;;
+</span></span><span style="display:flex;"><span>		<span style="color:#555">}</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>		cpu_l3: cpu@3 <span style="color:#555">{</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#033">device_type</span> <span style="color:#555">=</span> <span style="color:#c30">&#34;cpu&#34;</span>;
+</span></span><span style="display:flex;"><span>			<span style="color:#033">compatible</span> <span style="color:#555">=</span> <span style="color:#c30">&#34;arm,cortex-a53&#34;</span>, <span style="color:#c30">&#34;arm,armv8&#34;</span>;
+</span></span><span style="display:flex;"><span>			<span style="color:#033">reg</span> <span style="color:#555">=</span> &lt;0x0 0x3&gt;;
+</span></span><span style="display:flex;"><span>			enable-method <span style="color:#555">=</span> <span style="color:#c30">&#34;psci&#34;</span>;
+</span></span><span style="display:flex;"><span>			<span style="color:#033">clocks</span> <span style="color:#555">=</span> &lt;&amp;cru ARMCLKL&gt;;
+</span></span><span style="display:flex;"><span>		<span style="color:#555">}</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>		cpu_b0: cpu@100 <span style="color:#555">{</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#033">device_type</span> <span style="color:#555">=</span> <span style="color:#c30">&#34;cpu&#34;</span>;
+</span></span><span style="display:flex;"><span>			<span style="color:#033">compatible</span> <span style="color:#555">=</span> <span style="color:#c30">&#34;arm,cortex-a72&#34;</span>, <span style="color:#c30">&#34;arm,armv8&#34;</span>;
+</span></span><span style="display:flex;"><span>			<span style="color:#033">reg</span> <span style="color:#555">=</span> &lt;0x0 0x100&gt;;
+</span></span><span style="display:flex;"><span>			enable-method <span style="color:#555">=</span> <span style="color:#c30">&#34;psci&#34;</span>;
+</span></span><span style="display:flex;"><span>			<span style="color:#09f;font-style:italic">#cooling-cells = &lt;2&gt;; /* min followed by max */</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#033">clocks</span> <span style="color:#555">=</span> &lt;&amp;cru ARMCLKB&gt;;
+</span></span><span style="display:flex;"><span>		<span style="color:#555">}</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>		cpu_b1: cpu@101 <span style="color:#555">{</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#033">device_type</span> <span style="color:#555">=</span> <span style="color:#c30">&#34;cpu&#34;</span>;
+</span></span><span style="display:flex;"><span>			<span style="color:#033">compatible</span> <span style="color:#555">=</span> <span style="color:#c30">&#34;arm,cortex-a72&#34;</span>, <span style="color:#c30">&#34;arm,armv8&#34;</span>;
+</span></span><span style="display:flex;"><span>			<span style="color:#033">reg</span> <span style="color:#555">=</span> &lt;0x0 0x101&gt;;
+</span></span><span style="display:flex;"><span>			enable-method <span style="color:#555">=</span> <span style="color:#c30">&#34;psci&#34;</span>;
+</span></span><span style="display:flex;"><span>			<span style="color:#033">clocks</span> <span style="color:#555">=</span> &lt;&amp;cru ARMCLKB&gt;;
+</span></span><span style="display:flex;"><span>		<span style="color:#555">}</span>;
+</span></span><span style="display:flex;"><span>	<span style="color:#555">}</span>;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="调度域和调度组">调度域和调度组</h2>
+<p>在 Linux 内核中，调度域使用 sched_domain 结构表示，调度组使用 sched_group 结构表示。</p>
+<h3 id="调度域-sched_domain">调度域 sched_domain</h3>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-1">1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-2">2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-3">3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-4">4</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-5">5</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-6">6</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-7">7</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-8">8</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>struct sched_domain {
+</span></span><span style="display:flex;"><span>    struct sched_domain *parent;   
+</span></span><span style="display:flex;"><span>    struct sched_domain *child;     
+</span></span><span style="display:flex;"><span>    struct sched_group  *groups;     
+</span></span><span style="display:flex;"><span>    unsigned long min_interval;
+</span></span><span style="display:flex;"><span>    unsigned long max_interval; 
+</span></span><span style="display:flex;"><span>    ...
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>parent：由于调度域是分层的，上层调度域是下层的调度域的父亲，所以这个字段指向的是当前调度域的上层调度域。</li>
+<li>child：如上所述，这个字段用来指向当前调度域的下层调度域。</li>
+<li>groups：每个调度域都拥有一批调度组，所以这个字段指向的是属于当前调度域的调度组列表。</li>
+<li>min_interval/max_interval：做均衡也是需要开销的，不能时刻去检查调度域的均衡状态，这两个参数定义了检查该 sched domain 均衡状态的时间间隔的范围</li>
+</ul>
+<p>sched_domain 是分成两个 level，base domain 称为 MC domain（multi core domain），顶层 domain 称为 DIE domain。</p>
+<h3 id="调度组-sched_group">调度组 sched_group</h3>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-1">1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-2">2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-3">3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-4">4</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-5">5</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-6">6</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-7">7</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#069;font-weight:bold">struct</span> sched_group {
+</span></span><span style="display:flex;"><span>    <span style="color:#069;font-weight:bold">struct</span> sched_group <span style="color:#555">*</span>next;
+</span></span><span style="display:flex;"><span>    <span style="color:#078;font-weight:bold">unsigned</span> <span style="color:#078;font-weight:bold">int</span> group_weight;
+</span></span><span style="display:flex;"><span>    ...
+</span></span><span style="display:flex;"><span>    <span style="color:#069;font-weight:bold">struct</span> sched_group_capacity <span style="color:#555">*</span>sgc;
+</span></span><span style="display:flex;"><span>    <span style="color:#078;font-weight:bold">unsigned</span> <span style="color:#078;font-weight:bold">long</span> cpumask[<span style="color:#f60">0</span>];
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>next：指向属于同一个调度域的下一个调度组。</li>
+<li>group_weight：该调度组中有多少个cpu。</li>
+<li>sgc：该调度组的算力信息。</li>
+<li>cpumask：用于标记属于当前调度组的 CPU 列表（每个位表示一个 CPU）。</li>
+</ul>
+<p>为了减少锁的竞争，每一个 CPU 都有自己的 MC domain、DIE domain 以及 sched_group，并且形成了 sched_domain 之间的层级结构，sched_group 的环形链表结构。CPU 对应的调度域和调度组可通过在设备模型文件 /proc/sys/kernel/sched_domain 里查看。</p>
+<p>具体的 sched_domain 的初始化代码分析如下：</p>
+<blockquote>
+<p>kernel_init() -&gt; kernel_init_freeable() -&gt; sched_init_smp() -&gt; init_sched_domains(cpu_active_mask) -&gt; build_sched_domains(doms_cur[0], NULL)</p>
+</blockquote>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-1"> 1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-2"> 2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-3"> 3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-4"> 4</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-5"> 5</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-6"> 6</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-7"> 7</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-8"> 8</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-9"> 9</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-10"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-10">10</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-11"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-11">11</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-12"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-12">12</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-13"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-13">13</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-14"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-14">14</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-15"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-15">15</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-16"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-16">16</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-17"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-17">17</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-18"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-18">18</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-19"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-19">19</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-20"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-20">20</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-21"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-21">21</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-22"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-22">22</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-23"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-23">23</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-24"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-24">24</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-25"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-25">25</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-26"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-26">26</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-27"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-27">27</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-28"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-28">28</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-29"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-29">29</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-30"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-30">30</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-31"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-31">31</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-32"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-32">32</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-33"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-33">33</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-34"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-34">34</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-35"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-35">35</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-36"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-36">36</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-37"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-37">37</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-38"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-38">38</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-39"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-39">39</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-40"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-40">40</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-41"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-41">41</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-42"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-42">42</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-43"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-43">43</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-44"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-44">44</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-45"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-45">45</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-46"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-46">46</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-47"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-47">47</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-48"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-48">48</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-49"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-49">49</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-50"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-50">50</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-51"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-51">51</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-52"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-52">52</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-53"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-53">53</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-54"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-54">54</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-55"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-55">55</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-56"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-56">56</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-57"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-57">57</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-58"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-58">58</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-59"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-59">59</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-60"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-60">60</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-61"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-61">61</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-62"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-62">62</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-63"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-63">63</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-64"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-64">64</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-65"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-65">65</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-66"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-66">66</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-67"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-67">67</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-68"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-68">68</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#069;font-weight:bold">static</span> <span style="color:#078;font-weight:bold">int</span>
+</span></span><span style="display:flex;"><span><span style="color:#c0f">build_sched_domains</span>(<span style="color:#069;font-weight:bold">const</span> <span style="color:#069;font-weight:bold">struct</span> cpumask <span style="color:#555">*</span>cpu_map, <span style="color:#069;font-weight:bold">struct</span> sched_domain_attr <span style="color:#555">*</span>attr)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span> <span style="color:#069;font-weight:bold">enum</span> s_alloc alloc_state;
+</span></span><span style="display:flex;"><span> <span style="color:#069;font-weight:bold">struct</span> sched_domain <span style="color:#555">*</span>sd;
+</span></span><span style="display:flex;"><span> <span style="color:#069;font-weight:bold">struct</span> s_data d;
+</span></span><span style="display:flex;"><span> <span style="color:#078;font-weight:bold">int</span> i, ret <span style="color:#555">=</span> <span style="color:#555">-</span>ENOMEM;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span> alloc_state <span style="color:#555">=</span> <span style="color:#c0f">__visit_domain_allocation_hell</span>(<span style="color:#555">&amp;</span>d, cpu_map);    <span style="color:#555">------</span>(<span style="color:#f60">1</span>)
+</span></span><span style="display:flex;"><span> <span style="color:#069;font-weight:bold">if</span> (alloc_state <span style="color:#555">!=</span> sa_rootdomain)
+</span></span><span style="display:flex;"><span>  <span style="color:#069;font-weight:bold">goto</span> error;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span> <span style="color:#09f;font-style:italic">/* Set up domains for CPUs specified by the cpu_map: */</span>
+</span></span><span style="display:flex;"><span> <span style="color:#c0f">for_each_cpu</span>(i, cpu_map) {
+</span></span><span style="display:flex;"><span>  <span style="color:#069;font-weight:bold">struct</span> sched_domain_topology_level <span style="color:#555">*</span>tl;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  sd <span style="color:#555">=</span> <span style="color:#366">NULL</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#c0f">for_each_sd_topology</span>(tl) {
+</span></span><span style="display:flex;"><span>   sd <span style="color:#555">=</span> <span style="color:#c0f">build_sched_domain</span>(tl, cpu_map, attr, sd, i);        <span style="color:#555">------</span>(<span style="color:#f60">2</span>)
+</span></span><span style="display:flex;"><span>   <span style="color:#069;font-weight:bold">if</span> (tl <span style="color:#555">==</span> sched_domain_topology)
+</span></span><span style="display:flex;"><span>    <span style="color:#555">*</span><span style="color:#c0f">per_cpu_ptr</span>(d.sd, i) <span style="color:#555">=</span> sd;
+</span></span><span style="display:flex;"><span>   <span style="color:#069;font-weight:bold">if</span> (tl<span style="color:#555">-&gt;</span>flags <span style="color:#555">&amp;</span> SDTL_OVERLAP)
+</span></span><span style="display:flex;"><span>    sd<span style="color:#555">-&gt;</span>flags <span style="color:#555">|=</span> SD_OVERLAP;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span> }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span> <span style="color:#09f;font-style:italic">/* Build the groups for the domains */</span>
+</span></span><span style="display:flex;"><span> <span style="color:#c0f">for_each_cpu</span>(i, cpu_map) {
+</span></span><span style="display:flex;"><span>  <span style="color:#069;font-weight:bold">for</span> (sd <span style="color:#555">=</span> <span style="color:#555">*</span><span style="color:#c0f">per_cpu_ptr</span>(d.sd, i); sd; sd <span style="color:#555">=</span> sd<span style="color:#555">-&gt;</span>parent) {
+</span></span><span style="display:flex;"><span>   sd<span style="color:#555">-&gt;</span>span_weight <span style="color:#555">=</span> <span style="color:#c0f">cpumask_weight</span>(<span style="color:#c0f">sched_domain_span</span>(sd));
+</span></span><span style="display:flex;"><span>   <span style="color:#069;font-weight:bold">if</span> (sd<span style="color:#555">-&gt;</span>flags <span style="color:#555">&amp;</span> SD_OVERLAP) {
+</span></span><span style="display:flex;"><span>    <span style="color:#069;font-weight:bold">if</span> (<span style="color:#c0f">build_overlap_sched_groups</span>(sd, i))
+</span></span><span style="display:flex;"><span>     <span style="color:#069;font-weight:bold">goto</span> error;
+</span></span><span style="display:flex;"><span>   } <span style="color:#069;font-weight:bold">else</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#069;font-weight:bold">if</span> (<span style="color:#c0f">build_sched_groups</span>(sd, i))                          <span style="color:#555">------</span>(<span style="color:#f60">3</span>)
+</span></span><span style="display:flex;"><span>     <span style="color:#069;font-weight:bold">goto</span> error;
+</span></span><span style="display:flex;"><span>   }
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span> }
+</span></span><span style="display:flex;"><span>  ......
+</span></span><span style="display:flex;"><span> <span style="color:#09f;font-style:italic">/* Attach the domains */</span>
+</span></span><span style="display:flex;"><span> <span style="color:#c0f">rcu_read_lock</span>();
+</span></span><span style="display:flex;"><span> <span style="color:#c0f">for_each_cpu</span>(i, cpu_map) {
+</span></span><span style="display:flex;"><span>  <span style="color:#078;font-weight:bold">int</span> max_cpu <span style="color:#555">=</span> <span style="color:#c0f">READ_ONCE</span>(d.rd<span style="color:#555">-&gt;</span>max_cap_orig_cpu);
+</span></span><span style="display:flex;"><span>  <span style="color:#078;font-weight:bold">int</span> min_cpu <span style="color:#555">=</span> <span style="color:#c0f">READ_ONCE</span>(d.rd<span style="color:#555">-&gt;</span>min_cap_orig_cpu);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  sd <span style="color:#555">=</span> <span style="color:#555">*</span><span style="color:#c0f">per_cpu_ptr</span>(d.sd, i);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#069;font-weight:bold">if</span> ((max_cpu <span style="color:#555">&lt;</span> <span style="color:#f60">0</span>) <span style="color:#555">||</span> (<span style="color:#c0f">cpu_rq</span>(i)<span style="color:#555">-&gt;</span>cpu_capacity_orig <span style="color:#555">&gt;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#c0f">cpu_rq</span>(max_cpu)<span style="color:#555">-&gt;</span>cpu_capacity_orig))
+</span></span><span style="display:flex;"><span>   <span style="color:#c0f">WRITE_ONCE</span>(d.rd<span style="color:#555">-&gt;</span>max_cap_orig_cpu, i);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#069;font-weight:bold">if</span> ((min_cpu <span style="color:#555">&lt;</span> <span style="color:#f60">0</span>) <span style="color:#555">||</span> (<span style="color:#c0f">cpu_rq</span>(i)<span style="color:#555">-&gt;</span>cpu_capacity_orig <span style="color:#555">&lt;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#c0f">cpu_rq</span>(min_cpu)<span style="color:#555">-&gt;</span>cpu_capacity_orig))
+</span></span><span style="display:flex;"><span>   <span style="color:#c0f">WRITE_ONCE</span>(d.rd<span style="color:#555">-&gt;</span>min_cap_orig_cpu, i);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#c0f">cpu_attach_domain</span>(sd, d.rd, i);                            <span style="color:#555">------</span>(<span style="color:#f60">4</span>)
+</span></span><span style="display:flex;"><span> }
+</span></span><span style="display:flex;"><span> <span style="color:#c0f">rcu_read_unlock</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span> <span style="color:#069;font-weight:bold">if</span> (<span style="color:#555">!</span><span style="color:#c0f">cpumask_empty</span>(cpu_map))
+</span></span><span style="display:flex;"><span>  <span style="color:#c0f">update_asym_cpucapacity</span>(<span style="color:#c0f">cpumask_first</span>(cpu_map));
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span> ret <span style="color:#555">=</span> <span style="color:#f60">0</span>;
+</span></span><span style="display:flex;"><span><span style="color:#99f">error</span>:
+</span></span><span style="display:flex;"><span> <span style="color:#c0f">__free_domain_allocs</span>(<span style="color:#555">&amp;</span>d, alloc_state, cpu_map);             <span style="color:#555">------</span>(<span style="color:#f60">5</span>)
+</span></span><span style="display:flex;"><span> <span style="color:#069;font-weight:bold">return</span> ret;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol>
+<li>在每个 tl 层次，给每个 CPU 分配 sd、sg、sgc 空间</li>
+<li>遍历 cpu_map 里所有 CPU，创建与物理拓扑结构对应的多级调度域</li>
+<li>遍历 cpu_map 里所有 CPU, 创建调度组</li>
+<li>将每个 CPU 的 rq 与 rd(root_domain) 进行绑定</li>
+<li>free 掉分配失败或者分配成功多余的内存</li>
+</ol></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2026-03-16</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://zhangyuhu.github.io/posts/basic_knowledge/linuxsys/performanceoptimization/cpu/" data-title="LinuxSys:CPU" data-hashtags="Linux,CPU"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://zhangyuhu.github.io/posts/basic_knowledge/linuxsys/performanceoptimization/cpu/" data-hashtag="Linux"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://zhangyuhu.github.io/posts/basic_knowledge/linuxsys/performanceoptimization/cpu/" data-title="LinuxSys:CPU"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://zhangyuhu.github.io/posts/basic_knowledge/linuxsys/performanceoptimization/cpu/" data-title="LinuxSys:CPU"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://zhangyuhu.github.io/posts/basic_knowledge/linuxsys/performanceoptimization/cpu/" data-title="LinuxSys:CPU" data-ralateuid="ji"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/linux/">Linux</a>,&nbsp;<a href="/tags/cpu/">CPU</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/basic_knowledge/linuxsys/memorymanagement/linux%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" class="prev" rel="prev" title="LinuxSys:linux内存管理"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>LinuxSys:linux内存管理</a>
+            <a href="/posts/basic_knowledge/linuxsys/memorymanagement/processstack/" class="next" rel="next" title="LinuxSys:Process Stack">LinuxSys:Process Stack<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="giscus" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://giscus.app">Giscus</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">为天地立心,为生民立命,为往圣继绝学,为万世开太平</div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2023 - 2026</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://zhangyuhu.github.io/" target="_blank">zhangyuhu</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="http://creativecommons.org/licenses/by/4.0/" target="_blank">知识共享署名 4.0 国际许可协议</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/css/lightgallery-bundle.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/twemoji@14.0.2/dist/twemoji.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/lightgallery.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/thumbnail/lg-thumbnail.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/zoom/lg-zoom.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@8.6.0/dist/index.umd.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":100},"comment":{"giscus":{"category":"Comments","categoryId":"DIC_kwDOIx2Cjs4CTnUX","darkTheme":"dark","emitMetadata":"0","inputPosition":"bottom","lang":"en","lazyLoading":false,"lightTheme":"light","mapping":"pathname","reactionsEnabled":"1","repo":"zhangyuhu/zhangyuhu.github.io","repoId":"R_kgDOIx2Cjg"}},"data":{"id-1":"HOME","id-2":"HOME"},"lightgallery":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"},"twemoji":true,"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.f1b10c54ef8e7ea0c938baba89a68e47962cb91f87edfcf0ae7abf0ec7bbb510e5d980a2b5a69686d7a44eae747183e3ed5cd960ed6fe66552c947e6fca4ff67.js" integrity="sha512-8bEMVO+OfqDJOLq6iaaOR5YsuR+H7fzwrnq/Dse7tRDl2YCitaaWhtekTq50cYPj7VzZYO1v5mVSyUfm/KT/Zw=="></script></body>
+</html>

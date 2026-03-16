@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>LinuxSys:Linux常用命令 - 这是我的网站</title><meta name="Description" content="Linux常用命令介绍"><meta property="og:title" content="LinuxSys:Linux常用命令" />
+<meta property="og:description" content="Linux常用命令介绍" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zhangyuhu.github.io/posts/basic_knowledge/linuxsys/linuxcommondline/" /><meta property="og:image" content="https://zhangyuhu.github.io/logo.png" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2026-03-16T13:52:52+08:00" />
+<meta property="article:modified_time" content="2026-03-16T13:11:52+08:00" /><meta property="og:site_name" content="我的网站" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://zhangyuhu.github.io/logo.png" /><meta name="twitter:title" content="LinuxSys:Linux常用命令"/>
+<meta name="twitter:description" content="Linux常用命令介绍"/>
+<meta name="application-name" content="我的网站">
+<meta name="apple-mobile-web-app-title" content="我的网站"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://zhangyuhu.github.io/posts/basic_knowledge/linuxsys/linuxcommondline/" /><link rel="prev" href="https://zhangyuhu.github.io/posts/basic_knowledge/linuxsys/linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E5%85%A8%E6%8B%BC/" /><link rel="next" href="https://zhangyuhu.github.io/posts/basic_knowledge/compiler/pic/pic/" /><link rel="stylesheet" href="/css/style.min.d09a08388620d07592fcb288b74e9f4434a352d4869011bd6c06619079103da00fcccceb4fa6fce14315bef50c9be97c6bc29582e3968d9521c60ef89c6de806.css" integrity="sha512-0JoIOIYg0HWS/LKIt06fRDSjUtSGkBG9bAZhkHkQPaAPzMzrT6b84UMVvvUMm+l8a8KVguOWjZUhxg74nG3oBg=="><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "LinuxSys:Linux常用命令",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/zhangyuhu.github.io\/posts\/basic_knowledge\/linuxsys\/linuxcommondline\/"
+        },"image": [{
+                            "@type": "ImageObject",
+                            "url": "https:\/\/zhangyuhu.github.io\/images\/Apple-Devices-Preview.png",
+                            "width":  3200 ,
+                            "height":  2048 
+                        }],"genre": "posts","keywords": "Linux, 命令行","wordcount":  5919 ,
+        "url": "https:\/\/zhangyuhu.github.io\/posts\/basic_knowledge\/linuxsys\/linuxcommondline\/","datePublished": "2026-03-16T13:52:52+08:00","dateModified": "2026-03-16T13:11:52+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "zhangyuhu"
+            },"description": "Linux常用命令介绍"
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="这是我的网站"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/" title="文章"><i class='fas fa-archive fa-fw fa-sm'></i> 文章 </a><a class="menu-item" href="/tags/"><i class='fas fa-tags fa-fw fa-sm'></i> 标签 </a><a class="menu-item" href="/categories/"><i class='fas fa-th fa-fw fa-sm'></i> 分类 </a><a class="menu-item" href="/about/"><i class='fas fa-user-tie fa-fw fa-sm'></i> 关于 </a><a class="menu-item" href="/tool/"><i class='fas fa-cube fa-fw fa-sm'></i> 工具箱 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="这是我的网站"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="文章"><i class='fas fa-archive fa-fw fa-sm'></i>文章</a><a class="menu-item" href="/tags/" title=""><i class='fas fa-tags fa-fw fa-sm'></i>标签</a><a class="menu-item" href="/categories/" title=""><i class='fas fa-th fa-fw fa-sm'></i>分类</a><a class="menu-item" href="/about/" title=""><i class='fas fa-user-tie fa-fw fa-sm'></i>关于</a><a class="menu-item" href="/tool/" title=""><i class='fas fa-cube fa-fw fa-sm'></i>工具箱</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">LinuxSys:Linux常用命令</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://zhangyuhu.github.io/" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>zhangyuhu</a></span>&nbsp;<span class="post-category">included in <a href="/categories/linuxsys/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>LinuxSys</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2026-03-16">2026-03-16</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;5919 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;12 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#chmod">chmod</a></li>
+        <li><a href="#显示所有系统变量">显示所有系统变量</a></li>
+        <li><a href="#apt-查看软件版本并安装特定版本的软件">apt 查看软件版本，并安装特定版本的软件</a></li>
+        <li><a href="#设置环境变量">设置环境变量</a></li>
+        <li><a href="#查找命令在系统中的位置">查找命令在系统中的位置</a></li>
+        <li><a href="#归档和压缩">归档和压缩</a>
+          <ul>
+            <li><a href="#压缩与解压">压缩与解压</a></li>
+            <li><a href="#批量解压文件">批量解压文件</a></li>
+          </ul>
+        </li>
+        <li><a href="#截图">截图</a></li>
+        <li><a href="#配置-ftp-服务器">配置 FTP 服务器</a></li>
+        <li><a href="#进程相关">进程相关</a>
+          <ul>
+            <li><a href="#进程管理">进程管理</a></li>
+          </ul>
+        </li>
+        <li><a href="#查看系统磁盘使用率">查看系统磁盘使用率</a></li>
+        <li><a href="#查看内核版本">查看内核版本</a></li>
+        <li><a href="#查看-cpu-内存">查看 CPU ,内存</a></li>
+        <li><a href="#安装卸载-deb-包">安装/卸载 .deb 包</a></li>
+        <li><a href="#ubuntu-查看当前远程链接用户">Ubuntu 查看当前远程链接用户</a></li>
+        <li><a href="#grep">grep</a></li>
+        <li><a href="#保存终端日志">保存终端日志</a></li>
+        <li><a href="#查看程序使用的动态库">查看程序使用的动态库</a></li>
+        <li><a href="#查看程序使用的头文件位置">查看程序使用的头文件位置</a></li>
+        <li><a href="#查看安装源">查看安装源</a></li>
+        <li><a href="#库相关操作">库相关操作</a></li>
+        <li><a href="#cd">cd</a></li>
+        <li><a href="#文件操作">文件操作</a>
+          <ul>
+            <li><a href="#复制文件目录">复制文件，目录</a></li>
+            <li><a href="#移动-重命名-文件或目录">移动 重命名 文件或目录</a></li>
+            <li><a href="#创建文件删除文件">创建文件删除文件</a></li>
+            <li><a href="#创建目录删除目录">创建目录删除目录</a></li>
+          </ul>
+        </li>
+        <li><a href="#查看硬件信息">查看硬件信息</a></li>
+        <li><a href="#文本处理">文本处理</a>
+          <ul>
+            <li><a href="#基于列处理文本">基于列处理文本</a></li>
+            <li><a href="#文本排序">文本排序</a></li>
+            <li><a href="#文本比对">文本比对</a></li>
+            <li><a href="#转换">转换</a></li>
+            <li><a href="#搜索替换">搜索替换</a></li>
+          </ul>
+        </li>
+        <li><a href="#软件管理">软件管理</a></li>
+        <li><a href="#常用命令">常用命令</a></li>
+        <li><a href="#管道和重定向">管道和重定向</a></li>
+      </ul>
+    </li>
+    <li><a href="#xargs">xargs</a>
+      <ul>
+        <li><a href="#-i">-I</a></li>
+        <li><a href="#find--print0和xargs--0">find -print0和xargs -0</a></li>
+        <li><a href="#资源限制-ulimit">资源限制 ulimit</a>
+          <ul>
+            <li><a href="#使用ulimit">使用ulimit</a></li>
+            <li><a href="#使用方式">使用方式</a>
+              <ul>
+                <li><a href="#用户启动脚本">用户启动脚本</a></li>
+                <li><a href="#应用程序启动脚本">应用程序启动脚本</a></li>
+              </ul>
+            </li>
+            <li><a href="#作用范围">作用范围</a>
+              <ul>
+                <li><a href="#etcsecuritylimits"><code>/etc/security/limits</code></a></li>
+                <li><a href="#永久设置-ulimit--n-65535">永久设置 <code>ulimit -n 65535</code></a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><blockquote>
+<p>本文采用<a href="http://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreffer ">知识共享署名 4.0 国际许可协议</a>进行许可，转载时请注明原文链接，图片在使用时请保留全部内容，可适当缩放并在引用处附上图片所在的文章链接。</p>
+</blockquote>
+<div align='center' ><font size='70'>LinuxCommondLine</font></div>
+    - [chmod](#chmod)
+    - [显示所有系统变量](#显示所有系统变量)
+    - [apt 查看软件版本，并安装特定版本的软件](#apt-查看软件版本并安装特定版本的软件)
+    - [设置环境变量](#设置环境变量)
+    - [查找命令在系统中的位置](#查找命令在系统中的位置)
+    - [归档和压缩](#归档和压缩)
+        - [压缩与解压](#压缩与解压)
+        - [批量解压文件](#批量解压文件)
+    - [截图](#截图)
+    - [配置 FTP 服务器](#配置-ftp-服务器)
+    - [进程相关](#进程相关)
+        - [进程管理](#进程管理)
+    - [查看系统磁盘使用率](#查看系统磁盘使用率)
+    - [查看内核版本](#查看内核版本)
+    - [查看 CPU ,内存](#查看-cpu-内存)
+    - [安装/卸载 .deb 包](#安装卸载-deb-包)
+    - [Ubuntu 查看当前远程链接用户](#ubuntu-查看当前远程链接用户)
+    - [grep](#grep)
+    - [保存终端日志](#保存终端日志)
+    - [查看程序使用的动态库](#查看程序使用的动态库)
+    - [查看程序使用的头文件位置](#查看程序使用的头文件位置)
+    - [查看安装源](#查看安装源)
+    - [库相关操作](#库相关操作)
+    - [cd](#cd)
+    - [文件操作](#文件操作)
+        - [复制文件，目录](#复制文件目录)
+        - [移动 重命名 文件或目录](#移动-重命名-文件或目录)
+        - [创建文件删除文件](#创建文件删除文件)
+        - [创建目录删除目录](#创建目录删除目录)
+    - [查看硬件信息](#查看硬件信息)
+    - [文本处理](#文本处理)
+        - [基于列处理文本](#基于列处理文本)
+        - [文本排序](#文本排序)
+        - [文本比对](#文本比对)
+        - [转换](#转换)
+        - [搜索替换](#搜索替换)
+    - [软件管理](#软件管理)
+    - [常用命令](#常用命令)
+    - [管道和重定向](#管道和重定向)
+- [xargs](#xargs)
+  - [-I {}](#-i-)
+  - [find -print0和xargs -0](#find--print0和xargs--0)
+  - [资源限制 ulimit](#资源限制-ulimit)
+    - [使用ulimit](#使用ulimit)
+    - [使用方式](#使用方式)
+      - [用户启动脚本](#用户启动脚本)
+      - [应用程序启动脚本](#应用程序启动脚本)
+    - [作用范围](#作用范围)
+      - [`/etc/security/limits`](#etcsecuritylimits)
+      - [永久设置 `ulimit -n 65535`](#永久设置-ulimit--n-65535)
+<h2 id="chmod">chmod</h2>
+<blockquote>
+<p>语法：chmod [对谁操作] [操作符] [赋予的权限] 文件名<br>
+操作对象：u    用户user，表现文件或目录的所有者<br>
+        g    用户组group，表现文件或目录所属的用户组<br>
+        o    其他用户other<br>
+        a    所有用户all<br>
+操作符：+ 添加权限       -  减少权限         =直接给定一个权限
+权限：1、r       2、w      3.x</p>
+</blockquote>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-1">1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-2">2</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>chmod +x * 
+</span></span><span style="display:flex;"><span>chnod -x *
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="显示所有系统变量">显示所有系统变量</h2>
+<blockquote>
+<p>env</p>
+</blockquote>
+<h2 id="apt-查看软件版本并安装特定版本的软件">apt 查看软件版本，并安装特定版本的软件</h2>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-1">1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-2">2</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>sudo apt-cache showpkg package  // 查看可以安装的版本
+</span></span><span style="display:flex;"><span>sudo apt-get install <span style="color:#033">xxx</span><span style="color:#555">=</span>x.y.z  // 指定版本安装
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="设置环境变量">设置环境变量</h2>
+<p>添加全局变量在/etc/profile文件中</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-1">1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-2">2</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>vi /etc/profile
+</span></span><span style="display:flex;"><span><span style="color:#366">export</span> <span style="color:#033">PATH</span><span style="color:#555">=</span><span style="color:#c30">&#34;</span><span style="color:#033">$PATH</span><span style="color:#c30">:/etc/apache/bin&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>注意：＝ 即等号两边 <em>不能有任何空格</em> 修改后运行 ./profile 重新加载环境变量使修改生效。</p>
+<h2 id="查找命令在系统中的位置">查找命令在系统中的位置</h2>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-1"> 1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-2"> 2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-3"> 3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-4"> 4</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-5"> 5</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-6"> 6</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-7"> 7</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-8"> 8</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-9"> 9</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-10"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-10">10</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-11"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-11">11</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-12"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-12">12</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-13"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-13">13</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-14"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-14">14</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>which ls <span style="color:#09f;font-style:italic"># 查找 ls 命令的默认位置</span>
+</span></span><span style="display:flex;"><span>whereis ls <span style="color:#09f;font-style:italic"># 查找 系统中所有叫做 ls 的文件和文件夹</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>locate keyword 系统查找文件， 数据库中查找，每天跟新一次， updatedb 命令 创建刷新数据库， 扫描所有文件
+</span></span><span style="display:flex;"><span>find 查找位置 查找参数
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>find / 根分区查找 . 当前目录查找 
+</span></span><span style="display:flex;"><span>find . -name *xxx* 当前目录中，从文件名中查找包含 xxx 的文件
+</span></span><span style="display:flex;"><span>find / -name *.conf 根分区中查找 .conf 结尾的文件
+</span></span><span style="display:flex;"><span>find / -perm <span style="color:#f60">777</span> 查找硬盘中所有权限是 <span style="color:#f60">777</span> 的文件
+</span></span><span style="display:flex;"><span>find / -type d   返回操作系统的目录 d 代表目录 l 代表链接（快捷方式）
+</span></span><span style="display:flex;"><span>find . -name <span style="color:#c30">&#34;a*&#34;</span> -exec ls -l <span style="color:#555">{}</span> <span style="color:#c30;font-weight:bold">\;</span>   查出所有以a 开头的文件， 并查看文件详细信息，ls -l 显示文件详细
+</span></span><span style="display:flex;"><span>-user 某个用户的文件 -group  某个组的文件 -ctime 查找某个创建时间的文件 -size 文件大小查找文件
+</span></span><span style="display:flex;"><span>find / -usr EricYang 查找属于EricYang 的文件
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="归档和压缩">归档和压缩</h2>
+<h3 id="压缩与解压">压缩与解压</h3>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-1"> 1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-2"> 2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-3"> 3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-4"> 4</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-5"> 5</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-6"> 6</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-7"> 7</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-8"> 8</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-9"> 9</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-10"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-10">10</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-11"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-11">11</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-12"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-12">12</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>zip 压缩文件名 需要压缩的文件
+</span></span><span style="display:flex;"><span>unzip 压缩的文件名
+</span></span><span style="display:flex;"><span>gzip 文件名
+</span></span><span style="display:flex;"><span>tar 归档命令 将多个文件打包到一个文件
+</span></span><span style="display:flex;"><span>tar -cvf etcbackup.tar /etc 归档etc文件夹
+</span></span><span style="display:flex;"><span>tar -xvf etcbackup.tar  释放归档的文件到当前文件夹
+</span></span><span style="display:flex;"><span>tar -cvzf etcbackup.tar.gz /etc 归档并压缩
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>tar -xzvf file.tar.gz	<span style="color:#09f;font-style:italic"># 解压缩到当前目录</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>zip -r new.zip dirname
+</span></span><span style="display:flex;"><span>unzip new.zip
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="批量解压文件">批量解压文件</h3>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-1">1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-2">2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-3">3</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#069;font-weight:bold">for</span> tar in *.tar; <span style="color:#069;font-weight:bold">do</span> tar xvf <span style="color:#033">$tar</span>; <span style="color:#069;font-weight:bold">done</span>
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">for</span> tar in *.tar.gz;  <span style="color:#069;font-weight:bold">do</span> tar xvf <span style="color:#033">$tar</span>; <span style="color:#069;font-weight:bold">done</span>
+</span></span><span style="display:flex;"><span><span style="color:#069;font-weight:bold">for</span> tar in *.tar.bz2; <span style="color:#069;font-weight:bold">do</span> tar xvf <span style="color:#033">$tar</span>; <span style="color:#069;font-weight:bold">done</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="截图">截图</h2>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-1">1</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>gnome-screenshot -a // 手动截取选定区域
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="配置-ftp-服务器">配置 FTP 服务器</h2>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-1">1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-2">2</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>apt-get install vsftpd  // 需要先安装 FTP 服务
+</span></span><span style="display:flex;"><span>service vsftpd start	// 启动
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>打开 /etc/vsftpd 修改下面几项：</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-1">1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-2">2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-3">3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-4">4</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-5">5</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-6">6</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-7">7</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#033">listen</span><span style="color:#555">=</span>YES				// 开启服务
+</span></span><span style="display:flex;"><span><span style="color:#033">anonmyous_enable</span><span style="color:#555">=</span>YES // 允许匿名登录
+</span></span><span style="display:flex;"><span><span style="color:#033">local_enable</span><span style="color:#555">=</span>YES		// 允许本地用户登录
+</span></span><span style="display:flex;"><span><span style="color:#033">write_enable</span><span style="color:#555">=</span>YES		// 允许全局写权限
+</span></span><span style="display:flex;"><span><span style="color:#033">local_umask</span><span style="color:#555">=</span>022		// 设置访问权限 上一条写权限同样适用
+</span></span><span style="display:flex;"><span>// 022表示7（rwx）5（rx）5（rx）
+</span></span><span style="display:flex;"><span>// u 所有者 g 同组人员 o 其他组人员
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="进程相关">进程相关</h2>
+<h3 id="进程管理">进程管理</h3>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-9-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-9-1">1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-9-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-9-2">2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-9-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-9-3">3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-9-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-9-4">4</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>pkill -9 进程名  // 通过进程名杀死<span style="color:#555">(</span>-9 表示强制<span style="color:#555">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#366">kill</span> -9 进程ID	// 通过进程ID杀死
+</span></span><span style="display:flex;"><span>netstat <span style="color:#555">[</span>-lnp|-anp|-tnp<span style="color:#555">]</span> | grep <span style="color:#f60">8000</span>  // 查找使用8000端口号的进程
+</span></span><span style="display:flex;"><span>ps -aux	// 显示所有用户的进程并打印相应的CMD命令
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="查看系统磁盘使用率">查看系统磁盘使用率</h2>
+<blockquote>
+<p>df -h</p>
+</blockquote>
+<h2 id="查看内核版本">查看内核版本</h2>
+<blockquote>
+<p>uname -a</p>
+</blockquote>
+<h2 id="查看-cpu-内存">查看 CPU ,内存</h2>
+<blockquote>
+<p>top	 // 查看 CPU ， 内存情况<br>
+free -h // 查看内存使用率</p>
+</blockquote>
+<h2 id="安装卸载-deb-包">安装/卸载 .deb 包</h2>
+<blockquote>
+<p>sudo dpkg -i package.deb // 安装<br>
+sudo dpkg -r package   // 卸载</p>
+</blockquote>
+<h2 id="ubuntu-查看当前远程链接用户">Ubuntu 查看当前远程链接用户</h2>
+<blockquote>
+<p>w</p>
+</blockquote>
+<h2 id="grep">grep</h2>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-1">1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-2">2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-3">3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-4">4</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-5">5</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>grep -C <span style="color:#f60">5</span> foo file 显示file文件里匹配foo字串那行以及上下5行
+</span></span><span style="display:flex;"><span>grep -B <span style="color:#f60">5</span> foo file 显示foo及前5行
+</span></span><span style="display:flex;"><span>grep -A <span style="color:#f60">5</span> foo file 显示foo及后5行
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>cat xxx | grep -C <span style="color:#f60">5</span> xxx
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="保存终端日志">保存终端日志</h2>
+<blockquote>
+<p>sudo script /mnt/DG/DATA/LOG/screen.log</p>
+</blockquote>
+<h2 id="查看程序使用的动态库">查看程序使用的动态库</h2>
+<blockquote>
+<p>ldd libra</p>
+</blockquote>
+<h2 id="查看程序使用的头文件位置">查看程序使用的头文件位置</h2>
+<blockquote>
+<p>locate gst/gst.h</p>
+</blockquote>
+<h2 id="查看安装源">查看安装源</h2>
+<blockquote>
+<p>vi /etc/apt/sources.list</p>
+</blockquote>
+<h2 id="库相关操作">库相关操作</h2>
+<ul>
+<li>ld 是gcc的链接程序。</li>
+<li>ldd是查看可执行文件中所依赖的库的程序，比如想查main程序用到了那些动态库，可以直接 ldd main</li>
+<li>ldconfig用来更新文件/etc/ld.so.conf的修改生效。</li>
+<li>nm用来查看.so库中的函数名字，标记是T的就是动态库里面生成的名字。如：nm /lib/libc*.so</li>
+</ul>
+<h2 id="cd">cd</h2>
+<pre><code>cd .. 上级目录
+cd . 当前目录
+cd ~ 用户home目录 /home/EricYang
+cd - 上一个工作目录
+</code></pre>
+<h2 id="文件操作">文件操作</h2>
+<h3 id="复制文件目录">复制文件，目录</h3>
+<pre><code>cp 源文件 目标文件
+cp -r 源文件夹 目标文件夹
+cp -rv 源文件夹 目标文件夹 显示复制详细信息
+</code></pre>
+<h3 id="移动-重命名-文件或目录">移动 重命名 文件或目录</h3>
+<pre><code>mv 文件 文件夹
+mv 文件 文件夹/文件2 移动文件并重命名
+mv 文件 文件2 重命名
+</code></pre>
+<h3 id="创建文件删除文件">创建文件删除文件</h3>
+<pre><code>touch 文件
+rm 文件
+rm 文件夹
+rm -r 文件夹 删除文件夹下所有文件和此文件夹
+rm -ri 文件夹 删除每个文件时有交互
+rm -rif 文件夹 强制删除 f 覆盖 i
+</code></pre>
+<h3 id="创建目录删除目录">创建目录删除目录</h3>
+<pre><code>mkdir dirname
+rmdir dirname dirname中非空则删除失败
+</code></pre>
+<h2 id="查看硬件信息">查看硬件信息</h2>
+<pre><code>lspci 列出所有pci设备
+lspci -v 查看详细信息
+lsusb 列出所有usb设备
+lsusb -v 查看设备详细信息
+lsmod 查看当前加载的所有模块（驱动）
+</code></pre>
+<h2 id="文本处理">文本处理</h2>
+<h3 id="基于列处理文本">基于列处理文本</h3>
+<pre><code>cut -d  指定分割符 默认TAB
+    -f  指定输出的列号
+    -c	基于字符进行分割
+    cut -d: -f1 /etc/passwd
+    cut -c2-6 /etc/passwd
+
+wc	-l 只统计行数
+    -w 只统计单词数
+    -c 只统计字节数
+    -m 只统计字符数
+</code></pre>
+<h3 id="文本排序">文本排序</h3>
+<pre><code>sort filename 对文件内容排序， 基于每行首字母
+sort	-r 	倒序
+        -n 	基于数字进行排序
+        -f	忽略大小写
+        -u	删除重复行
+        -t c 使用c作为分隔符为列进行排序
+        -k x 当进行基于指定地府分割味蕾的排序时，指定基于哪个列排序
+</code></pre>
+<h3 id="文本比对">文本比对</h3>
+<pre><code>diff filename1 filename2 
+        -i 忽略大小写
+        -b 忽略空格数量的改变
+        -u 同意显示比较信息(一般用以生成patch文件)
+</code></pre>
+<h3 id="转换">转换</h3>
+<pre><code>tr -d &quot;apple&quot; &lt; filename (只接受重定向数据流)   删除 “apple”
+tr 'a-z' 'A-Z' &lt; filename   大小写转换
+</code></pre>
+<h3 id="搜索替换">搜索替换</h3>
+<pre><code>使用正则表达式搜索替换
+sed 's/linux/unix/g' filename      搜索文件linux替换为unix /g 一行中出现多个匹配项的时候都匹配
+sed '1,50s/linux/unix/g' filename  1-50行 搜索文件linux替换为unix
+sed -e 's/linux/unix/g' -e 's/nash/nash_su/g' filename 指定多个pattern
+sed -f sededit filename   sededit 文件保存匹配pttern 用以重复使用
+</code></pre>
+<h2 id="软件管理">软件管理</h2>
+<pre><code>查询版本(查看依赖包):
+aptitude show 软件名
+
+列出所有已安装的软件包:
+apt list --installed 
+dpkg -l |awk '/^[hi]i/{print $2}' &gt; 1.txt
+aptitude search -F '%p' '~i' &gt; 1.txt
+dpkg --get-selections &gt; 1.txt
+
+创建当前安装的软件包的备份：
+dpkg --get-selections &gt; list.txt
+
+然后（在另一个系统上）从该列表还原安装：
+dpkg --clear-selections
+sudo dpkg --set-selections &lt; list.txt
+
+要删除过时的软件包：
+sudo apt-get autoremove
+</code></pre>
+<h2 id="常用命令">常用命令</h2>
+<pre><code>date 当前时间 
+date -u 格林威治时间
+date +%Y--%m--%d 2012--10--02
+date -s &quot;20:20:20&quot;  修改当前日期的时间，需要超级用户权限
+cal 查看日历
+uptime 查看系统的运行时间， 系统运行了多长时间，负载，用户登陆数目
+cat 文件 显示文件内容
+more 文件 翻页显示文件内容，只能向下翻页 space
+less 文件  上下翻页 按Q退出
+head 文件 显示文件头几行 默认10行
+head -n 3 文件 只显示开透视三行
+tail 文件 显示末尾几行 默认10行 
+tail -n 3 文件 显示文件尾部3行
+tail -f 文件 追踪显示文件更新，日志 ， 
+echo &quot;xxx&quot; &gt;&gt; 文件  将xxx追加到文件的末尾
+</code></pre>
+<h2 id="管道和重定向">管道和重定向</h2>
+<p>多命令协作:通过管道和重定向完成.(将多个命令结合在一起),几乎所有命令的输入和返回输出是纯文本.<br>
+example : cat 输入 文件路径 返回 文件文本内容</p>
+<p>命令行shell的数据流定义:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">名称</th>
+<th>说明</th>
+<th>编号</th>
+<th style="text-align:right">默认</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">STDIN</td>
+<td>标准输入</td>
+<td>0</td>
+<td style="text-align:right">键盘</td>
+</tr>
+<tr>
+<td style="text-align:left">STDOUT</td>
+<td>标准输出</td>
+<td>1</td>
+<td style="text-align:right">终端</td>
+</tr>
+<tr>
+<td style="text-align:left">STDERR</td>
+<td>标准错误</td>
+<td>2</td>
+<td style="text-align:right">终端</td>
+</tr>
+</tbody>
+</table>
+<p>命令通过STDIN接收参数或数据，通过STDOUT输出结果或通过STDERR输出错误.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">分类</th>
+<th>关键字</th>
+<th>定义</th>
+<th style="text-align:right">例子</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">重定向</td>
+<td>&gt;</td>
+<td>将STDOUT重定向到文件(覆盖)</td>
+<td style="text-align:right">echo &ldquo;baidu&rdquo; &gt; outfile / ls &gt; outfile</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td>&raquo;</td>
+<td>将STDOUT重定向到文件(追加)</td>
+<td style="text-align:right">echo &ldquo;baidu&rdquo; &raquo; outfile/ date &raquo;outfile</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td>2&gt;</td>
+<td>将STDERROR重定向到文件(覆盖)</td>
+<td style="text-align:right">ls nothere 2&gt; errorout</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td>2&gt;&amp;1</td>
+<td>将STDERROR与STDOUT结合</td>
+<td style="text-align:right">ls nothere 2&gt;&amp;1 alloutput</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td>&lt;</td>
+<td>重定向STDIN</td>
+<td style="text-align:right">grep linuxcast &lt; /etc/passwd</td>
+</tr>
+<tr>
+<td style="text-align:left">管道</td>
+<td>|</td>
+<td>将一个命令的STDOUT</td>
+<td style="text-align:right">ls -l | grep linuxcast</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td></td>
+<td>作为另一个命令的STDIN</td>
+<td style="text-align:right">find / -user linuxcast | grep video</td>
+</tr>
+</tbody>
+</table>
+<p>2&gt; /dev/null  重定向给null,丢弃</p>
+<h1 id="xargs">xargs</h1>
+<p>xargs 是给命令传递参数的一个过滤器，也是组合多个命令的一个工具。<br>
+xargs 可以将管道或标准输入（stdin）数据转换成命令行参数，也能够从文件的输出中读取数据。<br>
+xargs 也可以将单行或多行文本输入转换为其他格式，例如多行变单行，单行变多行。<br>
+xargs 默认的命令是 echo，这意味着通过管道传递给 xargs 的输入将会包含换行和空白，不过通过 xargs 的处理，换行和空白将被空格取代。<br>
+xargs 是一个强有力的命令，它能够捕获一个命令的输出，然后传递给另外一个命令。<br>
+之所以能用到这个命令，关键是由于很多命令不支持|管道来传递参数，而日常工作中有有这个必要，所以就有了 xargs 命令，例如：</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-11-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-11-1">1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-11-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-11-2">2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-11-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-11-3">3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-11-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-11-4">4</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-11-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-11-5">5</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-11-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-11-6">6</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>find /sbin -perm +700 |ls -l       <span style="color:#09f;font-style:italic">#这个命令是错误的</span>
+</span></span><span style="display:flex;"><span>find /sbin -perm +700 |xargs ls -l   <span style="color:#09f;font-style:italic">#这样才是正确的</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>find ./ -type f -name *.d -print0 | xargs -0 rm -rf <span style="color:#09f;font-style:italic">#删除所有 .d 文件</span>
+</span></span><span style="display:flex;"><span>find ./ -type f -name *.o -print0 | xargs -0 rm -rf <span style="color:#09f;font-style:italic">#删除所有 .o 文件</span>
+</span></span><span style="display:flex;"><span>find ./ -type f -name *.depend -print0 | xargs -0 rm -rf <span style="color:#09f;font-style:italic">#删除所有 .depend 文件</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="-i">-I</h2>
+<p>xargs 的一个选项 -I，使用 -I 指定一个替换字符串 {}，这个字符串在 xargs 扩展时会被替换掉，当 -I 与 xargs 结合使用，每一个参数命令都会被执行一次：</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-1">1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-2">2</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># 复制所有图片文件到 /data/images 目录下</span>
+</span></span><span style="display:flex;"><span>ls *.jpg | xargs -n1 -I <span style="color:#555">{}</span> cp <span style="color:#555">{}</span> /data/images
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="find--print0和xargs--0">find -print0和xargs -0</h2>
+<p>find -print0表示在find的每一个结果之后加一个NULL字符，而不是默认加一个换行符。find的默认在每一个结果后加一个&rsquo;\n&rsquo;，所以输出结果是一行一行的。当使用了-print0之后，就变成一行了。<br>
+然后xargs -0表示xargs用NULL来作为分隔符。这样前后搭配就不会出现空格和换行符的错误了。选择NULL做分隔符，是因为一般编程语言把NULL作为字符串结束的标志，所以文件名不可能以NULL结尾，这样确保万无一失。</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-13-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-13-1">1</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>find . -name <span style="color:#c30">&#34;*.txt&#34;</span> -print0 | xargs -0 rm
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="资源限制-ulimit">资源限制 ulimit</h2>
+<p><a href="https://www.ibm.com/developerworks/cn/linux/l-cn-ulimit/" target="_blank" rel="noopener noreffer ">通过 ulimit 改善系统性能</a><br>
+查看系统用户所有限制值：ulimit -a</p>
+<blockquote>
+</blockquote>
+<pre><code>core file size          (blocks, -c) 0
+data seg size           (kbytes, -d) unlimited
+scheduling priority             (-e) 0
+file size               (blocks, -f) unlimited
+pending signals                 (-i) 30488
+max locked memory       (kbytes, -l) 16384
+max memory size         (kbytes, -m) unlimited
+open files                      (-n) 8192       # 用户最多打开文件个数
+pipe size            (512 bytes, -p) 8
+POSIX message queues     (bytes, -q) 819200
+real-time priority              (-r) 0
+stack size              (kbytes, -s) 8192       # 最大用花栈
+cpu time               (seconds, -t) unlimited
+max user processes              (-u) 30488      # 最大的进程个数
+virtual memory          (kbytes, -v) unlimited
+file locks                      (-x) unlimited
+</code></pre>
+<p>ulimit 用于限制 shell 启动进程所占用的资源，支持以下各种类型的限制：</p>
+<ul>
+<li>所创建的内核文件的大小</li>
+<li>进程数据块的大小</li>
+<li>Shell 进程创建文件的大小</li>
+<li>内存锁住的大小</li>
+<li>常驻内存集的大小</li>
+<li>打开文件描述符的数量</li>
+<li>分配堆栈的最大大小</li>
+<li>CPU 时间</li>
+<li>单个用户的最大线程数</li>
+<li>Shell 进程所能使用的最大虚拟内存。</li>
+<li>同时，它支持硬资源和软资源的限制。</li>
+</ul>
+<h3 id="使用ulimit">使用ulimit</h3>
+<p>ulimit 命令的格式为：<code>ulimit [options] [limit]</code></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">选项 [options]</th>
+<th style="text-align:left">含义</th>
+<th style="text-align:left">例子</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">-H</td>
+<td style="text-align:left">设置硬资源限制，一旦设置不能增加。</td>
+<td style="text-align:left">ulimit – Hs 64；限制硬资源，线程栈大小为 64K。</td>
+</tr>
+<tr>
+<td style="text-align:left">-S</td>
+<td style="text-align:left">设置软资源限制，设置后可以增加，但是不能超过硬资源设置。</td>
+<td style="text-align:left">ulimit – Sn 32；限制软资源，32 个文件描述符。</td>
+</tr>
+<tr>
+<td style="text-align:left">-a</td>
+<td style="text-align:left">显示当前所有的 limit 信息。</td>
+<td style="text-align:left">ulimit – a；显示当前所有的 limit 信息。</td>
+</tr>
+<tr>
+<td style="text-align:left">-c</td>
+<td style="text-align:left">最大的 core 文件的大小， 以 blocks 为单位。</td>
+<td style="text-align:left">ulimit – c unlimited； 对生成的 core 文件的大小不进行限制。</td>
+</tr>
+<tr>
+<td style="text-align:left">-d</td>
+<td style="text-align:left">进程最大的数据段的大小，以 Kbytes 为单位。</td>
+<td style="text-align:left">ulimit -d unlimited；对进程的数据段大小不进行限制。</td>
+</tr>
+<tr>
+<td style="text-align:left">-f</td>
+<td style="text-align:left">进程可以创建文件的最大值，以 blocks 为单位。</td>
+<td style="text-align:left">ulimit – f 2048；限制进程可以创建的最大文件大小为 2048 blocks。</td>
+</tr>
+<tr>
+<td style="text-align:left">-l</td>
+<td style="text-align:left">最大可加锁内存大小，以 Kbytes 为单位。</td>
+<td style="text-align:left">ulimit – l 32；限制最大可加锁内存大小为 32 Kbytes。</td>
+</tr>
+<tr>
+<td style="text-align:left">-m</td>
+<td style="text-align:left">最大内存大小，以 Kbytes 为单位。</td>
+<td style="text-align:left">ulimit – m unlimited；对最大内存不进行限制。</td>
+</tr>
+<tr>
+<td style="text-align:left">-n</td>
+<td style="text-align:left">可以打开最大文件描述符的数量。</td>
+<td style="text-align:left">ulimit – n 128；限制最大可以使用 128 个文件描述符。</td>
+</tr>
+<tr>
+<td style="text-align:left">-p</td>
+<td style="text-align:left">管道缓冲区的大小，以 Kbytes 为单位。</td>
+<td style="text-align:left">ulimit – p 512；限制管道缓冲区的大小为 512 Kbytes。</td>
+</tr>
+<tr>
+<td style="text-align:left">-s</td>
+<td style="text-align:left">线程栈大小，以 Kbytes 为单位。</td>
+<td style="text-align:left">ulimit – s 512；限制线程栈的大小为 512 Kbytes。</td>
+</tr>
+<tr>
+<td style="text-align:left">-t</td>
+<td style="text-align:left">最大的 CPU 占用时间，以秒为单位。</td>
+<td style="text-align:left">ulimit – t unlimited；对最大的 CPU 占用时间不进行限制。</td>
+</tr>
+<tr>
+<td style="text-align:left">-u</td>
+<td style="text-align:left">用户最大可用的进程数。</td>
+<td style="text-align:left">ulimit – u 64；限制用户最多可以使用 64 个进程。</td>
+</tr>
+<tr>
+<td style="text-align:left">-v</td>
+<td style="text-align:left">进程最大可用的虚拟内存，以 Kbytes 为单位。</td>
+<td style="text-align:left">ulimit – v 200000；限制最大可用的虚拟内存为 200000 Kbytes。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="使用方式">使用方式</h3>
+<h4 id="用户启动脚本">用户启动脚本</h4>
+<p>如果用户使用的是 bash，就可以在用户的目录下的 .bashrc 文件中，加入 ulimit – u 64，来限制用户最多可以使用 64 个进程。此外，可以在与 .bashrc 功能相当的启动脚本中加入 ulimt。</p>
+<h4 id="应用程序启动脚本">应用程序启动脚本</h4>
+<p>如果用户要对某个应用程序 myapp 进行限制，可以写一个简单的脚本 startmyapp。</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-14-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-14-1">1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-14-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-14-2">2</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>ulimit – s 512 
+</span></span><span style="display:flex;"><span>myapp
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>以后只要通过脚本 startmyapp 来启动应用程序，就可以限制应用程序 myapp 的线程栈大小为 512K。</p>
+<h3 id="作用范围">作用范围</h3>
+<p><strong>ulimit 限制的是当前 shell 进程以及其派生的子进程</strong>。</p>
+<p>举例来说，如果用户同时运行了两个 shell 终端进程，只在其中一个环境中执行了 ulimit – s 100，则该 shell 进程里创建文件的大小收到相应的限制，而同时另一个 shell 终端包括其上运行的子程序都不会受其影响</p>
+<h4 id="etcsecuritylimits"><code>/etc/security/limits</code></h4>
+<p>是否有针对某个具体用户的资源加以限制的方法呢？答案是有的，方法是通过修改系统的 /etc/security/limits 配置文件。该文件不仅能限制指定用户的资源使用，还能限制指定组的资源使用。该文件的每一行都是对限定的一个描述，格式如下:</p>
+<p><code>&lt;</code>domain<code>&gt; &lt;</code>type<code>&gt; &lt;</code>item<code>&gt; &lt;</code>value<code>&gt;</code></p>
+<ul>
+<li>domain 表示用户或者组的名字，还可以使用 * 作为通配符。</li>
+<li>Type 可以有两个值，soft 和 hard。I</li>
+<li>tem 则表示需要限定的资源，可以有很多候选值，如 stack，cpu，nofile 等等，分别表示最大的堆栈大小，占用的 cpu 时间，以及打开的文件数。通过添加对应的一行描述，则可以产生相应的限制。
+例如：</li>
+</ul>
+<p><code>* hard noflle 100</code></p>
+<p>该行配置语句限定了任意用户所能创建的最大文件数是 100。<br>
+现在已经可以对进程和用户分别做资源限制了，看似已经足够了，其实不然。很多应用需要对整个系统的资源使用做一个总的限制，这时候我们需要修改 /proc 下的配置文件。/proc 目录下包含了很多系统当前状态的参数，例如 /proc/sys/kernel/pid_max，/proc/sys/net/ipv4/ip_local_port_range 等等，从文件的名字大致可以猜出所限制的资源种类</p>
+<h4 id="永久设置-ulimit--n-65535">永久设置 <code>ulimit -n 65535</code></h4>
+<p>/etc/security/limits.conf:</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-15-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-15-1">1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-15-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-15-2">2</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>*    soft    nofile 8192
+</span></span><span style="display:flex;"><span>*    hard    nofile 8192
+</span></span></code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2026-03-16</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://zhangyuhu.github.io/posts/basic_knowledge/linuxsys/linuxcommondline/" data-title="LinuxSys:Linux常用命令" data-hashtags="Linux,命令行"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://zhangyuhu.github.io/posts/basic_knowledge/linuxsys/linuxcommondline/" data-hashtag="Linux"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://zhangyuhu.github.io/posts/basic_knowledge/linuxsys/linuxcommondline/" data-title="LinuxSys:Linux常用命令"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://zhangyuhu.github.io/posts/basic_knowledge/linuxsys/linuxcommondline/" data-title="LinuxSys:Linux常用命令"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://zhangyuhu.github.io/posts/basic_knowledge/linuxsys/linuxcommondline/" data-title="LinuxSys:Linux常用命令" data-ralateuid="ji"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/linux/">Linux</a>,&nbsp;<a href="/tags/%E5%91%BD%E4%BB%A4%E8%A1%8C/">命令行</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/basic_knowledge/linuxsys/linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E5%85%A8%E6%8B%BC/" class="prev" rel="prev" title="LinuxSys:Linux常用命令全拼"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>LinuxSys:Linux常用命令全拼</a>
+            <a href="/posts/basic_knowledge/compiler/pic/pic/" class="next" rel="next" title="Compiler:PIC">Compiler:PIC<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="giscus" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://giscus.app">Giscus</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">为天地立心,为生民立命,为往圣继绝学,为万世开太平</div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2023 - 2026</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://zhangyuhu.github.io/" target="_blank">zhangyuhu</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="http://creativecommons.org/licenses/by/4.0/" target="_blank">知识共享署名 4.0 国际许可协议</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/css/lightgallery-bundle.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/twemoji@14.0.2/dist/twemoji.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/lightgallery.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/thumbnail/lg-thumbnail.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/zoom/lg-zoom.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@8.6.0/dist/index.umd.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":100},"comment":{"giscus":{"category":"Comments","categoryId":"DIC_kwDOIx2Cjs4CTnUX","darkTheme":"dark","emitMetadata":"0","inputPosition":"bottom","lang":"en","lazyLoading":false,"lightTheme":"light","mapping":"pathname","reactionsEnabled":"1","repo":"zhangyuhu/zhangyuhu.github.io","repoId":"R_kgDOIx2Cjg"}},"data":{"id-1":"HOME","id-2":"HOME"},"lightgallery":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"},"twemoji":true,"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.f1b10c54ef8e7ea0c938baba89a68e47962cb91f87edfcf0ae7abf0ec7bbb510e5d980a2b5a69686d7a44eae747183e3ed5cd960ed6fe66552c947e6fca4ff67.js" integrity="sha512-8bEMVO+OfqDJOLq6iaaOR5YsuR+H7fzwrnq/Dse7tRDl2YCitaaWhtekTq50cYPj7VzZYO1v5mVSyUfm/KT/Zw=="></script></body>
+</html>

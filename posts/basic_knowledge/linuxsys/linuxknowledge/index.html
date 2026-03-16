@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>LinuxSys:Linux知识 - 这是我的网站</title><meta name="Description" content="Linux知识介绍"><meta property="og:title" content="LinuxSys:Linux知识" />
+<meta property="og:description" content="Linux知识介绍" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zhangyuhu.github.io/posts/basic_knowledge/linuxsys/linuxknowledge/" /><meta property="og:image" content="https://zhangyuhu.github.io/logo.png" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2026-03-16T13:52:52+08:00" />
+<meta property="article:modified_time" content="2026-03-16T13:11:52+08:00" /><meta property="og:site_name" content="我的网站" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://zhangyuhu.github.io/logo.png" /><meta name="twitter:title" content="LinuxSys:Linux知识"/>
+<meta name="twitter:description" content="Linux知识介绍"/>
+<meta name="application-name" content="我的网站">
+<meta name="apple-mobile-web-app-title" content="我的网站"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://zhangyuhu.github.io/posts/basic_knowledge/linuxsys/linuxknowledge/" /><link rel="prev" href="https://zhangyuhu.github.io/posts/basic_knowledge/linuxsys/systemmanagement/linux%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/" /><link rel="next" href="https://zhangyuhu.github.io/posts/basic_knowledge/linuxsys/linux%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F/" /><link rel="stylesheet" href="/css/style.min.d09a08388620d07592fcb288b74e9f4434a352d4869011bd6c06619079103da00fcccceb4fa6fce14315bef50c9be97c6bc29582e3968d9521c60ef89c6de806.css" integrity="sha512-0JoIOIYg0HWS/LKIt06fRDSjUtSGkBG9bAZhkHkQPaAPzMzrT6b84UMVvvUMm+l8a8KVguOWjZUhxg74nG3oBg=="><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "LinuxSys:Linux知识",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/zhangyuhu.github.io\/posts\/basic_knowledge\/linuxsys\/linuxknowledge\/"
+        },"image": [{
+                            "@type": "ImageObject",
+                            "url": "https:\/\/zhangyuhu.github.io\/images\/Apple-Devices-Preview.png",
+                            "width":  3200 ,
+                            "height":  2048 
+                        }],"genre": "posts","keywords": "Linux, 基础知识","wordcount":  1038 ,
+        "url": "https:\/\/zhangyuhu.github.io\/posts\/basic_knowledge\/linuxsys\/linuxknowledge\/","datePublished": "2026-03-16T13:52:52+08:00","dateModified": "2026-03-16T13:11:52+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "zhangyuhu"
+            },"description": "Linux知识介绍"
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="这是我的网站"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/" title="文章"><i class='fas fa-archive fa-fw fa-sm'></i> 文章 </a><a class="menu-item" href="/tags/"><i class='fas fa-tags fa-fw fa-sm'></i> 标签 </a><a class="menu-item" href="/categories/"><i class='fas fa-th fa-fw fa-sm'></i> 分类 </a><a class="menu-item" href="/about/"><i class='fas fa-user-tie fa-fw fa-sm'></i> 关于 </a><a class="menu-item" href="/tool/"><i class='fas fa-cube fa-fw fa-sm'></i> 工具箱 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="这是我的网站"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="文章"><i class='fas fa-archive fa-fw fa-sm'></i>文章</a><a class="menu-item" href="/tags/" title=""><i class='fas fa-tags fa-fw fa-sm'></i>标签</a><a class="menu-item" href="/categories/" title=""><i class='fas fa-th fa-fw fa-sm'></i>分类</a><a class="menu-item" href="/about/" title=""><i class='fas fa-user-tie fa-fw fa-sm'></i>关于</a><a class="menu-item" href="/tool/" title=""><i class='fas fa-cube fa-fw fa-sm'></i>工具箱</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">LinuxSys:Linux知识</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://zhangyuhu.github.io/" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>zhangyuhu</a></span>&nbsp;<span class="post-category">included in <a href="/categories/linuxsys/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>LinuxSys</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2026-03-16">2026-03-16</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1038 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;3 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#linux-目录介绍">Linux 目录介绍</a></li>
+    <li><a href="#selinux">SELinux</a></li>
+    <li><a href="#top命令查看内容详解">top命令查看内容详解</a></li>
+    <li><a href="#net">net</a>
+      <ul>
+        <li><a href="#基础">基础</a></li>
+        <li><a href="#配置">配置</a></li>
+        <li><a href="#dighostnslookup">dig、host、nslookup</a></li>
+        <li><a href="#网络故障排查">网络故障排查</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><blockquote>
+<p>本文采用<a href="http://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreffer ">知识共享署名 4.0 国际许可协议</a>进行许可，转载时请注明原文链接，图片在使用时请保留全部内容，可适当缩放并在引用处附上图片所在的文章链接。</p>
+</blockquote>
+<div align='center' ><font size='70'>LinuxKnowledge</font></div>
+<!-- TOC -->
+<ul>
+<li><a href="#linux-%e7%9b%ae%e5%bd%95%e4%bb%8b%e7%bb%8d" rel="">Linux 目录介绍</a></li>
+<li><a href="#selinux" rel="">SELinux</a></li>
+<li><a href="#top%e5%91%bd%e4%bb%a4%e6%9f%a5%e7%9c%8b%e5%86%85%e5%ae%b9%e8%af%a6%e8%a7%a3" rel="">top命令查看内容详解</a></li>
+<li><a href="#net" rel="">net</a>
+<ul>
+<li><a href="#%e5%9f%ba%e7%a1%80" rel="">基础</a></li>
+<li><a href="#%e9%85%8d%e7%bd%ae" rel="">配置</a></li>
+<li><a href="#dighostnslookup" rel="">dig、host、nslookup</a></li>
+<li><a href="#%e7%bd%91%e7%bb%9c%e6%95%85%e9%9a%9c%e6%8e%92%e6%9f%a5" rel="">网络故障排查</a></li>
+</ul>
+</li>
+</ul>
+<!-- /TOC -->
+<h1 id="linux-目录介绍">Linux 目录介绍</h1>
+<blockquote>
+<p>/ 根目录，必须要挂载的目录 1-2G（主分区）<br>
+/bin： binary 缩写 可执行的二进制文件<br>
+/dev:  硬件设备 sda1 sda2<br>
+/etc:  绝大多数配置文件<br>
+/lib: 库文件夹<br>
+/lost+found 恢复<br>
+/mnt 挂载<br>
+/media 挂载<br>
+/boot 引导目录，建议单独挂载 大小100M（主分区）<br>
+/swap 交换分区，设置为物理内存的2倍，若物理内存&gt;2G，设为2G，类似Win下虚拟内存，休眠时会用到<br>
+/home 用户home目录所在地，容量依普通用户数量定，一般每个用户100M（主分区）<br>
+/opt 第三方应用程序默认安装目录,装大型软件<br>
+/usr 系统软件所在目录<br>
+/var 动态的应用程序数据，余下空间（10-20G）<br>
+/proc 系统实时信息， 存在于内存中，内存 cpu 等信息 数字命名的文件夹，对应进程Id cpuinfo meminfo acpi电源<br>
+/sbin 超级用户才能执行的命令程序</p>
+</blockquote>
+<h1 id="selinux">SELinux</h1>
+<blockquote>
+<p>sys 系统底层信息<br>
+tmp 临时目录，里面的文件会自动删除<br>
+usr 存放正常的应用软件<br>
+var 存放经常变化的一些信息， 例如log</p>
+</blockquote>
+<h1 id="top命令查看内容详解">top命令查看内容详解</h1>
+<p><a href="https://www.cnblogs.com/wangchen07026/p/7650688.html" target="_blank" rel="noopener noreffer ">top命令查看内容详解</a></p>
+<h1 id="net">net</h1>
+<h2 id="基础">基础</h2>
+<p>ip+子网掩码， 确定网络+主机<br>
+example:<br>
+192.168.1.1<br>
+255.255.255.0<br>
+网段：192.168.1<br>
+同一个网段主机之间通信, 还需要mac 地址。<br>
+192.168.1.1 + mac &lt;=&gt; arp &lt;=&gt; 192.168.1.2  (直连通信)</p>
+<p>不同网段主机之间通信，需要路由/网关 （不同网络之间传输数据的功能叫路由功能）<br>
+路由表<br>
+目标网络         子网掩码中             出接口<br>
+192.168.1.0     255.255.255.0        eth0<br>
+172.16.1.0      255.255.0.0          eth1<br>
+61.1.1.0        255.255.255.252      eth2</p>
+<p>计算机需要向不同网段主机发送信息的时候会将req 发给路由器，路由根据目标地址查询路由表，找到出接口并发给目标地址。<br>
+计算机上的配置的网关，用于路由。</p>
+<p>域名：用于管理ip地址
+.net .com .org .edu .gov	域名类型
+baidu						域名
+www							主机名（可能有多台）</p>
+<p>域名:126.com
+mail.126.com  	邮件服务
+ftp.126.com		ftp服务
+<a href="https://www.126.com" target="_blank" rel="noopener noreffer ">www.126.com</a>		网页服务</p>
+<p>DNS 域名与ip地址转换 DNS服务由DNS服务器提供，<br>
+访问www.baidu.com  流程:<br>
+my computer =&gt; req:DNS 请求 =&gt; DNS 服务器:61.134.1.4<br>
+DNS 服务器 =&gt;返回 域名的ip地址 =&gt;my computer<br>
+my computer =&gt; ip =&gt; <a href="https://www.baidu.com" target="_blank" rel="noopener noreffer ">www.baidu.com</a>:ip</p>
+<h2 id="配置">配置</h2>
+<p>配置一台可以局域网通信的计算机:</p>
+<pre><code>ip地址
+子网掩码
+</code></pre>
+<p>配置一台可以跨网段通信的计算机:</p>
+<pre><code>ip地址
+子网掩码
+网关
+</code></pre>
+<p>配置一台可以上网的计算机:</p>
+<pre><code>ip地址
+子网掩码
+网关
+DNS
+</code></pre>
+<h2 id="dighostnslookup">dig、host、nslookup</h2>
+<p><a href="https://blog.51cto.com/liuzhengwei521/2403596?source=dra" target="_blank" rel="noopener noreffer ">dig、host、nslookup命令用法</a></p>
+<h2 id="网络故障排查">网络故障排查</h2>
+<p>从底层到高层，从自身到外部</p>
+<ol>
+<li>配置信息,ip 子网 网关 DNS 信息是否正确</li>
+<li>查看到达网关是否联通 ping 网关ip</li>
+<li>差看DNS解析是否正常:host  域名 / traceroute ..查看是否有路由出了问题</li>
+</ol></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2026-03-16</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://zhangyuhu.github.io/posts/basic_knowledge/linuxsys/linuxknowledge/" data-title="LinuxSys:Linux知识" data-hashtags="Linux,基础知识"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://zhangyuhu.github.io/posts/basic_knowledge/linuxsys/linuxknowledge/" data-hashtag="Linux"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://zhangyuhu.github.io/posts/basic_knowledge/linuxsys/linuxknowledge/" data-title="LinuxSys:Linux知识"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://zhangyuhu.github.io/posts/basic_knowledge/linuxsys/linuxknowledge/" data-title="LinuxSys:Linux知识"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://zhangyuhu.github.io/posts/basic_knowledge/linuxsys/linuxknowledge/" data-title="LinuxSys:Linux知识" data-ralateuid="ji"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/linux/">Linux</a>,&nbsp;<a href="/tags/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">基础知识</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/basic_knowledge/linuxsys/systemmanagement/linux%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/" class="prev" rel="prev" title="LinuxSys:linux系统管理相关知识"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>LinuxSys:linux系统管理相关知识</a>
+            <a href="/posts/basic_knowledge/linuxsys/linux%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F/" class="next" rel="next" title="LinuxSys:Linux环境变量">LinuxSys:Linux环境变量<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="giscus" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://giscus.app">Giscus</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">为天地立心,为生民立命,为往圣继绝学,为万世开太平</div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2023 - 2026</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://zhangyuhu.github.io/" target="_blank">zhangyuhu</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="http://creativecommons.org/licenses/by/4.0/" target="_blank">知识共享署名 4.0 国际许可协议</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/css/lightgallery-bundle.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/twemoji@14.0.2/dist/twemoji.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/lightgallery.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/thumbnail/lg-thumbnail.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/zoom/lg-zoom.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@8.6.0/dist/index.umd.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":100},"comment":{"giscus":{"category":"Comments","categoryId":"DIC_kwDOIx2Cjs4CTnUX","darkTheme":"dark","emitMetadata":"0","inputPosition":"bottom","lang":"en","lazyLoading":false,"lightTheme":"light","mapping":"pathname","reactionsEnabled":"1","repo":"zhangyuhu/zhangyuhu.github.io","repoId":"R_kgDOIx2Cjg"}},"data":{"id-1":"HOME","id-2":"HOME"},"lightgallery":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"},"twemoji":true,"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.f1b10c54ef8e7ea0c938baba89a68e47962cb91f87edfcf0ae7abf0ec7bbb510e5d980a2b5a69686d7a44eae747183e3ed5cd960ed6fe66552c947e6fca4ff67.js" integrity="sha512-8bEMVO+OfqDJOLq6iaaOR5YsuR+H7fzwrnq/Dse7tRDl2YCitaaWhtekTq50cYPj7VzZYO1v5mVSyUfm/KT/Zw=="></script></body>
+</html>

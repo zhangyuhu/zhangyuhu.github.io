@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>ROS:ROS 2 环境变量 - 这是我的网站</title><meta name="Description" content="ROS 2 环境变量介绍"><meta property="og:title" content="ROS:ROS 2 环境变量" />
+<meta property="og:description" content="ROS 2 环境变量介绍" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zhangyuhu.github.io/posts/basic_knowledge/ros/31-ros-2-%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F/" /><meta property="og:image" content="https://zhangyuhu.github.io/logo.png" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-01-22T13:52:52+08:00" />
+<meta property="article:modified_time" content="2023-01-30T13:11:52+08:00" /><meta property="og:site_name" content="我的网站" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://zhangyuhu.github.io/logo.png" /><meta name="twitter:title" content="ROS:ROS 2 环境变量"/>
+<meta name="twitter:description" content="ROS 2 环境变量介绍"/>
+<meta name="application-name" content="我的网站">
+<meta name="apple-mobile-web-app-title" content="我的网站"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://zhangyuhu.github.io/posts/basic_knowledge/ros/31-ros-2-%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F/" /><link rel="prev" href="https://zhangyuhu.github.io/posts/basic_knowledge/ros/10-qos/" /><link rel="next" href="https://zhangyuhu.github.io/posts/basic_knowledge/dds/dds-1/" /><link rel="stylesheet" href="/css/style.min.d09a08388620d07592fcb288b74e9f4434a352d4869011bd6c06619079103da00fcccceb4fa6fce14315bef50c9be97c6bc29582e3968d9521c60ef89c6de806.css" integrity="sha512-0JoIOIYg0HWS/LKIt06fRDSjUtSGkBG9bAZhkHkQPaAPzMzrT6b84UMVvvUMm+l8a8KVguOWjZUhxg74nG3oBg=="><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "ROS:ROS 2 环境变量",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/zhangyuhu.github.io\/posts\/basic_knowledge\/ros\/31-ros-2-%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F\/"
+        },"image": [{
+                            "@type": "ImageObject",
+                            "url": "https:\/\/zhangyuhu.github.io\/images\/Apple-Devices-Preview.png",
+                            "width":  3200 ,
+                            "height":  2048 
+                        }],"genre": "posts","keywords": "ROS, ROS2, 环境变量","wordcount":  1156 ,
+        "url": "https:\/\/zhangyuhu.github.io\/posts\/basic_knowledge\/ros\/31-ros-2-%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F\/","datePublished": "2023-01-22T13:52:52+08:00","dateModified": "2023-01-30T13:11:52+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "zhangyuhu"
+            },"description": "ROS 2 环境变量介绍"
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="这是我的网站"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/" title="文章"><i class='fas fa-archive fa-fw fa-sm'></i> 文章 </a><a class="menu-item" href="/tags/"><i class='fas fa-tags fa-fw fa-sm'></i> 标签 </a><a class="menu-item" href="/categories/"><i class='fas fa-th fa-fw fa-sm'></i> 分类 </a><a class="menu-item" href="/about/"><i class='fas fa-user-tie fa-fw fa-sm'></i> 关于 </a><a class="menu-item" href="/tool/"><i class='fas fa-cube fa-fw fa-sm'></i> 工具箱 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="这是我的网站"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="文章"><i class='fas fa-archive fa-fw fa-sm'></i>文章</a><a class="menu-item" href="/tags/" title=""><i class='fas fa-tags fa-fw fa-sm'></i>标签</a><a class="menu-item" href="/categories/" title=""><i class='fas fa-th fa-fw fa-sm'></i>分类</a><a class="menu-item" href="/about/" title=""><i class='fas fa-user-tie fa-fw fa-sm'></i>关于</a><a class="menu-item" href="/tool/" title=""><i class='fas fa-cube fa-fw fa-sm'></i>工具箱</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">ROS:ROS 2 环境变量</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://zhangyuhu.github.io/" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>zhangyuhu</a></span>&nbsp;<span class="post-category">included in <a href="/categories/ros/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>ROS</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-01-22">2023-01-22</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1156 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;3 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#ros-2-环境变量总览按功能模块分类">ROS 2 环境变量总览（按功能模块分类）</a></li>
+    <li><a href="#-重点总结">🧠 重点总结</a></li>
+    <li><a href="#-实用命令">🧰 实用命令</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><blockquote>
+<p>本文采用<a href="http://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreffer ">知识共享署名 4.0 国际许可协议</a>进行许可，转载时请注明原文链接，图片在使用时请保留全部内容，可适当缩放并在引用处附上图片所在的文章链接。</p>
+</blockquote>
+<p>[TOC]</p>
+<h1 id="ros-2-环境变量总览按功能模块分类">ROS 2 环境变量总览（按功能模块分类）</h1>
+<table>
+<thead>
+<tr>
+<th>模块</th>
+<th>环境变量</th>
+<th>默认值</th>
+<th>作用说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>🧭 <strong>路径与包发现</strong></td>
+<td><code>AMENT_PREFIX_PATH</code></td>
+<td><code>/opt/ros/&lt;distro&gt;</code></td>
+<td>搜索 ROS 2 包的路径（ament index 基础）</td>
+</tr>
+<tr>
+<td></td>
+<td><code>COLCON_PREFIX_PATH</code></td>
+<td>同上</td>
+<td>colcon 查找已构建包的路径</td>
+</tr>
+<tr>
+<td></td>
+<td><code>ROS_PACKAGE_PATH</code></td>
+<td><em>(无)</em></td>
+<td>兼容 ROS 1 的路径变量，ROS 2 通常不用</td>
+</tr>
+<tr>
+<td></td>
+<td><code>AMENT_INDEX_PATH</code></td>
+<td>自动生成</td>
+<td>ament 索引资源查找路径</td>
+</tr>
+<tr>
+<td></td>
+<td><code>PYTHONPATH</code></td>
+<td><em>(系统默认)</em></td>
+<td>Python 模块查找路径（影响 launch 脚本）</td>
+</tr>
+<tr>
+<td></td>
+<td><code>LD_LIBRARY_PATH</code></td>
+<td><em>(系统默认)</em></td>
+<td>动态库查找路径，影响共享库加载</td>
+</tr>
+<tr>
+<td></td>
+<td><code>PATH</code></td>
+<td><em>(系统默认)</em></td>
+<td>可执行文件查找路径，影响 <code>ros2</code> 命令</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<table>
+<thead>
+<tr>
+<th>模块</th>
+<th>环境变量</th>
+<th>默认值</th>
+<th>作用说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>⚙️ <strong>节点运行与初始化</strong></td>
+<td><code>ROS_DOMAIN_ID</code></td>
+<td><code>0</code></td>
+<td>DDS Domain ID，用于网络隔离</td>
+</tr>
+<tr>
+<td></td>
+<td><code>ROS_NAMESPACE</code></td>
+<td><em>(无)</em></td>
+<td>为所有节点设置默认命名空间</td>
+</tr>
+<tr>
+<td></td>
+<td><code>ROS_ARGS</code></td>
+<td><em>(无)</em></td>
+<td>启动节点时统一注入参数，例如 <code>--ros-args -r foo:=bar</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>ROS_LOCALHOST_ONLY</code></td>
+<td><code>0</code></td>
+<td>限制通信仅在本地 loopback（0=禁用，1=启用）</td>
+</tr>
+<tr>
+<td></td>
+<td><code>ROS_SECURITY_ENABLE</code></td>
+<td><code>false</code></td>
+<td>是否启用安全通信 (SROS2)</td>
+</tr>
+<tr>
+<td></td>
+<td><code>ROS_SECURITY_STRATEGY</code></td>
+<td><code>Enforce</code></td>
+<td>安全策略：<code>Enforce</code> 或 <code>Permissive</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>ROS_SECURITY_KEYSTORE</code></td>
+<td><em>(无)</em></td>
+<td>指定安全密钥存储路径</td>
+</tr>
+<tr>
+<td></td>
+<td><code>RCUTILS_COLORIZED_OUTPUT</code></td>
+<td><code>1</code></td>
+<td>控制日志输出是否彩色显示</td>
+</tr>
+<tr>
+<td></td>
+<td><code>RCUTILS_CONSOLE_OUTPUT_FORMAT</code></td>
+<td><code>{severity} [{name}]: {message}</code></td>
+<td>控制日志格式</td>
+</tr>
+<tr>
+<td></td>
+<td><code>RCUTILS_LOGGING_BUFFERED_STREAM</code></td>
+<td><code>1</code></td>
+<td>是否启用缓冲日志输出</td>
+</tr>
+<tr>
+<td></td>
+<td><code>RCUTILS_LOGGING_USE_STDOUT</code></td>
+<td><code>0</code></td>
+<td>是否将日志输出到 stdout</td>
+</tr>
+<tr>
+<td></td>
+<td><code>RCUTILS_LOGGING_USE_STDERR</code></td>
+<td><code>1</code></td>
+<td>是否将日志输出到 stderr</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<table>
+<thead>
+<tr>
+<th>模块</th>
+<th>环境变量</th>
+<th>默认值</th>
+<th>作用说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>🧩 <strong>中间件（RMW 层）</strong></td>
+<td><code>RMW_IMPLEMENTATION</code></td>
+<td><code>rmw_fastrtps_cpp</code> (或 <code>rmw_cyclonedds_cpp</code>)</td>
+<td>指定使用的 RMW 实现</td>
+</tr>
+<tr>
+<td></td>
+<td><code>RMW_LOG_SEVERITY</code></td>
+<td><code>Info</code></td>
+<td>设置 RMW 层日志级别</td>
+</tr>
+<tr>
+<td></td>
+<td><code>RMW_CONNEXT_ENABLE_LOGGING</code></td>
+<td><code>0</code></td>
+<td>是否启用 RTI Connext 日志</td>
+</tr>
+<tr>
+<td></td>
+<td><code>RMW_FASTRTPS_USE_QOS_FROM_XML</code></td>
+<td><code>false</code></td>
+<td>是否从 XML 文件加载 QoS</td>
+</tr>
+<tr>
+<td></td>
+<td><code>RMW_FASTRTPS_USE_QOS_PROFILES_FROM_XML</code></td>
+<td><em>(无)</em></td>
+<td>QoS 配置 XML 路径</td>
+</tr>
+<tr>
+<td></td>
+<td><code>RMW_CYCLONEDDS_URI</code></td>
+<td><em>(无)</em></td>
+<td>CycloneDDS 配置文件路径</td>
+</tr>
+<tr>
+<td></td>
+<td><code>RMW_IMPLEMENTATION_VALIDATE_TOPIC_NAME</code></td>
+<td><code>1</code></td>
+<td>是否验证话题名称合法性</td>
+</tr>
+<tr>
+<td></td>
+<td><code>ROS_DISABLE_BUILTIN_TOPICS</code></td>
+<td><code>0</code></td>
+<td>禁用 DDS 内建主题（部分实现支持）</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<table>
+<thead>
+<tr>
+<th>模块</th>
+<th>环境变量</th>
+<th>默认值</th>
+<th>作用说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>🪪 <strong>参数与 QoS 配置</strong></td>
+<td><code>ROS_PARAM_FILE</code></td>
+<td><em>(无)</em></td>
+<td>从指定 YAML 文件加载参数</td>
+</tr>
+<tr>
+<td></td>
+<td><code>ROS_LOG_DIR</code></td>
+<td><code>~/.ros/log</code></td>
+<td>日志文件输出目录</td>
+</tr>
+<tr>
+<td></td>
+<td><code>ROS_LOG_FILENAME_FORMAT</code></td>
+<td><code>{datetime}_{pid}</code></td>
+<td>日志文件名格式</td>
+</tr>
+<tr>
+<td></td>
+<td><code>ROS_AUTOMATIC_DISCOVERY_RANGE</code></td>
+<td><code>SUBNET</code></td>
+<td>CycloneDDS 自动发现范围</td>
+</tr>
+<tr>
+<td></td>
+<td><code>ROS_DISCOVERY_SERVER</code></td>
+<td><em>(无)</em></td>
+<td>DDS discovery server 地址列表</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<table>
+<thead>
+<tr>
+<th>模块</th>
+<th>环境变量</th>
+<th>默认值</th>
+<th>作用说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>🧪 <strong>调试与性能分析</strong></td>
+<td><code>RCUTILS_LOGGING_MIN_SEVERITY</code></td>
+<td><code>Info</code></td>
+<td>设置最小日志级别</td>
+</tr>
+<tr>
+<td></td>
+<td><code>RCL_ASSERT_RMW_ID_MATCHES</code></td>
+<td><em>(无)</em></td>
+<td>运行时验证 RMW ID 是否匹配</td>
+</tr>
+<tr>
+<td></td>
+<td><code>RCL_LOG_LEVEL</code></td>
+<td><code>Info</code></td>
+<td>RCL 层日志级别</td>
+</tr>
+<tr>
+<td></td>
+<td><code>RMW_TRACING_ENABLE</code></td>
+<td><code>false</code></td>
+<td>是否启用 RMW trace（需编译支持）</td>
+</tr>
+<tr>
+<td></td>
+<td><code>RCL_YAML_PARAM_FILE</code></td>
+<td><em>(无)</em></td>
+<td>指定 YAML 参数文件</td>
+</tr>
+<tr>
+<td></td>
+<td><code>RCUTILS_TIME_OVERRIDE_TYPE</code></td>
+<td><em>(无)</em></td>
+<td>时间源重定向（模拟时间/系统时间）</td>
+</tr>
+<tr>
+<td></td>
+<td><code>RCUTILS_TIME_OVERRIDE_SOURCE_FILE_PATH</code></td>
+<td><em>(无)</em></td>
+<td>时间源文件路径</td>
+</tr>
+<tr>
+<td></td>
+<td><code>RCL_ENABLE_TOPIC_STATISTICS</code></td>
+<td><code>false</code></td>
+<td>启用话题统计功能</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<table>
+<thead>
+<tr>
+<th>模块</th>
+<th>环境变量</th>
+<th>默认值</th>
+<th>作用说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>🚀 <strong>Launch 系统</strong></td>
+<td><code>LAUNCH_SERVICE_TIMEOUT</code></td>
+<td><code>10s</code></td>
+<td>LaunchService 启动等待时间</td>
+</tr>
+<tr>
+<td></td>
+<td><code>LAUNCH_LOG_LEVEL</code></td>
+<td><code>info</code></td>
+<td>Launch 框架日志级别</td>
+</tr>
+<tr>
+<td></td>
+<td><code>LAUNCH_CONFIG_PATH</code></td>
+<td><em>(无)</em></td>
+<td>指定自定义配置文件路径</td>
+</tr>
+<tr>
+<td></td>
+<td><code>PYTHONUNBUFFERED</code></td>
+<td><code>1</code></td>
+<td>Python 输出不缓冲（方便实时日志）</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<table>
+<thead>
+<tr>
+<th>模块</th>
+<th>环境变量</th>
+<th>默认值</th>
+<th>作用说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>🌐 <strong>网络与发现</strong></td>
+<td><code>CYCLONEDDS_URI</code></td>
+<td><em>(无)</em></td>
+<td>CycloneDDS 配置文件路径</td>
+</tr>
+<tr>
+<td></td>
+<td><code>FASTRTPS_DEFAULT_PROFILES_FILE</code></td>
+<td><em>(无)</em></td>
+<td>FastDDS 配置文件路径</td>
+</tr>
+<tr>
+<td></td>
+<td><code>ROS_DISCOVERY_SERVER</code></td>
+<td><em>(无)</em></td>
+<td>指定 discovery server 列表</td>
+</tr>
+<tr>
+<td></td>
+<td><code>ROS_AUTOMATIC_DISCOVERY_RANGE</code></td>
+<td><code>SUBNET</code></td>
+<td>控制节点自动发现范围</td>
+</tr>
+<tr>
+<td></td>
+<td><code>ROS_LOCALHOST_ONLY</code></td>
+<td><code>0</code></td>
+<td>限制通信在本地 loopback</td>
+</tr>
+<tr>
+<td></td>
+<td><code>RMW_FASTRTPS_USE_QOS_FROM_XML</code></td>
+<td><code>false</code></td>
+<td>从 XML 加载 QoS 配置</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<table>
+<thead>
+<tr>
+<th>模块</th>
+<th>环境变量</th>
+<th>默认值</th>
+<th>作用说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>🔐 <strong>安全 (SROS2)</strong></td>
+<td><code>ROS_SECURITY_ENABLE</code></td>
+<td><code>false</code></td>
+<td>是否启用 SROS2</td>
+</tr>
+<tr>
+<td></td>
+<td><code>ROS_SECURITY_STRATEGY</code></td>
+<td><code>Enforce</code></td>
+<td>安全策略：<code>Enforce</code> / <code>Permissive</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>ROS_SECURITY_KEYSTORE</code></td>
+<td><em>(无)</em></td>
+<td>密钥存储路径</td>
+</tr>
+<tr>
+<td></td>
+<td><code>ROS_SECURITY_ROOT_DIRECTORY</code></td>
+<td><em>(无)</em></td>
+<td>根目录（用于手动管理）</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<table>
+<thead>
+<tr>
+<th>模块</th>
+<th>环境变量</th>
+<th>默认值</th>
+<th>作用说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>📦 <strong>构建与工具</strong></td>
+<td><code>COLCON_LOG_PATH</code></td>
+<td><code>~/.colcon/log</code></td>
+<td>colcon 构建日志路径</td>
+</tr>
+<tr>
+<td></td>
+<td><code>CMAKE_PREFIX_PATH</code></td>
+<td><em>(自动设置)</em></td>
+<td>CMake 查找依赖路径</td>
+</tr>
+<tr>
+<td></td>
+<td><code>AMENT_TRACE_SETUP_FILES</code></td>
+<td><code>0</code></td>
+<td>打印每个被 source 的 setup 文件</td>
+</tr>
+<tr>
+<td></td>
+<td><code>COLCON_TRACE_SETUP_FILES</code></td>
+<td><code>0</code></td>
+<td>打印 colcon setup 跟踪</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h1 id="-重点总结">🧠 重点总结</h1>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>常用变量</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>包发现</td>
+<td><code>AMENT_PREFIX_PATH</code></td>
+<td>控制包查找路径</td>
+</tr>
+<tr>
+<td>网络通信</td>
+<td><code>ROS_DOMAIN_ID</code> / <code>ROS_LOCALHOST_ONLY</code></td>
+<td>控制 DDS 网络</td>
+</tr>
+<tr>
+<td>中间件选择</td>
+<td><code>RMW_IMPLEMENTATION</code></td>
+<td>选择使用的 DDS 实现</td>
+</tr>
+<tr>
+<td>日志管理</td>
+<td><code>ROS_LOG_DIR</code> / <code>RCUTILS_CONSOLE_OUTPUT_FORMAT</code></td>
+<td>控制日志输出</td>
+</tr>
+<tr>
+<td>安全通信</td>
+<td><code>ROS_SECURITY_*</code></td>
+<td>启用 SROS2</td>
+</tr>
+<tr>
+<td>Launch 调试</td>
+<td><code>LAUNCH_LOG_LEVEL</code> / <code>PYTHONUNBUFFERED</code></td>
+<td>控制启动日志行为</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h1 id="-实用命令">🧰 实用命令</h1>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-1">1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-2">2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-3">3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-4">4</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-5">5</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># 查看当前 ROS 2 环境变量</span>
+</span></span><span style="display:flex;"><span>env | grep -E <span style="color:#c30">&#34;ROS_|RMW_|AMENT_|RCUTILS_&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># 查看特定变量值</span>
+</span></span><span style="display:flex;"><span><span style="color:#366">echo</span> <span style="color:#033">$ROS_DOMAIN_ID</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2023-01-30</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://zhangyuhu.github.io/posts/basic_knowledge/ros/31-ros-2-%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F/" data-title="ROS:ROS 2 环境变量" data-hashtags="ROS,ROS2,环境变量"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://zhangyuhu.github.io/posts/basic_knowledge/ros/31-ros-2-%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F/" data-hashtag="ROS"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://zhangyuhu.github.io/posts/basic_knowledge/ros/31-ros-2-%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F/" data-title="ROS:ROS 2 环境变量"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://zhangyuhu.github.io/posts/basic_knowledge/ros/31-ros-2-%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F/" data-title="ROS:ROS 2 环境变量"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://zhangyuhu.github.io/posts/basic_knowledge/ros/31-ros-2-%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F/" data-title="ROS:ROS 2 环境变量" data-ralateuid="ji"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/ros/">ROS</a>,&nbsp;<a href="/tags/ros2/">ROS2</a>,&nbsp;<a href="/tags/%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F/">环境变量</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/basic_knowledge/ros/10-qos/" class="prev" rel="prev" title="ROS:ROS2 QOS"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>ROS:ROS2 QOS</a>
+            <a href="/posts/basic_knowledge/dds/dds-1/" class="next" rel="next" title="DDS:分布式实时通信-DDS">DDS:分布式实时通信-DDS<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="giscus" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://giscus.app">Giscus</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">为天地立心,为生民立命,为往圣继绝学,为万世开太平</div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2023 - 2026</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://zhangyuhu.github.io/" target="_blank">zhangyuhu</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="http://creativecommons.org/licenses/by/4.0/" target="_blank">知识共享署名 4.0 国际许可协议</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/css/lightgallery-bundle.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/twemoji@14.0.2/dist/twemoji.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/lightgallery.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/thumbnail/lg-thumbnail.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/zoom/lg-zoom.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@8.6.0/dist/index.umd.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":100},"comment":{"giscus":{"category":"Comments","categoryId":"DIC_kwDOIx2Cjs4CTnUX","darkTheme":"dark","emitMetadata":"0","inputPosition":"bottom","lang":"en","lazyLoading":false,"lightTheme":"light","mapping":"pathname","reactionsEnabled":"1","repo":"zhangyuhu/zhangyuhu.github.io","repoId":"R_kgDOIx2Cjg"}},"data":{"id-1":"HOME","id-2":"HOME"},"lightgallery":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"},"twemoji":true,"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.f1b10c54ef8e7ea0c938baba89a68e47962cb91f87edfcf0ae7abf0ec7bbb510e5d980a2b5a69686d7a44eae747183e3ed5cd960ed6fe66552c947e6fca4ff67.js" integrity="sha512-8bEMVO+OfqDJOLq6iaaOR5YsuR+H7fzwrnq/Dse7tRDl2YCitaaWhtekTq50cYPj7VzZYO1v5mVSyUfm/KT/Zw=="></script></body>
+</html>

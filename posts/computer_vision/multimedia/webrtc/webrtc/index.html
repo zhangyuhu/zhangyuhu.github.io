@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title> - 这是我的网站</title><meta name="Description" content="这是[zhangyuhu]的网站"><meta property="og:title" content="" />
+<meta property="og:description" content="[TOC] WebRTC: Web browser Real Time Communication 简介 WebRTC是Google于2011年启动的Web实时通信项目。它是一个开源和免费的项目，为移动应用程序和Web浏览器提供" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zhangyuhu.github.io/posts/computer_vision/multimedia/webrtc/webrtc/" /><meta property="og:image" content="https://zhangyuhu.github.io/logo.png" /><meta property="article:section" content="posts" />
+
+<meta property="article:modified_time" content="2026-03-12T22:29:16+08:00" /><meta property="og:site_name" content="我的网站" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://zhangyuhu.github.io/logo.png" /><meta name="twitter:title" content=""/>
+<meta name="twitter:description" content="[TOC] WebRTC: Web browser Real Time Communication 简介 WebRTC是Google于2011年启动的Web实时通信项目。它是一个开源和免费的项目，为移动应用程序和Web浏览器提供"/>
+<meta name="application-name" content="我的网站">
+<meta name="apple-mobile-web-app-title" content="我的网站"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://zhangyuhu.github.io/posts/computer_vision/multimedia/webrtc/webrtc/" /><link rel="prev" href="https://zhangyuhu.github.io/posts/computer_vision/multimedia/%E5%AE%9E%E6%97%B6%E9%9F%B3%E8%A7%86%E9%A2%91%E5%AE%9E%E7%94%A8%E6%8A%80%E6%9C%AF/cdn/" /><link rel="next" href="https://zhangyuhu.github.io/posts/computer_vision/multimedia/webrtc/opentera-webrtc/" /><link rel="stylesheet" href="/css/style.min.d09a08388620d07592fcb288b74e9f4434a352d4869011bd6c06619079103da00fcccceb4fa6fce14315bef50c9be97c6bc29582e3968d9521c60ef89c6de806.css" integrity="sha512-0JoIOIYg0HWS/LKIt06fRDSjUtSGkBG9bAZhkHkQPaAPzMzrT6b84UMVvvUMm+l8a8KVguOWjZUhxg74nG3oBg=="><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/zhangyuhu.github.io\/posts\/computer_vision\/multimedia\/webrtc\/webrtc\/"
+        },"image": [{
+                            "@type": "ImageObject",
+                            "url": "https:\/\/zhangyuhu.github.io\/images\/Apple-Devices-Preview.png",
+                            "width":  3200 ,
+                            "height":  2048 
+                        }],"genre": "posts","wordcount":  4091 ,
+        "url": "https:\/\/zhangyuhu.github.io\/posts\/computer_vision\/multimedia\/webrtc\/webrtc\/","dateModified": "2026-03-12T22:29:16+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "zhangyuhu"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="这是我的网站"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/" title="文章"><i class='fas fa-archive fa-fw fa-sm'></i> 文章 </a><a class="menu-item" href="/tags/"><i class='fas fa-tags fa-fw fa-sm'></i> 标签 </a><a class="menu-item" href="/categories/"><i class='fas fa-th fa-fw fa-sm'></i> 分类 </a><a class="menu-item" href="/about/"><i class='fas fa-user-tie fa-fw fa-sm'></i> 关于 </a><a class="menu-item" href="/tool/"><i class='fas fa-cube fa-fw fa-sm'></i> 工具箱 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="这是我的网站"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="文章"><i class='fas fa-archive fa-fw fa-sm'></i>文章</a><a class="menu-item" href="/tags/" title=""><i class='fas fa-tags fa-fw fa-sm'></i>标签</a><a class="menu-item" href="/categories/" title=""><i class='fas fa-th fa-fw fa-sm'></i>分类</a><a class="menu-item" href="/about/" title=""><i class='fas fa-user-tie fa-fw fa-sm'></i>关于</a><a class="menu-item" href="/tool/" title=""><i class='fas fa-cube fa-fw fa-sm'></i>工具箱</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX"></h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://zhangyuhu.github.io/" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>zhangyuhu</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;4091 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;9 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#webrtc--web-browser-real-time-communication">WebRTC:  Web browser Real Time Communication</a>
+      <ul>
+        <li><a href="#简介">简介</a></li>
+        <li><a href="#webrtc-通信过程">WebRTC 通信过程</a>
+          <ul>
+            <li><a href="#基本概念">基本概念</a></li>
+          </ul>
+        </li>
+        <li><a href="#媒体协商过程">媒体协商过程</a>
+          <ul>
+            <li><a href="#基本概念-1">基本概念</a></li>
+            <li><a href="#视频编码协商的具体步骤">视频编码协商的具体步骤</a>
+              <ul>
+                <li><a href="#步骤一创建-rtcpeerconnection-对象">步骤一：创建 RTCPeerConnection 对象</a></li>
+                <li><a href="#步骤二发起方生成-offer">步骤二：发起方生成 Offer</a></li>
+                <li><a href="#步骤三响应方接收-offer-并生成-answer">步骤三：响应方接收 Offer 并生成 Answer</a></li>
+                <li><a href="#步骤四发起方接收-answer-并完成协商">步骤四：发起方接收 Answer 并完成协商</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><a href="#端与端建立连接">端与端建立连接</a></li>
+      </ul>
+    </li>
+    <li><a href="#宇树方案">宇树方案</a>
+      <ul>
+        <li><a href="#参考资料">参考资料</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>[TOC]</p>
+<h1 id="webrtc--web-browser-real-time-communication">WebRTC:  Web browser Real Time Communication</h1>
+<h2 id="简介">简介</h2>
+<p>WebRTC是Google于2011年启动的Web实时通信项目。它是一个开源和免费的项目，为移动应用程序和Web浏览器提供实时通信。它是一种新标准，扩展了Web浏览模型，以点对点的方式处理浏览器。此外，WebRTC标准（如JavaScript API、HTML5、底层通信协议等）由万维网联盟（W3C）和互联网工程任务组（IETF）共同定义，以便在未来的Web浏览器之间建立一个值得信赖的通信通道。本质上，WebRTC允许定义一个API，该API提供对设备上的麦克风和网络摄像头等输入外围设备的安全访问，以点对点的方式与远程设备共享或交换媒体数据、实时数据。</p>
+<p>特点：</p>
+<ul>
+<li>是基于浏览器的实时音视频（数据）通信技术</li>
+<li>免插件</li>
+<li>开源</li>
+<li>已被W3C纳入HTML5标准</li>
+<li>跨平台，跨浏览器，跨移动应用</li>
+<li>Mac OSX、Windows、iOS、Android、Linux</li>
+</ul>
+<p>WebRTC官网https://webrtc.org/，源码的实现网址https://webrtc.googlesource.com/src。</p>
+<h2 id="webrtc-通信过程">WebRTC 通信过程</h2>
+<h3 id="基本概念">基本概念</h3>
+<p>**STUN (Session Traversal Utilities for NAT) ** 只能UDP，告诉我暴露在广域网的地址IP port ，我通过映射的广域网地址进行P2P数据通信。</p>
+<p>**TURN( Traversal Using Relays around for NAT)  **UDP或TCP， 打洞失败后，提供服务器中转数据，通话双方数据都通过服务器，占服务器带宽较大 - 为了确保通话在绝大多数环境下可以正常工作。跨网只能用服务器中转（测试发现的） ，使用TURN这种情况在视频通话中占10%</p>
+<p>**ICE（Interactive Connectivity Establishment） **即交互式连接建立，是一种用于在不同网络环境下建立对等连接的技术。</p>
+<ul>
+<li>
+<p>ICE 的工作原理</p>
+<ul>
+<li>ICE 的主要目标是让两个端点（通常是浏览器或其他支持 WebRTC 的设备）在各种网络环境下找到彼此并建立直接的连接，以便进行实时数据传输，如音频、视频流或其他应用数据。它通过收集和交换两端的网络候选地址，并进行连接测试，来确定最佳的连接路径。</li>
+</ul>
+</li>
+<li>
+<p>ICE 候选者</p>
+<ul>
+<li>
+<p>类型</p>
+<p>：ICE 候选者是 ICE 用于建立连接的网络地址和端口信息。主要有以下几种类型。</p>
+<ul>
+<li><strong>主机候选者（Host Candidate）</strong>：这是本地设备的直接网络地址，通常是设备在局域网内的 IP 地址和端口。例如，在一个家庭网络中，主机候选者可能是设备的私有 IP 地址，如<code>192.168.1.100:5000</code>。</li>
+<li><strong>服务器反射候选者（Server - Reflexive Candidate）</strong>：当设备位于网络地址转换（NAT）之后时，服务器反射候选者用于获取设备在公网上的地址和端口。ICE 通过向 STUN（Session Traversal Utilities for NAT）服务器发送请求，STUN 服务器会返回设备在 NAT 外部的公网 IP 地址和端口，例如<code>203.0.113.1:6000</code>。</li>
+<li><strong>中继候选者（Relay Candidate）</strong>：如果设备无法通过主机候选者或服务器反射候选者建立连接，就会使用中继候选者。中继候选者通常是通过 TURN（Traversal Using Relay NAT）服务器进行中转的地址。TURN 服务器会分配一个中继地址，数据会先发送到 TURN 服务器，然后再由 TURN 服务器转发到目标设备。</li>
+</ul>
+</li>
+<li>
+<p><strong>收集与交换</strong>：在 WebRTC 中，<code>RTCPeerConnection</code>对象会自动收集本地的 ICE 候选者。收集完成后，通过信令服务器将本地的 ICE 候选者发送给远端对等体，同时接收远端对等体发送的 ICE 候选者。例如，在之前的代码示例中，通过<code>onicecandidate</code>事件处理函数将本地生成的 ICE 候选者发送给信令服务器，信令服务器再将其转发给远端对等体。</p>
+</li>
+</ul>
+</li>
+<li>
+<p>NAT 穿透与 ICE</p>
+<ul>
+<li><strong>NAT 的影响</strong>：网络地址转换（NAT）是一种在局域网和公网之间转换 IP 地址的技术，它使得多个局域网内的设备可以共享一个公网 IP 地址。然而，NAT 会导致外部设备难以直接访问局域网内的设备，这给对等连接的建立带来了困难。</li>
+<li><strong>ICE 如何实现 NAT 穿透</strong>：ICE 通过使用 STUN 和 TURN 服务器来实现 NAT 穿透。STUN 服务器帮助设备获取其在 NAT 外部的公网地址，使得对等体之间可以尝试直接连接。如果直接连接失败，TURN 服务器则作为中继，转发数据以绕过 NAT 限制。例如，当两端设备通过 STUN 获取到彼此的公网地址后，会首先尝试直接连接，如果因为 NAT 的限制无法成功，就会借助 TURN 服务器进行数据传输。</li>
+</ul>
+</li>
+<li>
+<p>连接建立与 ICE</p>
+<ul>
+<li><strong>连接测试</strong>：在交换 ICE 候选者后，两端设备会对彼此的候选者进行连接测试，以确定最佳的连接路径。测试过程通常是通过发送探测消息来检查候选者之间的可达性。例如，设备 A 会向设备 B 的每个 ICE 候选者发送探测消息，设备 B 收到后会返回响应，通过这种方式来确定哪些候选者可以建立有效的连接。</li>
+<li><strong>选择最佳路径</strong>：根据连接测试的结果，ICE 会选择一条最佳的连接路径。通常优先选择直接连接（即不通过中继）的路径，如果直接连接不可行，则选择通过 TURN 服务器中继的路径。一旦确定了最佳路径，两端设备就可以通过该路径进行实时数据传输。</li>
+</ul>
+</li>
+</ul>
+<p>ICE 通过收集和交换候选者信息、利用 STUN 和 TURN 服务器实现 NAT 穿透以及进行连接测试和路径选择，使得 WebRTC 能够在复杂的网络环境中建立可靠的对等连接，实现高效的实时通信。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./webrtc.assets/250050215053233.png"
+        data-srcset="./webrtc.assets/250050215053233.png, ./webrtc.assets/250050215053233.png 1.5x, ./webrtc.assets/250050215053233.png 2x"
+        data-sizes="auto"
+        alt="./webrtc.assets/250050215053233.png"
+        title="img" /></p>
+<ul>
+<li>
+<p>WebRTC 终端（两个）：本地和远端，负责音视频采集、编解码、NAT 穿越以及音视频数据传输等；</p>
+</li>
+<li>
+<p>Signal 信令服务器：自行实现的信令服务，负责信令处理，如加入房间、离开房间、媒体协商消息的传递等；</p>
+</li>
+<li>
+<p>STUN/TURN 服务器：负责获取 WebRTC 终端在公网的 IP 地址，以及 NAT 穿越失败后的数据中转服务。</p>
+<p>通信过程如下：</p>
+</li>
+</ul>
+<ol>
+<li>本地（WebRTC 终端）启动后，检测设备可用性，如果可用后开始进行音视频采集工作；</li>
+<li>本地就绪后，发送“加入房间”信令到 Signal 服务器；</li>
+<li>Signal 服务器创建房间，等待加入；</li>
+<li>对端（WebRTC 终端）同样操作，加入房间，并通知另一端；</li>
+<li>双端创建媒体连接对象RTCPeerConnection，进行媒体协商；</li>
+<li>双端进行连通性测试，最终建立连接；</li>
+<li>将采集到的音视频数据通过RTCPeerConnection对象进行编码，最终通过 P2P 传送给对端/本地，再进行解码、展示。</li>
+</ol>
+<p>第 6 步在建立连接进行 P2P 穿越时很有可能失败。当 P2P 穿越失败时，为了保障音视频数据仍然可以互通，则需要通过 TURN 服务器进行音视频数据中转。</p>
+<p>第二/三/四步：信令交互</p>
+<p>什么是信令服务器</p>
+<p>信令可以简单理解为消息，在协调通讯的过程中，为了建立一个 webRTC 的通讯过程，在通信双方彼此连接、传输媒体数据之前，它们要通过信令服务器交换一些信息，如加入房间、离开房间及媒体协商等，而这个过程在 webRTC 里面是没有实现的，需要自己搭建信令服务。</p>
+<h2 id="媒体协商过程">媒体协商过程</h2>
+<h3 id="基本概念-1">基本概念</h3>
+<ul>
+<li>
+<p><strong>SDP（会话描述协议）</strong>：是一种用于描述多媒体会话的文本协议，在 WebRTC 中，SDP 用于交换双方的媒体能力、网络信息和编码偏好等内容。</p>
+</li>
+<li>
+<p><strong>Offer/Answer 模型</strong>：WebRTC 采用 Offer/Answer 模型进行连接建立和编码协商。一方发送 Offer 消息，其中包含自己支持的编码格式等信息；另一方接收 Offer 后，根据自身能力生成 Answer 消息并返回，以此完成协商。</p>
+</li>
+</ul>
+<p>每端保持两个描述：描述本身的本地描述<code>LocalDescription</code>，描述呼叫的远端的远程描述<code>RemoteDescription</code>。</p>
+<h3 id="视频编码协商的具体步骤">视频编码协商的具体步骤</h3>
+<h4 id="步骤一创建-rtcpeerconnection-对象">步骤一：创建 RTCPeerConnection 对象</h4>
+<p>在进行视频编码协商之前，需要创建 <code>RTCPeerConnection</code> 对象，它是 WebRTC 连接的核心，负责管理连接的各个方面，包括媒体流的传输和编码协商。</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-1">1</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#069;font-weight:bold">const</span> pc <span style="color:#555">=</span> <span style="color:#069;font-weight:bold">new</span> RTCPeerConnection();
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="步骤二发起方生成-offer">步骤二：发起方生成 Offer</h4>
+<p>当一方（发起方）想要建立连接时，会调用 <code>createOffer</code> 方法生成一个会话描述（Offer）。这个描述包含了该方支持的媒体类型、编码格式、网络地址等信息。</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-1"> 1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-2"> 2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-3"> 3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-4"> 4</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-5"> 5</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-6"> 6</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-7"> 7</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-8"> 8</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-9"> 9</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-10"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-10">10</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-11"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-11">11</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span>pc.createOffer()
+</span></span><span style="display:flex;"><span>  .then((offer) =&gt; {
+</span></span><span style="display:flex;"><span>        <span style="color:#069;font-weight:bold">return</span> pc.setLocalDescription(offer);
+</span></span><span style="display:flex;"><span>    })
+</span></span><span style="display:flex;"><span>  .then(() =&gt; {
+</span></span><span style="display:flex;"><span>        <span style="color:#09f;font-style:italic">// 将 offer 发送给对方
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>        sendOfferToRemote(pc.localDescription);
+</span></span><span style="display:flex;"><span>    })
+</span></span><span style="display:flex;"><span>  .<span style="color:#069;font-weight:bold">catch</span>((error) =&gt; {
+</span></span><span style="display:flex;"><span>        console.error(<span style="color:#c30">&#39;创建 Offer 时出错:&#39;</span>, error);
+</span></span><span style="display:flex;"><span>    });
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>在 Offer 的 SDP 中，视频编码信息通常以 <code>m=</code>（媒体描述）和 <code>a=rtpmap</code>（RTP 映射）行的形式表示。例如：</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-1">1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-2">2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-3">3</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-plaintext" data-lang="plaintext"><span style="display:flex;"><span>m=video 9 UDP/TLS/RTP/SAVPF 96 97
+</span></span><span style="display:flex;"><span>a=rtpmap:96 H264/90000
+</span></span><span style="display:flex;"><span>a=rtpmap:97 VP8/90000
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>上述 SDP 片段表示发起方支持两种视频编码格式：H.264（负载类型 96）和 VP8（负载类型 97）。</p>
+<h4 id="步骤三响应方接收-offer-并生成-answer">步骤三：响应方接收 Offer 并生成 Answer</h4>
+<p>另一方（响应方）接收到发起方的 Offer 后，会调用 <code>setRemoteDescription</code> 方法设置远程描述，然后调用 <code>createAnswer</code> 方法生成自己的会话描述（Answer）。</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-1"> 1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-2"> 2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-3"> 3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-4"> 4</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-5"> 5</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-6"> 6</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-7"> 7</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-8"> 8</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-9"> 9</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-10"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-10">10</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-11"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-11">11</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-12"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-12">12</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-13"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-13">13</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-14"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-14">14</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-15"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-15">15</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-16"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-16">16</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#09f;font-style:italic">// 接收到对方的 Offer
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span><span style="color:#069;font-weight:bold">const</span> remoteOffer <span style="color:#555">=</span> receiveOfferFromRemote();
+</span></span><span style="display:flex;"><span>pc.setRemoteDescription(remoteOffer)
+</span></span><span style="display:flex;"><span>  .then(() =&gt; {
+</span></span><span style="display:flex;"><span>        <span style="color:#069;font-weight:bold">return</span> pc.createAnswer();
+</span></span><span style="display:flex;"><span>    })
+</span></span><span style="display:flex;"><span>  .then((answer) =&gt; {
+</span></span><span style="display:flex;"><span>        <span style="color:#069;font-weight:bold">return</span> pc.setLocalDescription(answer);
+</span></span><span style="display:flex;"><span>    })
+</span></span><span style="display:flex;"><span>  .then(() =&gt; {
+</span></span><span style="display:flex;"><span>        <span style="color:#09f;font-style:italic">// 将 answer 发送给对方
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>        sendAnswerToRemote(pc.localDescription);
+</span></span><span style="display:flex;"><span>    })
+</span></span><span style="display:flex;"><span>  .<span style="color:#069;font-weight:bold">catch</span>((error) =&gt; {
+</span></span><span style="display:flex;"><span>        console.error(<span style="color:#c30">&#39;创建 Answer 时出错:&#39;</span>, error);
+</span></span><span style="display:flex;"><span>    });
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>响应方在生成 Answer 时，会根据自己的支持情况选择合适的编码格式。如果响应方同时支持 H.264 和 VP8，它可以选择其中一种作为协商结果，并在 Answer 中明确表示。例如，如果选择 H.264 编码，Answer 的 SDP 可能如下：</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-1">1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-2">2</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-plaintext" data-lang="plaintext"><span style="display:flex;"><span>m=video 9 UDP/TLS/RTP/SAVPF 96
+</span></span><span style="display:flex;"><span>a=rtpmap:96 H264/90000
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="步骤四发起方接收-answer-并完成协商">步骤四：发起方接收 Answer 并完成协商</h4>
+<p>发起方接收到响应方的 Answer 后，调用 <code>setRemoteDescription</code> 方法设置远程描述。此时，双方的编码协商完成，连接将使用协商好的编码格式进行视频传输。</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-1">1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-2">2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-3">3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-4">4</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-5">5</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-6">6</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-7">7</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-8">8</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-9">9</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#09f;font-style:italic">// 接收到对方的 Answer
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span><span style="color:#069;font-weight:bold">const</span> remoteAnswer <span style="color:#555">=</span> receiveAnswerFromRemote();
+</span></span><span style="display:flex;"><span>pc.setRemoteDescription(remoteAnswer)
+</span></span><span style="display:flex;"><span>  .then(() =&gt; {
+</span></span><span style="display:flex;"><span>        console.log(<span style="color:#c30">&#39;连接建立成功，使用协商好的编码格式进行视频传输&#39;</span>);
+</span></span><span style="display:flex;"><span>    })
+</span></span><span style="display:flex;"><span>  .<span style="color:#069;font-weight:bold">catch</span>((error) =&gt; {
+</span></span><span style="display:flex;"><span>        console.error(<span style="color:#c30">&#39;设置远程描述时出错:&#39;</span>, error);
+</span></span><span style="display:flex;"><span>    });
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="端与端建立连接">端与端建立连接</h2>
+<p>媒体协商结束后，双端统一了传输协议、编解码器等，此时就需要建立连接开始音视频通信了。</p>
+<p>但 WebRTC 既要保持音视频通信的质量，又要保证联通性。所有，当同时存在多个有效连接时，它首先选择传输质量最好的线路，如能用内网连通就不用公网，优先 P2P 传输，如果 P2P 不通才会选择中继服务器（relay），因为中继方式会增加双端传输的时长。</p>
+<p>什么是 Candidate</p>
+<p>第五步最后，我们提到了媒体协商结束后，开始收集 Candidate，那么我们来了解下什么是 Candidate、以及它的作用是什么？
+ICE Candidate（ICE 候选者）：表示 WebRTC 与远端通信时使用的协议、IP 地址和端口，结构如下：</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-1">1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-2">2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-3">3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-4">4</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-5">5</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-6">6</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-7">7</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-8">8</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-9">9</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#a00;background-color:#faa">address:</span> <span style="color:#a00;background-color:#faa">xxx.xxx.xxx.xxx,</span> <span style="color:#09f;font-style:italic">// 本地IP地址
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>  <span style="color:#a00;background-color:#faa">port:</span> <span style="color:#a00;background-color:#faa">number,</span> <span style="color:#09f;font-style:italic">// 本地端口号
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>  <span style="color:#a00;background-color:#faa">type:</span> <span style="color:#a00;background-color:#faa">&#39;host/srflx/relay&#39;,</span> <span style="color:#09f;font-style:italic">// 候选者类型
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>  <span style="color:#a00;background-color:#faa">priority:</span> <span style="color:#a00;background-color:#faa">number,</span> <span style="color:#09f;font-style:italic">// 优先级
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>  <span style="color:#a00;background-color:#faa">protocol:</span> <span style="color:#a00;background-color:#faa">&#39;udp/tcp&#39;,</span> <span style="color:#09f;font-style:italic">// 传输协议
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>  <span style="color:#a00;background-color:#faa">usernameFragment:</span> <span style="color:#a00;background-color:#faa">string</span> <span style="color:#09f;font-style:italic">// 访问服务的用户名
+</span></span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"></span>  <span style="color:#a00;background-color:#faa">...</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-1">1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-2">2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-3">3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-4">4</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-5">5</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-6">6</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-7">7</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-8">8</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-9">9</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#309;font-weight:bold">&#34;type&#34;</span>: <span style="color:#c30">&#34;candidate&#34;</span>,
+</span></span><span style="display:flex;"><span>	<span style="color:#309;font-weight:bold">&#34;ice&#34;</span>: {
+</span></span><span style="display:flex;"><span>		<span style="color:#309;font-weight:bold">&#34;candidate&#34;</span>: <span style="color:#c30">&#34;candidate:585912851 1 udp 2113937151 3c99801e-c7b2-4acb-9c03-e7201933a059.local 65446 typ host generation 0 ufrag m0h6 network-cost 999&#34;</span>,
+</span></span><span style="display:flex;"><span>		<span style="color:#309;font-weight:bold">&#34;sdpMid&#34;</span>: <span style="color:#c30">&#34;0&#34;</span>,
+</span></span><span style="display:flex;"><span>		<span style="color:#309;font-weight:bold">&#34;sdpMLineIndex&#34;</span>: <span style="color:#f60">0</span>,
+</span></span><span style="display:flex;"><span>		<span style="color:#309;font-weight:bold">&#34;usernameFragment&#34;</span>: <span style="color:#c30">&#34;m0h6&#34;</span>
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>WebRTC的时序图：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./webrtc.assets/687474703a2f2f7777332e73696e61696d672e636e2f6c617267652f30303679386d4e366a77316638756c326e6c6a6f666a3330686e306639337a6c2e6a7067.jpeg"
+        data-srcset="./webrtc.assets/687474703a2f2f7777332e73696e61696d672e636e2f6c617267652f30303679386d4e366a77316638756c326e6c6a6f666a3330686e306639337a6c2e6a7067.jpeg, ./webrtc.assets/687474703a2f2f7777332e73696e61696d672e636e2f6c617267652f30303679386d4e366a77316638756c326e6c6a6f666a3330686e306639337a6c2e6a7067.jpeg 1.5x, ./webrtc.assets/687474703a2f2f7777332e73696e61696d672e636e2f6c617267652f30303679386d4e366a77316638756c326e6c6a6f666a3330686e306639337a6c2e6a7067.jpeg 2x"
+        data-sizes="auto"
+        alt="./webrtc.assets/687474703a2f2f7777332e73696e61696d672e636e2f6c617267652f30303679386d4e366a77316638756c326e6c6a6f666a3330686e306639337a6c2e6a7067.jpeg"
+        title="img" /></p>
+<p>SDP（会话描述协议）及 NAT（网络地址转换）</p>
+<h1 id="宇树方案">宇树方案</h1>
+<p>![image-20250514132948915](/Users/hulk/Library/Application Support/typora-user-images/image-20250514132948915.png)</p>
+<h2 id="参考资料">参考资料</h2>
+<p><a href="https://juejin.cn/post/7266417942182608955" target="_blank" rel="noopener noreffer ">WebRTC这么火，前端靓仔，请收下这篇入门教程</a></p>
+<p><a href="https://www.cnblogs.com/yuweifeng/p/17578695.html" target="_blank" rel="noopener noreffer ">流媒体协议之WebRTC服务实现</a></p>
+<p><a href="https://www.cnblogs.com/fangkm/p/4364553.html" target="_blank" rel="noopener noreffer ">WebRTC手记之初探</a></p>
+<p><a href="https://github.com/introlab/opentera-webrtc-ros" target="_blank" rel="noopener noreffer ">opentera-webrtc-ros</a></p>
+<p><a href="https://github.com/TzuHuanTai/RaspberryPi-WebRTC" target="_blank" rel="noopener noreffer ">RaspberryPi-WebRTC</a></p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-1">1</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>gst-launch-1.0 v4l2src <span style="color:#033">device</span><span style="color:#555">=</span>/dev/video0 ! videoconvert ! x264enc <span style="color:#033">tune</span><span style="color:#555">=</span>zerolatency <span style="color:#033">bitrate</span><span style="color:#555">=</span><span style="color:#f60">500</span> speed-preset<span style="color:#555">=</span>superfast ! flvmux <span style="color:#033">streamable</span><span style="color:#555">=</span><span style="color:#366">true</span> ! rtmpsink <span style="color:#033">location</span><span style="color:#555">=</span><span style="color:#c30">&#39;rtmp://&lt;服务器IP&gt;:1935/live/stream1&#39;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2026-03-12</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://zhangyuhu.github.io/posts/computer_vision/multimedia/webrtc/webrtc/" data-title=""><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://zhangyuhu.github.io/posts/computer_vision/multimedia/webrtc/webrtc/"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://zhangyuhu.github.io/posts/computer_vision/multimedia/webrtc/webrtc/" data-title=""><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://zhangyuhu.github.io/posts/computer_vision/multimedia/webrtc/webrtc/" data-title=""><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://zhangyuhu.github.io/posts/computer_vision/multimedia/webrtc/webrtc/" data-title="" data-ralateuid="ji"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/computer_vision/multimedia/%E5%AE%9E%E6%97%B6%E9%9F%B3%E8%A7%86%E9%A2%91%E5%AE%9E%E7%94%A8%E6%8A%80%E6%9C%AF/cdn/" class="prev" rel="prev" title=""><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i></a>
+            <a href="/posts/computer_vision/multimedia/webrtc/opentera-webrtc/" class="next" rel="next" title=""><i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="giscus" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://giscus.app">Giscus</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">为天地立心,为生民立命,为往圣继绝学,为万世开太平</div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2023 - 2026</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://zhangyuhu.github.io/" target="_blank">zhangyuhu</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="http://creativecommons.org/licenses/by/4.0/" target="_blank">知识共享署名 4.0 国际许可协议</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/twemoji@14.0.2/dist/twemoji.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@8.6.0/dist/index.umd.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":100},"comment":{"giscus":{"category":"Comments","categoryId":"DIC_kwDOIx2Cjs4CTnUX","darkTheme":"dark","emitMetadata":"0","inputPosition":"bottom","lang":"en","lazyLoading":false,"lightTheme":"light","mapping":"pathname","reactionsEnabled":"1","repo":"zhangyuhu/zhangyuhu.github.io","repoId":"R_kgDOIx2Cjg"}},"data":{"id-1":"HOME","id-2":"HOME"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"},"twemoji":true,"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.f1b10c54ef8e7ea0c938baba89a68e47962cb91f87edfcf0ae7abf0ec7bbb510e5d980a2b5a69686d7a44eae747183e3ed5cd960ed6fe66552c947e6fca4ff67.js" integrity="sha512-8bEMVO+OfqDJOLq6iaaOR5YsuR+H7fzwrnq/Dse7tRDl2YCitaaWhtekTq50cYPj7VzZYO1v5mVSyUfm/KT/Zw=="></script></body>
+</html>

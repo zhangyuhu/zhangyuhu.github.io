@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>ROS:ROS2性能分析 - 这是我的网站</title><meta name="Description" content="ROS2性能分析介绍"><meta property="og:title" content="ROS:ROS2性能分析" />
+<meta property="og:description" content="ROS2性能分析介绍" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zhangyuhu.github.io/posts/basic_knowledge/ros/12-ros2%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90/" /><meta property="og:image" content="https://zhangyuhu.github.io/logo.png" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-01-22T13:52:52+08:00" />
+<meta property="article:modified_time" content="2023-01-30T13:11:52+08:00" /><meta property="og:site_name" content="我的网站" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://zhangyuhu.github.io/logo.png" /><meta name="twitter:title" content="ROS:ROS2性能分析"/>
+<meta name="twitter:description" content="ROS2性能分析介绍"/>
+<meta name="application-name" content="我的网站">
+<meta name="apple-mobile-web-app-title" content="我的网站"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://zhangyuhu.github.io/posts/basic_knowledge/ros/12-ros2%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90/" /><link rel="prev" href="https://zhangyuhu.github.io/posts/basic_knowledge/ros/20-ros2%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/" /><link rel="next" href="https://zhangyuhu.github.io/posts/basic_knowledge/ros/01-%E5%9F%BA%E7%A1%80/" /><link rel="stylesheet" href="/css/style.min.d09a08388620d07592fcb288b74e9f4434a352d4869011bd6c06619079103da00fcccceb4fa6fce14315bef50c9be97c6bc29582e3968d9521c60ef89c6de806.css" integrity="sha512-0JoIOIYg0HWS/LKIt06fRDSjUtSGkBG9bAZhkHkQPaAPzMzrT6b84UMVvvUMm+l8a8KVguOWjZUhxg74nG3oBg=="><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "ROS:ROS2性能分析",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/zhangyuhu.github.io\/posts\/basic_knowledge\/ros\/12-ros2%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90\/"
+        },"image": [{
+                            "@type": "ImageObject",
+                            "url": "https:\/\/zhangyuhu.github.io\/images\/Apple-Devices-Preview.png",
+                            "width":  3200 ,
+                            "height":  2048 
+                        }],"genre": "posts","keywords": "ROS, ROS2, 性能分析","wordcount":  3612 ,
+        "url": "https:\/\/zhangyuhu.github.io\/posts\/basic_knowledge\/ros\/12-ros2%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90\/","datePublished": "2023-01-22T13:52:52+08:00","dateModified": "2023-01-30T13:11:52+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "zhangyuhu"
+            },"description": "ROS2性能分析介绍"
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="这是我的网站"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/" title="文章"><i class='fas fa-archive fa-fw fa-sm'></i> 文章 </a><a class="menu-item" href="/tags/"><i class='fas fa-tags fa-fw fa-sm'></i> 标签 </a><a class="menu-item" href="/categories/"><i class='fas fa-th fa-fw fa-sm'></i> 分类 </a><a class="menu-item" href="/about/"><i class='fas fa-user-tie fa-fw fa-sm'></i> 关于 </a><a class="menu-item" href="/tool/"><i class='fas fa-cube fa-fw fa-sm'></i> 工具箱 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="这是我的网站"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="文章"><i class='fas fa-archive fa-fw fa-sm'></i>文章</a><a class="menu-item" href="/tags/" title=""><i class='fas fa-tags fa-fw fa-sm'></i>标签</a><a class="menu-item" href="/categories/" title=""><i class='fas fa-th fa-fw fa-sm'></i>分类</a><a class="menu-item" href="/about/" title=""><i class='fas fa-user-tie fa-fw fa-sm'></i>关于</a><a class="menu-item" href="/tool/" title=""><i class='fas fa-cube fa-fw fa-sm'></i>工具箱</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">ROS:ROS2性能分析</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://zhangyuhu.github.io/" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>zhangyuhu</a></span>&nbsp;<span class="post-category">included in <a href="/categories/ros/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>ROS</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-01-22">2023-01-22</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;3612 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;8 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#-组件概览">🧩 组件概览</a></li>
+        <li><a href="#-安装方式">📦 安装方式</a></li>
+        <li><a href="#-一使用-ros2-trace-启动跟踪">🚀 一、使用 <code>ros2 trace</code> 启动跟踪</a></li>
+        <li><a href="#-二可视化分析-trace-数据">🔎 二、可视化/分析 trace 数据</a>
+          <ul>
+            <li><a href="#-快速查看">✅ 快速查看：</a></li>
+            <li><a href="#-使用-tracetools_analysis-生成分析图表">✅ 使用 <code>tracetools_analysis</code> 生成分析图表</a></li>
+          </ul>
+        </li>
+        <li><a href="#-三分析重点指标含义">📈 三、分析重点指标含义</a></li>
+        <li><a href="#-四典型问题分析示例">🧪 四、典型问题分析示例</a>
+          <ul>
+            <li><a href="#1-topic-延迟大">1️⃣ Topic 延迟大？</a></li>
+            <li><a href="#2-回调不稳定">2️⃣ 回调不稳定？</a></li>
+            <li><a href="#3-多个-callback-互相影响">3️⃣ 多个 callback 互相影响？</a></li>
+          </ul>
+        </li>
+        <li><a href="#-实用补充trace-自定义">🧠 实用补充：trace 自定义</a></li>
+        <li><a href="#-总结">🔚 总结</a></li>
+        <li><a href="#-建议">✅ 建议</a>
+          <ul>
+            <li><a href="#1-进程管理与故障恢复">1. 进程管理与故障恢复</a>
+              <ul>
+                <li><a href="#11-ros2-launch-system"><strong>1.1 ROS2 Launch System</strong></a></li>
+                <li><a href="#12-component-based-development-组件化开发"><strong>1.2 Component-based Development (组件化开发)</strong></a></li>
+                <li><a href="#13-foros-故障转移框架"><strong>1.3 Foros (故障转移框架)</strong></a></li>
+                <li><a href="#14-sugarcoat-元框架"><strong>1.4 Sugarcoat (元框架)</strong></a></li>
+              </ul>
+            </li>
+            <li><a href="#2-系统诊断与监控">2. 系统诊断与监控</a>
+              <ul>
+                <li><a href="#21-ros-diagnostics-诊断系统"><strong>2.1 ROS Diagnostics (诊断系统)</strong></a></li>
+                <li><a href="#22-diagnostic_aggregator-诊断聚合器"><strong>2.2 diagnostic_aggregator (诊断聚合器)</strong></a></li>
+                <li><a href="#23-rqt_runtime_monitor-运行时监控器"><strong>2.3 rqt_runtime_monitor (运行时监控器)</strong></a></li>
+                <li><a href="#24-rqt_robot_monitor-机器人监控器"><strong>2.4 rqt_robot_monitor (机器人监控器)</strong></a></li>
+                <li><a href="#25-ros2_tracing-跟踪工具"><strong>2.5 ros2_tracing (跟踪工具)</strong></a></li>
+                <li><a href="#26-topic-statistics-话题统计"><strong>2.6 Topic Statistics (话题统计)</strong></a></li>
+              </ul>
+            </li>
+            <li><a href="#3-安全性与高级监控">3. 安全性与高级监控</a>
+              <ul>
+                <li><a href="#31-ros2-security-sros2"><strong>3.1 ROS2 Security (SROS2)</strong></a></li>
+                <li><a href="#32-结合外部监控工具"><strong>3.2 结合外部监控工具</strong></a></li>
+              </ul>
+            </li>
+            <li><a href="#总结">总结</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><blockquote>
+<p>本文采用<a href="http://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreffer ">知识共享署名 4.0 国际许可协议</a>进行许可，转载时请注明原文链接，图片在使用时请保留全部内容，可适当缩放并在引用处附上图片所在的文章链接。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>场景</th>
+<th>推荐工具</th>
+<th>原因</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>通信延迟分析</td>
+<td><code>ros2 trace</code> + <code>tracetools_analysis</code></td>
+<td>ROS 官方支持，分析粒度细</td>
+</tr>
+<tr>
+<td>Topic 测速</td>
+<td><code>ros2 topic hz</code>, <code>bw</code></td>
+<td>简单直观</td>
+</tr>
+<tr>
+<td>系统资源监控</td>
+<td><code>systemd-cgtop</code>, <code>top</code></td>
+<td>轻量系统工具</td>
+</tr>
+<tr>
+<td>C++ 函数热点</td>
+<td><code>perf</code>, <code>valgrind</code></td>
+<td>原生代码调优</td>
+</tr>
+<tr>
+<td>DDS 层监控</td>
+<td>Fast DDS Monitor</td>
+<td>通信瓶颈快速定位</td>
+</tr>
+</tbody>
+</table>
+<p><code>ros2 trace</code> + <code>tracetools_analysis</code> 是 ROS 2 官方提供的一套强大工具链，用于<strong>性能分析、调度追踪与瓶颈定位</strong>，是进行系统级时间行为分析的最佳组合之一。
+它基于 LTTng（Linux Trace Toolkit Next Generation）底层框架，<strong>几乎无性能开销</strong>，适合实机运行下的调试分析。</p>
+<hr>
+<h2 id="-组件概览">🧩 组件概览</h2>
+<table>
+<thead>
+<tr>
+<th>工具</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ros2 trace</code></td>
+<td>启动系统 Trace，收集执行时的数据（消息、回调、调度等事件）</td>
+</tr>
+<tr>
+<td><code>tracetools_analysis</code></td>
+<td>解析 Trace 数据，提取调度时间、发布-接收延迟、执行顺序等信息</td>
+</tr>
+<tr>
+<td>LTTng</td>
+<td>底层 Trace 引擎，真正收集内核和用户态事件</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="-安装方式">📦 安装方式</h2>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-1">1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-2">2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-3">3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-4">4</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-5">5</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-gdscript3" data-lang="gdscript3"><span style="display:flex;"><span>bash
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a00;background-color:#faa">复制编辑</span>
+</span></span><span style="display:flex;"><span>sudo apt install ros<span style="color:#555">-$</span>{ROS_DISTRO}<span style="color:#555">-</span>ros2trace ros<span style="color:#555">-$</span>{ROS_DISTRO}<span style="color:#555">-</span>tracetools<span style="color:#555">-</span>analysis lttng<span style="color:#555">-</span>tools babeltrace2
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>示例（以 <code>humble</code> 为例）：</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-1">1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-2">2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-3">3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-4">4</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-5">5</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-gdscript3" data-lang="gdscript3"><span style="display:flex;"><span>bash
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a00;background-color:#faa">复制编辑</span>
+</span></span><span style="display:flex;"><span>sudo apt install ros<span style="color:#555">-</span>humble<span style="color:#555">-</span>ros2trace ros<span style="color:#555">-</span>humble<span style="color:#555">-</span>tracetools<span style="color:#555">-</span>analysis lttng<span style="color:#555">-</span>tools babeltrace2
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h2 id="-一使用-ros2-trace-启动跟踪">🚀 一、使用 <code>ros2 trace</code> 启动跟踪</h2>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-1">1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-2">2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-3">3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-4">4</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-5">5</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>bash
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>复制编辑
+</span></span><span style="display:flex;"><span>ros2 trace -s my_trace
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这个命令将：</p>
+<ul>
+<li>创建一个名为 <code>my_trace</code> 的跟踪会话</li>
+<li>默认收集 ROS 2 的重要事件，如：
+<ul>
+<li><code>rclcpp_publish</code>（消息发布）</li>
+<li><code>rclcpp_intra_publish</code>（内部发布）</li>
+<li><code>dispatch_subscription_callback</code>（订阅回调调度）</li>
+<li><code>callback_start</code> / <code>callback_end</code>（回调执行）</li>
+</ul>
+</li>
+</ul>
+<p>Trace 文件默认保存在：</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-1">1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-2">2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-3">3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-4">4</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-5">5</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>ruby
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>复制编辑
+</span></span><span style="display:flex;"><span>~/.ros/tracing/my_trace/
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>你可以运行节点，比如：</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-1">1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-2">2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-3">3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-4">4</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-5">5</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span>bash
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>复制编辑
+</span></span><span style="display:flex;"><span>ros2 run your_package your_node
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>运行一段时间后，<code>Ctrl+C</code> 终止。</p>
+<hr>
+<h2 id="-二可视化分析-trace-数据">🔎 二、可视化/分析 trace 数据</h2>
+<h3 id="-快速查看">✅ 快速查看：</h3>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-1">1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-2">2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-3">3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-4">4</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-5-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-5-5">5</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>bash
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>复制编辑
+</span></span><span style="display:flex;"><span>babeltrace2 ~/.ros/tracing/my_trace/
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这会以文本方式输出 trace 时间线。</p>
+<hr>
+<h3 id="-使用-tracetools_analysis-生成分析图表">✅ 使用 <code>tracetools_analysis</code> 生成分析图表</h3>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-1">1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-2">2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-3">3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-4">4</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-5">5</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-6">6</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-6-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-6-7">7</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-gdscript3" data-lang="gdscript3"><span style="display:flex;"><span>bash
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a00;background-color:#faa">复制编辑</span>
+</span></span><span style="display:flex;"><span>ros2 run tracetools_analysis analyse \
+</span></span><span style="display:flex;"><span>    <span style="color:#555">-</span>i <span style="color:#555">~/.</span>ros<span style="color:#555">/</span>tracing<span style="color:#555">/</span>my_trace \
+</span></span><span style="display:flex;"><span>    <span style="color:#555">-</span>o trace_analysis_results
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>输出目录 <code>trace_analysis_results/</code> 中将包含：</p>
+<table>
+<thead>
+<tr>
+<th>文件名</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>callback_durations.csv</code></td>
+<td>每个回调执行耗时</td>
+</tr>
+<tr>
+<td><code>callback_chain.csv</code></td>
+<td>回调之间的调用链</td>
+</tr>
+<tr>
+<td><code>latencies.csv</code></td>
+<td>发布 → 接收的延迟（从 publish 到 callback）</td>
+</tr>
+<tr>
+<td><code>executor_durations.csv</code></td>
+<td>Executor 处理耗时</td>
+</tr>
+<tr>
+<td><code>periods.csv</code></td>
+<td>回调周期（是否定时发布不稳定）</td>
+</tr>
+</tbody>
+</table>
+<p>你可用 Excel / pandas / matplotlib 进一步分析。</p>
+<hr>
+<h2 id="-三分析重点指标含义">📈 三、分析重点指标含义</h2>
+<table>
+<thead>
+<tr>
+<th>指标</th>
+<th>说明</th>
+<th>解读方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>latency</code></td>
+<td>消息从发布 → 接收 callback 的总耗时</td>
+<td>通信是否卡顿，是否有 DDS 延迟</td>
+</tr>
+<tr>
+<td><code>callback_duration</code></td>
+<td>回调函数运行耗时</td>
+<td>回调是否过重</td>
+</tr>
+<tr>
+<td><code>callback_period</code></td>
+<td>定时回调的周期</td>
+<td>是否 jitter 大，周期不稳定</td>
+</tr>
+<tr>
+<td><code>executor_duration</code></td>
+<td>executor 处理某个回调耗时</td>
+<td>executor 排队是否严重</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="-四典型问题分析示例">🧪 四、典型问题分析示例</h2>
+<h3 id="1-topic-延迟大">1️⃣ Topic 延迟大？</h3>
+<p>查看 <code>latencies.csv</code>：</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-1">1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-2">2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-3">3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-4">4</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-5">5</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-7-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-7-6">6</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>cs
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>复制编辑
+</span></span><span style="display:flex;"><span>topic_name, latency_ns
+</span></span><span style="display:flex;"><span>/lidar_points, 23_000_000
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>→ 表示 23ms 延迟，可能需调 QoS 或检查 CPU 拥塞。</p>
+<hr>
+<h3 id="2-回调不稳定">2️⃣ 回调不稳定？</h3>
+<p>查看 <code>periods.csv</code> 和 <code>callback_durations.csv</code>，判断周期是否一致，耗时是否太长。</p>
+<hr>
+<h3 id="3-多个-callback-互相影响">3️⃣ 多个 callback 互相影响？</h3>
+<p>查看 <code>callback_chain.csv</code> 看执行顺序，是否串行阻塞，是否有 callback 被长时间延迟。</p>
+<hr>
+<h2 id="-实用补充trace-自定义">🧠 实用补充：trace 自定义</h2>
+<p>你可以用 <code>--event</code> 添加更多事件：</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-1">1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-2">2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-3">3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-4">4</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-8-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-8-5">5</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>bash
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>复制编辑
+</span></span><span style="display:flex;"><span>ros2 trace -s my_trace --event ros2:rclcpp_subscription_callback_added
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>或通过 <code>LTTNG</code> 手动设置 session、更复杂过滤条件（高级用法）。</p>
+<hr>
+<h2 id="-总结">🔚 总结</h2>
+<table>
+<thead>
+<tr>
+<th>工具</th>
+<th>用法</th>
+<th>场景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ros2 trace</code></td>
+<td>启动 trace，收集时间线数据</td>
+<td><strong>系统级 trace，运行时分析</strong></td>
+</tr>
+<tr>
+<td><code>tracetools_analysis</code></td>
+<td>分析结果，输出指标数据</td>
+<td><strong>延迟/抖动/调度问题定位</strong></td>
+</tr>
+<tr>
+<td><code>babeltrace2</code></td>
+<td>快速查看 raw trace</td>
+<td>快速日志阅读</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="-建议">✅ 建议</h2>
+<ul>
+<li>如果你要定位 <strong>发布 → 接收时间差、回调卡顿、周期抖动、调度延迟</strong> 等问题，这是官方最专业且轻量的工具链。</li>
+<li>若需要，我可提供一个图解流程，或带注释的分析 CSV 示例文件。</li>
+</ul>
+<p>是否需要我帮你结合一个具体的 ROS 节点，生成一套 trace + 分析演示？</p>
+<hr>
+<p>ROS2 在系统监控和稳定性方面提供了一系列组件和工具包，旨在帮助开发者构建健壮、可靠的机器人应用程序。这些工具涵盖了从<strong>进程管理</strong>、<strong>故障恢复</strong>到<strong>实时诊断</strong>和<strong>性能分析</strong>等多个层面。</p>
+<hr>
+<h3 id="1-进程管理与故障恢复">1. 进程管理与故障恢复</h3>
+<h4 id="11-ros2-launch-system"><strong>1.1 ROS2 Launch System</strong></h4>
+<p><strong>作用：</strong> <code>ros2 launch</code> 是 ROS2 中启动和管理节点（进程）的核心工具。它通过 Python 或 XML 脚本定义整个机器人系统的启动配置，包括节点参数、依赖关系等。 <strong>使用方法：</strong></p>
+<ul>
+<li>
+<p><strong>启动配置：</strong> 创建 <code>.launch.py</code> 文件，用 <code>Node</code> 类定义要启动的 ROS2 节点及其参数。</p>
+</li>
+<li>
+<p><strong>进程监控与重启：</strong> Launch 文件可以配置为监控节点进程。如果某个节点崩溃，可以自动尝试重启它，增强系统容错性。</p>
+</li>
+<li>
+<p><strong>示例：</strong></p>
+<p>Python</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-9-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-9-1"> 1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-9-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-9-2"> 2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-9-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-9-3"> 3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-9-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-9-4"> 4</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-9-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-9-5"> 5</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-9-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-9-6"> 6</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-9-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-9-7"> 7</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-9-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-9-8"> 8</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-9-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-9-9"> 9</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-9-10"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-9-10">10</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-9-11"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-9-11">11</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-9-12"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-9-12">12</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-9-13"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-9-13">13</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-9-14"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-9-14">14</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>from launch import LaunchDescription
+</span></span><span style="display:flex;"><span>from launch_ros.actions import Node
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>def generate_launch_description():
+</span></span><span style="display:flex;"><span>    return LaunchDescription([
+</span></span><span style="display:flex;"><span>        Node(
+</span></span><span style="display:flex;"><span>            package=&#39;my_package&#39;,
+</span></span><span style="display:flex;"><span>            executable=&#39;my_node&#39;,
+</span></span><span style="display:flex;"><span>            name=&#39;my_node_instance&#39;,
+</span></span><span style="display:flex;"><span>            output=&#39;screen&#39;,
+</span></span><span style="display:flex;"><span>            # restart=True, # 启用自动重启 (需配合特定LaunchActions或自定义逻辑)
+</span></span><span style="display:flex;"><span>            # respawn_delay=5.0 # 重启延迟
+</span></span><span style="display:flex;"><span>        ),
+</span></span><span style="display:flex;"><span>    ])
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>运行：<code>ros2 launch my_package my_launch_file.launch.py</code></p>
+</li>
+</ul>
+<h4 id="12-component-based-development-组件化开发"><strong>1.2 Component-based Development (组件化开发)</strong></h4>
+<p><strong>作用：</strong> 通过 <code>rclcpp_components</code> 等将多个逻辑独立的 ROS 节点作为组件加载到同一个进程中运行，减少进程间通信开销。同时，它也提供了一种管理复杂系统的方式。 <strong>使用方法：</strong></p>
+<ul>
+<li><strong>创建组件：</strong> 实现继承自 <code>rclcpp::Component</code> 的 C++ 类。</li>
+<li><strong>组合组件：</strong> 使用 <code>ComponentManager</code> 或 Launch 文件加载并运行这些组件。</li>
+<li><strong>优势与权衡：</strong> 减少资源消耗，但单个组件崩溃可能影响同进程其他组件。开发者需根据隔离需求选择独立进程或组件化。</li>
+</ul>
+<h4 id="13-foros-故障转移框架"><strong>1.3 Foros (故障转移框架)</strong></h4>
+<p><strong>作用：</strong> <code>foros</code> 是一个为 ROS2 应用程序提供<strong>领导者选举</strong>和<strong>故障转移</strong>机制的框架。它确保当主节点（Leader）发生故障时，系统能自动选举新的领导者，从而实现高可用性。 <strong>使用方法：</strong></p>
+<ul>
+<li><strong>集成到节点：</strong> 在关键节点中集成 <code>foros</code> 库，使其能够参与领导者选举。</li>
+<li><strong>配置策略：</strong> 定义故障检测和转移策略。</li>
+<li><strong>场景：</strong> 适用于需要冗余和无缝切换的机器人系统（如多机器人协作、关键控制节点）。</li>
+</ul>
+<h4 id="14-sugarcoat-元框架"><strong>1.4 Sugarcoat (元框架)</strong></h4>
+<p><strong>作用：</strong> <code>Sugarcoat</code> 是一个旨在简化 ROS2 事件驱动多节点系统开发的元框架，其内置了对<strong>故障容错</strong>和<strong>回退行为</strong>的支持。它提供了高级抽象来管理节点间的依赖和响应。 <strong>使用方法：</strong></p>
+<ul>
+<li><strong>基于事件流：</strong> 构建事件驱动的节点，<code>Sugarcoat</code> 处理事件的传递和错误处理。</li>
+<li><strong>定义回退：</strong> 配置当某个服务或事件处理失败时的回退逻辑。</li>
+<li><strong>场景：</strong> 适用于需要复杂行为链和明确错误处理路径的应用。</li>
+</ul>
+<hr>
+<h3 id="2-系统诊断与监控">2. 系统诊断与监控</h3>
+<h4 id="21-ros-diagnostics-诊断系统"><strong>2.1 ROS Diagnostics (诊断系统)</strong></h4>
+<p><strong>作用：</strong> ROS 诊断系统允许节点发布自身的健康状态和内部指标，形成统一的诊断信息流。 <strong>使用方法：</strong></p>
+<ul>
+<li>
+<p><strong>节点发布诊断：</strong> 使用 <code>diagnostic_updater</code> 库在自定义节点中发布 CPU、内存、传感器状态、错误代码等信息到 <code>/diagnostics</code> 话题。</p>
+<p>C++</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-1">1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-2">2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-3">3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-4">4</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-5">5</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-10-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-10-6">6</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>#include &#34;diagnostic_updater/diagnostic_updater.hpp&#34;
+</span></span><span style="display:flex;"><span>// ...
+</span></span><span style="display:flex;"><span>diagnostic_updater::Updater updater(this);
+</span></span><span style="display:flex;"><span>updater.set	HardwareID(&#34;my_robot_hw&#34;);
+</span></span><span style="display:flex;"><span>updater.add(&#34;Sensor Status&#34;, &amp;my_node_class::checkSensorStatus, this);
+</span></span><span style="display:flex;"><span>// 在主循环中：updater.update();
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p><strong>命令行查看：</strong> <code>ros2 topic echo /diagnostics</code> 可以查看原始诊断数据。</p>
+</li>
+</ul>
+<h4 id="22-diagnostic_aggregator-诊断聚合器"><strong>2.2 diagnostic_aggregator (诊断聚合器)</strong></h4>
+<p><strong>作用：</strong> 订阅 <code>/diagnostics</code> 话题，根据预设的 YAML 配置文件中的规则（Analyzers）对原始诊断信息进行聚合、过滤和分析，然后将结构化的结果发布到 <code>/diagnostics_agg</code> 话题。它能将分散的诊断信息组织成有意义的层级结构。 <strong>使用方法：</strong></p>
+<ul>
+<li>
+<p><strong>创建配置 YAML：</strong> 在你的 ROS2 包中创建 <code>analyzers.yaml</code>，定义 <code>GenericAnalyzer</code> 和 <code>AnalyzerGroup</code> 来分组和匹配诊断项。</p>
+<p>YAML</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-11-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-11-1"> 1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-11-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-11-2"> 2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-11-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-11-3"> 3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-11-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-11-4"> 4</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-11-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-11-5"> 5</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-11-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-11-6"> 6</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-11-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-11-7"> 7</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-11-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-11-8"> 8</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-11-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-11-9"> 9</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-11-10"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-11-10">10</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>analyzers:
+</span></span><span style="display:flex;"><span>  sensors:
+</span></span><span style="display:flex;"><span>    type: diagnostic_aggregator/AnalyzerGroup
+</span></span><span style="display:flex;"><span>    path: &#39;Sensors&#39;
+</span></span><span style="display:flex;"><span>    analyzers:
+</span></span><span style="display:flex;"><span>      imu:
+</span></span><span style="display:flex;"><span>        type: diagnostic_aggregator/GenericAnalyzer
+</span></span><span style="display:flex;"><span>        path: &#39;IMU&#39;
+</span></span><span style="display:flex;"><span>        startswith: &#39;Imu&#39;
+</span></span><span style="display:flex;"><span>        timeout: 5.0
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p><strong>Launch 文件中启动：</strong> 在 Launch 文件中启动 <code>aggregator_node</code> 并加载 <code>analyzers.yaml</code>。</p>
+<p>Python</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-1">1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-2">2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-3">3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-4">4</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-5">5</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-6">6</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-7">7</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-12-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-12-8">8</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>from launch_ros.actions import Node
+</span></span><span style="display:flex;"><span># ...
+</span></span><span style="display:flex;"><span>Node(
+</span></span><span style="display:flex;"><span>    package=&#39;diagnostic_aggregator&#39;,
+</span></span><span style="display:flex;"><span>    executable=&#39;aggregator_node&#39;,
+</span></span><span style="display:flex;"><span>    name=&#39;aggregator&#39;,
+</span></span><span style="display:flex;"><span>    parameters=[aggregator_config_file] # 指向你的 analyzers.yaml
+</span></span><span style="display:flex;"><span>)
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p><strong>验证：</strong> 运行 Launch 文件后，通过 <code>ros2 node list</code> 查看是否有 <code>aggregator</code> 节点，通过 <code>ros2 topic list</code> 查看是否有 <code>/diagnostics_agg</code> 话题。</p>
+</li>
+</ul>
+<h4 id="23-rqt_runtime_monitor-运行时监控器"><strong>2.3 rqt_runtime_monitor (运行时监控器)</strong></h4>
+<p><strong>作用：</strong> ROS2 的 GUI 工具，用于<strong>实时可视化</strong> <code>/diagnostics</code> 话题上的原始诊断信息。它将诊断项按状态（OK, Warning, Error, Stale）分类显示，并提供详细信息。 <strong>使用方法：</strong></p>
+<ul>
+<li><strong>启动：</strong> <code>rqt_runtime_monitor</code></li>
+<li><strong>查看：</strong> 界面左侧列表显示诊断项，点击可查看右侧详细信息（如数值、消息）。</li>
+</ul>
+<h4 id="24-rqt_robot_monitor-机器人监控器"><strong>2.4 rqt_robot_monitor (机器人监控器)</strong></h4>
+<p><strong>作用：</strong> 专门用于可视化<strong>经过 <code>diagnostic_aggregator</code> 聚合后的诊断信息</strong>（即 <code>/diagnostics_agg</code> 话题）。它以层次结构展示诊断数据，更清晰地反映系统组件的健康状态。 <strong>使用方法：</strong></p>
+<ul>
+<li><strong>启动：</strong> <code>rqt_robot_monitor</code></li>
+<li><strong>查看：</strong> 界面会显示一个结构化的诊断树，对应 <code>analyzers.yaml</code> 中定义的 <code>path</code> 结构，更直观地展示各子系统的状态。</li>
+</ul>
+<h4 id="25-ros2_tracing-跟踪工具"><strong>2.5 ros2_tracing (跟踪工具)</strong></h4>
+<p><strong>作用：</strong> 提供详细的 ROS2 系统<strong>性能跟踪和分析能力</strong>。它可以记录事件（如消息发布/订阅、回调执行），帮助开发者深入理解系统时序、延迟和资源消耗。 <strong>使用方法：</strong></p>
+<ul>
+<li><strong>安装：</strong> <code>sudo apt install ros-&lt;ros2-distro&gt;-ros2-tracing</code></li>
+<li><strong>启动跟踪：</strong> 使用 <code>tracetools</code> 命令行工具或在 Launch 文件中集成跟踪功能。</li>
+<li><strong>分析：</strong> 使用 <code>babeltrace2</code> 或其他可视化工具分析生成的跟踪文件（CTF）。</li>
+<li><strong>场景：</strong> 适用于诊断复杂的性能瓶颈、时序问题或资源竞争。</li>
+</ul>
+<h4 id="26-topic-statistics-话题统计"><strong>2.6 Topic Statistics (话题统计)</strong></h4>
+<p><strong>作用：</strong> ROS2 内置的功能，提供关于话题通信的性能指标，包括发布频率、消息大小和传输延迟等。 <strong>使用方法：</strong></p>
+<ul>
+<li><strong>命令行查看：</strong> <code>ros2 topic hz &lt;topic_name&gt;</code> 查看频率，<code>ros2 topic bw &lt;topic_name&gt;</code> 查看带宽。</li>
+<li><strong>节点层面：</strong> 可以在节点代码中启用和访问话题统计数据。</li>
+</ul>
+<hr>
+<h3 id="3-安全性与高级监控">3. 安全性与高级监控</h3>
+<h4 id="31-ros2-security-sros2"><strong>3.1 ROS2 Security (SROS2)</strong></h4>
+<p><strong>作用：</strong> 提供 ROS2 通信的<strong>加密、身份验证和授权</strong>机制。虽然主要关注通信安全，但它也间接有助于进程保护，防止未经授权的节点干扰系统。 <strong>使用方法：</strong></p>
+<ul>
+<li><strong>配置安全环境：</strong> 生成密钥和证书。</li>
+<li><strong>启用安全传输：</strong> 配置 ROS2 域和节点以使用安全通信。</li>
+</ul>
+<h4 id="32-结合外部监控工具"><strong>3.2 结合外部监控工具</strong></h4>
+<p><strong>作用：</strong> 对于更全面的系统级资源监控和长期数据存储，ROS2 可以与标准 Linux 工具或专业监控系统结合。 <strong>使用方法：</strong></p>
+<ul>
+<li><strong>Linux 工具：</strong> <code>top</code>, <code>htop</code> (CPU/内存), <code>dstat</code> (I/O, 网络), <code>nvidia-smi</code> (GPU)。</li>
+<li><strong>专业监控系统：</strong>
+<ul>
+<li><strong>Prometheus + Grafana：</strong> 收集 ROS2 诊断数据和系统指标，通过 Grafana 进行可视化和报警。需要开发适配器或 exporter 将 ROS2 数据转化为 Prometheus 可识别的格式。</li>
+<li><strong>AWS Health Metrics Collector for ROS2：</strong> 专门用于将 ROS2 系统指标推送到 AWS CloudWatch 进行监控。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="总结">总结</h3>
+<p>ROS2 在系统监控和稳定性方面提供了从底层进程管理到上层诊断可视化的<strong>分层工具集</strong>。开发者可以根据具体需求，组合使用这些工具：</p>
+<ul>
+<li><strong><code>ros2 launch</code></strong> 提供基础的进程管理和容错。</li>
+<li><strong><code>diagnostic_updater</code> 和 <code>diagnostic_aggregator</code></strong> 配合 <strong><code>rqt_runtime_monitor</code> / <code>rqt_robot_monitor</code></strong> 构成了 ROS2 核心的诊断和可视化体系。</li>
+<li><strong><code>foros</code> 和 <code>Sugarcoat</code></strong> 提供更高级的故障转移和行为管理。</li>
+<li><strong><code>ros2_tracing</code></strong> 用于深度性能分析。</li>
+</ul>
+<p>对于生产级机器人系统，通常还需要结合操作系统层面的资源监控（如 <code>cgroups</code>）以及专业的外部监控系统（如 Prometheus/Grafana），以实现全面的系统健康管理和故障预警。</p></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2023-01-30</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://zhangyuhu.github.io/posts/basic_knowledge/ros/12-ros2%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90/" data-title="ROS:ROS2性能分析" data-hashtags="ROS,ROS2,性能分析"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://zhangyuhu.github.io/posts/basic_knowledge/ros/12-ros2%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90/" data-hashtag="ROS"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://zhangyuhu.github.io/posts/basic_knowledge/ros/12-ros2%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90/" data-title="ROS:ROS2性能分析"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://zhangyuhu.github.io/posts/basic_knowledge/ros/12-ros2%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90/" data-title="ROS:ROS2性能分析"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://zhangyuhu.github.io/posts/basic_knowledge/ros/12-ros2%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90/" data-title="ROS:ROS2性能分析" data-ralateuid="ji"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/ros/">ROS</a>,&nbsp;<a href="/tags/ros2/">ROS2</a>,&nbsp;<a href="/tags/%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90/">性能分析</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/basic_knowledge/ros/20-ros2%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/" class="prev" rel="prev" title="ROS:ROS2文件系统"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>ROS:ROS2文件系统</a>
+            <a href="/posts/basic_knowledge/ros/01-%E5%9F%BA%E7%A1%80/" class="next" rel="next" title="ROS:ROS2基础">ROS:ROS2基础<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="giscus" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://giscus.app">Giscus</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">为天地立心,为生民立命,为往圣继绝学,为万世开太平</div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2023 - 2026</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://zhangyuhu.github.io/" target="_blank">zhangyuhu</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="http://creativecommons.org/licenses/by/4.0/" target="_blank">知识共享署名 4.0 国际许可协议</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/css/lightgallery-bundle.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/twemoji@14.0.2/dist/twemoji.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/lightgallery.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/thumbnail/lg-thumbnail.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/zoom/lg-zoom.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@8.6.0/dist/index.umd.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":100},"comment":{"giscus":{"category":"Comments","categoryId":"DIC_kwDOIx2Cjs4CTnUX","darkTheme":"dark","emitMetadata":"0","inputPosition":"bottom","lang":"en","lazyLoading":false,"lightTheme":"light","mapping":"pathname","reactionsEnabled":"1","repo":"zhangyuhu/zhangyuhu.github.io","repoId":"R_kgDOIx2Cjg"}},"data":{"id-1":"HOME","id-2":"HOME"},"lightgallery":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"},"twemoji":true,"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.f1b10c54ef8e7ea0c938baba89a68e47962cb91f87edfcf0ae7abf0ec7bbb510e5d980a2b5a69686d7a44eae747183e3ed5cd960ed6fe66552c947e6fca4ff67.js" integrity="sha512-8bEMVO+OfqDJOLq6iaaOR5YsuR+H7fzwrnq/Dse7tRDl2YCitaaWhtekTq50cYPj7VzZYO1v5mVSyUfm/KT/Zw=="></script></body>
+</html>

@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title> - 这是我的网站</title><meta name="Description" content="这是[zhangyuhu]的网站"><meta property="og:title" content="" />
+<meta property="og:description" content="数据成员可以分静态变量、非静态变量两种. 静态成员:静态类中的成员加入 static 修饰符,即是静态成员.可以直接使用类名&#43;静态成员名 访问此静态成员,因为" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zhangyuhu.github.io/posts/program/cpp/staticmember/staticmember/" /><meta property="og:image" content="https://zhangyuhu.github.io/logo.png" /><meta property="article:section" content="posts" />
+
+<meta property="article:modified_time" content="2026-03-16T23:01:36+08:00" /><meta property="og:site_name" content="我的网站" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://zhangyuhu.github.io/logo.png" /><meta name="twitter:title" content=""/>
+<meta name="twitter:description" content="数据成员可以分静态变量、非静态变量两种. 静态成员:静态类中的成员加入 static 修饰符,即是静态成员.可以直接使用类名&#43;静态成员名 访问此静态成员,因为"/>
+<meta name="application-name" content="我的网站">
+<meta name="apple-mobile-web-app-title" content="我的网站"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://zhangyuhu.github.io/posts/program/cpp/staticmember/staticmember/" /><link rel="prev" href="https://zhangyuhu.github.io/posts/program/cpp/stl/stl%E5%AE%B9%E5%99%A8%E5%AF%B9%E6%AF%94/" /><link rel="next" href="https://zhangyuhu.github.io/posts/program/cpp/newfeatures/c&#43;&#43;%E5%B8%B8%E7%94%A8%E6%96%B0%E7%89%B9%E6%80%A7%E6%80%BB%E7%BB%932/" /><link rel="stylesheet" href="/css/style.min.d09a08388620d07592fcb288b74e9f4434a352d4869011bd6c06619079103da00fcccceb4fa6fce14315bef50c9be97c6bc29582e3968d9521c60ef89c6de806.css" integrity="sha512-0JoIOIYg0HWS/LKIt06fRDSjUtSGkBG9bAZhkHkQPaAPzMzrT6b84UMVvvUMm+l8a8KVguOWjZUhxg74nG3oBg=="><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/zhangyuhu.github.io\/posts\/program\/cpp\/staticmember\/staticmember\/"
+        },"image": [{
+                            "@type": "ImageObject",
+                            "url": "https:\/\/zhangyuhu.github.io\/images\/Apple-Devices-Preview.png",
+                            "width":  3200 ,
+                            "height":  2048 
+                        }],"genre": "posts","wordcount":  3427 ,
+        "url": "https:\/\/zhangyuhu.github.io\/posts\/program\/cpp\/staticmember\/staticmember\/","dateModified": "2026-03-16T23:01:36+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "zhangyuhu"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="这是我的网站"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/" title="文章"><i class='fas fa-archive fa-fw fa-sm'></i> 文章 </a><a class="menu-item" href="/tags/"><i class='fas fa-tags fa-fw fa-sm'></i> 标签 </a><a class="menu-item" href="/categories/"><i class='fas fa-th fa-fw fa-sm'></i> 分类 </a><a class="menu-item" href="/about/"><i class='fas fa-user-tie fa-fw fa-sm'></i> 关于 </a><a class="menu-item" href="/tool/"><i class='fas fa-cube fa-fw fa-sm'></i> 工具箱 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="这是我的网站"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="文章"><i class='fas fa-archive fa-fw fa-sm'></i>文章</a><a class="menu-item" href="/tags/" title=""><i class='fas fa-tags fa-fw fa-sm'></i>标签</a><a class="menu-item" href="/categories/" title=""><i class='fas fa-th fa-fw fa-sm'></i>分类</a><a class="menu-item" href="/about/" title=""><i class='fas fa-user-tie fa-fw fa-sm'></i>关于</a><a class="menu-item" href="/tool/" title=""><i class='fas fa-cube fa-fw fa-sm'></i>工具箱</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX"></h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://zhangyuhu.github.io/" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>zhangyuhu</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;3427 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;7 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents"></nav></div>
+            </div><div class="content" id="content"><p>数据成员可以分静态变量、非静态变量两种.</p>
+<p>静态成员:静态类中的成员加入 static 修饰符,即是静态成员.可以直接使用类名+静态成员名</p>
+<p>访问此静态成员,因为静态成员存在于内存,非静态成员需要实例化才会分配内存,所以静态</p>
+<p>成员不能访问非静态的成员..因为静态成员存在于内存,所以非静态成员可以直接访问类中</p>
+<p>静态的成员.</p>
+<p>非成静态员:所有没有加 Static 的成员都是非静态成员,当类被实例化之后,可以通过实例化</p>
+<p>的类名进行访问..非静态成员的生存期决定于该类的生存期..而静态成员则不存在生存期的</p>
+<p>概念,因为静态成员始终驻留在内容中..</p>
+<p>一个类中也可以包含静态成员和非静态成员,类中也包括静态构造函数和非静态构造函数..</p>
+<p>分两个方面来总结,第一方面主要是相对于面向过程而言,即在这方面不涉及到类,第二方</p>
+<p>面相对于面向对象而言,主要说明 static 在类中的作用。评价</p>
+<p>一、在面向过程设计中的 static 关键字</p>
+<p>1、静态全局变量</p>
+<p>定义:在全局变量前,加上关键字 static 该变量就被定义成为了一个静态全局变量。</p>
+<p>特点:</p>
+<p>A、该变量在全局数据区分配内存。</p>
+<p>B、初始化:如果不显式初始化,那么将被隐式初始化为 0(自动变量是随机的,除非显式</p>
+<p>地初始化)。</p>
+<p>C、访变量只在本源文件可见,严格的讲应该为定义之处开始到本文件结束。</p>
+<p>例(摘于 C++程序设计教程&mdash;钱能主编 P103)</p>
+<p>file1.cpp :</p>
+<div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-1"> 1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-2"> 2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-3"> 3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-4"> 4</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-5"> 5</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-6"> 6</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-7"> 7</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-8"> 8</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-9"> 9</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-10"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-10">10</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-11"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-11">11</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-12"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-12">12</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-13"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-13">13</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-14"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-14">14</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-15"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-15">15</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-16"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-16">16</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>//Example 1
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>#include
+</span></span><span style="display:flex;"><span>void fn();
+</span></span><span style="display:flex;"><span>static int n; //定义静态全局变量
+</span></span><span style="display:flex;"><span>void main()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>   n=20;
+</span></span><span style="display:flex;"><span>   cout &lt;   fn();
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>void fn()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>   n++;
+</span></span><span style="display:flex;"><span>   cout &lt;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>D、文件作用域下声明的 const 的常量默认为 static 存储类型。</p>
+<p>静态变量都在全局数据区分配内存,       包括后面将要提到的静态局部变量。对于一个完整的程</p>
+<p>序,在内存中的分布情况如下图:</p>
+<p>代码区</p>
+<p>全局数据区</p>
+<p>堆区</p>
+<p>栈区</p>
+<p>一般程序的由 new 产生的动态数据存放在堆区,函数内部的自动变量存放在栈区。自</p>
+<p>动变量一般会随着函数的退出而释放空间,静态数据(即使是函数内部的静态局部变量)也</p>
+<p>存放在全局数据区。       全局数据区的数据并不会因为函数的退出而释评价放空间。细心的读者可能</p>
+<p>会发现,Example 1 中的代码中将</p>
+<p>static int n; //定义静态全局变量</p>
+<p>改为:</p>
+<p>int n; //定义全局变量程序照样正常运行。的确,定义全局变量就可以实现变量在文件中的共</p>
+<p>享,但定义静态全局变量还有以下好处:</p>
+<p>静态全局变量不能被其它文件所用;(好像是区别 extern 的)</p>
+<p>其它文件中可以定义相同名字的变量,不会发生冲突;</p>
+<p>您可以将上述示例代码改为如下:</p>
+<p>//Example 2</p>
+<p>//File1</p>
+<p>#include</p>
+<p>void fn();</p>
+<p>static int n; //定义静态全局变量(只能在本文件中使用)</p>
+<p>void main()</p>
+<p>{</p>
+<p>n=20;</p>
+<p>cout &laquo; n &lt;</p>
+<p>fn();</p>
+<p>}</p>
+<p>//File2</p>
+<p>#include</p>
+<p>extern int n;(可在别的文件中引用这个变量)</p>
+<p>void fn()</p>
+<p>{</p>
+<p>n++;</p>
+<p>cout &lt;</p>
+<p>}</p>
+<p>编译并运行 Example 2,您就会发现上述代码可以分别通过编译,但 link 时出现错误。试着</p>
+<p>将 static int n; //定义静态全局变量</p>
+<p>改为</p>
+<p>int n; //定义全局变量</p>
+<p>再次编译运行程序,细心体会全局变量和静态全局变量的区别。</p>
+<p>2、静态局部变量 定义:在局部变量前加上 static 关键字时,就定义了静态局部变量。我们</p>
+<p>先举一个静态局部变量的例子,如下:</p>
+<p>//Example 3</p>
+<p>#include</p>
+<p>void fn();</p>
+<p>void main()</p>
+<p>{</p>
+<p>fn();</p>
+<p>fn();</p>
+<p>fn();</p>
+<p>}</p>
+<p>void fn()</p>
+<p>{</p>
+<p>static n=10;</p>
+<p>cout &lt;</p>
+<p>n++;</p>
+<p>}</p>
+<p>通常,   在函数体内定义了一个变量,每当程序运行到该语句时都会给该局部变量分配栈</p>
+<p>内存。但随着程序退出函数体,系统就会收回栈内存,局部变量也相应失效。</p>
+<p>但有时候我们需要在两次调用之间对变量的值进行保存。   通常的想法是定义一个全局变</p>
+<p>量来实现。但这样一来,变量已经不再属于函数本身了,不再仅受函数的控制,给程序的维</p>
+<p>护带来不便。</p>
+<p>静态局部变量正好可以解决这个问题。   静态局部变量保存在全局数据区,而不是保存在</p>
+<p>栈中,每次的值保持到下一次调用,直到下次赋新值。</p>
+<p>特点:</p>
+<p>A、该变量在全局数据区分配内存。</p>
+<p>B、初始化:如果不显式初始化,那么将被隐式初始化为 0,以后的函数调用不再进行初</p>
+<p>始化。</p>
+<p>C、它始终驻留在全局数据区,直到程序运行结束。但其作用域为局部作用域,当定义</p>
+<p>它的函数或 语句块结束时,其作用域随之结束。</p>
+<p>3、静态函数(注意与类的静态成员函数区别) 定义:在函数的返回类型前加上 static</p>
+<p>关键字,函数即被定义成静态函数。</p>
+<p>特点:</p>
+<p>A.静态函数与普通函数不同,它只能在声明它的文件当中可见,不能被其它文件使用。 静</p>
+<p>态函数的例子:</p>
+<p>//Example 4</p>
+<p>#include</p>
+<p>static void fn();//声明静态函数</p>
+<p>void main()</p>
+<p>{</p>
+<p>fn();</p>
+<p>}</p>
+<p>void fn()//定义静态函数</p>
+<p>{</p>
+<p>int n=10;</p>
+<p>cout &lt;</p>
+<p>}</p>
+<p>定义静态函数的好处:静态函数不能被其它文件所用;</p>
+<p>其它文件中可以定义相同名字的函数,不会发生冲突;</p>
+<p>二、面向对象的 static 关键字(类中的 static 关键字)</p>
+<p>1、静态数据成员</p>
+<p>在类内数据成员的声明前加上关键字 static,该数据成员就是类内的静态数据成员。先举一</p>
+<p>个静态数据成员的例子。</p>
+<p>//Example 5</p>
+<p>#include</p>
+<p>class Myclass</p>
+<p>{</p>
+<p>public:</p>
+<p>Myclass(int a,int b,int c);</p>
+<p>void GetSum();</p>
+<p>private:</p>
+<p>int a,b,c;</p>
+<p>static int Sum;//声明静态数据成员</p>
+<p>};</p>
+<p>int Myclass::Sum=0;//定义并初始化静态数据成员</p>
+<p>Myclass::Myclass(int a,int b,int c)</p>
+<p>{</p>
+<p>this-&gt;a=a;</p>
+<p>this-&gt;b=b;</p>
+<p>this-&gt;c=c;</p>
+<p>Sum+=a+b+c;</p>
+<p>}</p>
+<p>void Myclass::GetSum()</p>
+<p>{</p>
+<p>cout &lt; &lt;&ldquo;Sum=&rdquo; &lt;</p>
+<p>}</p>
+<p>void main()</p>
+<p>{</p>
+<p>Myclass M(1,2,3);</p>
+<p>M.GetSum();</p>
+<p>Myclass N(4,5,6);</p>
+<p>N.GetSum();</p>
+<p>M.GetSum();</p>
+<p>}</p>
+<p>可以看出,静态数据成员有以下特点:</p>
+<p> 对于非静态数据成员,       每个类对象都有自己的拷贝。    而静态数据成员被当作是类的成员。</p>
+<p>无论这个类的对象被定义了多少个,         静态数据成员在程序中也只有一份拷贝, 由该类型</p>
+<p>的所有对象共享访问。也就是说,静态数据成员是该类的所有对象所共有的。对该类的</p>
+<p>多个对象来说,静态数据成员只分配一次内存,供所有对象共用。所以,静态数据成员</p>
+<p>的值对每个对象都是一样的,它的值可以更新;</p>
+<p> 静态数据成员存储在全局数据区。          静态数据成员定义时要分配空间, 所以不能在类声明</p>
+<p>中定义。在 Example 5 中,语句 int Myclass::Sum=0;是定义静态数据成员;</p>
+<p> 静态数据成员和普通数据成员一样遵从 public,protected,private 访问规则;</p>
+<p> 因为静态数据成员在全局数据区分配内存,属于本类的所有对象共享,所以,它不属于</p>
+<p>特定的类对象,在没有产生类对象时其作用域就可见,即在没有产生类的实例时,我们</p>
+<p>就可以操作它;</p>
+<p>静态数据成员初始化与一般数据成员初始化不同。静态数据成员初始化的格式为:</p>
+<p>&lt;数据类型&gt;&lt;类名&gt;::&lt;静态数据成员名&gt;=&lt;值&gt;</p>
+<p>类的静态数据成员有两种访问形式:</p>
+<p>&lt;类对象名&gt;.&lt;静态数据成员名&gt; 或 &lt;类类型名&gt;::&lt;静态数据成员名&gt;</p>
+<p>如果静态数据成员的访问权限允许的话(即 public 的成员)        ,可在程序中,按上述格式来引</p>
+<p>用静态数据成员 ;</p>
+<p>静态数据成员主要用在各个对象都有相同的某项属性的时候。           比如对于一个存款类,每个实</p>
+<p>例的利息都是相同的。       所以, 应该把利息设为存款类的静态数据成员。    这有两个好处,第一,</p>
+<p>不管定义多少个存款类对象,        利息数据成员都共享分配在全局数据区的内存,   所以节省存储</p>
+<p>空间。   第二,  一旦利息需要改变时,      只要改变一次, 则所有存款类对象的利息全改变过来了;</p>
+<p>同全局变量相比,使用静态数据成员有两个优势:</p>
+<p> 静态数据成员没有进入程序的全局名字空间,          因此不存在与程序中其它全局名字冲突的</p>
+<p>可能性;</p>
+<p> 可以实现信息隐藏。静态数据成员可以是 private 成员,而全局变量不能;</p>
+<p>2、静态成员函数</p>
+<p>与静态数据成员一样,         我们也可以创建一个静态成员函数, 它为类的全部服务而不是为</p>
+<p>某一个类的具体对象服务。静态成员函数与静态数据成员一样,都是类的内部实现,属于类</p>
+<p>定义的一部分。普通的成员函数一般都隐含了一个 this 指针,this 指针指向类的对象本身,</p>
+<p>因为普通成员函数总是具体的属于某个类的具体对象的。通常情况下,this 是缺省的。如函</p>
+<p>数 fn()实际上是 this-&gt;fn()。但是与普通函数相比,静态成员函数由于不是与任何的对象相联</p>
+<p>系,因此它不具有 this 指针。从这个意义上讲,它无法访问属于类对象的非静态数据成员,</p>
+<p>也无法访问非静态成员函数,           它只能调用其余的静态成员函数。下面举个静态成员函数的例</p>
+<p>子。</p>
+<p>//Example 6</p>
+<p>#include</p>
+<p>class Myclass</p>
+<p>{</p>
+<p>public:</p>
+<p>Myclass(int a,int b,int c);</p>
+<p>static void GetSum();/声明静态成员函数</p>
+<p>private:</p>
+<p>int a,b,c;</p>
+<p>static int Sum;//声明静态数据成员</p>
+<p>};</p>
+<p>int Myclass::Sum=0;//定义并初始化静态数据成员</p>
+<p>Myclass::Myclass(int a,int b,int c)</p>
+<p>{</p>
+<p>this-&gt;a=a;</p>
+<p>this-&gt;b=b;</p>
+<p>this-&gt;c=c;</p>
+<p>Sum+=a+b+c; //非静态成员函数可以访问静态数据成员</p>
+<p>}</p>
+<p>void Myclass::GetSum() //静态成员函数的实现</p>
+<p>{</p>
+<p>// cout &lt;   cout &lt; &lt;&ldquo;Sum=&rdquo; &lt;}void main(){   Myclass M(1,2,3);   M.GetSum();   Myclass N(4,5,6);   N.GetSum(); Myclass::GetSum();}关于静态成员函数,可以总结为以下几点: 出现在类体外的函数定义不能指定关键字 static; 静态成员之间可以相互访问,包括静态成员函数访问静态数据成员和访问静态成员函 数; 非静态成员函数可以任意地访问静态成员函数和静态数据成员; 静态成员函数不能访问非静态成员函数和非静态数据成员; 由于没有 this 指针的额外开销, 因此静态成员函数与类的全局函数相比速度上会有少许 的增长; 调用静态成员函数,可以用成员访问操作符(.)和(-&gt;)为一个类的对象或指向类对象的指 针调用静态成员函数;</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2026-03-16</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://zhangyuhu.github.io/posts/program/cpp/staticmember/staticmember/" data-title=""><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://zhangyuhu.github.io/posts/program/cpp/staticmember/staticmember/"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://zhangyuhu.github.io/posts/program/cpp/staticmember/staticmember/" data-title=""><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://zhangyuhu.github.io/posts/program/cpp/staticmember/staticmember/" data-title=""><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://zhangyuhu.github.io/posts/program/cpp/staticmember/staticmember/" data-title="" data-ralateuid="ji"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/program/cpp/stl/stl%E5%AE%B9%E5%99%A8%E5%AF%B9%E6%AF%94/" class="prev" rel="prev" title=""><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i></a>
+            <a href="/posts/program/cpp/newfeatures/c&#43;&#43;%E5%B8%B8%E7%94%A8%E6%96%B0%E7%89%B9%E6%80%A7%E6%80%BB%E7%BB%932/" class="next" rel="next" title=""><i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="giscus" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://giscus.app">Giscus</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">为天地立心,为生民立命,为往圣继绝学,为万世开太平</div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2023 - 2026</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://zhangyuhu.github.io/" target="_blank">zhangyuhu</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="http://creativecommons.org/licenses/by/4.0/" target="_blank">知识共享署名 4.0 国际许可协议</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/twemoji@14.0.2/dist/twemoji.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@8.6.0/dist/index.umd.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":100},"comment":{"giscus":{"category":"Comments","categoryId":"DIC_kwDOIx2Cjs4CTnUX","darkTheme":"dark","emitMetadata":"0","inputPosition":"bottom","lang":"en","lazyLoading":false,"lightTheme":"light","mapping":"pathname","reactionsEnabled":"1","repo":"zhangyuhu/zhangyuhu.github.io","repoId":"R_kgDOIx2Cjg"}},"data":{"id-1":"HOME","id-2":"HOME"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"},"twemoji":true,"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.f1b10c54ef8e7ea0c938baba89a68e47962cb91f87edfcf0ae7abf0ec7bbb510e5d980a2b5a69686d7a44eae747183e3ed5cd960ed6fe66552c947e6fca4ff67.js" integrity="sha512-8bEMVO+OfqDJOLq6iaaOR5YsuR+H7fzwrnq/Dse7tRDl2YCitaaWhtekTq50cYPj7VzZYO1v5mVSyUfm/KT/Zw=="></script></body>
+</html>
