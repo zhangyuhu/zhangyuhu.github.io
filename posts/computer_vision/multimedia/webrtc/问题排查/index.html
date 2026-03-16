@@ -5,15 +5,15 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
         <title>WebRTC 问题排查 - 这是我的网站</title><meta name="Description" content="这是[zhangyuhu]的网站"><meta property="og:title" content="WebRTC 问题排查" />
-<meta property="og:description" content="H264 预览无画面 1 2 3 4 5 6 pt=103`：设置Payload Type为`103 gst-launch-1.0 v4l2src device=/dev/video0 ! \ capsfilter caps=&#34;video/x-h264,width=1920,height=1080,framerate=30/1&#34; ! \ rtph264pay ssrc=12345 pt=103 ! \ webrtcbin name=webrtcbin RTP（Real-time Transport Pr" />
+<meta property="og:description" content="场景：H.264 预览无画面 搭建管线时没有显式指定 PT，导致协商和实际传输的 Payload Type 不一致。 示例（未指定 PT）： 1 2 3 4 5 6 pt=103 # 期望 Payload Type 为 103 gst-launch-1.0 v4l2src device=/dev/video0" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://zhangyuhu.github.io/posts/computer_vision/multimedia/webrtc/%E9%97%AE%E9%A2%98%E6%8E%92%E6%9F%A5/" /><meta property="og:image" content="https://zhangyuhu.github.io/logo.png" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2026-03-16T23:58:00+08:00" />
-<meta property="article:modified_time" content="2026-03-17T00:02:14+08:00" /><meta property="og:site_name" content="我的网站" />
+<meta property="article:modified_time" content="2026-03-17T00:20:51+08:00" /><meta property="og:site_name" content="我的网站" />
 
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:image" content="https://zhangyuhu.github.io/logo.png" /><meta name="twitter:title" content="WebRTC 问题排查"/>
-<meta name="twitter:description" content="H264 预览无画面 1 2 3 4 5 6 pt=103`：设置Payload Type为`103 gst-launch-1.0 v4l2src device=/dev/video0 ! \ capsfilter caps=&#34;video/x-h264,width=1920,height=1080,framerate=30/1&#34; ! \ rtph264pay ssrc=12345 pt=103 ! \ webrtcbin name=webrtcbin RTP（Real-time Transport Pr"/>
+<meta name="twitter:description" content="场景：H.264 预览无画面 搭建管线时没有显式指定 PT，导致协商和实际传输的 Payload Type 不一致。 示例（未指定 PT）： 1 2 3 4 5 6 pt=103 # 期望 Payload Type 为 103 gst-launch-1.0 v4l2src device=/dev/video0"/>
 <meta name="application-name" content="我的网站">
 <meta name="apple-mobile-web-app-title" content="我的网站"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -33,8 +33,8 @@
                             "url": "https:\/\/zhangyuhu.github.io\/images\/Apple-Devices-Preview.png",
                             "width":  3200 ,
                             "height":  2048 
-                        }],"genre": "posts","keywords": "WebRTC, 调试","wordcount":  1069 ,
-        "url": "https:\/\/zhangyuhu.github.io\/posts\/computer_vision\/multimedia\/webrtc\/%E9%97%AE%E9%A2%98%E6%8E%92%E6%9F%A5\/","datePublished": "2026-03-16T23:58:00+08:00","dateModified": "2026-03-17T00:02:14+08:00","publisher": {
+                        }],"genre": "posts","keywords": "WebRTC, 调试","wordcount":  968 ,
+        "url": "https:\/\/zhangyuhu.github.io\/posts\/computer_vision\/multimedia\/webrtc\/%E9%97%AE%E9%A2%98%E6%8E%92%E6%9F%A5\/","datePublished": "2026-03-16T23:58:00+08:00","dateModified": "2026-03-17T00:20:51+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
                 "@type": "Person",
@@ -107,8 +107,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">WebRTC 问题排查</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://zhangyuhu.github.io/" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>zhangyuhu</a></span>&nbsp;<span class="post-category">included in <a href="/categories/computervision/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>ComputerVision</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2026-03-16">2026-03-16</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1069 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;3 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2026-03-16">2026-03-16</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;968 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;2 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -116,12 +116,26 @@
                 </div>
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
-    <li><a href="#参考">参考</a></li>
+    <li>
+      <ul>
+        <li><a href="#场景h264-预览无画面">场景：H.264 预览无画面</a></li>
+        <li><a href="#rtp-关键字段回顾">RTP 关键字段回顾</a></li>
+        <li><a href="#检查-sdp-协商结果">检查 SDP 协商结果</a></li>
+        <li><a href="#抓包分析实际-rtp-数据">抓包分析实际 RTP 数据</a>
+          <ul>
+            <li><a href="#结论协商和实际传输不一致">结论：协商和实际传输不一致</a></li>
+          </ul>
+        </li>
+        <li><a href="#rtspsdp-中与播放相关的关键字段">RTSP/SDP 中与播放相关的关键字段</a></li>
+        <li><a href="#问题解决统一-pt-配置">问题解决：统一 PT 配置</a></li>
+        <li><a href="#参考">参考</a></li>
+      </ul>
+    </li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><ul>
-<li>
-<p>H264 预览无画面</p>
+            </div><div class="content" id="content"><h2 id="场景h264-预览无画面">场景：H.264 预览无画面</h2>
+<p>搭建管线时没有显式指定 PT，导致协商和实际传输的 Payload Type 不一致。</p>
+<p>示例（未指定 PT）：</p>
 <div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
 <pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-1">1</a>
@@ -132,23 +146,22 @@
 </span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-6">6</a>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-gdscript3" data-lang="gdscript3"><span style="display:flex;"><span>pt<span style="color:#555">=</span><span style="color:#f60">103</span><span style="color:#a00;background-color:#faa">`：设置</span>Payload Type为<span style="color:#a00;background-color:#faa">`</span><span style="color:#f60">103</span>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#033">pt</span><span style="color:#555">=</span><span style="color:#f60">103</span>  <span style="color:#09f;font-style:italic"># 期望 Payload Type 为 103</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>gst<span style="color:#555">-</span>launch<span style="color:#555">-</span><span style="color:#f60">1.0</span> v4l2src device<span style="color:#555">=/</span>dev<span style="color:#555">/</span>video0 <span style="color:#555">!</span> \
-</span></span><span style="display:flex;"><span>capsfilter caps<span style="color:#555">=</span><span style="color:#c30">&#34;video/x-h264,width=1920,height=1080,framerate=30/1&#34;</span> <span style="color:#555">!</span> \
-</span></span><span style="display:flex;"><span>rtph264pay ssrc<span style="color:#555">=</span><span style="color:#f60">12345</span> pt<span style="color:#555">=</span><span style="color:#f60">103</span> <span style="color:#555">!</span> \
-</span></span><span style="display:flex;"><span>webrtcbin name<span style="color:#555">=</span>webrtcbin
+</span></span><span style="display:flex;"><span>gst-launch-1.0 v4l2src <span style="color:#033">device</span><span style="color:#555">=</span>/dev/video0 ! <span style="color:#c30;font-weight:bold">\
+</span></span></span><span style="display:flex;"><span><span style="color:#c30;font-weight:bold"></span>  capsfilter <span style="color:#033">caps</span><span style="color:#555">=</span><span style="color:#c30">&#34;video/x-h264,width=1920,height=1080,framerate=30/1&#34;</span> ! <span style="color:#c30;font-weight:bold">\
+</span></span></span><span style="display:flex;"><span><span style="color:#c30;font-weight:bold"></span>  rtph264pay <span style="color:#033">ssrc</span><span style="color:#555">=</span><span style="color:#f60">12345</span> <span style="color:#033">pt</span><span style="color:#555">=</span><span style="color:#f60">103</span> ! <span style="color:#c30;font-weight:bold">\
+</span></span></span><span style="display:flex;"><span><span style="color:#c30;font-weight:bold"></span>  webrtcbin <span style="color:#033">name</span><span style="color:#555">=</span>webrtcbin
 </span></span></code></pre></td></tr></table>
 </div>
-</div></li>
-</ul>
-<p>RTP（Real-time Transport Protocol）</p>
-<p>**SSRC（Synchronization Source Identifier）<strong>和</strong>PT（Payload Type）**是两个核心字段，它们共同确保媒体流的正确传输和解析。</p>
-<p>SSRC是一个32位的随机数，用于唯一标识一个RTP流的发送源。</p>
-<p>PT是一个8位字段，表示RTP负载的媒体类型（如H.264、Opus、PCMU）。</p>
+</div><h2 id="rtp-关键字段回顾">RTP 关键字段回顾</h2>
+<p>RTP（Real-time Transport Protocol）中：</p>
 <ul>
-<li>打印两端视频媒体协商数据，查看无问题</li>
+<li><strong>SSRC（Synchronization Source Identifier）</strong>：32 位随机数，用于唯一标识一个 RTP 流的发送源。</li>
+<li><strong>PT（Payload Type）</strong>：8 位字段，表示 RTP 负载的媒体类型（如 H.264、Opus、PCMU）。</li>
 </ul>
+<h2 id="检查-sdp-协商结果">检查 SDP 协商结果</h2>
+<p>先打印两端视频媒体协商数据：</p>
 <div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
 <pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-1"> 1</a>
@@ -172,7 +185,7 @@
 </span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-19"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-19">19</a>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>远端SDP: v=0
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>远端SDP: v=0
 </span></span><span style="display:flex;"><span>o=- 8059321933707877926 2 IN IP4 127.0.0.1
 </span></span><span style="display:flex;"><span>s=-
 </span></span><span style="display:flex;"><span>t=0 0
@@ -193,12 +206,9 @@
 </span></span><span style="display:flex;"><span>a=fmtp:103 level-asymmetry-allowed=1;packetization-mode=1
 </span></span></code></pre></td></tr></table>
 </div>
-</div><ul>
-<li></li>
-<li>
-<p>抓包查看实际RTSP数据格式</p>
-</li>
-</ul>
+</div><p>可以看到：<strong>SDP 中约定的视频流 PT=103（H.264）</strong>。</p>
+<h2 id="抓包分析实际-rtp-数据">抓包分析实际 RTP 数据</h2>
+<p>抓包后的 Wireshark 截图：</p>
 <p><img
         class="lazyload"
         src="/svg/loading.min.svg"
@@ -206,87 +216,95 @@
         data-srcset="./%e9%97%ae%e9%a2%98%e6%8e%92%e6%9f%a5.assets/image-20250428150025046.png, ./%e9%97%ae%e9%a2%98%e6%8e%92%e6%9f%a5.assets/image-20250428150025046.png 1.5x, ./%e9%97%ae%e9%a2%98%e6%8e%92%e6%9f%a5.assets/image-20250428150025046.png 2x"
         data-sizes="auto"
         alt="./问题排查.assets/image-20250428150025046.png"
-        title="image-20250428150025046" /></p>
+        title="RTP 抓包" /></p>
+<p>可以看到 Payload Type 实际为：</p>
 <div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
 <pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-1">1</a>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-gdscript3" data-lang="gdscript3"><span style="display:flex;"><span>Payload type: DynamicRTP<span style="color:#555">-</span>Type<span style="color:#555">-</span><span style="color:#f60">96</span> (<span style="color:#f60">96</span>)
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>Payload type: DynamicRTP-Type-96 (96)
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>Payload type 与 SDP 协商媒体格式不一致</p>
-<p>问题是 协商阶段 服务端发送PT=103（H.264），但是在实际传输中使用的确实 PT=96（H.264），导致客户端解码失败无法播放</p>
+</div><h3 id="结论协商和实际传输不一致">结论：协商和实际传输不一致</h3>
 <ul>
-<li>
-<p>扩展L: WebRTC 中 RTSP 主要有哪些字段会影响视频播放</p>
-<p>RTSP协议中影响WebRTC视频播放的核心字段包括：</p>
+<li>SDP 协商：<code>PT=103</code>（H.264）</li>
+<li>实际 RTP：<code>PT=96</code>（H.264）</li>
+</ul>
+<p>客户端按 PT=103 去解码，实际上收到的是 PT=96，导致<strong>解码失败、无画面</strong>。</p>
+<h2 id="rtspsdp-中与播放相关的关键字段">RTSP/SDP 中与播放相关的关键字段</h2>
+<p>RTSP/SDP 协议中影响 WebRTC 播放的核心字段包括：</p>
 <ul>
-<li><strong>媒体声明</strong>（<code>m=video</code>）</li>
-<li><strong>编码参数</strong>（<code>a=rtpmap</code>、<code>a=fmtp</code>）</li>
-<li><strong>控制路径</strong>（<code>a=control</code>）</li>
-<li><strong>SSRC/PT绑定</strong>（<code>a=ssrc</code>）</li>
-<li><strong>传输扩展</strong>（<code>a=rtcp-fb</code>）</li>
-<li><strong>安全配置</strong>（<code>a=fingerprint</code>）</li>
+<li><strong>媒体声明</strong>：<code>m=video</code></li>
+<li><strong>编码参数</strong>：<code>a=rtpmap</code>、<code>a=fmtp</code></li>
+<li><strong>控制路径</strong>：<code>a=control</code></li>
+<li><strong>SSRC/PT 绑定</strong>：<code>a=ssrc</code></li>
+<li><strong>传输扩展</strong>：<code>a=rtcp-fb</code></li>
+<li><strong>安全配置</strong>：<code>a=fingerprint</code></li>
 </ul>
-</li>
-</ul>
+<p>示例：</p>
 <div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-1"> 1</a>
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-2"> 2</a>
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-3"> 3</a>
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-4"> 4</a>
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-5"> 5</a>
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-6"> 6</a>
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-7"> 7</a>
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-8"> 8</a>
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-9"> 9</a>
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-10"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-10">10</a>
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-11"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-11">11</a>
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-1">1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-2">2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-3">3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-4">4</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-3-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-3-5">5</a>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>m=video 554 RTP/AVP 96
-</span></span><span style="display:flex;"><span>m=video：声明媒体类型为视频，WebRTC端需支持对应解码器（如H.264/VP8）: 若声明为m=audio，WebRTC会尝试按音频处理视频流，导致静音且无画面
-</span></span><span style="display:flex;"><span>554：RTSP默认端口，但WebRTC通常通过SETUP请求动态协商传输端口。
-</span></span><span style="display:flex;"><span>RTP/AVP：指定传输协议（如RTP/AVPF需额外协商）
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>H264/90000：PT=96对应H.264编码，时钟频率90000Hz。
-</span></span><span style="display:flex;"><span>profile-level-id：H.264配置文件（如Baseline/Main/High）。
-</span></span><span style="display:flex;"><span>packetization-mode：分包模式（1=单NAL单元，0=非交错模式）。
-</span></span><span style="display:flex;"><span>若分包模式与接收端预期不符，可能导致RTP包解析错误。
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>trackID=1：指定RTSP的PLAY请求需携带的URI（如rtsp://example.com/trackID=1）:若控制路径错误，WebRTC端无法启动播放，表现为卡在“连接中”状态
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>m=video 554 RTP/AVP 96
+</span></span><span style="display:flex;"><span>...
+</span></span><span style="display:flex;"><span>a=rtpmap:96 H264/90000
+</span></span><span style="display:flex;"><span>...
+</span></span><span style="display:flex;"><span>a=control:trackID=1
 </span></span></code></pre></td></tr></table>
 </div>
-</div><ul>
-<li>问题解决</li>
+</div><p>要点：</p>
+<ul>
+<li><code>m=video</code>：声明媒体类型为视频，WebRTC 端需支持对应解码器（如 H.264 / VP8）。若声明为 <code>m=audio</code>，WebRTC 会按音频处理，导致静音且无画面。</li>
+<li><code>H264/90000</code>：PT=96 对应 H.264 编码，时钟频率 90000Hz。</li>
+<li><code>profile-level-id</code> / <code>packetization-mode</code>：若与接收端预期不符，可能导致 RTP 包解析错误。</li>
+<li><code>trackID=1</code>：RTSP <code>PLAY</code> 请求 URI（如 <code>rtsp://example.com/trackID=1</code>）；控制路径错误会导致卡在“连接中”状态。</li>
 </ul>
+<h2 id="问题解决统一-pt-配置">问题解决：统一 PT 配置</h2>
+<p>在 GStreamer 管线中显式指定与 SDP 相同的 PT：</p>
 <div class="highlight"><div style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
 <pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-1">1</a>
 </span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-2">2</a>
 </span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-3">3</a>
 </span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-4">4</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-5">5</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-6">6</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-7">7</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-8">8</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-4-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-4-9">9</a>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>PIPE_DESC_INSTA360_H264_1920_1080_30=&#39;v4l2src device=/dev/video0 !  capsfilter name=capsfilter caps= &#34;video/x-h264,width=1920,height=1080,framerate=30/1&#34; ! rtph264pay name=rtph264pay ! webrtcbin name=webrtcbin&#39;;
+<pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># 未显式指定 PT 的版本</span>
+</span></span><span style="display:flex;"><span><span style="color:#033">PIPE_DESC_INSTA360_H264_1920_1080_30</span><span style="color:#555">=</span><span style="color:#c30">&#39;v4l2src device=/dev/video0 ! \
+</span></span></span><span style="display:flex;"><span><span style="color:#c30">  capsfilter name=capsfilter caps=&#34;video/x-h264,width=1920,height=1080,framerate=30/1&#34; ! \
+</span></span></span><span style="display:flex;"><span><span style="color:#c30">  rtph264pay name=rtph264pay ! webrtcbin name=webrtcbin&#39;</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span># rtph264pay 指定 pt=103
-</span></span><span style="display:flex;"><span>PIPE_DESC_INSTA360_H264_1920_1080_30=&#39;v4l2src device=/dev/video0 !  capsfilter name=capsfilter caps= &#34;video/x-h264,width=1920,height=1080,framerate=30/1&#34; ! rtph264pay name=rtph264pay pt=103 ! webrtcbin name=webrtcbin&#39;;
+</span></span><span style="display:flex;"><span><span style="color:#09f;font-style:italic"># 修正后：rtph264pay 指定 pt=103（与 SDP 一致）</span>
+</span></span><span style="display:flex;"><span><span style="color:#033">PIPE_DESC_INSTA360_H264_1920_1080_30</span><span style="color:#555">=</span><span style="color:#c30">&#39;v4l2src device=/dev/video0 ! \
+</span></span></span><span style="display:flex;"><span><span style="color:#c30">  capsfilter name=capsfilter caps=&#34;video/x-h264,width=1920,height=1080,framerate=30/1&#34; ! \
+</span></span></span><span style="display:flex;"><span><span style="color:#c30">  rtph264pay name=rtph264pay pt=103 ! webrtcbin name=webrtcbin&#39;</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p><img
+</div><p>修改后 Payload Type 与 SDP 协商值一致，视频即可正常播放：</p>
+<p><img
         class="lazyload"
         src="/svg/loading.min.svg"
         data-src="./%e9%97%ae%e9%a2%98%e6%8e%92%e6%9f%a5.assets/image-20250428151358861.png"
         data-srcset="./%e9%97%ae%e9%a2%98%e6%8e%92%e6%9f%a5.assets/image-20250428151358861.png, ./%e9%97%ae%e9%a2%98%e6%8e%92%e6%9f%a5.assets/image-20250428151358861.png 1.5x, ./%e9%97%ae%e9%a2%98%e6%8e%92%e6%9f%a5.assets/image-20250428151358861.png 2x"
         data-sizes="auto"
         alt="./问题排查.assets/image-20250428151358861.png"
-        title="image-20250428151358861" /></p>
-<p>修改后 Payload type 与 SDP 协商值一直，视频可以播放</p>
-<h1 id="参考">参考</h1>
-<p><a href="https://cloud.tencent.com/developer/article/2033788" target="_blank" rel="noopener noreffer ">Web前端WebRTC攻略(三) 传输协议UDP/RTP/RTC</a></p>
+        title="修正后抓包" /></p>
+<h2 id="参考">参考</h2>
+<ul>
+<li><a href="https://cloud.tencent.com/developer/article/2033788" target="_blank" rel="noopener noreffer ">Web前端WebRTC攻略(三) 传输协议UDP/RTP/RTC</a></li>
+</ul>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
